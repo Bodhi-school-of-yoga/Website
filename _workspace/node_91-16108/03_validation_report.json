@@ -1,0 +1,36 @@
+{
+  "summary": {
+    "overall": "WARN",
+    "passed": 14,
+    "warned": 4,
+    "failed": 0,
+    "total": 18
+  },
+  "checks": [
+    { "id": "schema.components.required-fields", "category": "schema", "result": "PASS", "evidence": "All 12 components have id, name, type, props, extraction_notes fields." },
+    { "id": "schema.components.type-enum", "category": "schema", "result": "PASS", "evidence": "All 12 components have type='inferred' (valid enum value)." },
+    { "id": "schema.components.props-type-enum", "category": "schema", "result": "PASS", "evidence": "All defined props use type in {variant, text}; no instance-swap or boolean usage on this node." },
+    { "id": "schema.components.variants-imply-props", "category": "schema", "result": "PASS", "evidence": "TypefaceTile, TextStyleRow, SpacingTile, RadiusTile, ComponentTokenMapRow all carry non-empty variants AND a corresponding variant prop." },
+    { "id": "schema.components.metadata-arithmetic", "category": "schema", "result": "PASS", "evidence": "extracted(12) + skipped(0) == total_candidates(12)." },
+    { "id": "schema.tokens.7-keys", "category": "schema", "result": "PASS", "evidence": "tokens object has exactly the 7 keys: color, typography, spacing, radius, effect, breakpoint, other." },
+    { "id": "schema.tokens.color-hex-format", "category": "schema", "result": "PASS", "evidence": "All 15 color tokens have hex values matching ^#[0-9A-F]{6}$." },
+    { "id": "schema.tokens.typography-required-fields", "category": "schema", "result": "PASS", "evidence": "All 9 typography tokens have fontFamily, fontSize, lineHeight (plus fontWeight, letterSpacing)." },
+    { "id": "schema.tokens.name-format", "category": "schema", "result": "PASS", "evidence": "All token names use lowercase ASCII + slash + digits/hyphens (e.g. color/brand-primary, spacing/sm-plus, spacing/2xl)." },
+    { "id": "cross-ref.token-exists", "category": "cross-reference", "result": "PASS", "evidence": "All 33 unique token_refs used by components resolve to a registered token name. Color refs (color/brand-primary..border-3), typography refs (typography/h1..mini-text), spacing refs (spacing/xs..6xl), radius refs (radius/none..full) all match." },
+    { "id": "cross-ref.children-resolved", "category": "cross-reference", "result": "WARN", "evidence": "TypographySection (91:16204) lists children refs 91:16208, 91:16213, 91:16218, 91:16226..91:16306 — none registered as standalone components. Same pattern in ColorTokensRecap (91:16115), SpacingAndRadiusSection (91:16317), ComponentTokenMap (91:16398) which point to abstract pattern ids ('swatch-card', 'spacing-tile', 'radius-tile', 'component-token-map-row'). The pattern ids ARE registered; the numeric leaf-instance ids are not, by design — they are instances of registered patterns.", "affected": ["TypographySection", "ColorTokensRecap", "SpacingAndRadiusSection", "ComponentTokenMap"] },
+    { "id": "completeness.figma-components-extracted", "category": "completeness", "result": "PASS", "evidence": "Source context contains 0 Figma COMPONENT or COMPONENT_SET nodes (all FRAMEs). Therefore 0/0 missed → PASS." },
+    { "id": "completeness.inferred-ratio", "category": "completeness", "result": "WARN", "evidence": "12/12 (100%) of extracted components are inferred. Threshold >40% triggers WARN. Reason: documentation page — Figma exposes no explicit COMPONENT nodes here. Expected for token-documentation pages." },
+    { "id": "consistency.variant-props", "category": "consistency", "result": "PASS", "evidence": "Variant property keys are consistent within each component: TypefaceTile {family,role}, TextStyleRow {style}, SpacingTile {alias,value}, RadiusTile {alias,value}, ComponentTokenMapRow {component,fill,text,border,radius,typography,states}." },
+    { "id": "consistency.token-name-collisions", "category": "consistency", "result": "PASS", "evidence": "No collisions across categories — each token name is uniquely scoped by its category prefix." },
+    { "id": "consistency.cross-node-equivalence", "category": "consistency", "result": "PASS", "evidence": "Token set is byte-identical to node 91:15743 (43 tokens across color/typography/spacing/radius, same names, same values). Confirms 91:16108 is a duplicate render of the same handoff content." },
+    { "id": "usability.zero-tokens", "category": "usability", "result": "PASS", "evidence": "43 tokens extracted across 4 categories (color 15, typography 9, spacing 12, radius 7). Empty categories (effect, breakpoint, other) reflect the source." },
+    { "id": "usability.all-inferred", "category": "usability", "result": "WARN", "evidence": "All components are inferred because Figma carries no COMPONENT nodes for this documentation page. Recommend human review of inferred component boundaries." },
+    { "id": "usability.no-variables", "category": "usability", "result": "WARN", "evidence": "get_variable_defs returned {}. No Figma variables defined for this node — values inferred from visible labels. Treat as point-in-time snapshot." }
+  ],
+  "recommendations": [
+    "91:16108 is a duplicate of 91:15743 — for the integrated design-system catalog, prefer the 91:15743 extraction as the canonical source and use 91:16108 only as a cross-check.",
+    "Treat the leaf-instance ids in children[].ref (e.g. 91:16226) as informational source-pointers rather than component refs. The semantically correct ref is the pattern id (text-style-row).",
+    "When (if) the Figma team adds variables to this file, re-run token-extractor to get authoritative values.",
+    "Spelling note: tokens.color.text-teritary preserves the Figma misspelling."
+  ]
+}

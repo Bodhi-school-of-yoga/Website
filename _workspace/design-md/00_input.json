@@ -1,0 +1,15 @@
+{
+  "figmaUrl": null,
+  "figmaContextSources": [
+    "_workspace/node_91-15377",
+    "_workspace/node_91-15743",
+    "_workspace/node_91-16108",
+    "_workspace/node_91-16473"
+  ],
+  "outputPath": "DESIGN.md",
+  "components": true,
+  "scanScope": "apps/web",
+  "workspaceBase": "_workspace/design-md",
+  "notes": "Reuse Figma context already extracted by figma-extract harness in _workspace/node_91-*. Do NOT call Figma MCP — read 02_tokens.json and 02_components.json from each node dir instead.",
+  "timestamp": "2026-05-21"
+}

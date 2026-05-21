@@ -1,0 +1,67 @@
+{
+  "tokens": {
+    "color": [
+      { "name": "color/brand-primary", "values": { "default": "#009877" }, "references": null, "raw_alias": null, "scopes": ["fill", "stroke"], "extraction_notes": ["Inferred from swatch card 91:15757."] },
+      { "name": "color/brand-shade", "values": { "default": "#8EE0CE" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": ["From 91:15762."] },
+      { "name": "color/brand-lite", "values": { "default": "#F0FFF8" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": ["From 91:15767 (Figma label 'brand lite')."] },
+      { "name": "color/brand-dark", "values": { "default": "#00282C" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": ["From 91:15772 (Figma label 'brand_dark')."] },
+      { "name": "color/text-primary", "values": { "default": "#1D3E59" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": [] },
+      { "name": "color/text-secondary", "values": { "default": "#2A2420" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": [] },
+      { "name": "color/text-teritary", "values": { "default": "#727272" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": ["Spelling preserved as in Figma ('teritary' not 'tertiary')."] },
+      { "name": "color/text-brand", "values": { "default": "#009877" }, "references": "color/brand-primary", "raw_alias": null, "scopes": ["fill"], "extraction_notes": ["Same hex as brand-primary; treat as semantic alias."] },
+      { "name": "color/text-inverse", "values": { "default": "#FFFFFF" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": [] },
+      { "name": "color/surface-0", "values": { "default": "#FDFDFD" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": [] },
+      { "name": "color/surface-1", "values": { "default": "#FFFFFF" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": [] },
+      { "name": "color/surface-2", "values": { "default": "#F7F7F7" }, "references": null, "raw_alias": null, "scopes": ["fill"], "extraction_notes": [] },
+      { "name": "color/border-1", "values": { "default": "#F4F4F4" }, "references": null, "raw_alias": null, "scopes": ["stroke"], "extraction_notes": [] },
+      { "name": "color/border-2", "values": { "default": "#F0F0F0" }, "references": null, "raw_alias": null, "scopes": ["stroke"], "extraction_notes": [] },
+      { "name": "color/border-3", "values": { "default": "#D2D2D2" }, "references": null, "raw_alias": null, "scopes": ["stroke"], "extraction_notes": [] }
+    ],
+    "typography": [
+      { "name": "typography/h1", "values": { "default": { "fontFamily": "Host Grotesk", "fontWeight": 700, "fontSize": 90, "lineHeight": 77, "letterSpacing": 0 } }, "references": null, "extraction_notes": ["Usage: Hero headlines, page titles. Source 91:15861."] },
+      { "name": "typography/h2", "values": { "default": { "fontFamily": "Host Grotesk", "fontWeight": 600, "fontSize": 52, "lineHeight": 53, "letterSpacing": -0.56 } }, "references": null, "extraction_notes": ["Usage: Section headings."] },
+      { "name": "typography/h3", "values": { "default": { "fontFamily": "Host Grotesk", "fontWeight": 700, "fontSize": 42, "lineHeight": 43, "letterSpacing": -0.72 } }, "references": null, "extraction_notes": ["Usage: Sub-section titles."] },
+      { "name": "typography/h4", "values": { "default": { "fontFamily": "Host Grotesk", "fontWeight": 700, "fontSize": 36, "lineHeight": 42, "letterSpacing": 0 } }, "references": null, "extraction_notes": ["Usage: Card headings."] },
+      { "name": "typography/h5", "values": { "default": { "fontFamily": "DM Sans", "fontWeight": 600, "fontSize": 24, "lineHeight": 23, "letterSpacing": -0.11 } }, "references": null, "extraction_notes": ["Usage: Labels, small headings."] },
+      { "name": "typography/subtext-3", "values": { "default": { "fontFamily": "DM Sans", "fontWeight": 600, "fontSize": 20, "lineHeight": 25, "letterSpacing": 0 } }, "references": null, "extraction_notes": ["Usage: Lead body copy, intro paragraphs."] },
+      { "name": "typography/subtext-2", "values": { "default": { "fontFamily": "DM Sans", "fontWeight": 400, "fontSize": 18, "lineHeight": 26.25, "letterSpacing": 0 } }, "references": null, "extraction_notes": ["Usage: Descriptive body text."] },
+      { "name": "typography/subtext-1", "values": { "default": { "fontFamily": "DM Sans", "fontWeight": 400, "fontSize": 16, "lineHeight": 23.25, "letterSpacing": 0.08 } }, "references": null, "extraction_notes": ["Usage: Standard body, nav links."] },
+      { "name": "typography/mini-text", "values": { "default": { "fontFamily": "DM Sans", "fontWeight": 600, "fontSize": 12, "lineHeight": 17, "letterSpacing": 2.42 } }, "references": null, "extraction_notes": ["Usage: Tags, badges, captions, labels."] }
+    ],
+    "spacing": [
+      { "name": "spacing/xs", "values": { "default": 4 }, "references": null, "extraction_notes": ["Base unit. Source 91:15955."] },
+      { "name": "spacing/sm", "values": { "default": 8 }, "references": null, "extraction_notes": [] },
+      { "name": "spacing/sm-plus", "values": { "default": 12 }, "references": null, "extraction_notes": ["Figma label 'sm+' normalized to 'sm-plus'."] },
+      { "name": "spacing/md", "values": { "default": 16 }, "references": null, "extraction_notes": [] },
+      { "name": "spacing/md-plus", "values": { "default": 20 }, "references": null, "extraction_notes": ["Figma label 'md+' normalized to 'md-plus'."] },
+      { "name": "spacing/lg", "values": { "default": 24 }, "references": null, "extraction_notes": [] },
+      { "name": "spacing/xl", "values": { "default": 32 }, "references": null, "extraction_notes": [] },
+      { "name": "spacing/2xl", "values": { "default": 40 }, "references": null, "extraction_notes": [] },
+      { "name": "spacing/3xl", "values": { "default": 48 }, "references": null, "extraction_notes": [] },
+      { "name": "spacing/4xl", "values": { "default": 64 }, "references": null, "extraction_notes": [] },
+      { "name": "spacing/5xl", "values": { "default": 80 }, "references": null, "extraction_notes": [] },
+      { "name": "spacing/6xl", "values": { "default": 96 }, "references": null, "extraction_notes": [] }
+    ],
+    "radius": [
+      { "name": "radius/none", "values": { "default": 0 }, "references": null, "extraction_notes": ["Usage: Sharp elements."] },
+      { "name": "radius/xs", "values": { "default": 4 }, "references": null, "extraction_notes": ["Usage: Badges, tags."] },
+      { "name": "radius/sm", "values": { "default": 8 }, "references": null, "extraction_notes": ["Usage: Cards, inputs."] },
+      { "name": "radius/md", "values": { "default": 12 }, "references": null, "extraction_notes": ["Usage: Modals, panels."] },
+      { "name": "radius/lg", "values": { "default": 16 }, "references": null, "extraction_notes": ["Usage: Large cards."] },
+      { "name": "radius/xl", "values": { "default": 24 }, "references": null, "extraction_notes": ["Usage: Hero sections."] },
+      { "name": "radius/full", "values": { "default": 9999 }, "references": null, "extraction_notes": ["Figma symbol '∞'; mapped to 9999. Usage: Pills, avatars."] }
+    ],
+    "effect": [],
+    "breakpoint": [],
+    "other": []
+  },
+  "extraction_metadata": {
+    "total_variables": 0,
+    "extracted": 43,
+    "skipped": 0,
+    "modes_detected": ["default"],
+    "extraction_strategy": "inference-from-design-context",
+    "categories_filled": ["color", "typography", "spacing", "radius"],
+    "categories_empty": ["effect", "breakpoint", "other"]
+  }
+}

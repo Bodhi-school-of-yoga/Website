@@ -1,0 +1,67 @@
+{
+  "edges": [
+    {"source": "apps/web/src/app", "target": "apps/web/src/components/layout", "kind": "imports", "weight": 2, "evidence": "apps/web/src/app/layout.tsx:4"},
+    {"source": "apps/web/src/app", "target": "apps/web/src/lib", "kind": "imports", "weight": 1, "evidence": "apps/web/src/app/layout.tsx:6"},
+
+    {"source": "apps/web/src/app/page", "target": "apps/web/src/components/home", "kind": "imports", "weight": 5, "evidence": "apps/web/src/app/page.tsx:1"},
+    {"source": "apps/web/src/app/page", "target": "apps/web/src/components/layout", "kind": "imports", "weight": 1, "evidence": "apps/web/src/app/page.tsx:6"},
+
+    {"source": "apps/web/src/app/about", "target": "apps/web/src/components/about-content", "kind": "imports", "weight": 1, "evidence": "apps/web/src/app/about/page.tsx:2"},
+    {"source": "apps/web/src/app/blog", "target": "apps/web/src/components/blog", "kind": "imports", "weight": 1, "evidence": "apps/web/src/app/blog/page.tsx:2"},
+    {"source": "apps/web/src/app/blog/[slug]", "target": "apps/web/src/components/blog", "kind": "imports", "weight": 1, "evidence": "apps/web/src/app/blog/[slug]/page.tsx:2"},
+    {"source": "apps/web/src/app/classes", "target": "apps/web/src/components/classes", "kind": "imports", "weight": 1, "evidence": "apps/web/src/app/classes/page.tsx:2"},
+    {"source": "apps/web/src/app/contact", "target": "apps/web/src/components/contact", "kind": "imports", "weight": 1, "evidence": "apps/web/src/app/contact/page.tsx:2"},
+    {"source": "apps/web/src/app/instructors", "target": "apps/web/src/components/instructors", "kind": "imports", "weight": 1, "evidence": "apps/web/src/app/instructors/page.tsx:2"},
+
+    {"source": "apps/web/src/components/about-content", "target": "apps/web/src/components/shared", "kind": "imports", "weight": 2, "evidence": "apps/web/src/components/about-content.tsx:5"},
+
+    {"source": "apps/web/src/components/home", "target": "apps/web/src/components/shared", "kind": "imports", "weight": 8, "evidence": "apps/web/src/components/home/hero.tsx:6"},
+    {"source": "apps/web/src/components/home", "target": "apps/web/src/components/ui", "kind": "imports", "weight": 5, "evidence": "apps/web/src/components/home/cta.tsx:5"},
+
+    {"source": "apps/web/src/components/blog", "target": "apps/web/src/components/shared", "kind": "imports", "weight": 3, "evidence": "apps/web/src/components/blog/blog-content.tsx:9"},
+    {"source": "apps/web/src/components/blog", "target": "apps/web/src/components/ui", "kind": "imports", "weight": 4, "evidence": "apps/web/src/components/blog/blog-content.tsx:6"},
+
+    {"source": "apps/web/src/components/classes", "target": "apps/web/src/components/shared", "kind": "imports", "weight": 2, "evidence": "apps/web/src/components/classes/classes-content.tsx:10"},
+    {"source": "apps/web/src/components/classes", "target": "apps/web/src/components/ui", "kind": "imports", "weight": 3, "evidence": "apps/web/src/components/classes/classes-content.tsx:7"},
+
+    {"source": "apps/web/src/components/contact", "target": "apps/web/src/components/shared", "kind": "imports", "weight": 2, "evidence": "apps/web/src/components/contact/contact-content.tsx:8"},
+    {"source": "apps/web/src/components/contact", "target": "apps/web/src/components/ui", "kind": "imports", "weight": 2, "evidence": "apps/web/src/components/contact/contact-content.tsx:6"},
+
+    {"source": "apps/web/src/components/instructors", "target": "apps/web/src/components/shared", "kind": "imports", "weight": 2, "evidence": "apps/web/src/components/instructors/instructors-content.tsx:7"},
+    {"source": "apps/web/src/components/instructors", "target": "apps/web/src/components/ui", "kind": "imports", "weight": 2, "evidence": "apps/web/src/components/instructors/instructors-content.tsx:5"},
+
+    {"source": "apps/web/src/components/layout", "target": "apps/web/src/components/shared", "kind": "imports", "weight": 2, "evidence": "apps/web/src/components/layout/footer.tsx:2"},
+    {"source": "apps/web/src/components/layout", "target": "apps/web/src/components/ui", "kind": "imports", "weight": 1, "evidence": "apps/web/src/components/layout/footer.tsx:3"},
+
+    {"source": "apps/web/src/components/shared", "target": "apps/web/src/lib", "kind": "imports", "weight": 1, "evidence": "apps/web/src/components/shared/container.tsx:2"},
+
+    {"source": "apps/web/src/lib", "target": "apps/web/src/types", "kind": "imports", "weight": 3, "evidence": "apps/web/src/lib/strapi.ts:2"},
+
+    {"source": "apps/web/src/lib", "target": "apps/cms/src/api/yoga-class", "kind": "fetches", "weight": 2, "evidence": "apps/web/src/lib/api.ts:14"},
+    {"source": "apps/web/src/lib", "target": "apps/cms/src/api/instructor", "kind": "fetches", "weight": 2, "evidence": "apps/web/src/lib/api.ts:40"},
+    {"source": "apps/web/src/lib", "target": "apps/cms/src/api/blog-post", "kind": "fetches", "weight": 2, "evidence": "apps/web/src/lib/api.ts:55"},
+    {"source": "apps/web/src/lib", "target": "apps/cms/src/api/testimonial", "kind": "fetches", "weight": 1, "evidence": "apps/web/src/lib/api.ts:86"}
+  ],
+  "external_deps": [
+    "next",
+    "next/font/google",
+    "next/link",
+    "next/image",
+    "react",
+    "framer-motion",
+    "lucide-react",
+    "@base-ui/react/navigation-menu",
+    "@base-ui/react/merge-props",
+    "@base-ui/react/use-render",
+    "@base-ui/react/dialog",
+    "@base-ui/react/separator",
+    "@base-ui/react/button",
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge",
+    "axios",
+    "@tanstack/react-query",
+    "@strapi/strapi"
+  ],
+  "cycles": []
+}

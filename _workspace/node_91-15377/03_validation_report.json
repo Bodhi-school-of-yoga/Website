@@ -1,0 +1,102 @@
+{
+  "summary": {
+    "overall": "WARN",
+    "passed": 11,
+    "warned": 3,
+    "failed": 0,
+    "total": 14
+  },
+  "checks": [
+    {
+      "id": "schema.components.required-fields",
+      "category": "schema",
+      "result": "PASS",
+      "evidence": "All 16 components have id, name, type, props, extraction_notes. type ∈ {inferred}. variants empty → no implied prop requirement. layout.padding values numeric."
+    },
+    {
+      "id": "schema.components.metadata-arithmetic",
+      "category": "schema",
+      "result": "PASS",
+      "evidence": "extraction_metadata: total_candidates=16, extracted=16, skipped=0. 16 + 0 == 16."
+    },
+    {
+      "id": "schema.tokens.required-fields",
+      "category": "schema",
+      "result": "PASS",
+      "evidence": "All 15 color tokens carry name, values, references, extraction_notes. tokens object contains all 7 required keys (color, typography, spacing, radius, effect, breakpoint, other)."
+    },
+    {
+      "id": "schema.tokens.name-format",
+      "category": "schema",
+      "result": "WARN",
+      "evidence": "Token names use hyphens (e.g. 'color/brand-primary', 'color/surface-0'). Strict spec from figma-validation SKILL says 'lowercase ASCII + / + digits only'. Hyphens are present but consistent and conventional. Format deviation flagged but values are otherwise well-formed."
+    },
+    {
+      "id": "schema.tokens.color-hex-format",
+      "category": "schema",
+      "result": "PASS",
+      "evidence": "All 15 color tokens have values.default matching #RRGGBB (uppercase). e.g. #009877, #FDFDFD, #FFFFFF."
+    },
+    {
+      "id": "cross-ref.token-exists",
+      "category": "cross-ref",
+      "result": "PASS",
+      "evidence": "All 15 token_refs from components (color/brand-primary, color/brand-shade, color/brand-lite, color/brand-dark, color/text-primary, color/text-secondary, color/text-teritary, color/text-brand, color/text-inverse, color/surface-0, color/surface-1, color/surface-2, color/border-1, color/border-2, color/border-3) are present as token names in tokens.color. A - B = ∅. B - A = ∅ (no unused tokens)."
+    },
+    {
+      "id": "cross-ref.children-ref-exists",
+      "category": "cross-ref",
+      "result": "PASS",
+      "evidence": "Page component (91:15377) declares 15 children with refs. All 15 refs (91:15391, 91:15396, 91:15401, 91:15406, 91:15413, 91:15418, 91:15423, 91:15428, 91:15433, 91:15440, 91:15445, 91:15450, 91:15457, 91:15462, 91:15467) resolve to component ids. Swatch components use ref=null (rectangle/text children) — not subject to this check."
+    },
+    {
+      "id": "completeness.figma-components-extracted",
+      "category": "completeness",
+      "result": "PASS",
+      "evidence": "Source 01_figma_context.json contains zero explicit COMPONENT or COMPONENT_SET nodes (page is documentation-only). S = ∅. S - E = ∅ → 0 missing."
+    },
+    {
+      "id": "completeness.inferred-ratio",
+      "category": "completeness",
+      "result": "WARN",
+      "evidence": "All 16/16 components are type=inferred (100%) — exceeds 40% threshold. Expected for a token-documentation page that has no explicit Figma COMPONENT nodes; not a defect, but flagged per rule."
+    },
+    {
+      "id": "consistency.variant-props",
+      "category": "consistency",
+      "result": "PASS",
+      "evidence": "No component declares variants[]. Rule not applicable; reported PASS by default."
+    },
+    {
+      "id": "consistency.token-mode-uniformity",
+      "category": "consistency",
+      "result": "PASS",
+      "evidence": "All 15 color tokens use mode set {default}. Uniform across the category."
+    },
+    {
+      "id": "consistency.name-collisions",
+      "category": "consistency",
+      "result": "PASS",
+      "evidence": "All 15 token names unique within color; other categories empty so no cross-category collisions possible."
+    },
+    {
+      "id": "usability.zero-components",
+      "category": "usability",
+      "result": "PASS",
+      "evidence": "components[] has 16 entries (non-empty)."
+    },
+    {
+      "id": "usability.all-inferred",
+      "category": "usability",
+      "result": "WARN",
+      "evidence": "All components type=inferred AND all tokens inferred from design-context (Figma returned 0 variables). Expected behavior for a token-documentation page captured via design-context fallback; flagged informationally."
+    }
+  ],
+  "recommendations": [
+    "Define the 15 colors as Figma variables in the source file so future extractions can use the variables endpoint and drop the design-context inference path.",
+    "Fix the misspelled token 'color/text-teritary' → 'color/text-tertiary' in Figma; current extraction preserves the typo for source fidelity.",
+    "Normalize Figma frame names: 'Colors/brand lite' (whitespace) and 'Colors/brand_dark' (underscore) → adopt one convention (hyphen) to remove the normalization step.",
+    "Consider documenting 'color/text-brand' as an explicit alias of 'color/brand-primary' (same hex #009877) using a Figma variable reference, so the alias is machine-readable.",
+    "If strict token-name format (no hyphens) is required, update token-extractor SKILL or accept current kebab-case as project convention."
+  ]
+}

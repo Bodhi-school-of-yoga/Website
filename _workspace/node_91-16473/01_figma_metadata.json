@@ -1,0 +1,31 @@
+{
+  "fetched_at": "2026-05-21T00:00:00Z",
+  "tool": "mcp__claude_ai_Figma__get_metadata",
+  "nodeId": "91:16473",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "format": "xml",
+  "raw": "<frame id=\"91:16473\" name=\"04 — Component Token Map\" x=\"4604\" y=\"-66\" width=\"1440\" height=\"688\">...(see metadata summary; full XML preserved in transcript; key children: 91:16474 Header, 91:16480 Section 01 Color Tokens, 91:16569 Section 02 Typography, 91:16682 Section 03 Spacing+Border Radius, 91:16766-91:16828 Section 04 Component Token Map table)</frame>",
+  "summary": {
+    "root_frame": {
+      "id": "91:16473",
+      "name": "04 — Component Token Map",
+      "width": 1440,
+      "height": 688,
+      "note": "Note: node viewport height is 688 but content extends from y=-2329 (header) to y=564 (last row). This node IS the full handoff render with anchor at section 04, identical layout to pages 2 & 3 but with the focused viewport on section 04."
+    },
+    "child_sections": [
+      {"id": "91:16474", "name": "Header", "y": -2329, "kind": "page_header"},
+      {"id": "91:16480", "name": "Section 01 — Color Tokens", "y": -2111, "kind": "color_swatch_group"},
+      {"id": "91:16569", "name": "Section 02 — Typography", "y": -1330, "kind": "typography_group"},
+      {"id": "91:16682", "name": "Section 03 — Spacing + Border Radius", "y": -359, "kind": "spacing_radius_group"},
+      {"id": "91:16766", "name": "Section 04 — Component Token Map (table header)", "y": 132, "kind": "table_header"},
+      {"id": "91:16774", "name": "Primary Button row", "y": 176, "kind": "component_token_row"},
+      {"id": "91:16782", "name": "Ghost Button row", "y": 232, "kind": "component_token_row"},
+      {"id": "91:16790", "name": "Card row", "y": 288, "kind": "component_token_row"},
+      {"id": "91:16799-91:16805", "name": "Input Field row (flat texts)", "y": 362, "kind": "component_token_row"},
+      {"id": "91:16806", "name": "Badge / Tag row", "y": 400, "kind": "component_token_row"},
+      {"id": "91:16814", "name": "Nav Link row", "y": 456, "kind": "component_token_row"},
+      {"id": "91:16822", "name": "Section Heading row", "y": 512, "kind": "component_token_row"}
+    ]
+  }
+}

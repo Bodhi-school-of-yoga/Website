@@ -47,10 +47,4 @@ postgres-data/
 .vercel
 .turbo
 
-.claude/
-docs/
-_workspace/
-.agents/
 
-claude.md
-repomix-output.xml

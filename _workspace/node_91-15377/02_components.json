@@ -1,0 +1,340 @@
+{
+  "components": [
+    {
+      "id": "91:15377",
+      "name": "ColorTokensPage",
+      "type": "inferred",
+      "description": "Page-level documentation frame titled '01 — Color Tokens'. Contains 4 grouped sections (Brand, Text, Surface, Border) of swatch cards.",
+      "variants": [],
+      "props": [],
+      "layout": {
+        "mode": "vertical",
+        "padding": { "top": 48, "right": 80, "bottom": 48, "left": 80 },
+        "gap": 28,
+        "alignment": "start"
+      },
+      "children": [
+        { "ref": "91:15391", "kind": "instance", "label": "Colors/brand-primary" },
+        { "ref": "91:15396", "kind": "instance", "label": "Colors/brand-shade" },
+        { "ref": "91:15401", "kind": "instance", "label": "Colors/brand lite" },
+        { "ref": "91:15406", "kind": "instance", "label": "Colors/brand_dark" },
+        { "ref": "91:15413", "kind": "instance", "label": "Text/text-primary" },
+        { "ref": "91:15418", "kind": "instance", "label": "Text/text-secondary" },
+        { "ref": "91:15423", "kind": "instance", "label": "Text/text-teritary" },
+        { "ref": "91:15428", "kind": "instance", "label": "Text/text-brand" },
+        { "ref": "91:15433", "kind": "instance", "label": "Text/text-inverse" },
+        { "ref": "91:15440", "kind": "instance", "label": "Surface/Surface-0" },
+        { "ref": "91:15445", "kind": "instance", "label": "Surface/Surface-1" },
+        { "ref": "91:15450", "kind": "instance", "label": "Surface/Surface-2" },
+        { "ref": "91:15457", "kind": "instance", "label": "Border/border-1" },
+        { "ref": "91:15462", "kind": "instance", "label": "Border/border-2" },
+        { "ref": "91:15467", "kind": "instance", "label": "Border/border-3" }
+      ],
+      "token_refs": [],
+      "inferred": true,
+      "extraction_notes": [
+        "Inferred from frame structure — no explicit Figma COMPONENT node",
+        "Top-level documentation page for the color-tokens chapter of the design handoff"
+      ]
+    },
+    {
+      "id": "91:15391",
+      "name": "Colors/brand-primary",
+      "type": "inferred",
+      "description": "Swatch card documenting the brand-primary color token",
+      "variants": [],
+      "props": [],
+      "layout": {
+        "mode": "none",
+        "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 },
+        "gap": 0,
+        "alignment": "start"
+      },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #009877" },
+        { "ref": null, "kind": "text", "label": "brand-primary" },
+        { "ref": null, "kind": "text", "label": "#009877" },
+        { "ref": null, "kind": "text", "label": "Primary CTA, links, accents" }
+      ],
+      "token_refs": ["color/brand-primary"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15396",
+      "name": "Colors/brand-shade",
+      "type": "inferred",
+      "description": "Swatch card documenting the brand-shade color token",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #8EE0CE" },
+        { "ref": null, "kind": "text", "label": "brand-shade" },
+        { "ref": null, "kind": "text", "label": "#8EE0CE" },
+        { "ref": null, "kind": "text", "label": "Hover states, tints" }
+      ],
+      "token_refs": ["color/brand-shade"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15401",
+      "name": "Colors/brand lite",
+      "type": "inferred",
+      "description": "Swatch card documenting the brand-lite color token",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #F0FFF8" },
+        { "ref": null, "kind": "text", "label": "brand lite" },
+        { "ref": null, "kind": "text", "label": "#F0FFF8" },
+        { "ref": null, "kind": "text", "label": "Light backgrounds, highlights" }
+      ],
+      "token_refs": ["color/brand-lite"],
+      "inferred": true,
+      "extraction_notes": [
+        "Swatch-card pattern inferred from named Figma frame",
+        "Frame name uses space ('brand lite') — normalized to 'brand-lite' for token ref"
+      ]
+    },
+    {
+      "id": "91:15406",
+      "name": "Colors/brand_dark",
+      "type": "inferred",
+      "description": "Swatch card documenting the brand-dark color token",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #00282C" },
+        { "ref": null, "kind": "text", "label": "brand_dark" },
+        { "ref": null, "kind": "text", "label": "#00282C" },
+        { "ref": null, "kind": "text", "label": "Dark backgrounds, footer" }
+      ],
+      "token_refs": ["color/brand-dark"],
+      "inferred": true,
+      "extraction_notes": [
+        "Swatch-card pattern inferred from named Figma frame",
+        "Frame name uses underscore ('brand_dark') — normalized to 'brand-dark' for token ref"
+      ]
+    },
+    {
+      "id": "91:15413",
+      "name": "Text/text-primary",
+      "type": "inferred",
+      "description": "Swatch card documenting the text-primary color token",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #1D3E59" },
+        { "ref": null, "kind": "text", "label": "text-primary" },
+        { "ref": null, "kind": "text", "label": "#1D3E59" },
+        { "ref": null, "kind": "text", "label": "Main headings & titles" }
+      ],
+      "token_refs": ["color/text-primary"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15418",
+      "name": "Text/text-secondary",
+      "type": "inferred",
+      "description": "Swatch card documenting the text-secondary color token",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #2A2420" },
+        { "ref": null, "kind": "text", "label": "text-secondary" },
+        { "ref": null, "kind": "text", "label": "#2A2420" },
+        { "ref": null, "kind": "text", "label": "Body copy, paragraphs" }
+      ],
+      "token_refs": ["color/text-secondary"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15423",
+      "name": "Text/text-teritary",
+      "type": "inferred",
+      "description": "Swatch card documenting the text-teritary [sic] color token",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #727272" },
+        { "ref": null, "kind": "text", "label": "text-teritary" },
+        { "ref": null, "kind": "text", "label": "#727272" },
+        { "ref": null, "kind": "text", "label": "Captions, meta, placeholders" }
+      ],
+      "token_refs": ["color/text-teritary"],
+      "inferred": true,
+      "extraction_notes": [
+        "Swatch-card pattern inferred from named Figma frame",
+        "Token name 'teritary' is misspelled in source (should be 'tertiary') — preserved verbatim to avoid drift with Figma"
+      ]
+    },
+    {
+      "id": "91:15428",
+      "name": "Text/text-brand",
+      "type": "inferred",
+      "description": "Swatch card documenting the text-brand color token",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #009877" },
+        { "ref": null, "kind": "text", "label": "text-brand" },
+        { "ref": null, "kind": "text", "label": "#009877" },
+        { "ref": null, "kind": "text", "label": "Branded text, highlighted words" }
+      ],
+      "token_refs": ["color/text-brand"],
+      "inferred": true,
+      "extraction_notes": [
+        "Swatch-card pattern inferred from named Figma frame",
+        "Value duplicates color/brand-primary (#009877) — semantic alias documented as separate token"
+      ]
+    },
+    {
+      "id": "91:15433",
+      "name": "Text/text-inverse",
+      "type": "inferred",
+      "description": "Swatch card documenting the text-inverse color token",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #FFFFFF" },
+        { "ref": null, "kind": "text", "label": "text-inverse" },
+        { "ref": null, "kind": "text", "label": "#FFFFFF" },
+        { "ref": null, "kind": "text", "label": "Text on dark backgrounds" }
+      ],
+      "token_refs": ["color/text-inverse"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15440",
+      "name": "Surface/Surface-0",
+      "type": "inferred",
+      "description": "Swatch card documenting the Surface-0 color token (page background)",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #FDFDFD" },
+        { "ref": null, "kind": "text", "label": "Surface-0" },
+        { "ref": null, "kind": "text", "label": "#FDFDFD" },
+        { "ref": null, "kind": "text", "label": "Page background" }
+      ],
+      "token_refs": ["color/surface-0"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame; surface treated as a color sub-category"]
+    },
+    {
+      "id": "91:15445",
+      "name": "Surface/Surface-1",
+      "type": "inferred",
+      "description": "Swatch card documenting the Surface-1 color token (card background)",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #FFFFFF" },
+        { "ref": null, "kind": "text", "label": "Surface-1" },
+        { "ref": null, "kind": "text", "label": "#FFFFFF" },
+        { "ref": null, "kind": "text", "label": "Card background" }
+      ],
+      "token_refs": ["color/surface-1"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15450",
+      "name": "Surface/Surface-2",
+      "type": "inferred",
+      "description": "Swatch card documenting the Surface-2 color token (subtle section background)",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #F7F7F7" },
+        { "ref": null, "kind": "text", "label": "Surface-2" },
+        { "ref": null, "kind": "text", "label": "#F7F7F7" },
+        { "ref": null, "kind": "text", "label": "Subtle section background" }
+      ],
+      "token_refs": ["color/surface-2"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15457",
+      "name": "Border/border-1",
+      "type": "inferred",
+      "description": "Swatch card documenting the border-1 color token (lightest divider)",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #F4F4F4" },
+        { "ref": null, "kind": "text", "label": "border-1" },
+        { "ref": null, "kind": "text", "label": "#F4F4F4" },
+        { "ref": null, "kind": "text", "label": "Lightest divider" }
+      ],
+      "token_refs": ["color/border-1"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15462",
+      "name": "Border/border-2",
+      "type": "inferred",
+      "description": "Swatch card documenting the border-2 color token (standard card border)",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #F0F0F0" },
+        { "ref": null, "kind": "text", "label": "border-2" },
+        { "ref": null, "kind": "text", "label": "#F0F0F0" },
+        { "ref": null, "kind": "text", "label": "Standard card border" }
+      ],
+      "token_refs": ["color/border-2"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    },
+    {
+      "id": "91:15467",
+      "name": "Border/border-3",
+      "type": "inferred",
+      "description": "Swatch card documenting the border-3 color token (stronger separator)",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "none", "padding": { "top": 11, "right": 0, "bottom": 11, "left": 11 }, "gap": 0, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "rectangle", "label": "swatch #D2D2D2" },
+        { "ref": null, "kind": "text", "label": "border-3" },
+        { "ref": null, "kind": "text", "label": "#D2D2D2" },
+        { "ref": null, "kind": "text", "label": "Stronger separator" }
+      ],
+      "token_refs": ["color/border-3"],
+      "inferred": true,
+      "extraction_notes": ["Swatch-card pattern inferred from named Figma frame"]
+    }
+  ],
+  "extraction_metadata": {
+    "source_node": "91:15377",
+    "total_candidates": 16,
+    "extracted": 16,
+    "skipped": 0,
+    "skip_reasons": {},
+    "notes": [
+      "Source node is a documentation page — no explicit Figma COMPONENT or COMPONENT_SET nodes exist.",
+      "All 16 components are inferred from named frames (page frame + 15 swatch-card frames).",
+      "Total candidates = 1 page frame + 15 swatch frames = 16."
+    ]
+  }
+}

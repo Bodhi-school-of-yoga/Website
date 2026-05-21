@@ -1,0 +1,10 @@
+{
+  "source": "figma",
+  "url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-246&m=dev",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "nodeId": "1:246",
+  "purpose": "Extract Card component design to implement in apps/web/src/components/ui/card.tsx using shadcn primitives and DESIGN.md tokens.",
+  "designSystemRef": "DESIGN.md",
+  "targetComponentPath": "apps/web/src/components/ui/card.tsx",
+  "requestedAt": "2026-05-21"
+}

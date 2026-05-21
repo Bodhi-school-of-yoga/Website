@@ -1,0 +1,101 @@
+{
+  "source": {
+    "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/?node-id=91-15377",
+    "file_key": "eqaofBeNUhOUISevtRfOpT",
+    "node_id": "91:15377",
+    "node_name": "01 — Color Tokens",
+    "extracted_at": "2026-05-21T00:00:00Z"
+  },
+  "components": [
+    {
+      "id": "91:15377",
+      "name": "ColorTokensPage",
+      "type": "inferred",
+      "description": "Page-level documentation frame titled '01 — Color Tokens'. Contains 4 grouped sections (Brand, Text, Surface, Border) of swatch cards.",
+      "variants": [],
+      "props": [],
+      "layout": {
+        "mode": "vertical",
+        "padding": { "top": 48, "right": 80, "bottom": 48, "left": 80 },
+        "gap": 28,
+        "alignment": "start"
+      },
+      "children": [
+        { "ref": "91:15391", "kind": "instance", "label": "Colors/brand-primary" },
+        { "ref": "91:15396", "kind": "instance", "label": "Colors/brand-shade" },
+        { "ref": "91:15401", "kind": "instance", "label": "Colors/brand lite" },
+        { "ref": "91:15406", "kind": "instance", "label": "Colors/brand_dark" },
+        { "ref": "91:15413", "kind": "instance", "label": "Text/text-primary" },
+        { "ref": "91:15418", "kind": "instance", "label": "Text/text-secondary" },
+        { "ref": "91:15423", "kind": "instance", "label": "Text/text-teritary" },
+        { "ref": "91:15428", "kind": "instance", "label": "Text/text-brand" },
+        { "ref": "91:15433", "kind": "instance", "label": "Text/text-inverse" },
+        { "ref": "91:15440", "kind": "instance", "label": "Surface/Surface-0" },
+        { "ref": "91:15445", "kind": "instance", "label": "Surface/Surface-1" },
+        { "ref": "91:15450", "kind": "instance", "label": "Surface/Surface-2" },
+        { "ref": "91:15457", "kind": "instance", "label": "Border/border-1" },
+        { "ref": "91:15462", "kind": "instance", "label": "Border/border-2" },
+        { "ref": "91:15467", "kind": "instance", "label": "Border/border-3" }
+      ],
+      "token_refs": [],
+      "inferred": true
+    },
+    { "id": "91:15391", "name": "Colors/brand-primary", "type": "inferred", "token_refs": ["color/brand-primary"], "inferred": true },
+    { "id": "91:15396", "name": "Colors/brand-shade", "type": "inferred", "token_refs": ["color/brand-shade"], "inferred": true },
+    { "id": "91:15401", "name": "Colors/brand lite", "type": "inferred", "token_refs": ["color/brand-lite"], "inferred": true },
+    { "id": "91:15406", "name": "Colors/brand_dark", "type": "inferred", "token_refs": ["color/brand-dark"], "inferred": true },
+    { "id": "91:15413", "name": "Text/text-primary", "type": "inferred", "token_refs": ["color/text-primary"], "inferred": true },
+    { "id": "91:15418", "name": "Text/text-secondary", "type": "inferred", "token_refs": ["color/text-secondary"], "inferred": true },
+    { "id": "91:15423", "name": "Text/text-teritary", "type": "inferred", "token_refs": ["color/text-teritary"], "inferred": true },
+    { "id": "91:15428", "name": "Text/text-brand", "type": "inferred", "token_refs": ["color/text-brand"], "inferred": true },
+    { "id": "91:15433", "name": "Text/text-inverse", "type": "inferred", "token_refs": ["color/text-inverse"], "inferred": true },
+    { "id": "91:15440", "name": "Surface/Surface-0", "type": "inferred", "token_refs": ["color/surface-0"], "inferred": true },
+    { "id": "91:15445", "name": "Surface/Surface-1", "type": "inferred", "token_refs": ["color/surface-1"], "inferred": true },
+    { "id": "91:15450", "name": "Surface/Surface-2", "type": "inferred", "token_refs": ["color/surface-2"], "inferred": true },
+    { "id": "91:15457", "name": "Border/border-1", "type": "inferred", "token_refs": ["color/border-1"], "inferred": true },
+    { "id": "91:15462", "name": "Border/border-2", "type": "inferred", "token_refs": ["color/border-2"], "inferred": true },
+    { "id": "91:15467", "name": "Border/border-3", "type": "inferred", "token_refs": ["color/border-3"], "inferred": true }
+  ],
+  "tokens": {
+    "color": [
+      { "name": "color/brand-primary",   "values": { "default": "#009877" }, "scopes": ["fill"], "section": "Brand",   "usage": "Primary CTA, links, accents" },
+      { "name": "color/brand-shade",     "values": { "default": "#8EE0CE" }, "scopes": ["fill"], "section": "Brand",   "usage": "Hover states, tints" },
+      { "name": "color/brand-lite",      "values": { "default": "#F0FFF8" }, "scopes": ["fill"], "section": "Brand",   "usage": "Light backgrounds, highlights" },
+      { "name": "color/brand-dark",      "values": { "default": "#00282C" }, "scopes": ["fill"], "section": "Brand",   "usage": "Dark backgrounds, footer" },
+      { "name": "color/text-primary",    "values": { "default": "#1D3E59" }, "scopes": ["fill"], "section": "Text",    "usage": "Main headings & titles" },
+      { "name": "color/text-secondary",  "values": { "default": "#2A2420" }, "scopes": ["fill"], "section": "Text",    "usage": "Body copy, paragraphs" },
+      { "name": "color/text-teritary",   "values": { "default": "#727272" }, "scopes": ["fill"], "section": "Text",    "usage": "Captions, meta, placeholders" },
+      { "name": "color/text-brand",      "values": { "default": "#009877" }, "scopes": ["fill"], "section": "Text",    "usage": "Branded text, highlighted words" },
+      { "name": "color/text-inverse",    "values": { "default": "#FFFFFF" }, "scopes": ["fill"], "section": "Text",    "usage": "Text on dark backgrounds" },
+      { "name": "color/surface-0",       "values": { "default": "#FDFDFD" }, "scopes": ["fill"], "section": "Surface", "usage": "Page background" },
+      { "name": "color/surface-1",       "values": { "default": "#FFFFFF" }, "scopes": ["fill"], "section": "Surface", "usage": "Card background" },
+      { "name": "color/surface-2",       "values": { "default": "#F7F7F7" }, "scopes": ["fill"], "section": "Surface", "usage": "Subtle section background" },
+      { "name": "color/border-1",        "values": { "default": "#F4F4F4" }, "scopes": ["fill"], "section": "Border",  "usage": "Lightest divider" },
+      { "name": "color/border-2",        "values": { "default": "#F0F0F0" }, "scopes": ["fill"], "section": "Border",  "usage": "Standard card border" },
+      { "name": "color/border-3",        "values": { "default": "#D2D2D2" }, "scopes": ["fill"], "section": "Border",  "usage": "Stronger separator" }
+    ],
+    "typography": [],
+    "spacing": [],
+    "radius": [],
+    "effect": [],
+    "breakpoint": [],
+    "other": []
+  },
+  "validation": {
+    "overall": "WARN",
+    "passed": 11,
+    "warned": 3,
+    "failed": 0,
+    "total": 14,
+    "report_path": "_workspace/node_91-15377/03_validation_report.md"
+  },
+  "extraction_metadata": {
+    "components_extracted": 16,
+    "components_inferred": 16,
+    "tokens_extracted": 15,
+    "tokens_per_section": { "Brand": 4, "Text": 5, "Surface": 3, "Border": 3 },
+    "modes_detected": ["default"],
+    "figma_variables_available": false,
+    "extraction_source": "design-context (React+Tailwind)"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "raw_ref": "_workspace/node_91-15743/_design_code.tsx",
+  "raw_size_bytes": 91562,
+  "fetched_at": "2026-05-21T00:00:00Z",
+  "tool": "get_design_context",
+  "nodeId": "91:15743",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "format": "react+tailwind",
+  "note": "Design-context body (text element[0]) is ~91KB of React+Tailwind code. Stored verbatim in _design_code.tsx because inlining would blow past the JSON-line limit and is not needed for extraction (all typography/spacing/radius values are also present and easier to read in the metadata XML). Other text elements (codestyle warnings, asset notes) were trimmed but recorded in 01_fetch_log.md."
+}

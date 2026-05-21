@@ -1,0 +1,67 @@
+{
+  "node": "91:16473",
+  "page_name": "04 — Component Token Map",
+  "validated_at": "2026-05-21T00:00:00Z",
+  "overall": "PASS",
+  "categories": {
+    "schema_integrity": {
+      "status": "PASS",
+      "checks": [
+        {"id": "components.required_fields", "result": "PASS"},
+        {"id": "tokens.required_fields", "result": "PASS"},
+        {"id": "tokens.categorization", "result": "PASS", "note": "All 45 tokens placed in 6 fixed categories + other"}
+      ]
+    },
+    "cross_references": {
+      "status": "PASS",
+      "checks": [
+        {"id": "comp_token_refs_resolvable", "result": "PASS", "detail": "All token names cited in the 7 mapping rows (brand-primary, brand-shade, brand lite, text-inverse, text-brand, text-secondary, text-primary, Surface-1, Surface-2, border-2, border-3, brand-primary border, 8px, 12px, 999px, subtext-1, mini-text, H5, H2, H3) resolve to extracted tokens."},
+        {"id": "figma_ids_unique", "result": "PASS"}
+      ]
+    },
+    "completeness": {
+      "status": "WARN",
+      "checks": [
+        {"id": "all_metadata_children_extracted", "result": "PASS"},
+        {"id": "ui_components_only_partially_specified", "result": "WARN", "detail": "Component-token map is a reference table — no actual rendered button/card/input components live in this node. Visual specs (padding, sizes, full state list) come from pages 2/3 and the live design — page 4 only specifies the token bindings."}
+      ]
+    },
+    "internal_consistency": {
+      "status": "PASS",
+      "checks": [
+        {"id": "token_values_match_earlier_pages", "result": "PASS", "detail": "All 43 reused tokens have identical values vs node_91-15377 / node_91-15743 / node_91-16108 extractions."},
+        {"id": "radius_naming_vs_value", "result": "PASS", "detail": "Row 'Badge / Tag' uses `999px` which corresponds to the `full` radius token (9999px in extraction). Mild inconsistency: spec says 999 vs full=9999. Treated as semantically equivalent (both render as a pill)."},
+        {"id": "duplicate_documentation_marked", "result": "PASS"}
+      ]
+    },
+    "source_fidelity": {
+      "status": "PASS",
+      "checks": [
+        {"id": "design_context_persisted", "result": "PASS", "detail": "_design_code.tsx (901 lines) preserved verbatim"},
+        {"id": "metadata_xml_preserved", "result": "PASS"},
+        {"id": "no_invented_tokens", "result": "PASS", "detail": "opacity.disabled and border-width.hairline are explicitly cited in the rendered table cells, not invented"}
+      ]
+    }
+  },
+  "warnings": [
+    {
+      "id": "W1",
+      "category": "completeness",
+      "severity": "low",
+      "message": "Component entries on this page are reference-table rows, not rendered UI specs. Full component geometry (padding, height, icon slots) is not extractable from this node."
+    },
+    {
+      "id": "W2",
+      "category": "internal_consistency",
+      "severity": "low",
+      "message": "Badge radius cell says `999px`, while spacing/radius scale defines `full = 9999px`. They are visually identical for the badge size, but the names diverge."
+    },
+    {
+      "id": "W3",
+      "category": "completeness",
+      "severity": "info",
+      "message": "Page 4's outer frame bounds (688px height) understate the actual content height (~2900px). Figma metadata still resolved all children — no data was lost — but external consumers reading only `width/height` may be misled."
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,313 @@
+{
+  "components": [
+    {
+      "id": "91:15743",
+      "name": "DesignSystemPage/02-Typography",
+      "type": "inferred",
+      "description": "Documentation page containing typography reference plus repeated sections for colors, spacing, radius, and a component token map.",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "vertical", "padding": { "top": 0, "right": 0, "bottom": 0, "left": 0 }, "gap": 48, "alignment": "start" },
+      "children": [
+        { "ref": "91:15744", "kind": "instance", "label": "Header" },
+        { "ref": "91:15750", "kind": "instance", "label": "ColorTokensRecap" },
+        { "ref": "91:15839", "kind": "instance", "label": "TypographySection" },
+        { "ref": "91:15952", "kind": "instance", "label": "SpacingAndRadiusSection" },
+        { "ref": "91:16033", "kind": "instance", "label": "ComponentTokenMap" }
+      ],
+      "token_refs": [],
+      "inferred": true,
+      "extraction_notes": ["Root documentation frame; not a reusable component."]
+    },
+    {
+      "id": "91:15744",
+      "name": "Header",
+      "type": "inferred",
+      "description": "Top header with brand name, title (Design System) and tagline.",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "vertical", "padding": { "top": 32, "right": 81, "bottom": 32, "left": 81 }, "gap": 13, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "text", "label": "Bodhi School of Yoga" },
+        { "ref": null, "kind": "text", "label": "Design System (H1-like)" },
+        { "ref": null, "kind": "text", "label": "Tagline" }
+      ],
+      "token_refs": ["color/brand-shade", "color/brand-dark", "typography/h1", "typography/subtext-1"],
+      "inferred": true,
+      "extraction_notes": []
+    },
+    {
+      "id": "91:15750",
+      "name": "ColorTokensRecap",
+      "type": "inferred",
+      "description": "Section '01 — Color Tokens' recap on the typography page; mirrors the dedicated color page.",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "vertical", "padding": { "top": 0, "right": 0, "bottom": 0, "left": 0 }, "gap": 28, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "instance", "label": "BrandColorsRow (4 swatches)" },
+        { "ref": null, "kind": "instance", "label": "TextColorsGrid (5 swatches)" },
+        { "ref": null, "kind": "instance", "label": "SurfaceColorsRow (3 swatches)" },
+        { "ref": null, "kind": "instance", "label": "BorderColorsRow (3 swatches)" }
+      ],
+      "token_refs": [
+        "color/brand-primary", "color/brand-shade", "color/brand-lite", "color/brand-dark",
+        "color/text-primary", "color/text-secondary", "color/text-teritary", "color/text-brand", "color/text-inverse",
+        "color/surface-0", "color/surface-1", "color/surface-2",
+        "color/border-1", "color/border-2", "color/border-3"
+      ],
+      "inferred": true,
+      "extraction_notes": ["Repeated from node 91:15377 — same swatch cards."]
+    },
+    {
+      "id": "swatch-card",
+      "name": "ColorSwatchCard",
+      "type": "inferred",
+      "description": "Reusable 300×80 swatch card: 56×56 rounded color sample on the left + token name, hex code, usage description on the right.",
+      "variants": [],
+      "props": [
+        { "name": "tokenName", "type": "text", "values": null, "default": null },
+        { "name": "hex", "type": "text", "values": null, "default": null },
+        { "name": "usage", "type": "text", "values": null, "default": null }
+      ],
+      "layout": { "mode": "horizontal", "padding": { "top": 12, "right": 12, "bottom": 12, "left": 12 }, "gap": 8, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "icon", "label": "Color sample (56×56 rounded rect)" },
+        { "ref": null, "kind": "text", "label": "Token name" },
+        { "ref": null, "kind": "text", "label": "Hex value" },
+        { "ref": null, "kind": "text", "label": "Usage hint" }
+      ],
+      "token_refs": ["typography/subtext-1", "typography/mini-text"],
+      "inferred": true,
+      "extraction_notes": ["Inferred from 15 nearly-identical swatch frames (91:15757..91:15837)."]
+    },
+    {
+      "id": "91:15839",
+      "name": "TypographySection",
+      "type": "inferred",
+      "description": "Section '02 — Typography': font-family display tiles + table of text-style rows.",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "vertical", "padding": { "top": 48, "right": 0, "bottom": 0, "left": 80 }, "gap": 16, "alignment": "start" },
+      "children": [
+        { "ref": "91:15843", "kind": "instance", "label": "TypefaceTile — Host Grotesk" },
+        { "ref": "91:15848", "kind": "instance", "label": "TypefaceTile — DM Sans" },
+        { "ref": "91:15853", "kind": "instance", "label": "TableHeader" },
+        { "ref": "91:15861", "kind": "instance", "label": "TextStyleRow — H1" },
+        { "ref": "91:15871", "kind": "instance", "label": "TextStyleRow — H2" },
+        { "ref": "91:15881", "kind": "instance", "label": "TextStyleRow — H3" },
+        { "ref": "91:15891", "kind": "instance", "label": "TextStyleRow — H4" },
+        { "ref": "91:15901", "kind": "instance", "label": "TextStyleRow — H5" },
+        { "ref": "91:15911", "kind": "instance", "label": "TextStyleRow — subtext-3" },
+        { "ref": "91:15921", "kind": "instance", "label": "TextStyleRow — subtext-2" },
+        { "ref": "91:15931", "kind": "instance", "label": "TextStyleRow — subtext-1" },
+        { "ref": "91:15941", "kind": "instance", "label": "TextStyleRow — mini-text" }
+      ],
+      "token_refs": [
+        "typography/h1", "typography/h2", "typography/h3", "typography/h4", "typography/h5",
+        "typography/subtext-3", "typography/subtext-2", "typography/subtext-1", "typography/mini-text"
+      ],
+      "inferred": true,
+      "extraction_notes": []
+    },
+    {
+      "id": "typeface-tile",
+      "name": "TypefaceTile",
+      "type": "inferred",
+      "description": "620×100 tile showcasing a font with a giant 'Aa' on the left + name/role/usage on the right.",
+      "variants": [
+        { "name": "Host Grotesk", "properties": { "family": "Host Grotesk", "role": "primary" } },
+        { "name": "DM Sans", "properties": { "family": "DM Sans", "role": "secondary" } }
+      ],
+      "props": [
+        { "name": "family", "type": "variant", "values": ["Host Grotesk", "DM Sans"], "default": "Host Grotesk" }
+      ],
+      "layout": { "mode": "horizontal", "padding": { "top": 12, "right": 12, "bottom": 12, "left": 28 }, "gap": 4, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "text", "label": "Aa preview (52px)" },
+        { "ref": null, "kind": "text", "label": "Font name (20px)" },
+        { "ref": null, "kind": "text", "label": "Role (13px)" },
+        { "ref": null, "kind": "text", "label": "Usage (12px)" }
+      ],
+      "token_refs": ["color/brand-dark", "color/surface-2"],
+      "inferred": true,
+      "extraction_notes": []
+    },
+    {
+      "id": "text-style-row",
+      "name": "TextStyleRow",
+      "type": "inferred",
+      "description": "1280×64 table row showing a text style: style-name badge, live preview, font family/weight, size, line-height, letter-spacing, and usage notes.",
+      "variants": [
+        { "name": "H1", "properties": { "style": "H1" } },
+        { "name": "H2", "properties": { "style": "H2" } },
+        { "name": "H3", "properties": { "style": "H3" } },
+        { "name": "H4", "properties": { "style": "H4" } },
+        { "name": "H5", "properties": { "style": "H5" } },
+        { "name": "subtext-3", "properties": { "style": "subtext-3" } },
+        { "name": "subtext-2", "properties": { "style": "subtext-2" } },
+        { "name": "subtext-1", "properties": { "style": "subtext-1" } },
+        { "name": "mini-text", "properties": { "style": "mini-text" } }
+      ],
+      "props": [
+        { "name": "style", "type": "variant", "values": ["H1", "H2", "H3", "H4", "H5", "subtext-3", "subtext-2", "subtext-1", "mini-text"], "default": "H1" }
+      ],
+      "layout": { "mode": "horizontal", "padding": { "top": 16, "right": 16, "bottom": 16, "left": 16 }, "gap": 100, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "text", "label": "Style badge" },
+        { "ref": null, "kind": "text", "label": "Preview ('Bodhi Yoga')" },
+        { "ref": null, "kind": "text", "label": "Font family + weight" },
+        { "ref": null, "kind": "text", "label": "Size" },
+        { "ref": null, "kind": "text", "label": "Line height" },
+        { "ref": null, "kind": "text", "label": "Letter spacing" },
+        { "ref": null, "kind": "text", "label": "Usage hint" }
+      ],
+      "token_refs": [
+        "typography/h1", "typography/h2", "typography/h3", "typography/h4", "typography/h5",
+        "typography/subtext-3", "typography/subtext-2", "typography/subtext-1", "typography/mini-text"
+      ],
+      "inferred": true,
+      "extraction_notes": ["Each variant maps 1:1 to a typography token in tokens.typography."]
+    },
+    {
+      "id": "91:15952",
+      "name": "SpacingAndRadiusSection",
+      "type": "inferred",
+      "description": "Section '03 — Spacing Scale' (12 tiles) followed by the inline Border Radius mini-grid (7 tiles).",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "vertical", "padding": { "top": 0, "right": 0, "bottom": 0, "left": 80 }, "gap": 24, "alignment": "start" },
+      "children": [
+        { "ref": "spacing-tile", "kind": "instance", "label": "SpacingTile x12" },
+        { "ref": "radius-tile", "kind": "instance", "label": "RadiusTile x7" }
+      ],
+      "token_refs": [
+        "spacing/xs", "spacing/sm", "spacing/sm-plus", "spacing/md", "spacing/md-plus", "spacing/lg",
+        "spacing/xl", "spacing/2xl", "spacing/3xl", "spacing/4xl", "spacing/5xl", "spacing/6xl",
+        "radius/none", "radius/xs", "radius/sm", "radius/md", "radius/lg", "radius/xl", "radius/full"
+      ],
+      "inferred": true,
+      "extraction_notes": []
+    },
+    {
+      "id": "spacing-tile",
+      "name": "SpacingTile",
+      "type": "inferred",
+      "description": "96×96 tile showing a horizontal bar whose width equals the spacing value + numeric label + alias.",
+      "variants": [
+        { "name": "xs", "properties": { "alias": "xs", "value": 4 } },
+        { "name": "sm", "properties": { "alias": "sm", "value": 8 } },
+        { "name": "sm+", "properties": { "alias": "sm+", "value": 12 } },
+        { "name": "md", "properties": { "alias": "md", "value": 16 } },
+        { "name": "md+", "properties": { "alias": "md+", "value": 20 } },
+        { "name": "lg", "properties": { "alias": "lg", "value": 24 } },
+        { "name": "xl", "properties": { "alias": "xl", "value": 32 } },
+        { "name": "2xl", "properties": { "alias": "2xl", "value": 40 } },
+        { "name": "3xl", "properties": { "alias": "3xl", "value": 48 } },
+        { "name": "4xl", "properties": { "alias": "4xl", "value": 64 } },
+        { "name": "5xl", "properties": { "alias": "5xl", "value": 80 } },
+        { "name": "6xl", "properties": { "alias": "6xl", "value": 96 } }
+      ],
+      "props": [
+        { "name": "alias", "type": "variant", "values": ["xs", "sm", "sm+", "md", "md+", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl"], "default": "md" }
+      ],
+      "layout": { "mode": "vertical", "padding": { "top": 22, "right": 12, "bottom": 22, "left": 12 }, "gap": 12, "alignment": "center" },
+      "children": [
+        { "ref": null, "kind": "icon", "label": "Width bar" },
+        { "ref": null, "kind": "text", "label": "px value" },
+        { "ref": null, "kind": "text", "label": "Alias" }
+      ],
+      "token_refs": ["spacing/xs", "spacing/sm", "spacing/sm-plus", "spacing/md", "spacing/md-plus", "spacing/lg", "spacing/xl", "spacing/2xl", "spacing/3xl", "spacing/4xl", "spacing/5xl", "spacing/6xl"],
+      "inferred": true,
+      "extraction_notes": []
+    },
+    {
+      "id": "radius-tile",
+      "name": "RadiusTile",
+      "type": "inferred",
+      "description": "160×80 tile showing a 40×40 square with the radius applied + name + usage.",
+      "variants": [
+        { "name": "none", "properties": { "alias": "none", "value": 0 } },
+        { "name": "xs", "properties": { "alias": "xs", "value": 4 } },
+        { "name": "sm", "properties": { "alias": "sm", "value": 8 } },
+        { "name": "md", "properties": { "alias": "md", "value": 12 } },
+        { "name": "lg", "properties": { "alias": "lg", "value": 16 } },
+        { "name": "xl", "properties": { "alias": "xl", "value": 24 } },
+        { "name": "full", "properties": { "alias": "full", "value": 9999 } }
+      ],
+      "props": [
+        { "name": "alias", "type": "variant", "values": ["none", "xs", "sm", "md", "lg", "xl", "full"], "default": "md" }
+      ],
+      "layout": { "mode": "horizontal", "padding": { "top": 20, "right": 8, "bottom": 20, "left": 14 }, "gap": 8, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "icon", "label": "Sample square" },
+        { "ref": null, "kind": "text", "label": "Alias + px" },
+        { "ref": null, "kind": "text", "label": "Usage" }
+      ],
+      "token_refs": ["radius/none", "radius/xs", "radius/sm", "radius/md", "radius/lg", "radius/xl", "radius/full"],
+      "inferred": true,
+      "extraction_notes": []
+    },
+    {
+      "id": "91:16033",
+      "name": "ComponentTokenMap",
+      "type": "inferred",
+      "description": "Section '04 — Component Token Map': 8-row table mapping component → fill / text / border / radius / typography / state tokens.",
+      "variants": [],
+      "props": [],
+      "layout": { "mode": "vertical", "padding": { "top": 0, "right": 0, "bottom": 0, "left": 80 }, "gap": 4, "alignment": "start" },
+      "children": [
+        { "ref": "component-token-map-row", "kind": "instance", "label": "Map row x8" }
+      ],
+      "token_refs": [],
+      "inferred": true,
+      "extraction_notes": []
+    },
+    {
+      "id": "component-token-map-row",
+      "name": "ComponentTokenMapRow",
+      "type": "inferred",
+      "description": "Row in the component→token map. Used to declare which tokens each Bodhi component consumes.",
+      "variants": [
+        { "name": "Primary Button", "properties": { "component": "Primary Button", "fill": "brand-primary", "text": "text-inverse", "border": null, "radius": 8, "typography": "subtext-1 SemiBold", "states": "Hover: brand-shade · Disabled: 40% opacity" } },
+        { "name": "Ghost Button", "properties": { "component": "Ghost Button", "fill": "transparent", "text": "text-brand", "border": "brand-primary 1px", "radius": 8, "typography": "subtext-1 SemiBold", "states": "Hover: brand lite bg" } },
+        { "name": "Card", "properties": { "component": "Card", "fill": "Surface-1", "text": "text-secondary", "border": "border-2 1px", "radius": 12, "typography": "H5 title · subtext-1 body", "states": "Hover: Surface-2 · shadow" } },
+        { "name": "Input Field", "properties": { "component": "Input Field", "fill": "Surface-1", "text": "text-secondary", "border": "border-3 1px", "radius": 8, "typography": "subtext-1 Regular", "states": "Focus: brand-primary border" } },
+        { "name": "Badge / Tag", "properties": { "component": "Badge / Tag", "fill": "brand lite", "text": "text-brand", "border": null, "radius": 999, "typography": "mini-text", "states": null } },
+        { "name": "Nav Link", "properties": { "component": "Nav Link", "fill": "transparent", "text": "text-secondary", "border": null, "radius": null, "typography": "subtext-1 Regular", "states": "Active: text-brand + underline" } },
+        { "name": "Section Heading", "properties": { "component": "Section Heading", "fill": "transparent", "text": "text-primary", "border": null, "radius": null, "typography": "H2 or H3", "states": null } },
+        { "name": "Footer", "properties": { "component": "Footer", "fill": "brand_dark", "text": "text-inverse", "border": null, "radius": null, "typography": "subtext-1 · mini-text", "states": null } }
+      ],
+      "props": [
+        { "name": "component", "type": "variant", "values": ["Primary Button", "Ghost Button", "Card", "Input Field", "Badge / Tag", "Nav Link", "Section Heading", "Footer"], "default": "Primary Button" }
+      ],
+      "layout": { "mode": "horizontal", "padding": { "top": 18, "right": 12, "bottom": 18, "left": 12 }, "gap": 8, "alignment": "start" },
+      "children": [
+        { "ref": null, "kind": "text", "label": "Component name" },
+        { "ref": null, "kind": "text", "label": "Fill token" },
+        { "ref": null, "kind": "text", "label": "Text token" },
+        { "ref": null, "kind": "text", "label": "Border spec" },
+        { "ref": null, "kind": "text", "label": "Radius value" },
+        { "ref": null, "kind": "text", "label": "Typography ref" },
+        { "ref": null, "kind": "text", "label": "States" }
+      ],
+      "token_refs": [
+        "color/brand-primary", "color/brand-shade", "color/brand-lite", "color/brand-dark",
+        "color/text-inverse", "color/text-brand", "color/text-secondary", "color/text-primary",
+        "color/surface-1", "color/surface-2",
+        "color/border-2", "color/border-3",
+        "radius/sm", "radius/md", "radius/full",
+        "typography/h2", "typography/h3", "typography/h5", "typography/subtext-1", "typography/mini-text"
+      ],
+      "inferred": true,
+      "extraction_notes": []
+    }
+  ],
+  "extraction_metadata": {
+    "source_node": "91:15743",
+    "total_candidates": 12,
+    "extracted": 12,
+    "skipped": 0,
+    "skip_reasons": {}
+  }
+}

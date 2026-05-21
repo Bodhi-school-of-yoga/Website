@@ -1,0 +1,16 @@
+{
+  "fetched_at": "2026-05-21T00:00:00Z",
+  "tool": "mcp__claude_ai_Figma__get_libraries",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "format": "json",
+  "raw": {
+    "libraries_added_to_file": [
+      {"name": "Material 3 Design Kit", "source": "community"},
+      {"name": "Simple Design System", "source": "community"},
+      {"name": "iOS 18 and iPadOS 18", "source": "community"},
+      {"name": "iOS and iPadOS 26", "source": "community"}
+    ],
+    "libraries_available_to_add_count": 3,
+    "note": "Subscribed libraries are generic community kits — none are Bodhi-specific. No internal Bodhi design-system library exists; the file itself acts as the source of truth."
+  }
+}

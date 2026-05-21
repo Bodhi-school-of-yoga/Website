@@ -1,0 +1,288 @@
+{
+  "nodes": [
+    {
+      "id": "apps/web",
+      "label": "Web App (Next.js)",
+      "layer": 0,
+      "path": "apps/web",
+      "kind": "workspace",
+      "file_count": 53,
+      "summary": "Next.js 15 frontend (App Router) for the Bodhi yoga studio. Server components fetch from Strapi via lib/api; client components use React Query."
+    },
+    {
+      "id": "apps/cms",
+      "label": "CMS (Strapi)",
+      "layer": 0,
+      "path": "apps/cms",
+      "kind": "workspace",
+      "file_count": 32,
+      "summary": "Strapi headless CMS exposing yoga-class, instructor, blog-post, and testimonial content types via REST API; PostgreSQL-backed."
+    },
+    {
+      "id": "root-infra",
+      "label": "Root Configs",
+      "layer": 0,
+      "path": ".",
+      "kind": "infra",
+      "file_count": 6,
+      "summary": "Monorepo root: package.json, docker-compose.yml, .env.example, README, .gitignore, skills-lock.json. Orchestrates the two apps."
+    },
+
+    {
+      "id": "apps/web/src/app",
+      "label": "Next.js App Router",
+      "layer": 1,
+      "path": "apps/web/src/app",
+      "kind": "pages",
+      "file_count": 8,
+      "summary": "Next.js App Router root: layout.tsx wraps every page with Header/Footer/Providers; page.tsx is the home route. Page-level components delegate to feature components in src/components."
+    },
+    {
+      "id": "apps/web/src/app/page",
+      "label": "Home page (/)",
+      "layer": 2,
+      "path": "apps/web/src/app/page.tsx",
+      "kind": "page",
+      "file_count": 1,
+      "summary": "Home route. Composes Header, Hero, Features, ClassesPreview, Testimonials, CTA from components/home and components/layout."
+    },
+    {
+      "id": "apps/web/src/app/about",
+      "label": "About page (/about)",
+      "layer": 2,
+      "path": "apps/web/src/app/about/page.tsx",
+      "kind": "page",
+      "file_count": 1,
+      "summary": "About route — renders AboutContent component."
+    },
+    {
+      "id": "apps/web/src/app/blog",
+      "label": "Blog index (/blog)",
+      "layer": 2,
+      "path": "apps/web/src/app/blog/page.tsx",
+      "kind": "page",
+      "file_count": 1,
+      "summary": "Blog index route — renders BlogContent listing all posts."
+    },
+    {
+      "id": "apps/web/src/app/blog/[slug]",
+      "label": "Blog post (/blog/[slug])",
+      "layer": 2,
+      "path": "apps/web/src/app/blog/[slug]/page.tsx",
+      "kind": "page",
+      "file_count": 1,
+      "summary": "Dynamic blog post route. Generates metadata from slug and renders BlogPostContent."
+    },
+    {
+      "id": "apps/web/src/app/classes",
+      "label": "Classes page (/classes)",
+      "layer": 2,
+      "path": "apps/web/src/app/classes/page.tsx",
+      "kind": "page",
+      "file_count": 1,
+      "summary": "Classes listing route — renders ClassesContent."
+    },
+    {
+      "id": "apps/web/src/app/contact",
+      "label": "Contact page (/contact)",
+      "layer": 2,
+      "path": "apps/web/src/app/contact/page.tsx",
+      "kind": "page",
+      "file_count": 1,
+      "summary": "Contact route — renders ContactContent."
+    },
+    {
+      "id": "apps/web/src/app/instructors",
+      "label": "Instructors page (/instructors)",
+      "layer": 2,
+      "path": "apps/web/src/app/instructors/page.tsx",
+      "kind": "page",
+      "file_count": 1,
+      "summary": "Instructors listing route — renders InstructorsContent."
+    },
+
+    {
+      "id": "apps/web/src/components",
+      "label": "Web Components",
+      "layer": 1,
+      "path": "apps/web/src/components",
+      "kind": "components",
+      "file_count": 22,
+      "summary": "All React components grouped by feature: home, blog, classes, contact, instructors, layout, shared primitives, and shadcn ui. Most are client components using framer-motion."
+    },
+    {
+      "id": "apps/web/src/components/home",
+      "label": "Home components",
+      "layer": 2,
+      "path": "apps/web/src/components/home",
+      "kind": "component-group",
+      "file_count": 5,
+      "summary": "Home-page sections: hero, features, classes-preview, testimonials, cta. Each is a self-contained client component composed by app/page.tsx."
+    },
+    {
+      "id": "apps/web/src/components/blog",
+      "label": "Blog components",
+      "layer": 2,
+      "path": "apps/web/src/components/blog",
+      "kind": "component-group",
+      "file_count": 2,
+      "summary": "blog-content (index listing) and blog-post-content (single post). Currently uses inline mock data, not lib/api."
+    },
+    {
+      "id": "apps/web/src/components/classes",
+      "label": "Classes components",
+      "layer": 2,
+      "path": "apps/web/src/components/classes",
+      "kind": "component-group",
+      "file_count": 1,
+      "summary": "classes-content — the full UI for the /classes route."
+    },
+    {
+      "id": "apps/web/src/components/contact",
+      "label": "Contact components",
+      "layer": 2,
+      "path": "apps/web/src/components/contact",
+      "kind": "component-group",
+      "file_count": 1,
+      "summary": "contact-content — form and contact info for the /contact route."
+    },
+    {
+      "id": "apps/web/src/components/instructors",
+      "label": "Instructors components",
+      "layer": 2,
+      "path": "apps/web/src/components/instructors",
+      "kind": "component-group",
+      "file_count": 1,
+      "summary": "instructors-content — instructor profiles UI for /instructors."
+    },
+    {
+      "id": "apps/web/src/components/layout",
+      "label": "Layout components",
+      "layer": 2,
+      "path": "apps/web/src/components/layout",
+      "kind": "component-group",
+      "file_count": 2,
+      "summary": "Header (with nav + mobile sheet) and Footer. Mounted globally by app/layout.tsx."
+    },
+    {
+      "id": "apps/web/src/components/shared",
+      "label": "Shared primitives",
+      "layer": 2,
+      "path": "apps/web/src/components/shared",
+      "kind": "component-group",
+      "file_count": 2,
+      "summary": "Container (max-width wrapper) and SectionHeading. Reused across most feature components."
+    },
+    {
+      "id": "apps/web/src/components/ui",
+      "label": "shadcn UI primitives",
+      "layer": 2,
+      "path": "apps/web/src/components/ui",
+      "kind": "component-group",
+      "file_count": 6,
+      "summary": "shadcn/Radix primitives: badge, button, card, navigation-menu, separator, sheet. Generated via shadcn CLI (components.json)."
+    },
+    {
+      "id": "apps/web/src/components/about-content",
+      "label": "About content (loose)",
+      "layer": 2,
+      "path": "apps/web/src/components/about-content.tsx",
+      "kind": "component-group",
+      "file_count": 1,
+      "summary": "Top-level component (not in a subfolder) rendering the /about route body."
+    },
+
+    {
+      "id": "apps/web/src/lib",
+      "label": "Web lib",
+      "layer": 1,
+      "path": "apps/web/src/lib",
+      "kind": "lib",
+      "file_count": 5,
+      "summary": "Cross-cutting utilities: strapi (axios client), api (server-side fetchers), queries (React Query hooks), providers (QueryClientProvider), utils (cn classname helper)."
+    },
+    {
+      "id": "apps/web/src/types",
+      "label": "Web types",
+      "layer": 1,
+      "path": "apps/web/src/types",
+      "kind": "types",
+      "file_count": 1,
+      "summary": "strapi.ts — TypeScript interfaces for StrapiResponse, StrapiImage, YogaClass, Instructor, BlogPost, Testimonial. Consumed by lib and components."
+    },
+    {
+      "id": "apps/web/config",
+      "label": "Web app configs",
+      "layer": 1,
+      "path": "apps/web",
+      "kind": "config",
+      "file_count": 4,
+      "summary": "next.config.ts, tsconfig.json, package.json, components.json (shadcn). Sets up Next.js, TS path alias @/, and shadcn registry."
+    },
+
+    {
+      "id": "apps/cms/src",
+      "label": "CMS source",
+      "layer": 1,
+      "path": "apps/cms/src",
+      "kind": "lib",
+      "file_count": 18,
+      "summary": "Strapi runtime entry (src/index.ts with empty register/bootstrap/destroy hooks) and admin/app.ts customization stub. All content lives under src/api."
+    },
+    {
+      "id": "apps/cms/src/api",
+      "label": "CMS API (content types)",
+      "layer": 1,
+      "path": "apps/cms/src/api",
+      "kind": "api",
+      "file_count": 16,
+      "summary": "Strapi content-type APIs. Each type has a schema, controller, route, and service — all use factories.createCoreX defaults (no business logic overrides)."
+    },
+    {
+      "id": "apps/cms/src/api/blog-post",
+      "label": "Blog Post content type",
+      "layer": 2,
+      "path": "apps/cms/src/api/blog-post",
+      "kind": "content-type",
+      "file_count": 4,
+      "summary": "Blog post collection: title/slug/body/cover image with draftAndPublish. CRUD via Strapi core controller/route/service."
+    },
+    {
+      "id": "apps/cms/src/api/instructor",
+      "label": "Instructor content type",
+      "layer": 2,
+      "path": "apps/cms/src/api/instructor",
+      "kind": "content-type",
+      "file_count": 4,
+      "summary": "Instructor profiles content type — schema + auto-generated controller/route/service."
+    },
+    {
+      "id": "apps/cms/src/api/testimonial",
+      "label": "Testimonial content type",
+      "layer": 2,
+      "path": "apps/cms/src/api/testimonial",
+      "kind": "content-type",
+      "file_count": 4,
+      "summary": "Student testimonial entries — schema + auto-generated controller/route/service."
+    },
+    {
+      "id": "apps/cms/src/api/yoga-class",
+      "label": "Yoga Class content type",
+      "layer": 2,
+      "path": "apps/cms/src/api/yoga-class",
+      "kind": "content-type",
+      "file_count": 4,
+      "summary": "Yoga class catalog (name/level/schedule/instructor relation) — schema + auto-generated controller/route/service."
+    },
+
+    {
+      "id": "apps/cms/config",
+      "label": "Strapi configs",
+      "layer": 1,
+      "path": "apps/cms/config",
+      "kind": "config",
+      "file_count": 6,
+      "summary": "Strapi runtime config: admin (JWT), api (REST prefix), database (Postgres from env), middlewares, plugins, server (host/port/keys). All env-driven."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "raw_ref": "_workspace/node_91-16108/_design_code.tsx",
+  "raw_size_bytes": 91556,
+  "fetched_at": "2026-05-21T00:00:00Z",
+  "tool": "get_design_context",
+  "nodeId": "91:16108",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "format": "react+tailwind",
+  "note": "Design-context body (text element[0]) is ~91KB of React+Tailwind code. Stored verbatim in _design_code.tsx because inlining would exceed direct-return limits. Same handoff content as 91:15743 — the entire design system on one frame. Elements [1..3] are codegen guidance (not design payload): (1) reminder to adapt to target stack, (2) note that data-node-id attributes are present, (3) note that image assets are referenced via api/mcp/asset URLs valid 7 days."
+}

@@ -1,0 +1,79 @@
+{
+  "source": {
+    "nodeId": "91:16473",
+    "fileKey": "eqaofBeNUhOUISevtRfOpT",
+    "extracted_at": "2026-05-21T00:00:00Z",
+    "variables_endpoint": "empty",
+    "inference_basis": "named subframes + cross-references from component-token map rows"
+  },
+  "tokens": {
+    "color": [
+      {"name": "brand-primary", "value": "#009877", "figma_id": "91:16487", "category": "color", "subgroup": "brand", "used_by": ["Primary Button.fill", "Ghost Button.border", "Input Field.focus-border"]},
+      {"name": "brand-shade", "value": "#8EE0CE", "figma_id": "91:16492", "category": "color", "subgroup": "brand", "used_by": ["Primary Button.hover"]},
+      {"name": "brand-lite", "value": "#F0FFF8", "figma_id": "91:16497", "category": "color", "subgroup": "brand", "used_by": ["Ghost Button.hover-bg", "Badge.fill"]},
+      {"name": "brand-dark", "value": "#00282C", "figma_id": "91:16502", "category": "color", "subgroup": "brand"},
+      {"name": "text-primary", "value": "#1D3E59", "figma_id": "91:16509", "category": "color", "subgroup": "text", "used_by": ["Section Heading.text"]},
+      {"name": "text-secondary", "value": "#2A2420", "figma_id": "91:16514", "category": "color", "subgroup": "text", "used_by": ["Card.text", "Input Field.text", "Nav Link.text"]},
+      {"name": "text-teritary", "value": "#727272", "figma_id": "91:16519", "category": "color", "subgroup": "text"},
+      {"name": "text-brand", "value": "#009877", "figma_id": "91:16524", "category": "color", "subgroup": "text", "used_by": ["Ghost Button.text", "Badge.text", "Nav Link.active"]},
+      {"name": "text-inverse", "value": "#FFFFFF", "figma_id": "91:16529", "category": "color", "subgroup": "text", "used_by": ["Primary Button.text"]},
+      {"name": "Surface-0", "value": "#FDFDFD", "figma_id": "91:16536", "category": "color", "subgroup": "surface"},
+      {"name": "Surface-1", "value": "#FFFFFF", "figma_id": "91:16541", "category": "color", "subgroup": "surface", "used_by": ["Card.fill", "Input Field.fill"]},
+      {"name": "Surface-2", "value": "#F7F7F7", "figma_id": "91:16546", "category": "color", "subgroup": "surface", "used_by": ["Card.hover"]},
+      {"name": "border-1", "value": "#F4F4F4", "figma_id": "91:16553", "category": "color", "subgroup": "border"},
+      {"name": "border-2", "value": "#F0F0F0", "figma_id": "91:16558", "category": "color", "subgroup": "border", "used_by": ["Card.border"]},
+      {"name": "border-3", "value": "#D2D2D2", "figma_id": "91:16563", "category": "color", "subgroup": "border", "used_by": ["Input Field.border"]}
+    ],
+    "typography": [
+      {"name": "H1", "font": "Host Grotesk", "weight": "Bold", "size": "90px", "lineHeight": "77px", "letterSpacing": "0px", "usage": "Hero headlines, page titles", "figma_id": "91:16591"},
+      {"name": "H2", "font": "Host Grotesk", "weight": "SemiBold", "size": "52px", "lineHeight": "53px", "letterSpacing": "-0.56px", "usage": "Section headings", "figma_id": "91:16601", "used_by": ["Section Heading"]},
+      {"name": "H3", "font": "Host Grotesk", "weight": "Bold", "size": "42px", "lineHeight": "43px", "letterSpacing": "-0.72px", "usage": "Sub-section titles", "figma_id": "91:16611", "used_by": ["Section Heading"]},
+      {"name": "H4", "font": "Host Grotesk", "weight": "Bold", "size": "36px", "lineHeight": "42px", "letterSpacing": "0px", "usage": "Card headings", "figma_id": "91:16621"},
+      {"name": "H5", "font": "DM Sans", "weight": "SemiBold", "size": "24px", "lineHeight": "23px", "letterSpacing": "-0.11px", "usage": "Labels, small headings", "figma_id": "91:16631", "used_by": ["Card.title"]},
+      {"name": "subtext-3", "font": "DM Sans", "weight": "SemiBold", "size": "20px", "lineHeight": "25px", "letterSpacing": "0px", "usage": "Lead body copy", "figma_id": "91:16641"},
+      {"name": "subtext-2", "font": "DM Sans", "weight": "Regular", "size": "18px", "lineHeight": "26.25px", "letterSpacing": "0px", "usage": "Descriptive body", "figma_id": "91:16651"},
+      {"name": "subtext-1", "font": "DM Sans", "weight": "Regular/SemiBold", "size": "16px", "lineHeight": "23.25px", "letterSpacing": "0.08px", "usage": "Body, nav links, buttons", "figma_id": "91:16661", "used_by": ["Primary Button", "Ghost Button", "Card.body", "Input Field", "Nav Link"]},
+      {"name": "mini-text", "font": "DM Sans", "weight": "SemiBold", "size": "12px", "lineHeight": "17px", "letterSpacing": "2.42px", "usage": "Tags, badges, captions, labels", "figma_id": "91:16671", "used_by": ["Badge"]}
+    ],
+    "spacing": [
+      {"name": "xs", "value": "4px", "figma_id": "91:16685"},
+      {"name": "sm", "value": "8px", "figma_id": "91:16689"},
+      {"name": "sm+", "value": "12px", "figma_id": "91:16693"},
+      {"name": "md", "value": "16px", "figma_id": "91:16697"},
+      {"name": "md+", "value": "20px", "figma_id": "91:16701"},
+      {"name": "lg", "value": "24px", "figma_id": "91:16705"},
+      {"name": "xl", "value": "32px", "figma_id": "91:16709"},
+      {"name": "2xl", "value": "40px", "figma_id": "91:16713"},
+      {"name": "3xl", "value": "48px", "figma_id": "91:16717"},
+      {"name": "4xl", "value": "64px", "figma_id": "91:16721"},
+      {"name": "5xl", "value": "80px", "figma_id": "91:16725"},
+      {"name": "6xl", "value": "96px", "figma_id": "91:16729"}
+    ],
+    "radius": [
+      {"name": "none", "value": "0px", "figma_id": "91:16734", "usage": "Sharp elements"},
+      {"name": "xs", "value": "4px", "figma_id": "91:16738", "usage": "Badges, tags"},
+      {"name": "sm", "value": "8px", "figma_id": "91:16742", "usage": "Cards, inputs", "used_by": ["Primary Button", "Ghost Button", "Input Field"]},
+      {"name": "md", "value": "12px", "figma_id": "91:16746", "usage": "Modals, panels", "used_by": ["Card"]},
+      {"name": "lg", "value": "16px", "figma_id": "91:16750", "usage": "Large cards"},
+      {"name": "xl", "value": "24px", "figma_id": "91:16754", "usage": "Hero sections"},
+      {"name": "full", "value": "9999px", "figma_id": "91:16758", "usage": "Pills, avatars", "used_by": ["Badge (999px)"]}
+    ],
+    "shadow": [],
+    "opacity": [
+      {"name": "disabled", "value": "0.4", "usage": "Primary Button disabled state", "inferred_from": "91:16774 states cell"}
+    ],
+    "other": [
+      {"name": "border-width.hairline", "value": "1px", "usage": "Card border, Input Field border, Ghost Button border", "inferred_from": "table.border cells"}
+    ]
+  },
+  "counts": {
+    "color": 15,
+    "typography": 9,
+    "spacing": 12,
+    "radius": 7,
+    "shadow": 0,
+    "opacity": 1,
+    "other": 1,
+    "total": 45
+  }
+}

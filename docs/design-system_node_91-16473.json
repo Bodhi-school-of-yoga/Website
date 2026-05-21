@@ -1,0 +1,45 @@
+{
+  "$schema": "bodhi-design-system/v1",
+  "source": {
+    "figma_file": "eqaofBeNUhOUISevtRfOpT",
+    "node_id": "91:16473",
+    "page_name": "04 — Component Token Map",
+    "url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=91-16473",
+    "extracted_at": "2026-05-21",
+    "validation": "PASS (3 WARN, 0 FAIL)"
+  },
+  "summary": "Reference table mapping 7 UI components to their concrete design tokens (fill / text / border / radius / typography / states). Also re-includes the full design-system documentation (color, typography, spacing, radius) shown on prior pages.",
+  "component_token_map": [
+    {"component": "Primary Button", "fill": "brand-primary", "text": "text-inverse", "border": null, "radius": "8px", "typography": "subtext-1 SemiBold", "states": {"hover": "brand-shade", "disabled": "opacity 0.4"}},
+    {"component": "Ghost Button", "fill": "transparent", "text": "text-brand", "border": "brand-primary 1px", "radius": "8px", "typography": "subtext-1 SemiBold", "states": {"hover": "brand-lite background"}},
+    {"component": "Card", "fill": "Surface-1", "text": "text-secondary", "border": "border-2 1px", "radius": "12px", "typography": "H5 title · subtext-1 body", "states": {"hover": "Surface-2 + shadow"}},
+    {"component": "Input Field", "fill": "Surface-1", "text": "text-secondary", "border": "border-3 1px", "radius": "8px", "typography": "subtext-1 Regular", "states": {"focus": "brand-primary border"}},
+    {"component": "Badge / Tag", "fill": "brand-lite", "text": "text-brand", "border": null, "radius": "999px", "typography": "mini-text", "states": {}},
+    {"component": "Nav Link", "fill": "transparent", "text": "text-secondary", "border": null, "radius": null, "typography": "subtext-1 Regular", "states": {"active": "text-brand + underline"}},
+    {"component": "Section Heading", "fill": "transparent", "text": "text-primary", "border": null, "radius": null, "typography": "H2 or H3", "states": {}}
+  ],
+  "new_tokens_introduced_here": [
+    {"category": "opacity", "name": "disabled", "value": 0.4, "usage": "Disabled state of Primary Button"},
+    {"category": "other", "name": "border-width.hairline", "value": "1px", "usage": "Default border width for bordered components"}
+  ],
+  "tokens": {
+    "color": 15,
+    "typography": 9,
+    "spacing": 12,
+    "radius": 7,
+    "shadow": 0,
+    "opacity": 1,
+    "other": 1
+  },
+  "cross_page_relationships": {
+    "page_1_91-15377": "Provides the 15 color tokens this page references.",
+    "page_2_91-15743": "Provides the 9 typography styles this page references.",
+    "page_3_91-16108": "Provides the spacing/radius scales this page references.",
+    "page_4_91-16473": "THIS page — ties everything together into per-component token bindings."
+  },
+  "warnings": [
+    "Component rows are reference-only (no rendered geometry).",
+    "Badge radius literal `999px` vs `radius.full = 9999px` — semantically equivalent.",
+    "Outer frame height (688px) understates actual content height (~2900px)."
+  ]
+}

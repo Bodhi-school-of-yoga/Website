@@ -1,0 +1,9 @@
+{
+  "raw": "<frame id=\"91:15743\" name=\"02 — Typography\" x=\"1542\" y=\"-66\" width=\"1440\" height=\"972\">\n  <!-- Full XML metadata is preserved in _design_code.tsx side-file and reproduced inline below -->\n  <!-- See get_metadata response: top-level frame is '02 — Typography' but the node actually contains four documentation sections: a repeat of Color tokens, Typography (primary), Spacing Scale, and Component Token Map -->\n  <frame id=\"91:15744\" name=\"Header\" /><frame id=\"91:15750\" name=\"Frame 1171281901 (Color tokens recap)\" /><frame id=\"91:15839\" name=\"Group 1171281937 (Typography)\" /><frame id=\"91:15952\" name=\"Group 1171281936 (Spacing + Radius)\" /><frame id=\"91:16033\" name=\"Group 1171281935 (Component Token Map)\" /></frame>",
+  "fetched_at": "2026-05-21T00:00:00Z",
+  "tool": "get_metadata",
+  "nodeId": "91:15743",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "format": "xml",
+  "note": "Full raw XML stored separately as _design_code.tsx side-file (the get_design_context response). The get_metadata XML is the structural tree referenced throughout extraction; key sub-frames: Typography rows H1/H2/H3/H4/H5/subtext-3/subtext-2/subtext-1/mini-text (91:15861..91:15950), Spacing items xs..6xl (91:15955..91:16002), Radius items none..full (91:16004..91:16031), Component Token Map rows (91:16044..91:16107)."
+}

@@ -1,0 +1,395 @@
+{
+  "nodeId": "1:246",
+  "nodeName": "Article (Card)",
+  "source": "_workspace/01_figma_context.json (inline JSX — no variable bindings present in 01_figma_variables.json which is {})",
+  "projectTokenSources": [
+    "apps/web/src/app/globals.css (@theme inline)",
+    "DESIGN.md"
+  ],
+  "usedTokens": [
+    {
+      "figmaProperty": "background",
+      "figmaValue": "#ffffff",
+      "projectToken": "--color-surface-1",
+      "cssVar": "var(--color-surface-1)",
+      "tailwindUtility": "bg-surface-1",
+      "category": "color",
+      "exactMatch": true,
+      "note": "Card body background. Also exists as --card (oklch 1 0 0)."
+    },
+    {
+      "figmaProperty": "cta-color",
+      "figmaValue": "#009877",
+      "projectToken": "--color-brand-primary / --color-text-brand",
+      "cssVar": "var(--color-text-brand)",
+      "tailwindUtility": "text-brand-primary  (or text-text-brand)",
+      "category": "color",
+      "exactMatch": true,
+      "note": "View Program CTA color matches the brand-primary token exactly."
+    }
+  ],
+  "missingTokens": [
+    {
+      "figmaProperty": "heading-color",
+      "figmaValue": "#2f4a3e",
+      "resolution": "add-new-token",
+      "proposed": {
+        "cssVarName": "--color-text-heading-forest",
+        "value": "#2f4a3e",
+        "themeGroup": "Text tokens (text-text-*)",
+        "tailwindUtility": "text-text-heading-forest"
+      },
+      "nearestCandidate": {
+        "token": "--color-text-primary",
+        "value": "#1D3E59",
+        "deltaE_approx": ">12 (different hue: forest-green vs slate-blue)"
+      },
+      "rationale": "Existing text-primary is slate-blue (#1D3E59); this Figma heading is forest-green. No close match in palette. Recommend new editorial heading token. Alternative: re-use --color-brand-dark (#00282C) is too dark."
+    },
+    {
+      "figmaProperty": "heading-typography",
+      "figmaValue": "Instrument Sans SemiBold 23px / 25px line-height",
+      "resolution": "add-new-token",
+      "proposed": {
+        "cssVarName": "--text-card-title",
+        "value": "1.4375rem (23px)",
+        "lineHeight": "1.5625rem (25px)",
+        "letterSpacing": "0",
+        "fontWeight": 600,
+        "fontFamily": "Instrument Sans",
+        "themeGroup": "Typography scale (text-*) + new --font-display family binding",
+        "tailwindUtility": "text-card-title font-display"
+      },
+      "nearestCandidate": {
+        "token": "--text-h5",
+        "value": "1.5rem / 1.438rem / -0.11px / 600",
+        "fontFamily": "DM Sans (via --font-heading)",
+        "deltaSize": "+1px (24 vs 23)",
+        "issue": "Family mismatch — h5 uses DM Sans, Figma uses Instrument Sans (not loaded in layout.tsx)"
+      },
+      "rationale": "Instrument Sans is not currently loaded by next/font in layout.tsx. Project only has Host Grotesk, DM Sans, Playfair Display, Geist Mono. New family binding needed."
+    },
+    {
+      "figmaProperty": "meta-row-color",
+      "figmaValue": "#7a6e65",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--color-text-tertiary",
+        "value": "#727272",
+        "deltaE_approx": "~6 (close — both warm-neutral mid-grey)"
+      },
+      "proposed": {
+        "cssVarName": "--color-text-meta",
+        "value": "#7a6e65",
+        "themeGroup": "Text tokens (text-text-*)",
+        "tailwindUtility": "text-text-meta",
+        "ifAdded": "Strictly faithful to Figma; warmer brown tone vs tertiary's neutral grey"
+      },
+      "rationale": "text-tertiary (#727272) is acceptable for non-pixel-perfect implementations. For brand-faithful render add the warmer --color-text-meta."
+    },
+    {
+      "figmaProperty": "meta-row-typography",
+      "figmaValue": "DM Sans Medium 14px tracking 0.12px",
+      "resolution": "add-new-token",
+      "proposed": {
+        "cssVarName": "--text-meta",
+        "value": "0.875rem (14px)",
+        "lineHeight": "normal",
+        "letterSpacing": "0.12px",
+        "fontWeight": 500,
+        "themeGroup": "Typography scale (text-*)",
+        "tailwindUtility": "text-meta font-heading"
+      },
+      "nearestCandidate": {
+        "token": "--text-body-sm",
+        "value": "0.875rem / 1.375rem / 0 / 400",
+        "issue": "Weight is 400 not 500; letter-spacing 0 not 0.12px; family is Host Grotesk not DM Sans"
+      },
+      "rationale": "Size matches body-sm but weight, tracking and family all differ. Worth a dedicated meta token."
+    },
+    {
+      "figmaProperty": "dot-color",
+      "figmaValue": "#c8a96e (at 50% opacity)",
+      "resolution": "add-new-token",
+      "proposed": {
+        "cssVarName": "--color-brand-sand",
+        "value": "#c8a96e",
+        "themeGroup": "Brand tokens (brand-*)",
+        "tailwindUtility": "bg-brand-sand/50",
+        "note": "Apply 50% opacity via Tailwind /50 modifier — do not bake opacity into the token."
+      },
+      "nearestCandidate": {
+        "token": "--color-warm",
+        "value": "oklch(0.75 0.10 55) ≈ #d6a474",
+        "deltaE_approx": "~6 — both warm-sand but warm is more orange/clay"
+      },
+      "rationale": "warm token is the closest semantic match but visibly oranger. New brand-sand token recommended; or map to bg-warm/50 if tolerance permits."
+    },
+    {
+      "figmaProperty": "cta-typography",
+      "figmaValue": "Manrope Medium 14.271px / 22.12px line-height, tracking 0.0878px",
+      "resolution": "add-new-token",
+      "proposed": {
+        "cssVarName": "--text-cta-link",
+        "value": "0.875rem (14px — round 14.271px)",
+        "lineHeight": "1.375rem (22px — round 22.12px)",
+        "letterSpacing": "0.0878px (round to 0.09px)",
+        "fontWeight": 500,
+        "fontFamily": "Manrope",
+        "themeGroup": "Typography scale + new --font-cta family binding",
+        "tailwindUtility": "text-cta-link font-cta"
+      },
+      "nearestCandidate": {
+        "token": "--text-body-sm",
+        "value": "0.875rem / 1.375rem / 0 / 400",
+        "issue": "Weight 400 not 500; family Host Grotesk not Manrope (not loaded)"
+      },
+      "rationale": "Manrope is not loaded by next/font. Add new family binding in layout.tsx if used widely; otherwise reuse body-sm + weight override for an approximate match."
+    },
+    {
+      "figmaProperty": "dashed-divider-color",
+      "figmaValue": "rgba(47, 74, 62, 0.22)",
+      "resolution": "add-new-token",
+      "proposed": {
+        "cssVarName": "--color-divider-forest",
+        "value": "rgba(47, 74, 62, 0.22)",
+        "themeGroup": "Border tokens (border-*)",
+        "tailwindUtility": "border-divider-forest"
+      },
+      "nearestCandidate": {
+        "token": "--color-border-2",
+        "value": "#F0F0F0",
+        "issue": "Neutral grey, not the tinted forest-green-on-white the divider needs"
+      },
+      "rationale": "Tied to the heading-forest color (#2f4a3e at 22% alpha). If --color-text-heading-forest is added, this can be expressed as color-mix(in srgb, var(--color-text-heading-forest) 22%, transparent)."
+    },
+    {
+      "figmaProperty": "dashed-divider-width",
+      "figmaValue": "1.098px dashed",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "tailwind default border-t (1px)",
+        "issue": "1.098px is sub-pixel; visually indistinguishable from 1px on 1x displays"
+      },
+      "proposed": {
+        "tailwindUtility": "border-t border-dashed",
+        "note": "Round 1.098px → 1px. No new token needed."
+      },
+      "rationale": "Sub-pixel difference. No project border-width scale beyond 1px hairline — round."
+    },
+    {
+      "figmaProperty": "outer-border-color",
+      "figmaValue": "rgba(0, 0, 0, 0.08)",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--color-border-2",
+        "value": "#F0F0F0",
+        "deltaE_approx": "~3 visually similar on white surface"
+      },
+      "proposed": {
+        "tailwindUtility": "border border-border-2",
+        "note": "Acceptable substitute. For exact fidelity add --color-card-border = rgba(0,0,0,0.08)."
+      },
+      "rationale": "border-2 (#F0F0F0) is the design system's card-border token; rgba(0,0,0,0.08) ≈ #EBEBEB on white. Within tolerance."
+    },
+    {
+      "figmaProperty": "outer-border-width",
+      "figmaValue": "1.098px",
+      "resolution": "map-to-nearest",
+      "proposed": {
+        "tailwindUtility": "border",
+        "note": "Round 1.098px → 1px (Tailwind default border)."
+      },
+      "rationale": "Sub-pixel — round to 1px."
+    },
+    {
+      "figmaProperty": "radius",
+      "figmaValue": "24.151px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--radius-3xl",
+        "value": "calc(var(--radius) * 2.2) = 1.65rem ≈ 26.4px",
+        "delta": "+2.25px"
+      },
+      "alternateCandidate": {
+        "token": "--radius-2xl",
+        "value": "1.35rem ≈ 21.6px",
+        "delta": "-2.55px"
+      },
+      "proposed": {
+        "cssVarName": "--radius-card-lg",
+        "value": "1.51rem (24.151px)",
+        "themeGroup": "Radius scale (radius-*)",
+        "tailwindUtility": "rounded-card-lg",
+        "ifAdded": "Exact match"
+      },
+      "rationale": "Neither 3xl (26.4px) nor 2xl (21.6px) is within 2px. Recommend rounded-3xl for an approximate match, or add --radius-card-lg for exact."
+    },
+    {
+      "figmaProperty": "shadow",
+      "figmaValue": "0 4px 48.3px 0 rgba(226, 226, 226, 0.25)",
+      "resolution": "add-new-token",
+      "proposed": {
+        "cssVarName": "--shadow-card",
+        "value": "0 4px 48.3px 0 rgba(226, 226, 226, 0.25)",
+        "themeGroup": "NEW group: Elevation / Shadow (currently undefined in globals.css and explicitly flagged in DESIGN.md as missing)",
+        "tailwindUtility": "shadow-card"
+      },
+      "nearestCandidate": {
+        "token": "tailwind shadow-md / shadow-lg",
+        "issue": "Tailwind defaults use rgba(0,0,0,0.1) with smaller blur. Figma uses warm-grey (#E2E2E2) at lower alpha but huge 48.3px blur — visually softer and warmer."
+      },
+      "rationale": "DESIGN.md explicitly notes 'No elevation/shadow tokens are defined'. This is the first concrete shadow in the system — adding it establishes the elevation scale. High-impact."
+    },
+    {
+      "figmaProperty": "padding-top",
+      "figmaValue": "22.098px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--spacing-md-plus",
+        "value": "1.25rem (20px)",
+        "delta": "-2.098px"
+      },
+      "alternateCandidate": {
+        "token": "--spacing-lg",
+        "value": "1.5rem (24px)",
+        "delta": "+1.902px"
+      },
+      "proposed": {
+        "tailwindUtility": "pt-6  (24px ≈ spacing-lg)",
+        "note": "Round 22.098 → 24 (spacing-lg). Slightly looser but on-scale."
+      },
+      "rationale": "Off-grid Figma value. Snap to 4px-base scale (spacing-lg = 24px)."
+    },
+    {
+      "figmaProperty": "padding-bottom",
+      "figmaValue": "24.098px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--spacing-lg",
+        "value": "1.5rem (24px)",
+        "delta": "-0.098px (essentially identical)"
+      },
+      "proposed": {
+        "tailwindUtility": "pb-6",
+        "note": "Exact match within sub-pixel tolerance."
+      },
+      "rationale": "Effectively identical to spacing-lg."
+    },
+    {
+      "figmaProperty": "padding-x",
+      "figmaValue": "31.836px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--spacing-xl",
+        "value": "2rem (32px)",
+        "delta": "+0.164px (essentially identical)"
+      },
+      "proposed": {
+        "tailwindUtility": "px-8",
+        "note": "Exact match within sub-pixel tolerance."
+      },
+      "rationale": "Effectively identical to spacing-xl (32px)."
+    },
+    {
+      "figmaProperty": "gap",
+      "figmaValue": "10.1px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--spacing-sm-plus",
+        "value": "0.75rem (12px)",
+        "delta": "+1.9px"
+      },
+      "alternateCandidate": {
+        "token": "--spacing-sm",
+        "value": "0.5rem (8px)",
+        "delta": "-2.1px"
+      },
+      "proposed": {
+        "tailwindUtility": "gap-3  (12px ≈ spacing-sm-plus)",
+        "note": "Round 10.1 → 12. Off-grid Figma value."
+      },
+      "rationale": "Off-grid; snap to nearest 4px-base step. spacing-sm-plus (12px) is the closer fit."
+    },
+    {
+      "figmaProperty": "meta-icon-gap",
+      "figmaValue": "5px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--spacing-xs",
+        "value": "0.25rem (4px)",
+        "delta": "-1px"
+      },
+      "proposed": {
+        "tailwindUtility": "gap-1  (4px)",
+        "note": "Round 5 → 4."
+      }
+    },
+    {
+      "figmaProperty": "meta-row-internal-gap",
+      "figmaValue": "14px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--spacing-md",
+        "value": "1rem (16px)",
+        "delta": "+2px"
+      },
+      "proposed": {
+        "tailwindUtility": "gap-4  (16px)",
+        "note": "Round 14 → 16. On-scale."
+      }
+    },
+    {
+      "figmaProperty": "heading-to-meta-gap",
+      "figmaValue": "20px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--spacing-md-plus",
+        "value": "1.25rem (20px)",
+        "delta": "0 (exact)"
+      },
+      "proposed": {
+        "tailwindUtility": "gap-5  (20px)",
+        "note": "Exact match."
+      }
+    },
+    {
+      "figmaProperty": "body-to-divider-padding",
+      "figmaValue": "16.467px",
+      "resolution": "map-to-nearest",
+      "nearestCandidate": {
+        "token": "--spacing-md",
+        "value": "1rem (16px)",
+        "delta": "-0.467px"
+      },
+      "proposed": {
+        "tailwindUtility": "pt-4  (16px)",
+        "note": "Round 16.467 → 16."
+      }
+    }
+  ],
+  "summary": {
+    "usedTokenCount": 2,
+    "missingTokenCount": 20,
+    "missingByResolution": {
+      "add-new-token": 8,
+      "map-to-nearest": 12
+    },
+    "newTokensProposed": [
+      "--color-text-heading-forest (#2f4a3e) — Text group",
+      "--color-text-meta (#7a6e65) — Text group (optional; tertiary is acceptable)",
+      "--color-brand-sand (#c8a96e) — Brand group",
+      "--color-divider-forest (rgba(47,74,62,0.22)) — Border group",
+      "--text-card-title (23/25/0/600, Instrument Sans) — Typography group + new --font-display",
+      "--text-meta (14/normal/0.12px/500, DM Sans) — Typography group",
+      "--text-cta-link (14.27/22.12/0.09px/500, Manrope) — Typography group + new --font-cta",
+      "--radius-card-lg (24.151px) — Radius group",
+      "--shadow-card (0 4px 48.3px 0 rgba(226,226,226,0.25)) — NEW Elevation group (first shadow in system)"
+    ],
+    "topImpactMissing": [
+      "--shadow-card — DESIGN.md explicitly flags shadows as undefined; this card's soft cool shadow is core to its identity and cannot be approximated with Tailwind defaults.",
+      "--color-text-heading-forest (#2f4a3e) — no near match in palette; faithful rendering of the article card title depends on it. text-primary (#1D3E59) is a different hue.",
+      "--text-card-title family binding (Instrument Sans) — Instrument Sans isn't loaded by next/font in layout.tsx; without it, the title typography is unrenderable as designed and falls back to DM Sans."
+    ]
+  }
+}

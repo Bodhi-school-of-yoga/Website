@@ -1,0 +1,145 @@
+{
+  "tokens": {
+    "color": [
+      {
+        "name": "color/brand-primary",
+        "values": { "default": "#009877" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/brand-shade",
+        "values": { "default": "#8EE0CE" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/brand-lite",
+        "values": { "default": "#F0FFF8" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/brand-dark",
+        "values": { "default": "#00282C" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/text-primary",
+        "values": { "default": "#1D3E59" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/text-secondary",
+        "values": { "default": "#2A2420" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/text-teritary",
+        "values": { "default": "#727272" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/text-brand",
+        "values": { "default": "#009877" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/text-inverse",
+        "values": { "default": "#FFFFFF" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/surface-0",
+        "values": { "default": "#FDFDFD" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/surface-1",
+        "values": { "default": "#FFFFFF" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/surface-2",
+        "values": { "default": "#F7F7F7" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/border-1",
+        "values": { "default": "#F4F4F4" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/border-2",
+        "values": { "default": "#F0F0F0" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      },
+      {
+        "name": "color/border-3",
+        "values": { "default": "#D2D2D2" },
+        "references": null,
+        "raw_alias": null,
+        "scopes": ["fill"],
+        "extraction_notes": ["inferred from design-context — no Figma variable defined"]
+      }
+    ],
+    "typography": [],
+    "spacing": [],
+    "radius": [],
+    "effect": [],
+    "breakpoint": [],
+    "other": []
+  },
+  "extraction_metadata": {
+    "total_variables": 0,
+    "extracted": 15,
+    "skipped": 0,
+    "modes_detected": ["default"],
+    "notes": [
+      "Figma variables endpoint returned an empty object — no variables defined for node 91:15377.",
+      "All tokens inferred from the design-context React/Tailwind code (Stage 1 capture).",
+      "Hex values taken from each swatch frame's inner `bg-[#xxxxxx]` Tailwind class; for `bg-white` swatches the canonical hex from the printed token label (#FFFFFF) was used.",
+      "Source frame names with whitespace ('brand lite') or underscores ('brand_dark') were normalized to hyphenated token slugs ('color/brand-lite', 'color/brand-dark').",
+      "Token 'color/text-teritary' preserves the misspelling found in the Figma frame (source-of-truth fidelity)."
+    ]
+  }
+}

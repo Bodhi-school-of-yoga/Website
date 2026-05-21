@@ -1,0 +1,16 @@
+{
+  "fetched_at": "2026-05-21T00:00:00Z",
+  "tool": "mcp__claude_ai_Figma__get_design_context",
+  "nodeId": "91:16473",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "format": "tsx_array_overflowed",
+  "overflow_file": "/Users/anukul/Desktop/bodhi/_workspace/node_91-16473/_design_code.tsx",
+  "overflow_size_chars": 89466,
+  "overflow_lines": 901,
+  "additional_text_segments": [
+    "Tailwind-to-target-stack conversion instruction",
+    "data-node-id attribute note",
+    "Image asset CDN note"
+  ],
+  "raw": "(Saved to _design_code.tsx — 89466 chars / 901 lines. React + Tailwind component named Component04ComponentTokenMap. Renders the full handoff document with focused viewport on Section 04 — Component Token Map. Confirms component-token-map table contents identical to metadata.)"
+}
