@@ -1,0 +1,69 @@
+version: "3.8"
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: bodhi-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-bodhi}
+      POSTGRES_USER: ${POSTGRES_USER:-bodhi_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme_strong_password}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-bodhi_user} -d ${POSTGRES_DB:-bodhi}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Strapi CMS
+  cms:
+    build:
+      context: ./apps/cms
+      dockerfile: Dockerfile
+    container_name: bodhi-cms
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-bodhi}
+      POSTGRES_USER: ${POSTGRES_USER:-bodhi_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme_strong_password}
+      STRAPI_HOST: 0.0.0.0
+      STRAPI_PORT: 1337
+      STRAPI_URL: ${STRAPI_URL:-http://localhost:1337}
+      STRAPI_APP_KEYS: ${STRAPI_APP_KEYS:-key1,key2,key3,key4}
+      STRAPI_API_TOKEN_SALT: ${STRAPI_API_TOKEN_SALT:-change_this_api_token_salt}
+      STRAPI_ADMIN_JWT_SECRET: ${STRAPI_ADMIN_JWT_SECRET:-change_this_admin_jwt_secret}
+      STRAPI_TRANSFER_TOKEN_SALT: ${STRAPI_TRANSFER_TOKEN_SALT:-change_this_transfer_token_salt}
+      STRAPI_JWT_SECRET: ${STRAPI_JWT_SECRET:-change_this_jwt_secret}
+    ports:
+      - "1337:1337"
+    volumes:
+      - cms-uploads:/app/public/uploads
+
+  # Next.js Frontend
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: bodhi-web
+    restart: unless-stopped
+    depends_on:
+      - cms
+    environment:
+      NEXT_PUBLIC_STRAPI_URL: ${STRAPI_URL:-http://cms:1337}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres-data:
+  cms-uploads:
