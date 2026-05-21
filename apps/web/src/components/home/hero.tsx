@@ -64,32 +64,12 @@ export default function Hero() {
           </motion.div>
 
           {/* Right: Hero image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-end"
-          >
-            {/* Decorative text behind hero image */}
-            <div
-              className="absolute inset-0 bg-[url('/herotext.png')] bg-contain bg-center bg-no-repeat"
-            />
-            {/* Hero image on top */}
-            <div className="relative w-full max-w-[550px]">
-              <Image
-                src="/hero.png"
-                alt="Yoga practitioner"
-                height={900}
-                width={900}
-                className="relative z-10 w-full h-auto"
-              />
-            </div>
-          </motion.div>
+         
         </div>
       </Container>
 
       {/* Bottom offerings bar */}
-      <div className="border-t bg-muted/40">
+      {/* <div className="border-t bg-muted/40">
         <Container>
           <div className="grid grid-cols-1 sm:grid-cols-3">
             <div className="flex items-center py-4 sm:col-span-3">
@@ -115,7 +95,7 @@ export default function Hero() {
             ))}
           </div>
         </Container>
-      </div>
+      </div> */}
     </section>
   );
 }
