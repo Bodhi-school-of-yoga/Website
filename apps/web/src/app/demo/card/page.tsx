@@ -1,6 +1,12 @@
-import { Clock, Globe, Languages, User } from "lucide-react";
+import { Clock, Globe, Languages } from "lucide-react";
 
 import { ProgramCard } from "@/components/ui/program-card";
+
+const META = [
+  { icon: <Clock className="size-3.5" />, label: "4 weeks" },
+  { icon: <Globe className="size-3.5" />, label: "Online" },
+  { icon: <Languages className="size-3.5" />, label: "English" },
+];
 
 export default function CardDemoPage() {
   return (
@@ -14,8 +20,9 @@ export default function CardDemoPage() {
             ProgramCard — Figma node 1:246
           </h1>
           <p className="mt-3 text-subtext-2 text-muted-foreground max-w-2xl">
-            Article variant rebuilt from the Bodhi landing-page handoff. Composes
-            the shadcn Card slots with DESIGN.md tokens.
+            Article variant rebuilt from the Bodhi landing-page handoff.
+            Composes the shadcn Card slots with DESIGN.md tokens. Images and
+            titles pulled directly from the Figma Programs section.
           </p>
         </header>
 
@@ -23,37 +30,28 @@ export default function CardDemoPage() {
           <ProgramCard
             title="Pranayama & the nervous system"
             href="/programs/pranayama"
-            imageSrc="/img1.png"
-            imageAlt="Yoga practitioner in tree pose"
-            meta={[
-              { icon: <Clock className="size-3.5" />, label: "4 weeks" },
-              { icon: <Globe className="size-3.5" />, label: "Online" },
-              { icon: <Languages className="size-3.5" />, label: "English" },
-            ]}
+            imageSrc="/images/programs/pranayama.jpg"
+            imageAlt="Practitioner exploring breathwork"
+            meta={META}
+            priority
           />
 
           <ProgramCard
-            title="Yin foundations for deep release"
-            href="/programs/yin-foundations"
-            imageSrc="/img2.png"
-            imageAlt="Restorative yoga setup"
-            meta={[
-              { icon: <Clock className="size-3.5" />, label: "6 weeks" },
-              { icon: <User className="size-3.5" />, label: "Beginner" },
-              { icon: <Languages className="size-3.5" />, label: "English" },
-            ]}
+            title="300 Hour Yoga Teacher Training Course — Online"
+            href="/programs/ttc-300"
+            imageSrc="/images/programs/ttc-300.jpg"
+            imageAlt="Teacher training session in a sunlit studio"
+            meta={META}
+            priority
           />
 
           <ProgramCard
-            title="Vinyasa flow & breath integration"
-            href="/programs/vinyasa-flow"
-            imageSrc="/img3.png"
-            imageAlt="Vinyasa flow session"
-            meta={[
-              { icon: <Clock className="size-3.5" />, label: "8 weeks" },
-              { icon: <Globe className="size-3.5" />, label: "Hybrid" },
-              { icon: <Languages className="size-3.5" />, label: "EN / HI" },
-            ]}
+            title="Face Yoga Teacher Training Course"
+            href="/programs/face-yoga"
+            imageSrc="/images/programs/face-yoga.jpg"
+            imageAlt="Close-up of a face yoga practice"
+            meta={META}
+            priority
           />
         </section>
       </div>

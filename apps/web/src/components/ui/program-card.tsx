@@ -25,6 +25,7 @@ export type ProgramCardProps = {
   meta?: ProgramCardMetaItem[];
   cta?: string;
   className?: string;
+  priority?: boolean;
 };
 
 export function ProgramCard({
@@ -35,6 +36,7 @@ export function ProgramCard({
   meta = [],
   cta = "View Program",
   className,
+  priority = false,
 }: ProgramCardProps) {
   return (
     <Card
@@ -56,6 +58,7 @@ export function ProgramCard({
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover"
+          priority={priority}
         />
       </div>
 
