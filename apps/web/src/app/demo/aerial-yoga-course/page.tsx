@@ -1,0 +1,240 @@
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { CourseHeroSection } from "@/components/sections/course-hero-section";
+import { CourseSectionNav } from "@/components/sections/course-section-nav";
+import { CourseOverviewSection } from "@/components/sections/course-overview-section";
+import { HighlightsSection } from "@/components/sections/highlights-section";
+import { CurriculumSection } from "@/components/sections/curriculum-section";
+import { CourseEligibilitySection } from "@/components/sections/course-eligibility-section";
+import { InstructorsSection } from "@/components/sections/instructors-section";
+import { FaqSection } from "@/components/sections/faq-section";
+import { PopularCoursesSection } from "@/components/sections/popular-courses-section";
+import { FooterBrandCta } from "@/components/sections/footer-brand-cta";
+
+const ASSET = (name: string) => `/figma/node-1-7667/${name}`;
+
+export default function AerialYogaCoursePage() {
+  return (
+    <main className="flex min-h-screen flex-col bg-surface-1">
+      <SiteHeader />
+
+      <CourseHeroSection
+        breadcrumb="Home  /  Yoga courses  /  Online 300 hour yoga teacher training course ryt 300"
+        titleLead="Aerial Yoga"
+        titleAccent="Course"
+        subtitle="Master the art of yoga in the air. Build strength, grace, and confidence while learning to teach this unique and therapeutic style of yoga using hammocks."
+        meta={[
+          { icon: "calendar", label: "Sat & Sun" },
+          { icon: "location", label: "Studio" },
+          { icon: "clock", label: "4:00 PM – 6:00 PM" },
+          { icon: "globe", label: "English" },
+        ]}
+        ctaLabel="Reserve Your Spot Now"
+        ctaHref="/enquire?course=aerial-yoga"
+        heroImage={ASSET("imgrectangle161124051.png")}
+      />
+
+      <CourseSectionNav
+        items={[
+          { label: "Overview", href: "#overview" },
+          { label: "Highlights", href: "#highlights" },
+          { label: "Circulum", href: "#curriculum" },
+          { label: "Eligibility", href: "#eligibility" },
+          { label: "Overall", href: "#instructors" },
+        ]}
+      />
+
+      <section id="overview" className="scroll-mt-[160px]">
+        <CourseOverviewSection
+          eyebrow="Overview"
+          heading="Elevate Your Practice — Literally"
+          paragraphs={[
+            "Master the art of yoga in the air with our Aerial Yoga Teacher Training Course at Bodhi School of Yoga. Build strength, grace, and confidence while learning how to teach this unique and therapeutic style of yoga using hammocks.",
+            "You’ll combine traditional yoga postures with graceful aerial movements — learning how inversions decompress the spine, build core stability, and create a deeply healing experience for your future students.",
+          ]}
+        />
+      </section>
+
+      <section id="highlights" className="scroll-mt-[160px]">
+        <HighlightsSection
+          eyebrow="Highlights"
+          heading="What You'll Gain"
+          items={[
+            { icon: "yoga", title: "Yoga Meets Flight", body: "Combine traditional poses with graceful aerial movements." },
+            { icon: "align-center", title: "Relieve & Realign", body: "Inversions decompress the spine and boost flexibility." },
+            { icon: "strength", title: "Build Strength", body: "Improve core stability, balance, and control." },
+            { icon: "leaf", title: "Therapeutic & Fun", body: "Enjoy emotional release through playful, healing practice." },
+            { icon: "technology", title: "Teach with an Edge", body: "Gain a unique certification and grow your yoga career with a skill few teachers have." },
+            { icon: "people", title: "Join a Community", body: "Connect with passionate practitioners and expert teachers at Bodhi School of Yoga." },
+          ]}
+        />
+      </section>
+
+      <section id="curriculum" className="scroll-mt-[160px]">
+        <CurriculumSection
+          eyebrow="Curriculum"
+          heading="Course Syllabus"
+          items={[
+            { title: "Rigging Essentials", body: "How to safely set up and use aerial hammocks." },
+            { title: "Aerial Sequences", body: "Beginner to advanced aerial yoga flows." },
+            { title: "Teaching Methodology", body: "Conducting private and group aerial sessions." },
+            { title: "Alignment & Anatomy in the Air", body: "How aerial postures impact muscles and joints." },
+            { title: "Contraindications & Safety", body: "Modifications for common conditions." },
+            { title: "Business of Aerial Yoga", body: "Building your brand and classes." },
+          ]}
+          nextHref="#curriculum"
+        />
+      </section>
+
+      <section id="eligibility" className="scroll-mt-[160px]">
+        <CourseEligibilitySection
+          eyebrow="Eligibility"
+          heading="Pre-Requisites"
+          items={[
+            "Basic understanding of yoga postures",
+            "Physically fit to perform inversions and aerial movements",
+            "Willingness to explore new boundaries of body and breath",
+          ]}
+          leftImage={ASSET("imgrectangle161124055.png")}
+          rightImage={ASSET("imgrectangle161124054.png")}
+          leftImageAlt="Aerial yoga practitioner inverted in a hammock"
+          rightImageAlt="Aerial yoga class in session"
+        />
+      </section>
+
+      <section id="instructors" className="scroll-mt-[160px]">
+        <InstructorsSection
+          eyebrow="Your Guide"
+          heading="Meet Your Instructors"
+          instructors={[
+            { name: "Atheesh Kumar", role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga", avatar: ASSET("imgbackground.png") },
+            { name: "Sneha Shankar", role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga", avatar: ASSET("imgbackground1.png") },
+            { name: "VijayaRaghavan", role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga", avatar: ASSET("imgbackground2.png") },
+            { name: "Prajakta Jadhav", role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga", avatar: ASSET("imgbackground3.png") },
+          ]}
+          nextHref="#instructors"
+        />
+      </section>
+
+      <section id="faq">
+        <FaqSection
+          eyebrow="FAQ"
+          heading="Frequently Asked Questions"
+          items={[
+            {
+              question: "Do I need prior experience in aerial yoga?",
+              answer:
+                "No prior aerial yoga experience is required. A basic understanding of yoga postures and physical fitness to perform inversions is sufficient to join this course.",
+              defaultOpen: true,
+            },
+            {
+              question: "Is this TTC Yoga Alliance certified?",
+              answer:
+                "Yes. Our school is a Yoga Alliance Registered School (RYS-200, RYS-300) — the Aerial TTC counts toward your continuing-education hours.",
+            },
+            {
+              question: "Will I get to practice on hammocks during training?",
+              answer:
+                "Yes — every session is hands-on. You'll practice rigging, transitions, and sequencing on the hammock from day one.",
+            },
+            {
+              question: "Can this course help me start my own aerial yoga classes?",
+              answer:
+                "Absolutely. The 'Business of Aerial Yoga' module covers studio setup, class pricing, marketing, and safety paperwork so you can teach with confidence.",
+            },
+          ]}
+        />
+      </section>
+
+      <PopularCoursesSection
+        eyebrow="Top Popular Yoga Course"
+        heading="Lead to more courses from us"
+        subhead="Deepen your wisdom and elevate your yoga career with our specialized yoga certifications."
+        courses={[
+          {
+            title: "Online Weight Loss Coach Certification",
+            image: ASSET("imgweightlosscoachcertification.jpg"),
+            meta: [
+              { icon: "clock", label: "4 weeks" },
+              { icon: "monitor", label: "Online" },
+              { icon: "globe", label: "English" },
+            ],
+            instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
+            ctaLabel: "View Program",
+            ctaHref: "/programs/certifications/weight-loss-coach",
+          },
+          {
+            title: "Online Mudra Therapy Yoga Teacher Training",
+            image: ASSET("imgmudratherapyyogateachertraining.jpg"),
+            meta: [
+              { icon: "clock", label: "2 weeks" },
+              { icon: "monitor", label: "Online" },
+              { icon: "globe", label: "English" },
+            ],
+            instructor: { initials: "PP", name: "Prarthana Patel" },
+            ctaLabel: "View Program",
+            ctaHref: "/programs/certifications/mudra-therapy",
+          },
+          {
+            title: "Online MAT Pilates Instructor Certification",
+            image: ASSET("imgmatpilatesinstructorcertification.jpg"),
+            meta: [
+              { icon: "clock", label: "4 weeks" },
+              { icon: "monitor", label: "Online" },
+              { icon: "globe", label: "English" },
+            ],
+            instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
+            ctaLabel: "View Program",
+            ctaHref: "/programs/certifications/mat-pilates-instructor",
+          },
+        ]}
+      />
+
+      <FooterBrandCta
+        brand="Bodhi"
+        heading="Begin where you are."
+        body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
+        ctaLabel="Try a class, free"
+        ctaHref="/enquire?intent=try-a-class"
+      />
+
+      <SiteFooter
+        brand={{
+          wordmark: "Bodhi",
+          tagline: "A school for teachers, a home for seekers. Practice, taught honestly.",
+          url: { label: "bodhischoolofyoga.com", href: "https://bodhischoolofyoga.com" },
+        }}
+        columns={[
+          {
+            heading: "School",
+            links: [
+              { label: "Teacher Training", href: "/teacher-courses" },
+              { label: "Workshops", href: "/workshops" },
+              { label: "Classes", href: "/classes" },
+              { label: "Faculty", href: "/instructors" },
+              { label: "Lineage", href: "/about" },
+            ],
+          },
+          {
+            heading: "Visit",
+            links: [
+              { label: "The Practice Room", href: "/our-centers" },
+              { label: "2nd floor, Quiet Lane", href: "/our-centers" },
+              { label: "City · India", href: "/our-centers" },
+              { label: "Get directions →", href: "/our-centers" },
+            ],
+          },
+          {
+            heading: "Stay close",
+            links: [
+              { label: "Newsletter", href: "#" },
+              { label: "Instagram", href: "https://instagram.com", external: true },
+              { label: "YouTube", href: "https://youtube.com", external: true },
+              { label: "Email us", href: "mailto:hello@bodhischoolofyoga.com" },
+            ],
+          },
+        ]}
+      />
+    </main>
+  );
+}

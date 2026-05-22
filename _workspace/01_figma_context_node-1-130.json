@@ -1,0 +1,314 @@
+{
+  "nodeId": "1:130",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-130&m=dev",
+  "name": "Frame 1171281055 — Recognizing the Global Impact of Yoga (Accreditations / Certifications section)",
+  "componentType": "section",
+  "dimensions": {
+    "x": 120,
+    "y": 5626,
+    "width": 1680.5,
+    "height": 727.16
+  },
+  "backgroundColor": "transparent (page background)",
+  "cardBackground": "#ffffff",
+  "fonts": [
+    {
+      "family": "Manrope",
+      "weight": "Medium (500)",
+      "usage": "Eyebrow label 'A Path to Wellness'",
+      "size": 11,
+      "tracking": 2.42,
+      "lineHeight": 17,
+      "transform": "uppercase",
+      "color": "#569341"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "Bold (700)",
+      "usage": "Section heading 'Recognizing the Global Impact of Yoga'",
+      "size": 52,
+      "tracking": -0.56,
+      "lineHeight": 53,
+      "color": "#2a2420",
+      "align": "center"
+    },
+    {
+      "family": "DM Sans",
+      "weight": "Regular (400)",
+      "usage": "Section subtitle",
+      "size": 15,
+      "lineHeight": 26.25,
+      "color": "#7a6e65",
+      "align": "right",
+      "fontVariationSettings": "'opsz' 14"
+    },
+    {
+      "family": "SF Pro Display",
+      "weight": "Regular (400)",
+      "usage": "Logo captions under each badge",
+      "size": 14.977,
+      "tracking": 0.649,
+      "lineHeight": 18.172,
+      "color": "#000000"
+    }
+  ],
+  "colors": {
+    "accentGreen": "#569341",
+    "headingDark": "#2a2420",
+    "subtitleMuted": "#7a6e65",
+    "captionBlack": "#000000",
+    "cardSurface": "#ffffff",
+    "cardBorder": "#f0f0f0",
+    "dividerLines": "#f0f0f0 (approx., rendered via line image asset)"
+  },
+  "assets": [
+    {
+      "id": "1:138",
+      "name": "RYS300 1",
+      "type": "image",
+      "size": "128x128",
+      "url": "https://www.figma.com/api/mcp/asset/1847c582-b615-4d64-ad18-122798ad52b0",
+      "suggestedFilename": "rys-300.png",
+      "caption": "Registered Yoga School - 300"
+    },
+    {
+      "id": "1:139",
+      "name": "RYS200 1",
+      "type": "image",
+      "size": "128x128",
+      "url": "https://www.figma.com/api/mcp/asset/5434771a-2c64-4b67-83ac-ffafb623addf",
+      "suggestedFilename": "rys-200.png",
+      "caption": "Registered Yoga School - 200"
+    },
+    {
+      "id": "1:141",
+      "name": "image 6 (AIVETC)",
+      "type": "image",
+      "size": "177.5x141.95",
+      "url": "https://www.figma.com/api/mcp/asset/563be78c-16e2-46fb-89c5-38bd05ae6647",
+      "suggestedFilename": "aivetc.png",
+      "caption": "AIVETC"
+    },
+    {
+      "id": "1:144",
+      "name": "image 7 (Jyotish Yoga Sastra University)",
+      "type": "image",
+      "size": "326.11x137.95",
+      "url": "https://www.figma.com/api/mcp/asset/cb8ac0c8-c4b0-4a49-81ad-9db0b8e4a35c",
+      "suggestedFilename": "jyotish-yoga-sastra-university.png",
+      "caption": "Jyotish Yoga Sastra University"
+    },
+    {
+      "id": "1:148",
+      "name": "image 5 (Yoga Alliance USA)",
+      "type": "image",
+      "size": "277.24x115.96",
+      "url": "https://www.figma.com/api/mcp/asset/08253c7e-0121-4b0a-8427-fc22db867ce2",
+      "suggestedFilename": "yoga-alliance-usa.png",
+      "caption": "Yoga Alliance, USA (YA)"
+    },
+    {
+      "id": "1:151",
+      "name": "image 8 (Ministry of Ayush)",
+      "type": "image",
+      "size": "245.77x133.71",
+      "url": "https://www.figma.com/api/mcp/asset/38b3ae8f-8681-40a6-a399-b656afd42ade",
+      "suggestedFilename": "ministry-of-ayush.png",
+      "caption": "Ministry of Ayush Government of India"
+    },
+    {
+      "id": "1:155",
+      "name": "image 9 (Yoga Certification Board)",
+      "type": "image",
+      "size": "136.19x132.41",
+      "url": "https://www.figma.com/api/mcp/asset/fdf7f6a6-7c7f-4858-91f6-88d4bf7b37bf",
+      "suggestedFilename": "yoga-certification-board.png",
+      "caption": "Yoga Certification Board"
+    },
+    {
+      "id": "1:158",
+      "name": "image 10 (PQMS)",
+      "type": "image",
+      "size": "146.24x151.28",
+      "url": "https://www.figma.com/api/mcp/asset/3954e029-85fa-4bbb-8f35-de38c0f9fb1f",
+      "suggestedFilename": "pqms.png",
+      "caption": "Professional Quality Management Services"
+    },
+    {
+      "id": "1:161",
+      "name": "Line 1 (vertical divider asset)",
+      "type": "image",
+      "url": "https://www.figma.com/api/mcp/asset/a603a2b7-7704-46a0-93e5-7ecaf993d4b5",
+      "note": "Used for vertical dividers between columns. Implementable as a 1px CSS border-right instead of an image."
+    },
+    {
+      "id": "1:162",
+      "name": "Line 3 (horizontal divider asset)",
+      "type": "image",
+      "url": "https://www.figma.com/api/mcp/asset/79c02cfd-34e0-4360-84f3-7c6e962b7498",
+      "note": "Used for horizontal divider between the two rows. Implementable as a 1px CSS border-bottom."
+    }
+  ],
+  "structure": {
+    "root": {
+      "nodeId": "1:130",
+      "layout": "flex column, items-center, gap: 25px",
+      "width": 1680.5,
+      "height": 727.16,
+      "children": [
+        {
+          "nodeId": "1:131",
+          "name": "Header block",
+          "layout": "flex column, items-center, justify-center, gap: 12px",
+          "width": 759,
+          "children": [
+            {
+              "nodeId": "1:132",
+              "name": "Eyebrow label",
+              "type": "text",
+              "text": "A Path to Wellness",
+              "typography": {
+                "family": "Manrope",
+                "weight": 500,
+                "size": 11,
+                "tracking": 2.42,
+                "transform": "uppercase",
+                "color": "#569341"
+              }
+            },
+            {
+              "nodeId": "1:133",
+              "name": "Heading + Subtitle group",
+              "layout": "flex column, items-center, gap: 11px",
+              "children": [
+                {
+                  "nodeId": "1:134",
+                  "type": "text",
+                  "text": "Recognizing the Global Impact of Yoga",
+                  "typography": {
+                    "family": "Host Grotesk",
+                    "weight": 700,
+                    "size": 52,
+                    "lineHeight": 53,
+                    "tracking": -0.56,
+                    "color": "#2a2420",
+                    "align": "center"
+                  }
+                },
+                {
+                  "nodeId": "1:135",
+                  "type": "text",
+                  "text": "Deepen your wisdom and elevate your yoga career with our specialized yoga certifications.",
+                  "typography": {
+                    "family": "DM Sans",
+                    "weight": 400,
+                    "size": 15,
+                    "lineHeight": 26.25,
+                    "color": "#7a6e65",
+                    "align": "right"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeId": "1:136",
+          "name": "Certifications grid card",
+          "type": "card",
+          "card": {
+            "background": "#ffffff",
+            "border": "0.998px solid #f0f0f0",
+            "borderRadius": 31.951,
+            "width": 1679,
+            "height": 547
+          },
+          "grid": {
+            "columns": 4,
+            "rows": 2,
+            "items": 8,
+            "approxColumnWidth": 420,
+            "approxRowHeight": 273,
+            "dividers": {
+              "vertical": "1px between each column (3 vertical lines)",
+              "horizontal": "1px between rows (1 horizontal line)"
+            },
+            "cellLayout": "Each cell: logo (centered, ~115-150px tall) + caption text below (centered, 15px)"
+          },
+          "items": [
+            {
+              "row": 1, "col": 1,
+              "nodeId": "1:147",
+              "logoAsset": "image 5",
+              "caption": "Yoga Alliance, USA (YA)"
+            },
+            {
+              "row": 1, "col": 2,
+              "nodeId": "1:140",
+              "logoAsset": "image 6",
+              "caption": "AIVETC"
+            },
+            {
+              "row": 1, "col": 3,
+              "nodeId": "1:143 (left logo)",
+              "logoAsset": "image 7",
+              "caption": "Jyotish Yoga Sastra University"
+            },
+            {
+              "row": 1, "col": 4,
+              "nodeId": "1:138 + caption in 1:143",
+              "logoAsset": "RYS300 1",
+              "caption": "Registered Yoga School - 300"
+            },
+            {
+              "row": 2, "col": 1,
+              "nodeId": "1:150",
+              "logoAsset": "image 8",
+              "caption": "Ministry of Ayush Government of India"
+            },
+            {
+              "row": 2, "col": 2,
+              "nodeId": "1:153 / 1:154",
+              "logoAsset": "image 9",
+              "caption": "Yoga Certification Board"
+            },
+            {
+              "row": 2, "col": 3,
+              "nodeId": "1:157 (left logo)",
+              "logoAsset": "image 10",
+              "caption": "Professional Quality Management Services"
+            },
+            {
+              "row": 2, "col": 4,
+              "nodeId": "1:139 + caption in 1:157",
+              "logoAsset": "RYS200 1",
+              "caption": "Registered Yoga School - 200"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "interactiveElements": {
+    "ctas": [],
+    "links": [],
+    "notes": "No CTAs/buttons/links present in this node. Pure presentational accreditation section."
+  },
+  "layoutSummary": {
+    "type": "Centered section with eyebrow + heading + subtitle, followed by a rounded white card containing a 4-column x 2-row logo grid (8 accreditation badges) separated by hairline dividers.",
+    "verticalGapHeaderToCard": 25,
+    "cardInternalPadding": "~50-60px top/bottom, ~100px left/right (logos start ~100px from card edge)",
+    "logoCellAlignment": "Logo top-aligned within cell; caption sits below at consistent baseline (~158-175px from top of cell)",
+    "dividerColor": "Light gray hairlines (1px); same color as card border #f0f0f0"
+  },
+  "implementationNotes": [
+    "The section is the 'Accreditations / Recognized By' band of the Bodhi landing page.",
+    "Variables/tokens were not bound in this node (get_variable_defs returned {}). Hex values above are pulled from raw style declarations.",
+    "Dividers in Figma are rendered as line image assets, but in code should be plain 1px borders (no need to download Line 1 / Line 3 images).",
+    "All 8 logo PNGs should be downloaded and stored under apps/web/public/images/accreditations/ (or similar) with the suggestedFilename values.",
+    "Use Next.js <Image /> with width/height matching the natural sizes; logos are not perfectly uniform in size — preserve aspect ratio and vertically center within a fixed-height cell.",
+    "Heading uses Host Grotesk (already a Google Font); eyebrow uses Manrope; body uses DM Sans; captions use SF Pro Display (consider falling back to system-ui or Inter for cross-platform parity).",
+    "Subtitle text-right alignment in the raw export looks like a Figma quirk — visually it appears centered in the screenshot; recommend rendering it center-aligned to match the screenshot."
+  ]
+}

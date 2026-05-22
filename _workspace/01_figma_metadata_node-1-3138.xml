@@ -1,0 +1,38 @@
+<frame id="1:3138" name="Online Courses" x="30025" y="7588" width="1920" height="1994">
+  <frame id="353:11438" name="Group 1171281937" x="0" y="0" width="1920" height="421">
+    <frame id="353:11423" name="Hero-Heading" x="0" y="0" width="1920" height="421">
+      <rounded-rectangle id="353:11424" name="image 25" x="0" y="0" width="1920" height="421" />
+    </frame>
+    <frame id="1:3709" name="Group 1171281877" x="224" y="152" width="892" height="163">
+      <frame id="1:3710" name="Group 1171281878" x="224" y="152" width="892" height="163">
+        <text id="1:3711" name="23 courses" x="224" y="298" width="95" height="17" />
+        <text id="1:3712" name="Home / Yoga courses / Online /" x="224" y="152" width="231" height="27" />
+        <text id="1:3713" name="Online Yoga Courses" x="224" y="184" width="557" height="58" />
+        <text id="1:3714" name="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga." x="224" y="254" width="892" height="27" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="353:10833" name="Courses" x="224" y="475" width="1472" height="1355">
+    <frame id="353:10834" name="Overlay+Border" x="737" y="587" width="85" height="28.74"><text id="353:10835" name="online" x="11.98" y="4.84" width="51" height="19" /></frame>
+    <frame id="353:10836" name="Overlay+Border" x="737" y="887" width="83" height="26.74"><text id="353:10837" name="online" x="10.98" y="3.84" width="51" height="19" /></frame>
+    <frame id="353:10838" name="Overlay+Border" x="1241" y="587" width="86" height="28.74"><text id="353:10839" name="online" x="11.98" y="4.84" width="51" height="19" /></frame>
+    <frame id="353:10840" name="Overlay+Border" x="1241" y="887" width="84" height="26.74"><text id="353:10841" name="online" x="10.98" y="3.84" width="51" height="19" /></frame>
+    <frame id="353:10842" name="Frame 1171281871" x="224" y="475" width="1472" height="1355">
+      <!-- 9 Article cards in 3x3 grid (472x431 each, 28px col gap, 31px row gap) -->
+      <!-- Card structure (each): Gradient (472x337) + Frame 1171281042 (text block, 408.33x138.47 at 31.84,268.44) -->
+      <!--   Heading 3 → title text (50px tall) -->
+      <!--   Container meta row at y=70: [SVG + "4 weeks"] · [SVG + "Online"] · [SVG + "English"] with 3x3 dot bullets -->
+      <!--   HorizontalBorder at y=99: "View Program →" CTA -->
+      <article id="353:10843" pos="0,0">Pranayama &amp; the nervous system</article>
+      <article id="353:10870" pos="500,0">300 Hour Yoga Teacher Training Course — Online</article>
+      <article id="353:10897" pos="1000,0">Face Yoga Teacher Training Course</article>
+      <article id="353:10924" pos="0,462">Weight Loss Coach Teacher Training Course</article>
+      <article id="353:10951" pos="500,462">Bala Yoga Teacher Training Course</article>
+      <article id="353:10978" pos="1000,462">Mat Pilates Teacher Training Course</article>
+      <article id="353:11005" pos="0,924">Mat Pilates Teacher Training Course</article>
+      <article id="353:11032" pos="500,924">Pranayama &amp; the nervous system</article>
+      <article id="353:11059" pos="1000,924">300 Hour Yoga Teacher Training Course — Online</article>
+    </frame>
+  </frame>
+  <instance id="353:13949" name="Header" x="229" y="20" width="1462" height="56" />
+</frame>

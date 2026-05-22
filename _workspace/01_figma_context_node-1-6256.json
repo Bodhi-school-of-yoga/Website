@@ -1,0 +1,74 @@
+{
+  "node_id": "1:6256",
+  "name": "Article",
+  "assets": {
+    "imgGradient": "https://www.figma.com/api/mcp/asset/ec29c543-675b-4fe9-afb0-d0a292bb30d0",
+    "imgSvg_4weeks": "https://www.figma.com/api/mcp/asset/948f1024-daed-416e-a8ca-1001ec26c172",
+    "imgSvg_Online": "https://www.figma.com/api/mcp/asset/82ed3fc9-8b1b-4196-9b71-9efe825e70f5",
+    "imgSvg_English": "https://www.figma.com/api/mcp/asset/970d2ba7-0819-4c1e-a6df-afe1bd01b2b9"
+  },
+  "raw_react_code": "import imgGradient from 'figma:asset';\n\nexport default function Article() {\n  return (\n    <div className=\"bg-white border-[1.098px] border-[rgba(0,0,0,0.08)] border-solid content-stretch flex flex-col gap-[10.1px] items-center justify-end overflow-clip pb-[24.098px] pt-[22.098px] px-[31.836px] relative rounded-[24.151px] shadow-[0px_4px_48.3px_0px_rgba(226,226,226,0.25)] size-full\" data-node-id=\"1:6256\" data-name=\"Article\">\n      <div className=\"absolute inset-[-88.1px_-1.1px_179.9px_-1.1px]\" data-node-id=\"1:6257\" data-name=\"Gradient\">\n        <div className=\"absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden pointer-events-none\">\n          <img alt=\"\" className=\"absolute left-0 max-w-none size-full top-0\" src={imgGradient} />\n        </div>\n      </div>\n      <div className=\"relative shrink-0 w-full\" data-node-id=\"1:6258\">\n        <div className=\"bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col gap-[12px] items-start relative size-full\">\n          <div className=\"content-stretch flex flex-col items-start pt-px relative shrink-0 w-full\" data-node-id=\"1:6259\" data-name=\"Heading 3\">\n            <div className=\"content-stretch flex flex-col gap-[18px] items-start relative shrink-0 w-full\" data-node-id=\"1:6260\">\n              <div className=\"[word-break:break-word] flex flex-col font-['Instrument_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#2f4a3e] text-[23px] w-[265px]\" data-node-id=\"1:6261\" style={{ fontVariationSettings: \"'wdth' 100\" }}>\n                <p className=\"leading-[25px]\">Mat Pilates Teacher Training Course</p>\n              </div>\n              <div className=\"content-center flex flex-wrap gap-[0px_10px] items-center relative shrink-0 w-full\" data-node-id=\"1:6262\" data-name=\"Container\">\n                <div className=\"content-stretch flex gap-[5px] items-center relative shrink-0\" data-node-id=\"1:6263\" data-name=\"Container\">\n                  <div className=\"relative shrink-0 size-[13px]\" data-node-id=\"1:6264\" data-name=\"SVG\"><img alt=\"\" className=\"absolute block inset-0 max-w-none size-full\" src={imgSvg} /></div>\n                  <div className=\"text-[#7a6e65] text-[12px] tracking-[0.12px] font-['DM_Sans:Medium',sans-serif] font-medium whitespace-nowrap\" data-node-id=\"1:6267\"><p className=\"leading-[normal]\">4 weeks</p></div>\n                </div>\n                <div className=\"bg-[#c8a96e] opacity-50 rounded-[1.5px] size-[3px]\" data-node-id=\"1:6268\" />\n                <div className=\"content-stretch flex gap-[5px] items-center\" data-node-id=\"1:6269\"><div className=\"size-[13px]\" data-node-id=\"1:6270\"><img src={imgSvg1} /></div><div className=\"text-[#7a6e65] text-[12px] tracking-[0.12px] font-['DM_Sans:Medium',sans-serif] font-medium whitespace-nowrap\" data-node-id=\"1:6273\"><p>Online</p></div></div>\n                <div className=\"bg-[#c8a96e] opacity-50 rounded-[1.5px] size-[3px]\" data-node-id=\"1:6274\" />\n                <div className=\"content-stretch flex gap-[5px] items-center\" data-node-id=\"1:6275\"><div className=\"size-[13px]\" data-node-id=\"1:6276\"><img src={imgSvg2} /></div><div className=\"text-[#7a6e65] text-[12px] tracking-[0.12px] font-['DM_Sans:Medium',sans-serif] font-medium whitespace-nowrap\" data-node-id=\"1:6279\"><p>English</p></div></div>\n              </div>\n            </div>\n          </div>\n          <div className=\"border-[rgba(47,74,62,0.22)] border-dashed border-t-[1.098px] content-stretch flex items-center justify-between pt-[16.467px] relative shrink-0 w-full\" data-node-id=\"1:6280\" data-name=\"HorizontalBorder\">\n            <div className=\"text-[#038f9f] text-[14.271px] tracking-[0.0878px] font-['Manrope:Medium',sans-serif] font-medium whitespace-nowrap\" data-node-id=\"1:6281\"><p className=\"leading-[22.12px]\">View Program →</p></div>\n            <div className=\"h-[23px] w-[117px]\" data-node-id=\"1:6282\" />\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}",
+  "extracted_styles": {
+    "card_frame": {
+      "background": "#ffffff",
+      "border": "1.098px solid rgba(0,0,0,0.08)",
+      "border_radius": "24.151px",
+      "shadow": "0px 4px 48.3px 0px rgba(226,226,226,0.25)",
+      "padding": "22.098px 31.836px 24.098px",
+      "gap_between_image_and_content": "10.1px",
+      "overflow": "clip"
+    },
+    "image": {
+      "position": "absolute",
+      "inset": "-88.1px -1.1px 179.9px -1.1px",
+      "note": "Image extends slightly beyond card edges; clipped by overflow-clip on the card"
+    },
+    "title": {
+      "text": "Mat Pilates Teacher Training Course",
+      "font_family": "Instrument Sans",
+      "font_weight": "SemiBold (600)",
+      "font_size": "23px",
+      "line_height": "25px",
+      "color": "#2f4a3e",
+      "width": "265px (constrained)",
+      "variation_settings": "'wdth' 100"
+    },
+    "meta_row": {
+      "gap": "10px between items (column gap)",
+      "item_internal_gap": "5px between icon and label",
+      "icon_size": "13x13px",
+      "dot_separator": {
+        "size": "3x3px",
+        "background": "#c8a96e",
+        "opacity": 0.5,
+        "border_radius": "1.5px"
+      },
+      "meta_label": {
+        "font_family": "DM Sans",
+        "font_weight": "Medium (500)",
+        "font_size": "12px",
+        "letter_spacing": "0.12px",
+        "color": "#7a6e65",
+        "variation_settings": "'opsz' 14"
+      }
+    },
+    "divider_and_cta_row": {
+      "border_top": "1.098px dashed rgba(47,74,62,0.22)",
+      "padding_top": "16.467px",
+      "cta": {
+        "text": "View Program →",
+        "font_family": "Manrope",
+        "font_weight": "Medium (500)",
+        "font_size": "14.271px",
+        "letter_spacing": "0.0878px",
+        "line_height": "22.12px",
+        "color": "#038f9f"
+      },
+      "right_container": {
+        "width": "117px",
+        "height": "23px",
+        "note": "Empty in this Article variant; reserved space (likely for instructor in course variant)"
+      }
+    }
+  }
+}

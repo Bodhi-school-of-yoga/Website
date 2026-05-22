@@ -1,0 +1,62 @@
+{
+  "node_id": "1:7544",
+  "name": "Article",
+  "type": "frame",
+  "x": 1000,
+  "y": 352,
+  "width": 472,
+  "height": 321,
+  "children": [
+    {
+      "id": "1:7545",
+      "name": "Gradient",
+      "type": "rounded-rectangle",
+      "x": 0,
+      "y": -87,
+      "width": 472,
+      "height": 307
+    },
+    {
+      "id": "1:7546",
+      "name": "Frame 1171281045",
+      "type": "frame",
+      "x": 31.835891723632812,
+      "y": 245.9022216796875,
+      "width": 408.3282165527344,
+      "height": 51,
+      "children": [
+        {
+          "id": "1:7547",
+          "name": "Heading 3",
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 408.3282165527344,
+          "height": 51,
+          "children": [
+            {
+              "id": "1:7548",
+              "name": "Frame 1171281035",
+              "type": "frame",
+              "x": 0,
+              "y": 1,
+              "width": 408.3282165527344,
+              "height": 50,
+              "children": [
+                {
+                  "id": "1:7549",
+                  "name": "Mat Pilates Teacher Training Course",
+                  "type": "text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 265,
+                  "height": 50
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

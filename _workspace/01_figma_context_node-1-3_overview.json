@@ -1,0 +1,251 @@
+{
+  "$meta": {
+    "fileKey": "eqaofBeNUhOUISevtRfOpT",
+    "fileName": "Bodhi-landing-page-web-handoff",
+    "sourceUrl": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-3",
+    "requestedNodeId": "1:3",
+    "resolvedNodeId": "1:32",
+    "resolvedNodeName": "Homepage",
+    "resolutionNote": "Node 1:3 does not exist in the current file. The Home page frame is 1:32 on the '🖌️ Final Designs' page (0:1). Treating 1:32 as the home page.",
+    "page": {
+      "id": "0:1",
+      "name": "🖌️ Final Designs"
+    },
+    "screenshot": "/Users/anukul/Desktop/bodhi/_workspace/01_screenshot_node-1-3.png",
+    "extractedAt": "2026-05-22"
+  },
+  "page": {
+    "id": "1:32",
+    "name": "Homepage",
+    "width": 1920,
+    "height": 8383,
+    "viewport": "desktop-only (1920px)",
+    "compositionNote": "Top-level layers are flat (not nested into 'section' frames). Many hero layers overlap visually in the y=0–1175 band. The grouping below reconstructs visual top-to-bottom sections; nested figma layer ids are listed under 'figmaLayerIds' for each section."
+  },
+  "sections": [
+    {
+      "index": 0,
+      "nodeId": "1:90",
+      "figmaName": "Group 1171281887",
+      "suggestedSectionName": "site-header",
+      "suggestedComponentName": "SiteHeader",
+      "description": "Top sticky/anchored navigation bar overlaying the hero. Contains the Bodhi wordmark on the left and primary nav links / CTA on the right.",
+      "yPosition": 20,
+      "approxHeight": 56,
+      "componentTypeHint": "navbar",
+      "assetCount": 1,
+      "interactiveElements": ["logo link", "primary nav links", "header CTA"],
+      "figmaLayerIds": ["1:90"],
+      "alreadyBuilt": null
+    },
+    {
+      "index": 1,
+      "nodeId": "1:83",
+      "figmaName": "Hero (composed: 1:33, 1:35, 75:3228, 1:83, 1:591, 1:53)",
+      "suggestedSectionName": "hero",
+      "suggestedComponentName": "HeroSection",
+      "description": "Full-bleed marketing hero. Devanagari 'बोधि' display lockup over a large lifestyle image, with the tagline 'बोधि · The awakening — A school for teachers and a home for seekers.' (group 1:83), a decorative rounded image card (75:3228), and a horizontal 'what do we offer' offer-strip with arrowed CTAs (1:591) sitting at the bottom of the hero. A thin top border (1:53) separates the hero from the next section.",
+      "yPosition": 0,
+      "approxHeight": 1175,
+      "componentTypeHint": "marketing-hero",
+      "assetCount": 3,
+      "interactiveElements": [
+        "primary CTA in offer-strip 'I want to teach Yoga & Pillate →'",
+        "additional offer-strip links",
+        "hero CTA buttons inside 1:83"
+      ],
+      "figmaLayerIds": ["1:33", "1:35", "75:3228", "1:83", "1:591", "1:53"],
+      "subBlocks": [
+        {
+          "nodeId": "1:35",
+          "role": "hero-background-left",
+          "note": "Background image + large Devanagari 'बोधि' display text, y=0, w=1920, h=1175"
+        },
+        {
+          "nodeId": "1:33",
+          "role": "hero-image-secondary",
+          "note": "Secondary image frame, y=221, h=1200 — likely the lifestyle photo card"
+        },
+        {
+          "nodeId": "75:3228",
+          "role": "hero-rounded-card",
+          "note": "Rounded-rectangle image card, x=1146 y=194, 1678x952"
+        },
+        {
+          "nodeId": "1:83",
+          "role": "hero-copy-block",
+          "note": "Headline lockup 'A school for teachers and a home for seekers.' x=308 y=292, 1059x385"
+        },
+        {
+          "nodeId": "1:591",
+          "role": "hero-offer-strip",
+          "note": "Horizontal 'what do we offer / I want to teach Yoga & Pillate →' chips, y=859, h=143"
+        },
+        {
+          "nodeId": "1:53",
+          "role": "hero-bottom-border",
+          "note": "Bottom border with niche labels Yama / Niyama / Āsana / Prāṇāyāma, y=1102, h=73"
+        }
+      ],
+      "alreadyBuilt": null
+    },
+    {
+      "index": 2,
+      "nodeId": "1:39",
+      "figmaName": "Section",
+      "suggestedSectionName": "founder-quote",
+      "suggestedComponentName": "FounderQuoteSection",
+      "description": "Editorial quote band labelled 'Our practice'. Two-column layout: the founder's quote 'The mat is a place to meet yourself honestly, daily, and without performance.' on the left with attribution '— Acharya, founder', complemented by supporting copy/imagery on the right.",
+      "yPosition": 1175,
+      "approxHeight": 477,
+      "componentTypeHint": "editorial-quote",
+      "assetCount": 1,
+      "interactiveElements": [],
+      "figmaLayerIds": ["1:39"],
+      "alreadyBuilt": null
+    },
+    {
+      "index": 3,
+      "nodeId": "1:165",
+      "figmaName": "Group 1171281822",
+      "suggestedSectionName": "stats-bar",
+      "suggestedComponentName": "StatsBar",
+      "description": "Horizontal stats / proof band. Big numeric callouts such as '5000+ Students Trained' and '15+ Years of Excellence' presented as evenly-spaced columns.",
+      "yPosition": 1652,
+      "approxHeight": 519,
+      "componentTypeHint": "stats",
+      "assetCount": 0,
+      "interactiveElements": [],
+      "figmaLayerIds": ["1:165"],
+      "alreadyBuilt": null
+    },
+    {
+      "index": 4,
+      "nodeId": "1:188",
+      "figmaName": "Group 1171281726",
+      "suggestedSectionName": "what-we-do",
+      "suggestedComponentName": "WhatWeDoSection",
+      "description": "'What we do — Three rooms in one school.' feature list. Introduces the three pillars (Personalized Classes, 200/300-hour residential & weekend TTCs, etc.) as side-by-side cards with short descriptions.",
+      "yPosition": 2171,
+      "approxHeight": 505,
+      "componentTypeHint": "feature-list",
+      "assetCount": 3,
+      "interactiveElements": ["per-card learn-more links"],
+      "figmaLayerIds": ["1:188"],
+      "alreadyBuilt": null
+    },
+    {
+      "index": 5,
+      "nodeId": "1:91",
+      "figmaName": "Group 1171281701",
+      "suggestedSectionName": "why-bodhi",
+      "suggestedComponentName": "WhyBodhiSection",
+      "description": "'Why Bodhi School of Yoga? — What We Stand For' value-prop block. Bulleted promises such as 'Making yoga accessible & empowering for every woman' and 'Offering accredited TTCs that reflect women's unique needs', paired with supporting imagery.",
+      "yPosition": 2786,
+      "approxHeight": 685,
+      "componentTypeHint": "value-props",
+      "assetCount": 1,
+      "interactiveElements": [],
+      "figmaLayerIds": ["1:91"],
+      "alreadyBuilt": null
+    },
+    {
+      "index": 6,
+      "nodeId": "1:226",
+      "figmaName": "Group 1171281925",
+      "suggestedSectionName": "programs-grid",
+      "suggestedComponentName": "ProgramsGrid",
+      "description": "Programs catalogue. Two sub-blocks: 'Yoga Teacher Training Courses' (e.g. 'Pranayama & the nervous system', 4 weeks) and 'Certification Courses' shown as a card grid with thumbnail, title, duration, and arrow link per program.",
+      "yPosition": 3576,
+      "approxHeight": 1991,
+      "componentTypeHint": "card-grid",
+      "assetCount": 8,
+      "interactiveElements": ["per-card 'view program' link", "category filters/tabs"],
+      "figmaLayerIds": ["1:226"],
+      "alreadyBuilt": null
+    },
+    {
+      "index": 7,
+      "nodeId": "1:129",
+      "figmaName": "Group 1171281820",
+      "suggestedSectionName": "accreditations",
+      "suggestedComponentName": "AccreditationsSection",
+      "description": "'Recognizing the Global Impact of Yoga' — accreditation/affiliation logo strip with named bodies such as AIVETC and Jyotish Yoga Sastra University. Typically a horizontal row of monochrome partner logos with a section header.",
+      "yPosition": 5626,
+      "approxHeight": 727,
+      "componentTypeHint": "logo-strip",
+      "assetCount": 6,
+      "interactiveElements": [],
+      "figmaLayerIds": ["1:129", "1:130"],
+      "alreadyBuilt": {
+        "matchedNodeId": "1:130",
+        "componentPath": "apps/web/src/components/sections/accreditations-section.tsx",
+        "note": "1:130 is the inner frame directly inside the wrapper group 1:129; both refer to this section."
+      }
+    },
+    {
+      "index": 8,
+      "nodeId": "1:557",
+      "figmaName": "Group 1171281832",
+      "suggestedSectionName": "testimonials",
+      "suggestedComponentName": "TestimonialsSection",
+      "description": "'What our clients say' testimonial block. Headed by a large decorative quote glyph, with a student testimonial (e.g. '— Aanya, TTC Cohort 11. Now teaching in Goa.') and likely additional testimonial cards or a carousel.",
+      "yPosition": 6504,
+      "approxHeight": 499,
+      "componentTypeHint": "testimonial-carousel",
+      "assetCount": 3,
+      "interactiveElements": ["carousel prev/next or pagination dots"],
+      "figmaLayerIds": ["1:557", "1:558"],
+      "alreadyBuilt": {
+        "matchedNodeId": "1:558",
+        "componentPath": "apps/web/src/components/sections/testimonials-section.tsx",
+        "note": "1:558 is the inner frame directly inside wrapper group 1:557; both refer to this section."
+      }
+    },
+    {
+      "index": 9,
+      "nodeId": "1:619",
+      "figmaName": "Group 1171281878",
+      "suggestedSectionName": "closing-cta-and-footer",
+      "suggestedComponentName": "ClosingCtaAndFooter",
+      "description": "Final 'Begin where you are.' closing CTA band sitting on top of the dark teal site footer. Footer contains the Bodhi wordmark, the tagline 'A school for teachers, a home for seekers. Practice, taught honestly.', the contact line 'bodhischoolofyoga.com', and a 'School' link column.",
+      "yPosition": 7081,
+      "approxHeight": 1302,
+      "componentTypeHint": "cta-band + footer",
+      "assetCount": 2,
+      "interactiveElements": [
+        "Primary closing CTA button",
+        "Footer nav links (School column)",
+        "Email / domain link"
+      ],
+      "figmaLayerIds": ["1:619"],
+      "alreadyBuilt": {
+        "matchedNodeId": "1:619",
+        "componentPaths": [
+          "apps/web/src/components/sections/closing-cta-section.tsx",
+          "apps/web/src/components/site-footer.tsx"
+        ],
+        "note": "Single Figma group 1:619 was split into two React components: the CTA band and the site footer."
+      }
+    }
+  ],
+  "summary": {
+    "totalSections": 10,
+    "alreadyBuiltCount": 3,
+    "remainingToBuildCount": 7,
+    "buildOrderRecommendation": [
+      "site-header",
+      "hero",
+      "founder-quote",
+      "stats-bar",
+      "what-we-do",
+      "why-bodhi",
+      "programs-grid"
+    ],
+    "alreadyBuiltSections": [
+      "accreditations",
+      "testimonials",
+      "closing-cta-and-footer"
+    ]
+  }
+}

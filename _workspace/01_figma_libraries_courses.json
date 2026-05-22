@@ -1,0 +1,9 @@
+{
+  "note": "Libraries are community design kits (Material 3, Simple Design System, iOS) attached to the file but not actively used in the Yoga Teacher Training Courses page. Bodhi is built with its own design system in DESIGN.md.",
+  "libraries_added_to_file": [
+    "Material 3 Design Kit",
+    "Simple Design System",
+    "iOS 18 and iPadOS 18",
+    "iOS and iPadOS 26"
+  ]
+}

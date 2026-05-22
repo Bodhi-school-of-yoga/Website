@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import { Host_Grotesk, DM_Sans, Geist_Mono, Playfair_Display } from "next/font/google";
+import {
+  Host_Grotesk,
+  DM_Sans,
+  Geist_Mono,
+  Playfair_Display,
+  Fraunces,
+  Instrument_Sans,
+  Manrope,
+} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -26,6 +34,25 @@ const playfairDisplay = Playfair_Display({
   weight: ["400", "500", "600", "700"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const instrumentSans = Instrument_Sans({
+  variable: "--font-ui",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const manrope = Manrope({
+  variable: "--font-tagline",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Bodhi Yoga Studio",
@@ -44,7 +71,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hostGrotesk.variable} ${dmSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}
+      className={`${hostGrotesk.variable} ${dmSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${fraunces.variable} ${instrumentSans.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-transparent">
         <Providers>

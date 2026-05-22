@@ -1,0 +1,130 @@
+{
+  "target_node_id": "1:3978",
+  "revision": 1,
+  "library": "framer-motion",
+  "library_status": "installed (apps/web/package.json: framer-motion ^12.39.0)",
+  "figma_prototype_data": "none — web-handoff file exposes no reactions/interactions/transitions via MCP. All actions/motion below are inferred from convention for the Bodhi yoga site.",
+  "motion_primitives": {
+    "fade-in-up": {
+      "initial": { "opacity": 0, "y": 12 },
+      "animate": { "opacity": 1, "y": 0 },
+      "transition": { "duration": 0.4, "ease": "easeOut" }
+    },
+    "fade-in": {
+      "initial": { "opacity": 0 },
+      "animate": { "opacity": 1 },
+      "transition": { "duration": 0.3, "ease": "easeOut" }
+    },
+    "scale-in": {
+      "initial": { "opacity": 0, "scale": 0.96 },
+      "animate": { "opacity": 1, "scale": 1 },
+      "transition": { "duration": 0.35, "ease": "easeOut" }
+    },
+    "stagger-children": {
+      "transition": { "staggerChildren": 0.06, "delayChildren": 0.05 }
+    }
+  },
+  "tailwind_primitives": {
+    "hover-lift": "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md",
+    "hover-underline": "relative after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-current after:transition-all hover:after:w-full",
+    "press-scale": "transition-transform duration-150 active:scale-[0.98]",
+    "press-scale-bright": "transition-[transform,filter] duration-150 hover:brightness-105 active:scale-[0.98]"
+  },
+  "components": [
+    {
+      "component_name": "CourseCard",
+      "section_id": "course-card",
+      "figma_node_id": "1:3978",
+      "motion": [
+        { "target": "root", "primitive": "hover-lift", "via": "tailwind", "rationale": "Card is interactive surface — subtle lift + soft shadow on hover. Tailwind-only, no JS, keeps it a server component." },
+        { "target": "root-container", "primitive": "stagger-children", "trigger": "scroll-into-view", "rationale": "Parent orchestrates child entrance stagger when the card enters the viewport." },
+        { "target": "image", "primitive": "fade-in-up", "delay": 0, "rationale": "First visual element to settle (left half hero photo)." },
+        { "target": "title", "primitive": "fade-in-up", "delay": 0.06, "rationale": "Title is the focal point of the right column — leads the content cascade." },
+        { "target": "body", "primitive": "fade-in-up", "delay": 0.12, "rationale": "Description follows the title." },
+        { "target": "feature-row", "primitive": "fade-in-up", "delay": 0.18, "rationale": "Feature tiles animate as a single row (FeatureTile children inherit, no individual stagger)." },
+        { "target": "price", "primitive": "fade-in-up", "delay": 0.18, "rationale": "Price sits in the top-right column — arrives in parallel with feature row for visual balance." },
+        { "target": "cta", "primitive": "fade-in-up", "delay": 0.24, "rationale": "Primary action lands last so the eye terminates on it." },
+        { "target": "starts-caption", "primitive": "fade-in-up", "delay": 0.3, "rationale": "Decorative trailing caption — last to settle, total cascade ≤ 300ms after image (image 0ms → cta 240ms → caption 300ms). With ~400ms tween duration this completes by ~700ms total." }
+      ],
+      "actions": [
+        { "target": "root", "event": "click", "kind": "navigate", "href": "/courses/decoding-what-is-prana", "rationale": "Entire card is a clickable surface leading to the course detail page (slug derived from title 'Decoding \"What is Prana?\"'). Bodhi convention assumed; orchestrator should confirm.", "unresolved": true },
+        { "target": "cta", "event": "click", "kind": "navigate", "href": "/courses/decoding-what-is-prana/book", "rationale": "Button label 'Book spot now' → booking flow for this course. Nested inside card link; component-builder must stop event propagation so card-click and CTA-click don't both navigate.", "unresolved": true },
+        { "target": "cta", "event": "hover", "kind": "decorative", "primitive": "press-scale-bright", "via": "tailwind", "rationale": "Subtle brightness shift + active press-scale on the mint pill." },
+        { "target": "cta", "event": "press", "kind": "decorative", "primitive": "press-scale-bright", "via": "tailwind", "rationale": "Same Tailwind class covers hover-brightness and active-scale." }
+      ],
+      "scroll_reveal": true,
+      "scroll_reveal_primitive": "stagger-children + fade-in-up",
+      "scroll_reveal_options": {
+        "viewport_amount": 0.3,
+        "viewport_once": true,
+        "rationale": "Use framer-motion `whileInView` with `viewport={{ once: true, amount: 0.3 }}` so the card animates once when ~30% is visible, not every scroll."
+      },
+      "implementation_notes": [
+        "CourseCard must be a Client Component ('use client') because of framer-motion whileInView + stagger.",
+        "Wrap root in motion.div (or motion.article) with `variants` + `initial='hidden' whileInView='visible'`. Each child uses the same variants object — framer-motion resolves stagger via the parent's transition.",
+        "Total stagger budget: image(0) → title(60) → body(120) → feature-row/price(180) → cta(240) → caption(300) = 300ms span, within the ≤300ms requirement.",
+        "Hover-lift is Tailwind-only — does NOT conflict with the motion.div mount animation; framer-motion's `animate` target only sets opacity+y, leaving CSS transitions free for transform on hover.",
+        "If the whole card is wrapped in next/link (clickable surface), use `<Link>` as the motion component via `motion(Link)` OR place the Link as an absolutely-positioned overlay with a sibling `<button>` for the CTA. Recommended: nested Links with `onClick={(e) => e.stopPropagation()}` on the CTA, OR (cleaner) keep only the CTA as the navigation target and make the card itself non-clickable. Orchestrator should pick.",
+        "Respect prefers-reduced-motion: framer-motion auto-handles when MotionConfig reducedMotion='user' is set at app root; otherwise wrap CourseCard with `<MotionConfig reducedMotion='user'>` or branch on useReducedMotion()."
+      ]
+    },
+    {
+      "component_name": "FeatureTile",
+      "section_id": "course-card",
+      "figma_node_id": "1:3985",
+      "motion": [],
+      "actions": [],
+      "scroll_reveal": false,
+      "notes": "Purely decorative. No individual entrance motion — covered by the parent CourseCard's `feature-row` fade-in-up (the row as a single target, not per-tile). No hover, no click. Renders as a static server-component-safe div with icon + label."
+    },
+    {
+      "component_name": "MintPillButton",
+      "section_id": "course-card",
+      "figma_node_id": "1:4008",
+      "kind": "existing-primitive",
+      "motion": [
+        { "target": "root", "primitive": "press-scale-bright", "via": "tailwind", "rationale": "Subtle press-scale + brightness shift on hover/active. If the existing Button primitive already ships hover/press states, reuse them; only add these classes if the mint variant lacks them." }
+      ],
+      "actions": [
+        { "target": "root", "event": "click", "kind": "navigate", "href": "/courses/decoding-what-is-prana/book", "rationale": "Label 'Book spot now' → course-specific booking page. See unresolved list — same destination as CourseCard.cta action above.", "unresolved": true }
+      ],
+      "scroll_reveal": false,
+      "notes": "Existing primitive — codebase-scout to confirm Button has (or can grow) a `mint` variant. Motion + action are wired by CourseCard; this entry documents the contract so the builder doesn't double-animate."
+    }
+  ],
+  "global_notes": [
+    "Bodhi tone is calm/yoga — keep durations 300–400ms, translates ≤12px, no spring bounces.",
+    "Only framer-motion usage on this card is the entrance stagger + fade-in-up. Hover/press states are Tailwind-only to keep the bundle thin.",
+    "If this CourseCard is rendered in a list of multiple courses, the parent list should NOT add an outer stagger — each card already stagger-reveals its own children. Outer-list stagger would compound and feel slow."
+  ],
+  "unresolved": [
+    {
+      "component": "CourseCard",
+      "target": "root",
+      "field": "href",
+      "guess": "/courses/decoding-what-is-prana",
+      "reason": "No prototype link in Figma. Slug derived from the course title. Confirm with user whether (a) Bodhi uses /courses/[slug] routing, (b) the entire card is clickable vs CTA-only, and (c) the canonical slug ('decoding-what-is-prana' vs 'what-is-prana' vs an ID)."
+    },
+    {
+      "component": "CourseCard",
+      "target": "cta",
+      "field": "href",
+      "guess": "/courses/decoding-what-is-prana/book",
+      "reason": "No prototype link. 'Book spot now' implies a booking page. Two plausible patterns: nested `/courses/[slug]/book` (REST-ish) or query-param `/book?course=decoding-what-is-prana` (flat checkout). Confirm with user."
+    },
+    {
+      "component": "MintPillButton",
+      "target": "root",
+      "field": "href",
+      "guess": "/courses/decoding-what-is-prana/book",
+      "reason": "Same destination as CourseCard.cta — depends on the routing decision above."
+    },
+    {
+      "component": "CourseCard",
+      "target": "root vs cta",
+      "field": "click-behavior conflict",
+      "guess": "CTA-only is clickable; the card surface is non-interactive",
+      "reason": "If both the card and the nested CTA navigate, React DOM nests <a> inside <a> which is invalid. Builder must pick one. Recommended default: CTA-only nav, card stays decorative (drop the root navigate action). Orchestrator should confirm before build."
+    }
+  ]
+}

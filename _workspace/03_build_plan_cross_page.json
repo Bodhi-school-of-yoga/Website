@@ -1,0 +1,348 @@
+{
+  "$schema_version": "cross-page-build-plan-v1",
+  "generated_at": "2026-05-22",
+  "revision": 1,
+  "target_pages": ["1:1547", "1:4756", "1:7174", "1:2343"],
+  "inputs": {
+    "decomposition": "_workspace/02_decomposition_cross_page.json",
+    "scout": "_workspace/02_codebase_scout_cross_page.json",
+    "design_tokens": "apps/web/src/app/globals.css",
+    "page_shell_reference": ["apps/web/src/app/page.tsx", "apps/web/src/app/about/page.tsx"]
+  },
+  "ordering_strategy": "Wave 1 = primitives/sections with no internal deps (all run in parallel). Wave 2 = page routes that import Wave-1 outputs (all run in parallel). No Wave 3 needed — scout confirms PopularCoursesSubGrid/GuidedPathSection/AccreditationsSection/WhyBodhiSection/PopularCoursesSection/TestimonialsSection all reuse existing files unchanged, and ProgramsIntroSection collapses into PopularCoursesSection with a different eyebrow.",
+  "waves": {
+    "1": ["T1", "T2", "T3", "T4"],
+    "2": ["T5", "T6", "T7", "T8"]
+  },
+  "tasks": [
+    {
+      "id": "T1",
+      "type": "extend-component",
+      "title": "Extend ProgramCard with variant='article' and modeBadge prop",
+      "file": "apps/web/src/components/ui/program-card.tsx",
+      "depends_on": [],
+      "parallel_group": 1,
+      "figma_refs": ["1:1547", "1:1550", "1:4756", "1:7174", "1:7504", "1:2343", "1:2877"],
+      "spec": {
+        "purpose": "Add two new presentation toggles to the existing ProgramCard so it covers (a) the floating mode pill seen on listing pages and (b) the lean editorial 'article' card used on the Tips page — without duplicating the component.",
+        "props_shape": {
+          "variant?": "'course' | 'article' (default 'course')",
+          "modeBadge?": "{ label: 'Online' | 'Offline'; icon?: ReactNode } | undefined",
+          "href?": "string (already supported on CTA; in 'article' variant, the whole card becomes the link)"
+        },
+        "behavior": {
+          "course_variant": "Unchanged from today — image + title + meta row (icon + dot separators) + dashed-divider footer + optional instructor + 'View Program ->' CTA.",
+          "article_variant": "Image + title only. No meta row. No instructor row. No 'View Program' CTA. Title swaps from CardTitle h5 to a dark-green heading (use text-text-brand-deep). Whole card is wrapped in a Link to href.",
+          "modeBadge": "Floating pill anchored top-right of the card image (top-3 right-3, absolute). bg-surface-1 backdrop-blur, rounded-full, px-3 py-1, text-mini uppercase tracking-wide, text-text-primary. Renders independently of variant."
+        },
+        "tokens": [
+          "bg-surface-1", "text-text-primary", "text-text-brand-deep", "text-mini",
+          "rounded-2xl", "rounded-full", "backdrop-blur", "font-heading"
+        ],
+        "non_goals": [
+          "Do NOT change existing default behavior or props — every current call site must still compile.",
+          "Do NOT introduce a new ui/article-card.tsx file.",
+          "Do NOT change CardTitle, CardFooter, or other shared chrome — only branch via variant inside ProgramCard."
+        ]
+      },
+      "acceptance": [
+        "Existing call sites in apps/web/src/components/sections/popular-courses-section.tsx and apps/web/src/app/page.tsx compile and render identically (no visual diff in default variant).",
+        "When variant='article' is passed, no meta-chip row, no dashed divider, no 'View Program' CTA is rendered.",
+        "When variant='article', the title uses text-text-brand-deep and is wrapped in the same Link as href.",
+        "When modeBadge={{ label: 'Online' }} is passed, a floating pill renders top-right on the image with bg-surface-1, text-text-primary, text-mini, uppercase. No inline hex.",
+        "TypeScript compiles with no new errors (yarn nx typecheck web)."
+      ]
+    },
+    {
+      "id": "T2",
+      "type": "new-section",
+      "title": "Build MarketingHero — image-band hero for Online/Offline Courses",
+      "file": "apps/web/src/components/sections/marketing-hero.tsx",
+      "depends_on": [],
+      "parallel_group": 1,
+      "figma_refs": ["1:1549", "1:2334", "1:4757", "1:5543"],
+      "spec": {
+        "purpose": "Full-bleed image-band hero used by both /online-courses (1:1547) and /offline-courses (1:4756). One component, two prop sets.",
+        "props_shape": {
+          "eyebrow": "string",
+          "headline": "string",
+          "subtitle": "string",
+          "backgroundImage": "string (next/image src)",
+          "backgroundAlt?": "string (default empty for decorative)"
+        },
+        "layout": {
+          "container": "Full-bleed section. Background image rendered via next/image fill with object-cover. Foreground content centered horizontally, padded vertically (py-20 md:py-28 lg:py-32).",
+          "content_column": "max-w-3xl mx-auto text-center on the foreground.",
+          "stack": "eyebrow (text-mini uppercase, text-text-brand) -> headline (text-h2, text-text-primary or text-text-inverse depending on bg contrast) -> subtitle (text-subtext-1 or text-body-md, text-text-secondary)."
+        },
+        "tokens": [
+          "text-mini", "text-h2", "text-subtext-1", "text-body-md",
+          "text-text-brand", "text-text-primary", "text-text-inverse", "text-text-secondary",
+          "uppercase", "tracking-widest"
+        ],
+        "responsive": "Mobile: py-16, headline scales via existing text-h2 token (already responsive). md: py-20. lg: py-28. Background image uses next/image sizes='100vw'.",
+        "non_goals": [
+          "No overlay tint (this is the bright image-band variant, NOT the dark-overlay ListingHero).",
+          "No CTA button (Figma shows no button in this hero).",
+          "Do not hardcode colors — only tokens."
+        ]
+      },
+      "acceptance": [
+        "Component is a named export `MarketingHero` from apps/web/src/components/sections/marketing-hero.tsx.",
+        "Renders eyebrow, headline, subtitle in that vertical order with the tokens above; uses no inline hex.",
+        "Background image is full-bleed via next/image fill, with object-cover and sizes='100vw'.",
+        "At md breakpoint the content remains centered; at sm the stack still reads top-to-bottom without horizontal overflow.",
+        "TypeScript compiles. Renders inside a page route without runtime errors."
+      ]
+    },
+    {
+      "id": "T3",
+      "type": "new-section",
+      "title": "Build ListingHero — dark-overlay hero for /tips and /online-advanced-certifications",
+      "file": "apps/web/src/components/sections/listing-hero.tsx",
+      "depends_on": [],
+      "parallel_group": 1,
+      "figma_refs": ["353:10734", "353:10736", "1:7174", "1:2343"],
+      "spec": {
+        "purpose": "Single dark-overlay image hero shared by the two lean listing pages. Supports both the editorial variant (eyebrow + accent-span headline) and the breadcrumb variant (breadcrumb + result-count) via optional props.",
+        "props_shape": {
+          "backgroundImage": "string",
+          "backgroundAlt?": "string",
+          "overlayOpacity?": "number (default 0.8, mapped to bg-black/80)",
+          "eyebrow?": "string",
+          "breadcrumb?": "string",
+          "headline": "string",
+          "headlineAccent?": "string (rendered as a trailing <span> in text-brand-shade)",
+          "subtitle": "string",
+          "resultCount?": "string"
+        },
+        "layout": {
+          "container": "Full-bleed section, min-h-[420px] md:min-h-[460px]. Background image via next/image fill object-cover. Absolute dark overlay (bg-black/80 by default) above image. Content stacked above overlay, centered, max-w-4xl mx-auto.",
+          "stack": "(eyebrow || breadcrumb) -> headline with optional accent span -> subtitle -> optional resultCount.",
+          "headline_styling": "text-h1 text-text-inverse. headlineAccent renders inline as a <span className='text-brand-shade'> after a space.",
+          "eyebrow_styling": "text-mini uppercase tracking-widest text-text-inverse/80.",
+          "breadcrumb_styling": "text-body-sm text-text-inverse/70.",
+          "subtitle_styling": "text-body-md text-text-inverse/80 max-w-2xl mx-auto.",
+          "resultCount_styling": "text-mini uppercase text-text-inverse/70."
+        },
+        "tokens": [
+          "text-h1", "text-mini", "text-body-sm", "text-body-md",
+          "text-text-inverse", "text-brand-shade",
+          "bg-black/80"
+        ],
+        "responsive": "min-h-[360px] sm, [420px] md, [460px] lg. Headline relies on responsive text-h1 token. Subtitle wraps with max-w-2xl.",
+        "non_goals": [
+          "No CTA button.",
+          "Do NOT introduce a new --color-brand-mint token; use text-brand-shade for the accent unless design QA flags otherwise (per scout note).",
+          "Do not hardcode rgba — use bg-black/80 Tailwind utility for the overlay."
+        ]
+      },
+      "acceptance": [
+        "Component is a named export `ListingHero` from apps/web/src/components/sections/listing-hero.tsx.",
+        "When eyebrow is provided, renders an uppercased eyebrow above headline; when breadcrumb is provided, renders breadcrumb instead (both optional).",
+        "When headlineAccent is provided, the accent span renders inline after the base headline in text-brand-shade.",
+        "Dark overlay sits between bg image and content; overlay opacity is controlled by bg-black/80 (default) and content remains readable (text-text-inverse).",
+        "When resultCount is provided, renders below the subtitle in text-mini uppercase.",
+        "TypeScript compiles; renders inside a page without runtime errors; mobile breakpoint keeps content stacked without overflow."
+      ]
+    },
+    {
+      "id": "T4",
+      "type": "new-component",
+      "title": "Build FilterChipBar — 3-pill tab indicator for /online-courses",
+      "file": "apps/web/src/components/ui/filter-chip-bar.tsx",
+      "depends_on": [],
+      "parallel_group": 1,
+      "figma_refs": ["1:1561"],
+      "spec": {
+        "purpose": "Three rounded-full pill buttons acting as a tab/filter selector. Used standalone above the course grid on /online-courses. Controlled OR uncontrolled.",
+        "props_shape": {
+          "tabs": "string[] (default ['All', 'Online', 'Offline'])",
+          "activeIndex?": "number (controlled value)",
+          "defaultIndex?": "number (uncontrolled initial; default 0)",
+          "onChange?": "(index: number) => void",
+          "className?": "string"
+        },
+        "behavior": "If activeIndex is provided, render controlled. Else maintain internal useState seeded by defaultIndex. Clicking a pill calls onChange with the new index and updates internal state when uncontrolled.",
+        "layout": {
+          "container": "Inline-flex row, gap-2, rounded-full bg-surface-2 p-1.",
+          "pill_active": "bg-brand-primary text-text-inverse rounded-full px-4 py-1.5 text-mini uppercase tracking-wide transition-colors.",
+          "pill_inactive": "bg-transparent text-text-secondary rounded-full px-4 py-1.5 text-mini uppercase tracking-wide hover:text-text-primary."
+        },
+        "tokens": [
+          "bg-surface-2", "bg-brand-primary",
+          "text-text-inverse", "text-text-secondary", "text-text-primary",
+          "text-mini", "rounded-full"
+        ],
+        "accessibility": "Render as <div role='tablist'> with each pill as <button role='tab' aria-selected={isActive}>. Keyboard: tabbing moves focus; Enter/Space activate.",
+        "non_goals": [
+          "Do NOT wire this to a router or query param — pure presentational; consumer page can wire state later.",
+          "Do not implement underline animation; the spec is pill-based per design."
+        ]
+      },
+      "acceptance": [
+        "Component is a named export `FilterChipBar` from apps/web/src/components/ui/filter-chip-bar.tsx.",
+        "Renders one button per tab in the order provided.",
+        "Active pill has bg-brand-primary and text-text-inverse; inactive pills are transparent with text-text-secondary. No inline hex.",
+        "Works in both controlled (activeIndex + onChange) and uncontrolled (defaultIndex) modes — verified by usage on demo page.",
+        "Each pill has role='tab' and aria-selected reflecting active state.",
+        "TypeScript compiles; mobile renders without overflow (wrap or scroll-x-auto acceptable)."
+      ]
+    },
+    {
+      "id": "T5",
+      "type": "new-page",
+      "title": "Build /online-courses page (Figma 1:1547)",
+      "file": "apps/web/src/app/online-courses/page.tsx",
+      "depends_on": ["T1", "T2", "T4"],
+      "parallel_group": 2,
+      "figma_refs": ["1:1547"],
+      "spec": {
+        "purpose": "Yoga Teacher Training umbrella landing page for online courses. Mounts SiteHeader + sections + SiteFooter directly (no layout injection).",
+        "shell_pattern_reference": "Mirror apps/web/src/app/page.tsx import structure: SiteHeader on top, <main> wrapping all sections, SiteFooter at bottom.",
+        "composition_order": [
+          "SiteHeader (existing — reuse-as-is)",
+          "MarketingHero (T2) with eyebrow='Yoga Teacher Training', headline='Yoga Teacher Training Courses', subtitle='Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.', backgroundImage=existing /images/courses/* asset",
+          "FilterChipBar (T4) with tabs=['All','Online','Offline'], defaultIndex=0 — wrapped in a centered container",
+          "PopularCoursesSection (existing) with eyebrow='', heading omitted or 'Our Courses', and 6 ProgramCard items (Pranayama, 300 Hour TTC, Face Yoga, Weight Loss, Bala Yoga, Mat Pilates — all '4 weeks', mode='Online', lang='English'). Pass modeBadge={{label:'Online'}} per-card via the courses[] prop.",
+          "AccreditationsSection (existing) with heading='Recognizing the Global Impact of Yoga' and the 8-logo array already used on /",
+          "WhyBodhiSection (existing) with default props (copy already matches Figma)",
+          "ClosingCtaSection (existing — fills the GuidedPathSection role per scout) with cards: counsellor / assessment / 50-min session",
+          "TestimonialsSection (existing) heading='What our clients say', items: Aanya / Lena / Ravi (existing TESTIMONIALS array on / matches)",
+          "SiteFooter (existing — reuse-as-is)"
+        ],
+        "data_inlining": "Inline the course array, accreditations, testimonials at module scope (consistent with apps/web/src/app/page.tsx). Reuse the existing TESTIMONIALS and ACCREDITATIONS module constants by lifting their shape — do NOT re-import from page.tsx; copy the literal as a const in this file for isolation.",
+        "metadata": "Export Next.js `metadata` with title='Online Yoga Teacher Training Courses | Bodhi School of Yoga' and description matching the hero subtitle."
+      },
+      "acceptance": [
+        "Page route resolves at /online-courses with no runtime errors (verify by running yarn nx dev web and visiting the URL, or via build).",
+        "Composition order matches the spec above exactly.",
+        "SiteHeader and SiteFooter are imported from @/components/site-header and @/components/site-footer respectively (NOT footer-brand-cta).",
+        "ProgramCards inside PopularCoursesSection render the floating Online mode badge (T1 extension).",
+        "Page exports Next.js Metadata with the title and description specified.",
+        "TypeScript compiles (yarn nx typecheck web). Lint passes. No inline hex anywhere in the file.",
+        "Mobile breakpoint: hero stacks, course grid collapses 3->2->1 col, footer collapses 4->2->1 col — no horizontal scroll."
+      ]
+    },
+    {
+      "id": "T6",
+      "type": "new-page",
+      "title": "Build /offline-courses page (Figma 1:4756)",
+      "file": "apps/web/src/app/offline-courses/page.tsx",
+      "depends_on": ["T1", "T2"],
+      "parallel_group": 2,
+      "figma_refs": ["1:4756"],
+      "spec": {
+        "purpose": "Offline Yoga Teacher Training landing page. Superset of /online-courses with an extra featured ProgramsIntroSection.",
+        "shell_pattern_reference": "Same as T5 — mirror apps/web/src/app/page.tsx.",
+        "composition_order": [
+          "SiteHeader (existing)",
+          "MarketingHero (T2) with eyebrow='Yoga Teacher Training', headline='Become The Teacher You Were Meant To Be', subtitle='Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there’s a door at Bodhi for that.', backgroundImage=existing asset",
+          "PopularCoursesSection (existing) acting as ProgramsIntroSection — eyebrow='Certification Yoga Courses', heading='Deepen your wisdom and elevate your yoga career with our specialized yoga certifications.', courses=5 featured items (Bala / Face / Mudra / MAT Pilates / Weight Loss) with mixed mode badges via T1 modeBadge prop",
+          "PopularCoursesSection (existing — second instance, this is the 'top-popular-grid' from decomposition) with eyebrow='Top Popular Yoga Course', heading='Yoga Teacher Training Courses', courses=same 6 items as /online-courses",
+          "AccreditationsSection (existing) — same data as T5",
+          "WhyBodhiSection (existing) with default props",
+          "ClosingCtaSection (existing) with the 3 Guided Path cards",
+          "TestimonialsSection (existing) with same 3 items",
+          "SiteFooter (existing)"
+        ],
+        "data_inlining": "Same module-scope literal arrays as T5. Two PopularCoursesSection invocations distinguished by eyebrow + courses[].",
+        "metadata": "title='Offline Yoga Teacher Training Courses | Bodhi School of Yoga', description matches hero subtitle.",
+        "notes": "Per scout: ProgramsIntroSection and PopularCoursesSubGrid both collapse into PopularCoursesSection invocations — no new section files needed."
+      },
+      "acceptance": [
+        "Page route resolves at /offline-courses with no runtime errors.",
+        "PopularCoursesSection is mounted TWICE — once with 'Certification Yoga Courses' eyebrow (featured 5), once with 'Top Popular Yoga Course' eyebrow (main 6).",
+        "ProgramCards render the correct mode badge per card via T1's modeBadge prop — mixed Online/Offline visible in the featured grid.",
+        "SiteHeader and SiteFooter imported from @/components/site-header and @/components/site-footer.",
+        "Page exports Next.js Metadata with the title and description specified.",
+        "TypeScript compiles. No inline hex. Mobile breakpoint stacks without overflow."
+      ]
+    },
+    {
+      "id": "T7",
+      "type": "new-page",
+      "title": "Build /tips-to-become-a-successful-yoga-teacher page (Figma 1:7174)",
+      "file": "apps/web/src/app/tips-to-become-a-successful-yoga-teacher/page.tsx",
+      "depends_on": ["T1", "T3"],
+      "parallel_group": 2,
+      "figma_refs": ["1:7174"],
+      "spec": {
+        "purpose": "Editorial article-listing index page — lean composition (Header + dark-overlay hero + 9 article cards + Footer).",
+        "shell_pattern_reference": "Mirror apps/web/src/app/about/page.tsx for a leaner structure.",
+        "composition_order": [
+          "SiteHeader (existing)",
+          "ListingHero (T3) with eyebrow='23 courses', headline='Tips to become a', headlineAccent='successful yoga teacher', subtitle='Discover essential tips, strategies, and insights to grow as a skilled and confident yoga teacher, whether you’re just starting or looking to enhance your teaching career.', backgroundImage=existing asset (note: source typo 'successfull' is fixed to 'successful' here per decomposition)",
+          "Article grid: a single <section> wrapping a responsive 3-col grid (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7) of 9 ProgramCard components with variant='article'. Cards: Pranayama / 300 Hour TTC / Face Yoga / Weight Loss / Bala Yoga / Mat Pilates (and 3 duplicates per Figma — comment in source that this is placeholder until CMS-driven). Pass modeBadge={{label:'Online'}} on the 4 cards marked ONLINE in the decomposition; omit on others.",
+          "SiteFooter (existing)"
+        ],
+        "container": "Wrap the grid in <section className='container mx-auto max-w-7xl px-4 py-16 md:py-20 lg:py-24'>.",
+        "data_inlining": "Inline an ARTICLES array of 9 items at module scope with { id, title, image, modeBadge? }.",
+        "metadata": "title='Tips to Become a Successful Yoga Teacher | Bodhi School of Yoga', description matches hero subtitle.",
+        "notes": "Per scout: ArticleCard is ProgramCard with variant='article' — NO ui/article-card.tsx is created."
+      },
+      "acceptance": [
+        "Page route resolves at /tips-to-become-a-successful-yoga-teacher with no runtime errors.",
+        "Hero renders the two-tone headline: base 'Tips to become a' + accent span 'successful yoga teacher' in text-brand-shade.",
+        "Grid renders exactly 9 ProgramCard instances all with variant='article' — no meta row, no View Program CTA, dark-green title visible.",
+        "The 4 ONLINE-tagged cards render the floating modeBadge top-right; the other 5 do not.",
+        "SiteHeader and SiteFooter imported from @/components/*.",
+        "Page exports Next.js Metadata. TypeScript compiles. No inline hex. Mobile stacks grid 3->2->1 col without overflow.",
+        "The word 'successful' is spelled correctly (NOT 'successfull')."
+      ]
+    },
+    {
+      "id": "T8",
+      "type": "new-page",
+      "title": "Build /online-advanced-certifications page (Figma 1:2343)",
+      "file": "apps/web/src/app/online-advanced-certifications/page.tsx",
+      "depends_on": ["T1", "T3"],
+      "parallel_group": 2,
+      "figma_refs": ["1:2343"],
+      "spec": {
+        "purpose": "Course-listing index page — breadcrumb-variant hero + 3x3 ProgramCard grid (course variant).",
+        "shell_pattern_reference": "Mirror apps/web/src/app/about/page.tsx for a leaner structure.",
+        "composition_order": [
+          "SiteHeader (existing)",
+          "ListingHero (T3) with breadcrumb='Home / Advanced Certifications / Online', headline='Online Advanced Certifications', subtitle='Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.', resultCount='23 courses', backgroundImage=existing asset",
+          "Course grid: a <section> with responsive 3-col grid of 9 ProgramCard components (variant='course' default), each with modeBadge={{label:'Online'}}, duration='4 weeks', mode='Online', language='English'. The 6 unique titles are: Pranayama / 300 Hour TTC / Face Yoga / Weight Loss / Bala Yoga / Mat Pilates — duplicate 3 to reach 9 with a TODO comment for CMS.",
+          "SiteFooter (existing) — even though Figma frame 1:2343 has no footer, scout warns to mount it anyway per page-shell convention."
+        ],
+        "container": "<section className='container mx-auto max-w-7xl px-4 py-16 md:py-20 lg:py-24'>.",
+        "data_inlining": "Inline a COURSES array of 9 items at module scope.",
+        "metadata": "title='Online Advanced Yoga Certifications | Bodhi School of Yoga', description matches hero subtitle.",
+        "notes": "Hero uses the breadcrumb branch of ListingHero (no eyebrow), and the resultCount slot."
+      },
+      "acceptance": [
+        "Page route resolves at /online-advanced-certifications with no runtime errors.",
+        "Hero renders breadcrumb (NOT eyebrow), headline, subtitle, and resultCount='23 courses' below the subtitle.",
+        "Grid renders 9 ProgramCard instances with default course variant — meta row + 'View Program' CTA visible.",
+        "All 9 cards render the floating Online modeBadge top-right via the T1 extension.",
+        "SiteHeader and SiteFooter imported from @/components/* (footer mounted despite not being in Figma frame, per scout).",
+        "Page exports Next.js Metadata. TypeScript compiles. No inline hex. Mobile stacks grid 3->2->1 col without overflow."
+      ]
+    }
+  ],
+  "demo_pages": {
+    "note": "The four production routes themselves serve as the visual-qa surfaces; no separate /demo routes are required per task. visual-qa will screenshot /online-courses, /offline-courses, /tips-to-become-a-successful-yoga-teacher, /online-advanced-certifications.",
+    "optional_isolation_routes": [
+      "apps/web/src/app/demo/listing-hero/page.tsx — mount ListingHero in both eyebrow and breadcrumb variants for isolated QA",
+      "apps/web/src/app/demo/filter-chip-bar/page.tsx — mount FilterChipBar in controlled + uncontrolled modes",
+      "apps/web/src/app/demo/program-card-article/page.tsx — mount ProgramCard with variant='article' + modeBadge"
+    ]
+  },
+  "global_acceptance_criteria": [
+    "All components and pages use only existing tokens from apps/web/src/app/globals.css (text-h1..h5, text-mini, text-subtext-*, text-body-*, text-text-*, bg-*, border-border-*, shadow-card, font-*). NO inline hex, NO clamp().",
+    "All files compile under TypeScript (yarn nx typecheck web).",
+    "All four page routes render without runtime errors and have valid Next.js Metadata exports.",
+    "Mobile breakpoint (sm) stacks all sections vertically with no horizontal scroll on a 375px viewport.",
+    "Tablet breakpoint (md) reflows grids 3->2 col where applicable.",
+    "Desktop (lg/xl/2xl) matches the 1920px Figma intent via max-w-7xl or max-w-[1472px] container."
+  ],
+  "warnings_carried_forward": [
+    "FilterChipBar labels (All / Online / Offline) are inferred from Figma — confirm with design during visual-qa.",
+    "Footer is not in Figma frame 1:2343 — we mount SiteFooter anyway per page-shell convention.",
+    "Mint accent on ListingHero uses existing text-brand-shade (#8ee0ce); design may flag the brighter #3fffd5 — defer adding a new token until QA flags it.",
+    "ArticleCard is NOT a new file — it is ProgramCard with variant='article'. Do not create apps/web/src/components/ui/article-card.tsx."
+  ]
+}

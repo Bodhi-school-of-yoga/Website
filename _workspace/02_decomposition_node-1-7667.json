@@ -1,0 +1,419 @@
+{
+  "target_node_id": "1:7667",
+  "page_name": "Yoga Teacher Training Courses — Aerial Yoga Course",
+  "viewport": { "width": 1920, "height": 5390 },
+  "notes": "Top-level frame 1:7667. Sections grouped top-to-bottom by y. Several Figma top-level nodes are background rectangles or floating decorative items (1:7668 hero bg, 1:7669 hero panel, 1:7816 instructor-decor rect, 1:7995 pre-req side-image rect, 1:7992 pre-req full bleed bg, 1:8069 syllabus decor rect, 1:7817 / 1:8070 round arrow buttons) — these are folded into their owning sections rather than emitted as separate sections.",
+  "sections": [
+    {
+      "id": "site-header",
+      "figma_node_id": "1:8115",
+      "bbox": { "x": 252, "y": 20, "w": 1417, "h": 56 },
+      "purpose": "Top navigation bar — instance of the global site header component reused across pages.",
+      "components": [
+        {
+          "proposed_name": "SiteHeader",
+          "kind": "existing-primitive",
+          "props": {},
+          "assets": [],
+          "image_refs": [],
+          "notes": "Figma node is an `<instance>` (Group 1171281731) — already a shared component in the file. Reuse the existing apps/web SiteHeader/NavBar primitive; codebase-scout will confirm name."
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "figma_node_id": "1:8074",
+      "bbox": { "x": 0, "y": 0, "w": 1920, "h": 900 },
+      "purpose": "Green-wash hero band: breadcrumb, page title, body, 4 schedule chips, primary CTA, and a large lifestyle photo on the right.",
+      "components": [
+        {
+          "proposed_name": "CourseHero",
+          "kind": "new-section",
+          "props": {
+            "breadcrumb": "Home / Yoga courses / Online 300 hour yoga teacher training course ryt 300",
+            "title": "Aerial Yoga Course",
+            "body": "Master the art of yoga in the air. Build strength, grace, and confidence while learning to teach this unique",
+            "chips": [
+              { "icon": "calendar", "label": "Sat & Sun" },
+              { "icon": "location", "label": "Studio" },
+              { "icon": "clock", "label": "4:00 PM – 6:00 PM" },
+              { "icon": "globe", "label": "English" }
+            ],
+            "ctaLabel": "Reserve Your Spot Now",
+            "heroImage": "imgRectangle161124051"
+          },
+          "assets": ["hero-aerial-yoga.png"],
+          "image_refs": ["imgRectangle161124051"],
+          "notes": "Background is a single green wash (#f0fff8 → text-text-tertiary surface). Two-column layout: text+chips+CTA left (Frame 1171281880), 606x479 hero image right (Group 1171281864). The CTA `Reserve Your Spot Now` is a Button primitive — likely reuses existing Button."
+        },
+        {
+          "proposed_name": "ScheduleChip",
+          "kind": "new-component",
+          "props": { "icon": "ReactNode", "label": "string" },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Repeated 4x in hero (count: 4). 110x104, rounded-rectangle, top-aligned icon + bottom label. Single reusable component, not 4 separate specs."
+        }
+      ]
+    },
+    {
+      "id": "section-tabnav",
+      "figma_node_id": "1:7980",
+      "bbox": { "x": 0, "y": 900, "w": 1920, "h": 82 },
+      "purpose": "Sticky/in-page anchor nav: Overview · Highlights · Circulum · Eligibility · Overall (typos preserved from Figma).",
+      "components": [
+        {
+          "proposed_name": "SectionTabNav",
+          "kind": "new-component",
+          "props": {
+            "items": [
+              { "label": "Overview", "active": true, "href": "#overview" },
+              { "label": "Highlights", "href": "#highlights" },
+              { "label": "Circulum", "href": "#curriculum" },
+              { "label": "Eligibility", "href": "#eligibility" },
+              { "label": "Overall", "href": "#overall" }
+            ]
+          },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Active tab `Overview` has pill background. Other items are plain links. 1924x82 full-bleed band with bottom divider."
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "figma_node_id": "1:7670",
+      "bbox": { "x": 0, "y": 982, "w": 1920, "h": 336 },
+      "purpose": "White content band: eyebrow + h2 + two body paragraphs (no image).",
+      "components": [
+        {
+          "proposed_name": "OverviewSection",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "Overview",
+            "title": "Elevate Your Practice — Literally",
+            "paragraphs": [
+              "Master the art of yoga in the air with our Aerial Yoga Teacher Training Course at Bodhi School of Yoga. Build strength, grace, and confidence while learning how to teach this unique and therapeutic style of yoga using hammock.",
+              "You'll combine traditional yoga postures with graceful aerial movements — learning how inversions decompress the spine, build core stability, and create a deeply healing experience for your future students."
+            ]
+          },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Two-column layout in Figma: left = eyebrow+h2, right = body paragraphs. Eyebrow color #009877 → text-text-brand."
+        }
+      ]
+    },
+    {
+      "id": "highlights",
+      "figma_node_id": "1:7683",
+      "bbox": { "x": 0, "y": 1315, "w": 1920, "h": 653 },
+      "purpose": "What You'll Gain — eyebrow + h2 + 6-card grid (2 cols x 3 rows), each card = icon tile + title + body.",
+      "components": [
+        {
+          "proposed_name": "HighlightsSection",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "Highlights",
+            "title": "What You'll Gain",
+            "items": [
+              { "icon": "imgGroup1171281779", "title": "Yoga Meets Flight", "body": "Combine traditional poses with graceful aerial movements." },
+              { "icon": "imgBiAlignCenter", "title": "Relieve & Realign", "body": "Inversions decompress the spine and boost flexibility." },
+              { "icon": "imgGroup1171281781", "title": "Build Strength", "body": "Improve core stability, balance, and control." },
+              { "icon": "imgBoxiconsLeafFilled", "title": "Therapeutic & Fun", "body": "Enjoy emotional release through playful, healing practice." },
+              { "icon": "imgGrommetIconsTechnology", "title": "Teach with an Edge", "body": "Gain a unique certification and grow your yoga career with a skill few teachers have." },
+              { "icon": "imgHealthiconsPeople", "title": "Join a Community", "body": "Connect with passionate practitioners and expert teachers at Bodhi School of Yoga." }
+            ]
+          },
+          "assets": [],
+          "image_refs": ["imgGroup1171281779", "imgBiAlignCenter", "imgGroup1171281781", "imgBoxiconsLeafFilled", "imgGrommetIconsTechnology", "imgHealthiconsPeople"],
+          "notes": "Eyebrow color #005564 → may need text-text-tertiary or new token. Icon tiles are 52x52 rounded squares with #e4fff9 background."
+        },
+        {
+          "proposed_name": "HighlightCard",
+          "kind": "new-component",
+          "props": { "icon": "ReactNode | string", "title": "string", "body": "string" },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Repeated 6x (count: 6). 641x151–159, white surface with subtle border; icon tile (52x52) stacked above title+body. Reusable, not duplicated."
+        }
+      ]
+    },
+    {
+      "id": "syllabus",
+      "figma_node_id": "1:8029",
+      "bbox": { "x": 0, "y": 1965, "w": 1920, "h": 398 },
+      "purpose": "Course Syllabus — eyebrow + h2 + 5–6 topic cards in a horizontal row (Figma also shows one bonus card '1:7770 Business of Aerial Yoga' overflowing to the right edge as the 6th item).",
+      "components": [
+        {
+          "proposed_name": "SyllabusSection",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "Curriculum",
+            "title": "Course Syllabus",
+            "items": [
+              { "title": "Rigging Essentials", "body": "How to safely set up and use aerial hammocks" },
+              { "title": "Aerial Sequences", "body": "Beginner to advanced aerial yoga flows" },
+              { "title": "Teaching Methodology", "body": "Conducting private and group aerial sessions" },
+              { "title": "Alignment & Anatomy in the Air", "body": "How aerial postures impact muscles and joints" },
+              { "title": "Contraindications & Safety", "body": "Modifications for common conditions" },
+              { "title": "Business of Aerial Yoga", "body": "Building your brand and classes" }
+            ]
+          },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Top-level Figma node 1:7753 contains the 6th 'Business of Aerial Yoga' card sitting beyond the viewport (x=1867, w=314) — same SyllabusCard schema. Likely a horizontal scroller with an arrow-button affordance (1:8070 ellipse at x=1588, y=2158)."
+        },
+        {
+          "proposed_name": "SyllabusCard",
+          "kind": "new-component",
+          "props": { "title": "string", "body": "string" },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Repeated 6x (count: 6). 294x148 white card, title 47px tall + body 40px tall. NO image inside the card despite the Figma frame label 'IMAGE SLOTS 6–11 · Each syllabus card (400 × 260 px)' — that label is descriptive design metadata, the actual rendered cards are text-only."
+        },
+        {
+          "proposed_name": "ScrollerArrowButton",
+          "kind": "new-component",
+          "props": { "direction": "right" },
+          "assets": [],
+          "image_refs": ["imgGroup1171281795", "imgArrowUp2"],
+          "notes": "46x46 ellipse with up-arrow icon, sits over the right edge to hint at horizontal pagination. Reused at instructors section too (id 1:7817, identical asset). count: 2 across page."
+        }
+      ]
+    },
+    {
+      "id": "eligibility",
+      "figma_node_id": "1:7996",
+      "bbox": { "x": 0, "y": 2211, "w": 1920, "h": 658 },
+      "purpose": "Eligibility / Pre-Requisites — centered eyebrow+h2, three (deduplicated) checklist items, flanked by two large lifestyle photos sitting on a tinted full-bleed background band.",
+      "components": [
+        {
+          "proposed_name": "EligibilitySection",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "Eligibility",
+            "title": "Pre-Requisites",
+            "items": [
+              "Basic understanding of yoga postures",
+              "Physically fit to perform inversions and aerial movements",
+              "Willingness to explore new boundaries of body and breath"
+            ],
+            "leftImage": "imgBackground1",
+            "rightImage": "imgBackground2"
+          },
+          "assets": ["pre-req-left.png", "pre-req-right.png"],
+          "image_refs": ["imgBackground1", "imgBackground2"],
+          "notes": "Figma duplicates each list item (frames 1:8005/1:8009 are both `Basic understanding...`; 1:8013/1:8017 are both `Physically fit...`; 1:8021/1:8025 are both `Willingness to explore...`) — almost certainly hover/active duplicates that should collapse to a single list of 3. Side rectangles 1:7993 (full-bleed band) and 1:7995 + 1:7994 (image frames) supply the green-tint background and the two photos."
+        },
+        {
+          "proposed_name": "ChecklistItem",
+          "kind": "new-component",
+          "props": { "label": "string" },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Repeated 3x effective (count: 3). Rounded-rectangle row with leading ✓ glyph + label."
+        }
+      ]
+    },
+    {
+      "id": "instructors",
+      "figma_node_id": "1:7770",
+      "bbox": { "x": 0, "y": 2869, "w": 1920, "h": 306 },
+      "purpose": "Meet Your Instructors — eyebrow + h2 + 4 instructor cards (avatar + name + role), with a scroller-arrow affordance.",
+      "components": [
+        {
+          "proposed_name": "InstructorsSection",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "Your Guide",
+            "title": "Meet Your Instructor's",
+            "instructors": [
+              { "name": "Atheesh Kumar", "role": "Certified Aerial Yoga Instructor · Bodhi School of Yoga", "avatar": "imgMaskGroup" },
+              { "name": "Sneha Shankar", "role": "Certified Aerial Yoga Instructor · Bodhi School of Yoga", "avatar": "imgRectangle161124054" },
+              { "name": "VijayaRaghavan", "role": "Certified Aerial Yoga Instructor · Bodhi School of Yoga", "avatar": "imgRectangle161124055" },
+              { "name": "Prajakta Jadhav", "role": "Certified Aerial Yoga Instructor · Bodhi School of Yoga", "avatar": "imgRectangle161124056" }
+            ]
+          },
+          "assets": ["instructor-1.png", "instructor-2.png", "instructor-3.png", "instructor-4.png"],
+          "image_refs": ["imgMaskGroup", "imgRectangle161124054", "imgRectangle161124055", "imgRectangle161124056"],
+          "notes": "Title text contains stylized apostrophe 'Instructor's'. Cards are 364x126 each. Same scroller arrow component as syllabus (1:7817)."
+        },
+        {
+          "proposed_name": "InstructorCard",
+          "kind": "new-component",
+          "props": { "name": "string", "role": "string", "avatar": "string" },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Repeated 4x (count: 4). 98x98 avatar tile on the left, name (30px) + role (40px wrapped) on the right."
+        }
+      ]
+    },
+    {
+      "id": "faq",
+      "figma_node_id": "1:7821",
+      "bbox": { "x": 0, "y": 3177, "w": 1920, "h": 471 },
+      "purpose": "FAQ section — eyebrow + h2 + 4-item accordion (question + '+' toggle, first item shown expanded with answer body).",
+      "components": [
+        {
+          "proposed_name": "FaqSection",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "FAQ",
+            "title": "Frequently Asked Questions",
+            "items": [
+              {
+                "question": "Do I need prior experience in aerial yoga?",
+                "answer": "No prior aerial yoga experience is required. A basic understanding of yoga postures and physical fitness to perform inversions is sufficient to join this course.",
+                "defaultOpen": true
+              },
+              { "question": "Is this TTC Yoga Alliance certified?", "answer": "" },
+              { "question": "Will I get to practice on hammocks during training?", "answer": "" },
+              { "question": "Can this course help me start my own aerial yoga classes?", "answer": "" }
+            ]
+          },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Only the first item shows answer copy in Figma; the other three answers are not in the design (use placeholder or pull from CMS). Accordion uses horizontal borders + a '+' toggle that should rotate to '×' or '−' on open."
+        },
+        {
+          "proposed_name": "AccordionItem",
+          "kind": "new-component",
+          "props": { "question": "string", "answer": "string", "defaultOpen": "boolean" },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Repeated 4x (count: 4). Use a Radix/headless accordion primitive if one exists in the codebase."
+        }
+      ]
+    },
+    {
+      "id": "popular-courses",
+      "figma_node_id": "1:7851",
+      "bbox": { "x": 0, "y": 3725, "w": 1920, "h": 617 },
+      "purpose": "Cross-sell — 'Top Popular Yoga Course' eyebrow + h2 + body + 3 ProgramCards.",
+      "components": [
+        {
+          "proposed_name": "PopularCoursesSection",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "Top Popular Yoga Course",
+            "title": "Lead to more courses from us",
+            "body": "Deepen your wisdom and elevate your yoga career with our specialized yoga certifications.",
+            "courses": [
+              {
+                "image": "imgWeightLossCoachCertification",
+                "title": "Online Weight Loss Coach Certification",
+                "duration": "4 weeks",
+                "mode": "Online",
+                "language": "English",
+                "instructorInitials": "JD",
+                "instructorName": "Janardhan Durga Prasad",
+                "ctaLabel": "View Program"
+              },
+              {
+                "image": "imgMudraTherapyYogaTeacherTraining",
+                "title": "Online Mudra Therapy Yoga Teacher Training",
+                "duration": "2 weeks",
+                "mode": "Online",
+                "language": "English",
+                "instructorInitials": "PP",
+                "instructorName": "Prarthana Patel",
+                "ctaLabel": "View Program"
+              },
+              {
+                "image": "imgMatPilatesInstructorCertification",
+                "title": "Online MAT Pilates Instructor Certification",
+                "duration": "4 weeks",
+                "mode": "Online",
+                "language": "English",
+                "instructorInitials": "LY",
+                "instructorName": "Lakshmi Yalamudi",
+                "ctaLabel": "View Program"
+              }
+            ]
+          },
+          "assets": ["weight-loss-coach.png", "mudra-therapy.png", "mat-pilates.png"],
+          "image_refs": ["imgWeightLossCoachCertification", "imgMudraTherapyYogaTeacherTraining", "imgMatPilatesInstructorCertification"],
+          "notes": "Title text in Figma reads 'Lead to more courses from us'. The eyebrow 'Top Popular Yoga Course' sits above. Each card is 411x512 — matches ProgramCard primitive shape (image 234h + content 276h, divider rules, metadata row, avatar+author, View Program link)."
+        },
+        {
+          "proposed_name": "ProgramCard",
+          "kind": "existing-primitive",
+          "props": { "image": "string", "title": "string", "duration": "string", "mode": "string", "language": "string", "instructorInitials": "string", "instructorName": "string", "ctaLabel": "string" },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Repeated 3x (count: 3). Reuse apps/web/src/components/ui/program-card.tsx — same shape used on the home page Programs section. Codebase-scout to verify prop API matches."
+        }
+      ]
+    },
+    {
+      "id": "footer-cta",
+      "figma_node_id": "339:8455",
+      "bbox": { "x": 0, "y": 4484, "w": 1920, "h": 906 },
+      "purpose": "Dark footer band combining a marketing CTA banner ('Begin where you are.') with the site footer (logo, tagline, 3 link columns, copyright).",
+      "components": [
+        {
+          "proposed_name": "FooterCtaBanner",
+          "kind": "new-component",
+          "props": {
+            "brand": "Bodhi",
+            "headline": "Begin where you are.",
+            "body": "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that.",
+            "ctaLabel": "Try a class, free"
+          },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Top half of the footer band (y 4484–4790). Frame id 339:8455. Centered text with a pill-button CTA."
+        },
+        {
+          "proposed_name": "SiteFooter",
+          "kind": "existing-primitive",
+          "props": {
+            "brand": "Bodhi",
+            "tagline": "A school for teachers, a home for seekers. Practice, taught honestly.",
+            "website": "bodhischoolofyoga.com",
+            "columns": [
+              { "heading": "School", "links": ["Teacher Training", "Workshops", "Classes", "Faculty", "Lineage"] },
+              { "heading": "Visit", "links": ["The Practice Room,", "2nd floor, Quiet Lane", "City  · India", "Get directions →"] },
+              { "heading": "Stay close", "links": ["Newsletter", "Instagram", "YouTube", "Email us"] }
+            ],
+            "copyright": "© Bodhi School of Yoga  ·  Yoga Alliance Registered School (RYS-200, RYS-300)",
+            "signature": "Designed quietly. Practised daily."
+          },
+          "assets": [],
+          "image_refs": [],
+          "notes": "Bottom half (y 5013–5304). Likely reuses an existing SiteFooter; codebase-scout to confirm. Structure here differs from earlier extracted footer (Teacher Courses/Advanced Certifications/Yoga Courses/Our Centers/Enquire Now) — this newer Figma has 3 columns + tagline + website link."
+        }
+      ]
+    }
+  ],
+  "uncertain": [
+    {
+      "figma_node_id": "1:7668",
+      "reason": "Rectangle 161124039 (2624x989, x=-295, y=-10) is a bleed background behind the hero. Folded into hero section as decorative bg — not a standalone component."
+    },
+    {
+      "figma_node_id": "1:7816",
+      "reason": "Rectangle 161124050 (328x306, x=1562, y=2869) is the green decorative panel behind the instructor scroller arrow. Folded into instructors section."
+    },
+    {
+      "figma_node_id": "1:7753",
+      "reason": "Group 1171281776 contains an extra 'Business of Aerial Yoga' card (1:7763) at x=1966, y=2087 sitting beyond the viewport — confirms the syllabus row is a horizontal scroller, but the same card content also exists inside 1:8029. Treat as a single item in props, not a duplicate."
+    },
+    {
+      "figma_node_id": "1:8005,1:8009 / 1:8013,1:8017 / 1:8021,1:8025",
+      "reason": "Each pre-req checklist item appears twice in Figma (likely default + hover state mirrored vertically). Collapsed to 3 unique items in EligibilitySection."
+    },
+    {
+      "figma_node_id": "1:7980",
+      "reason": "SectionTabNav has spelling 'Circulum' (should be Curriculum) and 'Overall' (likely 'Reviews' or 'Overview' / typo). Preserved verbatim — designer should confirm intent."
+    },
+    {
+      "figma_node_id": "1:7770 instructor avatars",
+      "reason": "Only `imgMaskGroup` is unambiguously the first instructor's photo. Other three avatar image_refs assigned by ordinal guess (imgRectangle161124054, 055, 056) — codebase-scout / component-builder should verify against the design-context payload."
+    },
+    {
+      "figma_node_id": "1:7823 FAQ answers 2–4",
+      "reason": "Only the first FAQ has visible answer body in Figma. Remaining three need placeholder copy or CMS content."
+    }
+  ]
+}

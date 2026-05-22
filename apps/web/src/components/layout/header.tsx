@@ -109,7 +109,7 @@ const dropdownItems: DropdownNavItem[] = [
 const plainLinks = [
   { label: "Workshops", href: "/workshops" },
   { label: "Our Centers", href: "/centers" },
-  { label: "About Us", href: "/about" },
+  { label: "About Bodhi", href: "/about" },
 ];
 
 function DropdownItem({ item }: { item: DropdownSubItem }) {
@@ -118,7 +118,7 @@ function DropdownItem({ item }: { item: DropdownSubItem }) {
       href={item.href}
       className="flex items-start gap-3 rounded-lg p-3 transition-colors bg-transparent hover:bg-muted"
     >
-      <div className="relative h-16 w-20 shrink-0 overflow-hidden rounded-md ">
+      <div className="relative h-16 w-20 shrink-0 overflow-hidden rounded-md">
         <Image
           src={item.image}
           alt={item.title}
@@ -128,13 +128,13 @@ function DropdownItem({ item }: { item: DropdownSubItem }) {
         />
       </div>
       <div className="flex flex-col gap-0.5">
-        <span className="text-sm font-medium text-foreground">
+        <span className="font-ui text-sm font-medium text-text-primary">
           {item.title}
         </span>
-        <span className="text-xs text-muted-foreground">
+        <span className="font-ui text-xs text-text-tertiary">
           {item.description}
         </span>
-        <span className="mt-1 text-xs text-muted-foreground/70">
+        <span className="mt-1 font-ui text-xs text-text-tertiary/70">
           {item.courseCount} Courses
         </span>
       </div>
@@ -146,27 +146,24 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="">
-      <Container className="flex items-center justify-between py-5">
+    <header className="w-full bg-white">
+      <Container className="flex items-center justify-between gap-10 py-3">
         {/* Logo */}
-        <Link href="/" className="flex flex-col shrink-0">
-          <span
-            className="text-3xl tracking-tight text-foreground"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
+        <Link href="/" className="flex flex-col shrink-0 leading-none">
+          <span className="font-display italic font-normal text-[32px] leading-none tracking-[-0.011em] text-black">
             Bodhi
           </span>
-          <span className="text-[0.6rem] font-medium tracking-[0.2em] text-foreground uppercase">
+          <span className="mt-1 font-tagline font-semibold text-[12px] uppercase tracking-[0.246em] text-black/60">
             School of Yoga
           </span>
         </Link>
 
         {/* Desktop nav */}
         <NavigationMenu className="hidden lg:flex">
-          <NavigationMenuList className="gap-2">
+          <NavigationMenuList className="gap-x-[39px]">
             {dropdownItems.map((item) => (
               <NavigationMenuItem key={item.label}>
-                <NavigationMenuTrigger className="bg-transparent text-sm font-normal text-foreground/80 hover:text-foreground hover:bg-transparent data-popup-open:bg-transparent">
+                <NavigationMenuTrigger className="bg-transparent font-ui text-[17px] font-medium text-black hover:bg-transparent hover:text-black data-popup-open:bg-transparent px-0 h-auto gap-2">
                   {item.label}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-[300px] p-2">
@@ -182,7 +179,7 @@ export default function Header() {
               <NavigationMenuItem key={item.label}>
                 <NavigationMenuLink
                   href={item.href}
-                  className="inline-flex h-9 items-center px-3 text-sm font-normal text-foreground/80 hover:text-foreground transition-colors"
+                  className="inline-flex items-center font-ui text-[17px] font-medium text-black hover:text-black transition-colors px-0 h-auto bg-transparent"
                 >
                   {item.label}
                 </NavigationMenuLink>
@@ -192,16 +189,16 @@ export default function Header() {
         </NavigationMenu>
 
         {/* Right side: Search + CTA */}
-        <div className="hidden lg:flex items-center gap-5 shrink-0">
+        <div className="hidden lg:flex items-center gap-[10px] shrink-0">
           <button
-            className="text-foreground/70 hover:text-foreground transition-colors"
+            className="flex items-center justify-center size-11 rounded-full text-text-primary hover:bg-black/5 transition-colors"
             aria-label="Search"
           >
-            <Search className="h-5 w-5" />
+            <Search className="h-5 w-5" strokeWidth={2} />
           </button>
           <Link
             href="/enquire"
-            className="inline-flex items-center justify-center rounded-full bg-[oklch(0.85_0.10_168)] px-7 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-[oklch(0.80_0.10_168)]"
+            className="inline-flex h-11 items-center justify-center rounded-[36px] bg-brand-shade px-8 font-ui text-[14px] font-semibold tracking-[0.019em] text-text-primary transition-[transform,filter] duration-150 hover:brightness-[1.05] active:scale-[0.98]"
           >
             Enquire Now
           </Link>
@@ -209,7 +206,7 @@ export default function Header() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden p-2"
+          className="lg:hidden p-2 text-text-primary"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -229,7 +226,7 @@ export default function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden overflow-hidden border-t bg-background"
+            className="lg:hidden overflow-hidden border-t bg-white"
           >
             <nav className="flex flex-col p-4 gap-1">
               {dropdownItems.map((item) => (
@@ -237,7 +234,7 @@ export default function Header() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-between px-3 py-2.5 text-sm text-foreground/80 hover:text-foreground transition-colors rounded-md"
+                  className="flex items-center justify-between px-3 py-2.5 font-ui text-[15px] font-medium text-text-primary hover:bg-black/5 transition-colors rounded-md"
                 >
                   {item.label}
                   <ChevronDown className="h-4 w-4" />
@@ -248,14 +245,14 @@ export default function Header() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-3 py-2.5 text-sm text-foreground/80 hover:text-foreground transition-colors rounded-md"
+                  className="px-3 py-2.5 font-ui text-[15px] font-medium text-text-primary hover:bg-black/5 transition-colors rounded-md"
                 >
                   {item.label}
                 </Link>
               ))}
               <div className="flex items-center gap-3 mt-3 pt-3 border-t px-3">
                 <button
-                  className="text-foreground/70 hover:text-foreground transition-colors"
+                  className="flex items-center justify-center size-10 rounded-full text-text-primary hover:bg-black/5 transition-colors"
                   aria-label="Search"
                 >
                   <Search className="h-5 w-5" />
@@ -263,7 +260,7 @@ export default function Header() {
                 <Link
                   href="/enquire"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center rounded-full bg-[oklch(0.85_0.10_168)] px-6 py-2 text-sm font-medium text-foreground transition-colors hover:bg-[oklch(0.80_0.10_168)]"
+                  className="inline-flex h-11 items-center justify-center rounded-[36px] bg-brand-shade px-6 font-ui text-[14px] font-semibold text-text-primary transition-[transform,filter] duration-150 hover:brightness-[1.05] active:scale-[0.98]"
                 >
                   Enquire Now
                 </Link>

@@ -1,0 +1,204 @@
+{
+  "nodeId": "1:165",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "name": "Group 1171281822 (stats-bar / proof section)",
+  "dimensions": {
+    "x": 0,
+    "y": 1652,
+    "width": 1920,
+    "height": 519
+  },
+  "background": {
+    "baseLayer": {
+      "nodeId": "1:166",
+      "fill": "#ffffff",
+      "note": "Underlying white rectangle (full-bleed)"
+    },
+    "topLayer": {
+      "nodeId": "1:168",
+      "fill": "#f0fff8",
+      "note": "Pale mint/brand-lite wash covering full 1920x519 — this is the visible surface"
+    }
+  },
+  "decorativeAssets": [
+    {
+      "nodeId": "1:169",
+      "name": "Rectangle 161124055",
+      "role": "decorative photo card (left)",
+      "src": "https://www.figma.com/api/mcp/asset/08add025-5e3a-4d5b-9140-17900a87654a",
+      "frame": { "x": 89, "y": 287.57, "width": 266.88, "height": 328.16 },
+      "image": { "width": 232.64, "height": 302.72 },
+      "borderRadius": 18.2,
+      "rotation": -6.81,
+      "note": "Tilted left polaroid-style photo, mostly off-section bleeding down/left"
+    },
+    {
+      "nodeId": "1:170",
+      "name": "Rectangle 161124054",
+      "role": "decorative photo card (right)",
+      "src": "https://www.figma.com/api/mcp/asset/c50ee112-bdfc-4a63-a4cd-9f2a412bd59e",
+      "frame": { "x": 1663.18, "y": -93, "width": 311.21, "height": 383.56 },
+      "image": { "width": 272.79, "height": 354.96 },
+      "borderRadius": 15.766,
+      "rotation": 6.5,
+      "note": "Tilted right polaroid-style photo, bleeding up/right out of section (woman meditating on couch)"
+    }
+  ],
+  "structure": {
+    "type": "absolute-positioned section with centered flex column",
+    "outer": {
+      "nodeId": "1:171",
+      "layout": "flex-col, items-center, gap: 50px",
+      "width": 1259,
+      "topOffset": 1755,
+      "horizontalAlign": "center via -translate-x-1/2 left:50%"
+    },
+    "children": [
+      {
+        "nodeId": "1:172",
+        "role": "headline",
+        "width": 967,
+        "alignment": "center"
+      },
+      {
+        "nodeId": "1:173",
+        "role": "stats row (HorizontalBorder)",
+        "layout": "flex-row, gap: 96px, items-center, justify-center, pt: 33px",
+        "width": 820,
+        "borderTop": "1px solid rgba(255,255,255,0.09)",
+        "note": "Top border is nearly invisible on the mint background — effectively a separator above the stats only; no vertical dividers between columns",
+        "columns": 3
+      }
+    ]
+  },
+  "headline": {
+    "nodeId": "1:172",
+    "text": "eXPERIENCE THE ULTIMATE HARMONY OF PEACE OF CREATIVITY WITH OUR YOGA COURSES DESIGNED FOR EVERYONE",
+    "renderedAs": "lowercase (CSS lowercase transform)",
+    "runs": [
+      {
+        "text": "experience the ultimate harmony of peace of creativity with our ",
+        "color": "#1d3e59",
+        "fontFamily": "Host Grotesk",
+        "fontWeight": "ExtraBold",
+        "fontSize": 52,
+        "lineHeight": 55,
+        "letterSpacing": -0.56,
+        "textAlign": "center",
+        "textTransform": "lowercase"
+      },
+      {
+        "text": "yoga courses designed for everyone",
+        "color": "#009877",
+        "fontFamily": "Host Grotesk",
+        "fontWeight": "ExtraBold",
+        "fontSize": 52,
+        "lineHeight": 55,
+        "letterSpacing": -0.56,
+        "textAlign": "center",
+        "textTransform": "lowercase"
+      }
+    ]
+  },
+  "stats": [
+    {
+      "nodeId": "1:174",
+      "number": {
+        "text": "5000+",
+        "color": "#009877",
+        "fontFamily": "Instrument Sans",
+        "fontWeight": "Regular",
+        "fontSize": 50,
+        "lineHeight": 30,
+        "fontVariationSettings": "'wdth' 100"
+      },
+      "label": {
+        "text": "Students Trained",
+        "color": "#000000",
+        "fontFamily": "Inter",
+        "fontWeight": "Regular",
+        "fontSize": 13,
+        "lineHeight": "normal"
+      },
+      "gapBetween": 12
+    },
+    {
+      "nodeId": "1:178",
+      "number": {
+        "text": "15+",
+        "color": "#009877",
+        "fontFamily": "Instrument Sans",
+        "fontWeight": "Regular",
+        "fontSize": 50,
+        "lineHeight": 30,
+        "fontVariationSettings": "'wdth' 100"
+      },
+      "label": {
+        "text": "Years of Excellence",
+        "color": "#000000",
+        "fontFamily": "Inter",
+        "fontWeight": "Regular",
+        "fontSize": 13,
+        "lineHeight": "normal"
+      },
+      "gapBetween": 12
+    },
+    {
+      "nodeId": "1:183",
+      "number": {
+        "text": "40+",
+        "color": "#009877",
+        "fontFamily": "Instrument Sans",
+        "fontWeight": "Regular",
+        "fontSize": 50,
+        "lineHeight": 30,
+        "fontVariationSettings": "'wdth' 100"
+      },
+      "label": {
+        "text": "Countries Reached",
+        "color": "#000000",
+        "fontFamily": "Inter",
+        "fontWeight": "Regular",
+        "fontSize": 13,
+        "lineHeight": "normal"
+      },
+      "gapBetween": 12
+    }
+  ],
+  "dividers": {
+    "betweenColumns": "NONE — columns are separated purely by 96px gap (no vertical rule lines)",
+    "aboveStatsRow": "1px solid rgba(255,255,255,0.09) — barely visible on mint background"
+  },
+  "interactiveElements": [],
+  "implementationNotes": {
+    "tokenMapping": {
+      "#f0fff8": "brand-lite (pale mint section wash)",
+      "#1d3e59": "brand-dark / foreground (deep navy-teal for headline base text)",
+      "#009877": "brand-primary (emerald/teal — used for headline highlight + all stat numbers)",
+      "#000000": "foreground (stat labels)",
+      "rgba(255,255,255,0.09)": "decorative top-border above stats (treat as transparent/skip on white-ish backgrounds, or map to muted/border at very low opacity)"
+    },
+    "fonts": {
+      "headline": "Host Grotesk ExtraBold, 52/55, -0.56 tracking, lowercase",
+      "statNumber": "Instrument Sans Regular, 50/30 ('wdth' 100)",
+      "statLabel": "Inter Regular, 13 / normal"
+    },
+    "layout": {
+      "section": "full-bleed 1920 x 519 band, brand-lite (#f0fff8) background",
+      "innerColumn": "centered 1259px column at y=1755, flex-col gap 50",
+      "headlineWidth": 967,
+      "statsRow": "3 columns, 96px gap, top-border separator only, width 820, pt-8 (33px)",
+      "noVerticalDividers": true
+    },
+    "decor": "Two tilted photo cards bleed off the left-bottom and right-top corners; both have rounded ~16-18px radii. They are NOT decorative tokens — they are real <img>s.",
+    "brandTokenSuggestionsForBodhiTailwind": {
+      "bg": "bg-brand-lite (#f0fff8)",
+      "headlineBase": "text-brand-dark (#1d3e59)",
+      "headlineAccent": "text-brand-primary (#009877)",
+      "statNumber": "text-brand-primary (#009877)",
+      "statLabel": "text-foreground (black) or text-muted-foreground if softening desired"
+    }
+  },
+  "variableDefs": {},
+  "rawCode": "see _workspace/01_figma_context_node-1-165__raw.tsx for the verbatim MCP React output"
+}

@@ -1,0 +1,11 @@
+{
+  "fetchedAt": "2026-05-22",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "note": "Libraries are file-level, not node-specific. None of these libraries directly contribute components to node 1:90 — the navbar is composed of custom Bodhi elements (logo wordmark, plain text nav items, Iconly arrow icon, custom search circle asset, custom rounded CTA).",
+  "libraries_added_to_file": [
+    { "name": "Material 3 Design Kit", "source": "community" },
+    { "name": "Simple Design System", "source": "community" },
+    { "name": "iOS 18 and iPadOS 18", "source": "community" },
+    { "name": "iOS and iPadOS 26", "source": "community" }
+  ]
+}

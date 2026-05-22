@@ -1,0 +1,128 @@
+{
+  "node_id": "1:6256",
+  "name": "Article",
+  "type": "frame",
+  "x": 0,
+  "y": 924,
+  "width": 472,
+  "height": 431,
+  "children": [
+    {
+      "id": "1:6257",
+      "name": "Gradient",
+      "type": "rounded-rectangle",
+      "x": 0,
+      "y": -87,
+      "width": 472,
+      "height": 337,
+      "note": "Image fill (program photo) — overflows top of card frame; clipped by card overflow-clip"
+    },
+    {
+      "id": "1:6258",
+      "name": "Frame 1171281045",
+      "type": "frame",
+      "x": 31.835891723632812,
+      "y": 270.43536376953125,
+      "width": 408.3282165527344,
+      "height": 136.4668426513672,
+      "note": "Text/content stack below the image (padding region of the card)",
+      "children": [
+        {
+          "id": "1:6259",
+          "name": "Heading 3",
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 408.3282165527344,
+          "height": 85,
+          "children": [
+            {
+              "id": "1:6260",
+              "name": "Frame 1171281035",
+              "type": "frame",
+              "x": 0,
+              "y": 1,
+              "width": 408.3282165527344,
+              "height": 84,
+              "children": [
+                {
+                  "id": "1:6261",
+                  "name": "Mat Pilates Teacher Training Course",
+                  "type": "text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 265,
+                  "height": 50
+                },
+                {
+                  "id": "1:6262",
+                  "name": "Container",
+                  "type": "frame",
+                  "note": "Meta row with three icon+label items separated by 3px dots",
+                  "x": 0,
+                  "y": 68,
+                  "width": 408.3282165527344,
+                  "height": 16,
+                  "children": [
+                    {
+                      "id": "1:6263",
+                      "name": "Container",
+                      "x": 0,
+                      "y": 0,
+                      "width": 65,
+                      "height": 16,
+                      "children": [
+                        { "id": "1:6264", "name": "SVG", "x": 0, "y": 1.5, "width": 13, "height": 13 },
+                        { "id": "1:6267", "name": "4 weeks", "type": "text", "x": 18, "y": 0, "width": 47, "height": 16 }
+                      ]
+                    },
+                    { "id": "1:6268", "name": "Background", "type": "rounded-rectangle", "x": 75, "y": 6.5, "width": 3, "height": 3, "note": "Dot separator" },
+                    {
+                      "id": "1:6269",
+                      "name": "Container",
+                      "x": 88,
+                      "y": 0,
+                      "width": 55,
+                      "height": 16,
+                      "children": [
+                        { "id": "1:6270", "name": "SVG", "x": 0, "y": 1.5, "width": 13, "height": 13 },
+                        { "id": "1:6273", "name": "Online", "type": "text", "x": 18, "y": 0, "width": 37, "height": 16 }
+                      ]
+                    },
+                    { "id": "1:6274", "name": "Background", "type": "rounded-rectangle", "x": 153, "y": 6.5, "width": 3, "height": 3, "note": "Dot separator" },
+                    {
+                      "id": "1:6275",
+                      "name": "Container",
+                      "x": 166,
+                      "y": 0,
+                      "width": 59,
+                      "height": 16,
+                      "children": [
+                        { "id": "1:6276", "name": "SVG", "x": 0, "y": 1.5, "width": 13, "height": 13 },
+                        { "id": "1:6279", "name": "English", "type": "text", "x": 18, "y": 0, "width": 41, "height": 16 }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1:6280",
+          "name": "HorizontalBorder",
+          "type": "frame",
+          "x": 0,
+          "y": 97,
+          "width": 408.3282165527344,
+          "height": 39.46683883666992,
+          "note": "Dashed top border + CTA row",
+          "children": [
+            { "id": "1:6281", "name": "View Program →", "type": "text", "x": 0, "y": 16.46683692932129, "width": 110, "height": 23 },
+            { "id": "1:6282", "name": "Container", "type": "frame", "x": 291.3282165527344, "y": 16.46683692932129, "width": 117, "height": 23, "note": "Empty right-side container — likely reserved for instructor avatar/name in course variants" }
+          ]
+        }
+      ]
+    }
+  ]
+}

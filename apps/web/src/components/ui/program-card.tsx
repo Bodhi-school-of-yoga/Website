@@ -17,6 +17,19 @@ export type ProgramCardMetaItem = {
   label: string;
 };
 
+export type ProgramCardInstructor = {
+  name: string;
+  avatar?: string;
+  initials?: string;
+};
+
+export type ProgramCardModeBadge = {
+  label: "Online" | "Offline";
+  icon?: React.ReactNode;
+};
+
+export type ProgramCardVariant = "course" | "article";
+
 export type ProgramCardProps = {
   title: string;
   href: string;
@@ -26,6 +39,9 @@ export type ProgramCardProps = {
   cta?: string;
   className?: string;
   priority?: boolean;
+  instructor?: ProgramCardInstructor;
+  variant?: ProgramCardVariant;
+  modeBadge?: ProgramCardModeBadge;
 };
 
 export function ProgramCard({
@@ -37,8 +53,13 @@ export function ProgramCard({
   cta = "View Program",
   className,
   priority = false,
+  instructor,
+  variant = "course",
+  modeBadge,
 }: ProgramCardProps) {
-  return (
+  const isArticle = variant === "article";
+
+  const cardInner = (
     <Card
       className={cn(
         // Article-variant chrome from Figma 1:246: 24px-ish radius, white card,
@@ -60,12 +81,36 @@ export function ProgramCard({
           className="object-cover"
           priority={priority}
         />
+        {modeBadge && (
+          <span
+            className={cn(
+              "absolute top-3 right-3 z-10",
+              "inline-flex items-center gap-1.5",
+              "rounded-full bg-surface-1 px-3 py-1 backdrop-blur",
+              "text-mini uppercase tracking-wide text-text-primary"
+            )}
+          >
+            {modeBadge.icon && (
+              <span aria-hidden="true" className="flex items-center">
+                {modeBadge.icon}
+              </span>
+            )}
+            {modeBadge.label}
+          </span>
+        )}
       </div>
 
       <CardHeader className="gap-3 px-8 pt-6">
-        <CardTitle className="text-h5 leading-tight">{title}</CardTitle>
+        <CardTitle
+          className={cn(
+            "text-h5 leading-tight",
+            isArticle && "font-heading text-text-brand-deep"
+          )}
+        >
+          {title}
+        </CardTitle>
 
-        {meta.length > 0 && (
+        {!isArticle && meta.length > 0 && (
           <ul className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
             {meta.map((item, i) => (
               <React.Fragment key={item.label}>
@@ -87,27 +132,73 @@ export function ProgramCard({
         )}
       </CardHeader>
 
-      <CardContent className="px-8 pt-0 pb-0" />
+      {!isArticle && (
+        <>
+          <CardContent className="px-8 pt-0 pb-0" />
 
-      <CardFooter
-        className={cn(
-          // Dashed divider per Figma; transparent fill (no muted bg here).
-          "mx-8 mt-4 mb-6 px-0 py-0 pt-4",
-          "rounded-none border-0 border-t border-dashed border-foreground/20 bg-transparent"
-        )}
-      >
-        <Link
-          href={href}
-          className={cn(
-            "inline-flex items-center gap-1.5 font-sans text-body-sm font-medium",
-            "text-brand-primary transition-opacity hover:opacity-80",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded-sm"
-          )}
-        >
-          {cta}
-          <ArrowRight className="size-3.5" aria-hidden="true" />
-        </Link>
-      </CardFooter>
+          <CardFooter
+            className={cn(
+              // Dashed divider per Figma; transparent fill (no muted bg here).
+              "mx-8 mt-4 mb-6 px-0 py-0 pt-4 flex-col items-start gap-3",
+              "rounded-none border-0 border-t border-dashed border-foreground/20 bg-transparent"
+            )}
+          >
+            {instructor && (
+              <div className="flex items-center gap-2">
+                {instructor.avatar ? (
+                  <Image
+                    src={instructor.avatar}
+                    alt={instructor.name}
+                    width={28}
+                    height={28}
+                    className="size-7 rounded-full object-cover"
+                  />
+                ) : (
+                  <span
+                    className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-lite font-sans text-[10px] font-semibold text-text-brand"
+                    aria-hidden="true"
+                  >
+                    {instructor.initials ?? instructor.name.slice(0, 2).toUpperCase()}
+                  </span>
+                )}
+                <span className="font-sans text-body-sm text-text-secondary">
+                  {instructor.name}
+                </span>
+              </div>
+            )}
+            <Link
+              href={href}
+              className={cn(
+                "inline-flex items-center gap-1.5 font-sans text-body-sm font-medium",
+                "text-brand-primary transition-opacity hover:opacity-80",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded-sm"
+              )}
+            >
+              {cta}
+              <ArrowRight className="size-3.5" aria-hidden="true" />
+            </Link>
+          </CardFooter>
+        </>
+      )}
+
+      {isArticle && <CardContent className="px-8 pt-0 pb-6" />}
     </Card>
   );
+
+  if (isArticle) {
+    return (
+      <Link
+        href={href}
+        aria-label={title}
+        className={cn(
+          "block rounded-2xl",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        )}
+      >
+        {cardInner}
+      </Link>
+    );
+  }
+
+  return cardInner;
 }

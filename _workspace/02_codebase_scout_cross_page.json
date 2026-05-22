@@ -1,0 +1,263 @@
+{
+  "$schema_version": "codebase-scout-cross-page-v1",
+  "generated_at": "2026-05-22",
+  "scope": "Cross-page reuse manifest for Figma frames 1:1547, 1:4756, 1:7174, 1:2343",
+  "page_shell_pattern": {
+    "convention": "Pages in apps/web/src/app/<slug>/page.tsx mount <SiteHeader /> + <main>...</main> + <SiteFooter ... /> directly. SiteHeader/SiteFooter are NOT injected via layout.tsx — they are imported per page. Follow this same composition for the four new pages.",
+    "reference_files": [
+      "apps/web/src/app/page.tsx",
+      "apps/web/src/app/about/page.tsx"
+    ]
+  },
+  "shared_components": [
+    {
+      "name": "SiteHeader",
+      "action": "reuse-as-is",
+      "existing_file": "apps/web/src/components/site-header.tsx",
+      "existing_component_name": "SiteHeader",
+      "match_confidence": "high",
+      "rationale": "Already exists as a full fixed top nav: wordmark + tagline ('School of Yoga'), 6 nav links matching Figma exactly (Teacher Courses, Advanced Certifications, Yoga Courses, Workshops, Our Centers, About Us — Figma uses 'About Bodhi' but ordering and dropdown markers match), search icon, mint-pill 'Enquire Now' CTA, mobile sheet. Scroll-state, focus management, dropdown chevrons all present. The 1416 x 56 nav band in Figma is a desktop instance; existing component handles responsive collapse to hamburger via internal mobileOpen state — no Sheet primitive needed.",
+      "needed_changes": null
+    },
+    {
+      "name": "SiteFooter",
+      "action": "reuse-as-is",
+      "existing_file": "apps/web/src/components/site-footer.tsx",
+      "existing_component_name": "SiteFooter",
+      "match_confidence": "high",
+      "rationale": "Existing component is a 4-col grid (brand lockup + columns + optional address column) on bg-brand-dark with legal bar (legalLeft + legalRight) — exact match to Figma 1:2081/5035/339:9070 footer band. Already supports external links, address with action link, and the 'Designed quietly. Practised daily.' italic right-side legal. Note: 'footer-brand-cta.tsx' in components/sections is a separate, simpler CTA-only band (used on /demo) — not what the four pages need; use SiteFooter.",
+      "needed_changes": null
+    },
+    {
+      "name": "ProgramCard",
+      "action": "extend",
+      "existing_file": "apps/web/src/components/ui/program-card.tsx",
+      "existing_component_name": "ProgramCard",
+      "match_confidence": "high",
+      "rationale": "Existing ProgramCard renders image + title + meta row (with icon+dot separators) + dashed-divider footer + optional instructor + 'View Program' CTA — matches the 472x431 Figma card. Missing: (1) floating mode badge on top-right of image (white/71% backdrop-blur pill, uppercase 'Online'/'Offline'); (2) an 'article' visual variant for 1:7174 (no meta, no CTA link, taller image, ~321 height). Recommend a small surgical extension: add optional `modeBadge?: { label: string }` prop and `variant?: 'course' | 'article'` prop. Article variant hides meta + footer, swaps title to dark-green (use text-text-brand-deep or text-brand-green-deep token), tightens vertical rhythm. Note: `sections/programs-grid-section.tsx` defines its OWN internal `TtcCard`/`CertCard` with a different mode badge (bg-brand-primary/95 pill) — when extending ProgramCard, mirror the styling intent (uppercase + icon) but use the Figma-spec white-glass pill from the listing pages.",
+      "needed_changes": [
+        "Add optional `modeBadge?: { label: 'Online' | 'Offline'; icon?: ReactNode }` prop that renders a floating top-right pill on the image (bg-white/70 backdrop-blur, rounded-full, text-mini uppercase).",
+        "Add optional `variant?: 'course' | 'article'` prop (default 'course'). When 'article': hide meta row + CardFooter (instructor + CTA link), render title in text-text-brand-deep / brand-green-deep, allow taller image aspect.",
+        "Whole card remains a Link in article variant (currently only CTA link is the anchor) — wrap or accept `href` on the card root."
+      ]
+    },
+    {
+      "name": "ArticleCard",
+      "action": "extend",
+      "existing_file": "apps/web/src/components/ui/program-card.tsx",
+      "existing_component_name": "ProgramCard (via variant='article')",
+      "match_confidence": "medium",
+      "rationale": "Per the decomposition uncertainty flag: ArticleCard shares the 472-wide footprint, gradient image, and rounded-2xl chrome with ProgramCard. The only structural differences are (a) no meta row, (b) no 'View Program' CTA, (c) dark-green Instrument Sans title instead of CardTitle h5, (d) shorter card. All of these are presentation toggles — keep them as a single component with `variant='article'`. Do NOT create a parallel ui/article-card.tsx. This avoids drift the first time a designer updates card chrome.",
+      "needed_changes": [
+        "Same extension as ProgramCard above — the article variant is what ArticleCard collapses into."
+      ]
+    },
+    {
+      "name": "ListingHero",
+      "action": "new",
+      "existing_file": null,
+      "existing_component_name": null,
+      "match_confidence": "low",
+      "rationale": "Neither `hero-section.tsx` (gradient-bg landing hero with offer chips) nor `about-hero.tsx` nor `course-hero-section.tsx` (brand-lite bg + side photo card + meta chips) matches the Figma ListingHero shape: full-bleed background image, rgba(0,0,0,0.8) dark overlay, centered H1 on dark with optional mint accent-span, optional eyebrow OR breadcrumb, optional result-count. Build a new section: `apps/web/src/components/sections/listing-hero.tsx`. Should accept { backgroundImage, overlayOpacity?, eyebrow?, breadcrumb?, headline, headlineAccent?, subtitle, resultCount? }. Use next/image fill + absolute overlay; map H1 to text-h1 token; accent span uses text-brand-shade (#8ee0ce mint, close to the Figma #3fffd5 — confirm whether to add a token).",
+      "needed_changes": [
+        "Create sections/listing-hero.tsx with the above props.",
+        "Confirm with design whether mint accent color #3fffd5 needs a new --color-brand-mint token, or whether existing --color-brand-shade #8ee0ce is acceptable."
+      ]
+    },
+    {
+      "name": "TestimonialsSection",
+      "action": "reuse-as-is",
+      "existing_file": "apps/web/src/components/sections/testimonials-section.tsx",
+      "existing_component_name": "TestimonialsSection",
+      "match_confidence": "high",
+      "rationale": "Already used on /, /about. Accepts eyebrow, heading, description, testimonials[], priorityFirst. Renders 3-col grid with TestimonialCard primitive. Drop in 'What our clients say' as heading and supply Aanya/Lena/Ravi items.",
+      "needed_changes": null
+    },
+    {
+      "name": "WhyBodhiSection",
+      "action": "reuse-as-is",
+      "existing_file": "apps/web/src/components/sections/why-bodhi-section.tsx",
+      "existing_component_name": "WhyBodhiSection",
+      "match_confidence": "high",
+      "rationale": "Existing section already accepts heading, subhead, innerHeading, bullets[], ctaLead, ctaCopy, photoSrc — copy in the decomposition matches the existing defaults verbatim. Pass `bullets` from the Figma list to override defaults if needed.",
+      "needed_changes": null
+    },
+    {
+      "name": "AccreditationsSection",
+      "action": "reuse-as-is",
+      "existing_file": "apps/web/src/components/sections/accreditations-section.tsx",
+      "existing_component_name": "AccreditationsSection",
+      "match_confidence": "high",
+      "rationale": "Existing 3-or-4-col grid section with eyebrow + heading + description + items[]. Already drives /apps/web/src/app/page.tsx with the 8 logos. Pass heading='Recognizing the Global Impact of Yoga' + items[] to match Figma.",
+      "needed_changes": null
+    },
+    {
+      "name": "PopularCoursesSection",
+      "action": "reuse-as-is",
+      "existing_file": "apps/web/src/components/sections/popular-courses-section.tsx",
+      "existing_component_name": "PopularCoursesSection",
+      "match_confidence": "high",
+      "rationale": "Existing component renders eyebrow + heading + subhead + 3-col ProgramCard grid via the shared ProgramCard primitive. Accepts a `courses` prop array. For 1:4756 'Top Popular Yoga Course' grid, supply eyebrow='Top Popular Yoga Course'. The decomposition's PopularCoursesSubGrid (1:5128) is most likely the same component called with a different `courses[]` slice — NOT a new component. Confirm during build, but classify as reuse here.",
+      "needed_changes": null
+    },
+    {
+      "name": "PopularCoursesSubGrid",
+      "action": "reuse-as-is",
+      "existing_file": "apps/web/src/components/sections/popular-courses-section.tsx",
+      "existing_component_name": "PopularCoursesSection (second instance with different courses[])",
+      "match_confidence": "medium",
+      "rationale": "Per the decomposition's own 'uncertain' note: this is almost certainly a continuation of PopularCoursesSection, not a distinct section. Mount PopularCoursesSection twice (or extend it to accept an array of two grids) — do not build a parallel component. If the design truly needs a tighter sub-row with no header, fall back to a thin wrapper that reuses ProgramCard in a 3-col grid.",
+      "needed_changes": null
+    },
+    {
+      "name": "GuidedPathSection",
+      "action": "reuse-as-is",
+      "existing_file": "apps/web/src/components/sections/closing-cta-section.tsx",
+      "existing_component_name": "ClosingCtaSection",
+      "match_confidence": "medium",
+      "rationale": "Existing ClosingCtaSection on bg-brand-dark already renders a 3-card grid where one card is literally 'Take a Guided Path' (see CLOSING_CTA_CARDS in apps/web/src/app/page.tsx + about/page.tsx). The Figma 1:1920 'Take a Guided Path' block is the same component family — eyebrow, headline-with-italic-accent, primary CTA, 3 dark glass cards each with title + body + pill CTA. Reuse ClosingCtaSection. The decomposition proposed a separate GuidedPathSection, but inspecting code shows ClosingCtaSection already covers all three items (counsellor / assessment / 50-min session). Pass the right cards[] (Talk to counsellor / Our assessment will guide / 50 Mins Session with 10 slots) and headingLead='Take a Guided'/headingAccent='Path' (or whatever Figma copy resolves to).",
+      "needed_changes": null
+    }
+  ],
+  "page_specific_components": {
+    "1:1547": [
+      {
+        "name": "OnlineCoursesHero",
+        "action": "new",
+        "existing_file": null,
+        "existing_component_name": null,
+        "match_confidence": "low",
+        "rationale": "No existing 'marketing hero' section matches the image-band-with-eyebrow + centered H2 + subtitle pattern. `course-hero-section.tsx` is a side-by-side breadcrumb + photo card (wrong shape). `hero-section.tsx` is the landing-page offer-chip hero (wrong shape). `about-hero.tsx` is page-specific. Build a single `MarketingHero` section that both 1:1547 (Online) and 1:4756 (Offline) share via different `eyebrow`, `headline`, `subtitle`, `backgroundImage` props.",
+        "needed_changes": [
+          "Create sections/marketing-hero.tsx with { eyebrow, headline, subtitle, backgroundImage, backgroundAlt? } props.",
+          "Full-bleed bg image via next/image fill + overlay; H2 mapped to text-h2 token; eyebrow uses text-mini uppercase text-text-brand."
+        ],
+        "suggested_path": "apps/web/src/components/sections/marketing-hero.tsx"
+      },
+      {
+        "name": "FilterChipBar",
+        "action": "new",
+        "existing_file": null,
+        "existing_component_name": null,
+        "match_confidence": "low",
+        "rationale": "No existing tab/chip filter component. `course-section-nav.tsx` is an in-page section anchor nav (different shape — text links with active underline, not pill tabs). Build a new tiny ui primitive: `apps/web/src/components/ui/filter-chip-bar.tsx` rendering 3 rounded-full pills with active indicator. Use bg-brand-primary for active, bg-surface-2 for inactive, text-text-secondary. Accept { tabs: string[], activeIndex, onChange }.",
+        "needed_changes": [
+          "Create ui/filter-chip-bar.tsx as a controlled (or uncontrolled with internal state) tab pill bar.",
+          "Confirm with design whether labels are All / Online / Offline (decomposition uncertain note)."
+        ],
+        "suggested_path": "apps/web/src/components/ui/filter-chip-bar.tsx"
+      }
+    ],
+    "1:4756": [
+      {
+        "name": "OfflineCoursesHero",
+        "action": "reuse-as-is",
+        "existing_file": null,
+        "existing_component_name": "MarketingHero (the same new component built for 1:1547)",
+        "match_confidence": "high",
+        "rationale": "Same shell as OnlineCoursesHero, different copy. Mount the same MarketingHero with eyebrow='Yoga Teacher Training', headline='Become The Teacher You Were Meant To Be', subtitle=offline copy. No separate component needed.",
+        "needed_changes": null
+      },
+      {
+        "name": "ProgramsIntroSection",
+        "action": "extend",
+        "existing_file": "apps/web/src/components/sections/programs-grid-section.tsx",
+        "existing_component_name": "ProgramsGridSection",
+        "match_confidence": "medium",
+        "rationale": "Existing ProgramsGridSection already renders TWO blocks (TTC + Certifications) with eyebrow + heading + subhead + grid. The Figma 'Certification Yoga Courses' featured intro (eyebrow='Certification Yoga Courses', mixed mode cards) matches the CertCard block shape. Two options: (a) call ProgramsGridSection with only the certification block populated, or (b) extract the inner ProgramsBlockView into its own section (suggested name: FeaturedProgramsSection) for reuse on the Offline page. Prefer (b) — extract the block — so the two cases are clean. Either way, do not build a brand-new section component from scratch.",
+        "needed_changes": [
+          "Extract `ProgramsBlockView` from programs-grid-section.tsx into a standalone exported section (or accept a single `block` prop in ProgramsGridSection).",
+          "Ensure CertCard mode badge styling aligns with extended ProgramCard's modeBadge prop (consolidate eventually)."
+        ]
+      },
+      {
+        "name": "PopularCoursesSubGrid",
+        "action": "reuse-as-is",
+        "existing_file": "apps/web/src/components/sections/popular-courses-section.tsx",
+        "existing_component_name": "PopularCoursesSection",
+        "match_confidence": "medium",
+        "rationale": "Already classified under shared_components — repeat here for page clarity. Mount a second PopularCoursesSection with a sub-array, or extend PopularCoursesSection to accept two course rows.",
+        "needed_changes": null
+      }
+    ],
+    "1:7174": [],
+    "1:2343": []
+  },
+  "do_not_rebuild": [
+    {
+      "name": "SiteHeader",
+      "existing_file": "apps/web/src/components/site-header.tsx",
+      "notes": "Full nav with mint-pill CTA and mobile sheet — already mounted on / and /about."
+    },
+    {
+      "name": "SiteFooter",
+      "existing_file": "apps/web/src/components/site-footer.tsx",
+      "notes": "4-col grid + legal bar — already mounted on / and /about. Note: components/sections/footer-brand-cta.tsx is a separate, partial CTA band (NOT this footer)."
+    },
+    {
+      "name": "TestimonialsSection",
+      "existing_file": "apps/web/src/components/sections/testimonials-section.tsx",
+      "notes": "Already covers all rich-page testimonial needs."
+    },
+    {
+      "name": "WhyBodhiSection",
+      "existing_file": "apps/web/src/components/sections/why-bodhi-section.tsx",
+      "notes": "Defaults already match the Figma copy for 'What We Stand For' + 5 bullets."
+    },
+    {
+      "name": "AccreditationsSection",
+      "existing_file": "apps/web/src/components/sections/accreditations-section.tsx",
+      "notes": "Drives the 8-logo grid on /. Same items will work on Online/Offline Courses pages."
+    },
+    {
+      "name": "PopularCoursesSection",
+      "existing_file": "apps/web/src/components/sections/popular-courses-section.tsx",
+      "notes": "Eyebrow + grid of ProgramCards — covers both PopularCoursesSection AND PopularCoursesSubGrid from the decomposition."
+    },
+    {
+      "name": "ClosingCtaSection (Guided Path)",
+      "existing_file": "apps/web/src/components/sections/closing-cta-section.tsx",
+      "notes": "Already renders 'Take a Guided Path' as one of three dark-glass cards. Reuse for the GuidedPathSection rather than building new."
+    },
+    {
+      "name": "TestimonialCard",
+      "existing_file": "apps/web/src/components/ui/testimonial-card.tsx",
+      "notes": "Primitive — used by TestimonialsSection. No direct consumption needed."
+    }
+  ],
+  "tokens_used": {
+    "all_in_globals_css": true,
+    "tokens_referenced": [
+      "text-h1", "text-h2", "text-h3", "text-h4", "text-h5",
+      "text-mini", "text-subtext-1", "text-subtext-2", "text-body-sm", "text-body-md",
+      "text-text-primary", "text-text-secondary", "text-text-tertiary",
+      "text-text-brand", "text-text-brand-deep", "text-text-inverse",
+      "bg-brand-primary", "bg-brand-dark", "bg-brand-shade", "bg-brand-lite",
+      "bg-surface-0", "bg-surface-1", "bg-surface-2", "bg-surface-cream",
+      "border-border-1", "border-border-2", "border-border-3",
+      "shadow-card", "font-heading", "font-serif", "font-sans"
+    ],
+    "potentially_missing": [
+      {
+        "token": "--color-brand-mint",
+        "value": "#3fffd5",
+        "where_used": "ListingHero accent-span on 1:7174 ('successful yoga teacher' tail)",
+        "recommendation": "Use existing --color-brand-shade (#8ee0ce) as the accent color — visually equivalent in role. Add #3fffd5 as a new token only if design QA flags the brighter mint as required."
+      },
+      {
+        "token": "ListingHero overlay",
+        "value": "rgba(0,0,0,0.8)",
+        "where_used": "ListingHero dark overlay",
+        "recommendation": "Use inline `bg-black/80` Tailwind utility — no new token required."
+      }
+    ]
+  },
+  "warnings": [
+    "Footer is NOT present in Figma frame 1:2343 — assume layout convention and mount SiteFooter on the production page (matches 1:7174).",
+    "The decomposition's ArticleCard vs ProgramCard question is resolved: ProgramCard gets a `variant='article'` prop. Do not create a separate ui/article-card.tsx.",
+    "PopularCoursesSubGrid is resolved as a second invocation of PopularCoursesSection, not a new section.",
+    "GuidedPathSection is resolved as ClosingCtaSection — already implemented and mounted on home and about pages.",
+    "The FilterChipBar labels (All / Online / Offline) are inferred — confirm with design before final assembly.",
+    "components/sections/footer-brand-cta.tsx is NOT the site footer; it is a separate CTA band. The site footer is components/site-footer.tsx."
+  ]
+}

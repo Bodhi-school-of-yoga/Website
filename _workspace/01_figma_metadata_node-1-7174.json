@@ -1,0 +1,109 @@
+{
+  "node_id": "1:7174",
+  "name": "Tips to become a successfull yoga teacher",
+  "type": "frame",
+  "dimensions": {
+    "x": 27300,
+    "y": 5169,
+    "width": 1920,
+    "height": 2525
+  },
+  "children": [
+    {
+      "id": "1:7504",
+      "name": "Courses List",
+      "type": "frame",
+      "x": 224,
+      "y": 475,
+      "width": 1472,
+      "height": 1025,
+      "children": [
+        { "id": "1:7505", "name": "Overlay+Border", "x": 737, "y": 587, "width": 85, "height": 28.74, "text": "online" },
+        { "id": "1:7507", "name": "Overlay+Border", "x": 737, "y": 887, "width": 83, "height": 26.74, "text": "online" },
+        { "id": "1:7509", "name": "Overlay+Border", "x": 1241, "y": 587, "width": 86, "height": 28.74, "text": "online" },
+        { "id": "1:7511", "name": "Overlay+Border", "x": 1241, "y": 887, "width": 84, "height": 26.74, "text": "online" },
+        {
+          "id": "1:7513",
+          "name": "Frame 1171281871",
+          "x": 224,
+          "y": 475,
+          "width": 1472,
+          "height": 1025,
+          "articles": [
+            { "id": "1:7514", "x": 0, "y": 0, "title": "Pranayama & the nervous system" },
+            { "id": "1:7520", "x": 500, "y": 0, "title": "300 Hour Yoga Teacher Training Course — Online" },
+            { "id": "1:7526", "x": 1000, "y": 0, "title": "Face Yoga Teacher Training Course" },
+            { "id": "1:7532", "x": 0, "y": 352, "title": "Weight Loss Coach Teacher Training Course" },
+            { "id": "1:7538", "x": 500, "y": 352, "title": "Bala Yoga Teacher Training Course" },
+            { "id": "1:7544", "x": 1000, "y": 352, "title": "Mat Pilates Teacher Training Course" },
+            { "id": "1:7550", "x": 0, "y": 704, "title": "Mat Pilates Teacher Training Course" },
+            { "id": "1:7556", "x": 500, "y": 704, "title": "Pranayama & the nervous system" },
+            { "id": "1:7562", "x": 1000, "y": 704, "title": "300 Hour Yoga Teacher Training Course — Online" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "353:10734",
+      "name": "Hero-Heading",
+      "type": "frame",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 421,
+      "content": {
+        "image": { "id": "1:7175", "name": "image 25", "width": 1920, "height": 421 },
+        "eyebrow": "23 courses",
+        "heading": "Tips to become a successfull yoga teacher",
+        "subheading": "Discover essential tips, strategies, and insights to grow as a skilled and confident yoga teacher, whether you're just starting or looking to enhance your teaching career."
+      }
+    },
+    {
+      "id": "339:9070",
+      "name": "Footer",
+      "type": "frame",
+      "x": 0,
+      "y": 1619,
+      "width": 1920,
+      "height": 906,
+      "structure": {
+        "brand": {
+          "name": "Bodhi",
+          "tagline": "A school for teachers, a home for seekers. Practice, taught honestly.",
+          "domain": "bodhischoolofyoga.com"
+        },
+        "columns": [
+          {
+            "heading": "School",
+            "items": ["Link → Teacher Training", "Link → Workshops", "Link → Classes", "Link → Faculty", "Link → Lineage"]
+          },
+          {
+            "heading": "Visit",
+            "items": ["The Practice Room,", "2nd floor, Quiet Lane", "City  · India", "Link → Get directions →"]
+          },
+          {
+            "heading": "Stay close",
+            "items": ["Link → Newsletter", "Link → Instagram", "Link → YouTube", "Link → Email us"]
+          }
+        ],
+        "cta_band": {
+          "eyebrow": "Bodhi",
+          "heading": "Begin where you are.",
+          "subcopy": "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that.",
+          "button": "Try a class, free"
+        },
+        "legal": "© Bodhi School of Yoga  ·  Yoga Alliance Registered School (RYS-200, RYS-300)",
+        "designed_by": "Designed quietly. Practised daily."
+      }
+    },
+    {
+      "id": "353:13811",
+      "name": "Header",
+      "type": "instance",
+      "x": 229,
+      "y": 20,
+      "width": 1462,
+      "height": 56
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "node": {
+    "id": "1:39",
+    "name": "Section",
+    "type": "FRAME",
+    "fileKey": "eqaofBeNUhOUISevtRfOpT",
+    "figmaUrl": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-39",
+    "frame": { "x": 0, "y": 1175, "width": 1920, "height": 477 },
+    "background": {
+      "color": "#FFFFFF",
+      "treatment": "Solid white. No image, gradient, or border. The section sits between the hero and stats bar — purely editorial typographic block on plain ground."
+    }
+  },
+  "layout": {
+    "alignment": "left-aligned editorial (book-style), NOT centered",
+    "outerPadding": { "left": 315, "top": 101, "right": 315, "bottom": 124 },
+    "innerFrame": {
+      "id": "1:40",
+      "x": 315,
+      "y": 101,
+      "width": 1301,
+      "height": 251.88,
+      "display": "flex",
+      "flexDirection": "row",
+      "alignItems": "center",
+      "gap": 100,
+      "columns": 2
+    },
+    "columns": [
+      {
+        "role": "left / quote column",
+        "id": "1:41",
+        "width": 578,
+        "height": 251.88,
+        "flexDirection": "column",
+        "alignItems": "flex-start",
+        "gap": 24,
+        "children": [
+          {
+            "id": "1:42",
+            "name": "Eyebrow container",
+            "width": 578,
+            "height": 17
+          },
+          {
+            "id": "1:44",
+            "name": "Quote + attribution group",
+            "width": 578,
+            "height": 210.88,
+            "flexDirection": "column",
+            "gap": 13
+          }
+        ]
+      },
+      {
+        "role": "right / body-copy column",
+        "id": "1:50",
+        "width": 623,
+        "height": 249,
+        "display": "inline-grid",
+        "gridTemplateColumns": "max-content",
+        "gridTemplateRows": "max-content",
+        "interParagraphSpacing": 104,
+        "note": "Two body paragraphs in a single grid cell stacked with mt:104 between them (~76px gap of whitespace between the last line of para 1 and the first line of para 2)."
+      }
+    ]
+  },
+  "textRuns": [
+    {
+      "id": "1:43",
+      "role": "eyebrow",
+      "text": "Our practice",
+      "fontFamily": "Manrope",
+      "fontWeight": "Medium (500)",
+      "fontSize": 11,
+      "lineHeight": "17px",
+      "letterSpacing": "2.42px",
+      "textTransform": "uppercase",
+      "color": "#009877",
+      "tokenSuggestion": "text-[--color-brand-primary] (brand green); use as label/eyebrow"
+    },
+    {
+      "id": "1:47",
+      "role": "pull-quote (display)",
+      "text": "The mat is a place to meet yourself honestly, daily, and without performance.",
+      "richSpans": [
+        { "text": "The mat is a place to", "color": "#2F4A3E", "lineHeight": "43px" },
+        { "text": " meet yourself ", "color": "#009877", "lineHeight": "43px" },
+        { "text": "honestly, daily, and without", "color": "#2F4A3E", "lineHeight": "43px" },
+        { "text": "performance.", "color": "#2F4A3E", "lineHeight": "43px" }
+      ],
+      "fontFamily": "Host Grotesk",
+      "fontWeight": "Bold (700)",
+      "fontStyle": "non-italic (the code includes an Instrument Serif Italic fallback class but the actual rendered spans force font-['Host_Grotesk:Bold'] and `not-italic`)",
+      "fontSize": 42,
+      "lineHeight": "43px",
+      "letterSpacing": "-0.72px",
+      "color": "#2F4A3E (dark forest green) with mid-phrase accent #009877 on \"meet yourself\"",
+      "width": 607,
+      "containerHeight": 169.88,
+      "tokenSuggestion": "text-[--color-brand-dark] with span text-[--color-brand-primary] for the accented phrase; font-display"
+    },
+    {
+      "id": "1:49",
+      "role": "attribution",
+      "text": "— Acharya, founder",
+      "punctuationNote": "Leading character is U+2014 EM DASH (—), then a regular space, then 'Acharya, founder'.",
+      "fontFamily": "Fraunces",
+      "fontStyle": "italic",
+      "fontWeight": "Regular (400)",
+      "fontSize": 18,
+      "lineHeight": "27.9px",
+      "letterSpacing": "0.08px",
+      "fontVariationSettings": "'SOFT' 0, 'WONK' 1",
+      "color": "#009877",
+      "tokenSuggestion": "text-[--color-brand-primary]; italic serif for attribution voice"
+    },
+    {
+      "id": "1:51",
+      "role": "body paragraph 1",
+      "text": "Bodhi is built on a simple idea. Yoga is not a workout, a wellness trend, or a credential. It is a steady, repeatable practice that, over time, returns you to yourself.",
+      "fontFamily": "Manrope",
+      "fontWeight": "Regular (400)",
+      "fontSize": 17,
+      "lineHeight": "28.9px",
+      "letterSpacing": "0.08px",
+      "color": "#454545",
+      "width": 623,
+      "tokenSuggestion": "text-[--color-muted-foreground] or text-foreground/70"
+    },
+    {
+      "id": "1:52",
+      "role": "body paragraph 2",
+      "text": "We teach in the lineage of classical hatha and ashtanga, with grounding in the Yoga Sūtras of Patañjali and the Haṭha Pradīpikā. Our teachers come from working practice — not just certification — and our students leave with a discipline they can carry into a class, a clinic, or a quiet morning at home.",
+      "diacriticsPreserved": ["Sūtras (U+016B)", "Patañjali (U+00F1)", "Haṭha (U+1E6D)", "Pradīpikā (U+012B, U+0101)", "em dashes — U+2014"],
+      "fontFamily": "Manrope (with 'Noto Sans' fallback to render the diacritics)",
+      "fontWeight": "Regular (400)",
+      "fontSize": 17,
+      "lineHeight": "28.9px",
+      "letterSpacing": "0.08px",
+      "color": "#454545",
+      "width": 623,
+      "marginTop": 104,
+      "tokenSuggestion": "text-[--color-muted-foreground]"
+    }
+  ],
+  "colors": {
+    "background": "#FFFFFF",
+    "brandPrimary (green accent)": "#009877",
+    "brandDark (forest)": "#2F4A3E",
+    "bodyMuted": "#454545"
+  },
+  "assets": [],
+  "interactiveElements": [],
+  "structure": {
+    "section": "1920 x 477 white frame",
+    "innerRow": {
+      "padding": "101px top / 315px left (right column ends ~282px from right edge)",
+      "flex": "row, align-items:center, gap:100px",
+      "leftCol": "578px — eyebrow → quote → attribution (column, gap:24)",
+      "rightCol": "623px — two body paragraphs (grid, ~104px row offset)"
+    }
+  },
+  "implementationNotes": {
+    "tokens": {
+      "brand-primary": "#009877  → use for eyebrow, accented quote phrase 'meet yourself', and attribution",
+      "brand-dark":    "#2F4A3E  → use for the main quote body",
+      "muted-foreground": "#454545 → right-column body copy",
+      "background": "#FFFFFF → section background",
+      "brand-lite": "Not used in this section (no soft-green wash); leave for hero/stats bar"
+    },
+    "fontMapping": {
+      "Manrope": "Eyebrow (Medium 11 / 17 / 2.42px) + body (Regular 17 / 28.9 / 0.08)",
+      "Host Grotesk": "Display pull-quote (Bold 42 / 43 / -0.72)",
+      "Fraunces": "Italic attribution (Regular 18 / 27.9 / 0.08, font-variation-settings: 'SOFT' 0, 'WONK' 1)",
+      "noteOnFigmaCode": "The MCP code wraps the quote text in a parent div with font-['Instrument_Serif:Italic'] but every <p>/<span> inside overrides to font-['Host_Grotesk:Bold'] + not-italic — Host Grotesk Bold is the authoritative rendering. Instrument Serif appears to be dead-code from a prior design iteration."
+    },
+    "alignment": "Editorial book layout: every text run is left-aligned. Section as a whole sits at left:315 in a 1920 canvas (≈ 16% gutter), so on a 1280 layout the equivalent gutter is ~210px (use container max-w-screen-xl px-8 or grid 12-col with col-span-5 / col-span-6).",
+    "responsiveGuidance": "On <md screens: stack columns (flex-col), reduce gap from 100px → 32px, drop quote size from 42 → 32-34px, keep eyebrow tracking. Maintain the green accent span as an inline highlight (do not break to its own line).",
+    "accessibility": [
+      "Quote should render as <blockquote> with <cite> for '— Acharya, founder'.",
+      "Eyebrow should be a <p> (not a heading) — it is a label, not document structure.",
+      "Color contrast: #2F4A3E on #FFFFFF ≈ 9.4:1 (AAA). #009877 on #FFFFFF ≈ 3.4:1 — passes AA for large text (42px) but FAILS AA for the 11px eyebrow and the 18px attribution. Consider darkening to #007A5F for the eyebrow if strict AA is required, OR raising eyebrow weight/size.",
+      "Preserve the em dash (—) literally; do not let smart-quote transforms convert it."
+    ],
+    "exactDimensionsForCSS": {
+      "section": "w-full h-[477px] bg-white",
+      "innerRow": "ml-[315px] mt-[101px] flex flex-row items-center gap-[100px]",
+      "leftCol": "w-[578px] flex flex-col gap-[24px]",
+      "quoteBlock": "w-[607px] (note: overflows its 578px parent slightly — intentional in Figma)",
+      "attributionGap": "13px below quote block",
+      "rightCol": "w-[623px] with 104px offset between the two paragraphs"
+    }
+  },
+  "rawMcpExtras": {
+    "metadata": "see _workspace metadata payload below",
+    "variableDefs": {},
+    "rawCodeSnippet": "Preserved in _workspace/01_figma_context_node-1-39.codegen.tsx? — no, single-file artifact; original codegen included verbatim in textRuns above."
+  }
+}

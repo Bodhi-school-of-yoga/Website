@@ -1,0 +1,609 @@
+{
+  "target_node_id": "1:7667",
+  "run_id": "courses-1-7667",
+  "tasks": [
+    {
+      "id": "T1",
+      "kind": "new-component",
+      "file": "apps/web/src/components/ui/course-meta-chip.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "Small 110x104 rounded square meta tile (icon over label) used in the course-hero. Repeats 4x in hero (Sat & Sun / Studio / 4:00 PM – 6:00 PM / English).",
+        "figma_node_id": "1:8074",
+        "props": [
+          { "name": "icon", "type": "ReactNode" },
+          { "name": "label", "type": "string" },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["bg-surface-1", "border", "border-border-1", "rounded-lg", "text-text-secondary", "text-body-sm", "text-mini"],
+        "imports": ["clsx or cn helper from @/lib/utils"]
+      },
+      "acceptance": [
+        "Component is a named export rendering a <div> with icon slot + label",
+        "Uses tokens from DESIGN.md (bg-surface-1, border-border-1, rounded-lg, text-text-secondary); no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375",
+        "Accepts arbitrary icon ReactNode in a fixed-size top slot"
+      ]
+    },
+    {
+      "id": "T2",
+      "kind": "new-component",
+      "file": "apps/web/src/components/ui/highlight-card.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "Highlight tile (~641x155) with a 52x52 rounded brand-lite icon badge + title + body. Composition wrapper over existing Card primitive, no Card.tsx variant change required.",
+        "figma_node_id": "1:7683",
+        "props": [
+          { "name": "icon", "type": "ReactNode" },
+          { "name": "title", "type": "string" },
+          { "name": "body", "type": "string" },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["bg-surface-1", "border", "border-border-2", "rounded-lg", "bg-brand-lite", "text-text-brand", "text-h5", "text-subtext-1", "text-text-secondary"],
+        "imports": ["Card from ./card", "cn from @/lib/utils"]
+      },
+      "acceptance": [
+        "Composes existing Card primitive; does NOT modify card.tsx",
+        "Renders icon in a 52x52 rounded-square tile with bg-brand-lite / text-text-brand",
+        "Title uses text-h5 token, body uses text-subtext-1 with text-text-secondary",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T3",
+      "kind": "new-component",
+      "file": "apps/web/src/components/ui/syllabus-card.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "Compact 294x148 title+body card used inside the curriculum carousel.",
+        "figma_node_id": "1:8029",
+        "props": [
+          { "name": "title", "type": "string" },
+          { "name": "body", "type": "string" },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["bg-surface-1", "border", "border-border-2", "rounded-lg", "text-h5", "text-subtext-1", "text-text-tertiary"],
+        "imports": ["Card or pure div + cn from @/lib/utils"]
+      },
+      "acceptance": [
+        "Renders a fixed-width card (responsive: stays a single card lane, not fluid-stretch)",
+        "Title uses text-h5, body uses text-subtext-1 with text-text-tertiary",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375 when placed in overflow-x-auto parent"
+      ]
+    },
+    {
+      "id": "T4",
+      "kind": "new-component",
+      "file": "apps/web/src/components/ui/scroll-next-button.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "Shared 46x46 circular brand-primary nav button with up-right arrow. Imported by both curriculum-section AND instructors-section.",
+        "figma_node_id": "1:8070 / 1:7817 (shared)",
+        "props": [
+          { "name": "href", "type": "string | undefined" },
+          { "name": "onClick", "type": "() => void | undefined" },
+          { "name": "ariaLabel", "type": "string" },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["bg-brand-primary", "text-text-inverse", "rounded-full", "shadow-card"],
+        "imports": ["lucide-react ArrowUpRight or equivalent icon"]
+      },
+      "acceptance": [
+        "Renders as <a> when href is provided, <button> otherwise",
+        "Circular (rounded-full), brand-primary background, text-text-inverse icon color",
+        "ariaLabel prop is required and applied to the rendered element",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T5",
+      "kind": "new-component",
+      "file": "apps/web/src/components/ui/checklist-item.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "Rounded checklist row (~673x50) with a 22x22 brand-lite check badge + label. Used in eligibility-section.",
+        "figma_node_id": "1:7992",
+        "props": [
+          { "name": "label", "type": "string" },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["bg-surface-1", "border", "border-border-1", "rounded-lg", "bg-brand-lite", "text-text-brand", "text-subtext-1"],
+        "imports": ["lucide-react Check icon", "cn from @/lib/utils"]
+      },
+      "acceptance": [
+        "Renders a horizontal flex row: 22x22 rounded check badge (bg-brand-lite / text-text-brand) + label",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T6",
+      "kind": "new-component",
+      "file": "apps/web/src/components/ui/instructor-card.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "98x98 avatar (left) + name + role (right) card used in instructors-section.",
+        "figma_node_id": "1:7770",
+        "props": [
+          { "name": "name", "type": "string" },
+          { "name": "role", "type": "string" },
+          { "name": "avatar", "type": "string" },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["bg-surface-1", "border", "border-border-1", "rounded-lg", "text-h5", "text-subtext-1", "text-text-tertiary"],
+        "imports": ["next/image Image"]
+      },
+      "acceptance": [
+        "Uses next/image with width/height set for avatar (98x98)",
+        "Name uses text-h5, role uses text-subtext-1 with text-text-tertiary",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T7",
+      "kind": "new-component",
+      "file": "apps/web/src/components/ui/faq-item.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "Minimal disclosure pattern (question + '+/–' toggle, expandable answer). No Accordion exists in repo — build a tiny controlled-state component. Uses HorizontalBorder row layout from Figma.",
+        "figma_node_id": "1:7837 / 1:7842 / 1:7847",
+        "props": [
+          { "name": "question", "type": "string" },
+          { "name": "answer", "type": "string" },
+          { "name": "defaultOpen", "type": "boolean | undefined" },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["border-b", "border-border-1", "text-subtext-2", "text-text-secondary", "text-text-tertiary"],
+        "imports": ["react useState", "lucide-react Plus / Minus icons", "cn from @/lib/utils"]
+      },
+      "acceptance": [
+        "Client component ('use client') with internal open/close state seeded from defaultOpen",
+        "Question button toggles the answer panel; +/− icon swaps on open/close",
+        "When answer prop is empty, panel collapses to nothing (no empty-panel render)",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375",
+        "Keyboard accessible: button focusable, aria-expanded reflects state"
+      ]
+    },
+    {
+      "id": "T8",
+      "kind": "extend",
+      "file": "apps/web/src/components/ui/program-card.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "Add a tiny optional `instructor` prop to ProgramCard so popular-courses can show 'JD · Janardhan Durga Prasad' inside each card without duplicating the component.",
+        "figma_node_id": "1:7851 (popular-courses cards)",
+        "props": [
+          { "name": "instructor", "type": "{ name: string; avatar?: string; initials?: string } | undefined" }
+        ],
+        "tokens": ["text-body-sm", "text-text-secondary", "bg-brand-lite", "text-text-brand"],
+        "imports": ["next/image Image (only if avatar provided)"]
+      },
+      "acceptance": [
+        "Existing ProgramCard call sites (homepage programs grid) continue to work without changes — instructor prop is fully optional",
+        "When instructor prop is provided, render avatar circle (or initials fallback) + name in the dashed footer area, before the CTA",
+        "When instructor prop is omitted, layout is identical to the pre-change baseline",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ],
+      "notes": "Additive prop only — do not break the existing prop contract. One-task extension preferred over duplicating ProgramCard."
+    },
+    {
+      "id": "T9",
+      "kind": "new-component",
+      "file": "apps/web/src/components/sections/next-steps-cta-grid.tsx",
+      "depends_on": [],
+      "parallel_group": "G1",
+      "spec": {
+        "purpose": "3-card row above the site-footer: 'Free Trial Session' / 'Speak to us' / 'Take a Guided Path'. Each card has title + body + 154x46 brand-primary button.",
+        "figma_node_id": "1:8116 (footer-block, top region)",
+        "props": [
+          {
+            "name": "items",
+            "type": "Array<{ title: string; body: string; ctaLabel: string; ctaHref: string }>"
+          },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["bg-surface-1", "border", "border-border-1", "rounded-lg", "text-h5", "text-subtext-1", "bg-brand-primary", "text-text-inverse"],
+        "imports": ["Button from ../ui/button or inline button"]
+      },
+      "acceptance": [
+        "Renders a 3-column grid at >=lg, stacks gracefully on smaller viewports",
+        "Each card uses bg-surface-1 / border-border-1 / rounded-lg",
+        "CTA uses bg-brand-primary / text-text-inverse",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T10",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/course-hero-section.tsx",
+      "depends_on": ["T1"],
+      "parallel_group": "G2",
+      "spec": {
+        "purpose": "Course landing hero: breadcrumb, course title 'Aerial Yoga Course', tagline, 4 CourseMetaChip meta tiles, primary CTA, hero image on the right (dark rounded card).",
+        "figma_node_id": "1:8074",
+        "props": [
+          { "name": "breadcrumb", "type": "string" },
+          { "name": "title", "type": "string" },
+          { "name": "subtitle", "type": "string" },
+          { "name": "meta", "type": "Array<{ icon: string; label: string }>" },
+          { "name": "ctaLabel", "type": "string" },
+          { "name": "ctaHref", "type": "string" },
+          { "name": "heroImage", "type": "string" }
+        ],
+        "tokens": ["text-h2", "text-subtext-2", "text-text-secondary", "text-text-tertiary", "bg-brand-primary", "text-text-inverse", "rounded-lg", "shadow-card"],
+        "imports": [
+          "CourseMetaChip from ../ui/course-meta-chip",
+          "next/image Image",
+          "Button from ../ui/button or inline anchor"
+        ],
+        "assets": ["/images/courses/aerial-yoga-hero.jpg"]
+      },
+      "acceptance": [
+        "Two-column layout (text left, dark-card hero image right) at >=lg; stacks on smaller viewports",
+        "Renders 4 CourseMetaChip instances in a row from the meta prop",
+        "Title uses text-h2 token, subtitle uses text-subtext-2 with text-text-secondary",
+        "CTA button uses bg-brand-primary / text-text-inverse",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Icon string in meta is mapped to a lucide-react icon component (calendar/location/clock/globe)",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T11",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/course-section-nav.tsx",
+      "depends_on": [],
+      "parallel_group": "G2",
+      "spec": {
+        "purpose": "Sticky in-page nav strip linking to anchor sections. Active item rendered as a pill (bg-brand-primary / text-text-inverse); others are plain text links.",
+        "figma_node_id": "1:7980",
+        "props": [
+          {
+            "name": "items",
+            "type": "Array<{ label: string; href: string; active?: boolean }>"
+          },
+          { "name": "className", "type": "string | undefined" }
+        ],
+        "tokens": ["bg-surface-1", "border-y", "border-border-1", "text-text-secondary", "bg-brand-primary", "text-text-inverse", "rounded-full", "text-subtext-1"],
+        "imports": ["cn from @/lib/utils"]
+      },
+      "acceptance": [
+        "Renders a horizontal nav with all items; active item gets pill styling (rounded-full / bg-brand-primary / text-text-inverse)",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Builder should correct the 'Circulum' Figma typo to 'Curriculum' in default content (flagged in decomposer 'uncertain')",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375 (use overflow-x-auto if needed to allow horizontal scroll WITHIN the nav strip on small viewports while the page itself does not scroll)"
+      ]
+    },
+    {
+      "id": "T12",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/course-overview-section.tsx",
+      "depends_on": [],
+      "parallel_group": "G2",
+      "spec": {
+        "purpose": "Overview section: eyebrow 'Overview', heading 'Elevate Your Practice — Literally', two body paragraphs (max-width ~880).",
+        "figma_node_id": "1:7670",
+        "props": [
+          { "name": "eyebrow", "type": "string" },
+          { "name": "heading", "type": "string" },
+          { "name": "paragraphs", "type": "string[]" }
+        ],
+        "tokens": ["text-mini", "text-h2", "text-subtext-2", "text-text-secondary", "text-text-tertiary"],
+        "imports": ["section-heading shared component if present, otherwise inline"]
+      },
+      "acceptance": [
+        "Eyebrow uses text-mini uppercase tracking-widest pattern",
+        "Heading uses text-h2 token",
+        "Body paragraphs constrained to max-width ~880 (e.g. max-w-3xl or equivalent Tailwind utility — no arbitrary px)",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T13",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/highlights-section.tsx",
+      "depends_on": ["T2"],
+      "parallel_group": "G2",
+      "spec": {
+        "purpose": "Highlights section: eyebrow 'Highlights' + heading 'What You'll Gain' + 2-col x 3-row grid of 6 HighlightCard.",
+        "figma_node_id": "1:7683",
+        "props": [
+          { "name": "eyebrow", "type": "string" },
+          { "name": "heading", "type": "string" },
+          {
+            "name": "items",
+            "type": "Array<{ icon: string; title: string; body: string }>"
+          }
+        ],
+        "tokens": ["text-mini", "text-h2", "text-subtext-1"],
+        "imports": [
+          "HighlightCard from ../ui/highlight-card",
+          "lucide-react icons mapped via local icon resolver"
+        ],
+        "assets": ["yoga / align-center / strength / leaf / technology / people icons (lucide-react equivalents)"]
+      },
+      "acceptance": [
+        "Renders eyebrow + heading + a 2-column grid of HighlightCard at >=lg, collapses to 1 column on smaller viewports",
+        "Maps the 6 items to HighlightCard, resolving the icon string to a lucide-react component locally (no asset fetch)",
+        "Heading uses text-h2 token, eyebrow uses text-mini uppercase",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T14",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/curriculum-section.tsx",
+      "depends_on": ["T3", "T4"],
+      "parallel_group": "G3",
+      "spec": {
+        "purpose": "Curriculum section: eyebrow 'Curriculum' + heading 'Course Syllabus' + a horizontal-scrolling row of 5 SyllabusCard items + a ScrollNextButton on the right.",
+        "figma_node_id": "1:8029",
+        "props": [
+          { "name": "eyebrow", "type": "string" },
+          { "name": "heading", "type": "string" },
+          {
+            "name": "items",
+            "type": "Array<{ title: string; body: string }>"
+          },
+          { "name": "nextHref", "type": "string" }
+        ],
+        "tokens": ["text-mini", "text-h2", "text-text-secondary"],
+        "imports": [
+          "SyllabusCard from ../ui/syllabus-card",
+          "ScrollNextButton from ../ui/scroll-next-button"
+        ]
+      },
+      "acceptance": [
+        "Renders 5 SyllabusCard items in a flex row; container uses overflow-x-auto so cards can scroll horizontally without forcing the page to scroll horizontally",
+        "Renders a ScrollNextButton with ariaLabel='Next syllabus item' aligned to the right of the strip",
+        "Heading uses text-h2 token; eyebrow uses text-mini uppercase",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Page itself renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375 (only the inner card strip scrolls)"
+      ]
+    },
+    {
+      "id": "T15",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/eligibility-section.tsx",
+      "depends_on": ["T5"],
+      "parallel_group": "G2",
+      "spec": {
+        "purpose": "Eligibility / Pre-Requisites section: eyebrow + heading + instructor portrait image on the left + a checklist of unique requirements on the right.",
+        "figma_node_id": "1:7992",
+        "props": [
+          { "name": "eyebrow", "type": "string" },
+          { "name": "heading", "type": "string" },
+          { "name": "image", "type": "string" },
+          { "name": "items", "type": "string[]" }
+        ],
+        "tokens": ["text-mini", "text-h2", "text-text-secondary"],
+        "imports": [
+          "ChecklistItem from ../ui/checklist-item",
+          "next/image Image"
+        ],
+        "assets": ["/images/courses/instructor-portrait.jpg"]
+      },
+      "acceptance": [
+        "Two-column layout: image left, checklist right at >=lg; stacks on smaller viewports",
+        "Renders a ChecklistItem for each unique entry in items (decomposer flagged duplicates — section should pass de-duplicated items)",
+        "Heading uses text-h2 token; eyebrow uses text-mini uppercase",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T16",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/instructors-section.tsx",
+      "depends_on": ["T4", "T6"],
+      "parallel_group": "G3",
+      "spec": {
+        "purpose": "Instructors section: eyebrow 'Your Guide' + heading 'Meet Your Instructor's' + horizontal row of 4 InstructorCard + a ScrollNextButton.",
+        "figma_node_id": "1:7770",
+        "props": [
+          { "name": "eyebrow", "type": "string" },
+          { "name": "heading", "type": "string" },
+          {
+            "name": "instructors",
+            "type": "Array<{ name: string; role: string; avatar: string }>"
+          },
+          { "name": "nextHref", "type": "string" }
+        ],
+        "tokens": ["text-mini", "text-h2", "text-text-secondary"],
+        "imports": [
+          "InstructorCard from ../ui/instructor-card",
+          "ScrollNextButton from ../ui/scroll-next-button"
+        ]
+      },
+      "acceptance": [
+        "Renders 4 InstructorCard items in a flex row with overflow-x-auto container",
+        "Renders a ScrollNextButton with a distinct ariaLabel from curriculum (e.g. 'Next instructor')",
+        "Heading uses text-h2 token (apostrophe preserved per Figma — flagged editorial)",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Page itself renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375 (only inner strip scrolls)"
+      ]
+    },
+    {
+      "id": "T17",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/faq-section.tsx",
+      "depends_on": ["T7"],
+      "parallel_group": "G2",
+      "spec": {
+        "purpose": "FAQ section: eyebrow 'FAQ' + heading 'Frequently Asked Questions' + 4 FaqItem instances (first defaultOpen, rest collapsed).",
+        "figma_node_id": "1:7821",
+        "props": [
+          { "name": "eyebrow", "type": "string" },
+          { "name": "heading", "type": "string" },
+          {
+            "name": "items",
+            "type": "Array<{ question: string; answer: string; defaultOpen?: boolean }>"
+          }
+        ],
+        "tokens": ["text-mini", "text-h2", "text-text-secondary"],
+        "imports": ["FaqItem from ../ui/faq-item"]
+      },
+      "acceptance": [
+        "Renders 4 FaqItem instances, container max-width ~910 (Tailwind max-w-* utility, no arbitrary px)",
+        "First item has defaultOpen=true so its answer is visible on initial render",
+        "Heading uses text-h2 token; eyebrow uses text-mini uppercase",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T18",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/popular-courses-section.tsx",
+      "depends_on": ["T8"],
+      "parallel_group": "G2",
+      "spec": {
+        "purpose": "'Top Popular Yoga Course' upsell section: eyebrow + heading + subhead + 3 ProgramCard with the new instructor prop populated.",
+        "figma_node_id": "1:7851",
+        "props": [
+          { "name": "eyebrow", "type": "string" },
+          { "name": "heading", "type": "string" },
+          { "name": "subhead", "type": "string" },
+          {
+            "name": "courses",
+            "type": "Array<{ title: string; image: string; meta: Array<{ icon: string; label: string }>; instructor: { initials: string; name: string }; ctaLabel: string; ctaHref: string }>"
+          }
+        ],
+        "tokens": ["text-mini", "text-h2", "text-subtext-2", "text-text-secondary", "text-text-tertiary"],
+        "imports": ["ProgramCard from ../ui/program-card"]
+      },
+      "acceptance": [
+        "Renders eyebrow + heading + subhead + 3-column ProgramCard grid at >=lg, stacks on smaller viewports",
+        "Each ProgramCard receives the new optional `instructor` prop (from T8) — verify instructor block renders inside the card",
+        "Heading uses text-h2 token; subhead uses text-subtext-2 with text-text-secondary",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T19",
+      "kind": "new-section",
+      "file": "apps/web/src/components/sections/footer-brand-cta.tsx",
+      "depends_on": [],
+      "parallel_group": "G2",
+      "spec": {
+        "purpose": "Giant centered brand block: 'Bodhi' eyebrow + 'Begin where you are.' headline + body + 'Try a class, free' link CTA. Lives above SiteFooter, below NextStepsCtaGrid.",
+        "figma_node_id": "1:8116 (footer-block, middle region)",
+        "props": [
+          { "name": "brand", "type": "string" },
+          { "name": "heading", "type": "string" },
+          { "name": "body", "type": "string" },
+          { "name": "ctaLabel", "type": "string" },
+          { "name": "ctaHref", "type": "string" }
+        ],
+        "tokens": ["text-h1", "text-subtext-2", "text-text-secondary", "text-text-brand", "font-serif"],
+        "imports": []
+      },
+      "acceptance": [
+        "Brand eyebrow rendered above the headline; heading uses text-h1 token + font-serif",
+        "Body uses text-subtext-2 with text-text-secondary, max-width constrained via Tailwind utility (no arbitrary px)",
+        "CTA rendered as a link-styled element using text-text-brand (no big filled button)",
+        "Uses tokens from DESIGN.md only; no arbitrary hex/px literals",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375"
+      ]
+    },
+    {
+      "id": "T20",
+      "kind": "new-section",
+      "file": "apps/web/src/app/demo/courses/page.tsx",
+      "depends_on": [
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T9",
+        "T19"
+      ],
+      "parallel_group": "G4",
+      "spec": {
+        "purpose": "Single demo route that renders the full Yoga Teacher Training Courses page by composing SiteHeader + all 9 course sections + NextStepsCtaGrid + FooterBrandCta + SiteFooter. Uses content from 02_decomposition_courses.json.",
+        "figma_node_id": "1:7667",
+        "props": [],
+        "tokens": [],
+        "imports": [
+          "SiteHeader from @/components/site-header",
+          "CourseHeroSection from @/components/sections/course-hero-section",
+          "CourseSectionNav from @/components/sections/course-section-nav",
+          "CourseOverviewSection from @/components/sections/course-overview-section",
+          "HighlightsSection from @/components/sections/highlights-section",
+          "CurriculumSection from @/components/sections/curriculum-section",
+          "EligibilitySection from @/components/sections/eligibility-section",
+          "InstructorsSection from @/components/sections/instructors-section",
+          "FaqSection from @/components/sections/faq-section",
+          "PopularCoursesSection from @/components/sections/popular-courses-section",
+          "NextStepsCtaGrid from @/components/sections/next-steps-cta-grid",
+          "FooterBrandCta from @/components/sections/footer-brand-cta",
+          "SiteFooter from @/components/site-footer"
+        ],
+        "assets": [
+          "/images/courses/aerial-yoga-hero.jpg",
+          "/images/courses/instructor-portrait.jpg",
+          "/images/instructors/atheesh-kumar.jpg",
+          "/images/instructors/sneha-shankar.jpg",
+          "/images/instructors/vijayaraghavan.jpg",
+          "/images/instructors/prajakta-jadhav.jpg",
+          "/images/courses/weight-loss-coach.jpg",
+          "/images/courses/mudra-therapy.jpg",
+          "/images/courses/mat-pilates.jpg"
+        ]
+      },
+      "acceptance": [
+        "Page is at apps/web/src/app/demo/courses/page.tsx and renders at /demo/courses",
+        "Composes SiteHeader (from components/site-header.tsx, NOT components/layout/header.tsx) + all 9 sections + SiteFooter (from components/site-footer.tsx, NOT components/layout/footer.tsx) in the section order from 02_decomposition_courses.json",
+        "Section content (titles, body, items, images) is pulled from 02_decomposition_courses.json props — no fresh copywriting",
+        "Renders without horizontal scroll at viewport widths 1920 / 1280 / 768 / 375",
+        "Uses tokens from DESIGN.md only at the page-composition level (no arbitrary hex/px literals in the page wrapper)"
+      ],
+      "notes": "ALL section tasks (T9–T19) are listed as depends_on. SiteHeader (T-skip) and SiteFooter (T-skip) are reuse-as-is, imported directly here. Per scout warning: builders must import from components/site-header.tsx and components/site-footer.tsx, NOT components/layout/*."
+    }
+  ],
+  "demo_page": {
+    "path": "apps/web/src/app/demo/courses/page.tsx",
+    "purpose": "Renders the full Yoga Teacher Training Courses page (Figma node 1:7667) by composing SiteHeader + 9 sections + SiteFooter using content from _workspace/02_decomposition_courses.json. This is the single page output per the user's pacing — no per-section demo routes."
+  },
+  "parallel_groups": {
+    "G1": ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9"],
+    "G2": ["T10", "T11", "T12", "T13", "T15", "T17", "T18", "T19"],
+    "G3": ["T14", "T16"],
+    "G4": ["T20"]
+  },
+  "reuse_as_is": [
+    {
+      "component": "SiteHeader",
+      "file": "apps/web/src/components/site-header.tsx",
+      "used_by": "T20 (demo page)"
+    },
+    {
+      "component": "SiteFooter",
+      "file": "apps/web/src/components/site-footer.tsx",
+      "used_by": "T20 (demo page)"
+    }
+  ]
+}

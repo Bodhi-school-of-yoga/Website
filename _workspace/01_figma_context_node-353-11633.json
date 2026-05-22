@@ -1,0 +1,52 @@
+{
+  "nodeId": "353:11633",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "format": "tsx",
+  "note": "Raw code returned by get_design_context. See companion .tsx file for the full source. Asset URLs are short-lived (~7 days).",
+  "assets": {
+    "imgGroup1171281882": "https://www.figma.com/api/mcp/asset/43cd46b0-421b-4858-9aa9-807cc93b6f63",
+    "imgGroup": "https://www.figma.com/api/mcp/asset/797724f5-7ce8-4d5b-8274-744866aba548",
+    "imgGroup1": "https://www.figma.com/api/mcp/asset/fec37f90-23e4-4358-84ff-c0cbd64e8c70",
+    "imgIonPeopleSharp": "https://www.figma.com/api/mcp/asset/482b9296-1233-4d5f-8311-04471faf387e",
+    "imgGroup1171281883": "https://www.figma.com/api/mcp/asset/20d7a3ac-0641-4eed-b579-e2c483893ed5",
+    "imgGroup2": "https://www.figma.com/api/mcp/asset/0f75e56a-664d-4559-8362-521e75f5f746",
+    "imgCarbonBlog": "https://www.figma.com/api/mcp/asset/583ce274-1f4c-40cd-9b09-13e2c6e65374",
+    "imgTablerLocationFilled": "https://www.figma.com/api/mcp/asset/25ad5f0a-73d9-4d5e-9ae2-c1d7531c526b",
+    "imgGroup1171281884": "https://www.figma.com/api/mcp/asset/d5796fa8-be34-4b3d-bd56-81b1ae26ebe7",
+    "imgGroup1171281881": "https://www.figma.com/api/mcp/asset/fda2d35b-05d8-4dd3-80bb-0b795408b351"
+  },
+  "summary": {
+    "name": "About Bodhi",
+    "frame": { "width": 1227, "height": 340 },
+    "columns": [
+      {
+        "groupId": "1:8213",
+        "header": "Who are we",
+        "items": [
+          { "title": "About us", "subtitle": "At Comfort of your home", "icon": "ic:round-laptop", "nodeId": "1:8216" },
+          { "title": "Yogic Lifestyle", "subtitle": "We have 20+ studios", "icon": "hugeicons:yoga-03", "nodeId": "1:8225" },
+          { "title": "Our Trainers", "subtitle": "access anytime, anywhere", "icon": "hugeicons:yoga-02", "nodeId": "1:8236" },
+          { "title": "Empowering Yogapreneurs", "subtitle": "access anytime, anywhere", "icon": "ion:people-sharp", "nodeId": "1:8250" }
+        ]
+      },
+      {
+        "groupId": "1:8263",
+        "header": "blogs & events",
+        "items": [
+          { "title": "Events & Workshops", "subtitle": "At Comfort of your home", "icon": "(unspecified)", "nodeId": "1:8266" },
+          { "title": "Yoga Poses", "subtitle": "We have 20+ studios", "icon": "tabler:yoga", "nodeId": "1:8274" },
+          { "title": "Blogs & Insights", "subtitle": "access anytime, anywhere", "icon": "carbon:blog", "nodeId": "1:8285" }
+        ]
+      },
+      {
+        "groupId": "1:8295",
+        "header": "help & resourses",
+        "items": [
+          { "title": "Our Centers", "subtitle": "At Comfort of your home", "icon": "tabler:location-filled / ic:round-laptop", "nodeId": "1:8298" },
+          { "title": "Tips to become a succesful Yoga Teacher", "subtitle": "We have 20+ studios", "icon": "mdi:yoga", "nodeId": "1:8308" },
+          { "title": "Contact Us", "subtitle": "access anytime, anywhere", "icon": "(unspecified)", "nodeId": "1:8317" }
+        ]
+      }
+    ]
+  }
+}

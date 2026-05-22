@@ -1,0 +1,562 @@
+{
+  "$schema_version": "cross-page-decomposition-v1",
+  "generated_at": "2026-05-22",
+  "design_system": {
+    "viewport_width": 1920,
+    "content_gutter": 224,
+    "content_max_width": 1472,
+    "tokens_source": "apps/web/src/app/globals.css",
+    "responsive_strategy": "Tailwind breakpoints — scale 1920 designs down via container max-w-7xl + responsive font-size tokens (text-h1..h5, text-mini). Mobile-first stacking for hero, grids, footer."
+  },
+  "pages": [
+    {
+      "node_id": "1:1547",
+      "page_name": "Online Courses",
+      "page_role": "Yoga Teacher Training umbrella landing — rich marketing page for Online TTC programs",
+      "slug_suggestion": "online-courses",
+      "viewport": { "width": 1920, "height": 1994 },
+      "sections": [
+        {
+          "id": "header",
+          "component": "SiteHeader",
+          "shared": true,
+          "figma_node_id": "1:2342",
+          "bbox": "1416 × 56",
+          "notes": "Shared instance — top of every page in this file"
+        },
+        {
+          "id": "hero",
+          "component": "OnlineCoursesHero",
+          "shared": false,
+          "figma_node_id": "1:1549 + 1:2334",
+          "bbox": "1920 × ~420 (background image bleeds 2519×872)",
+          "props": {
+            "eyebrow": "Yoga Teacher Training",
+            "headline": "Yoga Teacher Training Courses",
+            "subtitle": "Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.",
+            "backgroundImage": "image 25"
+          },
+          "notes": "Image-band hero with eyebrow + H2 + subtitle. Background image is full-bleed. Same boilerplate subtitle reused on 1:2343."
+        },
+        {
+          "id": "filter-chips",
+          "component": "FilterChipBar",
+          "shared": false,
+          "figma_node_id": "1:1561",
+          "bbox": "207 × 3 (3 pill indicators, 73/53/53 wide)",
+          "props": { "tabs": ["All", "Online", "Offline"], "activeIndex": 0 },
+          "interactive_behavior": "Underline-style tab indicator with active pill width animated on selection",
+          "notes": "Three rounded-rectangle pills acting as section tabs / filter indicators"
+        },
+        {
+          "id": "course-grid",
+          "component": "ProgramCard",
+          "shared": true,
+          "figma_node_id": "1:1550 (Group 1171281727)",
+          "bbox": "3-col grid, ~1289 wide, cards 472×431",
+          "props": {
+            "courses": [
+              { "title": "Pranayama & the nervous system", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "300 Hour Yoga Teacher Training Course — Online", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "Face Yoga Teacher Training Course", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "Weight Loss Coach Teacher Training Course", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "Bala Yoga Teacher Training Course", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "Mat Pilates Teacher Training Course", "duration": "4 weeks", "mode": "Online", "language": "English" }
+            ]
+          },
+          "notes": "Existing apps/web/src/components/ui/program-card.tsx covers this; extend with floating mode badge if not present"
+        },
+        {
+          "id": "accreditations",
+          "component": "AccreditationsSection",
+          "shared": false,
+          "figma_node_id": "1:1827 (Group 1171281827)",
+          "bbox": "1920 × 1302",
+          "props": {
+            "headline": "Recognizing the Global Impact of Yoga",
+            "logos": ["RYS-200", "RYS-300", "Yoga Alliance, USA (YA)", "Ministry of Ayush", "Yoga Certification Board", "Jyotish Yoga Sastra University", "AIVETC", "Professional Quality Management Services"]
+          },
+          "notes": "Existing apps/web/src/components/sections/accreditations-section.tsx exists — confirm parity"
+        },
+        {
+          "id": "why-bodhi",
+          "component": "WhyBodhiSection",
+          "shared": true,
+          "figma_node_id": "1:1753 (Group 1171281821)",
+          "bbox": "1680 × 1571",
+          "props": {
+            "eyebrow": "What We Stand For",
+            "headline": "Why Bodhi School of Yoga?",
+            "subhead": "We Empower Women to Heal, Lead, and Rise—Physically, Emotionally, and Spiritually—through the transformative wisdom of Yoga.",
+            "pillars": [
+              "Making yoga accessible & empowering for every woman",
+              "Supporting women to rise personally & professionally",
+              "Offering accredited TTCs that reflect women's unique needs",
+              "Creating a safe space for healing, leadership & sisterhood",
+              "Growing a global network of empowered yoginis"
+            ]
+          },
+          "notes": "Existing why-bodhi-section.tsx — confirm copy matches"
+        },
+        {
+          "id": "guided-path",
+          "component": "GuidedPathSection",
+          "shared": true,
+          "figma_node_id": "1:1920 (Frame 1171281022)",
+          "bbox": "1291 × 630",
+          "props": {
+            "eyebrow": "A Path to Wellness",
+            "headline": "Take a Guided Path",
+            "items": [
+              { "title": "Talk to counsellor who can assess and offer recommendations" },
+              { "title": "Our assessment will guide you take direction best suited based on your experience" },
+              { "title": "50 Mins Session with the option of choosing from 10 slots in a day." }
+            ],
+            "cta": { "label": "Start now", "href": "#" }
+          },
+          "notes": "Free Trial Session / counsellor block. New section component."
+        },
+        {
+          "id": "testimonials",
+          "component": "TestimonialsSection",
+          "shared": true,
+          "figma_node_id": "1:2047 (Group 1171281832)",
+          "bbox": "1441 × 499",
+          "props": {
+            "headline": "What our clients say",
+            "items": [
+              { "quote": "...", "author": "Aanya, TTC Cohort 11. Now teaching in Goa.", "avatarInitials": "PP" },
+              { "quote": "...", "author": "Lena, online student, 2 years", "avatarInitials": "LY" },
+              { "quote": "The back pain workshop did more in two days than two years of physiotherapy. I've recommended Bodhi to everyone I know.", "author": "Ravi, workshop participant", "avatarInitials": "JD" }
+            ]
+          },
+          "notes": "Existing testimonials-section.tsx + TestimonialCard primitive"
+        },
+        {
+          "id": "footer",
+          "component": "SiteFooter",
+          "shared": true,
+          "figma_node_id": "1:2081 (Group 1171281879)",
+          "bbox": "1472 × 1355 / 1920 × 1302 footer band",
+          "notes": "Begin where you are. CTA + 4-col link grid (Bodhi / School / Visit / Stay close) + legal line"
+        }
+      ]
+    },
+    {
+      "node_id": "1:4756",
+      "page_name": "Offline Courses",
+      "page_role": "Full landing-page composition for Offline TTCs — superset of the Online page, with extra Programs intro and Top Popular Yoga Course sub-grid",
+      "slug_suggestion": "offline-courses",
+      "viewport": { "width": 1920, "height": 1994 },
+      "sections": [
+        {
+          "id": "header",
+          "component": "SiteHeader",
+          "shared": true,
+          "figma_node_id": "header instance",
+          "bbox": "1416 × 56",
+          "notes": "Shared"
+        },
+        {
+          "id": "hero",
+          "component": "OfflineCoursesHero",
+          "shared": false,
+          "figma_node_id": "1:4757 + 1:5543 (Group 1171281918)",
+          "bbox": "892 × 224 over 1920 × 872 background",
+          "props": {
+            "eyebrow": "Yoga Teacher Training",
+            "headline": "Become The Teacher You Were Meant To Be",
+            "subtitle": "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that.",
+            "backgroundImage": "image 25"
+          },
+          "notes": "Different headline and copy from Online Courses hero — distinct component (or same shell with different props). Suggest one OnlineCoursesHero with variant prop if structurally identical."
+        },
+        {
+          "id": "programs-intro",
+          "component": "ProgramsIntroSection",
+          "shared": false,
+          "figma_node_id": "1:5289 (Group 1171281879)",
+          "bbox": "1472 × 1355",
+          "props": {
+            "eyebrow": "Certification Yoga Courses",
+            "headline": "Deepen your wisdom and elevate your yoga career with our specialized yoga certifications.",
+            "cards": [
+              { "title": "Bala Yoga Teacher Training Course", "duration": "4 weeks", "mode": "Offline" },
+              { "title": "Face Yoga Teacher Training Course", "duration": "4 weeks", "mode": "Online" },
+              { "title": "Mudra Therapy Yoga Teacher Training", "duration": "2 weeks", "mode": "Offline" },
+              { "title": "MAT Pilates Instructor Certification", "duration": "4 weeks", "mode": "Online" },
+              { "title": "Weight Loss Coach Certification", "duration": "4 weeks", "mode": "Online" }
+            ]
+          },
+          "notes": "Featured TTC carousel/grid above the main course list. Uses ProgramCard."
+        },
+        {
+          "id": "top-popular-grid",
+          "component": "PopularCoursesSection",
+          "shared": true,
+          "figma_node_id": "1:4758 (Group 1171281727)",
+          "bbox": "1920 × 1991",
+          "props": {
+            "eyebrow": "Top Popular Yoga Course",
+            "headline": "Yoga Teacher Training Courses",
+            "courses": "[same 6 ProgramCard array as 1:1547]"
+          },
+          "notes": "Existing popular-courses-section.tsx — confirm. Same data shape, different eyebrow."
+        },
+        {
+          "id": "popular-subgrid",
+          "component": "PopularCoursesSubGrid",
+          "shared": false,
+          "figma_node_id": "1:5128 (Frame 1171281022)",
+          "bbox": "1291 × 630",
+          "props": {
+            "headline": "Top Popular Yoga Course",
+            "courses": [
+              { "title": "Online Mudra Therapy Yoga Teacher Training" },
+              { "title": "Online MAT Pilates Instructor Certification" },
+              { "title": "Online Weight Loss Coach Certification" }
+            ]
+          },
+          "notes": "Likely just a second row of ProgramCards. May collapse into PopularCoursesSection with longer courses[] array."
+        },
+        {
+          "id": "accreditations",
+          "component": "AccreditationsSection",
+          "shared": true,
+          "figma_node_id": "nested in 1:4961",
+          "bbox": "1920 × ~300",
+          "notes": "Same component as 1:1547"
+        },
+        {
+          "id": "why-bodhi",
+          "component": "WhyBodhiSection",
+          "shared": true,
+          "figma_node_id": "1:4961 (Group 1171281821)",
+          "bbox": "1680 × 1571",
+          "notes": "Same component / copy as 1:1547"
+        },
+        {
+          "id": "guided-path",
+          "component": "GuidedPathSection",
+          "shared": true,
+          "figma_node_id": "guided path block",
+          "notes": "Same as 1:1547"
+        },
+        {
+          "id": "testimonials",
+          "component": "TestimonialsSection",
+          "shared": true,
+          "figma_node_id": "1:5255 (Group 1171281832)",
+          "bbox": "1441 × 499",
+          "notes": "Same component as 1:1547"
+        },
+        {
+          "id": "footer",
+          "component": "SiteFooter",
+          "shared": true,
+          "figma_node_id": "1:5035 (Group 1171281827)",
+          "bbox": "1920 × 1302",
+          "notes": "Same as 1:1547"
+        }
+      ]
+    },
+    {
+      "node_id": "1:7174",
+      "page_name": "Tips to become a successful yoga teacher",
+      "page_role": "Editorial article-listing index page — lean variant (Header + dark-overlay hero + 3×3 article card grid + Footer)",
+      "slug_suggestion": "tips-to-become-a-successful-yoga-teacher",
+      "viewport": { "width": 1920, "height": 2525 },
+      "sections": [
+        {
+          "id": "header",
+          "component": "SiteHeader",
+          "shared": true,
+          "figma_node_id": "353:13811",
+          "bbox": "1462 × 56",
+          "notes": "Shared instance — same component as all 4 pages"
+        },
+        {
+          "id": "hero",
+          "component": "ArticleListingHero",
+          "shared": true,
+          "figma_node_id": "353:10734 (Hero-Heading)",
+          "bbox": "1920 × 421",
+          "props": {
+            "eyebrow": "23 courses",
+            "headline": "Tips to become a",
+            "headlineAccent": "successful yoga teacher",
+            "subtitle": "Discover essential tips, strategies, and insights to grow as a skilled and confident yoga teacher, whether you're just starting or looking to enhance your teaching career.",
+            "backgroundImage": "imgImage25",
+            "overlayOpacity": 0.8
+          },
+          "notes": "Dark overlay (rgba(0,0,0,0.8)) over bg image. H1 has two-tone span — base white + mint #3fffd5 accent on trailing words. Shared structure with 1:2343 hero — same component, different props.",
+          "copy_fix": "'successfull' in source is a typo; render 'successful' in code"
+        },
+        {
+          "id": "courses-list",
+          "component": "ArticleCard",
+          "shared": true,
+          "figma_node_id": "1:7504 (Courses List)",
+          "bbox": "1472 × 1025 grid, cards 472×321",
+          "props": {
+            "layout": "3-col grid, gap 28×31",
+            "cards": [
+              { "title": "Pranayama & the nervous system", "image": "imgGradient", "badge": "ONLINE" },
+              { "title": "300 Hour Yoga Teacher Training Course — Online", "image": "imgGradient1", "badge": "ONLINE" },
+              { "title": "Face Yoga Teacher Training Course", "image": "imgGradient2" },
+              { "title": "Weight Loss Coach Teacher Training Course", "image": "imgGradient3" },
+              { "title": "Bala Yoga Teacher Training Course", "image": "imgGradient4", "badge": "ONLINE" },
+              { "title": "Mat Pilates Teacher Training Course", "image": "imgGradient5", "badge": "ONLINE" }
+            ]
+          },
+          "notes": "Article variant of ProgramCard — no meta row, no View Program link. Just gradient image + dark-green title. May collapse into ProgramCard with `variant=\"article\"` prop. The 9-card grid duplicates last 3 — drive from CMS in production."
+        },
+        {
+          "id": "footer",
+          "component": "SiteFooter",
+          "shared": true,
+          "figma_node_id": "339:9070",
+          "bbox": "1920 × 906",
+          "notes": "Same component as all 4 pages"
+        }
+      ]
+    },
+    {
+      "node_id": "1:2343",
+      "page_name": "Online Advanced Certifications",
+      "page_role": "Course-listing index page — filtered listing for Online Advanced Certifications. Lean variant (Header + breadcrumb hero + 3×3 ProgramCard grid). NOTE: this frame has no footer — likely shares page-shell with 1:7174",
+      "slug_suggestion": "online-advanced-certifications",
+      "viewport": { "width": 1920, "height": 1994 },
+      "sections": [
+        {
+          "id": "header",
+          "component": "SiteHeader",
+          "shared": true,
+          "figma_node_id": "353:13857",
+          "bbox": "1462 × 56",
+          "notes": "Shared instance"
+        },
+        {
+          "id": "hero",
+          "component": "ListingHero",
+          "shared": true,
+          "figma_node_id": "353:10736 (Hero-Heading)",
+          "bbox": "1920 × 421",
+          "props": {
+            "breadcrumb": "Home / Advanced Certifications / Online",
+            "headline": "Online Advanced Certifications",
+            "subtitle": "Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.",
+            "resultCount": "23 courses",
+            "backgroundImage": "image 25"
+          },
+          "notes": "Same hero shell as 1:7174 (image band + overlay + heading), but with breadcrumb + result-count slots instead of eyebrow. Suggest a single ListingHero component with optional `breadcrumb` and `resultCount` props that can render the editorial variant too."
+        },
+        {
+          "id": "courses-grid",
+          "component": "ProgramCard",
+          "shared": true,
+          "figma_node_id": "1:2877 (Courses) / 1:2886 (Frame 1171281871)",
+          "bbox": "1472 × 1355 grid, cards 472×431",
+          "props": {
+            "layout": "3-col × 3-row grid, gap 28×31",
+            "courses": [
+              { "title": "Pranayama & the nervous system", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "300 Hour Yoga Teacher Training Course — Online", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "Face Yoga Teacher Training Course", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "Weight Loss Coach Teacher Training Course", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "Bala Yoga Teacher Training Course", "duration": "4 weeks", "mode": "Online", "language": "English" },
+              { "title": "Mat Pilates Teacher Training Course", "duration": "4 weeks", "mode": "Online", "language": "English" }
+            ]
+          },
+          "notes": "Uses existing ProgramCard from apps/web/src/components/ui/program-card.tsx. Extend ProgramCard with floating 'online' mode badge on card image top-right if not already present."
+        },
+        {
+          "id": "footer",
+          "component": "SiteFooter",
+          "shared": true,
+          "figma_node_id": "not in frame",
+          "notes": "Footer NOT present in this Figma frame — but the production page should mount SiteFooter (assumption — same as 1:7174)."
+        }
+      ]
+    }
+  ],
+  "shared_components": [
+    {
+      "name": "SiteHeader",
+      "appears_in": ["1:1547", "1:4756", "1:7174", "1:2343"],
+      "type": "new-section",
+      "reuse_confidence": "high",
+      "bbox": "1416–1462 × 56",
+      "props": {
+        "logo": "Bodhi",
+        "tagline": "School of yoga",
+        "nav": [
+          { "label": "Teacher Courses", "hasDropdown": true },
+          { "label": "Advanced Certifications", "hasDropdown": true },
+          { "label": "Yoga Courses", "hasDropdown": true },
+          { "label": "Workshops" },
+          { "label": "Our Centers" },
+          { "label": "About Bodhi", "hasDropdown": true }
+        ],
+        "cta": { "label": "Enquire Now", "variant": "mint-pill" }
+      },
+      "notes": "Byte-identical 1416 × 56 nav. Logo + tagline + 5–6 menu items (4 with chevron dropdowns) + search icon + mint pill CTA. Build once, mount on layout."
+    },
+    {
+      "name": "SiteFooter",
+      "appears_in": ["1:1547", "1:4756", "1:7174", "1:2343"],
+      "type": "new-section",
+      "reuse_confidence": "high",
+      "bbox": "1920 × 906–1302",
+      "props": {
+        "brandLockup": { "wordmark": "Bodhi", "tagline": "Begin where you are.", "subhead": "A school for teachers, a home for seekers. Practice, taught honestly." },
+        "ctas": [
+          { "label": "Try a class, free", "variant": "mint-pill" },
+          { "label": "Speak to us", "variant": "ghost" }
+        ],
+        "columns": [
+          { "heading": "School", "links": ["Teacher Training", "Workshops", "Classes", "Faculty", "Lineage"] },
+          { "heading": "Visit", "links": ["The Practice Room,", "2nd floor, Quiet Lane", "City · India", "Get directions →"] },
+          { "heading": "Stay close", "links": ["Newsletter", "Instagram", "YouTube", "Email us"] }
+        ],
+        "legal": "© Bodhi School of Yoga · Yoga Alliance Registered School (RYS-200, RYS-300)",
+        "tagline_right": "Designed quietly. Practised daily."
+      },
+      "notes": "Existing footer-brand-cta.tsx covers the CTA band. Needs extension for 4-col link grid + legal bar. Footer is NOT present inside frame 1:2343 — but assumed."
+    },
+    {
+      "name": "ProgramCard",
+      "appears_in": ["1:1547", "1:4756", "1:2343"],
+      "type": "existing-primitive",
+      "existing_path": "apps/web/src/components/ui/program-card.tsx",
+      "reuse_confidence": "high",
+      "bbox": "472 × 431",
+      "props": {
+        "image": "url",
+        "title": "string",
+        "duration": "string (e.g. '4 weeks')",
+        "mode": "'Online' | 'Offline'",
+        "language": "string (e.g. 'English')",
+        "href": "url"
+      },
+      "extension_needed": "Add floating mode badge on top-right of card image (rgba(255,255,255,0.71) backdrop-blur pill, Manrope uppercase). Confirm meta row dot separators + 'View Program →' link present.",
+      "notes": "Existing component aligns. codebase-scout should verify and emit a minimal-diff extension."
+    },
+    {
+      "name": "ArticleCard",
+      "appears_in": ["1:7174"],
+      "type": "new-component",
+      "reuse_confidence": "medium",
+      "bbox": "472 × 321",
+      "props": {
+        "image": "url",
+        "title": "string",
+        "badge": "string?",
+        "href": "url"
+      },
+      "notes": "Lean variant of ProgramCard — gradient image + Instrument Sans SemiBold 23px #2f4a3e title. No meta row, no View Program link. Suggest implementing as `<ProgramCard variant=\"article\" />` to avoid duplication."
+    },
+    {
+      "name": "ListingHero",
+      "appears_in": ["1:7174", "1:2343"],
+      "type": "new-section",
+      "reuse_confidence": "high",
+      "bbox": "1920 × 421",
+      "props": {
+        "backgroundImage": "url",
+        "overlayOpacity": "number (default 0.8)",
+        "eyebrow": "string?",
+        "breadcrumb": "string?",
+        "headline": "string",
+        "headlineAccent": "string?",
+        "subtitle": "string",
+        "resultCount": "string?"
+      },
+      "notes": "Single component, multiple variants via optional props. 1:7174 uses eyebrow+accent-span. 1:2343 uses breadcrumb+resultCount. Same dark-overlay-on-image visual shell."
+    },
+    {
+      "name": "TestimonialsSection",
+      "appears_in": ["1:1547", "1:4756"],
+      "type": "existing-primitive",
+      "existing_path": "apps/web/src/components/sections/testimonials-section.tsx",
+      "reuse_confidence": "high",
+      "notes": "Uses TestimonialCard primitive (existing)"
+    },
+    {
+      "name": "WhyBodhiSection",
+      "appears_in": ["1:1547", "1:4756"],
+      "type": "existing-primitive",
+      "existing_path": "apps/web/src/components/sections/why-bodhi-section.tsx",
+      "reuse_confidence": "high"
+    },
+    {
+      "name": "AccreditationsSection",
+      "appears_in": ["1:1547", "1:4756"],
+      "type": "existing-primitive",
+      "existing_path": "apps/web/src/components/sections/accreditations-section.tsx",
+      "reuse_confidence": "high"
+    },
+    {
+      "name": "PopularCoursesSection",
+      "appears_in": ["1:1547", "1:4756"],
+      "type": "existing-primitive",
+      "existing_path": "apps/web/src/components/sections/popular-courses-section.tsx",
+      "reuse_confidence": "high",
+      "notes": "Eyebrow 'Top Popular Yoga Course' + grid of ProgramCards"
+    },
+    {
+      "name": "GuidedPathSection",
+      "appears_in": ["1:1547", "1:4756"],
+      "type": "new-section",
+      "reuse_confidence": "medium",
+      "notes": "'Take a Guided Path' / counsellor + assessment + 50-min session — possibly absent or stubbed in current code. codebase-scout to confirm."
+    }
+  ],
+  "page_unique_components": {
+    "1:1547": [
+      "OnlineCoursesHero (image-band hero with eyebrow + H2 + subtitle)",
+      "FilterChipBar (3 pill tab indicators — All / Online / Offline)"
+    ],
+    "1:4756": [
+      "OfflineCoursesHero (alternate hero copy 'Become The Teacher You Were Meant To Be')",
+      "ProgramsIntroSection (featured TTCs carousel with mode mixing)",
+      "PopularCoursesSubGrid (second row of online-only popular courses)"
+    ],
+    "1:7174": [
+      "(none — entirely composed of shared components: SiteHeader, ListingHero, ArticleCard grid, SiteFooter)"
+    ],
+    "1:2343": [
+      "(none — entirely composed of shared components: SiteHeader, ListingHero with breadcrumb variant, ProgramCard grid, SiteFooter)"
+    ]
+  },
+  "responsive_concerns": [
+    "All designs are at 1920px native — implement with Tailwind container `max-w-7xl` (1280) or `max-w-[1472px]` to match the 1472-wide content gutter.",
+    "ProgramCard 3-col grid → 2-col @ md → 1-col @ sm.",
+    "ListingHero overlay text needs responsive font sizing — Host Grotesk Bold 60px (desktop) should map to text-h1 token, which already has clamp behavior.",
+    "SiteHeader nav collapses to hamburger sheet (existing sheet.tsx) under md breakpoint.",
+    "SiteFooter 4-col link grid collapses to 2-col @ md → 1-col @ sm.",
+    "Hero background images are massive (2519 × 872) — serve via next/image with sizes attribute + responsive crops."
+  ],
+  "uncertain": [
+    {
+      "issue": "Footer not in frame 1:2343",
+      "reason": "The Online Advanced Certifications frame has no SiteFooter child. Assumed it inherits via layout, but Figma file may treat it as a partial. Confirm before final assembly."
+    },
+    {
+      "issue": "FilterChipBar interactivity",
+      "reason": "1:1547 has 3 pill indicators (73/53/53 wide) that look like tabs, but no labeled text exists in the metadata. Inferring 'All / Online / Offline' from context — confirm with design."
+    },
+    {
+      "issue": "ProgramCard 'online' floating badge — 4 of 9 cards in 1:2343",
+      "reason": "Only 4 cards have explicit 'Overlay+Border' pills in metadata. Other 5 may use a different badge style or no badge. Treat mode as a card-level prop and always render it consistently."
+    },
+    {
+      "issue": "ArticleCard vs ProgramCard duplication",
+      "reason": "ArticleCard (1:7174) and ProgramCard (1:2343) share 472-wide footprint and gradient image but differ in title typography, height (321 vs 431), and meta row. Decide whether to merge via variant prop or keep as separate components."
+    },
+    {
+      "issue": "PopularCoursesSubGrid in 1:4756",
+      "reason": "The second 'Top Popular Yoga Course' sub-grid (1:5128) may just be a continuation of the parent PopularCoursesSection grid. Inspect layout — could collapse into one section."
+    }
+  ]
+}

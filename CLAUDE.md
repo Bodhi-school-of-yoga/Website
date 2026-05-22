@@ -32,6 +32,22 @@ Bodhi is a yoga-brand site built on Next.js (`apps/web`) + Strapi CMS (`apps/cms
 |------|--------|--------|--------|
 | 2026-05-21 | Initial setup — figma-fetcher, component-extractor, token-extractor, design-validator + figma-extract orchestrator + figma-validation skill | Whole harness | Figma design data extraction + validation layer request |
 
+## Harness: Figma → Component (Design-to-Code Implementation)
+
+**Goal:** Turn a Figma frame URL into working React/Tailwind components in `apps/web/`, reusing existing primitives where possible and building only what's missing — verified against the Figma reference.
+
+**Trigger:** When the user shares a Figma URL with intent to implement ("build this", "make components from this Figma", "convert this design to code", "implement this page"), or asks to rebuild/extend a section from Figma, use the `figma-to-component` skill. For raw extraction-only use `figma-extract`; for design-system docs use `figma-to-design-md`.
+
+**Output locations:**
+- Intermediate artifacts: `_workspace/` (00_input, 01_figma_*, 02_decomposition + scout, 03_build_plan, 04_build_log, 05_qa_report)
+- Final code: `apps/web/src/components/sections/*.tsx`, `apps/web/src/components/ui/*.tsx`, `apps/web/src/app/demo/<section>/page.tsx`
+
+**Change log:**
+| Date | Change | Target | Reason |
+|------|--------|--------|--------|
+| 2026-05-22 | Initial setup — section-decomposer, codebase-scout, build-planner, component-builder, visual-qa + figma-to-component orchestrator (reuses figma-fetcher) | Whole harness | Design-to-code implementation pipeline request |
+| 2026-05-22 | Added interaction-designer agent (Phase 2.5); extended build-planner / component-builder / visual-qa / orchestrator to plan, apply, and verify motion + actions | agents/interaction-designer.md, agents/build-planner.md, agents/component-builder.md, agents/visual-qa.md, skills/figma-to-component/SKILL.md | User requested animations + actions as first-class step |
+
 ## Harness: Figma → design.md Generation (AI Coding Context Doc)
 
 **Goal:** Produce a single `design.md` file (Google's AI-coding-tool design spec) by fusing local design tokens (CSS / Tailwind / JSON / theme files) with optional Figma MCP enrichment. The output is a context document that Claude Code / Cursor / Copilot read to make visually-consistent decisions.

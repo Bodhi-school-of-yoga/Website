@@ -1,0 +1,223 @@
+{
+  "source": {
+    "fileKey": "eqaofBeNUhOUISevtRfOpT",
+    "nodeId": "1:91",
+    "url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-91",
+    "fetchedAt": "2026-05-22"
+  },
+  "node": {
+    "id": "1:91",
+    "name": "Group 1171281701 — Why Bodhi School of Yoga / What We Stand For",
+    "position": { "x": 316, "y": 2786 },
+    "dimensions": { "width": 1283, "height": 685.2 }
+  },
+  "layout": {
+    "type": "two-column horizontal flex",
+    "outerContainer": {
+      "nodeId": "1:92",
+      "display": "flex",
+      "direction": "row",
+      "gap": 57,
+      "alignItems": "start",
+      "width": 1283
+    },
+    "columns": [
+      {
+        "role": "image",
+        "nodeId": "1:93",
+        "name": "Background (image card)",
+        "width": 546,
+        "height": 685,
+        "borderRadius": 20,
+        "overflow": "hidden",
+        "content": "Hero photograph: women practicing yoga outdoors in a park with 'Yoga in the Park — Breathe. Stretch. Connect.' signboard",
+        "imageTransform": {
+          "leftOffsetPct": -38.03,
+          "topOffsetPct": 0,
+          "widthPct": 176.07,
+          "heightPct": 105.26
+        }
+      },
+      {
+        "role": "content",
+        "nodeId": "1:94",
+        "name": "Container",
+        "display": "flex",
+        "direction": "column",
+        "gap": 18.8,
+        "alignItems": "start",
+        "width": 611,
+        "notes": "Contains heading, subhead, 'What We Stand For' heading, the 5-item bullet list, and a wider (691px) green CTA banner that overflows the 611px column"
+      }
+    ]
+  },
+  "background": {
+    "sectionBackground": "page surface (inherits parent — no explicit fill on 1:91/1:92)",
+    "imageCard": {
+      "borderRadius": 20,
+      "fill": "image (hero photo)",
+      "assetUrl": "https://www.figma.com/api/mcp/asset/caf5453e-2f23-46bc-b01f-72bab099b85d"
+    },
+    "ctaBanner": {
+      "nodeId": "1:123",
+      "fill": "#009877",
+      "borderRadius": 8,
+      "width": 691,
+      "height": 98,
+      "padding": 28
+    }
+  },
+  "header": {
+    "eyebrow": null,
+    "heading": {
+      "nodeId": "1:96",
+      "text": "Why Bodhi School of Yoga?",
+      "lines": ["Why Bodhi School", "of Yoga?"],
+      "font": {
+        "family": "Host Grotesk",
+        "weight": "Bold",
+        "size": 56,
+        "lineHeight": 53,
+        "letterSpacing": -0.56,
+        "color": "#2a2420"
+      }
+    },
+    "supportingCopy": {
+      "nodeId": "1:98",
+      "text": "We Empower Women to Heal, Lead, and Rise—Physically, Emotionally, and Spiritually—through the transformative wisdom of Yoga.",
+      "font": {
+        "family": "DM Sans",
+        "weight": "Medium",
+        "size": 17,
+        "lineHeight": 27.75,
+        "color": "#3e3e3e",
+        "fontVariationSettings": "'opsz' 14"
+      }
+    },
+    "subheading": {
+      "nodeId": "1:101",
+      "text": "What We Stand For",
+      "font": {
+        "family": "Host Grotesk",
+        "weight": "SemiBold",
+        "size": 24,
+        "lineHeight": "normal",
+        "color": "#2a2420"
+      }
+    }
+  },
+  "valuePropList": {
+    "nodeId": "1:102",
+    "layout": "single-column vertical list, each row separated by 1px horizontal border rgba(86,147,65,0.15); first row has both top and bottom borders, subsequent rows only bottom border",
+    "rowPadding": { "topFirst": 17, "topSubsequent": 16, "bottom": 17 },
+    "gapBulletToText": 16,
+    "bullet": {
+      "shape": "rounded square",
+      "size": 6,
+      "borderRadius": 3,
+      "color": "#569341",
+      "verticalAlignmentNote": "bullet sits inside a 6x13 wrapper with 7px top padding to align with text baseline"
+    },
+    "itemFont": {
+      "family": "DM Sans",
+      "weight": "Medium",
+      "size": 17,
+      "lineHeight": 22.4,
+      "color": "#2a2420",
+      "fontVariationSettings": "'opsz' 14"
+    },
+    "items": [
+      {
+        "nodeId": "1:106",
+        "text": "Making yoga accessible & empowering for every woman"
+      },
+      {
+        "nodeId": "1:110",
+        "text": "Offering accredited TTCs that reflect women's unique needs"
+      },
+      {
+        "nodeId": "1:114",
+        "text": "Creating a safe space for healing, leadership & sisterhood"
+      },
+      {
+        "nodeId": "1:118",
+        "text": "Supporting women to rise personally & professionally"
+      },
+      {
+        "nodeId": "1:122",
+        "text": "Growing a global network of empowered yoginis"
+      }
+    ]
+  },
+  "ctaBanner": {
+    "nodeId": "1:123",
+    "background": "#009877",
+    "borderRadius": 8,
+    "width": 691,
+    "height": 98,
+    "padding": 28,
+    "alignItems": "center",
+    "justifyContent": "center",
+    "title": {
+      "nodeId": "1:127",
+      "text": "Whether you're a seeker or a teacher — you belong here.",
+      "font": {
+        "family": "DM Sans",
+        "weight": "Bold",
+        "size": 22,
+        "lineHeight": 28.8,
+        "letterSpacing": -0.44,
+        "color": "#faf6ef",
+        "fontVariationSettings": "'opsz' 14"
+      }
+    },
+    "subtitle": {
+      "nodeId": "1:128",
+      "text": "Transform your career, Bodhi is here to guide and support you at every step.",
+      "font": {
+        "family": "DM Sans",
+        "weight": "Medium",
+        "size": 17,
+        "lineHeight": 22.4,
+        "color": "rgba(255,255,255,0.68)",
+        "fontVariationSettings": "'opsz' 14"
+      }
+    }
+  },
+  "assets": [
+    {
+      "role": "section-hero-image",
+      "nodeId": "1:93",
+      "url": "https://www.figma.com/api/mcp/asset/caf5453e-2f23-46bc-b01f-72bab099b85d",
+      "suggestedFilename": "apps/web/public/images/why-bodhi/yoga-in-the-park.jpg",
+      "format": "jpg",
+      "intrinsicSizeNote": "Rendered at 176.07% width / 105.26% height with left offset -38.03% inside a 546x685 rounded card — image is cropped/zoomed; export at high resolution (>= 1100x1100) so the crop stays sharp"
+    }
+  ],
+  "interactiveElements": [],
+  "implementationNotes": {
+    "tokenMapping": {
+      "heading 'Why Bodhi School of Yoga?' (56px / Host Grotesk Bold / #2a2420)": "text-h1 + text-text-primary (#2a2420 is primary text/ink)",
+      "subhead 'We Empower Women to Heal…' (17px / DM Sans Medium / #3e3e3e)": "text-subtext-primary or text-text-secondary",
+      "'What We Stand For' (24px / Host Grotesk SemiBold / #2a2420)": "text-h4 / text-h5 + text-text-primary",
+      "value-prop item text (17px / DM Sans Medium / #2a2420)": "body / text-subtext-primary on text-text-primary",
+      "bullet square #569341": "brand-primary (green) — same brand green used for the divider borders at 15% opacity",
+      "row divider rgba(86,147,65,0.15)": "border-border-brand-subtle (brand-primary at 15%) — or use a neutral border-border-subtle token if brand-on-neutral exists",
+      "CTA banner background #009877": "brand-secondary / brand-teal (NOT brand-primary #569341 — this is a distinct teal accent)",
+      "CTA banner title color #faf6ef": "bg-surface-cream / on-brand text — same as cream page surface used inverted",
+      "CTA banner subtitle rgba(255,255,255,0.68)": "text-on-brand-muted (white @ 68%)",
+      "image card radius 20": "radius-lg (cards)",
+      "CTA banner radius 8": "radius-md (callouts)"
+    },
+    "spacing": {
+      "twoColumnGap": 57,
+      "headerInternalGap": 18.8,
+      "subheadingTopMargin": 13.2,
+      "subheadingToListMargin": 61,
+      "ctaTopOffsetFromSubheading": 386.98,
+      "ctaWidthOverflow": "CTA banner is 691px wide while text column is 611px — it overhangs the right column by 80px (likely extends back across the gap toward the image card). Verify in implementation."
+    },
+    "responsiveGuidance": "On <lg breakpoints, stack the image card above the content. Maintain 5-item single-column list. CTA banner should match the content column width on mobile (avoid 691px overflow).",
+    "accessibility": "Decorative hero image — empty alt. Bullet list should be semantic <ul>/<li>. CTA banner is informational, not a link in this design (no interactiveElements detected). Ensure 4.5:1 contrast for #faf6ef on #009877 (passes for 22px bold) and 3:1 for rgba(255,255,255,0.68) on #009877 (subtitle — verify, may need to bump opacity)."
+  }
+}

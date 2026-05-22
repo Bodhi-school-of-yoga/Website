@@ -1,0 +1,7 @@
+{
+  "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-7667&m=dev",
+  "file_key": "eqaofBeNUhOUISevtRfOpT",
+  "node_id": "1:7667",
+  "label": "node-1-7667",
+  "intent": "Analyze the frame, divide into sections and components, reuse existing components without modification, fetch all images at high quality, build only components that don't exist, run visual-qa, then integrate."
+}
