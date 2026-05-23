@@ -2,8 +2,6 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { TrainersHero } from "@/components/sections/trainers-hero";
 import { TrainersPullQuoteBand } from "@/components/sections/trainers-pull-quote-band";
-import { TrainersFounderSection } from "@/components/sections/trainers-founder-section";
-import { TrainersDepartmentHeads } from "@/components/sections/trainers-department-heads";
 import { TrainersMeetAll } from "@/components/sections/trainers-meet-all";
 import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
 
@@ -20,8 +18,6 @@ export default function OurTrainersPage() {
       <main>
         <TrainersHero />
         <TrainersPullQuoteBand />
-        <TrainersFounderSection />
-        <TrainersDepartmentHeads />
         <TrainersMeetAll />
         <ClosingCtaSection
           theme="light"

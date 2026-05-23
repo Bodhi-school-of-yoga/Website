@@ -1,54 +1,22 @@
-// TrainersMeetAll — responsive trainers grid with breakpoint-specific headers and roster sizes.
-// Mobile shows the 7 faculty trainers; md+ shows the full 18-trainer roster.
+// TrainersMeetAll — "Meet our faculty" section with a responsive grid that scales the Figma
+// mobile design: 1 col on mobile, 2 cols at sm, 3 cols at lg, 4 cols at xl.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { TrainerProfileCard } from "@/components/ui/trainer-profile-card";
-import {
-  trainers as allTrainers,
-  facultyTrainers,
-  type Trainer,
-} from "@/data/trainers";
+import { facultyTrainers, type Trainer } from "@/data/trainers";
 
 export type TrainersMeetAllProps = {
-  eyebrowMobile?: string;
-  titleMobile?: string;
-  eyebrowDesktop?: string;
-  titleDesktop?: string;
+  eyebrow?: string;
+  title?: string;
+  trainers?: Trainer[];
   className?: string;
 };
 
-const titleClasses = cn(
-  "font-heading italic font-normal text-text-secondary",
-  "text-[24px] leading-[1.15] sm:text-[32px] lg:text-[40px]",
-  "max-w-[640px]",
-);
-
-const eyebrowClasses = cn(
-  "text-mini font-medium uppercase text-text-tertiary",
-  "tracking-[0.16em]",
-);
-
-function renderCard(t: Trainer, variant: "card" | "avatar" = "card") {
-  return (
-    <TrainerProfileCard
-      key={t.slug}
-      variant={variant}
-      name={t.name}
-      role={t.role}
-      years={t.years}
-      city={t.city}
-      image={t.image}
-      slug={t.slug}
-    />
-  );
-}
-
 export function TrainersMeetAll({
-  eyebrowMobile = "Meet our faculty",
-  titleMobile = "Teachers who walk the path.",
-  eyebrowDesktop = "The Team",
-  titleDesktop = "Meet All Our Trainers",
+  eyebrow = "MEET OUR FACULTY",
+  title = "Teachers who walk the path.",
+  trainers = facultyTrainers,
   className,
 }: TrainersMeetAllProps) {
   return (
@@ -59,32 +27,43 @@ export function TrainersMeetAll({
       )}
     >
       <div className="mx-auto max-w-[1240px]">
-        <div className="md:hidden flex flex-col items-center gap-3 text-center">
-          <p className={eyebrowClasses}>{eyebrowMobile}</p>
-          <h2 className={titleClasses}>{titleMobile}</h2>
-        </div>
-
-        <div className="hidden md:flex flex-col items-center gap-3 text-center">
-          <p className={eyebrowClasses}>{eyebrowDesktop}</p>
-          <h2 className={titleClasses}>{titleDesktop}</h2>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <p
+            className={cn(
+              "text-mini font-medium uppercase text-text-tertiary",
+              "tracking-[0.16em]",
+            )}
+          >
+            {eyebrow}
+          </p>
+          <h2
+            className={cn(
+              "font-heading italic font-normal text-text-secondary",
+              "text-[24px] leading-[1.15] sm:text-[32px] lg:text-[40px]",
+              "max-w-[640px]",
+            )}
+          >
+            {title}
+          </h2>
         </div>
 
         <div
           className={cn(
-            "mt-10 sm:mt-12 grid gap-4 sm:gap-5",
-            "grid-cols-1 sm:grid-cols-2 md:hidden",
+            "mt-10 sm:mt-12 grid gap-4 sm:gap-5 lg:gap-6",
+            "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
           )}
         >
-          {facultyTrainers.map((t) => renderCard(t, "card"))}
-        </div>
-
-        <div
-          className={cn(
-            "mt-10 sm:mt-12 hidden md:grid gap-4 sm:gap-5 lg:gap-6",
-            "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6",
-          )}
-        >
-          {allTrainers.map((t) => renderCard(t, "avatar"))}
+          {trainers.map((t) => (
+            <TrainerProfileCard
+              key={t.slug}
+              name={t.name}
+              role={t.role}
+              years={t.years}
+              city={t.city}
+              image={t.image}
+              slug={t.slug}
+            />
+          ))}
         </div>
       </div>
     </section>

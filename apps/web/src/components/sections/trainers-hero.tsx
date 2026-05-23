@@ -1,5 +1,6 @@
-// TrainersHero — mint hero band that scales the Figma mobile design across all breakpoints.
-// Devanagari + middle-dot + English eyebrow, italic Fraunces headline, brand-green pill CTA.
+// TrainersHero — responsive hero for the Our Trainers page.
+// Mobile (≤md): mint band matching the Figma reference (no image, dark text, brand-green pill).
+// Desktop (md+): full-bleed background image with dark overlay and light text.
 import * as React from "react";
 import Link from "next/link";
 
@@ -12,6 +13,7 @@ export type TrainersHeroProps = {
   body?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  backgroundImage?: string;
   className?: string;
 };
 
@@ -22,21 +24,34 @@ export function TrainersHero({
   body = "Yoga is not just a series of poses and techniques. It is a lifestyle to be pursued day in and day out. In this, our teachers lead by example.",
   ctaLabel = "Join our classes",
   ctaHref = "/classes",
+  backgroundImage = "/images/trainers/hero-bg.png",
   className,
 }: TrainersHeroProps) {
   return (
     <section
       className={cn(
-        "relative w-full bg-brand-lite",
-        "pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-24",
+        "relative w-full overflow-hidden",
+        "bg-brand-lite md:bg-transparent",
+        "pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-32",
         className,
       )}
     >
+      {/* Desktop-only background image + overlay */}
+      <div
+        aria-hidden="true"
+        className="hidden md:block absolute inset-0 bg-center bg-cover"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      />
+      <div
+        aria-hidden="true"
+        className="hidden md:block absolute inset-0 bg-gradient-to-b from-black/55 to-black/25"
+      />
+
       <div className="relative mx-auto flex w-full max-w-[860px] flex-col items-center page-px text-center">
         <p
           className={cn(
             "text-mini uppercase tracking-[0.16em]",
-            "text-text-tertiary",
+            "text-text-tertiary md:text-text-mint-pale",
           )}
         >
           <span lang="hi">{eyebrowDevanagari}</span>
@@ -46,8 +61,9 @@ export function TrainersHero({
 
         <h1
           className={cn(
-            "mt-3 sm:mt-4 font-heading font-light italic text-text-brand-deep",
-            "text-[44px] leading-[1.05] sm:text-[64px] lg:text-[88px]",
+            "mt-3 sm:mt-4 font-heading font-light italic",
+            "text-text-brand-deep md:text-text-inverse",
+            "text-[44px] leading-[1.05] sm:text-[64px] md:text-[80px] lg:text-[96px]",
           )}
         >
           {headline}
@@ -55,7 +71,8 @@ export function TrainersHero({
 
         <p
           className={cn(
-            "mt-4 sm:mt-5 max-w-[640px] text-text-primary",
+            "mt-4 sm:mt-5 max-w-[640px]",
+            "text-text-primary md:text-text-inverse",
             "text-body-md sm:text-subtext-1 leading-[1.6]",
           )}
         >
@@ -71,7 +88,8 @@ export function TrainersHero({
             "text-body-sm font-semibold",
             "transition-all duration-200",
             "hover:brightness-105 hover:shadow-[0_12px_36px_-12px_rgba(0,152,119,0.4)]",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-lite",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60 focus-visible:ring-offset-2",
+            "focus-visible:ring-offset-brand-lite md:focus-visible:ring-offset-transparent",
           )}
         >
           {ctaLabel}

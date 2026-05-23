@@ -1,0 +1,112 @@
+{
+  "run": "v2",
+  "page": "/our-trainers",
+  "demo_url": "http://localhost:3000/our-trainers",
+  "screenshots": {
+    "mobile_390x1200": "_workspace/05_qa_screenshot_mobile_v2.png",
+    "tablet_768x1024": "_workspace/05_qa_screenshot_tablet_v2.png",
+    "desktop_1440x1024": "_workspace/05_qa_screenshot_desktop_v2.png"
+  },
+  "figma_refs": {
+    "mobile": "_workspace/01_figma_screenshot.png",
+    "desktop": "_workspace/01_figma_screenshot_desktop.png"
+  },
+  "previous_findings": [
+    {
+      "id": "F-001",
+      "severity": "critical",
+      "status": "resolved",
+      "where": "page bottom",
+      "verification": "Only one mint Begin-where-you-are CTA renders on all three viewports. SiteFooterBlock now receives showCta={false}; the previous duplicate dark band is gone.",
+      "evidence": "05_qa_screenshot_{mobile,tablet,desktop}_v2.png — single CTA band immediately above footer"
+    },
+    {
+      "id": "F-002",
+      "severity": "major",
+      "status": "resolved",
+      "where": "hero overlay (desktop + tablet)",
+      "verification": "Overlay swapped from bg-black/[.69] to bg-gradient-to-b from-black/55 to-black/25. Hero now shows the foliage/yoga scene clearly behind the headline; gradient still provides headline contrast.",
+      "evidence": "05_qa_screenshot_desktop_v2.png + 05_qa_screenshot_tablet_v2.png hero region"
+    },
+    {
+      "id": "F-003",
+      "severity": "major",
+      "status": "still-open",
+      "reclassified": false,
+      "where": "TrainersMeetAll cards on md+ (tablet + desktop)",
+      "expected": "Circular avatar (~120-140px) + centered name + small role caption only, plain white surface, 6-col grid (per Figma desktop ref)",
+      "got": "Rectangular 3:4 photo card with thin border, left-aligned name/role/city/years",
+      "fix_suggestion": "Introduce TrainerProfileCard variant=\"avatar\" (circle crop, centered text, no city/years) used by TrainersMeetAll on md+. Keep current rectangular variant for the mobile faculty grid which matches mobile Figma.",
+      "confidence": "high — Figma desktop ref (01_figma_screenshot_desktop.png) explicitly shows circular portraits in a 6-column grid with two lines of centered copy"
+    },
+    {
+      "id": "F-004",
+      "severity": "major",
+      "status": "reclassified-not-a-defect",
+      "reclassified": true,
+      "new_severity": "none",
+      "where": "DepartmentHeadCard background tiles",
+      "rationale": "Re-examined Figma desktop reference (01_figma_screenshot_desktop.png). The Department Heads row in Figma DOES use tonal colored tiles (mint, dark green, lime) with rounded-square photos — the built output matches. The original v1 finding mis-described the Figma intent.",
+      "verification": "Built desktop screenshot side-by-side with Figma desktop ref: 8 cards in 2 rows of 4, tonal-tile backgrounds, names below each tile — structurally identical."
+    },
+    {
+      "id": "F-005",
+      "severity": "minor",
+      "status": "still-open",
+      "reclassified": true,
+      "new_severity": "nit",
+      "where": "mobile hero band, below CTA",
+      "verification": "Visual inspection of 05_qa_screenshot_mobile_v2.png shows the hero band cleanly terminates at the CTA pill — no italic subline. Figma mobile ref at the same crop also shows no clearly-required italic line; the v1 callout was speculative.",
+      "fix_suggestion": "Treat as nit until product confirms an italic subline is required; ignore for this round."
+    },
+    {
+      "id": "F-006",
+      "severity": "minor",
+      "status": "resolved",
+      "where": "hero background asset",
+      "verification": "Default backgroundImage prop now points to /images/trainers/hero-bg.png. Asset confirmed present in /apps/web/public/images/trainers/hero-bg.png (3.2 MB). Hero image visibly renders on tablet + desktop screenshots; no 404 in console for that path."
+    },
+    {
+      "id": "F-007",
+      "severity": "minor",
+      "status": "still-open",
+      "where": "TrainersPullQuoteBand desktop variant",
+      "expected": "Paired-glyph framing — opening quote top-left of block, closing quote after attribution (per Figma desktop pull-quote section)",
+      "got": "Only the opening glyph renders; no closing glyph",
+      "fix_suggestion": "Append a closing quote glyph after the attribution line, or mirror the opening glyph to bottom-right of the block."
+    },
+    {
+      "id": "F-008",
+      "severity": "minor",
+      "status": "resolved",
+      "where": "Meet-all section heading",
+      "verification": "titleDesktop default now reads \"Meet All Our Trainers\" (title case). Built screenshots show the title-cased heading on tablet and desktop."
+    },
+    {
+      "id": "F-009",
+      "severity": "nit",
+      "status": "still-pass",
+      "where": "interactions / CTAs",
+      "verification": "Unchanged — all CTAs remain anchor tags with valid hrefs; no regression."
+    },
+    {
+      "id": "F-010",
+      "severity": "nit",
+      "status": "still-pass",
+      "where": "design tokens",
+      "verification": "Unchanged — no rogue hex colors introduced by the fix patches."
+    }
+  ],
+  "new_findings": [],
+  "summary": {
+    "critical_open": 0,
+    "major_open": 1,
+    "minor_open": 1,
+    "nit_open": 1,
+    "resolved_this_round": ["F-001", "F-002", "F-006", "F-008"],
+    "reclassified_this_round": ["F-004 (major -> not-a-defect)", "F-005 (minor -> nit)"]
+  },
+  "overall_verdict": "FAIL",
+  "verdict_rationale": "F-003 remains a major desktop/tablet visual mismatch (rectangular cards vs Figma's circular avatars in the Meet-All grid). All other fixes from this round verified. Once F-003 ships, expected verdict is PASS-WITH-MINOR (F-007 closing glyph).",
+  "blockers": []
+}

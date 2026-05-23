@@ -1,6 +1,5 @@
-// TrainersPullQuoteBand — dark-green band with a giant italic Fraunces quote glyph, body quote, and attribution.
-import * as React from "react";
-
+// TrainersPullQuoteBand — dark-green band with oversized italic Fraunces opening-quote glyph,
+// body quote, and attribution. Single responsive layout that scales from mobile to desktop.
 import { cn } from "@/lib/utils";
 
 export type TrainersPullQuoteBandProps = {
@@ -18,49 +17,15 @@ export function TrainersPullQuoteBand({
     <section
       className={cn(
         "relative w-full bg-brand-green-deep text-text-inverse",
+        "py-12 sm:py-16 lg:py-20",
         className,
       )}
     >
-      {/* Mobile: single oversized opening-quote glyph anchored top-left */}
-      <div className="relative mx-auto flex h-[354px] w-full max-w-[1100px] flex-col page-px py-12 md:hidden">
+      <div className="relative mx-auto flex w-full max-w-[1100px] flex-col items-start page-px">
         <span
           aria-hidden="true"
           className={cn(
             "font-heading italic font-normal leading-none select-none pointer-events-none",
-            "text-[80px]",
-            "text-text-cyan/35",
-          )}
-        >
-          &ldquo;
-        </span>
-
-        <p
-          className={cn(
-            "mt-4 font-heading italic font-normal",
-            "text-[22px] leading-[1.3]",
-            "text-text-inverse",
-          )}
-        >
-          {quote}
-        </p>
-
-        <p
-          className={cn(
-            "mt-6 font-medium uppercase tracking-[0.16em]",
-            "text-mini",
-            "text-text-mint-pale",
-          )}
-        >
-          {attribution}
-        </p>
-      </div>
-
-      {/* Desktop / tablet: paired-glyph centered layout */}
-      <div className="relative mx-auto hidden max-w-[1100px] flex-col items-start page-px py-12 sm:py-16 md:flex lg:py-20">
-        <span
-          aria-hidden="true"
-          className={cn(
-            "font-heading italic font-normal leading-[0.8] select-none pointer-events-none",
             "text-[80px] sm:text-[120px] lg:text-[160px]",
             "text-text-mint-pale",
           )}

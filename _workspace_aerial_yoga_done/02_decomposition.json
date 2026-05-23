@@ -1,0 +1,438 @@
+{
+  "target_node_id_mobile": "218:30509",
+  "target_node_id_desktop": "1:7667",
+  "page_name": "Aerial Yoga Course (Yoga Teacher Training)",
+  "route_suggestion": "/courses/aerial-yoga",
+  "viewport": {
+    "mobile": { "width": 390, "height": 6885 },
+    "desktop": { "width": 1920, "height": 5390 }
+  },
+  "responsive_strategy": {
+    "breakpoints": {
+      "mobile": "<768px (authored at 390)",
+      "tablet": "768-1023px (NOT authored — interpolate)",
+      "desktop": ">=1024px (authored at 1920)"
+    },
+    "approach": "Mobile-first single-column. At md (768) most multi-card sections shift to 2-col grids; at lg (1024) they finalize to 2-col (Gain), 2-col (Syllabus), grid-of-4 (Instructors row), 3-col (LeadMore / CtaCards). Hero rewires from stacked (mobile) to 2-col text+image (desktop). Tabs become a sticky horizontal nav at lg with full-width backdrop-blur bar. PreRequisites mobile is a simple checklist; desktop adds decorative tilted images flanking the content. CtaCards (3 light cards) appear only in the mobile authored frame — desktop closes with the dark CTA + footer alone. Render CtaCards via `lg:hidden` OR move desktop sibling content into the same component and gate with a `variant` prop.",
+    "token_rule": "All colors via Tailwind tokens from apps/web/src/app/globals.css (bg-surface-*, text-text-*, border-border-*). Typography via text-h1..h5 / text-mini. NO inline hex, NO clamp().",
+    "reuse_strategy": "Nav and Footer reuse existing apps/web/src/components/site-header.tsx and (if present) site-footer / footer component. Codebase-scout will verify exact paths."
+  },
+  "shared_data_modules": [
+    {
+      "path": "apps/web/src/data/aerial-yoga-course.ts",
+      "exports": ["aerialYogaCourse", "AerialYogaCourse"],
+      "shape": "{ slug, breadcrumb, title, subtitle, body, meta: {schedule,location,time,language}, gainHighlights: GainItem[6], syllabus: SyllabusItem[6], preRequisites: string[5], faqs: FAQ[4], instructors: Instructor[4], relatedCourses: Course[3] }",
+      "notes": "Single course-detail data module so the page is data-driven and the same component tree can be reused for other YTT courses later."
+    },
+    {
+      "path": "apps/web/src/data/instructors.ts (shared, may already exist via Trainers harness)",
+      "exports": ["instructors"],
+      "shape": "{ slug, name, role, image, certifications? }",
+      "notes": "Re-checked by codebase-scout against the trainers data module produced for /trainers."
+    }
+  ],
+  "sections": [
+    {
+      "id": "nav",
+      "figma_node_id_mobile": "218:30510",
+      "figma_node_id_desktop": "(top of 1:7667, not separately named — site-wide chrome)",
+      "bbox_mobile": { "x": 0, "y": 0, "w": 390, "h": 75 },
+      "bbox_desktop": { "x": 0, "y": 0, "w": 1920, "h": 80 },
+      "purpose": "Top navigation: Bodhi wordmark (italic Fraunces) + 'School of yoga' caption, Enquire Now pill CTA, hamburger icon on mobile / horizontal links on desktop.",
+      "responsive": "Use existing site-header. Hamburger on mobile (visible), full nav links on desktop.",
+      "components": [
+        {
+          "proposed_name": "SiteHeader",
+          "kind": "reuse-as-is",
+          "source_hint": "apps/web/src/components/site-header.tsx",
+          "props": { "ctaLabel": "Enquire Now", "ctaHref": "/enquire" },
+          "notes": "Codebase-scout to confirm signature; existing header was committed in 622fe62. No new work expected."
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "figma_node_id_mobile": "218:30521",
+      "figma_node_id_desktop": "353:10167",
+      "bbox_mobile": { "x": 0, "y": 75, "w": 390, "h": 611 },
+      "bbox_desktop": { "x": 0, "y": 0, "w": 1920, "h": 900 },
+      "purpose": "Course landing hero: breadcrumb trail, two-line title 'Aerial Yoga / Course' (brand-green italic display), body paragraph, four meta indicators (schedule/location/time/language), primary CTA 'Reserve Your Spot Now', hero photo.",
+      "responsive": "MOBILE: single column on bg-surface-brand-soft (#f0fff8). Stack: breadcrumb -> title (40px) -> body (14px) -> 4 pill chips wrap-flex -> CTA pill -> 240px image rectangle below CTA. DESKTOP: two columns at left-[309px] right-padding-matching (max-w ~1304). Left col w-[638]: breadcrumb -> title (68px) -> body -> row of 4 SQUARE meta cards (110x104, white card + vector icon + 14px label). Right col: large hero image (~600x600). CTA placement differs (visual-QA must verify whether desktop shows the green pill CTA inside left column or relies on the meta cards only — designs suggest CTA is replaced by the prominent meta cards + scroll-down at desktop; treat CTA as `hidden lg:inline-flex` test).",
+      "components": [
+        {
+          "proposed_name": "CourseHero",
+          "kind": "new-section",
+          "props": {
+            "breadcrumb": ["Home", "Yoga courses", "Aerial Yoga Course"],
+            "eyebrow": null,
+            "titleLines": ["Aerial Yoga", "Course"],
+            "body": "Master the art of yoga in the air. Build strength, grace, and confidence while learning to teach this unique practice.",
+            "meta": [
+              { "icon": "calendar", "label": "Sat & Sun" },
+              { "icon": "location", "label": "Studio" },
+              { "icon": "clock", "label": "4:00 – 6:00 PM" },
+              { "icon": "globe", "label": "English" }
+            ],
+            "ctaLabel": "Reserve Your Spot Now",
+            "ctaHref": "/enquire?course=aerial-yoga",
+            "image": "/courses/aerial-yoga/hero.jpg"
+          },
+          "assets": ["hero.jpg"],
+          "notes": "Hero background bg-surface-brand-soft on mobile is full-width; desktop spans full 1924px. Title second line ('Course') uses regular weight in mobile but stays brand-green in both."
+        },
+        {
+          "proposed_name": "MetaCard",
+          "kind": "new-component",
+          "count": 4,
+          "props": { "icon": "ReactNode", "label": "string" },
+          "notes": "Desktop variant = 110x104 white card with rounded-[17px], opacity-82. Mobile variant = inline pill chip with border. Use a `variant: 'pill' | 'card'` prop OR responsive class swaps."
+        }
+      ]
+    },
+    {
+      "id": "tabs",
+      "figma_node_id_mobile": "222:30558",
+      "figma_node_id_desktop": "353:10168",
+      "bbox_mobile": { "x": 0, "y": 686, "w": 390, "h": 56 },
+      "bbox_desktop": { "x": 0, "y": 900, "w": 1920, "h": 82 },
+      "purpose": "Anchor-link tab bar: Overview / Highlights / Curriculum / Eligibility / Overall. Active state = brand-green pill.",
+      "responsive": "MOBILE: full-width white bar with thin border, 5 pill tabs left-aligned (overflow-x-auto if needed). DESKTOP: 1924px-wide sticky bar at y=900 (right under hero) with backdrop-blur and centered/left-padded tab row (gap-[41px]). Use `sticky top-0` once header is scrolled past, or non-sticky absolute as authored — visual-QA decides.",
+      "components": [
+        {
+          "proposed_name": "CourseTabs",
+          "kind": "new-component",
+          "props": {
+            "tabs": [
+              { "id": "overview", "label": "Overview", "active": true },
+              { "id": "highlights", "label": "Highlights" },
+              { "id": "curriculum", "label": "Curriculum" },
+              { "id": "eligibility", "label": "Eligibility" },
+              { "id": "overall", "label": "Overall" }
+            ]
+          },
+          "notes": "Active tab = bg-surface-brand-soft (mobile) / bg-mint-300 (desktop #8fe0cf) with brand-dark text. Inactive = bg-white with text-text-tertiary."
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "figma_node_id_mobile": "222:30569",
+      "figma_node_id_desktop": "353:10169",
+      "bbox_mobile": { "x": 0, "y": 742, "w": 390, "h": 391 },
+      "bbox_desktop": { "x": 0, "y": 982, "w": 1920, "h": 333 },
+      "purpose": "Course overview: small uppercase eyebrow 'OVERVIEW', italic display heading 'Elevate Your Practice — Literally', two body paragraphs.",
+      "responsive": "MOBILE: full-width padded 24px, heading 26px, body 14px. DESKTOP: centered container max-w ~880px at left-[308px], heading scales up, body remains comfortable reading width. No layout fork — only typography scale.",
+      "components": [
+        {
+          "proposed_name": "SectionHeader",
+          "kind": "new-component",
+          "props": { "eyebrow": "OVERVIEW", "title": "Elevate Your Practice — Literally" },
+          "notes": "Reused by Gain, Syllabus, PreRequisites, Instructors, FAQ, LeadMore sections — shared primitive."
+        },
+        {
+          "proposed_name": "CourseOverview",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "OVERVIEW",
+            "title": "Elevate Your Practice — Literally",
+            "body": [
+              "Master the art of yoga in the air with our Aerial Yoga Teacher Training Course at Bodhi School of Yoga. Build strength, grace, and confidence while learning to teach this unique practice.",
+              "You'll combine traditional yoga postures with graceful aerial movements — learning how inversions decompress the spine, build core stability, and create a deeply healing experience for your future students."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gain",
+      "figma_node_id_mobile": "222:30574",
+      "figma_node_id_desktop": "353:10170",
+      "bbox_mobile": { "x": 0, "y": 1133, "w": 390, "h": 779 },
+      "bbox_desktop": { "x": 0, "y": 1315, "w": 1920, "h": 650 },
+      "purpose": "'What You'll Gain' — 6 highlight cards each with circular icon, bold title, body description.",
+      "responsive": "MOBILE: single-column stack of 6 cards (each 342w, bg-surface-soft, border, rounded-[12px], p-[16px]). DESKTOP: 2-column grid of 3 rows (cards 641x151–159, white bg, drop-shadow, rounded-[19px], col gap 18px, row gap 15px). Card width grows on desktop; icon moves to slightly different position.",
+      "components": [
+        {
+          "proposed_name": "GainGrid",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "HIGHLIGHTS",
+            "title": "What You'll Gain",
+            "items": [
+              { "icon": "feather", "title": "Yoga Meets Flight", "body": "Combine traditional poses with graceful aerial movements." },
+              { "icon": "spine", "title": "Relieve & Realign", "body": "Inversions decompress the spine and boost flexibility." },
+              { "icon": "smile", "title": "Therapeutic & Fun", "body": "Enjoy emotional release through playful, healing practice." },
+              { "icon": "leaf", "title": "Build Strength", "body": "Improve core stability, balance, and control." },
+              { "icon": "rocket", "title": "Teach with an Edge", "body": "Gain a unique certification and grow your yoga career with a skill few teachers have." },
+              { "icon": "people", "title": "Join a Community", "body": "Connect with passionate practitioners and expert teachers at Bodhi School of Yoga." }
+            ]
+          }
+        },
+        {
+          "proposed_name": "GainCard",
+          "kind": "new-component",
+          "count": 6,
+          "props": { "icon": "ReactNode", "title": "string", "body": "string" }
+        }
+      ]
+    },
+    {
+      "id": "syllabus",
+      "figma_node_id_mobile": "222:30607",
+      "figma_node_id_desktop": "353:10171",
+      "bbox_mobile": { "x": 0, "y": 1912, "w": 390, "h": 833 },
+      "bbox_desktop": { "x": 0, "y": 1965, "w": 1920, "h": 348 },
+      "purpose": "'Course Syllabus' — 6 numbered cards (01–06) each with module title + one-line description.",
+      "responsive": "MOBILE: single column, 6 cards stacked (342x ~110, white, border, rounded-[14px], 18px padding). DESKTOP: 3-col x 2-row grid of compact cards, much shorter overall section. Module number stays uppercase brand-dark.",
+      "components": [
+        {
+          "proposed_name": "SyllabusGrid",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "CURRICULUM",
+            "title": "Course Syllabus",
+            "modules": [
+              { "n": "01", "title": "Rigging Essentials", "body": "How to safely set up and use aerial hammocks" },
+              { "n": "02", "title": "Aerial Sequences", "body": "Beginner to advanced aerial yoga flows" },
+              { "n": "03", "title": "Teaching Methodology", "body": "Conducting private and group aerial sessions" },
+              { "n": "04", "title": "Alignment & Anatomy in the Air", "body": "How aerial postures impact muscles and joints" },
+              { "n": "05", "title": "Contraindications & Safety", "body": "Modifications for common conditions" },
+              { "n": "06", "title": "Business of Aerial Yoga", "body": "Building your brand and classes" }
+            ]
+          }
+        },
+        {
+          "proposed_name": "SyllabusCard",
+          "kind": "new-component",
+          "count": 6,
+          "props": { "n": "string", "title": "string", "body": "string" }
+        }
+      ]
+    },
+    {
+      "id": "prerequisites",
+      "figma_node_id_mobile": "222:30640",
+      "figma_node_id_desktop": "1:7992",
+      "bbox_mobile": { "x": 0, "y": 2745, "w": 390, "h": 522 },
+      "bbox_desktop": { "x": 0, "y": 2313, "w": 1920, "h": 556 },
+      "purpose": "'Pre-Requisites' eligibility list — checklist of 3-5 items (the mobile design repeats each row twice in the source — content shows 3 unique items: 'Basic understanding of yoga postures', 'Physically fit to perform inversions and aerial movements', 'Willingness to explore new boundaries of body and breath').",
+      "responsive": "MOBILE: simple centered checklist with brand-green check icons on bg-white. DESKTOP: bg-surface-brand-soft (#f0fff8) full-bleed band; checklist centered; TWO decorative tilted course photos flanking (left photo ~233x302 rotated -6.81deg at left-[103px]; right photo at left-[1618px]). Hide decorative images on mobile.",
+      "uncertain_note": "Source content list has each item duplicated; treat as 3 unique items + verify against screenshot during build.",
+      "components": [
+        {
+          "proposed_name": "PreRequisites",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "ELIGIBILITY",
+            "title": "Pre-Requisites",
+            "items": [
+              "Basic understanding of yoga postures",
+              "Physically fit to perform inversions and aerial movements",
+              "Willingness to explore new boundaries of body and breath"
+            ],
+            "decorativeImages": ["/courses/aerial-yoga/prereq-left.jpg", "/courses/aerial-yoga/prereq-right.jpg"]
+          }
+        },
+        {
+          "proposed_name": "CheckRow",
+          "kind": "new-component",
+          "count": 3,
+          "props": { "label": "string" },
+          "notes": "Brand-green circle with white check + 14–16px label."
+        }
+      ]
+    },
+    {
+      "id": "instructors",
+      "figma_node_id_mobile": "222:30673",
+      "figma_node_id_desktop": "1:7770",
+      "bbox_mobile": { "x": 0, "y": 3267, "w": 390, "h": 527 },
+      "bbox_desktop": { "x": 0, "y": 2869, "w": 1920, "h": 294 },
+      "purpose": "'Meet Your Instructor's' — 4 instructor rows, each with circular avatar + name + role line.",
+      "responsive": "MOBILE: 4 horizontal rows (avatar 56 + name + role) stacked. DESKTOP: 2x2 grid (cards w-[710px], avatar 98 in rounded-[104.5px] circle, name + role to right). Could also render as 1x4 horizontal scroller — codebase-scout to confirm if a TrainerCard primitive already exists.",
+      "components": [
+        {
+          "proposed_name": "InstructorsBand",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "YOUR GUIDE",
+            "title": "Meet Your Instructor's",
+            "instructors": [
+              { "name": "Atheesh Kumar", "role": "Certified Aerial Yoga Instructor · Bodhi School of Yoga", "image": "/instructors/atheesh-kumar.jpg" },
+              { "name": "Sneha Shankar", "role": "Certified Aerial Yoga Instructor · Bodhi School of Yoga", "image": "/instructors/sneha-shankar.jpg" },
+              { "name": "VijayaRaghavan", "role": "Certified Aerial Yoga Instructor · Bodhi School of Yoga", "image": "/instructors/vijayaraghavan.jpg" },
+              { "name": "Prajakta Jadhav", "role": "Certified Aerial Yoga Instructor · Bodhi School of Yoga", "image": "/instructors/prajakta-jadhav.jpg" }
+            ]
+          }
+        },
+        {
+          "proposed_name": "InstructorRow",
+          "kind": "new-component",
+          "count": 4,
+          "props": { "name": "string", "role": "string", "image": "string" },
+          "notes": "Codebase-scout to verify if existing TrainerCard from /trainers harness can be reused."
+        }
+      ]
+    },
+    {
+      "id": "faq",
+      "figma_node_id_mobile": "222:30696",
+      "figma_node_id_desktop": "1:7821",
+      "bbox_mobile": { "x": 0, "y": 3794, "w": 390, "h": 521 },
+      "bbox_desktop": { "x": 314, "y": 3163, "w": 910, "h": 506 },
+      "purpose": "'Frequently Asked Questions' accordion — 4 items, first one expanded by default with body copy visible. Border-bottom dividers between items.",
+      "responsive": "MOBILE: full-width 24px-padded. DESKTOP: centered max-w 910px at left-[314px]. Same accordion behavior. Eyebrow 'FAQ'.",
+      "components": [
+        {
+          "proposed_name": "FAQAccordion",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "FAQ",
+            "title": "Frequently Asked Questions",
+            "items": [
+              { "q": "Do I need prior experience in aerial yoga?", "a": "No prior aerial yoga experience is required. A basic understanding of yoga postures and physical fitness to perform inversions and aerial movements is recommended.", "defaultOpen": true },
+              { "q": "Is this TTC Yoga Alliance certified?", "a": "Yes — Bodhi is a Yoga Alliance Registered School (RYS-200, RYS-300). Course certification details on enquiry." },
+              { "q": "Will I get to practice on hammocks during training?", "a": "Yes. Every session is hands-on; you'll spend significant time practising on the aerial hammock under supervision." },
+              { "q": "Can this course help me start my own aerial yoga classes?", "a": "Yes — the syllabus includes a dedicated 'Business of Aerial Yoga' module covering branding, pricing, and launching classes." }
+            ]
+          },
+          "notes": "Accordion answers for items 2–4 are inferred (Figma shows only collapsed titles). Builder may stub or fetch real content from CMS later."
+        },
+        {
+          "proposed_name": "AccordionItem",
+          "kind": "existing-primitive",
+          "source_hint": "Likely already in apps/web/src/components/ui/accordion.tsx (shadcn). Codebase-scout to confirm; otherwise build.",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "id": "leadmore",
+      "figma_node_id_mobile": "222:30720",
+      "figma_node_id_desktop": "353:10175",
+      "bbox_mobile": { "x": 0, "y": 4315, "w": 390, "h": 1231 },
+      "bbox_desktop": { "x": 0, "y": 3669, "w": 1920, "h": 815 },
+      "purpose": "'Lead to more courses from us' cross-sell — eyebrow 'TOP POPULAR YOGA COURSE', italic display title, subtitle, then 3 horizontally arranged course cards (image, title, meta chips, instructor avatar/initial + name, View Program link).",
+      "responsive": "MOBILE: single column of 3 cards stacked. DESKTOP: 3-column row of cards centered max-w 1291px. Card uses cover image + chip row (• 4 weeks / • Online / • English) + instructor row + 'View Program' CTA.",
+      "components": [
+        {
+          "proposed_name": "RelatedCoursesGrid",
+          "kind": "new-section",
+          "props": {
+            "eyebrow": "TOP POPULAR YOGA COURSE",
+            "title": "Lead to more courses from us",
+            "subtitle": "Deepen your wisdom and elevate your yoga career with our specialized yoga certifications.",
+            "courses": [
+              { "title": "Online Weight Loss Coach Certification", "duration": "4 weeks", "format": "Online", "language": "English", "instructor": { "name": "Janardhan Durga Prasad", "initials": "JD" }, "image": "/courses/weight-loss-coach/cover.jpg", "href": "/courses/weight-loss-coach" },
+              { "title": "Online Mudra Therapy Yoga Teacher Training", "duration": "2 weeks", "format": "Online", "language": "English", "instructor": { "name": "Prarthana Patel", "initials": "PP" }, "image": "/courses/mudra-therapy/cover.jpg", "href": "/courses/mudra-therapy" },
+              { "title": "Online MAT Pilates Instructor Certification", "duration": "4 weeks", "format": "Online", "language": "English", "instructor": { "name": "Lakshmi Yalamudi", "initials": "LY" }, "image": "/courses/mat-pilates/cover.jpg", "href": "/courses/mat-pilates" }
+            ]
+          }
+        },
+        {
+          "proposed_name": "RelatedCourseCard",
+          "kind": "new-component",
+          "count": 3,
+          "props": { "title": "string", "duration": "string", "format": "string", "language": "string", "instructor": "{name,initials,avatar?}", "image": "string", "href": "string" }
+        }
+      ]
+    },
+    {
+      "id": "cta-section",
+      "figma_node_id_mobile": "222:30769",
+      "figma_node_id_desktop": "339:8455",
+      "bbox_mobile": { "x": 0, "y": 5546, "w": 390, "h": 375 },
+      "bbox_desktop": { "x": 0, "y": 4583, "w": 1920, "h": 430 },
+      "purpose": "Dark closing CTA: 'Begin where you are.' Bodhi italic wordmark above, mint-green accent on 'you are.', subtitle paragraph, single 'Try a class, free' pill button.",
+      "responsive": "MOBILE: bg-surface-dark (#00282c) band, centered text, 32–40px headline. DESKTOP: same background extending full width, 90px headline (much larger), centered max-w ~1138px. Same accent + same CTA pill (bg-mint #8ee0ce / text-dark).",
+      "components": [
+        {
+          "proposed_name": "ClosingCTABand",
+          "kind": "new-section",
+          "props": {
+            "wordmark": "Bodhi",
+            "titleStart": "Begin where ",
+            "titleAccent": "you are.",
+            "body": "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that.",
+            "ctaLabel": "Try a class, free",
+            "ctaHref": "/try"
+          },
+          "notes": "Heading uses Fraunces Italic + Host Grotesk Regular mix as in Figma. Background dark, text white, accent mint."
+        }
+      ]
+    },
+    {
+      "id": "cta-cards",
+      "figma_node_id_mobile": "222:30775",
+      "figma_node_id_desktop": "(none — not in desktop authored frame)",
+      "bbox_mobile": { "x": 0, "y": 5921, "w": 390, "h": 540 },
+      "bbox_desktop": null,
+      "purpose": "Three light cards each with title, body, CTA: Free Trial Session / Speak to us / Take a Guided Path.",
+      "responsive": "MOBILE ONLY in authored design. Render via `lg:hidden` OR also render on desktop above the closing CTA band — designers likely want these on desktop too (typical pattern). Default plan: keep visible at all breakpoints; on md+ render as 3-column row. Visual-QA will flag if desktop authored design strictly excludes them.",
+      "components": [
+        {
+          "proposed_name": "CtaCardsRow",
+          "kind": "new-section",
+          "props": {
+            "cards": [
+              { "title": "Free Trial Session", "body": "50 Mins Session with the option of choosing from 10 slots in a day.", "ctaLabel": "Join now", "ctaHref": "/free-trial" },
+              { "title": "Speak to us", "body": "Talk to counsellor who can assess and offer recommendations", "ctaLabel": "Contact us", "ctaHref": "/contact" },
+              { "title": "Take a Guided Path", "body": "Our assessment will guide you take direction best suited based on your experience", "ctaLabel": "Start now", "ctaHref": "/assessment" }
+            ]
+          }
+        },
+        {
+          "proposed_name": "CtaCard",
+          "kind": "new-component",
+          "count": 3,
+          "props": { "title": "string", "body": "string", "ctaLabel": "string", "ctaHref": "string" }
+        }
+      ]
+    },
+    {
+      "id": "footer",
+      "figma_node_id_mobile": "222:30791",
+      "figma_node_id_desktop": "339:8400",
+      "bbox_mobile": { "x": 0, "y": 6461, "w": 390, "h": 424 },
+      "bbox_desktop": { "x": 0, "y": 4484, "w": 1920, "h": 906 },
+      "purpose": "Footer on bg-surface-dark (#00282c): Bodhi wordmark + brand tagline, 4 link columns (School / Visit / Stay close / Lineage-style mini-block), copyright + certification line + signature tagline.",
+      "responsive": "MOBILE: stacked columns (~1col). DESKTOP: 4-column CSS grid (1.5fr 1fr 1fr 1fr). Tagline + RYS line at bottom row.",
+      "components": [
+        {
+          "proposed_name": "SiteFooter",
+          "kind": "reuse-as-is",
+          "source_hint": "Codebase-scout: check apps/web/src/components/ for footer/site-footer/footer.tsx. If absent, promote to new-section.",
+          "props": {
+            "wordmark": "Bodhi",
+            "tagline": "A school for teachers, a home for seekers.",
+            "summary": "Practice, taught honestly.",
+            "domain": "bodhischoolofyoga.com",
+            "columns": [
+              { "heading": "School", "links": ["Teacher Training", "Workshops", "Classes", "Faculty", "Lineage"] },
+              { "heading": "Visit", "links": ["The Practice Room,", "2nd floor, Quiet Lane", "City · India", "Get directions →"] },
+              { "heading": "Stay close", "links": ["Newsletter", "Instagram", "YouTube", "Email us"] }
+            ],
+            "certification": "© Bodhi School of Yoga · Yoga Alliance Registered School (RYS-200, RYS-300)",
+            "signature": "Designed quietly. Practised daily."
+          }
+        }
+      ]
+    }
+  ],
+  "uncertain": [
+    { "figma_node_id_mobile": "222:30640 (PreRequisites)", "reason": "Mobile content shows duplicate rows — 3 unique items but rendered 5 times (collapsed to 3 in this decomposition)." },
+    { "figma_node_id_mobile": "218:30521 (Hero CTA on desktop)", "reason": "Desktop hero text column ends after 4 meta cards; the green 'Reserve Your Spot Now' CTA may be hidden on desktop or moved into the tabs area. Visual-QA must confirm." },
+    { "figma_node_id_mobile": "222:30775 (CtaCards)", "reason": "No corresponding section in desktop frame 1:7667. Decision: render at all breakpoints unless user/QA says otherwise. Could be a designer omission." },
+    { "figma_node_id_mobile": "222:30696 (FAQ items 2–4)", "reason": "Only question titles visible in design; answer bodies are inferred placeholders. Need real copy from content team or CMS." },
+    { "figma_node_id_desktop": "353:10168 (Tabs sticky behavior)", "reason": "Desktop tabs sit at top-[900px] with backdrop-blur. Unclear whether they're meant to be sticky on scroll or static. Default to non-sticky; visual-QA confirms." },
+    { "figma_node_id": "Instructor avatars", "reason": "Designs use circular avatar borders but the actual portrait images are not yet listed; mobile and desktop both omit explicit src. Builder will use placeholder slugs." }
+  ],
+  "reuse_candidates": [
+    { "component": "SiteHeader", "path": "apps/web/src/components/site-header.tsx", "confidence": "high", "reason": "Existing, recently committed (622fe62)." },
+    { "component": "SiteFooter", "path": "apps/web/src/components/site-footer.tsx (?)", "confidence": "medium", "reason": "Likely exists per recent commits b3f65ca / 80b0636; codebase-scout to verify." },
+    { "component": "AccordionItem (FAQ)", "path": "apps/web/src/components/ui/accordion.tsx (?)", "confidence": "medium", "reason": "shadcn-style primitive likely present." },
+    { "component": "Button (CTA pill)", "path": "apps/web/src/components/ui/button.tsx", "confidence": "high", "reason": "Standard primitive." },
+    { "component": "Badge / Chip", "path": "apps/web/src/components/ui/badge.tsx (?)", "confidence": "medium", "reason": "For hero meta chips on mobile and tab pills." },
+    { "component": "InstructorRow / TrainerCard", "path": "apps/web/src/components/trainer-card.tsx (?)", "confidence": "medium", "reason": "If Trainers harness produced a TrainerCard, the instructor band can reuse it." }
+  ]
+}

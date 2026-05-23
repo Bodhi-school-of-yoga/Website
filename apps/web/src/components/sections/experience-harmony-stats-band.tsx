@@ -82,7 +82,7 @@ export function ExperienceHarmonyStatsBand({
   return (
     <section
       className={cn(
-        "relative w-full overflow-visible bg-brand-lite py-24 sm:py-28 lg:py-32 lg:min-h-[560px]",
+        "relative w-full overflow-hidden bg-brand-lite py-24 sm:py-28 lg:py-32 lg:min-h-[560px]",
         className,
       )}
     >
@@ -154,7 +154,7 @@ function TiltedOverflowPhoto({
       className={cn(
         "pointer-events-none absolute z-0 hidden overflow-hidden rounded-[18px] shadow-[0_24px_56px_-16px_rgba(0,40,44,0.28)] ring-1 ring-white/60 lg:block",
         isTopRight
-          ? "top-[-64px] right-[2%] xl:right-[3%]"
+          ? "top-[-64px] right-[2%] xl:right-[4%]"
           : "bottom-[-64px] left-[2%] xl:left-[3%]",
       )}
       style={{ width, height }}

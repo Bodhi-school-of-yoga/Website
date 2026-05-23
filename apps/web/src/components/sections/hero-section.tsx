@@ -1,6 +1,11 @@
 "use client";
 
-// HeroSection — primary homepage hero with background image, headline, sub-copy, and primary CTA buttons.
+// HeroSection — homepage hero. Desktop layout is anchored to the 1920px Figma
+// design (node 1:32). All horizontal positions, image size, and the watermark
+// are expressed in vw of 1920 (see .hero-1920 utility in globals.css) so the
+// design holds at 1920 and compresses proportionally on smaller desktops.
+// Typography uses Bodhi tokens (text-h1 / text-hero-eyebrow / text-hero-sub)
+// which scale through --u-display / --u-text, both anchored at 1920.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -48,15 +53,27 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
   },
 ];
 
+const DEFAULTS = {
+  eyebrow: "बोधि  ·  The awakening",
+  headlineLead: "A school for teachers and a ",
+  headlineAccent: "home for seekers.",
+  subcopy:
+    "Bodhi is a yoga teacher training institute and practice studio. We train future teachers, host workshops in health and wellness, and hold daily classes online and in person.",
+  photoSrc: "/images/hero/foreground.png",
+  photoAlt: "A student in seated meditation pose at Bodhi studio.",
+  watermark: "बोधि",
+  offerLabel: "what do we offer",
+};
+
 export function HeroSection({
-  eyebrow = "बोधि  ·  The awakening",
-  headlineLead = "A school for teachers and a ",
-  headlineAccent = "home for seekers.",
-  subcopy = "Bodhi is a yoga teacher training institute and practice studio. We train future teachers, host workshops in health and wellness, and hold daily classes online and in person.",
-  photoSrc = "/images/hero/foreground.png",
-  photoAlt = "A student in seated meditation pose at Bodhi studio.",
-  watermark = "बोधि",
-  offerLabel = "what do we offer",
+  eyebrow = DEFAULTS.eyebrow,
+  headlineLead = DEFAULTS.headlineLead,
+  headlineAccent = DEFAULTS.headlineAccent,
+  subcopy = DEFAULTS.subcopy,
+  photoSrc = DEFAULTS.photoSrc,
+  photoAlt = DEFAULTS.photoAlt,
+  watermark = DEFAULTS.watermark,
+  offerLabel = DEFAULTS.offerLabel,
   offers = DEFAULT_OFFERS,
   className,
 }: HeroSectionProps) {
@@ -68,134 +85,371 @@ export function HeroSection({
         className,
       )}
     >
-      {/* DESKTOP layout (lg+): photo + watermark absolutely positioned, text + chips in normal flow */}
-      <div className="relative hidden min-h-[720px] lg:block xl:min-h-[780px] 2xl:min-h-[820px]">
-        {/* Watermark — behind everything, sized to dominate the right side */}
-        <span
-          aria-hidden
-          lang="hi"
-          className={cn(
-            "pointer-events-none absolute select-none font-heading font-normal italic",
-            "right-[-2vw] top-[120px] z-0 leading-[0.82] tracking-[-0.04em] whitespace-nowrap",
-            "text-[color:var(--color-text-brand)]/[0.13]",
-            "text-[22rem] xl:text-[28rem] 2xl:text-[32rem]",
-          )}
-          style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
-        >
-          {watermark}
-        </span>
-
-        {/* Photo — anchored top-right, bleeds slightly past viewport right edge.
-            Source PNG is 1625×968 with woman on the right half; object-position keeps her centered. */}
-        <div
-          className={cn(
-            "pointer-events-none absolute right-[-1.5%] top-[110px] z-10",
-            "w-[480px] xl:w-[560px] 2xl:w-[620px]",
-          )}
-          style={{ aspectRatio: "865 / 952" }}
-        >
-          <div className="relative h-full w-full overflow-hidden rounded-l-[28px]">
-            <Image
-              src={photoSrc}
-              alt={photoAlt}
-              fill
-              priority
-              sizes="(min-width:1536px) 620px, (min-width:1280px) 560px, 480px"
-              className="object-cover object-[68%_top]"
-            />
-          </div>
-        </div>
-
-        {/* Content column — text + chips, inset from left to match Figma x=308/1920 (~16%) */}
-        <div className="relative z-20 pl-[clamp(32px,12vw,300px)] pr-[clamp(24px,4vw,80px)] pt-[clamp(120px,10vw,180px)] pb-6">
-          <div className="max-w-[480px] xl:max-w-[620px] 2xl:max-w-[760px]">
-            <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
-            <h1 className="mt-4 font-heading text-h3 xl:text-h2 2xl:text-h1">
-              <span className="text-text-primary">{headlineLead}</span>
-              <span className="text-text-brand">{headlineAccent}</span>
-            </h1>
-            <p className="mt-5 max-w-[440px] xl:max-w-[520px] 2xl:max-w-[600px] text-subtext-2 text-text-tertiary">
-              {subcopy}
-            </p>
-          </div>
-
-          {/* Chips — sit below text, max 1302px wide to match Figma */}
-          <div className="relative z-30 mt-8 xl:mt-10">
-            <p className="mb-4 text-mini uppercase text-text-brand">
-              {offerLabel}
-            </p>
-            <ul className="grid max-w-[1100px] xl:max-w-[1200px] grid-cols-3 gap-3 xl:gap-4">
-              {offers.map((offer) => (
-                <li key={offer.label}>
-                  <HeroOfferChipCard offer={offer} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* MOBILE / TABLET layout (< lg): stacked, watermark hidden, photo below text */}
-      <div className="relative lg:hidden">
-        <div className="mx-auto w-full max-w-[720px] px-5 sm:px-8 pt-16 pb-10 sm:pt-20">
-          <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
-          <h1 className="mt-4 font-heading text-h5 leading-[1.15] sm:text-h4 sm:leading-[1.1] md:text-h3">
-            <span className="text-text-primary">{headlineLead}</span>
-            <span className="text-text-brand">{headlineAccent}</span>
-          </h1>
-          <p className="mt-5 text-subtext-1 text-text-tertiary">{subcopy}</p>
-
-          <div className="relative mt-8 aspect-[4/5] w-full overflow-hidden rounded-[24px]">
-            <Image
-              src={photoSrc}
-              alt={photoAlt}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-[center_top]"
-            />
-          </div>
-
-          <div className="mt-10">
-            <p className="mb-4 text-mini uppercase text-text-brand">
-              {offerLabel}
-            </p>
-            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {offers.map((offer) => (
-                <li key={offer.label}>
-                  <HeroOfferChipCard offer={offer} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+      <HeroDesktop
+        eyebrow={eyebrow}
+        headlineLead={headlineLead}
+        headlineAccent={headlineAccent}
+        subcopy={subcopy}
+        photoSrc={photoSrc}
+        photoAlt={photoAlt}
+        watermark={watermark}
+        offerLabel={offerLabel}
+        offers={offers}
+      />
+      <HeroMobile
+        eyebrow={eyebrow}
+        headlineLead={headlineLead}
+        headlineAccent={headlineAccent}
+        subcopy={subcopy}
+        photoSrc={photoSrc}
+        photoAlt={photoAlt}
+        offerLabel={offerLabel}
+        offers={offers}
+      />
     </section>
   );
 }
 
-function HeroOfferChipCard({ offer }: { offer: HeroOfferChip }) {
+// ---------------------------------------------------------------------------
+// Desktop (lg+) — 1920-anchored layout.
+// ---------------------------------------------------------------------------
+
+type DesktopProps = Required<
+  Pick<
+    HeroSectionProps,
+    | "eyebrow"
+    | "headlineLead"
+    | "headlineAccent"
+    | "subcopy"
+    | "photoSrc"
+    | "photoAlt"
+    | "watermark"
+    | "offerLabel"
+    | "offers"
+  >
+>;
+
+function HeroDesktop({
+  eyebrow,
+  headlineLead,
+  headlineAccent,
+  subcopy,
+  photoSrc,
+  photoAlt,
+  watermark,
+  offerLabel,
+  offers,
+}: DesktopProps) {
+  return (
+    <div
+      className={cn(
+        "hero-1920",
+        "relative hidden lg:block pt-[2rem]",
+        "min-h-[var(--hero-min-h)]",
+      )}
+    >
+      <HeroWatermark text={watermark} />
+      <HeroImage src={photoSrc} alt={photoAlt} />
+
+      <div
+        className={cn(
+          "relative z-20",
+          "pl-[12rem] pr-[var(--hero-gutter)]",
+          "pt-[var(--hero-text-pt)] pb-12",
+        )}
+      >
+        <HeroEyebrow text={eyebrow} />
+        <HeroHeadline lead={headlineLead} accent={headlineAccent} />
+        <HeroSubhead text={subcopy} />
+        <HeroOfferRow label={offerLabel} offers={offers} />
+      </div>
+    </div>
+  );
+}
+
+function HeroWatermark({ text }: { text: string }) {
+  // Exact Figma spec (node 1:37): Fraunces 520px / 442px line-height (85%) /
+  // -20.8px letter-spacing (-0.04em) / color #038F9F at 10% opacity.
+  // Fraunces lacks Devanagari glyphs so the browser falls back to a system
+  // Devanagari face — same behavior as Figma.
+  return (
+    <span
+      aria-hidden
+      lang="hi"
+      className={cn(
+        "pointer-events-none absolute z-0 select-none whitespace-nowrap",
+        "left-[var(--hero-watermark-x)] top-[10rem]",
+        "font-normal not-italic",
+        "leading-[0.85] tracking-[-0.04em]",
+        "text-[length:var(--hero-watermark-w)]",
+        "text-[color:var(--color-brand-teal)] opacity-10",
+      )}
+      style={{
+        fontFamily: 'Fraunces, "Noto Sans Devanagari", system-ui, sans-serif',
+      }}
+    >
+      {text}
+    </span>
+  );
+}
+
+function HeroImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div
+      className={cn(
+        "pointer-events-none absolute z-10",
+        "-bottom-18 -right-32",
+        " h-[80vh] w-[80vw] ",
+      )}
+    >
+      <div className="relative h-full w-full">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority
+          sizes="vw"
+          className="object-contain object-bottom"
+        />
+      </div>
+    </div>
+  );
+}
+
+function HeroEyebrow({ text }: { text: string }) {
+  return (
+    <p
+      className={cn(
+        "uppercase whitespace-nowrap",
+        "text-hero-eyebrow",
+        "text-[color:var(--color-text-brand-emerald)]",
+      )}
+    >
+      {text}
+    </p>
+  );
+}
+
+function HeroHeadline({ lead, accent }: { lead: string; accent: string }) {
+  return (
+    <h1
+      className={cn(
+        "mt-[1.46vw]",                       // 28 / 1920
+        "max-w-[var(--hero-headline-w)]",
+        "font-heading text-hero-headline",
+      )}
+    >
+      <span className="text-text-primary">{lead}</span>
+      <span className="text-text-brand">{accent}</span>
+    </h1>
+  );
+}
+
+function HeroSubhead({ text }: { text: string }) {
+  return (
+    <p
+      className={cn(
+        "mt-[1.30vw]",                       // 25 / 1920
+        "max-w-[var(--hero-sub-w)]",
+        "text-hero-sub",
+        "text-[color:var(--color-text-subdued)]",
+      )}
+    >
+      {text}
+    </p>
+  );
+}
+
+function HeroOfferRow({
+  label,
+  offers,
+}: {
+  label: string;
+  offers: HeroOfferChip[];
+}) {
+  return (
+    <div className="relative z-30 mt-24">
+      <p
+        className={cn(
+          "mb-4 uppercase",
+          "text-xs",
+          "text-[color:var(--color-text-brand-emerald)]",
+        )}
+      >
+        {label}
+      </p>
+      <ul
+        className={cn(
+          "grid grid-cols-3",
+          "gap-[var(--hero-chips-gap)]",
+          "max-w-[var(--hero-chips-max-w)]",
+        )}
+      >
+        {offers.map((offer) => (
+          <li key={offer.label}>
+            <HeroOfferChipCard offer={offer} variant="desktop" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Mobile / tablet (< lg) — stacked flow, tokens compressed by --u-text.
+// ---------------------------------------------------------------------------
+
+type MobileProps = Omit<DesktopProps, "watermark">;
+
+function HeroMobile({
+  eyebrow,
+  headlineLead,
+  headlineAccent,
+  subcopy,
+  photoSrc,
+  photoAlt,
+  offerLabel,
+  offers,
+}: MobileProps) {
+  return (
+    <div className="relative lg:hidden">
+      <div
+        className={cn(
+          "mx-auto w-full max-w-[720px]",
+          "px-5 sm:px-8",
+          "pt-16 pb-10 sm:pt-20",
+        )}
+      >
+        <p
+          className={cn(
+            "uppercase",
+            "text-hero-eyebrow",
+            "text-[color:var(--color-text-brand-emerald)]",
+          )}
+        >
+          {eyebrow}
+        </p>
+
+        <h1
+          className={cn(
+            "mt-4 font-heading",
+            "text-h5 leading-[1.15]",
+            "sm:text-h4 sm:leading-[1.1]",
+            "md:text-h3",
+          )}
+        >
+          <span className="text-text-primary">{headlineLead}</span>
+          <span className="text-text-brand">{headlineAccent}</span>
+        </h1>
+
+        <p
+          className={cn(
+            "mt-5",
+            "text-subtext-1",
+            "text-[color:var(--color-text-subdued)]",
+          )}
+        >
+          {subcopy}
+        </p>
+
+        <div className="relative mt-8 aspect-[4/5] w-full overflow-hidden rounded-[24px]">
+          <Image
+            src={photoSrc}
+            alt={photoAlt}
+            fill
+            priority 
+            sizes="100vw"
+            className="object-cover object-[center_top]"
+          />
+        </div>
+
+        <div className="mt-10">
+          <p
+            className={cn(
+              "mb-4 uppercase",
+              "text-hero-eyebrow",
+              "text-[color:var(--color-text-brand-emerald)]",
+            )}
+          >
+            {offerLabel}
+          </p>
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {offers.map((offer) => (
+              <li key={offer.label}>
+                <HeroOfferChipCard offer={offer} variant="mobile" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Offer chip — matches Figma workshop card (node 1:611): rounded white card
+// with eyebrow + title and a 44px circular arrow button.
+// ---------------------------------------------------------------------------
+
+function HeroOfferChipCard({
+  offer,
+  variant,
+}: {
+  offer: HeroOfferChip;
+  variant: "desktop" | "mobile";
+}) {
+  const isDesktop = variant === "desktop";
+
   return (
     <Link
       href={offer.href}
       className={cn(
-        "group flex h-[102px] items-center justify-between gap-3 rounded-[27px] bg-surface-1 px-[25px]",
-        "border border-border-2 shadow-[0_28px_60px_-16px_rgba(180,180,180,0.35)]",
-        "transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.18)]",
+        // layout
+        "group flex items-center justify-between gap-3",
+        isDesktop
+          ? "h-[var(--hero-chip-h)] min-h-[80px] px-[var(--hero-chip-px)]"
+          : "min-h-[88px] px-[22px] py-3",
+        // shape + surface
+        "rounded-[1.3rem]",
+        "bg-surface-1 border border-[color:rgba(123,123,123,0.20)]",
+        "shadow-[var(--shadow-chip)]",
+        // motion
+        "transition-all duration-300",
+        "hover:-translate-y-0.5 hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.18)]",
+        // focus
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
       )}
     >
-      <div className="flex min-w-0 flex-col gap-1">
-        <span className="text-mini uppercase text-text-brand">
+      <div className="flex min-w-0 flex-col gap-[2px]">
+        <span
+          className={cn(
+            "uppercase whitespace-nowrap",
+            isDesktop ? "text-hero-chip-eyebrow" : "text-hero-eyebrow",
+            "text-[color:var(--color-text-brand-emerald)]",
+          )}
+        >
           {offer.eyebrow}
         </span>
-        <span className="text-subtext-3 leading-tight text-text-primary">
+        <span
+          className={cn(
+            "text-text-primary",
+            isDesktop ? "text-hero-chip-title" : "text-subtext-3 leading-tight",
+          )}
+        >
           {offer.label}
         </span>
       </div>
+
       <span
         aria-hidden
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-text-inverse transition-transform duration-300 group-hover:translate-x-0.5"
+        className={cn(
+          "shrink-0 flex items-center justify-center rounded-full",
+          isDesktop
+            ? "w-[var(--hero-chip-btn)] h-[var(--hero-chip-btn)] min-w-[36px] min-h-[36px]"
+            : "h-11 w-11",
+          "text-text-inverse transition-transform duration-300",
+          "group-hover:translate-x-0.5",
+        )}
         style={{ backgroundColor: offer.buttonColor }}
       >
         <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
