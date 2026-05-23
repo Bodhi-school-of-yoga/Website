@@ -1,3 +1,4 @@
+// FaqSection — accordion of frequently asked questions used on course and program detail pages.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

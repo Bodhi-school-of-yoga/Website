@@ -1,3 +1,5 @@
+// SyllabusCard — expandable card listing a module's lessons in the course syllabus section.
+
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

@@ -1,3 +1,5 @@
+// HighlightCard — icon + title + body card used for feature or benefit highlights.
+
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

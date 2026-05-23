@@ -1,3 +1,4 @@
+// AboutStorySection — two-column narrative section on the About page pairing brand story copy with an image.
 import * as React from "react";
 import Image from "next/image";
 

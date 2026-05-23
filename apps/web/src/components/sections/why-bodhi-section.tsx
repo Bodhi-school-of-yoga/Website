@@ -1,3 +1,4 @@
+// WhyBodhiSection — value-proposition section on the homepage highlighting reasons to choose Bodhi.
 import * as React from "react";
 import Image from "next/image";
 

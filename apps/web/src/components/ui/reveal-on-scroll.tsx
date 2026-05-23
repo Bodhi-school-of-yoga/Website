@@ -1,5 +1,7 @@
 "use client";
 
+// RevealOnScroll — wrapper that fade/slide-reveals its children when scrolled into view.
+
 import * as React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 

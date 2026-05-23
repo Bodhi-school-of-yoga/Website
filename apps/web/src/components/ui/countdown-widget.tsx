@@ -1,5 +1,7 @@
 "use client";
 
+// CountdownWidget — displays a live days/hours/minutes/seconds countdown to a target date.
+
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

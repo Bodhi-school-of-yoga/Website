@@ -1,5 +1,7 @@
 "use client";
 
+// FilterChipBar — horizontal scrollable row of filter chips with animated active indicator.
+
 import * as React from "react";
 import { motion } from "framer-motion";
 

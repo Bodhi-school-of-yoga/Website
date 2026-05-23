@@ -1,5 +1,6 @@
 "use client";
 
+// WorkshopScheduleSection — date-and-time schedule table with session breakdown on a workshop detail page.
 import * as React from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";

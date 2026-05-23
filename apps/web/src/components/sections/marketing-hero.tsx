@@ -1,3 +1,4 @@
+// MarketingHero — compact marketing hero used on landing pages with background image, headline, and CTA.
 import * as React from "react";
 import Image from "next/image";
 

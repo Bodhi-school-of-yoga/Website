@@ -1,5 +1,7 @@
 "use client";
 
+// SectionHeader — animated eyebrow + heading + subheading block used at the top of sections.
+
 import * as React from "react";
 import { motion } from "framer-motion";
 

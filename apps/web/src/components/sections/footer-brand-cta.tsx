@@ -1,3 +1,4 @@
+// FooterBrandCta — brand tagline and newsletter/social CTA row rendered above the site footer.
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";

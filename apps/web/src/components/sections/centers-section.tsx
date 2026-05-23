@@ -1,5 +1,6 @@
 "use client";
 
+// CentersSection — searchable grid of Bodhi yoga center locations with address and photo cards.
 import * as React from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";

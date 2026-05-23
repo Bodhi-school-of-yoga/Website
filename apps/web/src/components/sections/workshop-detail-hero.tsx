@@ -1,5 +1,6 @@
 "use client";
 
+// WorkshopDetailHero — top-of-page hero for a workshop detail page with image, date, location, and register CTA.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";

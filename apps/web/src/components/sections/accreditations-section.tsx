@@ -1,5 +1,6 @@
 "use client";
 
+// AccreditationsSection — animated logo strip listing Bodhi's certification and accreditation partners.
 import * as React from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";

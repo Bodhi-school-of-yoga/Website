@@ -1,5 +1,6 @@
 "use client";
 
+// CourseSectionNav — sticky in-page navigation tabs for jumping between sections on a course detail page.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

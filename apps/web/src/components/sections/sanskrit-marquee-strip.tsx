@@ -1,5 +1,6 @@
 "use client";
 
+// SanskritMarqueeStrip — continuously scrolling ticker strip displaying Sanskrit mantras or brand phrases.
 import * as React from "react";
 import { motion } from "framer-motion";
 

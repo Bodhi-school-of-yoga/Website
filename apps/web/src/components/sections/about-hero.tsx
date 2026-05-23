@@ -1,3 +1,4 @@
+// AboutHero — full-width hero band for the About page with headline and CTA links.
 import * as React from "react";
 import Link from "next/link";
 

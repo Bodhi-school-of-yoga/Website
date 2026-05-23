@@ -1,3 +1,4 @@
+// ClosingCtaSection — bottom-of-page call-to-action band with headline and enroll/contact links.
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";

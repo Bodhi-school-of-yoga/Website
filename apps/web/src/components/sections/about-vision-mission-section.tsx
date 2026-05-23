@@ -1,3 +1,4 @@
+// AboutVisionMissionSection — side-by-side vision and mission cards on the About page.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

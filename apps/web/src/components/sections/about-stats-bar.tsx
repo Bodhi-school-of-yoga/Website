@@ -1,3 +1,4 @@
+// AboutStatsBar — animated statistics strip on the About page showing key impact numbers.
 import * as React from "react";
 
 import { AnimatedCount } from "@/components/ui/animated-count";

@@ -1,3 +1,5 @@
+// PricingBuyCard — pricing summary card with original/sale price, badges, and buy button.
+
 import * as React from "react";
 
 import Link from "next/link";

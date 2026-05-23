@@ -1,5 +1,7 @@
 'use client';
 
+// FaqItem — accordion-style FAQ row that toggles its answer on click.
+
 import * as React from "react";
 import { useState } from "react";
 

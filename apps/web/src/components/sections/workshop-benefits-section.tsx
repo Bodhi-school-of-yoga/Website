@@ -1,5 +1,6 @@
 "use client";
 
+// WorkshopBenefitsSection — animated checklist of outcomes and benefits on a workshop detail page.
 import * as React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 

@@ -1,3 +1,4 @@
+// TrainersPullQuoteBand — full-width inspirational pull-quote strip on the Trainers page.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

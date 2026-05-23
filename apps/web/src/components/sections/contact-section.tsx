@@ -1,5 +1,6 @@
 'use client';
 
+// ContactSection — Contact page layout combining ContactForm and ContactInfoCard columns.
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, type LucideIcon } from 'lucide-react';
 

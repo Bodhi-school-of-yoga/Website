@@ -1,3 +1,5 @@
+// Breadcrumb — renders a chevron-separated navigation trail from an array of items.
+
 import * as React from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";

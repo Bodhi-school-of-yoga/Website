@@ -1,3 +1,5 @@
+// DepartmentHeadCard — profile card for a department head with photo, name, and bio.
+
 import * as React from "react";
 import Image from "next/image";
 

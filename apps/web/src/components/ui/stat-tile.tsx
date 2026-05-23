@@ -1,3 +1,5 @@
+// StatTile — tile displaying a large animated statistic with label and optional suffix.
+
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

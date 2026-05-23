@@ -1,5 +1,6 @@
 "use client";
 
+// WorkshopAboutSection — animated two-column about block on a workshop detail page with image and description.
 import * as React from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";

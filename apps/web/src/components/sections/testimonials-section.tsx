@@ -1,3 +1,4 @@
+// TestimonialsSection — scrollable row of student testimonial cards used on the homepage and course pages.
 import * as React from "react";
 
 import {

@@ -1,3 +1,4 @@
+// ContactInfoCard — single contact detail card (phone, email, or address) used in the Contact page sidebar.
 import type { LucideIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";

@@ -1,3 +1,5 @@
+// ChecklistItem — single row with a check icon and label, used in feature/benefit lists.
+
 import * as React from "react";
 
 import { Check } from "lucide-react";

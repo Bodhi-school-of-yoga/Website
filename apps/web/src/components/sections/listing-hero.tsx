@@ -1,9 +1,9 @@
 "use client";
 
+// ListingHero — hero section for course/program listing pages with search, filters, and featured image.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";

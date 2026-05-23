@@ -1,5 +1,7 @@
 "use client"
 
+// Sheet — slide-in drawer built on Base UI Dialog, used for mobile navigation overlays.
+
 import * as React from "react"
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog"
 

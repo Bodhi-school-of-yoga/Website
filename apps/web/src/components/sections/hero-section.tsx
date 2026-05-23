@@ -1,5 +1,6 @@
 "use client";
 
+// HeroSection — primary homepage hero with background image, headline, sub-copy, and primary CTA buttons.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";

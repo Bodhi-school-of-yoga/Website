@@ -1,5 +1,6 @@
 'use client';
 
+// ContactForm — controlled enquiry form on the Contact page with name, email, phone, and message fields.
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 

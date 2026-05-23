@@ -1,3 +1,5 @@
+// BookingCard — sticky sidebar card for course pricing, CTA, and enrollment details.
+
 import * as React from "react";
 import Link from "next/link";
 

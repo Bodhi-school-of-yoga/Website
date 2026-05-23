@@ -1,5 +1,6 @@
 "use client";
 
+// ExperienceHarmonyStatsBand — animated stats-and-image band on the homepage showcasing Bodhi's experience metrics.
 import * as React from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";

@@ -1,3 +1,5 @@
+// ScrollNextButton — circular arrow button used to scroll to the next section.
+
 import * as React from "react";
 import { ArrowUpRight } from "lucide-react";
 

@@ -1,5 +1,6 @@
 "use client";
 
+// WorkshopFacilitatorSection — animated facilitator bio with portrait and credentials on a workshop detail page.
 import * as React from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";

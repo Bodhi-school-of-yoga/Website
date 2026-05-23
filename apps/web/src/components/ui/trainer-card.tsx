@@ -1,3 +1,5 @@
+// TrainerCard — compact card showing a trainer's photo, name, speciality, and social link.
+
 import * as React from "react";
 import Image from "next/image";
 

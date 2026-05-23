@@ -1,5 +1,6 @@
 "use client";
 
+// CourseGridSection — animated responsive grid of course cards with mode, duration, and pricing badges.
 import * as React from "react";
 import { Clock, Globe, Monitor, Tag } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";

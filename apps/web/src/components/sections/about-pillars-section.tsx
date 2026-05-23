@@ -1,3 +1,4 @@
+// AboutPillarsSection — three-column pillars grid on the About page describing Bodhi's core values.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

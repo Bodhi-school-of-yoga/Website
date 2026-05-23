@@ -1,3 +1,4 @@
+// EligibilitySection — image-and-checklist section describing who is eligible to join a program.
 import * as React from "react";
 import Image from "next/image";
 

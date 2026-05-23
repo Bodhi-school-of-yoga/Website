@@ -1,3 +1,4 @@
+// TrainersFounderSection — featured founder bio with portrait and narrative copy on the Trainers page.
 import * as React from "react";
 import Image from "next/image";
 

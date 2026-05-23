@@ -1,3 +1,4 @@
+// InstructorsSection — horizontal scroll of instructor profile cards on a course or program page.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

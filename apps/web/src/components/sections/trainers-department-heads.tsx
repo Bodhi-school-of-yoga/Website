@@ -1,3 +1,4 @@
+// TrainersDepartmentHeads — grid of department head profile cards on the Trainers page.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

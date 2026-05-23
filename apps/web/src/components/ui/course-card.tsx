@@ -1,5 +1,7 @@
 "use client";
 
+// CourseCard — card displaying course thumbnail, title, instructor, meta, and enroll CTA.
+
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";

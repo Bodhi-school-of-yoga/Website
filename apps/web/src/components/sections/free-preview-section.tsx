@@ -1,5 +1,6 @@
 "use client";
 
+// FreePreviewSection — animated teaser section offering a free class or preview on course listing pages.
 import * as React from "react";
 import { motion, type Variants } from "framer-motion";
 

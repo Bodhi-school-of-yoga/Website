@@ -1,5 +1,6 @@
 "use client";
 
+// CertificationBannerSection — full-width promotional banner highlighting Bodhi's certification credentials.
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 

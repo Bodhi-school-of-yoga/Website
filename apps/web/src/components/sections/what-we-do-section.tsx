@@ -1,3 +1,4 @@
+// WhatWeDoSection — overview section on the homepage or About page describing Bodhi's program categories.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";

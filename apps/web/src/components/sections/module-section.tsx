@@ -1,5 +1,6 @@
 "use client";
 
+// ModuleSection — animated expandable module block listing topics within a course curriculum.
 import * as React from "react";
 import { motion, type Variants } from "framer-motion";
 

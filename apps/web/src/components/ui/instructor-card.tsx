@@ -1,3 +1,5 @@
+// InstructorCard — card showing an instructor's photo, name, title, and short bio.
+
 import * as React from "react";
 import Image from "next/image";
 

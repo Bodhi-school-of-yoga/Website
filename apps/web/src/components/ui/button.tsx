@@ -1,3 +1,5 @@
+// Button — themed CVA-driven button primitive used by every section CTA.
+
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 

@@ -1,3 +1,4 @@
+// CourseHeroSection — top-of-page hero for a course detail page with image, title, metadata badges, and enroll CTA.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";

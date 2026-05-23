@@ -1,3 +1,4 @@
+// PopularCoursesSection — curated grid of popular program cards on the homepage and listing pages.
 import * as React from "react";
 import { Clock, Globe, Monitor, Tag } from "lucide-react";
 

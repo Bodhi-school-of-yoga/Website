@@ -1,3 +1,4 @@
+// FounderQuoteSection — full-width pull-quote block featuring a message from Bodhi's founder.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

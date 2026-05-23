@@ -1,3 +1,5 @@
+// VideoLessonCard — card for a video lesson row showing thumbnail, title, duration, and lock state.
+
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";

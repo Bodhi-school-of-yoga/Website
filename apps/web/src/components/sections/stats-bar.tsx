@@ -1,3 +1,4 @@
+// StatsBar — horizontal band of animated numeric counters showcasing Bodhi's reach and impact on the homepage.
 import * as React from "react";
 import Image from "next/image";
 

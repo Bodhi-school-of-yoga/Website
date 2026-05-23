@@ -1,5 +1,6 @@
 "use client";
 
+// PreRequisitesSection — animated image-and-checklist block listing required prior knowledge for a course.
 import * as React from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";

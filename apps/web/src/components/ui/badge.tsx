@@ -1,3 +1,5 @@
+// Badge — small labelling pill with variant styles (default, outline, destructive, etc.).
+
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"

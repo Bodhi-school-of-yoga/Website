@@ -1,5 +1,6 @@
 "use client";
 
+// UnlockVideosCta — animated CTA section prompting users to sign up or log in to access recorded video content.
 import * as React from "react";
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";

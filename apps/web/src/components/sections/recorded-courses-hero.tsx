@@ -1,5 +1,6 @@
 "use client";
 
+// RecordedCoursesHero — hero banner for the recorded courses index page with headline and browse CTA.
 import * as React from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";

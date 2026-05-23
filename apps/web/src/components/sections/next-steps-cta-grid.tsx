@@ -1,3 +1,4 @@
+// NextStepsCtaGrid — grid of action cards guiding users to their next step after viewing a page.
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";

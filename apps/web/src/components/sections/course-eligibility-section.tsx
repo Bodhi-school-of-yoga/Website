@@ -1,3 +1,4 @@
+// CourseEligibilitySection — checklist of prerequisites and target-audience criteria on a course detail page.
 import * as React from "react";
 import Image from "next/image";
 

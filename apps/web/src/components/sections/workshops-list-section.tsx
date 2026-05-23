@@ -1,5 +1,6 @@
 "use client";
 
+// WorkshopsListSection — animated grid of upcoming workshop cards on the Workshops listing page.
 import * as React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 

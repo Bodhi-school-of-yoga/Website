@@ -109,9 +109,9 @@ export default function TipsToBecomeASuccessfulYogaTeacherPage() {
           backgroundImage="/images/hero/tips.jpg"
           minHeightClassName="min-h-[421px]"
           contentAlign="center"
-          headlineClassName="text-[40px] leading-[1.05] font-bold sm:text-[52px] lg:text-[60px] lg:leading-[58px] tracking-[-0.0093em]"
+          headlineClassName="text-[40px] leading-[1.05] font-bold sm:text-[52px] lg:text-[60px] lg:leading-[58px] tracking-[-0.0093em] lg:max-w-[1228px]"
           headlineAccentClassName="text-accent-mint"
-          verticalPaddingClassName="pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-[120px] lg:pb-[100px]"
+          verticalPaddingClassName="pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-[110px] lg:pb-[90px]"
         />
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">
           <div className="container mx-auto max-w-7xl px-4">

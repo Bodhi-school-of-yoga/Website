@@ -1,3 +1,5 @@
+// ProgramCard — card presenting a yoga program with image, title, description, and CTA link.
+
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";

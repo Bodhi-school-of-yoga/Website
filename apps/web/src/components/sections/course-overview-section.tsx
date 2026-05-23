@@ -1,3 +1,4 @@
+// CourseOverviewSection — short descriptive summary block at the top of a course detail page.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

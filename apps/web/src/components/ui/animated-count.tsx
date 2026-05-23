@@ -1,5 +1,7 @@
 "use client";
 
+// AnimatedCount — counts up from 0 to `value` on scroll-into-view with eased animation.
+
 import * as React from "react";
 
 export type AnimatedCountProps = {
@@ -16,21 +18,21 @@ export function AnimatedCount({
   className,
 }: AnimatedCountProps) {
   const ref = React.useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = React.useState(0);
+  const [animatedDisplay, setAnimatedDisplay] = React.useState(0);
   const startedRef = React.useRef(false);
 
+  const prefersReduced =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // When reduced motion is preferred, render value directly — no effect needed.
+  const display = prefersReduced ? value : animatedDisplay;
+
   React.useEffect(() => {
+    if (prefersReduced) return;
+
     const node = ref.current;
     if (!node) return;
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReduced) {
-      setDisplay(value);
-      return;
-    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -42,7 +44,7 @@ export function AnimatedCount({
           const elapsed = now - start;
           const progress = Math.min(elapsed / durationMs, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
-          setDisplay(Math.round(value * eased));
+          setAnimatedDisplay(Math.round(value * eased));
           if (progress < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -52,7 +54,7 @@ export function AnimatedCount({
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [value, durationMs]);
+  }, [value, durationMs, prefersReduced]);
 
   return (
     <span ref={ref} className={className}>

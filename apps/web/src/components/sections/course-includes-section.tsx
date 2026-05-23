@@ -1,5 +1,6 @@
 "use client";
 
+// CourseIncludesSection — animated icon-and-text list of what students receive with a course enrollment.
 import * as React from "react";
 import { motion, type Variants } from "framer-motion";
 import {

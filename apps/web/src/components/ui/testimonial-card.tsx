@@ -1,5 +1,7 @@
 "use client";
 
+// TestimonialCard — animated card showing a student quote, avatar, name, and rating.
+
 import * as React from "react";
 import Image from "next/image";
 import { motion, type MotionProps, type Variants } from "framer-motion";

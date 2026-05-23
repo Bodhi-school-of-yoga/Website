@@ -1,3 +1,4 @@
+// HighlightsSection — icon-card grid on the homepage listing Bodhi's key program differentiators.
 import * as React from "react";
 import { Flower2, AlignCenter, Dumbbell, Leaf, Cpu, Users } from "lucide-react";
 

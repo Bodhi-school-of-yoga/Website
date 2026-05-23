@@ -1,5 +1,6 @@
 "use client";
 
+// RecordedClassesHero — hero section for the recorded classes listing page with course-count and category filters.
 import * as React from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";

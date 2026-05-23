@@ -1,5 +1,7 @@
 "use client"
 
+// Separator — thin horizontal or vertical divider line built on Base UI Separator.
+
 import { Separator as SeparatorPrimitive } from "@base-ui/react/separator"
 
 import { cn } from "@/lib/utils"

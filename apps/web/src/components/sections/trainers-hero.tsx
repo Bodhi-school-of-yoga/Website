@@ -1,3 +1,4 @@
+// TrainersHero — top-of-page hero band for the Trainers listing page with headline and background image.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";

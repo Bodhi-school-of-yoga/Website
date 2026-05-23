@@ -1,3 +1,4 @@
+// ProgramsGridSection — filterable grid of all Bodhi programs with mode, duration, and pricing metadata.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
