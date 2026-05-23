@@ -1,75 +1,90 @@
-// TrainersMeetAll — full grid of all trainer profile cards on the Trainers page.
+// TrainersMeetAll — responsive trainers grid with breakpoint-specific headers and roster sizes.
+// Mobile shows the 7 faculty trainers; md+ shows the full 18-trainer roster.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import { TrainerCard } from "@/components/ui/trainer-card";
-
-export type Trainer = {
-  name: string;
-  portrait: string;
-};
+import { TrainerProfileCard } from "@/components/ui/trainer-profile-card";
+import {
+  trainers as allTrainers,
+  facultyTrainers,
+  type Trainer,
+} from "@/data/trainers";
 
 export type TrainersMeetAllProps = {
-  eyebrow?: string;
-  title?: string;
-  trainers?: Trainer[];
+  eyebrowMobile?: string;
+  titleMobile?: string;
+  eyebrowDesktop?: string;
+  titleDesktop?: string;
   className?: string;
 };
 
-const ROW: Trainer[] = [
-  { name: "Muskan Jain", portrait: "/images/trainers/muskan-jain.png" },
-  { name: "Swetanga nandan", portrait: "/images/trainers/swetangana-nandan.png" },
-  { name: "Sneha Shankar", portrait: "/images/trainers/sneha-shankar.png" },
-  { name: "VijayaRaghavan", portrait: "/images/trainers/vijayaraghavan.png" },
-  { name: "Prajakta Jadhav", portrait: "/images/trainers/prajakta-jadhav.png" },
-  { name: "Atheesh Kumar", portrait: "/images/trainers/atheesh-kumar.png" },
-];
+const titleClasses = cn(
+  "font-heading italic font-normal text-text-secondary",
+  "text-[24px] leading-[1.15] sm:text-[32px] lg:text-[40px]",
+  "max-w-[640px]",
+);
 
-const DEFAULT_TRAINERS: Trainer[] = [...ROW, ...ROW];
+const eyebrowClasses = cn(
+  "text-mini font-medium uppercase text-text-tertiary",
+  "tracking-[0.16em]",
+);
+
+function renderCard(t: Trainer, variant: "card" | "avatar" = "card") {
+  return (
+    <TrainerProfileCard
+      key={t.slug}
+      variant={variant}
+      name={t.name}
+      role={t.role}
+      years={t.years}
+      city={t.city}
+      image={t.image}
+      slug={t.slug}
+    />
+  );
+}
 
 export function TrainersMeetAll({
-  eyebrow = "The Team",
-  title = "Meet All Our Trainers",
-  trainers = DEFAULT_TRAINERS,
+  eyebrowMobile = "Meet our faculty",
+  titleMobile = "Teachers who walk the path.",
+  eyebrowDesktop = "The Team",
+  titleDesktop = "Meet All Our Trainers",
   className,
 }: TrainersMeetAllProps) {
   return (
     <section
       className={cn(
-        "w-full bg-surface-1 page-px py-16 sm:py-20 lg:py-24",
+        "w-full bg-surface-1 page-px py-14 sm:py-20 lg:py-24",
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px]">
-        <div className="flex flex-col gap-3">
-          <p
-            className={cn(
-              "text-mini font-semibold uppercase",
-              "text-text-teal-deep",
-              "tracking-[0.16em]",
-            )}
-          >
-            {eyebrow}
-          </p>
-          <h2
-            className={cn(
-              "font-heading font-bold text-text-secondary",
-              "text-h4 sm:text-h3 lg:text-[44px] lg:leading-[1.2]",
-            )}
-          >
-            {title}
-          </h2>
+      <div className="mx-auto max-w-[1240px]">
+        <div className="md:hidden flex flex-col items-center gap-3 text-center">
+          <p className={eyebrowClasses}>{eyebrowMobile}</p>
+          <h2 className={titleClasses}>{titleMobile}</h2>
+        </div>
+
+        <div className="hidden md:flex flex-col items-center gap-3 text-center">
+          <p className={eyebrowClasses}>{eyebrowDesktop}</p>
+          <h2 className={titleClasses}>{titleDesktop}</h2>
         </div>
 
         <div
           className={cn(
-            "mt-10 grid gap-4 sm:gap-5",
-            "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6",
+            "mt-10 sm:mt-12 grid gap-4 sm:gap-5",
+            "grid-cols-1 sm:grid-cols-2 md:hidden",
           )}
         >
-          {trainers.map((t, i) => (
-            <TrainerCard key={`${t.name}-${i}`} name={t.name} portrait={t.portrait} />
-          ))}
+          {facultyTrainers.map((t) => renderCard(t, "card"))}
+        </div>
+
+        <div
+          className={cn(
+            "mt-10 sm:mt-12 hidden md:grid gap-4 sm:gap-5 lg:gap-6",
+            "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6",
+          )}
+        >
+          {allTrainers.map((t) => renderCard(t, "avatar"))}
         </div>
       </div>
     </section>

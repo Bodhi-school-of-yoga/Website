@@ -63,7 +63,7 @@ const DEFAULT_NAV_LINKS: HeaderNavLink[] = [
 ];
 
 const underlineSweep =
-  "relative after:pointer-events-none after:absolute after:left-3 after:right-3 after:bottom-1 after:h-[2px] after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100 data-[popup-open]:after:scale-x-100";
+  "relative pb-1 after:pointer-events-none after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[2px] after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100 data-[popup-open]:after:scale-x-100";
 
 export function SiteHeader({
   wordmark = "Bodhi",
@@ -76,28 +76,12 @@ export function SiteHeader({
   className,
 }: SiteHeaderProps) {
   const [scrolled, setScrolled] = React.useState(false);
-  const [hidden, setHidden] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const lastYRef = React.useRef(0);
 
   const inverted = tone === "light" && !scrolled && !mobileOpen;
-  const headerHidden = hidden && !mobileOpen;
 
   React.useEffect(() => {
-    lastYRef.current = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 24);
-      const delta = y - lastYRef.current;
-      if (y < 80) {
-        setHidden(false);
-      } else if (delta > 8) {
-        setHidden(true);
-      } else if (delta < -8) {
-        setHidden(false);
-      }
-      lastYRef.current = y;
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -115,7 +99,7 @@ export function SiteHeader({
   return (
     <motion.header
       initial={{ y: -24, opacity: 0 }}
-      animate={{ y: headerHidden ? -120 : 0, opacity: 1 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{
         y: { type: "spring", stiffness: 260, damping: 30, mass: 0.6 },
         opacity: { duration: 0.4, ease: "easeOut" },
@@ -176,7 +160,7 @@ export function SiteHeader({
                   <NavMenuItem key={link.label}>
                     <NavMenuTrigger
                       className={cn(
-                        "px-3 py-2 font-sans text-subtext-2 font-medium transition-colors",
+                        "font-sans text-body-sm font-medium transition-colors",
                         inverted ? "text-text-inverse" : "text-black",
                         underlineSweep,
                       )}
@@ -196,7 +180,7 @@ export function SiteHeader({
                   <NavMenuItem key={link.label}>
                     <NavMenuTrigger
                       className={cn(
-                        "px-3 py-2 font-sans text-subtext-2 font-medium transition-colors",
+                        "font-sans text-body-sm font-medium transition-colors",
                         inverted ? "text-text-inverse" : "text-black",
                         underlineSweep,
                       )}
@@ -214,7 +198,7 @@ export function SiteHeader({
                   <NavMenuLink
                     render={<Link href={link.href} />}
                     className={cn(
-                      "inline-flex shrink-0 items-center whitespace-nowrap px-3 py-2 font-sans text-subtext-2 font-medium transition-colors",
+                      "inline-flex shrink-0 items-center whitespace-nowrap font-sans text-body-sm font-medium transition-colors",
                       inverted ? "text-text-inverse" : "text-black",
                       underlineSweep,
                     )}

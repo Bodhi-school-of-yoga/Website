@@ -1,4 +1,4 @@
-// TrainersDepartmentHeads — grid of department head profile cards on the Trainers page.
+// TrainersDepartmentHeads — grid of department head profile cards on the Trainers page (desktop only).
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -6,13 +6,10 @@ import {
   DepartmentHeadCard,
   type DepartmentHeadTone,
 } from "@/components/ui/department-head-card";
-
-export type DepartmentHead = {
-  name: string;
-  role: string;
-  portrait: string;
-  tone?: DepartmentHeadTone;
-};
+import {
+  departmentHeads,
+  type DepartmentHead,
+} from "@/data/department-heads";
 
 export type TrainersDepartmentHeadsProps = {
   eyebrow?: string;
@@ -21,66 +18,18 @@ export type TrainersDepartmentHeadsProps = {
   className?: string;
 };
 
-const DEFAULT_HEADS: DepartmentHead[] = [
-  {
-    name: "Prarthana Patel",
-    role: "head of online certification courses and prenatal",
-    portrait: "/images/trainers/prarthana-patel.png",
-    tone: "mint",
-  },
-  {
-    name: "Sujana Shergill",
-    role: "head of online ytt",
-    portrait: "/images/trainers/sujana-shergill.png",
-    tone: "dark",
-  },
-  {
-    name: "Janardhan Durga Prasad",
-    role: "head - learning & development",
-    portrait: "/images/trainers/janardhan-durga-prasad.png",
-    tone: "lime",
-  },
-  {
-    name: "Lakshmi Yalamudi",
-    role: "head - pilates & yoga studio",
-    portrait: "/images/trainers/lakshmi-yalamudi.png",
-    tone: "mint",
-  },
-  {
-    name: "Harsh Rungta",
-    role: "head academics",
-    portrait: "/images/trainers/harsh-rungta.png",
-    tone: "dark",
-  },
-  {
-    name: "Vyshnavie Vasasali",
-    role: "head - support",
-    portrait: "/images/trainers/vyshnavie-vasasali.png",
-    tone: "lime",
-  },
-  {
-    name: "Eeena Chawla",
-    role: "head - face yoga",
-    portrait: "/images/trainers/eeena-chawla.png",
-    tone: "mint",
-  },
-  {
-    name: "Archana Kulkarni",
-    role: "head of therapeutic yoga",
-    portrait: "/images/trainers/archana-kulkarni.png",
-    tone: "dark",
-  },
-];
+const TONES: DepartmentHeadTone[] = ["mint", "dark", "lime"];
 
 export function TrainersDepartmentHeads({
   eyebrow = "Leadership",
   title = "Department Heads",
-  heads = DEFAULT_HEADS,
+  heads = departmentHeads,
   className,
 }: TrainersDepartmentHeadsProps) {
   return (
     <section
       className={cn(
+        "hidden md:block",
         "w-full bg-surface-1 page-px py-16 sm:py-20 lg:py-24",
         className,
       )}
@@ -112,13 +61,13 @@ export function TrainersDepartmentHeads({
             "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4",
           )}
         >
-          {heads.map((h) => (
+          {heads.map((h, i) => (
             <DepartmentHeadCard
-              key={h.name}
+              key={h.slug}
               name={h.name}
               role={h.role}
-              portrait={h.portrait}
-              tone={h.tone}
+              portrait={h.image ?? `/images/trainers/${h.slug}.png`}
+              tone={TONES[i % TONES.length]}
             />
           ))}
         </div>

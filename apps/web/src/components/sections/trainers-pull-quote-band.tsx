@@ -1,71 +1,92 @@
-// TrainersPullQuoteBand — full-width inspirational pull-quote strip on the Trainers page.
+// TrainersPullQuoteBand — dark-green band with a giant italic Fraunces quote glyph, body quote, and attribution.
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
 export type TrainersPullQuoteBandProps = {
-  highlight?: string;
-  body?: string;
+  quote?: string;
+  attribution?: string;
   className?: string;
 };
 
 export function TrainersPullQuoteBand({
-  highlight = "Yoga is not just a series of poses and techniques.",
-  body = "It is a lifestyle to be pursued day in and day out.\nIn this, our teachers lead by example",
+  quote = "Yoga is not just a series of poses and techniques. It is a lifestyle to be pursued day in and day out. In this, our teachers lead by example.",
+  attribution = "— The Bodhi Faculty",
   className,
 }: TrainersPullQuoteBandProps) {
   return (
     <section
       className={cn(
-        "relative w-full bg-brand-green-darkest text-text-inverse",
-        "py-12 sm:py-14 lg:py-16",
+        "relative w-full bg-brand-green-deep text-text-inverse",
         className,
       )}
     >
-      <div className="relative mx-auto flex max-w-[1340px] items-center justify-center page-px">
+      {/* Mobile: single oversized opening-quote glyph anchored top-left */}
+      <div className="relative mx-auto flex h-[354px] w-full max-w-[1100px] flex-col page-px py-12 md:hidden">
         <span
           aria-hidden="true"
           className={cn(
-            "pointer-events-none select-none",
-            "font-heading font-semibold leading-none",
-            "text-[64px] sm:text-[80px] lg:text-[100px]",
+            "font-heading italic font-normal leading-none select-none pointer-events-none",
+            "text-[80px]",
             "text-text-cyan/35",
-            "absolute left-[3%] top-1/2 -translate-y-1/2 rotate-180",
-            "hidden md:block",
           )}
         >
-          &rdquo;
+          &ldquo;
         </span>
 
         <p
           className={cn(
-            "max-w-[760px] text-center font-semibold",
-            "text-subtext-3 sm:text-h5 lg:text-[28px] lg:leading-[33px]",
+            "mt-4 font-heading italic font-normal",
+            "text-[22px] leading-[1.3]",
+            "text-text-inverse",
           )}
         >
-          <span className="text-text-mint-pale">{highlight}</span>
-          <br aria-hidden="true" />
-          {body.split("\n").map((line, idx, arr) => (
-            <React.Fragment key={idx}>
-              {line}
-              {idx < arr.length - 1 ? <br aria-hidden="true" /> : null}
-            </React.Fragment>
-          ))}
+          {quote}
         </p>
 
+        <p
+          className={cn(
+            "mt-6 font-medium uppercase tracking-[0.16em]",
+            "text-mini",
+            "text-text-mint-pale",
+          )}
+        >
+          {attribution}
+        </p>
+      </div>
+
+      {/* Desktop / tablet: paired-glyph centered layout */}
+      <div className="relative mx-auto hidden max-w-[1100px] flex-col items-start page-px py-12 sm:py-16 md:flex lg:py-20">
         <span
           aria-hidden="true"
           className={cn(
-            "pointer-events-none select-none",
-            "font-heading font-semibold leading-none",
-            "text-[64px] sm:text-[80px] lg:text-[100px]",
-            "text-text-cyan/35",
-            "absolute right-[3%] top-1/2 -translate-y-1/2",
-            "hidden md:block",
+            "font-heading italic font-normal leading-[0.8] select-none pointer-events-none",
+            "text-[80px] sm:text-[120px] lg:text-[160px]",
+            "text-text-mint-pale",
           )}
         >
-          &rdquo;
+          &ldquo;
         </span>
+
+        <p
+          className={cn(
+            "mt-2 sm:mt-4 max-w-[820px] font-heading italic font-normal",
+            "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
+            "text-text-inverse",
+          )}
+        >
+          {quote}
+        </p>
+
+        <p
+          className={cn(
+            "mt-6 sm:mt-8 font-medium",
+            "text-[13px] sm:text-[14px] lg:text-body-md",
+            "text-text-mint-pale",
+          )}
+        >
+          {attribution}
+        </p>
       </div>
     </section>
   );

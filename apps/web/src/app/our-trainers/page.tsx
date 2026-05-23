@@ -5,6 +5,7 @@ import { TrainersPullQuoteBand } from "@/components/sections/trainers-pull-quote
 import { TrainersFounderSection } from "@/components/sections/trainers-founder-section";
 import { TrainersDepartmentHeads } from "@/components/sections/trainers-department-heads";
 import { TrainersMeetAll } from "@/components/sections/trainers-meet-all";
+import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
 
 export const metadata = {
   title: "Our Trainers — Bodhi School of Yoga",
@@ -22,8 +23,36 @@ export default function OurTrainersPage() {
         <TrainersFounderSection />
         <TrainersDepartmentHeads />
         <TrainersMeetAll />
+        <ClosingCtaSection
+          theme="light"
+          eyebrow="Bodhi"
+          headingLead="Begin where"
+          headingAccent="you are."
+          subhead="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
+          primaryCta={{ label: "Try a class, free", href: "/book" }}
+          cards={[
+            {
+              title: "Free Trial Session",
+              body: "50 mins session with the option of choosing from 10 slots in a day.",
+              ctaLabel: "Join now",
+              href: "/book",
+            },
+            {
+              title: "Speak to us",
+              body: "Talk to a counsellor who can assess and offer recommendations.",
+              ctaLabel: "Contact us",
+              href: "/contact",
+            },
+            {
+              title: "Take a Guided Path",
+              body: "Our assessment will guide you to a direction best suited to your experience.",
+              ctaLabel: "Start now",
+              href: "/paths",
+            },
+          ]}
+        />
       </main>
-      <SiteFooterBlock />
+      <SiteFooterBlock showCta={false} />
     </>
   );
 }

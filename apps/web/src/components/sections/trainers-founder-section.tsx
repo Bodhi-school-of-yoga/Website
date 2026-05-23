@@ -1,7 +1,8 @@
-// TrainersFounderSection — featured founder bio with portrait and narrative copy on the Trainers page.
+// TrainersFounderSection — featured founder bio with portrait and narrative copy on the Trainers page (desktop only, ≥lg).
 import * as React from "react";
 import Image from "next/image";
 
+import { founder } from "@/data/founder";
 import { cn } from "@/lib/utils";
 
 export type TrainersFounderSectionProps = {
@@ -14,24 +15,19 @@ export type TrainersFounderSectionProps = {
   className?: string;
 };
 
-const DEFAULT_PARAGRAPHS = [
-  "Ashok Vankineni, our guru, was a telecom engineer with an IIM MBA in his previous avatar. Highly successful, he worked all over the world, won a promotion a year and was very senior at a young age when he had a physical breakdown. Yoga healed him and started him on a new path.",
-  "He quit the corporate world as a GM in Tata Docomo to dedicate himself fully to yoga, wellness and healing. After studying yoga for many years under various gurus, Ashokji set up Bodhi Yoga to wake others out of their suffering and help them experience the bliss of healing through yoga.",
-];
-
 export function TrainersFounderSection({
-  eyebrow = "Founder & Yoga Guru",
-  name = "Ashok Vankineni",
-  pullQuote = "Today's life is fast-paced and hectic, the ethos acquisitive, cynical and self-centred. In this scenario, to become a yoga teacher is a beautiful choice. It is a choice to not be cynical, to love society and be a force for good.",
-  paragraphs = DEFAULT_PARAGRAPHS,
+  eyebrow = founder.eyebrow,
+  name = founder.name,
+  pullQuote = founder.pullQuote,
+  paragraphs = founder.paragraphs,
   portrait = "/images/trainers/ashok-vankineni.png",
-  portraitAlt = "Ashok Vankineni",
+  portraitAlt = founder.portraitAlt,
   className,
 }: TrainersFounderSectionProps) {
   return (
     <section
       className={cn(
-        "w-full bg-surface-1 page-px py-16 sm:py-20 lg:py-24",
+        "hidden w-full bg-surface-1 page-px py-16 sm:py-20 lg:block lg:py-24",
         className,
       )}
     >
