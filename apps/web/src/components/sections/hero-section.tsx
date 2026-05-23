@@ -1,8 +1,9 @@
+"use client";
+
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 
 export type HeroOfferChip = {
@@ -22,7 +23,6 @@ export type HeroSectionProps = {
   watermark?: string;
   offerLabel?: string;
   offers?: HeroOfferChip[];
-  marqueeTerms?: string[];
   className?: string;
 };
 
@@ -30,13 +30,13 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
   {
     eyebrow: "yoga teacher training",
     label: "I want to teach Yoga & Pillate",
-    href: "/teacher-training",
+    href: "/teacher-courses/online",
     buttonColor: "#008498",
   },
   {
     eyebrow: "daily yoga classes",
     label: "I want to learn Yoga & Pillate",
-    href: "/classes",
+    href: "/contact",
     buttonColor: "#0d9800",
   },
   {
@@ -47,28 +47,16 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
   },
 ];
 
-const DEFAULT_MARQUEE = [
-  "Yama",
-  "Niyama",
-  "Āsana",
-  "Prāṇāyāma",
-  "Pratyāhāra",
-  "Dhāraṇā",
-  "Dhyāna",
-  "Samādhi",
-];
-
 export function HeroSection({
   eyebrow = "बोधि  ·  The awakening",
   headlineLead = "A school for teachers and a ",
   headlineAccent = "home for seekers.",
   subcopy = "Bodhi is a yoga teacher training institute and practice studio. We train future teachers, host workshops in health and wellness, and hold daily classes online and in person.",
-  photoSrc = "/images/hero/hero-photo.jpg",
-  photoAlt = "A student in a yoga posture inside Bodhi studio.",
+  photoSrc = "/figma/node-1-168/hero-foreground.png",
+  photoAlt = "A student in seated meditation pose at Bodhi studio.",
   watermark = "बोधि",
   offerLabel = "what do we offer",
   offers = DEFAULT_OFFERS,
-  marqueeTerms = DEFAULT_MARQUEE,
   className,
 }: HeroSectionProps) {
   return (
@@ -79,78 +67,108 @@ export function HeroSection({
         className,
       )}
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-0 top-[88px] hidden h-[calc(100%-88px)] w-[48%] overflow-hidden rounded-l-[32px] lg:block"
-      >
-        <div className="relative h-full w-full">
-          <Image
-            src={photoSrc}
-            alt=""
-            fill
-            priority
-            sizes="48vw"
-            className="object-cover object-[center_top]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-brand-lite/40" />
-        </div>
-      </div>
+      {/* DESKTOP layout (lg+): photo + watermark absolutely positioned, text + chips in normal flow */}
+      <div className="relative hidden min-h-[720px] lg:block xl:min-h-[780px] 2xl:min-h-[820px]">
+        {/* Watermark — behind everything, sized to dominate the right side */}
+        <span
+          aria-hidden
+          lang="hi"
+          className={cn(
+            "pointer-events-none absolute select-none font-heading font-normal italic",
+            "right-[-2vw] top-[120px] z-0 leading-[0.82] tracking-[-0.04em] whitespace-nowrap",
+            "text-[color:var(--color-text-brand)]/[0.13]",
+            "text-[22rem] xl:text-[28rem] 2xl:text-[32rem]",
+          )}
+          style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
+        >
+          {watermark}
+        </span>
 
-      <span
-        aria-hidden
-        lang="hi"
-        className={cn(
-          "pointer-events-none absolute select-none",
-          "right-[-2vw] top-[18%] hidden font-serif font-normal italic text-[color:var(--color-text-brand)]/10",
-          "leading-none tracking-[-0.04em] lg:block",
-          "text-[clamp(180px,24vw,420px)]",
-        )}
-        style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
-      >
-        {watermark}
-      </span>
-
-      <div className="relative mx-auto max-w-[1340px] px-6 pb-24 pt-[104px] sm:px-8 lg:px-10 lg:pb-32 lg:pt-[128px]">
-        <div className="max-w-2xl lg:max-w-[820px]">
-          <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
-
-          <h1 className="mt-5 font-heading text-h4 sm:text-h3 lg:text-h2 2xl:text-h1">
-            <span className="text-text-primary">{headlineLead}</span>
-            <span className="text-text-brand">{headlineAccent}</span>
-          </h1>
-
-          <p className="mt-6 max-w-[560px] text-subtext-1 text-text-tertiary">
-            {subcopy}
-          </p>
-        </div>
-
-        <div className="relative z-10 mt-16 lg:mt-28">
-          <p className="mb-5 text-center text-mini uppercase text-text-brand">
-            {offerLabel}
-          </p>
-          <ul className="mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {offers.map((offer) => (
-              <li key={offer.label}>
-                <HeroOfferChipCard offer={offer} />
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="lg:hidden">
-          <div className="relative mt-16 aspect-[4/3] w-full overflow-hidden rounded-[28px]">
+        {/* Photo — anchored top-right, bleeds slightly past viewport right edge.
+            Source PNG is 1625×968 with woman on the right half; object-position keeps her centered. */}
+        <div
+          className={cn(
+            "pointer-events-none absolute right-[-1.5%] top-[110px] z-10",
+            "w-[480px] xl:w-[560px] 2xl:w-[620px]",
+          )}
+          style={{ aspectRatio: "865 / 952" }}
+        >
+          <div className="relative h-full w-full overflow-hidden rounded-l-[28px]">
             <Image
               src={photoSrc}
               alt={photoAlt}
               fill
-              sizes="100vw"
-              className="object-cover"
+              priority
+              sizes="(min-width:1536px) 620px, (min-width:1280px) 560px, 480px"
+              className="object-cover object-[68%_top]"
             />
+          </div>
+        </div>
+
+        {/* Content column — text + chips, inset from left to match Figma x=308/1920 (~16%) */}
+        <div className="relative z-20 pl-[clamp(32px,12vw,300px)] pr-[clamp(24px,4vw,80px)] pt-[clamp(120px,10vw,180px)] pb-6">
+          <div className="max-w-[640px] xl:max-w-[760px] 2xl:max-w-[820px]">
+            <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
+            <h1 className="mt-4 font-heading text-h3 xl:text-h2 2xl:text-h1">
+              <span className="text-text-primary">{headlineLead}</span>
+              <span className="text-text-brand">{headlineAccent}</span>
+            </h1>
+            <p className="mt-5 max-w-[560px] text-subtext-2 text-text-tertiary">
+              {subcopy}
+            </p>
+          </div>
+
+          {/* Chips — sit below text, max 1302px wide to match Figma */}
+          <div className="relative z-30 mt-8 xl:mt-10">
+            <p className="mb-4 text-mini uppercase text-text-brand">
+              {offerLabel}
+            </p>
+            <ul className="grid max-w-[1100px] xl:max-w-[1200px] grid-cols-3 gap-3 xl:gap-4">
+              {offers.map((offer) => (
+                <li key={offer.label}>
+                  <HeroOfferChipCard offer={offer} />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
 
-      <HeroMarquee terms={marqueeTerms} />
+      {/* MOBILE / TABLET layout (< lg): stacked, watermark hidden, photo below text */}
+      <div className="relative lg:hidden">
+        <div className="mx-auto max-w-[720px] page-px pt-[88px] pb-12">
+          <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
+          <h1 className="mt-5 font-heading text-h4 sm:text-h3">
+            <span className="text-text-primary">{headlineLead}</span>
+            <span className="text-text-brand">{headlineAccent}</span>
+          </h1>
+          <p className="mt-6 text-subtext-1 text-text-tertiary">{subcopy}</p>
+
+          <div className="relative mt-10 aspect-[4/5] w-full overflow-hidden rounded-[28px]">
+            <Image
+              src={photoSrc}
+              alt={photoAlt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[center_top]"
+            />
+          </div>
+
+          <div className="mt-12">
+            <p className="mb-5 text-mini uppercase text-text-brand">
+              {offerLabel}
+            </p>
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {offers.map((offer) => (
+                <li key={offer.label}>
+                  <HeroOfferChipCard offer={offer} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -160,13 +178,13 @@ function HeroOfferChipCard({ offer }: { offer: HeroOfferChip }) {
     <Link
       href={offer.href}
       className={cn(
-        "group flex items-center justify-between gap-4 rounded-[27px] bg-surface-1 p-[14px] pl-7",
-        "border border-border-2 shadow-card",
-        "transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-12px_rgba(0,0,0,0.18)]",
+        "group flex h-[102px] items-center justify-between gap-3 rounded-[27px] bg-surface-1 px-[25px]",
+        "border border-border-2 shadow-[0_28px_60px_-16px_rgba(180,180,180,0.35)]",
+        "transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.18)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
       )}
     >
-      <div className="flex flex-col gap-1">
+      <div className="flex min-w-0 flex-col gap-1">
         <span className="text-mini uppercase text-text-brand">
           {offer.eyebrow}
         </span>
@@ -176,37 +194,11 @@ function HeroOfferChipCard({ offer }: { offer: HeroOfferChip }) {
       </div>
       <span
         aria-hidden
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border-2 text-text-inverse transition-transform duration-300 group-hover:translate-x-0.5"
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-text-inverse transition-transform duration-300 group-hover:translate-x-0.5"
         style={{ backgroundColor: offer.buttonColor }}
       >
         <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
       </span>
     </Link>
-  );
-}
-
-function HeroMarquee({ terms }: { terms: string[] }) {
-  const track = [...terms, ...terms];
-  return (
-    <div
-      aria-hidden
-      className={cn(
-        "relative w-full overflow-hidden border-y border-white/20",
-        "bg-surface-1/70 backdrop-blur-2xl",
-      )}
-    >
-      <div className="flex w-max animate-hero-marquee items-center gap-24 px-8 py-5">
-        {track.map((term, i) => (
-          <span
-            key={`${term}-${i}`}
-            lang="sa"
-            className="shrink-0 font-serif text-subtext-2 italic text-text-secondary"
-            style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
-          >
-            {term}
-          </span>
-        ))}
-      </div>
-    </div>
   );
 }

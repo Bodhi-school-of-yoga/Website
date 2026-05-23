@@ -38,7 +38,7 @@ export function TestimonialsSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl page-px">
         <header className="mx-auto mb-14 max-w-2xl text-center">
           {eyebrow && (
             <p className="text-mini uppercase text-text-brand">

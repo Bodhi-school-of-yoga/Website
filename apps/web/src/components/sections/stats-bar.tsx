@@ -57,7 +57,7 @@ export function StatsBar({
         rotate={6.5}
       />
 
-      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-10 px-6 text-center sm:px-8 lg:gap-14">
+      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-10 page-px text-center lg:gap-14">
         <h2 className="font-heading text-h5 sm:text-h4 lg:text-h3 2xl:text-h2 text-text-primary">
           <span>{headlineLead}</span>
           <span className="text-text-brand">{headlineAccent}</span>

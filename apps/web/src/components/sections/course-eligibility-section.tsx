@@ -57,7 +57,7 @@ export function CourseEligibilitySection({
         />
       </div>
 
-      <div className="relative mx-auto max-w-[1340px] px-6 sm:px-8 lg:px-10">
+      <div className="relative mx-auto max-w-[1340px] page-px">
         <div className="mx-auto flex max-w-[560px] flex-col items-center gap-8 text-center">
           <header className="flex flex-col items-center gap-4">
             <p className="text-mini font-heading uppercase tracking-widest text-text-brand">

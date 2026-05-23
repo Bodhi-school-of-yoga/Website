@@ -47,4 +47,8 @@ postgres-data/
 .vercel
 .turbo
 
+# Design workspace (local Figma scratch, not source of truth)
+_workspace/
+_workspace_prev/
+.claude/worktrees/
 

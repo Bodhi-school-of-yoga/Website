@@ -59,7 +59,7 @@ export function AboutStorySection({
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
+      <div className="mx-auto max-w-6xl page-px">
         <div className="flex flex-col gap-y-16 lg:gap-y-24">
           {rows.map((row) => {
             const imageOrder =

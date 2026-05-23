@@ -26,7 +26,7 @@ export function EligibilitySection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] px-6 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1340px] page-px">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
           {/* Left: instructor portrait */}
           <div

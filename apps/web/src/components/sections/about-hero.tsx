@@ -29,7 +29,7 @@ export function AboutHero({
         className,
       )}
     >
-      <div className="mx-auto flex max-w-[960px] flex-col items-center px-6 text-center sm:px-8">
+      <div className="mx-auto flex max-w-[960px] flex-col items-center page-px text-center">
         {eyebrow ? (
           <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
         ) : null}

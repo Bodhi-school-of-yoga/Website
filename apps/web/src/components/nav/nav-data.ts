@@ -1,10 +1,7 @@
 import type { DropdownContent, MegaMenuColumn } from "./nav-types";
 
-// TODO: routes referenced below that may not yet be implemented:
-// /faculty, /poses, /blog, /centers, /contact, /blog/become-a-teacher,
-// /teacher-courses/{online,offline,pre-recorded},
-// /advanced-certifications/{online,in-studio,pre-recorded},
-// /yoga-courses/{online,offline,pre-recorded}
+// All hrefs below point to pages that exist in apps/web/src/app/.
+// When adding new menu items, also add the matching page.tsx route.
 
 export const ABOUT_MEGA_MENU: MegaMenuColumn[] = [
   {
@@ -26,7 +23,7 @@ export const ABOUT_MEGA_MENU: MegaMenuColumn[] = [
         icon: "Users",
         title: "Our Trainers",
         subtitle: "Meet the faculty",
-        href: "/faculty",
+        href: "/our-trainers",
       },
       {
         icon: "Sparkles",
@@ -46,12 +43,6 @@ export const ABOUT_MEGA_MENU: MegaMenuColumn[] = [
         href: "/workshops",
       },
       {
-        icon: "PersonStanding",
-        title: "Yoga Poses",
-        subtitle: "Asana library",
-        href: "/poses",
-      },
-      {
         icon: "BookOpen",
         title: "Blogs & Insights",
         subtitle: "Reads from our teachers",
@@ -66,13 +57,13 @@ export const ABOUT_MEGA_MENU: MegaMenuColumn[] = [
         icon: "MapPin",
         title: "Our Centers",
         subtitle: "Studio locations",
-        href: "/centers",
+        href: "/our-centers",
       },
       {
         icon: "GraduationCap",
         title: "Tips to become a successful yoga teacher",
         subtitle: "Career guidance",
-        href: "/blog/become-a-teacher",
+        href: "/tips-to-become-a-successful-yoga-teacher",
       },
       {
         icon: "MessageCircle",
@@ -109,8 +100,8 @@ export const COURSE_DROPDOWNS: Record<
       {
         title: "Pre-recorded classes",
         subtitle: "Access anytime, anywhere",
-        count: 8,
-        href: "/teacher-courses/pre-recorded",
+        count: 4,
+        href: "/pre-recorded-courses",
         image: "/images/programs/pranayama.jpg",
         icon: "PlayCircle",
       },
@@ -130,15 +121,15 @@ export const COURSE_DROPDOWNS: Record<
         title: "In-studio Certifications",
         subtitle: "Hands-on training",
         count: 4,
-        href: "/advanced-certifications/in-studio",
+        href: "/advanced-certifications/offline",
         image: "/images/programs/bala-yoga-teacher-training.jpg",
         icon: "Building2",
       },
       {
         title: "Pre-recorded modules",
         subtitle: "Self-paced deep dives",
-        count: 5,
-        href: "/advanced-certifications/pre-recorded",
+        count: 4,
+        href: "/pre-recorded-courses",
         image: "/images/programs/pranayama.jpg",
         icon: "PlayCircle",
       },
@@ -165,8 +156,8 @@ export const COURSE_DROPDOWNS: Record<
       {
         title: "Pre-recorded classes",
         subtitle: "Access anytime, anywhere",
-        count: 6,
-        href: "/yoga-courses/pre-recorded",
+        count: 4,
+        href: "/pre-recorded-courses",
         image: "/images/programs/pranayama.jpg",
         icon: "PlayCircle",
       },

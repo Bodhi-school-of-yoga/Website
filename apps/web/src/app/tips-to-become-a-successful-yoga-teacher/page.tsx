@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { ListingHero } from "@/components/sections/listing-hero";
-import { SiteFooter } from "@/components/site-footer";
+import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
 import { ProgramCard } from "@/components/ui/program-card";
 
@@ -94,66 +94,21 @@ const ARTICLES: Article[] = [
   },
 ];
 
-const FOOTER_BRAND = {
-  wordmark: "Bodhi",
-  tagline: "A school for teachers, a home for seekers.\nPractice, taught honestly.",
-  url: {
-    label: "bodhischoolofyoga.com",
-    href: "https://bodhischoolofyoga.com",
-  },
-};
-
-const FOOTER_COLUMNS = [
-  {
-    heading: "School",
-    links: [
-      { label: "Teacher Training", href: "/teacher-training" },
-      { label: "Workshops", href: "/workshops" },
-      { label: "Classes", href: "/classes" },
-      { label: "Faculty", href: "/faculty" },
-      { label: "Lineage", href: "/lineage" },
-    ],
-  },
-  {
-    heading: "Stay close",
-    links: [
-      { label: "Newsletter", href: "/newsletter" },
-      {
-        label: "Instagram",
-        href: "https://instagram.com/bodhischoolofyoga",
-        external: true,
-      },
-      {
-        label: "YouTube",
-        href: "https://youtube.com/@bodhischoolofyoga",
-        external: true,
-      },
-      { label: "Email us", href: "mailto:hello@bodhischoolofyoga.com" },
-    ],
-  },
-];
-
-const FOOTER_ADDRESS = {
-  heading: "Visit",
-  lines: ["The Practice Room,", "2nd floor, Quiet Lane", "City  ·  India"],
-  action: {
-    label: "Get directions →",
-    href: "https://maps.google.com",
-    external: true,
-  },
-};
-
 export default function TipsToBecomeASuccessfulYogaTeacherPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader tone="light" />
       <main>
         <ListingHero
+          breadcrumb={[]}
           eyebrow="23 courses"
           headline="Tips to become a"
           headlineAccent="successful yoga teacher"
+          accentPosition="end"
           subtitle="Discover essential tips, strategies, and insights to grow as a skilled and confident yoga teacher, whether you're just starting or looking to enhance your teaching career."
-          backgroundImage="/images/hero/hero-photo.jpg"
+          backgroundImage="/images/hero/tips.jpg"
+          minHeightClassName="min-h-[421px]"
+          contentAlign="center"
         />
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">
           <div className="container mx-auto max-w-7xl px-4">
@@ -173,11 +128,7 @@ export default function TipsToBecomeASuccessfulYogaTeacherPage() {
           </div>
         </section>
       </main>
-      <SiteFooter
-        brand={FOOTER_BRAND}
-        columns={FOOTER_COLUMNS}
-        address={FOOTER_ADDRESS}
-      />
+      <SiteFooterBlock />
     </>
   );
 }

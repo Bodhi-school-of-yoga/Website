@@ -1,9 +1,0 @@
-{
-  "libraries_added_to_file": [
-    {"name": "Material 3 Design Kit", "source": "community"},
-    {"name": "Simple Design System", "source": "community"},
-    {"name": "iOS 18 and iPadOS 18", "source": "community"},
-    {"name": "iOS and iPadOS 26", "source": "community"}
-  ],
-  "note": "None of these libraries appear to provide tokens used by node 1:4217 (get_variable_defs returned {}). Card uses raw hex values."
-}

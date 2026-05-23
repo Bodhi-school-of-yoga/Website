@@ -26,7 +26,7 @@ export function CurriculumSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] px-6 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1340px] page-px">
         <header className="mb-10 flex flex-col gap-4">
           <p className="font-heading text-mini uppercase tracking-widest text-text-brand">
             {eyebrow}

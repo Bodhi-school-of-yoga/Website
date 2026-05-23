@@ -38,7 +38,7 @@ export function AboutVisionMissionSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
+      <div className="mx-auto max-w-6xl page-px">
         <div
           className={cn(
             "grid grid-cols-1 gap-6",
@@ -53,7 +53,7 @@ export function AboutVisionMissionSection({
           >
             <span
               aria-hidden
-              className="font-serif text-subtext-3 italic text-white/85"
+              className="font-heading text-subtext-3 italic text-white/85"
             >
               — a quiet practice
             </span>
@@ -81,7 +81,7 @@ export function AboutVisionMissionSection({
           >
             <span
               aria-hidden
-              className="font-serif text-subtext-3 italic text-text-tertiary"
+              className="font-heading text-subtext-3 italic text-text-tertiary"
             >
               — a steady craft
             </span>

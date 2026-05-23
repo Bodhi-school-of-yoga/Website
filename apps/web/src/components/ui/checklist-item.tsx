@@ -6,10 +6,20 @@ import { cn } from "@/lib/utils";
 
 interface ChecklistItemProps {
   label: string;
+  tone?: "pill" | "plain";
   className?: string;
 }
 
-function ChecklistItem({ label, className }: ChecklistItemProps) {
+function ChecklistItem({ label, tone = "pill", className }: ChecklistItemProps) {
+  if (tone === "plain") {
+    return (
+      <div className={cn("flex items-center gap-2", className)}>
+        <Check size={14} strokeWidth={3} className="shrink-0 text-brand-shade" />
+        <span className="text-body-sm text-text-inverse">{label}</span>
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(

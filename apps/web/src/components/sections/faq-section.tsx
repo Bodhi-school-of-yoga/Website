@@ -25,7 +25,7 @@ export function FaqSection({ eyebrow, heading, items, className }: FaqSectionPro
         className,
       )}
     >
-      <div className="mx-auto max-w-4xl px-6 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-4xl page-px">
         <div className="flex flex-col gap-3 mb-10">
           <p className="text-mini uppercase tracking-widest text-text-secondary">
             {eyebrow}

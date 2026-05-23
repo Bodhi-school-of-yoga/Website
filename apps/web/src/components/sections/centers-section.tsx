@@ -57,7 +57,7 @@ export function CentersSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl page-px">
         <header className="mb-8 lg:mb-10">
           <h1
             className={cn(

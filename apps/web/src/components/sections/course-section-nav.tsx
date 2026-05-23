@@ -72,7 +72,7 @@ export function CourseSectionNav({ items, className }: CourseSectionNavProps) {
         className,
       )}
     >
-      <ul className="mx-auto flex max-w-[1340px] items-center gap-8 overflow-x-auto px-6 py-4 sm:gap-12 sm:px-8 lg:gap-16 lg:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <ul className="mx-auto flex max-w-[1340px] items-center gap-8 overflow-x-auto page-px py-4 sm:gap-12 lg:gap-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((item) => {
           const isActive = activeHref === item.href;
           return (

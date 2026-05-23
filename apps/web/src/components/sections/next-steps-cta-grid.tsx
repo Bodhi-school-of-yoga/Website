@@ -18,7 +18,7 @@ export function NextStepsCtaGrid({ items, className }: NextStepsCtaGridProps) {
   return (
     <section
       className={cn(
-        "w-full px-4 py-12 sm:px-6 lg:px-8 lg:py-16",
+        "w-full page-px py-12 lg:py-16",
         className,
       )}
     >

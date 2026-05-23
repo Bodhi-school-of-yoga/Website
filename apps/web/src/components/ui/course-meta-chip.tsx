@@ -20,7 +20,7 @@ function CourseMetaChip({ icon, label, className }: CourseMetaChipProps) {
       )}
     >
       <span className="text-text-brand">{icon}</span>
-      <span className="font-heading font-semibold text-[14px] leading-[21.45px] text-[#303030] text-center px-2">
+      <span className="font-sans font-semibold text-body-sm text-[#303030] text-center px-2">
         {label}
       </span>
     </div>

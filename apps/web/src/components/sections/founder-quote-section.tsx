@@ -35,7 +35,7 @@ export function FounderQuoteSection({
     >
       <div
         className={cn(
-          "mx-auto grid max-w-[1340px] gap-12 px-6 sm:px-8 lg:px-10",
+          "mx-auto grid max-w-[1340px] gap-12 page-px",
           "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-24",
         )}
       >
@@ -47,7 +47,7 @@ export function FounderQuoteSection({
               <span className="text-text-brand">{quoteAccent}</span>
               <span>{quoteTrail}</span>
             </p>
-            <cite className="font-serif italic text-subtext-2 text-text-brand">
+            <cite className="font-heading italic text-subtext-2 text-text-brand">
               {attribution}
             </cite>
           </blockquote>

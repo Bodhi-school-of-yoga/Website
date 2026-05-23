@@ -1,9 +1,0 @@
-{
-  "libraries_added_to_file": [
-    {"name":"Material 3 Design Kit","source":"community"},
-    {"name":"Simple Design System","source":"community"},
-    {"name":"iOS 18 and iPadOS 18","source":"community"},
-    {"name":"iOS and iPadOS 26","source":"community"}
-  ],
-  "note": "Community kits only — no bespoke Bodhi library subscribed. Component names in design_context will reference SDS/M3 primitives; map them to apps/web/src/components/ui/* shadcn stack."
-}

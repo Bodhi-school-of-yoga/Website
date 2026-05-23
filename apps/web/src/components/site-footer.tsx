@@ -37,7 +37,8 @@ export type SiteFooterProps = {
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
   const className = cn(
-    "inline-block py-1 text-body-md leading-snug text-white/75",
+    "inline-block text-[13.5px] leading-[21px] tracking-[0.08px] text-white/75",
+    "md:text-[14.5px] md:leading-[22.48px]",
     "transition-colors duration-200 hover:text-white",
     "focus-visible:outline-none focus-visible:underline focus-visible:text-white",
   );
@@ -71,32 +72,53 @@ export function SiteFooter({
   return (
     <footer
       className={cn(
-        "w-full bg-brand-dark px-6 pb-10 pt-20 text-white",
-        "sm:px-10 sm:pt-24 lg:px-16",
+        "w-full bg-brand-dark nav-px pb-10 pt-0 text-white",
+        "sm:pb-12 md:pb-16",
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-[1.5fr_1fr_1fr_1fr] md:gap-10">
-          <div className="flex flex-col gap-4 sm:col-span-2 md:col-span-1">
+      <div className="mx-auto flex max-w-[1240px] flex-col gap-10 sm:gap-12">
+        <div
+          className={cn(
+            "grid gap-8 sm:gap-10",
+            "grid-cols-1 sm:grid-cols-2",
+            "md:grid-cols-[1.5fr_1fr_1fr_1fr]",
+          )}
+        >
+          {/* Brand column */}
+          <div className="flex flex-col gap-3 sm:col-span-2 md:col-span-1 md:gap-[13.7px]">
             {brand.wordmark && (
               <Link
                 href="/"
-                className="font-serif text-h4 italic font-light leading-none text-white"
+                className={cn(
+                  "font-heading italic font-light text-white",
+                  "text-[28px] leading-[44px] tracking-[-0.28px]",
+                  "md:text-[32px] md:leading-[49.6px] md:tracking-[-0.32px]",
+                )}
                 aria-label="Bodhi — home"
               >
                 {brand.wordmark}
               </Link>
             )}
             {brand.tagline && (
-              <p className="max-w-xs whitespace-pre-line text-body-md text-white/75">
+              <p
+                className={cn(
+                  "max-w-[320px] whitespace-pre-line text-white/75",
+                  "text-[13.5px] leading-[21px] tracking-[0.08px]",
+                  "md:text-[14.5px] md:leading-[22.48px]",
+                )}
+              >
                 {brand.tagline}
               </p>
             )}
             {brand.url && (
               <a
                 href={brand.url.href}
-                className="mt-2 inline-block text-body-md text-white transition-opacity hover:opacity-80"
+                className={cn(
+                  "text-white transition-opacity hover:opacity-80",
+                  "text-[13.5px] leading-[21px] tracking-[0.29px]",
+                  "md:text-[14.5px] md:leading-[22.48px]",
+                )}
               >
                 {brand.url.label}
               </a>
@@ -107,12 +129,12 @@ export function SiteFooter({
             <nav
               key={column.heading}
               aria-label={column.heading}
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-3 md:gap-[17px]"
             >
-              <h4 className="text-mini uppercase text-white">
+              <h4 className="text-[11px] font-medium uppercase leading-[17px] tracking-[2.42px] text-white">
                 {column.heading}
               </h4>
-              <ul className="flex flex-col gap-0.5">
+              <ul className="flex flex-col gap-2 md:gap-[9px]">
                 {column.links.map((link) => (
                   <li key={`${column.heading}-${link.label}`}>
                     <FooterLinkItem link={link} />
@@ -124,34 +146,61 @@ export function SiteFooter({
 
           {address && (
             <div
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-3 md:gap-[17px]"
               aria-label={address.heading}
             >
-              <h4 className="text-mini uppercase text-white">
+              <h4 className="text-[11px] font-medium uppercase leading-[17px] tracking-[2.42px] text-white">
                 {address.heading}
               </h4>
-              <address className="not-italic text-body-md text-white/75">
-                {address.lines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
+              <address className="not-italic">
+                <ul className="flex flex-col gap-2 md:gap-[9px]">
+                  {address.lines.map((line) => (
+                    <li
+                      key={line}
+                      className={cn(
+                        "text-white/75",
+                        "text-[13.5px] leading-[21px] tracking-[0.08px]",
+                        "md:text-[14.5px] md:leading-[22.48px]",
+                      )}
+                    >
+                      {line}
+                    </li>
+                  ))}
+                  {address.action && (
+                    <li>
+                      <FooterLinkItem link={address.action} />
+                    </li>
+                  )}
+                </ul>
               </address>
-              {address.action && (
-                <FooterLinkItem link={address.action} />
-              )}
             </div>
           )}
         </div>
 
         <div
           className={cn(
-            "mt-16 flex flex-col-reverse items-start justify-between gap-3 border-t pt-6",
-            "border-white/10 sm:flex-row sm:items-center",
+            "flex flex-col-reverse items-start justify-between gap-2 border-t border-white/10 pt-5",
+            "sm:flex-row sm:items-center sm:gap-3 sm:pt-[25px]",
           )}
         >
-          <p className="text-body-sm text-white/65">{legalLeft}</p>
-          <p className="text-body-sm italic text-white/65">{legalRight}</p>
+          <p
+            className={cn(
+              "text-white/80",
+              "text-[11.5px] leading-[18px] tracking-[0.08px]",
+              "md:text-[12.5px] md:leading-[19.38px] md:text-white",
+            )}
+          >
+            {legalLeft}
+          </p>
+          <p
+            className={cn(
+              "text-white/80",
+              "text-[11.5px] leading-[18px] tracking-[0.08px]",
+              "md:text-[12.5px] md:leading-[19.38px] md:text-white",
+            )}
+          >
+            {legalRight}
+          </p>
         </div>
       </div>
     </footer>

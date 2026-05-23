@@ -33,6 +33,12 @@ type CommonProps = {
   price: string;
   ctaLabel?: string;
   ctaHref?: string;
+  /**
+   * When set, the whole card is clickable and navigates here. The inner CTA
+   * button still works independently (and may point at a different href, e.g.
+   * checkout vs. detail page).
+   */
+  cardHref?: string;
   className?: string;
 };
 
@@ -78,6 +84,7 @@ function CourseCard(props: CourseCardProps) {
     price,
     ctaLabel,
     ctaHref = "#",
+    cardHref,
     className,
   } = props;
 
@@ -103,12 +110,23 @@ function CourseCard(props: CourseCardProps) {
       variants={prefersReducedMotion ? undefined : containerVariants}
       {...motionProps}
       className={cn(
-        "relative flex w-[1308px] h-[362px] overflow-hidden rounded-[35px]",
+        "group/card relative flex w-[1308px] h-[362px] overflow-hidden rounded-[35px]",
         "bg-white border border-[rgba(211,211,211,0.6)]",
         "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md",
+        cardHref ? "focus-within:shadow-md" : null,
         className
       )}
     >
+      {/* Full-card click overlay — sits below interactive children so the
+          inner CTA Button still gets its own clicks. */}
+      {cardHref ? (
+        <Link
+          href={cardHref}
+          aria-label={`Open ${title}`}
+          className="absolute inset-0 z-0 rounded-[35px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-shade/60"
+        />
+      ) : null}
+
       {/* Left half: hero photo */}
       <motion.div
         variants={prefersReducedMotion ? undefined : itemVariants}
@@ -133,7 +151,7 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.06 }
           }
-          className="font-sans font-bold text-[40px] leading-[1.05] tracking-[-0.56px] text-text-primary max-w-[520px]"
+          className="font-heading font-bold text-h3 text-text-primary max-w-[520px]"
         >
           {title}
         </motion.h3>
@@ -145,7 +163,7 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.12 }
           }
-          className="mt-4 max-w-[520px] font-heading font-normal text-[17px] leading-[27px] text-[#4b4b4b]"
+          className="mt-4 max-w-[520px] font-sans font-normal text-subtext-2 text-text-secondary"
         >
           {description}
         </motion.p>
@@ -185,7 +203,7 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.18 }
           }
-          className="absolute top-7 right-10 font-sans font-bold text-[30px] leading-none tracking-[-0.56px] text-text-primary"
+          className="absolute top-7 right-10 font-heading font-bold text-h4 leading-none text-text-primary"
         >
           {price}
         </motion.div>
@@ -198,7 +216,7 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.24 }
           }
-          className="absolute bottom-7 left-10"
+          className="absolute bottom-7 left-10 z-10"
         >
           <Button
             variant="mint"
@@ -217,7 +235,7 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.3 }
           }
-          className="absolute bottom-7 right-10"
+          className="absolute bottom-7 right-10 z-10 pointer-events-none"
         >
           {isWorkshop ? (
             <CountdownWidget
@@ -225,7 +243,7 @@ function CourseCard(props: CourseCardProps) {
               eyebrow={props.countdownEyebrow ?? "Workshop starting in"}
             />
           ) : (
-            <span className="font-sans font-bold text-[17px] leading-[21px] text-text-primary">
+            <span className="font-heading font-bold text-subtext-2 text-text-primary">
               {props.startsCaption}
             </span>
           )}

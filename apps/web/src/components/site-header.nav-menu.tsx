@@ -73,7 +73,7 @@ function NavMenuTrigger({
     >
       {children}
       <ChevronDown
-        className="size-[14px] text-foreground/60 transition-transform duration-200 group-data-[popup-open]:rotate-180"
+        className="size-[14px] opacity-70 transition-transform duration-200 group-data-[popup-open]:rotate-180"
         strokeWidth={2}
         aria-hidden
       />

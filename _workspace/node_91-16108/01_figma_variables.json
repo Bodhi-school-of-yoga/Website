@@ -1,9 +1,0 @@
-{
-  "raw": "{}",
-  "fetched_at": "2026-05-21T00:00:00Z",
-  "tool": "get_variable_defs",
-  "nodeId": "91:16108",
-  "fileKey": "eqaofBeNUhOUISevtRfOpT",
-  "format": "json",
-  "note": "Empty — no Figma variables bound to this node. Consistent with previous pages (91:15377, 91:15743). Tokens are inferred from text labels in design-context / metadata XML."
-}

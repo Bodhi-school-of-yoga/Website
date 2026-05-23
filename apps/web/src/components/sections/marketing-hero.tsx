@@ -46,7 +46,7 @@ export function MarketingHero({
         className="object-cover"
       />
 
-      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 text-center sm:px-8">
+      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center page-px text-center">
         <p className="text-mini uppercase tracking-widest text-text-brand">
           {eyebrow}
         </p>

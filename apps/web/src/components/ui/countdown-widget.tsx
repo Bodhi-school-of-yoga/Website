@@ -9,6 +9,14 @@ export type CountdownWidgetProps = {
   target: Date | string | number;
   /** Small uppercase label above the timer. */
   eyebrow?: string;
+  /**
+   * Visual tone.
+   * - "light" (default): dark text for light backgrounds (legacy placement).
+   * - "dark": white/mint text for use over a dark hero photo.
+   */
+  tone?: "light" | "dark";
+  /** Anchor the eyebrow + numbers row to the start (left) or end (right). */
+  align?: "start" | "end";
   className?: string;
 };
 
@@ -35,6 +43,8 @@ function pad(n: number) {
 function CountdownWidget({
   target,
   eyebrow = "Workshop starting in",
+  tone = "light",
+  align = "end",
   className,
 }: CountdownWidgetProps) {
   const targetMs = React.useMemo(() => {
@@ -61,32 +71,74 @@ function CountdownWidget({
     { value: pad(parts.seconds), label: "Secs" },
   ];
 
+  const isDark = tone === "dark";
+  const itemsAlign = align === "start" ? "items-start" : "items-end";
+  const rowAlign = align === "start" ? "justify-start" : "justify-end";
+
+  const eyebrowRow = (
+    <div className={cn("flex items-center gap-3", rowAlign)}>
+      <span
+        className={cn(
+          "font-heading font-semibold text-mini uppercase",
+          isDark ? "text-text-inverse/80" : "text-text-primary/80",
+        )}
+      >
+        {eyebrow}
+      </span>
+      <span
+        aria-hidden="true"
+        className={cn(
+          "h-px w-12",
+          isDark ? "bg-text-inverse/40" : "bg-text-primary/40",
+        )}
+      />
+    </div>
+  );
+
   return (
-    <div className={cn("flex flex-col items-end gap-2", className)}>
-      <div className="flex flex-col items-end">
-        <span className="font-sans font-semibold text-[9px] uppercase tracking-[0.55em] text-text-primary/80">
-          {eyebrow}
-        </span>
-        <div className="mt-1 h-px w-8 bg-text-primary/40" />
-      </div>
-      <div className="flex items-baseline gap-4">
-        {cells.map((cell, i) => (
-          <div key={cell.label} className="flex flex-col items-center">
-            <span
-              className={cn(
-                "font-sans font-semibold text-[30px] leading-none tabular-nums",
-                i === cells.length - 1
-                  ? "text-text-primary/80"
-                  : "text-text-primary"
-              )}
+    <div className={cn("flex flex-col gap-3", itemsAlign, className)}>
+      {eyebrowRow}
+      <div className={cn("flex items-baseline gap-8 sm:gap-10", rowAlign)}>
+        {cells.map((cell, i) => {
+          const dim = i === cells.length - 1;
+          return (
+            <div
+              key={cell.label}
+              className="flex items-baseline gap-2"
             >
-              {cell.value}
-            </span>
-            <span className="mt-1 font-sans font-normal text-[11px] leading-none text-text-tertiary">
-              {cell.label}
-            </span>
-          </div>
-        ))}
+              <span
+                className={cn(
+                  "font-heading font-semibold leading-none tabular-nums",
+                  "text-[2.5rem] sm:text-[2.75rem] lg:text-[3rem]",
+                  isDark
+                    ? dim
+                      ? "text-text-inverse/80"
+                      : i === 0
+                        ? "text-brand-shade"
+                        : "text-text-inverse"
+                    : dim
+                      ? "text-text-primary/80"
+                      : "text-text-primary",
+                )}
+              >
+                {cell.value}
+              </span>
+              <span
+                className={cn(
+                  "font-sans font-normal normal-case tracking-normal",
+                  "text-body-md",
+                  isDark
+                    ? dim
+                      ? "text-text-inverse/80"
+                      : "text-text-inverse"
+                    : "text-text-tertiary",
+                )}
+              >
+                {cell.label}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

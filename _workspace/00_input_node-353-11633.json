@@ -1,8 +1,0 @@
-{
-  "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=353-11633&m=dev",
-  "file_key": "eqaofBeNUhOUISevtRfOpT",
-  "node_id": "353:11633",
-  "purpose": "Mega menu (About Us) — wide multi-column dropdown panel for the About Us navbar item",
-  "target_route": "/about",
-  "notes": "Implement as the About Us dropdown in site-header.tsx. Inner links should route into /about and any sub-routes derivable from the Figma content."
-}

@@ -1,16 +1,16 @@
 import { AccreditationsSection } from "@/components/sections/accreditations-section";
-import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
+import { ExperienceHarmonyStatsBand } from "@/components/sections/experience-harmony-stats-band";
 import { FounderQuoteSection } from "@/components/sections/founder-quote-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ProgramsGridSection } from "@/components/sections/programs-grid-section";
-import { StatsBar } from "@/components/sections/stats-bar";
+import { SanskritMarqueeStrip } from "@/components/sections/sanskrit-marquee-strip";
 import {
   TestimonialsSection,
   type TestimonialItem,
 } from "@/components/sections/testimonials-section";
 import { WhatWeDoSection } from "@/components/sections/what-we-do-section";
 import { WhyBodhiSection } from "@/components/sections/why-bodhi-section";
-import { SiteFooter } from "@/components/site-footer";
+import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
 
 const TESTIMONIALS: TestimonialItem[] = [
@@ -86,84 +86,15 @@ const ACCREDITATIONS = [
   },
 ];
 
-const FOOTER_BRAND = {
-  wordmark: "Bodhi",
-  tagline: "A school for teachers, a home for seekers.\nPractice, taught honestly.",
-  url: {
-    label: "bodhischoolofyoga.com",
-    href: "https://bodhischoolofyoga.com",
-  },
-};
-
-const FOOTER_COLUMNS = [
-  {
-    heading: "School",
-    links: [
-      { label: "Teacher Training", href: "/teacher-training" },
-      { label: "Workshops", href: "/workshops" },
-      { label: "Classes", href: "/classes" },
-      { label: "Faculty", href: "/faculty" },
-      { label: "Lineage", href: "/lineage" },
-    ],
-  },
-  {
-    heading: "Stay close",
-    links: [
-      { label: "Newsletter", href: "/newsletter" },
-      {
-        label: "Instagram",
-        href: "https://instagram.com/bodhischoolofyoga",
-        external: true,
-      },
-      {
-        label: "YouTube",
-        href: "https://youtube.com/@bodhischoolofyoga",
-        external: true,
-      },
-      { label: "Email us", href: "mailto:hello@bodhischoolofyoga.com" },
-    ],
-  },
-];
-
-const FOOTER_ADDRESS = {
-  heading: "Visit",
-  lines: ["The Practice Room,", "2nd floor, Quiet Lane", "City  ·  India"],
-  action: {
-    label: "Get directions →",
-    href: "https://maps.google.com",
-    external: true,
-  },
-};
-
-const CLOSING_CTA_CARDS = [
-  {
-    title: "Free Trial Session",
-    body: "50 Mins Session with the option of choosing from 10 slots in a day.",
-    ctaLabel: "Join now",
-    href: "/trial",
-  },
-  {
-    title: "Speak to us",
-    body: "Talk to a counsellor who can assess and offer recommendations.",
-    ctaLabel: "Contact us",
-    href: "/contact",
-  },
-  {
-    title: "Take a Guided Path",
-    body: "Our assessment will guide you toward the direction best suited to your experience.",
-    ctaLabel: "Start now",
-    href: "/assessment",
-  },
-];
-
 export default function HomePage() {
   return (
     <>
       <SiteHeader />
       <main>
         <HeroSection />
+        <SanskritMarqueeStrip />
         <FounderQuoteSection />
-        <StatsBar />
+        <ExperienceHarmonyStatsBand />
         <WhatWeDoSection />
         <WhyBodhiSection />
         <ProgramsGridSection />
@@ -178,20 +109,8 @@ export default function HomePage() {
           testimonials={TESTIMONIALS}
           priorityFirst
         />
-        <ClosingCtaSection
-          eyebrow="Bodhi"
-          headingLead="Begin where"
-          headingAccent="you are."
-          subhead="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
-          primaryCta={{ label: "Try a class, free", href: "/trial" }}
-          cards={CLOSING_CTA_CARDS}
-        />
       </main>
-      <SiteFooter
-        brand={FOOTER_BRAND}
-        columns={FOOTER_COLUMNS}
-        address={FOOTER_ADDRESS}
-      />
+      <SiteFooterBlock />
     </>
   );
 }

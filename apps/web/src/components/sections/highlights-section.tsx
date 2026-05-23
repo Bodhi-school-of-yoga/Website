@@ -44,7 +44,7 @@ export function HighlightsSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] px-6 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1340px] page-px">
         <div className="flex flex-col gap-1.5 mb-10">
           <p className="text-mini uppercase tracking-widest text-text-brand-deep">
             {eyebrow}

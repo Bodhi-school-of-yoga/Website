@@ -40,7 +40,7 @@ export function WhyBodhiSection({
     >
       <div
         className={cn(
-          "mx-auto grid max-w-[1340px] gap-12 px-6 sm:px-8 lg:px-10",
+          "mx-auto grid max-w-[1340px] gap-12 page-px",
           "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-14",
         )}
       >

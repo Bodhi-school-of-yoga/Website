@@ -33,6 +33,12 @@ export type SiteHeaderProps = {
   ctaLabel?: string;
   ctaHref?: string;
   onSearchClick?: () => void;
+  /**
+   * "light" inverts text/icon color so the header is legible over dark hero
+   * imagery. Once the user scrolls past the hero, the cream/blur scrolled
+   * state kicks in and links automatically flip back to dark.
+   */
+  tone?: "dark" | "light";
   className?: string;
 };
 
@@ -65,12 +71,19 @@ export function SiteHeader({
   tagline = "School of Yoga",
   navLinks = DEFAULT_NAV_LINKS,
   ctaLabel = "Enquire Now",
-  ctaHref = "/enquire",
+  ctaHref = "/contact",
   onSearchClick,
+  tone = "dark",
   className,
 }: SiteHeaderProps) {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  // When the header sits over a dark hero (`tone="light"`) AND the user hasn't
+  // scrolled past it yet, render wordmark/nav/icons in white. Once scrolled or
+  // when the mobile menu is open, the surface flips to the cream/blur scrolled
+  // state and we fall back to dark text for legibility.
+  const inverted = tone === "light" && !scrolled && !mobileOpen;
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -98,18 +111,26 @@ export function SiteHeader({
         className,
       )}
     >
-      <div className="mx-auto flex h-[88px] max-w-[1340px] items-center justify-between gap-6 px-6 sm:h-[92px] sm:px-8 lg:px-10 xl:gap-10">
+      <div className="mx-auto flex h-[88px] max-w-[1340px] items-center justify-between gap-6 nav-px sm:h-[92px] xl:gap-10">
         <Link
           href="/"
           aria-label={`${wordmark} — home`}
           className="flex shrink-0 flex-col items-start leading-none"
         >
           <span
-            className="font-display italic font-normal text-[28px] leading-none tracking-[-0.011em] text-black sm:text-[32px]"
+            className={cn(
+              "font-heading italic font-normal text-h5 leading-none sm:text-h4 transition-colors",
+              inverted ? "text-text-inverse" : "text-black",
+            )}
           >
             {wordmark}
           </span>
-          <span className="mt-1.5 font-tagline font-semibold text-[12px] uppercase tracking-[0.246em] text-black/60">
+          <span
+            className={cn(
+              "mt-1.5 font-sans font-semibold text-mini uppercase transition-colors",
+              inverted ? "text-text-inverse/70" : "text-black/60",
+            )}
+          >
             {tagline}
           </span>
         </Link>
@@ -125,7 +146,7 @@ export function SiteHeader({
               if (link.kind === "panel" && link.dropdownKey) {
                 return (
                   <NavMenuItem key={link.label}>
-                    <NavMenuTrigger className="font-ui text-[17px] font-medium text-black">
+                    <NavMenuTrigger className={cn("font-sans text-subtext-2 font-medium transition-colors", inverted ? "text-text-inverse" : "text-black")}>
                       {link.label}
                     </NavMenuTrigger>
                     <NavMenuContent>
@@ -139,7 +160,7 @@ export function SiteHeader({
               if (link.kind === "mega") {
                 return (
                   <NavMenuItem key={link.label}>
-                    <NavMenuTrigger className="font-ui text-[17px] font-medium text-black">
+                    <NavMenuTrigger className={cn("font-sans text-subtext-2 font-medium transition-colors", inverted ? "text-text-inverse" : "text-black")}>
                       {link.label}
                     </NavMenuTrigger>
                     <NavMenuContent>
@@ -152,7 +173,10 @@ export function SiteHeader({
                 <NavMenuItem key={link.label}>
                   <NavMenuLink
                     render={<Link href={link.href} />}
-                    className="inline-flex shrink-0 items-center whitespace-nowrap font-ui text-[17px] font-medium text-black transition-opacity hover:opacity-70 focus-visible:opacity-70"
+                    className={cn(
+                      "inline-flex shrink-0 items-center whitespace-nowrap font-sans text-subtext-2 font-medium transition-[color,opacity] hover:opacity-70 focus-visible:opacity-70",
+                      inverted ? "text-text-inverse" : "text-black",
+                    )}
                   >
                     {link.label}
                   </NavMenuLink>
@@ -168,8 +192,10 @@ export function SiteHeader({
             aria-label="Search"
             onClick={onSearchClick}
             className={cn(
-              "flex h-11 w-11 items-center justify-center rounded-full",
-              "text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground",
+              "flex h-11 w-11 items-center justify-center rounded-full transition-colors",
+              inverted
+                ? "text-text-inverse hover:bg-white/10"
+                : "text-foreground/80 hover:bg-foreground/5 hover:text-foreground",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
             )}
           >
@@ -180,7 +206,7 @@ export function SiteHeader({
             href={ctaHref}
             className={cn(
               "hidden h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[36px] px-8",
-              "bg-brand-shade font-ui text-[14px] font-semibold tracking-[0.019em]",
+              "bg-brand-shade font-sans text-body-sm font-semibold",
               "text-text-primary transition-[transform,filter] duration-150",
               "hover:brightness-[1.05] active:scale-[0.98]",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
@@ -196,8 +222,10 @@ export function SiteHeader({
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
             className={cn(
-              "flex h-11 w-11 items-center justify-center rounded-full xl:hidden",
-              "text-foreground/80 transition-colors hover:bg-foreground/5",
+              "flex h-11 w-11 items-center justify-center rounded-full xl:hidden transition-colors",
+              inverted
+                ? "text-text-inverse hover:bg-white/10"
+                : "text-foreground/80 hover:bg-foreground/5",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
             )}
           >
@@ -220,7 +248,7 @@ export function SiteHeader({
         >
           <nav
             aria-label="Mobile"
-            className="mx-auto flex max-w-[1340px] flex-col gap-1 border-t border-foreground/10 px-6 py-6 sm:px-8"
+            className="mx-auto flex max-w-[1340px] flex-col gap-1 border-t border-foreground/10 nav-px py-6"
           >
             {navLinks.map((link) => {
               if (link.kind === "panel" && link.dropdownKey) {
@@ -230,7 +258,7 @@ export function SiteHeader({
                     <summary
                       className={cn(
                         "flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3",
-                        "font-sans text-base font-medium text-foreground transition-colors hover:bg-foreground/5",
+                        "font-sans text-subtext-2 font-medium text-text-primary transition-colors hover:bg-foreground/5",
                       )}
                     >
                       <span>{link.label}</span>
@@ -261,7 +289,7 @@ export function SiteHeader({
                     <summary
                       className={cn(
                         "flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3",
-                        "font-sans text-base font-medium text-foreground transition-colors hover:bg-foreground/5",
+                        "font-sans text-subtext-2 font-medium text-text-primary transition-colors hover:bg-foreground/5",
                       )}
                     >
                       <span>{link.label}</span>
@@ -300,7 +328,7 @@ export function SiteHeader({
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-between rounded-lg px-3 py-3 font-sans text-base font-medium text-foreground transition-colors hover:bg-foreground/5"
+                  className="flex items-center justify-between rounded-lg px-3 py-3 font-sans text-subtext-2 font-medium text-text-primary transition-colors hover:bg-foreground/5"
                 >
                   <span>{link.label}</span>
                 </Link>

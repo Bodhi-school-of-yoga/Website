@@ -64,7 +64,7 @@ export function TestimonialCard({
             transition={{ delay: 0.2, duration: 0.5 }}
             className={cn(
               "pointer-events-none absolute -top-2 right-4 z-0 select-none",
-              "font-serif text-[5.5rem] leading-none text-brand-primary/90",
+              "font-heading text-[5.5rem] leading-none text-brand-primary/90",
             )}
           >
             &rdquo;
