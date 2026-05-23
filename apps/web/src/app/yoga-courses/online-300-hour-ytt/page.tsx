@@ -16,7 +16,6 @@ import { PopularCoursesSection } from "@/components/sections/popular-courses-sec
 import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
 import { RevealOnScroll } from "@/components/ui/reveal-on-scroll";
 
-const ASSET = (name: string) => `/figma/node-1-8326/${name}`;
 
 export const metadata: Metadata = {
   title: "Online 300 Hour Yoga Teacher Training — RYT 300",
@@ -42,7 +41,7 @@ export default function Online300HourYttPage() {
         ]}
         ctaLabel="Reserve Your Spot Now"
         ctaHref="/enquire?course=online-300-hour-ytt"
-        heroImage={ASSET("hero-side.png")}
+        heroImage="/images/courses/yoga-300-hour-ytt/hero.png"
       />
 
       <CourseSectionNav
@@ -153,8 +152,8 @@ export default function Online300HourYttPage() {
             "Willingness to engage with anatomy and philosophy",
             "Stable internet for online sessions",
           ]}
-          leftImage={ASSET("eligibility.png")}
-          rightImage={ASSET("eligibility.png")}
+          leftImage="/images/courses/yoga-300-hour-ytt/eligibility.png"
+          rightImage="/images/courses/yoga-300-hour-ytt/eligibility.png"
           leftImageAlt="Yoga student meditating in lotus pose"
           rightImageAlt="Yoga student meditating in lotus pose"
         />
@@ -184,8 +183,8 @@ export default function Online300HourYttPage() {
             "A yoga mat, props, and a quiet practice space.",
             "Stable internet connection for the online classroom.",
           ]}
-          leftImage={ASSET("prereq-left.png")}
-          rightImage={ASSET("prereq-right.png")}
+          leftImage="/images/courses/yoga-300-hour-ytt/prereq-left.png"
+          rightImage="/images/courses/yoga-300-hour-ytt/prereq-right.png"
           leftImageAlt="Yoga student practicing a balance pose"
           rightImageAlt="Yoga student practicing meditation"
         />
@@ -203,22 +202,22 @@ export default function Online300HourYttPage() {
             {
               name: "Atheesh Kumar",
               role: "Founder & Lead Teacher",
-              avatar: ASSET("instructor-atheesh.png"),
+              avatar: "/images/trainers/atheesh-kumar.png",
             },
             {
               name: "Sneha Bhandari",
               role: "Senior Faculty",
-              avatar: ASSET("instructor-sneha.png"),
+              avatar: "/images/trainers/sneha-shankar.png",
             },
             {
               name: "Vijay Raghavan",
               role: "Asana & Philosophy",
-              avatar: ASSET("instructor-vijayaraghavan.png"),
+              avatar: "/images/trainers/vijayaraghavan.png",
             },
             {
               name: "Prajakta",
               role: "Anatomy & Alignment",
-              avatar: ASSET("instructor-prajakta.png"),
+              avatar: "/images/trainers/prajakta-jadhav.png",
             },
           ]}
           nextHref="#faq"
@@ -263,7 +262,7 @@ export default function Online300HourYttPage() {
           courses={[
             {
               title: "Online Weight Loss Coach Certification",
-              image: ASSET("course-weight-loss.png"),
+              image: "/images/programs/weight-loss-coach.png",
               meta: [
                 { icon: "clock", label: "12 weeks" },
                 { icon: "monitor", label: "Online" },
@@ -274,7 +273,7 @@ export default function Online300HourYttPage() {
             },
             {
               title: "Online Mudra Therapy Yoga Teacher Training",
-              image: ASSET("course-mudra-therapy.png"),
+              image: "/images/programs/mudra-therapy.png",
               meta: [
                 { icon: "clock", label: "8 weeks" },
                 { icon: "monitor", label: "Online" },
@@ -285,7 +284,7 @@ export default function Online300HourYttPage() {
             },
             {
               title: "Online MAT Pilates Instructor Certification",
-              image: ASSET("course-mat-pilates.png"),
+              image: "/images/programs/mat-pilates.png",
               meta: [
                 { icon: "clock", label: "10 weeks" },
                 { icon: "monitor", label: "Online" },

@@ -34,12 +34,12 @@ const DEFAULT_STATS: HarmonyStat[] = [
 ];
 
 const DEFAULT_PHOTO_TOP_RIGHT: HarmonyPhoto = {
-  src: "/figma/node-1-168/stats-photo-top-right.png",
+  src: "/images/stats/top-right.png",
   alt: "A student in seated meditation pose",
 };
 
 const DEFAULT_PHOTO_BOTTOM_LEFT: HarmonyPhoto = {
-  src: "/figma/node-1-168/stats-photo-bottom-left.png",
+  src: "/images/stats/bottom-left.png",
   alt: "A student in a forward-fold posture",
 };
 

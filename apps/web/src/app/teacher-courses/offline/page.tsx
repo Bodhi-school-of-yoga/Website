@@ -98,7 +98,7 @@ export default function OfflineCoursesPage() {
           headline="The Teacher You Were Meant To Be"
           subtitle="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
           resultCount={`${COURSES.length} COURSES`}
-          backgroundImage="/images/hero/figma-hero-bg.png"
+          backgroundImage="/images/hero/teacher-training-background.png"
         />
         <PopularCoursesSection
           eyebrow="Yoga Teacher Training"

@@ -97,7 +97,7 @@ export default function OfflineAdvancedCertificationsPage() {
           headline="Advanced Certifications"
           subtitle="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
           resultCount="23 courses"
-          backgroundImage="/images/hero/tt-offline.jpg"
+          backgroundImage="/images/hero/teacher-training-offline.jpg"
         />
 
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">

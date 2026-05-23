@@ -99,7 +99,7 @@ export default function OfflineYogaCoursesPage() {
           resultCountTone="inverse"
           contentAlign="center"
           minHeightClassName="min-h-[421px]"
-          backgroundImage="/figma/yoga-courses-listing-hero.png"
+          backgroundImage="/images/hero/yoga-courses-listing.png"
           backgroundAlt="Yoga instructor guiding three students through side-stretch poses in a sunlit studio"
         />
 

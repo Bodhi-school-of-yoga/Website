@@ -18,15 +18,15 @@ import type { VideoLessonCardProps } from "@/components/ui/video-lesson-card";
 
 import { PRE_RECORDED_COURSES, findCourse } from "../courses";
 
-const FIGMA_BASE = "/images/figma/recorded-classes";
+const RECORDED_BASE = "/images/recorded-classes";
 const THUMB_POOL = [
-  `${FIGMA_BASE}/lesson-00.png`,
-  `${FIGMA_BASE}/lesson-01.png`,
-  `${FIGMA_BASE}/lesson-02.png`,
-  `${FIGMA_BASE}/lesson-03.png`,
-  `${FIGMA_BASE}/lesson-04.png`,
-  `${FIGMA_BASE}/lesson-05.png`,
-  `${FIGMA_BASE}/lesson-06.png`,
+  `${RECORDED_BASE}/lesson-00.png`,
+  `${RECORDED_BASE}/lesson-01.png`,
+  `${RECORDED_BASE}/lesson-02.png`,
+  `${RECORDED_BASE}/lesson-03.png`,
+  `${RECORDED_BASE}/lesson-04.png`,
+  `${RECORDED_BASE}/lesson-05.png`,
+  `${RECORDED_BASE}/lesson-06.png`,
 ];
 const LESSON_THUMB = (i: number) => THUMB_POOL[i % THUMB_POOL.length];
 
@@ -199,10 +199,10 @@ export default async function PreRecordedCourseDetailPage({
 
   return (
     <main className="flex min-h-screen flex-col bg-surface-1">
-      <SiteHeader />
+      <SiteHeader tone="light" />
 
       <RecordedClassesHero
-        backgroundImage="/images/figma/recorded-classes/hero-bg.png"
+        backgroundImage="/images/recorded-classes/hero-bg.png"
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Pre-recorded courses", href: "/pre-recorded-courses" },

@@ -14,8 +14,6 @@ import { PopularCoursesSection } from "@/components/sections/popular-courses-sec
 import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
 import { RevealOnScroll } from "@/components/ui/reveal-on-scroll";
 
-const ASSET = (name: string) => `/figma/node-1-7667/${name}`;
-const TEACHER_ASSET = (name: string) => `/figma/node-1-8326/${name}`;
 
 export const metadata: Metadata = {
   title: "Aerial Yoga Course — Bodhi School of Yoga",
@@ -41,7 +39,7 @@ export default function AerialYogaCoursePage() {
         ]}
         ctaLabel="Reserve Your Spot Now"
         ctaHref="/enquire?course=aerial-yoga"
-        heroImage={ASSET("imgrectangle161124051.png")}
+        heroImage="/images/courses/aerial-yoga/hero.png"
       />
 
       <CourseSectionNav
@@ -158,8 +156,8 @@ export default function AerialYogaCoursePage() {
             "Stable health — no recent surgeries or vertigo conditions.",
             "Open mind and a willingness to play.",
           ]}
-          leftImage={ASSET("imgrectangle161124055.png")}
-          rightImage={ASSET("imgrectangle161124054.png")}
+          leftImage="/images/courses/aerial-yoga/prereq-left.png"
+          rightImage="/images/courses/aerial-yoga/prereq-right.png"
           leftImageAlt="Aerial yoga practitioner inverted in a hammock"
           rightImageAlt="Aerial yoga class in session"
         />
@@ -177,22 +175,22 @@ export default function AerialYogaCoursePage() {
             {
               name: "Atheesh Kumar",
               role: "Certified Aerial Yoga Instructor",
-              avatar: ASSET("imgbackground.png"),
+              avatar: "/images/trainers/atheesh-kumar.png",
             },
             {
               name: "Sneha Shankar",
               role: "Certified Aerial Yoga Instructor",
-              avatar: ASSET("imgbackground1.png"),
+              avatar: "/images/trainers/sneha-shankar.png",
             },
             {
               name: "Vijaya Raghavan",
               role: "Certified Aerial Yoga Instructor",
-              avatar: ASSET("imgbackground2.png"),
+              avatar: "/images/trainers/vijayaraghavan.png",
             },
             {
               name: "Prajakta Jadhav",
               role: "Certified Aerial Yoga Instructor",
-              avatar: ASSET("imgbackground3.png"),
+              avatar: "/images/trainers/prajakta-jadhav.png",
             },
           ]}
           nextHref="#faq"
@@ -238,7 +236,7 @@ export default function AerialYogaCoursePage() {
           courses={[
             {
               title: "Online Weight Loss Coach Certification",
-              image: TEACHER_ASSET("course-weight-loss.png"),
+              image: "/images/programs/weight-loss-coach.png",
               meta: [
                 { icon: "clock", label: "12 weeks" },
                 { icon: "monitor", label: "Online" },
@@ -249,7 +247,7 @@ export default function AerialYogaCoursePage() {
             },
             {
               title: "Online Mudra Therapy Yoga Teacher Training",
-              image: TEACHER_ASSET("course-mudra-therapy.png"),
+              image: "/images/programs/mudra-therapy.png",
               meta: [
                 { icon: "clock", label: "8 weeks" },
                 { icon: "monitor", label: "Online" },
@@ -260,7 +258,7 @@ export default function AerialYogaCoursePage() {
             },
             {
               title: "Online MAT Pilates Instructor Certification",
-              image: TEACHER_ASSET("course-mat-pilates.png"),
+              image: "/images/programs/mat-pilates.png",
               meta: [
                 { icon: "clock", label: "10 weeks" },
                 { icon: "monitor", label: "Online" },

@@ -112,7 +112,7 @@ export default function OnlineCoursesPage() {
           headline="The Teacher You Were Meant To Be"
           subtitle="World-class yoga teacher training and mindful practice for aspiring instructors and lifelong learners."
           resultCount={`${COURSES.length} COURSES`}
-          backgroundImage="/images/hero/tt-online.jpg"
+          backgroundImage="/images/hero/teacher-training-online.jpg"
         />
         <CourseGridSection courses={COURSES} />
       </main>

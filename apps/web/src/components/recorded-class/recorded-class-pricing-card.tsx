@@ -67,9 +67,9 @@ function RecordedClassPricingCard({
         ) : null}
       </div>
 
-      <div aria-hidden="true" className="my-6 h-px bg-white/15" />
+      <div aria-hidden="true" className="my-7 h-px bg-white/20" />
 
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-4">
         {benefits.map((label) => (
           <li key={label}>
             <ChecklistItem label={label} tone="plain" />

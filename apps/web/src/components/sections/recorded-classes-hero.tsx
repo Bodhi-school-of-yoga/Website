@@ -80,7 +80,7 @@ function RecordedClassesHero({
         <div className="absolute inset-0 bg-black/45" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-[1920px] page-px pt-32 pb-20 lg:pt-44 lg:pb-28">
+      <div className="relative mx-auto max-w-[1920px] page-px pt-32 pb-20 lg:pt-32 lg:pb-28">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_360px] lg:gap-16">
           <motion.div
             initial="hidden"
@@ -107,7 +107,7 @@ function RecordedClassesHero({
 
             <motion.p
               variants={itemVariants}
-              className="mt-10 max-w-[597px] text-body-md text-text-inverse/80 lg:mt-32"
+              className="mt-6 max-w-[597px] text-body-md text-text-inverse/80"
             >
               {lede}
             </motion.p>

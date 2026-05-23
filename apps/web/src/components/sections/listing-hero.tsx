@@ -56,6 +56,23 @@ export type ListingHeroProps = {
    * hero band to keep heading and overlapping content from colliding.
    */
   minHeightClassName?: string;
+  /**
+   * Override classes for the headline. Use when a specific Figma frame
+   * specifies a different size/weight than the default `text-h2 lg:text-h1`.
+   * Pass the full set of typography classes (font, size, leading, weight).
+   */
+  headlineClassName?: string;
+  /**
+   * Override classes for the accent span inside the headline. Defaults to
+   * `text-brand-shade`. Use when a Figma frame specifies a different accent
+   * color (e.g., `text-accent-mint` on the tips/teacher-tips listing hero).
+   */
+  headlineAccentClassName?: string;
+  /**
+   * Override classes for the section's vertical padding. Use when the default
+   * padding (driven by `contentAlign`) overshoots a band's intended height.
+   */
+  verticalPaddingClassName?: string;
 };
 
 export function ListingHero({
@@ -72,6 +89,9 @@ export function ListingHero({
   className,
   contentAlign = "bottom",
   minHeightClassName,
+  headlineClassName,
+  headlineAccentClassName,
+  verticalPaddingClassName,
 }: ListingHeroProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -109,11 +129,12 @@ export function ListingHero({
         contentAlign === "top" && "items-start",
         contentAlign === "center" && "items-center",
         contentAlign !== "top" && contentAlign !== "center" && "items-end",
-        contentAlign === "top" &&
+        !verticalPaddingClassName && contentAlign === "top" &&
           "pt-28 pb-28 sm:pt-32 sm:pb-32 lg:pt-[120px] lg:pb-[150px]",
-        contentAlign === "center" && "pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24",
-        contentAlign !== "top" && contentAlign !== "center" &&
+        !verticalPaddingClassName && contentAlign === "center" && "pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24",
+        !verticalPaddingClassName && contentAlign !== "top" && contentAlign !== "center" &&
           "pt-32 pb-12 sm:pt-36 sm:pb-14 lg:pt-40 lg:pb-16",
+        verticalPaddingClassName,
         className,
       )}
     >
@@ -175,18 +196,21 @@ export function ListingHero({
 
         <motion.h1
           variants={headlineVariants}
-          className="mt-3 font-heading text-h2 lg:text-h1 text-text-inverse max-w-4xl"
+          className={cn(
+            "mt-3 font-heading text-text-inverse max-w-4xl",
+            headlineClassName ?? "text-h2 lg:text-h1",
+          )}
         >
           {headlineAccent && accentPosition === "start" ? (
             <>
-              <span className="text-brand-shade">{headlineAccent}</span>{" "}
+              <span className={headlineAccentClassName ?? "text-brand-shade"}>{headlineAccent}</span>{" "}
             </>
           ) : null}
           {headline}
           {headlineAccent && accentPosition === "end" ? (
             <>
               {" "}
-              <span className="text-brand-shade">{headlineAccent}</span>
+              <span className={headlineAccentClassName ?? "text-brand-shade"}>{headlineAccent}</span>
             </>
           ) : null}
         </motion.h1>

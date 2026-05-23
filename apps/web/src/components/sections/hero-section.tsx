@@ -52,7 +52,7 @@ export function HeroSection({
   headlineLead = "A school for teachers and a ",
   headlineAccent = "home for seekers.",
   subcopy = "Bodhi is a yoga teacher training institute and practice studio. We train future teachers, host workshops in health and wellness, and hold daily classes online and in person.",
-  photoSrc = "/figma/node-1-168/hero-foreground.png",
+  photoSrc = "/images/hero/foreground.png",
   photoAlt = "A student in seated meditation pose at Bodhi studio.",
   watermark = "बोधि",
   offerLabel = "what do we offer",
@@ -107,13 +107,13 @@ export function HeroSection({
 
         {/* Content column — text + chips, inset from left to match Figma x=308/1920 (~16%) */}
         <div className="relative z-20 pl-[clamp(32px,12vw,300px)] pr-[clamp(24px,4vw,80px)] pt-[clamp(120px,10vw,180px)] pb-6">
-          <div className="max-w-[640px] xl:max-w-[760px] 2xl:max-w-[820px]">
+          <div className="max-w-[480px] xl:max-w-[620px] 2xl:max-w-[760px]">
             <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
             <h1 className="mt-4 font-heading text-h3 xl:text-h2 2xl:text-h1">
               <span className="text-text-primary">{headlineLead}</span>
               <span className="text-text-brand">{headlineAccent}</span>
             </h1>
-            <p className="mt-5 max-w-[560px] text-subtext-2 text-text-tertiary">
+            <p className="mt-5 max-w-[440px] xl:max-w-[520px] 2xl:max-w-[600px] text-subtext-2 text-text-tertiary">
               {subcopy}
             </p>
           </div>
@@ -136,15 +136,15 @@ export function HeroSection({
 
       {/* MOBILE / TABLET layout (< lg): stacked, watermark hidden, photo below text */}
       <div className="relative lg:hidden">
-        <div className="mx-auto max-w-[720px] page-px pt-[88px] pb-12">
+        <div className="mx-auto w-full max-w-[720px] px-5 sm:px-8 pt-16 pb-10 sm:pt-20">
           <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
-          <h1 className="mt-5 font-heading text-h4 sm:text-h3">
+          <h1 className="mt-4 font-heading text-h5 leading-[1.15] sm:text-h4 sm:leading-[1.1] md:text-h3">
             <span className="text-text-primary">{headlineLead}</span>
             <span className="text-text-brand">{headlineAccent}</span>
           </h1>
-          <p className="mt-6 text-subtext-1 text-text-tertiary">{subcopy}</p>
+          <p className="mt-5 text-subtext-1 text-text-tertiary">{subcopy}</p>
 
-          <div className="relative mt-10 aspect-[4/5] w-full overflow-hidden rounded-[28px]">
+          <div className="relative mt-8 aspect-[4/5] w-full overflow-hidden rounded-[24px]">
             <Image
               src={photoSrc}
               alt={photoAlt}
@@ -155,11 +155,11 @@ export function HeroSection({
             />
           </div>
 
-          <div className="mt-12">
-            <p className="mb-5 text-mini uppercase text-text-brand">
+          <div className="mt-10">
+            <p className="mb-4 text-mini uppercase text-text-brand">
               {offerLabel}
             </p>
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {offers.map((offer) => (
                 <li key={offer.label}>
                   <HeroOfferChipCard offer={offer} />
