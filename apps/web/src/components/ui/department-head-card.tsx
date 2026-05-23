@@ -15,9 +15,9 @@ export type DepartmentHeadCardProps = {
 };
 
 const toneClass: Record<DepartmentHeadTone, string> = {
-  mint: "bg-[#cafde6]",
+  mint: "bg-mint-pale",
   dark: "bg-brand-green-darkest",
-  lime: "bg-[#ddf68a]",
+  lime: "bg-lime-soft",
 };
 
 export function DepartmentHeadCard({
@@ -57,7 +57,7 @@ export function DepartmentHeadCard({
         <p
           className={cn(
             "text-mini font-normal uppercase",
-            "text-[#005564]",
+            "text-text-teal-deep",
             "tracking-[0.08em]",
           )}
         >

@@ -48,7 +48,7 @@ export function CertificationBannerSection({
         <motion.div
           className={cn(
             "group relative isolate overflow-hidden rounded-[28px]",
-            "bg-brand-green-darkest text-white",
+            "bg-brand-green-darkest text-text-inverse",
             "px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12",
             "shadow-[0_24px_60px_-30px_rgba(0,62,34,0.55)]",
           )}
@@ -81,7 +81,7 @@ export function CertificationBannerSection({
             <h3 className="font-heading text-[26px] sm:text-[30px] lg:text-[34px] leading-tight">
               {panelHeading}
             </h3>
-            <div className="mt-4 flex flex-col gap-3 text-white/80 text-subtext-2 leading-relaxed">
+            <div className="mt-4 flex flex-col gap-3 text-text-inverse/80 text-subtext-2 leading-relaxed">
               {panelParagraphs.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}

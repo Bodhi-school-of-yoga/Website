@@ -111,7 +111,7 @@ function CourseCard(props: CourseCardProps) {
       {...motionProps}
       className={cn(
         "group/card relative flex w-[1308px] h-[362px] overflow-hidden rounded-[35px]",
-        "bg-white border border-[rgba(211,211,211,0.6)]",
+        "bg-surface-1 border border-border-3/60",
         "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md",
         cardHref ? "focus-within:shadow-md" : null,
         className

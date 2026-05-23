@@ -47,7 +47,7 @@ export function ClosingCtaSection({
         "relative w-full overflow-hidden nav-px",
         "pt-14 sm:pt-20 lg:pt-28",
         showCards ? "pb-16 sm:pb-20 lg:pb-24" : "pb-12 sm:pb-16 lg:pb-20",
-        isLight ? "bg-mint-cream text-text-secondary" : "bg-brand-dark text-white",
+        isLight ? "bg-mint-cream text-text-secondary" : "bg-brand-dark text-text-inverse",
         className,
       )}
     >
@@ -57,7 +57,7 @@ export function ClosingCtaSection({
             className={cn(
               "font-heading italic font-light leading-none",
               "text-[20px] sm:text-[24px] lg:text-[32px]",
-              isLight ? "text-text-secondary" : "text-white",
+              isLight ? "text-text-secondary" : "text-text-inverse",
             )}
           >
             {eyebrow}
@@ -68,7 +68,7 @@ export function ClosingCtaSection({
           className={cn(
             "mt-3 sm:mt-[15px] font-heading font-normal leading-[1.1] tracking-tight",
             "text-[40px] sm:text-[64px] md:text-[80px] lg:text-[90px]",
-            isLight ? "text-text-secondary" : "text-white",
+            isLight ? "text-text-secondary" : "text-text-inverse",
           )}
         >
           {headingLead}{" "}
@@ -86,7 +86,7 @@ export function ClosingCtaSection({
           className={cn(
             "mx-auto mt-5 sm:mt-6 max-w-3xl text-balance leading-snug",
             "text-[15px] sm:text-[16px] md:text-subtext-2",
-            isLight ? "text-text-tertiary" : "text-white/65",
+            isLight ? "text-text-tertiary" : "text-text-inverse/65",
           )}
         >
           {subhead}
@@ -102,7 +102,7 @@ export function ClosingCtaSection({
               "sm:px-[23px] sm:py-[15px] sm:text-[14px]",
               "transition-all duration-200",
               isLight
-                ? "bg-brand-mid text-white hover:brightness-105 hover:shadow-[0_12px_36px_-12px_rgba(39,175,145,0.45)] focus-visible:ring-brand-mid focus-visible:ring-offset-mint-cream"
+                ? "bg-brand-mid text-text-inverse hover:brightness-105 hover:shadow-[0_12px_36px_-12px_rgba(39,175,145,0.45)] focus-visible:ring-brand-mid focus-visible:ring-offset-mint-cream"
                 : "bg-brand-shade text-brand-dark hover:brightness-105 hover:shadow-[0_12px_36px_-12px_rgba(142,224,206,0.55)] focus-visible:ring-brand-shade focus-visible:ring-offset-brand-dark",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
             )}
@@ -122,14 +122,14 @@ export function ClosingCtaSection({
                 "transition-colors duration-300",
                 isLight
                   ? "border border-[rgba(126,126,126,0.18)] bg-surface-1 hover:bg-surface-0"
-                  : "border border-white/[0.12] bg-white/[0.10] backdrop-blur-sm hover:bg-white/[0.14]",
+                  : "border border-text-inverse/[0.12] bg-text-inverse/[0.10] backdrop-blur-sm hover:bg-text-inverse/[0.14]",
               )}
             >
               <div className="space-y-3">
                 <h3
                   className={cn(
                     "font-heading text-subtext-3 leading-tight",
-                    isLight ? "text-text-secondary" : "text-white",
+                    isLight ? "text-text-secondary" : "text-text-inverse",
                   )}
                 >
                   {card.title}
@@ -137,7 +137,7 @@ export function ClosingCtaSection({
                 <p
                   className={cn(
                     "text-body-md",
-                    isLight ? "text-text-tertiary" : "text-white/65",
+                    isLight ? "text-text-tertiary" : "text-text-inverse/65",
                   )}
                 >
                   {card.body}
@@ -152,7 +152,7 @@ export function ClosingCtaSection({
                   "transition-transform duration-200 group-hover/cta-card:translate-x-0.5",
                   isLight
                     ? "bg-mint-soft text-brand-green-deep focus-visible:ring-brand-mid focus-visible:ring-offset-mint-cream"
-                    : "bg-white text-brand-green-deep focus-visible:ring-white focus-visible:ring-offset-brand-dark",
+                    : "bg-surface-1 text-brand-green-deep focus-visible:ring-surface-1 focus-visible:ring-offset-brand-dark",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                 )}
               >

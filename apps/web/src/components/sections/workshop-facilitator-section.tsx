@@ -62,12 +62,12 @@ export function WorkshopFacilitatorSection({
           <div
             className={cn(
               "relative shrink-0",
-              "bg-[#003a45]",
+              "bg-brand-teal-deep",
               "px-8 py-10 lg:px-12 lg:py-14",
               "flex items-center justify-center lg:w-[340px]",
             )}
           >
-            <div className="relative h-[200px] w-[200px] overflow-hidden rounded-full bg-[#d1e2e7] lg:h-[269px] lg:w-[269px]">
+            <div className="relative h-[200px] w-[200px] overflow-hidden rounded-full bg-surface-teal-pale lg:h-[269px] lg:w-[269px]">
               <Image
                 src={avatar.src}
                 alt={avatar.alt}

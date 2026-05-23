@@ -102,7 +102,7 @@ export function VideoLessonCard({
             >
               <Play
                 className={cn(
-                  "size-10 text-white drop-shadow",
+                  "size-10 text-text-inverse drop-shadow",
                   "transition-all duration-300",
                   "scale-100 group-hover:scale-110"
                 )}
@@ -126,7 +126,7 @@ export function VideoLessonCard({
             >
               <Lock
                 className={cn(
-                  "size-8 text-white",
+                  "size-8 text-text-inverse",
                   "transition-all duration-300",
                   "opacity-85 group-hover:opacity-100"
                 )}

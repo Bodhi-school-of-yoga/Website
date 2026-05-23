@@ -28,7 +28,7 @@ export function TrainersPullQuoteBand({
             "pointer-events-none select-none",
             "font-heading font-semibold leading-none",
             "text-[64px] sm:text-[80px] lg:text-[100px]",
-            "text-[#69f0ff]/35",
+            "text-text-cyan/35",
             "absolute left-[3%] top-1/2 -translate-y-1/2 rotate-180",
             "hidden md:block",
           )}
@@ -42,7 +42,7 @@ export function TrainersPullQuoteBand({
             "text-subtext-3 sm:text-h5 lg:text-[28px] lg:leading-[33px]",
           )}
         >
-          <span className="text-[#b4ffef]">{highlight}</span>
+          <span className="text-text-mint-pale">{highlight}</span>
           <br aria-hidden="true" />
           {body.split("\n").map((line, idx, arr) => (
             <React.Fragment key={idx}>
@@ -58,7 +58,7 @@ export function TrainersPullQuoteBand({
             "pointer-events-none select-none",
             "font-heading font-semibold leading-none",
             "text-[64px] sm:text-[80px] lg:text-[100px]",
-            "text-[#69f0ff]/35",
+            "text-text-cyan/35",
             "absolute right-[3%] top-1/2 -translate-y-1/2",
             "hidden md:block",
           )}

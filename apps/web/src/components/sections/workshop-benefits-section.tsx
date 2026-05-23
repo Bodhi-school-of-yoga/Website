@@ -48,7 +48,7 @@ export function WorkshopBenefitsSection({
   return (
     <section
       className={cn(
-        "w-full bg-[#fafafa] py-20 lg:py-24",
+        "w-full bg-surface-2 py-20 lg:py-24",
         className,
       )}
     >

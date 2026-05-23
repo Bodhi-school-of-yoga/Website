@@ -73,7 +73,7 @@ export function CourseIncludesSection({
   className,
 }: CourseIncludesSectionProps) {
   return (
-    <section className={cn("py-16 lg:py-20 bg-[#effdff]", className)}>
+    <section className={cn("py-16 lg:py-20 bg-surface-mint-pale", className)}>
       <div className="mx-auto max-w-[1338px] page-px">
         <SectionHeader title={title} />
 

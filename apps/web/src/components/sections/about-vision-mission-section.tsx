@@ -53,11 +53,11 @@ export function AboutVisionMissionSection({
           >
             <span
               aria-hidden
-              className="font-heading text-subtext-3 italic text-white/85"
+              className="font-heading text-subtext-3 italic text-text-inverse/85"
             >
               — a quiet practice
             </span>
-            <span className="text-mini uppercase text-white/80">
+            <span className="text-mini uppercase text-text-inverse/80">
               {vision.eyebrow}
             </span>
             <h2
@@ -68,7 +68,7 @@ export function AboutVisionMissionSection({
             >
               {vision.eyebrow}
             </h2>
-            <p className="text-body-md leading-relaxed text-white/85">
+            <p className="text-body-md leading-relaxed text-text-inverse/85">
               {vision.body}
             </p>
           </article>

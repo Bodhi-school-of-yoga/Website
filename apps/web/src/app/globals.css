@@ -79,11 +79,15 @@
   --color-brand-primary: #009877;
   --color-brand-dark: #00282c;
   --color-brand-shade: #8ee0ce;
+  --color-brand-shade-hover: #7dd6c2;
   --color-accent-mint: #3fffd5;
+  --color-accent-pink: #ff0075;
   --color-brand-lite: #f0fff8;
   --color-mint-cream: #e5fff9;
   --color-mint-frost: #ebfffb;
   --color-mint-soft: #c7fef2;
+  --color-mint-pale: #cafde6;
+  --color-lime-soft: #ddf68a;
   --color-brand-teal: #038f9f;
   --color-brand-green-deep: #004b3b;
   --color-brand-green-darkest: #003e22;
@@ -95,11 +99,14 @@
   --color-surface-1: #ffffff;
   --color-surface-2: #f7f7f7;
   --color-surface-cream: #faf6ef;
+  --color-surface-mint-pale: #effdff;
+  --color-surface-teal-pale: #d1e2e7;
 
   /* Border tokens (border-border-1..3 → use border-1/2/3 alias) */
   --color-border-1: #f4f4f4;
   --color-border-2: #f0f0f0;
   --color-border-3: #d2d2d2;
+  --color-border-peach: #f0d0bc;
   --color-sage-divider: rgba(86, 147, 65, 0.19);
   --color-sage-divider-soft: rgba(86, 147, 65, 0.15);
 
@@ -110,6 +117,11 @@
   --color-text-brand: #009877;
   --color-text-brand-deep: #00785d;
   --color-text-inverse: #ffffff;
+  --color-text-teal-deep: #005564;
+  --color-text-teal-dark: #243a42;
+  --color-text-mint-shade: #8fe0cf;
+  --color-text-mint-pale: #b4ffef;
+  --color-text-cyan: #69f0ff;
 
   /* Spacing base — Tailwind v4 derives every padding, margin, gap, and
      size utility from --spacing (default 0.25rem = 4px). Scaling this with

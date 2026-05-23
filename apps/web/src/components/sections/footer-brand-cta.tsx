@@ -30,18 +30,18 @@ export function FooterBrandCta({
   return (
     <section
       className={cn(
-        "w-full bg-brand-dark page-px pt-20 pb-12 text-center text-white",
+        "w-full bg-brand-dark page-px pt-20 pb-12 text-center text-text-inverse",
         "sm:pt-24 sm:pb-16",
         "lg:pt-28 lg:pb-20",
         className,
       )}
     >
       <div className="mx-auto max-w-3xl">
-        <p className="font-heading text-2xl italic text-white">{brand}</p>
+        <p className="font-heading text-2xl italic text-text-inverse">{brand}</p>
 
         <h2
           className={cn(
-            "mt-2 font-heading leading-[1.05] tracking-tight text-white",
+            "mt-2 font-heading leading-[1.05] tracking-tight text-text-inverse",
             "text-[64px] sm:text-[88px] lg:text-[108px]",
           )}
         >
@@ -53,7 +53,7 @@ export function FooterBrandCta({
 
         <p
           className={cn(
-            "mx-auto mt-6 max-w-prose text-subtext-2 text-white/65",
+            "mx-auto mt-6 max-w-prose text-subtext-2 text-text-inverse/65",
           )}
         >
           {body}

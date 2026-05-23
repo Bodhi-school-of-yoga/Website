@@ -37,10 +37,10 @@ export type SiteFooterProps = {
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
   const className = cn(
-    "inline-block text-[13.5px] leading-[21px] tracking-[0.08px] text-white/75",
+    "inline-block text-[13.5px] leading-[21px] tracking-[0.08px] text-text-inverse/75",
     "md:text-[14.5px] md:leading-[22.48px]",
-    "transition-colors duration-200 hover:text-white",
-    "focus-visible:outline-none focus-visible:underline focus-visible:text-white",
+    "transition-colors duration-200 hover:text-text-inverse",
+    "focus-visible:outline-none focus-visible:underline focus-visible:text-text-inverse",
   );
   if (link.external) {
     return (
@@ -72,7 +72,7 @@ export function SiteFooter({
   return (
     <footer
       className={cn(
-        "w-full bg-brand-dark nav-px pb-10 pt-0 text-white",
+        "w-full bg-brand-dark nav-px pb-10 pt-0 text-text-inverse",
         "sm:pb-12 md:pb-16",
         className,
       )}
@@ -91,7 +91,7 @@ export function SiteFooter({
               <Link
                 href="/"
                 className={cn(
-                  "font-heading italic font-light text-white",
+                  "font-heading italic font-light text-text-inverse",
                   "text-[28px] leading-[44px] tracking-[-0.28px]",
                   "md:text-[32px] md:leading-[49.6px] md:tracking-[-0.32px]",
                 )}
@@ -103,7 +103,7 @@ export function SiteFooter({
             {brand.tagline && (
               <p
                 className={cn(
-                  "max-w-[320px] whitespace-pre-line text-white/75",
+                  "max-w-[320px] whitespace-pre-line text-text-inverse/75",
                   "text-[13.5px] leading-[21px] tracking-[0.08px]",
                   "md:text-[14.5px] md:leading-[22.48px]",
                 )}
@@ -115,7 +115,7 @@ export function SiteFooter({
               <a
                 href={brand.url.href}
                 className={cn(
-                  "text-white transition-opacity hover:opacity-80",
+                  "text-text-inverse transition-opacity hover:opacity-80",
                   "text-[13.5px] leading-[21px] tracking-[0.29px]",
                   "md:text-[14.5px] md:leading-[22.48px]",
                 )}
@@ -131,7 +131,7 @@ export function SiteFooter({
               aria-label={column.heading}
               className="flex flex-col gap-3 md:gap-[17px]"
             >
-              <h4 className="text-[11px] font-medium uppercase leading-[17px] tracking-[2.42px] text-white">
+              <h4 className="text-[11px] font-medium uppercase leading-[17px] tracking-[2.42px] text-text-inverse">
                 {column.heading}
               </h4>
               <ul className="flex flex-col gap-2 md:gap-[9px]">
@@ -149,7 +149,7 @@ export function SiteFooter({
               className="flex flex-col gap-3 md:gap-[17px]"
               aria-label={address.heading}
             >
-              <h4 className="text-[11px] font-medium uppercase leading-[17px] tracking-[2.42px] text-white">
+              <h4 className="text-[11px] font-medium uppercase leading-[17px] tracking-[2.42px] text-text-inverse">
                 {address.heading}
               </h4>
               <address className="not-italic">
@@ -158,7 +158,7 @@ export function SiteFooter({
                     <li
                       key={line}
                       className={cn(
-                        "text-white/75",
+                        "text-text-inverse/75",
                         "text-[13.5px] leading-[21px] tracking-[0.08px]",
                         "md:text-[14.5px] md:leading-[22.48px]",
                       )}
@@ -179,24 +179,24 @@ export function SiteFooter({
 
         <div
           className={cn(
-            "flex flex-col-reverse items-start justify-between gap-2 border-t border-white/10 pt-5",
+            "flex flex-col-reverse items-start justify-between gap-2 border-t border-text-inverse/10 pt-5",
             "sm:flex-row sm:items-center sm:gap-3 sm:pt-[25px]",
           )}
         >
           <p
             className={cn(
-              "text-white/80",
+              "text-text-inverse/80",
               "text-[11.5px] leading-[18px] tracking-[0.08px]",
-              "md:text-[12.5px] md:leading-[19.38px] md:text-white",
+              "md:text-[12.5px] md:leading-[19.38px] md:text-text-inverse",
             )}
           >
             {legalLeft}
           </p>
           <p
             className={cn(
-              "text-white/80",
+              "text-text-inverse/80",
               "text-[11.5px] leading-[18px] tracking-[0.08px]",
-              "md:text-[12.5px] md:leading-[19.38px] md:text-white",
+              "md:text-[12.5px] md:leading-[19.38px] md:text-text-inverse",
             )}
           >
             {legalRight}

@@ -52,7 +52,7 @@ export function DropdownCard({ items, className }: DropdownCardProps) {
                   {Icon ? (
                     <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
                       <Icon
-                        className="size-5 text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)]"
+                        className="size-5 text-text-inverse drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)]"
                         strokeWidth={1.75}
                         aria-hidden
                       />

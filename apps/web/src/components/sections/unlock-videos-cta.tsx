@@ -39,10 +39,9 @@ function UnlockVideosCTA({
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {/* Arbitrary hex (flagged in 03_build_plan F1): info palette tokens TBD in DESIGN.md. */}
           <Card
             className={cn(
-              "bg-[#effdff] border border-[#f0d0bc] rounded-2xl p-6 lg:p-8",
+              "bg-surface-mint-pale border border-border-peach rounded-2xl p-6 lg:p-8",
               "flex flex-col sm:flex-row items-center justify-between gap-4"
             )}
           >

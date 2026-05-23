@@ -19,8 +19,7 @@ const badgeVariants = cva(
         ghost:
           "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",
-        // TODO: replace with semantic accent-discount token
-        discount: "bg-pink-500/90 text-white",
+        discount: "bg-accent-pink/90 text-text-inverse",
       },
     },
     defaultVariants: {

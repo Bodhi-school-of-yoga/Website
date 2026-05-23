@@ -44,7 +44,7 @@ export function TrainersMeetAll({
           <p
             className={cn(
               "text-mini font-semibold uppercase",
-              "text-[#005564]",
+              "text-text-teal-deep",
               "tracking-[0.16em]",
             )}
           >
