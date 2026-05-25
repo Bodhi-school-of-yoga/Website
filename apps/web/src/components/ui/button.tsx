@@ -1,3 +1,5 @@
+// Button — themed CVA-driven button primitive used by every section CTA.
+
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -18,6 +20,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
+        mint: "bg-brand-shade text-text-secondary [a]:hover:bg-brand-shade/80 hover:bg-brand-shade/80 active:scale-[0.98] transition-[transform,filter] duration-150",
       },
       size: {
         default:
@@ -31,6 +34,7 @@ const buttonVariants = cva(
         "icon-sm":
           "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
         "icon-lg": "size-9",
+        pill: "h-11 rounded-full px-6",
       },
     },
     defaultVariants: {

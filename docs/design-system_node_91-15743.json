@@ -1,0 +1,83 @@
+{
+  "source": {
+    "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/?node-id=91-15743",
+    "file_key": "eqaofBeNUhOUISevtRfOpT",
+    "node_id": "91:15743",
+    "node_name": "02 — Typography (also contains Color recap, Spacing Scale, Border Radius, Component Token Map)",
+    "extracted_at": "2026-05-21T00:00:00Z",
+    "extraction_strategy": "inference-from-design-context (no Figma variables attached)"
+  },
+  "validation": {
+    "overall": "WARN",
+    "passed": 11,
+    "warned": 4,
+    "failed": 0,
+    "notable_warnings": [
+      "all components inferred (no Figma COMPONENT nodes on documentation pages)",
+      "no Figma variables — values are point-in-time inferences"
+    ]
+  },
+  "tokens": {
+    "color": [
+      { "name": "color/brand-primary", "value": "#009877", "usage": "Primary CTA, links, accents" },
+      { "name": "color/brand-shade", "value": "#8EE0CE", "usage": "Hover states, tints" },
+      { "name": "color/brand-lite", "value": "#F0FFF8", "usage": "Light backgrounds, highlights" },
+      { "name": "color/brand-dark", "value": "#00282C", "usage": "Dark backgrounds, footer" },
+      { "name": "color/text-primary", "value": "#1D3E59", "usage": "Main headings & titles" },
+      { "name": "color/text-secondary", "value": "#2A2420", "usage": "Body copy, paragraphs" },
+      { "name": "color/text-teritary", "value": "#727272", "usage": "Captions, meta, placeholders (Figma misspelling preserved)" },
+      { "name": "color/text-brand", "value": "#009877", "usage": "Branded text, highlighted words (alias of brand-primary)" },
+      { "name": "color/text-inverse", "value": "#FFFFFF", "usage": "Text on dark backgrounds" },
+      { "name": "color/surface-0", "value": "#FDFDFD", "usage": "Page background" },
+      { "name": "color/surface-1", "value": "#FFFFFF", "usage": "Card background" },
+      { "name": "color/surface-2", "value": "#F7F7F7", "usage": "Subtle section background" },
+      { "name": "color/border-1", "value": "#F4F4F4", "usage": "Lightest divider" },
+      { "name": "color/border-2", "value": "#F0F0F0", "usage": "Standard card border" },
+      { "name": "color/border-3", "value": "#D2D2D2", "usage": "Stronger separator" }
+    ],
+    "typography": [
+      { "name": "typography/h1", "fontFamily": "Host Grotesk", "fontWeight": 700, "fontSize": 90, "lineHeight": 77, "letterSpacing": 0, "usage": "Hero headlines, page titles" },
+      { "name": "typography/h2", "fontFamily": "Host Grotesk", "fontWeight": 600, "fontSize": 52, "lineHeight": 53, "letterSpacing": -0.56, "usage": "Section headings" },
+      { "name": "typography/h3", "fontFamily": "Host Grotesk", "fontWeight": 700, "fontSize": 42, "lineHeight": 43, "letterSpacing": -0.72, "usage": "Sub-section titles" },
+      { "name": "typography/h4", "fontFamily": "Host Grotesk", "fontWeight": 700, "fontSize": 36, "lineHeight": 42, "letterSpacing": 0, "usage": "Card headings" },
+      { "name": "typography/h5", "fontFamily": "DM Sans", "fontWeight": 600, "fontSize": 24, "lineHeight": 23, "letterSpacing": -0.11, "usage": "Labels, small headings" },
+      { "name": "typography/subtext-3", "fontFamily": "DM Sans", "fontWeight": 600, "fontSize": 20, "lineHeight": 25, "letterSpacing": 0, "usage": "Lead body copy, intro paragraphs" },
+      { "name": "typography/subtext-2", "fontFamily": "DM Sans", "fontWeight": 400, "fontSize": 18, "lineHeight": 26.25, "letterSpacing": 0, "usage": "Descriptive body text" },
+      { "name": "typography/subtext-1", "fontFamily": "DM Sans", "fontWeight": 400, "fontSize": 16, "lineHeight": 23.25, "letterSpacing": 0.08, "usage": "Standard body, nav links" },
+      { "name": "typography/mini-text", "fontFamily": "DM Sans", "fontWeight": 600, "fontSize": 12, "lineHeight": 17, "letterSpacing": 2.42, "usage": "Tags, badges, captions, labels" }
+    ],
+    "spacing": [
+      { "name": "spacing/xs", "value": 4, "alias": "xs" },
+      { "name": "spacing/sm", "value": 8, "alias": "sm" },
+      { "name": "spacing/sm-plus", "value": 12, "alias": "sm+" },
+      { "name": "spacing/md", "value": 16, "alias": "md" },
+      { "name": "spacing/md-plus", "value": 20, "alias": "md+" },
+      { "name": "spacing/lg", "value": 24, "alias": "lg" },
+      { "name": "spacing/xl", "value": 32, "alias": "xl" },
+      { "name": "spacing/2xl", "value": 40, "alias": "2xl" },
+      { "name": "spacing/3xl", "value": 48, "alias": "3xl" },
+      { "name": "spacing/4xl", "value": 64, "alias": "4xl" },
+      { "name": "spacing/5xl", "value": 80, "alias": "5xl" },
+      { "name": "spacing/6xl", "value": 96, "alias": "6xl" }
+    ],
+    "radius": [
+      { "name": "radius/none", "value": 0, "usage": "Sharp elements" },
+      { "name": "radius/xs", "value": 4, "usage": "Badges, tags" },
+      { "name": "radius/sm", "value": 8, "usage": "Cards, inputs" },
+      { "name": "radius/md", "value": 12, "usage": "Modals, panels" },
+      { "name": "radius/lg", "value": 16, "usage": "Large cards" },
+      { "name": "radius/xl", "value": 24, "usage": "Hero sections" },
+      { "name": "radius/full", "value": 9999, "usage": "Pills, avatars" }
+    ]
+  },
+  "component_token_map": [
+    { "component": "Primary Button", "fill": "color/brand-primary", "text": "color/text-inverse", "border": null, "radius": "radius/sm", "typography": "typography/subtext-1 (SemiBold)", "states": "Hover: brand-shade · Disabled: 40% opacity" },
+    { "component": "Ghost Button", "fill": "transparent", "text": "color/text-brand", "border": "color/brand-primary 1px", "radius": "radius/sm", "typography": "typography/subtext-1 (SemiBold)", "states": "Hover: brand-lite bg" },
+    { "component": "Card", "fill": "color/surface-1", "text": "color/text-secondary", "border": "color/border-2 1px", "radius": "radius/md", "typography": "H5 title · subtext-1 body", "states": "Hover: surface-2 · shadow" },
+    { "component": "Input Field", "fill": "color/surface-1", "text": "color/text-secondary", "border": "color/border-3 1px", "radius": "radius/sm", "typography": "typography/subtext-1 (Regular)", "states": "Focus: brand-primary border" },
+    { "component": "Badge / Tag", "fill": "color/brand-lite", "text": "color/text-brand", "border": null, "radius": "radius/full", "typography": "typography/mini-text", "states": null },
+    { "component": "Nav Link", "fill": "transparent", "text": "color/text-secondary", "border": null, "radius": null, "typography": "typography/subtext-1 (Regular)", "states": "Active: text-brand + underline" },
+    { "component": "Section Heading", "fill": "transparent", "text": "color/text-primary", "border": null, "radius": null, "typography": "typography/h2 or typography/h3", "states": null },
+    { "component": "Footer", "fill": "color/brand-dark", "text": "color/text-inverse", "border": null, "radius": null, "typography": "typography/subtext-1 · typography/mini-text", "states": null }
+  ]
+}

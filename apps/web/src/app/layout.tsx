@@ -1,29 +1,27 @@
 import type { Metadata } from "next";
-import { Host_Grotesk, DM_Sans, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Host_Grotesk, DM_Sans, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
 import Providers from "@/lib/providers";
 
 const hostGrotesk = Host_Grotesk({
-  variable: "--font-sans",
+  variable: "--font-heading",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const dmSans = DM_Sans({
-  variable: "--font-heading",
-  subsets: ["latin"],
-});
-
-const playfairDisplay = Playfair_Display({
-  variable: "--font-serif",
+  variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+// Used for the hero "बोधि" watermark + eyebrow Devanagari glyph. Matches the
+// Figma type spec (Noto Sans Devanagari Bold).
+const notoDevanagari = Noto_Sans_Devanagari({
+  variable: "--font-devanagari",
+  subsets: ["devanagari"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -44,13 +42,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hostGrotesk.variable} ${dmSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}
+      className={`${hostGrotesk.variable} ${dmSans.variable} ${notoDevanagari.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col bg-transparent">
         <Providers>
-        
           <main className="flex-1">{children}</main>
-          {/* <Footer /> */}
         </Providers>
       </body>
     </html>

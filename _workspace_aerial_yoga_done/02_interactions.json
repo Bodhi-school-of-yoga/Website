@@ -1,0 +1,362 @@
+{
+  "target_node_id": "218:30509",
+  "desktop_node_id": "1:7667",
+  "page_name": "Aerial Yoga Course (Yoga Teacher Training)",
+  "route": "/courses/aerial-yoga",
+  "revision": 3,
+  "library": "framer-motion",
+  "library_notes": "framer-motion ^12.39.0 is installed in apps/web/package.json. Use it ONLY for scroll-triggered entrance reveals (whileInView) and the FAQ accordion height transition. All hover, press, and underline effects use Tailwind CSS utilities — no framer for purely-CSS-doable effects. Bodhi tone: calm, yoga-like, subtle. Default fade-up ~12px / 400ms easeOut. Hero gets a mount-time stagger (above the fold). All other sections use scroll-into-view triggered reveals with once:true so they only animate once.",
+  "motion_primitives": {
+    "fade-in-up": {
+      "via": "framer-motion",
+      "initial": { "opacity": 0, "y": 12 },
+      "animate": { "opacity": 1, "y": 0 },
+      "transition": { "duration": 0.4, "ease": "easeOut" },
+      "use_for": "Default entrance for section headings, body copy, and cards (used with whileInView for below-fold sections, animate for hero on mount)."
+    },
+    "fade-in": {
+      "via": "framer-motion",
+      "initial": { "opacity": 0 },
+      "animate": { "opacity": 1 },
+      "transition": { "duration": 0.35, "ease": "easeOut" },
+      "use_for": "Eyebrow labels, decorative images, hero photo."
+    },
+    "scale-in": {
+      "via": "framer-motion",
+      "initial": { "opacity": 0, "scale": 0.96 },
+      "animate": { "opacity": 1, "scale": 1 },
+      "transition": { "duration": 0.4, "ease": "easeOut" },
+      "use_for": "Meta cards on hero (desktop) and instructor avatars on scroll-in."
+    },
+    "stagger-children": {
+      "via": "framer-motion",
+      "transition": { "staggerChildren": 0.08, "delayChildren": 0.1 },
+      "use_for": "Grid/list containers — children should each be a motion element using fade-in-up."
+    },
+    "accordion-expand": {
+      "via": "framer-motion",
+      "initial": { "height": 0, "opacity": 0 },
+      "animate": { "height": "auto", "opacity": 1 },
+      "exit": { "height": 0, "opacity": 0 },
+      "transition": { "duration": 0.3, "ease": "easeOut" },
+      "use_for": "FAQ answer body when item expands. Use AnimatePresence around the conditional content."
+    }
+  },
+  "tailwind_primitives": {
+    "hover-lift-card": "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg",
+    "hover-lift-card-subtle": "transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-md",
+    "hover-zoom-image": "transition-transform duration-500 ease-out group-hover:scale-105",
+    "hover-underline": "relative after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full",
+    "hover-brand-deepen": "transition-colors duration-200 ease-out hover:bg-surface-brand-deep",
+    "press-scale": "transition-transform duration-150 active:scale-[0.98]",
+    "pill-press": "transition-all duration-200 ease-out hover:shadow-md active:scale-[0.98]",
+    "chevron-rotate": "transition-transform duration-300 ease-out data-[state=open]:rotate-180",
+    "tab-pill-active": "transition-colors duration-200 ease-out",
+    "smooth-anchor-scroll": "scroll-smooth (apply on html root; already global)"
+  },
+  "components": [
+    {
+      "component_name": "SiteHeader",
+      "section_id": "nav",
+      "reuse": true,
+      "motion": [],
+      "actions": [],
+      "scroll_reveal": false,
+      "notes": "Existing component (apps/web/src/components/site-header.tsx) already handles its own hover states, mobile drawer toggle, and logo/link navigation. No new spec needed; just pass ctaLabel='Enquire Now' and ctaHref='/enquire'."
+    },
+    {
+      "component_name": "CourseHero",
+      "section_id": "hero",
+      "motion": [
+        { "target": "breadcrumb", "primitive": "fade-in-up", "delay": 0, "trigger": "mount" },
+        { "target": "title-line-1", "primitive": "fade-in-up", "delay": 0.1, "trigger": "mount" },
+        { "target": "title-line-2", "primitive": "fade-in-up", "delay": 0.2, "trigger": "mount" },
+        { "target": "body", "primitive": "fade-in-up", "delay": 0.3, "trigger": "mount" },
+        { "target": "meta-row", "primitive": "stagger-children", "delay": 0.4, "trigger": "mount", "notes": "Each MetaCard child uses fade-in-up." },
+        { "target": "cta", "primitive": "fade-in-up", "delay": 0.55, "trigger": "mount" },
+        { "target": "hero-image", "primitive": "fade-in", "delay": 0.2, "trigger": "mount", "notes": "Slightly longer duration (0.6s) so the photo settles in calmly." },
+        { "target": "cta", "primitive": "pill-press", "via": "tailwind" }
+      ],
+      "actions": [
+        { "target": "breadcrumb-home", "event": "click", "kind": "navigate", "href": "/", "rationale": "Breadcrumb root → home." },
+        { "target": "breadcrumb-courses", "event": "click", "kind": "navigate", "href": "/courses", "rationale": "Breadcrumb 'Yoga courses' → courses index." },
+        { "target": "cta", "event": "click", "kind": "navigate", "href": "/enquire?course=aerial-yoga", "rationale": "Primary 'Reserve Your Spot Now' → enquiry form prefilled. Decomposition already proposed this href." }
+      ],
+      "scroll_reveal": false,
+      "notes": "Above the fold — animate on mount, not on scroll. No parallax on the hero photo (project tone is calm; parallax feels jarring). Title's two lines stagger to read like the design's vertical drop-in."
+    },
+    {
+      "component_name": "MetaCard",
+      "section_id": "hero",
+      "motion": [
+        { "target": "root", "primitive": "hover-lift-card-subtle", "via": "tailwind", "notes": "Desktop white-card variant only — mobile pill variant doesn't lift (pill stays static)." }
+      ],
+      "actions": [],
+      "scroll_reveal": false,
+      "notes": "Decorative — no click action. Animates as children of the hero meta-row stagger."
+    },
+    {
+      "component_name": "CourseTabs",
+      "section_id": "tabs",
+      "motion": [
+        { "target": "tab-pill", "primitive": "tab-pill-active", "via": "tailwind" },
+        { "target": "tab-pill", "primitive": "press-scale", "via": "tailwind" }
+      ],
+      "actions": [
+        { "target": "tab[overview]", "event": "click", "kind": "scroll-to", "anchor": "#overview", "rationale": "Anchor-link to Overview section." },
+        { "target": "tab[highlights]", "event": "click", "kind": "scroll-to", "anchor": "#highlights", "rationale": "Anchor-link to Gain (highlights) section." },
+        { "target": "tab[curriculum]", "event": "click", "kind": "scroll-to", "anchor": "#curriculum", "rationale": "Anchor-link to Syllabus section." },
+        { "target": "tab[eligibility]", "event": "click", "kind": "scroll-to", "anchor": "#eligibility", "rationale": "Anchor-link to PreRequisites section." },
+        { "target": "tab[overall]", "event": "click", "kind": "scroll-to", "anchor": "#faq", "rationale": "'Overall' tab — best inferred mapping is the bottom-most informational block (FAQ). Mark unresolved — designer intent unclear." },
+        { "target": "root", "event": "scroll-into-view", "kind": "toggle-state", "state": "activeTab", "rationale": "IntersectionObserver on each anchored section sets the active tab pill as the user scrolls past it." }
+      ],
+      "scroll_reveal": false,
+      "behavior": {
+        "sticky": true,
+        "sticky_strategy": "position: sticky; top: 0 on desktop (lg:sticky lg:top-0 z-30). Non-sticky on mobile to avoid eating vertical space on a 390px viewport.",
+        "smooth_scroll": true,
+        "smooth_scroll_notes": "Add scroll-smooth to <html> globally, or use element.scrollIntoView({ behavior: 'smooth', block: 'start' }) in click handler. Subtract sticky-header height via scroll-margin-top on each target section (scroll-mt-20 lg:scroll-mt-24)."
+      },
+      "notes": "Active tab default = 'overview' on mount. Updates via IntersectionObserver as user scrolls; only one tab active at a time. On mobile the bar is non-sticky (Figma doesn't authorise stickiness); on desktop it sticks below the header. Tabs section node has bbox y=900 on desktop right under hero — sticky makes natural sense there."
+    },
+    {
+      "component_name": "SectionHeader",
+      "section_id": "shared",
+      "motion": [
+        { "target": "eyebrow", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "title", "primitive": "fade-in-up", "delay": 0.1, "trigger": "scroll-into-view" }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.3 },
+      "notes": "Shared primitive used by Overview, Gain, Syllabus, PreRequisites, Instructors, FAQ, LeadMore. Each section wraps its SectionHeader inside its own scroll-triggered motion container — eyebrow & title fade in together."
+    },
+    {
+      "component_name": "CourseOverview",
+      "section_id": "overview",
+      "motion": [
+        { "target": "section-header", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "body-paragraphs", "primitive": "stagger-children", "delay": 0.15, "trigger": "scroll-into-view", "notes": "Two paragraphs each get fade-in-up via staggerChildren." }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.25 },
+      "notes": "Anchor target #overview for the tab nav. Apply scroll-mt-20 lg:scroll-mt-24."
+    },
+    {
+      "component_name": "GainGrid",
+      "section_id": "gain",
+      "motion": [
+        { "target": "section-header", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "grid", "primitive": "stagger-children", "delay": 0.15, "trigger": "scroll-into-view", "notes": "Each GainCard fades-in-up in sequence." }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.15 },
+      "notes": "Anchor target #highlights for the tab nav."
+    },
+    {
+      "component_name": "GainCard",
+      "section_id": "gain",
+      "motion": [
+        { "target": "root", "primitive": "hover-lift-card", "via": "tailwind" }
+      ],
+      "actions": [],
+      "scroll_reveal": false,
+      "notes": "Hover lift via Tailwind. Card itself is a child of the grid's staggerChildren — wrap in motion.div with variants so the parent's stagger drives the entrance."
+    },
+    {
+      "component_name": "SyllabusGrid",
+      "section_id": "syllabus",
+      "motion": [
+        { "target": "section-header", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "grid", "primitive": "stagger-children", "delay": 0.15, "trigger": "scroll-into-view" }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.15 },
+      "notes": "Anchor target #curriculum for the tab nav."
+    },
+    {
+      "component_name": "SyllabusCard",
+      "section_id": "syllabus",
+      "motion": [
+        { "target": "root", "primitive": "hover-lift-card", "via": "tailwind" }
+      ],
+      "actions": [],
+      "scroll_reveal": false
+    },
+    {
+      "component_name": "PreRequisites",
+      "section_id": "prerequisites",
+      "motion": [
+        { "target": "section-header", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "checklist", "primitive": "stagger-children", "delay": 0.15, "trigger": "scroll-into-view", "notes": "Each CheckRow fades-in-up in sequence." },
+        { "target": "decorative-image-left", "primitive": "fade-in", "delay": 0.1, "trigger": "scroll-into-view", "notes": "Desktop-only decorative tilted photo — uses fade-in (no upward translate) so the rotation doesn't fight the motion." },
+        { "target": "decorative-image-right", "primitive": "fade-in", "delay": 0.25, "trigger": "scroll-into-view", "notes": "Desktop-only decorative tilted photo." }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.2 },
+      "notes": "Anchor target #eligibility for the tab nav. Decorative images stay hidden on mobile (lg:block)."
+    },
+    {
+      "component_name": "CheckRow",
+      "section_id": "prerequisites",
+      "motion": [],
+      "actions": [],
+      "scroll_reveal": false,
+      "notes": "Static checklist row. Animated via parent stagger only."
+    },
+    {
+      "component_name": "InstructorsBand",
+      "section_id": "instructors",
+      "motion": [
+        { "target": "section-header", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "instructor-list", "primitive": "stagger-children", "delay": 0.15, "trigger": "scroll-into-view" }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.2 },
+      "notes": "No tab anchor — instructors not in the tab list."
+    },
+    {
+      "component_name": "InstructorRow",
+      "section_id": "instructors",
+      "motion": [
+        { "target": "root", "primitive": "hover-lift-card-subtle", "via": "tailwind" },
+        { "target": "avatar", "primitive": "hover-zoom-image", "via": "tailwind", "notes": "Wrap avatar img in a group parent; avatar uses group-hover:scale-105." }
+      ],
+      "actions": [
+        { "target": "root", "event": "click", "kind": "navigate", "href": "/trainers/[slug]", "rationale": "Instructors are linkable trainer profiles. Slug derived from name. Mark unresolved — confirm trainer profile route exists." }
+      ],
+      "scroll_reveal": false,
+      "notes": "If a TrainerCard primitive exists from the /trainers harness, prefer reusing it and inherit its interaction model rather than redefining hover here."
+    },
+    {
+      "component_name": "FAQAccordion",
+      "section_id": "faq",
+      "motion": [
+        { "target": "section-header", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "items", "primitive": "stagger-children", "delay": 0.15, "trigger": "scroll-into-view" }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.2 },
+      "notes": "Anchor target #faq. Reuse shadcn Accordion if present in apps/web/src/components/ui/accordion.tsx — it already provides keyboard-accessible expand/collapse. Otherwise, custom implementation with AnimatePresence + height auto."
+    },
+    {
+      "component_name": "AccordionItem",
+      "section_id": "faq",
+      "motion": [
+        { "target": "body", "primitive": "accordion-expand", "via": "framer-motion", "trigger": "state-change", "notes": "When open state toggles, animate height 0 ↔ auto + opacity. Use AnimatePresence with initial={false}." },
+        { "target": "chevron", "primitive": "chevron-rotate", "via": "tailwind", "notes": "Rotate 180deg when open. Use data-[state=open]:rotate-180 if using Radix Accordion, otherwise drive via a local className toggle." },
+        { "target": "trigger", "primitive": "press-scale", "via": "tailwind" }
+      ],
+      "actions": [
+        { "target": "trigger", "event": "click", "kind": "toggle-state", "state": "open", "rationale": "Standard accordion expand/collapse. First item defaultOpen=true per decomposition." }
+      ],
+      "scroll_reveal": false,
+      "notes": "If shadcn Accordion is reused, its built-in Radix animation is acceptable — skip framer-motion accordion-expand and rely on Radix's data-state CSS transitions instead. Builder picks one path; don't double-animate."
+    },
+    {
+      "component_name": "RelatedCoursesGrid",
+      "section_id": "leadmore",
+      "motion": [
+        { "target": "section-header", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "subtitle", "primitive": "fade-in-up", "delay": 0.15, "trigger": "scroll-into-view" },
+        { "target": "grid", "primitive": "stagger-children", "delay": 0.25, "trigger": "scroll-into-view" }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.15 }
+    },
+    {
+      "component_name": "RelatedCourseCard",
+      "section_id": "leadmore",
+      "motion": [
+        { "target": "root", "primitive": "hover-lift-card", "via": "tailwind" },
+        { "target": "image", "primitive": "hover-zoom-image", "via": "tailwind", "notes": "Wrap card in `group`; image uses group-hover:scale-105 with overflow-hidden on the image container." },
+        { "target": "view-program-link", "primitive": "hover-underline", "via": "tailwind" }
+      ],
+      "actions": [
+        { "target": "root", "event": "click", "kind": "navigate", "href": "FROM_PROP_href", "rationale": "Whole card clickable; href comes from course data (e.g. /courses/weight-loss-coach, /courses/mudra-therapy, /courses/mat-pilates). Mark unresolved — these routes may not exist yet." },
+        { "target": "view-program-link", "event": "click", "kind": "navigate", "href": "FROM_PROP_href", "rationale": "Explicit CTA link mirrors the card click target. Use e.stopPropagation if both root and link handle click; or make only one of them the clickable target (prefer wrapping the card in a single <Link>)." }
+      ],
+      "scroll_reveal": false,
+      "notes": "Prefer wrapping the entire card with a Next <Link>; the inner 'View Program' anchor becomes visual-only (hover-underline still applies)."
+    },
+    {
+      "component_name": "ClosingCTABand",
+      "section_id": "cta-section",
+      "motion": [
+        { "target": "wordmark", "primitive": "fade-in-up", "delay": 0, "trigger": "scroll-into-view" },
+        { "target": "title", "primitive": "fade-in-up", "delay": 0.15, "trigger": "scroll-into-view" },
+        { "target": "body", "primitive": "fade-in-up", "delay": 0.3, "trigger": "scroll-into-view" },
+        { "target": "cta", "primitive": "fade-in-up", "delay": 0.45, "trigger": "scroll-into-view" },
+        { "target": "cta", "primitive": "pill-press", "via": "tailwind" }
+      ],
+      "actions": [
+        { "target": "cta", "event": "click", "kind": "navigate", "href": "/try", "rationale": "'Try a class, free' → /try (matches decomposition prop). Confirm route exists." }
+      ],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.3 }
+    },
+    {
+      "component_name": "CtaCardsRow",
+      "section_id": "cta-cards",
+      "motion": [
+        { "target": "row", "primitive": "stagger-children", "delay": 0, "trigger": "scroll-into-view" }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_options": { "once": true, "amount": 0.2 }
+    },
+    {
+      "component_name": "CtaCard",
+      "section_id": "cta-cards",
+      "motion": [
+        { "target": "root", "primitive": "hover-lift-card", "via": "tailwind" },
+        { "target": "cta", "primitive": "pill-press", "via": "tailwind" }
+      ],
+      "actions": [
+        { "target": "cta[Free Trial Session]", "event": "click", "kind": "navigate", "href": "/free-trial", "rationale": "From decomposition prop; confirm route exists." },
+        { "target": "cta[Speak to us]", "event": "click", "kind": "navigate", "href": "/contact", "rationale": "From decomposition prop; confirm route exists." },
+        { "target": "cta[Take a Guided Path]", "event": "click", "kind": "navigate", "href": "/assessment", "rationale": "From decomposition prop; confirm route exists." }
+      ],
+      "scroll_reveal": false
+    },
+    {
+      "component_name": "SiteFooter",
+      "section_id": "footer",
+      "reuse": true,
+      "motion": [
+        { "target": "link", "primitive": "hover-underline", "via": "tailwind", "notes": "Only applies if reused footer doesn't already style its links." }
+      ],
+      "actions": [],
+      "scroll_reveal": false,
+      "notes": "Reuse existing site-footer if it exists. Hover-underline applied by the footer itself; this file just records the intent so the builder doesn't add a competing style."
+    }
+  ],
+  "global_behaviors": {
+    "smooth_anchor_scroll": {
+      "where": "Apply scroll-behavior: smooth on html (or via Tailwind 'scroll-smooth' class on the root <html>).",
+      "scroll_margin_top": "Each anchored section (#overview, #highlights, #curriculum, #eligibility, #faq) sets scroll-mt-20 lg:scroll-mt-24 so the sticky tab bar doesn't cover the heading on jump.",
+      "reduced_motion": "Wrap all framer-motion animations with the useReducedMotion hook OR set transition={{ duration: 0 }} when prefers-reduced-motion is true. Tailwind transitions auto-respect this via @media (prefers-reduced-motion: reduce) which is standard."
+    },
+    "active_tab_observer": {
+      "strategy": "IntersectionObserver watches each anchored section. When a section crosses the rootMargin '-40% 0px -55% 0px' (i.e. roughly the middle of the viewport), set CourseTabs' activeTab state to its id.",
+      "fallback": "If IO is unavailable (very old browsers), default to mount-time active tab and only respond to clicks."
+    }
+  },
+  "unresolved": [
+    { "component": "CourseTabs", "target": "tab[overall]", "reason": "Tab label 'Overall' has no obvious section to anchor to. Best guess: scroll to FAQ. Confirm with design — could equally be intended as a summary/closing-CTA anchor." },
+    { "component": "CourseTabs", "target": "sticky behavior on desktop", "reason": "Figma's desktop tabs sit at y=900 with backdrop-blur but the file doesn't expose a 'sticky' prototype reaction. Defaulting to sticky lg:sticky lg:top-0; visual-QA should confirm scroll behavior matches design intent." },
+    { "component": "InstructorRow", "target": "root", "reason": "Card click navigates to /trainers/[slug] but trainer detail routes may not be implemented yet. Confirm route exists or downgrade to a no-op static card." },
+    { "component": "RelatedCourseCard", "target": "root", "reason": "Hrefs /courses/weight-loss-coach, /courses/mudra-therapy, /courses/mat-pilates come from decomposition data — these route pages may not exist yet. Confirm or stub with a coming-soon landing." },
+    { "component": "ClosingCTABand", "target": "cta", "reason": "Href '/try' from decomposition — confirm a /try route exists for the 'Try a class, free' CTA." },
+    { "component": "CtaCard", "target": "all three CTAs", "reason": "Hrefs /free-trial, /contact, /assessment from decomposition — confirm these routes exist." },
+    { "component": "CourseHero", "target": "cta", "reason": "Decomposition flags the green 'Reserve Your Spot Now' CTA may be hidden on desktop. If so, the mount fade-in-up still fires but on an invisible element — wrap in the same display-toggle as the visual layer so motion respects breakpoint." },
+    { "component": "FAQAccordion", "target": "AccordionItem expand", "reason": "If shadcn Accordion (Radix) is reused, its data-state CSS transitions are used; otherwise the framer-motion accordion-expand primitive runs. Builder must pick one path to avoid double-animation." }
+  ]
+}

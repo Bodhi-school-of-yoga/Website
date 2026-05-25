@@ -1,0 +1,10 @@
+{
+  "figma_url_desktop": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-32&m=dev",
+  "figma_url_mobile": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=19-1470&m=dev",
+  "file_key": "eqaofBeNUhOUISevtRfOpT",
+  "node_id_desktop": "1-32",
+  "node_id_mobile": "19-1470",
+  "target_page": "homepage",
+  "scope": "Bodhi homepage — responsive (mobile + desktop). Existing build at apps/web/src/app/page.tsx with 11 sections; this run is to compare the build against Figma and close gaps.",
+  "instructions": "First compare what's already built at apps/web/src/app/page.tsx against the Figma frames. Produce a gap analysis BEFORE building. Then decompose only the missing/divergent parts. Build component-by-component with tests at each step. Mobile = 19-1470, Desktop = 1-32. Use Bodhi design tokens. Visual-QA at desktop + mobile."
+}

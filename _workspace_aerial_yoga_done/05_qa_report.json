@@ -1,0 +1,178 @@
+{
+  "page": "/our-trainers",
+  "demo_url": "http://localhost:3000/our-trainers",
+  "captured_at": "2026-05-23",
+  "viewports": {
+    "mobile": "390x844 @2x",
+    "desktop": "1440x900"
+  },
+  "screenshots": {
+    "built_mobile_full": "_workspace/05_screenshot_built_mobile.png",
+    "built_desktop_full": "_workspace/05_screenshot_built_desktop.png",
+    "built_mobile_hero": "_workspace/05_mobile_section_0.png",
+    "built_mobile_pull_quote": "_workspace/05_mobile_section_1.png",
+    "built_mobile_meet_all_header": "_workspace/05_mobile_section_4.png",
+    "built_mobile_trainer_cards": "_workspace/05_mobile_trainer_cards.png",
+    "built_mobile_closing_cta_light": "_workspace/05_mobile_cta_dark.png",
+    "built_mobile_duplicate_cta": "_workspace/05_mobile_footer_area.png",
+    "figma_mobile": "_workspace/01_figma_screenshot.png",
+    "figma_desktop": "_workspace/01_figma_screenshot_desktop.png"
+  },
+  "sections": [
+    {
+      "section_id": "site-header",
+      "verdict": "pass-with-minor",
+      "findings": [
+        {
+          "severity": "minor",
+          "type": "contrast/legibility",
+          "where": "SiteHeader wordmark over hero mint background (mobile)",
+          "expected": "Light-tone header wordmark clearly visible against mint hero",
+          "got": "Wordmark 'Bodhi / SCHOOL OF YOGA' renders with low contrast over the mint hero background — readable but faint",
+          "fix_suggestion": "Verify SiteHeader 'light' tone token resolves to a dark-on-light color when not scrolled. Figma reference shows a darker wordmark over the mint band."
+        }
+      ]
+    },
+    {
+      "section_id": "trainers-hero",
+      "verdict": "pass",
+      "findings": [
+        {
+          "severity": "cosmetic",
+          "type": "typography-comment",
+          "where": "Hero h1 font",
+          "expected": "Italic Fraunces (per source-file comments in trainers-hero/pull-quote sections)",
+          "got": "Italic Host Grotesk — apps/web/src/app/layout.tsx imports Host_Grotesk as --font-heading, not Fraunces. Computed h1 font-family: 'Host Grotesk'.",
+          "fix_suggestion": "Either update comment headers to say 'Host Grotesk italic' OR swap the next/font import to Fraunces. Visual italic display style still reads correctly."
+        }
+      ]
+    },
+    {
+      "section_id": "trainers-pull-quote-band",
+      "verdict": "pass-with-minor",
+      "findings": [
+        {
+          "severity": "minor",
+          "type": "color",
+          "where": "Opening-quote glyph (mobile branch)",
+          "expected": "Mint-pale glyph (spec: 'giant italic Fraunces opening-quote glyph in mint')",
+          "got": "Mobile branch uses 'text-text-cyan/35' — a faint cyan at 35% opacity. Desktop branch correctly uses text-text-mint-pale.",
+          "fix_suggestion": "Change mobile span class in trainers-pull-quote-band.tsx from 'text-text-cyan/35' to 'text-text-mint-pale' to match desktop and Figma."
+        },
+        {
+          "severity": "minor",
+          "type": "typography",
+          "where": "Attribution '— The Bodhi Faculty' (mobile branch)",
+          "expected": "Mixed-case '— The Bodhi Faculty' (per Figma)",
+          "got": "Mobile branch applies 'uppercase tracking-[0.16em]' rendering as '— THE BODHI FACULTY'. Desktop branch correctly omits uppercase.",
+          "fix_suggestion": "Remove 'uppercase tracking-[0.16em]' from the mobile attribution <p> in trainers-pull-quote-band.tsx."
+        }
+      ]
+    },
+    {
+      "section_id": "trainers-meet-all",
+      "verdict": "pass-with-minor",
+      "findings": [
+        {
+          "severity": "minor",
+          "type": "responsive-heuristic",
+          "where": "Desktop trainer grid",
+          "expected": "Per user spec: 1 col mobile → 2 cols sm → 3 cols lg",
+          "got": "Mobile-faculty grid: 1 col mobile, 2 cols sm, hidden md+. Separate md+ grid renders 18-trainer roster with md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6. At lg (1440px) computed grid-template-columns = 311.094px × 4 (= 4 cols, not 3).",
+          "fix_suggestion": "If single-roster 1/2/3 is desired, replace md+ grid classes with 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' and drop the md:hidden split. If two-roster (7 mobile / 18 desktop) is intentional, accept lg=4."
+        },
+        {
+          "severity": "cosmetic",
+          "type": "image-dimensions",
+          "where": "TrainerProfileCard portrait aspect",
+          "expected": "260px portrait height per user spec",
+          "got": "Portrait uses aspect-[3/4] — on 358px-wide card the portrait renders ~475px tall, well above 260px",
+          "fix_suggestion": "Acceptable if 3:4 portrait crops match Figma reference. Otherwise fix to h-[260px] or aspect-[4/3]."
+        }
+      ]
+    },
+    {
+      "section_id": "closing-cta-section-light",
+      "verdict": "pass-with-minor",
+      "findings": [
+        {
+          "severity": "minor",
+          "type": "responsive-typography",
+          "where": "Closing CTA heading 'Begin where you are.' (mobile 390px)",
+          "expected": "Heading fits on at most 2 lines at 390px with italic 'you are.' inline with 'Begin where'",
+          "got": "At 390px the heading wraps to 3 lines: 'Begin where' / 'you' / 'are.' — the italic accent breaks across lines because text-[40px] is too large for the viewport",
+          "fix_suggestion": "Reduce mobile font-size in closing-cta-section.tsx h2 classes: change 'text-[40px] sm:text-[64px]' to 'text-[32px] sm:text-[56px]' (or use a wider max-width)."
+        }
+      ]
+    },
+    {
+      "section_id": "site-footer-block",
+      "verdict": "fail",
+      "findings": [
+        {
+          "severity": "critical",
+          "type": "duplicate-content / layout",
+          "where": "SiteFooterBlock at the bottom of /our-trainers",
+          "expected": "Footer block renders ONLY the dark footer (nav columns + brand block) below the page's existing mint ClosingCtaSection",
+          "got": "SiteFooterBlock defaults to showCta=true, so it renders its OWN dark ClosingCtaSection ('Bodhi / Begin where you are. / Try a class, free') above the footer columns. Result: TWO 'Begin where you are.' closing-CTA bands render back-to-back (mint light theme from page.tsx + dark theme from SiteFooterBlock default). Verified via DOM inspection — section[5] bg rgb(229,255,249) with 3 cards, section[6] bg rgb(0,40,44) (brand-dark) with 0 cards, both containing the same headline.",
+          "fix_suggestion": "apps/web/src/app/our-trainers/page.tsx line 55: change <SiteFooterBlock /> to <SiteFooterBlock showCta={false} /> to suppress the embedded duplicate CTA."
+        },
+        {
+          "severity": "minor",
+          "type": "content-mismatch",
+          "where": "Duplicated dark closing-CTA primaryCta href",
+          "expected": "n/a — should be suppressed",
+          "got": "Default href on the duplicated dark CTA is '/contact', while the page-level light CTA points to '/book'. If both were intentional the duplicate destinations would confuse users.",
+          "fix_suggestion": "Becomes moot once showCta={false} is applied to <SiteFooterBlock />."
+        }
+      ]
+    }
+  ],
+  "interaction_audit": {
+    "hero_cta": {
+      "spec": "navigate to /classes",
+      "found": "<Link href='/classes'> in trainers-hero.tsx",
+      "status": "pass"
+    },
+    "closing_cta_primary": {
+      "spec": "navigate to /book",
+      "found": "<Link href='/book'> in page.tsx ClosingCtaSection primaryCta",
+      "status": "pass"
+    },
+    "closing_cta_cards": {
+      "spec": "navigate to /book, /contact, /paths",
+      "found": "All three <Link> hrefs present with ArrowRight icon",
+      "status": "pass"
+    },
+    "trainer_cards_hover": {
+      "spec": "lift on hover",
+      "found": "motion-safe:hover:-translate-y-0.5 + shadow on TrainerProfileCard",
+      "status": "pass"
+    },
+    "duplicate_dark_cta": {
+      "spec": "not declared",
+      "found": "Second 'Try a class, free' Link href='/contact' from SiteFooterBlock default",
+      "status": "critical-extra"
+    }
+  },
+  "viewport_observations": {
+    "desktop_1440": {
+      "trainer_grid_columns": "4 (computed 311.094px × 4)",
+      "expected_per_user_spec": "3 at lg",
+      "note": "md+ uses 18-trainer roster grid (md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6); mobile-faculty grid hidden md+. Two-roster design pattern appears intentional per source comments — visual still matches Figma desktop reference."
+    },
+    "sm_720": {
+      "trainer_grid_columns": "2 (computed 326.797px × 2 from the still-visible mobile-faculty grid up to md)",
+      "expected_per_user_spec": "2 at sm",
+      "note": "matches"
+    },
+    "mobile_390": {
+      "trainer_grid_columns": "1 (358px)",
+      "expected": "1 at mobile",
+      "note": "matches"
+    }
+  },
+  "blockers": [],
+  "overall": "fail",
+  "summary": "Critical duplicate closing-CTA: SiteFooterBlock renders its default dark ClosingCtaSection on top of the page's explicit light ClosingCtaSection, producing two stacked 'Begin where you are. / Try a class, free' bands at the bottom of /our-trainers. One-line fix: pass showCta={false} to <SiteFooterBlock /> in apps/web/src/app/our-trainers/page.tsx. All other findings are minor (mobile attribution uppercase, mobile glyph cyan vs mint, mobile heading 3-line wrap, lg=4 vs spec lg=3) or cosmetic (component header comments say 'Fraunces' while font-heading actually resolves to Host Grotesk). Visual fidelity of hero, pull-quote band, trainer grid, and the (intended) light closing CTA all match the Figma mobile reference closely."
+}

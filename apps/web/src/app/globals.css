@@ -4,13 +4,36 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ---------------------------------------------------------------------------
+   Fluid scale system
+   --------------------------------------------------------------------------
+   The original UI was designed for a 1920px reference viewport. On common
+   laptop widths (1280–1500) the design felt too zoomed in. To fix this
+   without rewriting every component, every typography token and Tailwind's
+   --spacing base are multiplied by a viewport-driven scale factor.
+
+   --t is a unitless 0..1 interpolation:
+      • 0 at viewport ≤ 1280px
+      • 1 at viewport ≥ 1920px
+      • linear in between
+
+   Four scales feed off --t, each with its own floor — bigger type scales
+   more aggressively, small UI text barely scales. At 1920px every scale
+   reaches 1.0, so the desktop design is byte-identical to before.
+   ------------------------------------------------------------------------- */
+:root {
+  --t: clamp(0, calc((100vw - 1280px) / 640px), 1);
+  --u-display: calc(0.80 + 0.20 * var(--t)); /* h1–h5: 80% → 100% */
+  --u-text:    calc(0.90 + 0.10 * var(--t)); /* subtext / body-md: 90% → 100% */
+  --u-mini:    calc(0.96 + 0.04 * var(--t)); /* body-sm / mini: 96% → 100% */
+  --u-space:   calc(0.92 + 0.08 * var(--t)); /* spacing base: 92% → 100% */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-heading);
-  --font-serif: var(--font-serif);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -51,6 +74,172 @@
   --color-warm-foreground: var(--warm-foreground);
   --color-sage: var(--sage);
   --color-sage-foreground: var(--sage-foreground);
+
+  /* Brand tokens (Figma reference — bg-brand-primary, text-brand-dark, etc.) */
+  --color-brand-primary: #009877;
+  --color-brand-dark: #00282c;
+  --color-brand-shade: #8ee0ce;
+  --color-brand-shade-hover: #7dd6c2;
+  --color-accent-mint: #3fffd5;
+  --color-accent-pink: #ff0075;
+  --color-brand-lite: #f0fff8;
+  --color-mint-cream: #e5fff9;
+  --color-mint-frost: #ebfffb;
+  --color-mint-soft: #c7fef2;
+  --color-mint-pale: #cafde6;
+  --color-lime-soft: #ddf68a;
+  --color-brand-teal: #038f9f;
+  --color-brand-green-deep: #004b3b;
+  --color-brand-green-darkest: #003e22;
+  --color-brand-mid: #27af91;
+  --color-brand-teal-deep: #003a44;
+
+  /* Surface tokens (bg-surface-0..2, bg-surface-cream) */
+  --color-surface-0: #fdfdfd;
+  --color-surface-1: #ffffff;
+  --color-surface-2: #f7f7f7;
+  --color-surface-cream: #faf6ef;
+  --color-surface-mint-pale: #effdff;
+  --color-surface-teal-pale: #d1e2e7;
+
+  /* Border tokens (border-border-1..3 → use border-1/2/3 alias) */
+  --color-border-1: #f4f4f4;
+  --color-border-2: #f0f0f0;
+  --color-border-3: #d2d2d2;
+  --color-border-peach: #f0d0bc;
+  --color-sage-divider: rgba(86, 147, 65, 0.19);
+  --color-sage-divider-soft: rgba(86, 147, 65, 0.15);
+
+  /* Text tokens (text-text-primary, etc.) */
+  --color-text-primary: #1d3e59;
+  --color-text-secondary: #2a2420;
+  --color-text-tertiary: #727272;
+  --color-text-brand: #009877;
+  --color-text-brand-deep: #00785d;
+  --color-text-inverse: #ffffff;
+  --color-text-teal-deep: #005564;
+  --color-text-teal-dark: #243a42;
+  --color-text-mint-shade: #8fe0cf;
+  --color-text-mint-pale: #b4ffef;
+  --color-text-cyan: #69f0ff;
+
+  /* Spacing base — Tailwind v4 derives every padding, margin, gap, and
+     size utility from --spacing (default 0.25rem = 4px). Scaling this with
+     --u-space gives us a single dial for "make the whole UI proportionally
+     tighter on smaller desktops". Custom bracketed values (e.g.
+     max-w-[1340px]) are unaffected — only token-driven spacing scales. */
+  --spacing: calc(0.25rem * var(--u-space));
+
+  /* Named typography scale — text-h1, text-subtext-1, text-body-md, etc.
+     Pairs size with line-height, letter-spacing, and weight. All sizes and
+     line-heights are multiplied by a viewport-driven scale (see --t /
+     --u-display etc. in :root above) so the design holds at 1920px and
+     compresses cleanly down to 1280px. */
+  --text-h1: calc(5.625rem * var(--u-display));
+  --text-h1--line-height: calc(4.813rem * var(--u-display));
+  --text-h1--letter-spacing: 0;
+  --text-h1--font-weight: 700;
+
+  --text-h2: calc(3.25rem * var(--u-display));
+  --text-h2--line-height: calc(3.313rem * var(--u-display));
+  --text-h2--letter-spacing: -0.56px;
+  --text-h2--font-weight: 600;
+
+  --text-h3: calc(2.625rem * var(--u-display));
+  --text-h3--line-height: calc(2.688rem * var(--u-display));
+  --text-h3--letter-spacing: -0.72px;
+  --text-h3--font-weight: 700;
+
+  --text-h4: calc(2.25rem * var(--u-display));
+  --text-h4--line-height: calc(2.625rem * var(--u-display));
+  --text-h4--letter-spacing: 0;
+  --text-h4--font-weight: 700;
+
+  --text-h5: calc(1.5rem * var(--u-display));
+  --text-h5--line-height: calc(1.438rem * var(--u-display));
+  --text-h5--letter-spacing: -0.11px;
+  --text-h5--font-weight: 600;
+
+  --text-subtext-3: calc(1.25rem * var(--u-text));
+  --text-subtext-3--line-height: calc(1.563rem * var(--u-text));
+  --text-subtext-3--letter-spacing: 0;
+  --text-subtext-3--font-weight: 600;
+
+  --text-subtext-2: calc(1.125rem * var(--u-text));
+  --text-subtext-2--line-height: calc(1.641rem * var(--u-text));
+  --text-subtext-2--letter-spacing: 0;
+  --text-subtext-2--font-weight: 400;
+
+  --text-subtext-1: calc(1rem * var(--u-text));
+  --text-subtext-1--line-height: calc(1.453rem * var(--u-text));
+  --text-subtext-1--letter-spacing: 0.08px;
+  --text-subtext-1--font-weight: 400;
+
+  --text-body-md: calc(1rem * var(--u-text));
+  --text-body-md--line-height: calc(1.5rem * var(--u-text));
+  --text-body-md--letter-spacing: 0;
+  --text-body-md--font-weight: 400;
+
+  --text-body-sm: calc(0.875rem * var(--u-mini));
+  --text-body-sm--line-height: calc(1.375rem * var(--u-mini));
+  --text-body-sm--letter-spacing: 0;
+  --text-body-sm--font-weight: 400;
+
+  --text-mini: calc(0.75rem * var(--u-mini));
+  --text-mini--line-height: calc(1.063rem * var(--u-mini));
+  --text-mini--letter-spacing: 2.42px;
+  --text-mini--font-weight: 600;
+
+  /* Hero-specific text tokens — values are anchored to the 1920px Figma
+     design but tightened slightly from the literal Figma px to keep them
+     readable on common laptop widths. Each scales by the matching
+     --u-* multiplier so the size compresses on small desktops and hits the
+     1920 target at the design reference width. */
+
+  /* Hero headline — 80px @1920 (Figma is 90px; tightened for laptop
+     legibility). Scales via --u-display (80% → 100%). */
+  --text-hero-headline: calc(5rem * var(--u-display)); /* 80px */
+  --text-hero-headline--line-height: calc(4.75rem * var(--u-display)); /* 76px */
+  --text-hero-headline--letter-spacing: -0.5px;
+  --text-hero-headline--font-weight: 700;
+
+  /* Hero eyebrow — 16px @1920. Scales via --u-mini. */
+  --text-hero-eyebrow: calc(1rem * var(--u-mini)); /* 16px */
+  --text-hero-eyebrow--line-height: calc(1.25rem * var(--u-mini)); /* 20px */
+  --text-hero-eyebrow--letter-spacing: 2.96px;
+  --text-hero-eyebrow--font-weight: 700;
+
+  /* Hero subhead — 20px @1920. Scales via --u-text. */
+  --text-hero-sub: calc(1.25rem * var(--u-text)); /* 20px */
+  --text-hero-sub--line-height: calc(1.875rem * var(--u-text)); /* 30px */
+  --text-hero-sub--letter-spacing: 0.08px;
+  --text-hero-sub--font-weight: 400;
+
+  /* Chip card eyebrow — 14px @1920. Scales via --u-mini. */
+  --text-hero-chip-eyebrow: calc(0.875rem * var(--u-mini)); /* 14px */
+  --text-hero-chip-eyebrow--line-height: calc(1.0625rem * var(--u-mini)); /* 17px */
+  --text-hero-chip-eyebrow--letter-spacing: 2.42px;
+  --text-hero-chip-eyebrow--font-weight: 600;
+
+  /* Chip card title — 16px @1920. Scales via --u-text. */
+  --text-hero-chip-title: calc(1rem * var(--u-text)); /* 16px */
+  --text-hero-chip-title--line-height: calc(1.375rem * var(--u-text)); /* 22px */
+  --text-hero-chip-title--letter-spacing: -0.28px;
+  --text-hero-chip-title--font-weight: 500;
+
+  /* Hero subhead body color (Figma rgba(71,71,71,0.71)). Distinct from
+     text-text-tertiary which is solid #727272. */
+  --color-text-subdued: rgba(71, 71, 71, 0.71);
+
+  /* Hero eyebrow accent (Figma #039474 — a slightly deeper green than
+     --color-text-brand #009877). */
+  --color-text-brand-emerald: #039474;
+
+  /* Soft elevation for floating cards (Figma node 1:246). */
+  --shadow-card: 0 4px 48px 0 rgba(226, 226, 226, 0.25);
+
+  /* Workshop / offer chip shadow (Figma node 1:611). */
+  --shadow-chip: 0 28px 59.1px 0 rgba(192, 192, 192, 0.25);
 }
 
 :root {
@@ -141,4 +330,188 @@
   html {
     @apply font-sans scroll-smooth;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   .page-px / .nav-px — horizontal-gutter utilities on the 8px grid.
+
+   .page-px (body sections, hero, footer-cta):
+     16 → 24 → 32 → 48 → 64 → 80 → 96 px
+     Generous side margins on big desktops — visual breathing room.
+
+   .nav-px (top/bottom chrome — site-header, site-footer):
+     16 → 24 → 32 → 40 → 48 px
+     Same baseline on mobile, but caps lower so the navbar's logo + 6 links
+     + CTA all keep their natural width at 1920px (≈1240px content area
+     instead of 1148px under .page-px).
+
+   Both pair with `mx-auto max-w-[1340px]` for centered content.
+   ------------------------------------------------------------------------- */
+@layer utilities {
+  .page-px {
+    padding-inline: 1rem; /* 16px — mobile */
+  }
+  @media (min-width: 640px)  { .page-px { padding-inline: 1.5rem; } } /* 24px */
+  @media (min-width: 768px)  { .page-px { padding-inline: 2rem; } }   /* 32px */
+  @media (min-width: 1024px) { .page-px { padding-inline: 3rem; } }   /* 48px */
+  @media (min-width: 1280px) { .page-px { padding-inline: 4rem; } }   /* 64px */
+  @media (min-width: 1536px) { .page-px { padding-inline: 5rem; } }   /* 80px */
+  @media (min-width: 1920px) { .page-px { padding-inline: 6rem; } }   /* 96px */
+
+  .nav-px {
+    padding-inline: 1rem; /* 16px — mobile */
+  }
+  @media (min-width: 640px)  { .nav-px { padding-inline: 1.5rem; } } /* 24px */
+  @media (min-width: 768px)  { .nav-px { padding-inline: 2rem; } }   /* 32px */
+  @media (min-width: 1280px) { .nav-px { padding-inline: 2.5rem; } } /* 40px */
+  @media (min-width: 1536px) { .nav-px { padding-inline: 3rem; } }   /* 48px */
+}
+
+/* ---------------------------------------------------------------------------
+   .hero-1920 — desktop hero layout anchors.
+   All values are proportional to the 1920px Figma design (Bodhi home hero).
+   Using vw means every absolute Figma px becomes a fraction of the viewport,
+   so at 1920px the design renders pixel-exact and scales linearly below it.
+   Only applied at lg+ (≥1024px); mobile uses a stacked flow without these.
+   ------------------------------------------------------------------------- */
+@layer utilities {
+  .hero-1920 {
+    /* Section + text column */
+    --hero-gutter: 16.04vw;       /* 308 / 1920 — left content inset */
+    --hero-text-pt: 9.5vw;        /* 182 / 1920 — text-block top */
+    --hero-min-h: 52vw;           /* ~998 @ 1920 — hero band height */
+
+    /* Image — exact Figma spec: 865 × 952 at 1920, anchored bottom-right
+       so the woman touches the banner (sanskrit marquee) and the right
+       edge of the viewport. Overflows past right via the section's
+       overflow-hidden. */
+    --hero-img-w: 45.05vw;        /* 865 / 1920 */
+    --hero-img-h: 49.58vw;        /* 952 / 1920 */
+    --hero-img-top: 0;
+    --hero-img-right: 0;
+
+    /* Watermark — exact Figma spec (node 1:37): "बोधि" at 520px / 442px
+       line-height / -20.8px letter-spacing, color #038F9F at 10% opacity.
+       Container starts at x=1257, y=330 inside the 1920 frame. Image and
+       watermark overlap by design — watermark shows through PNG transparency. */
+    --hero-watermark-x: 65.47vw;  /* 1257 / 1920 */
+    --hero-watermark-y: 17.19vw;  /* 330 / 1920 */
+    --hero-watermark-w: 27.08vw;  /* font-size: 520 / 1920 */
+
+    /* Headline + subhead widths track the font scale (not vw) so the
+       3-line headline wrap from Figma stays intact at every desktop width. */
+    --hero-headline-w: calc(43.25rem * var(--u-display)); /* 692px @ 1920 */
+    --hero-sub-w: calc(40rem * var(--u-text));            /* 640px @ 1920 */
+
+    /* Chip row beneath the hero text — wide enough to fit each title on a
+       single line. Extends right past the text column. */
+    --hero-chips-mt: 3.5vw;       /* 67 @ 1920 */
+    --hero-chips-max-w: 65vw;     /* 1248 @ 1920 */
+    --hero-chips-gap: 0.94vw;     /* 18 @ 1920 */
+
+    /* Single chip card */
+    --hero-chip-h: 4.58vw;        /* 88 @ 1920 */
+    --hero-chip-px: 1.30vw;       /* 25 @ 1920 */
+    --hero-chip-btn: 2.29vw;      /* 44 @ 1920 */
+  }
+}
+
+@keyframes hero-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-hero-marquee {
+  animation: hero-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-marquee {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile & Cross-Browser Optimizations
+   --------------------------------------------------------------------------
+   Touch-friendly interactions, safe area insets, and browser compatibility.
+ ------------------------------------------------------------------------- */
+
+/* Remove blue tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve touch response and prevent accidental zoom */
+* {
+  touch-action: manipulation;
+}
+
+/* Ensure minimum touch target size on mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Safe area insets for iOS notch & home indicator */
+@layer utilities {
+  .safe-inset-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-inset-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  .safe-inset-right {
+    padding-right: env(safe-area-inset-right);
+  }
+  .safe-inset-all {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+}
+
+/* Z-Index scale system for consistent stacking */
+@layer utilities {
+  .z-behind { z-index: -1; }
+  .z-base { z-index: 0; }
+  .z-raised { z-index: 10; }
+  .z-dropdown { z-index: 1000; }
+  .z-sticky { z-index: 1020; }
+  .z-fixed { z-index: 1030; }
+  .z-modal-backdrop { z-index: 1040; }
+  .z-modal { z-index: 1050; }
+  .z-popover { z-index: 1060; }
+  .z-tooltip { z-index: 1070; }
+}
+
+/* Show hover effects only on devices with hover */
+@media (hover: hover) {
+  .button-hover:hover {
+    background: var(--hover-color);
+  }
+}
+
+/* Touch devices get active state instead */
+@media (hover: none) {
+  .button-hover:active {
+    background: var(--active-color);
+  }
+}
+
+.about-navbar-back{
+  border-radius: 31px;
+  border: 0.91px solid rgba(123, 123, 123, 0.20);
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 19.115px 30.22px 0 rgba(136, 136, 136, 0.20);
+  backdrop-filter: blur(120.700000762939453px);
 }

@@ -1,0 +1,6 @@
+{
+  "nodeId_probed": "1:83",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "variables": {},
+  "note": "get_variable_defs returned an empty object {} — no Figma design variables are attached to the hero nodes. All visual values in the hero are hard-coded hex colors / px sizes (see context_v* files). The token-extractor should map these raw values to the Bodhi local design tokens (text-h*, text-text-*, bg-surface-*) defined in apps/web/src/app/globals.css."
+}

@@ -1,0 +1,236 @@
+{
+  "scout_date": "2026-05-23",
+  "page": "Aerial Yoga Course (/courses/aerial-yoga)",
+  "summary": "The Aerial Yoga Course page can reuse a remarkably high fraction of existing primitives and section components. SiteHeader, SiteFooter, course hero, sticky tab nav, syllabus + highlight cards, eligibility checklist, instructor row, popular-courses cross-sell, and closing CTA all exist in apps/web/src/components/sections/ and ui/. Two truly NEW pieces are required: (a) a syllabus-grid-section.tsx (existing CurriculumSection is a horizontal scroller, not the 3x2 desktop grid Figma authors); (b) optional small extension to render the 3 light cards via ClosingCtaSection's existing `cards` prop. Three primitives need light EXTENSIONS: FaqItem needs framer-motion height animation for the answer expand, InstructorsSection needs a layout='grid' variant, SyllabusCard needs an optional `n` (module number) prop and removal of its fixed w-[294px]. No DESIGN tokens are missing — all colors (brand-primary, brand-lite, brand-shade, brand-dark, mint-cream, surface-*, text-text-*, border-border-*) and type ramps (text-h1..h5, text-subtext-1..3, text-body-sm, text-mini) are present in apps/web/src/app/globals.css.",
+  "page_assembly_hint": {
+    "route": "apps/web/src/app/courses/aerial-yoga/page.tsx (new file)",
+    "data_module": "apps/web/src/data/aerial-yoga-course.ts (new file)",
+    "shape": "Compose: SiteHeader(tone='light') -> CourseHeroSection -> CourseSectionNav(sticky) -> CourseOverviewSection(id='overview') -> HighlightsSection(id='highlights') -> new SyllabusGridSection(id='curriculum') -> PreRequisitesSection(id='eligibility') -> InstructorsSection(layout='grid') -> FaqSection(id='faq') -> PopularCoursesSection -> ClosingCtaSection(theme='dark', cards=[3 mobile cards]) -> SiteFooter."
+  },
+  "components": [
+    {
+      "name": "SiteHeader",
+      "section_id": "nav",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/site-header.tsx",
+      "confidence": "exact",
+      "notes": "Supports tone='dark'|'light' (default 'dark'), ctaLabel (default 'Enquire Now'), ctaHref. Pass tone='light' so the wordmark/links read on bg-brand-lite. Mobile drawer + desktop nav handled internally. Recently committed (622fe62). No work needed."
+    },
+    {
+      "name": "CourseHero",
+      "section_id": "hero",
+      "proposed_type": "existing-primitive",
+      "action": "extend",
+      "existing_path": "apps/web/src/components/sections/course-hero-section.tsx",
+      "confidence": "similar",
+      "notes": "CourseHeroSection already accepts breadcrumb (string), titleLead, titleAccent, subtitle, meta[]{icon,label} with pre-mapped icons (calendar/location/clock/globe), ctaLabel, ctaHref, heroImage. Renders bg-brand-lite, 2-col on lg, stacked on mobile, 4 meta cards in 110x104 white surface — matches Figma desktop. CAVEATS: (1) existing breadcrumb prop is a single string, NOT a BreadcrumbItem[] array as the decomposition implies — either flatten the array to 'Home / Yoga Courses / Aerial Yoga Course' OR extend the component to accept BreadcrumbItem[] and use the existing Breadcrumb primitive (apps/web/src/components/ui/breadcrumb.tsx). (2) Component is a server component with no mount-time motion — to satisfy interactions spec (mount stagger on title lines, meta-row, CTA, hero image), add 'use client' + framer-motion wrappers in a small extension (~30 lines)."
+    },
+    {
+      "name": "MetaCard",
+      "section_id": "hero",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/ui/course-meta-chip.tsx",
+      "confidence": "exact",
+      "notes": "CourseMetaChip is already a 110x104 white-card meta chip with icon + label, opacity-82, rounded-[17px]. CourseHeroSection currently inlines this layout (li with the same Tailwind) — the standalone primitive is identical. If extending CourseHeroSection, swap the inline li for <CourseMetaChip /> to DRY. No new component needed."
+    },
+    {
+      "name": "CourseTabs",
+      "section_id": "tabs",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/sections/course-section-nav.tsx",
+      "confidence": "exact",
+      "notes": "CourseSectionNav already (1) supports CourseSectionNavItem[]{label,href,active?}, (2) is sticky at top-[88px] with backdrop-blur and bg-surface-1/95, (3) implements IntersectionObserver to auto-update active tab on scroll, (4) renders active pill as bg-brand-shade + text-brand-teal-deep, (5) is horizontally overflow-scrollable. Pass items with hrefs '#overview', '#highlights', '#curriculum', '#eligibility', '#faq' (overall→faq is the decomposition's best guess; flag as unresolved). Apply scroll-mt-20 lg:scroll-mt-24 on each anchored section to compensate for sticky header height."
+    },
+    {
+      "name": "SectionHeader",
+      "section_id": "shared",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/ui/section-header.tsx",
+      "confidence": "exact",
+      "notes": "Existing SectionHeader has motion baked in (fade-in-up on whileInView for title and subtitle, 0.5s easeOut, viewport amount 0.2). Props: title, subtitle?, eyebrow?, align? ('left'|'center'). NOTE: title uses text-h3 — most existing section components (Curriculum/Eligibility/Overview/PreRequisites/Highlights) DO NOT use SectionHeader; they inline their own header with text-h2 + text-mini eyebrow. To stay consistent with those siblings, keep using inline headers; SectionHeader is more for shorter standalone blocks."
+    },
+    {
+      "name": "CourseOverview",
+      "section_id": "overview",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/sections/course-overview-section.tsx",
+      "confidence": "exact",
+      "notes": "CourseOverviewSection takes eyebrow, heading, paragraphs[]. Renders max-w-3xl body, bg-background, py-20/24/28. Drop in. Pass className='scroll-mt-20 lg:scroll-mt-24' AND wrap with id='overview' for tab anchor (the section element is internal; either expose an id prop or wrap with a <section id='overview'> on the page)."
+    },
+    {
+      "name": "GainGrid",
+      "section_id": "gain",
+      "proposed_type": "existing-primitive",
+      "action": "extend",
+      "existing_path": "apps/web/src/components/sections/highlights-section.tsx",
+      "confidence": "similar",
+      "notes": "HighlightsSection takes eyebrow, heading, items[]{icon,title,body}. Icon string keys mapped to lucide (yoga, align-center, strength, leaf, technology, people). Aerial Yoga icon keys ('feather','spine','smile','leaf','rocket','people') overlap only partially — add the missing keys to the ICON_RESOLVER map (feather→Feather, spine→Bone or Activity, smile→Smile, rocket→Rocket). Layout grid-cols-1 lg:grid-cols-2 matches Figma 2x3 desktop. Section anchor id='highlights' must be applied to the rendered <section>."
+    },
+    {
+      "name": "GainCard",
+      "section_id": "gain",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/ui/highlight-card.tsx",
+      "confidence": "exact",
+      "notes": "HighlightCard renders icon (in 52px rounded-2xl brand-lite tile) + title + body inside a rounded-2xl border-border-2 bg-surface-1 shadow-card surface. Identical to the Figma 'What You'll Gain' card. Tailwind hover-lift can be added via className when consumed (HighlightsSection doesn't currently add it)."
+    },
+    {
+      "name": "SyllabusGrid",
+      "section_id": "syllabus",
+      "proposed_type": "new-section",
+      "action": "new",
+      "existing_path": null,
+      "confidence": "none",
+      "suggested_path": "apps/web/src/components/sections/syllabus-grid-section.tsx",
+      "notes": "CurriculumSection (apps/web/src/components/sections/curriculum-section.tsx) renders a horizontal-scroll row + ScrollNextButton — NOT the 3-col x 2-row grid Figma desktop authors. Build a new SyllabusGridSection with: header (eyebrow 'CURRICULUM' + text-h2 'Course Syllabus'), grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4, 6 SyllabusCard children each receiving {n, title, body}. Wraps with id='curriculum' className='scroll-mt-20 lg:scroll-mt-24'. Includes framer-motion staggerChildren on the grid container."
+    },
+    {
+      "name": "SyllabusCard",
+      "section_id": "syllabus",
+      "proposed_type": "existing-primitive",
+      "action": "extend",
+      "existing_path": "apps/web/src/components/ui/syllabus-card.tsx",
+      "confidence": "similar",
+      "notes": "Current props: {title, body}. Extension: add optional `n?: string` (e.g., '01') rendered above title as text-mini uppercase tracking-widest text-text-brand. Remove fixed w-[294px] in favor of w-full so the grid column controls width. Add Tailwind hover-lift utility classes. Background bg-surface-1 + border-border-2 + rounded-lg already matches Figma."
+    },
+    {
+      "name": "PreRequisites",
+      "section_id": "prerequisites",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/sections/pre-requisites-section.tsx",
+      "confidence": "exact",
+      "notes": "PreRequisitesSection is a near-perfect match: bg-brand-lite full-bleed band, decorative tilted images (-6.81deg, 6.5deg) flanking on lg:block (matching Figma), centered checklist with ChecklistItem rows, mobile fallback shows the two photos as a 2-col grid below the list. Already uses framer-motion for staggered reveal + image fade-in (matches interactions spec). Props: eyebrow, heading, items[], leftImage, rightImage, leftImageAlt?, rightImageAlt?. Use this — do NOT use the older CourseEligibilitySection (it's static, no motion). Wrap or add id='eligibility' for tab anchor."
+    },
+    {
+      "name": "CheckRow",
+      "section_id": "prerequisites",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/ui/checklist-item.tsx",
+      "confidence": "exact",
+      "notes": "ChecklistItem with default tone='pill' renders the brand-green circle check (22px) + bg-surface-1 + border-border-1 + rounded-[14px] row matching Figma. tone='plain' is the dark-band variant. Reuse directly — PreRequisitesSection already consumes it."
+    },
+    {
+      "name": "InstructorsBand",
+      "section_id": "instructors",
+      "proposed_type": "existing-primitive",
+      "action": "extend",
+      "existing_path": "apps/web/src/components/sections/instructors-section.tsx",
+      "confidence": "similar",
+      "notes": "InstructorsSection currently renders a HORIZONTAL SCROLL of InstructorCards (overflow-x-auto + ScrollNextButton) — Figma desktop for Aerial Yoga wants a 2x2 GRID. EXTENSION: add `layout?: 'scroller' | 'grid'` prop (default 'scroller' for backward compat). When layout='grid', drop ScrollNextButton, switch ul to grid grid-cols-1 sm:grid-cols-2 gap-6. Eyebrow 'YOUR GUIDE' + heading 'Meet Your Instructor's' fit existing props. Wrap card rendering with Next <Link href={`/trainers/${slug}`}> when slug is available (slugify the name OR pass slug through the data module)."
+    },
+    {
+      "name": "InstructorRow",
+      "section_id": "instructors",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/ui/instructor-card.tsx",
+      "confidence": "exact",
+      "notes": "InstructorCard renders 88/98px circular avatar + name + role line in rounded-[19px] white card with border + shadow-card. Width caps at 364px — fits a 710px column at half-width with gutter. Trainer profile link (interactions spec) handled by wrapping with Next <Link> at the InstructorsBand level. Do NOT swap to TrainerProfileCard (apps/web/src/components/ui/trainer-profile-card.tsx) — different visual treatment (3:4 portrait card vs horizontal avatar-row)."
+    },
+    {
+      "name": "FAQAccordion",
+      "section_id": "faq",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/sections/faq-section.tsx",
+      "confidence": "exact",
+      "notes": "FaqSection takes eyebrow, heading, items[]{question,answer,defaultOpen?}. Renders max-w-4xl page-px, border-b dividers between FaqItems. Drop in. Apply id='faq' className='scroll-mt-20 lg:scroll-mt-24' for tab anchor (wrap with a section element on the page OR extend FaqSection to forward an id prop)."
+    },
+    {
+      "name": "AccordionItem",
+      "section_id": "faq",
+      "proposed_type": "existing-primitive",
+      "action": "extend",
+      "existing_path": "apps/web/src/components/ui/faq-item.tsx",
+      "confidence": "similar",
+      "notes": "FaqItem is a working accordion row (Plus/Minus icon swap, aria-expanded, conditional content render). EXTENSION to satisfy interactions spec: wrap the conditional `{open && answer && ...}` in framer-motion AnimatePresence + motion.div with initial/animate/exit on {height: 0/auto, opacity: 0/1} and 0.3s easeOut. Optional: replace Plus/Minus icon swap with a single ChevronDown that rotates 180deg on open via Tailwind transition-transform. No Radix Accordion is installed in this repo so the custom path is the only path."
+    },
+    {
+      "name": "RelatedCoursesGrid",
+      "section_id": "leadmore",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/sections/popular-courses-section.tsx",
+      "confidence": "exact",
+      "notes": "PopularCoursesSection takes eyebrow, heading, subhead, courses[]. Renders 3-col grid on lg with ProgramCard children. The 3 courses in the decomposition (Weight Loss Coach, Mudra Therapy, MAT Pilates) are already the DEFAULT_COURSES in this component. Pass the explicit course list (matching Figma copy/hrefs) or use defaults. Eyebrow 'TOP POPULAR YOGA COURSE' + heading 'Lead to more courses from us' + subhead from decomposition."
+    },
+    {
+      "name": "RelatedCourseCard",
+      "section_id": "leadmore",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/ui/program-card.tsx",
+      "confidence": "exact",
+      "notes": "ProgramCard renders cover image (413:235 aspect), title, meta chip row with • dot separators, instructor row (initials avatar or photo), 'View Program' CTA with ArrowRight + hover translate, rounded-2xl shadow-card surface. Includes group-hover image zoom-in, card lift, motion-reduce overrides. This is the exact card from Figma 'Lead to more courses from us'. Drop in."
+    },
+    {
+      "name": "ClosingCTABand",
+      "section_id": "cta-section",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/sections/closing-cta-section.tsx",
+      "confidence": "exact",
+      "notes": "ClosingCtaSection takes eyebrow (default 'Bodhi' wordmark, italic Fraunces), headingLead ('Begin where'), headingAccent ('you are.' italic mint), subhead, primaryCta{label,href}, optional cards[], theme='dark'|'light'. Theme 'dark' (default) renders bg-brand-dark with white text + brand-shade pill button. Heading scales 40px → 90px on lg. This IS the Figma component. Reuse directly with theme='dark'."
+    },
+    {
+      "name": "CtaCardsRow",
+      "section_id": "cta-cards",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/sections/closing-cta-section.tsx (cards prop)",
+      "confidence": "similar",
+      "notes": "ClosingCtaSection's optional `cards` prop renders a 3-up md:grid-cols-3 row of cards with title + body + pill CTA, themed by the parent's `theme` prop. Pass the three cards (Free Trial Session / Speak to us / Take a Guided Path) directly to ClosingCtaSection's `cards` prop — NO separate CtaCardsRow component needed. Figma authors these only on mobile; with ClosingCtaSection.cards they render on all viewports (md:grid-cols-3 desktop) which the decomposition notes is the preferred default. Alternative: NextStepsCtaGrid (apps/web/src/components/sections/next-steps-cta-grid.tsx) is a standalone bg-surface-1 3-up grid with brand-primary buttons — wrong visual treatment for the dark band, prefer the cards prop approach."
+    },
+    {
+      "name": "CtaCard",
+      "section_id": "cta-cards",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/sections/closing-cta-section.tsx (inline article)",
+      "confidence": "exact",
+      "notes": "Already an inline <article> element inside ClosingCtaSection rendered from the cards[] prop. No standalone file — and none needed. Renders title + body + Link-with-ArrowRight pill, theme-aware (light=mint-soft pill on bg-surface-1 card; dark=bg-surface-1 pill on glass-surface card)."
+    },
+    {
+      "name": "SiteFooter",
+      "section_id": "footer",
+      "proposed_type": "existing-primitive",
+      "action": "reuse-as-is",
+      "existing_path": "apps/web/src/components/site-footer.tsx",
+      "confidence": "exact",
+      "notes": "SiteFooter exists with grid-cols-[1.5fr_1fr_1fr_1fr] desktop layout, brand wordmark + tagline + URL, columns[]{heading,links[]{label,href,external?}}, address{heading,lines[],action?}, legal row with copyright + tagline. SiteFooterBlock (apps/web/src/components/site-footer-block.tsx) is a higher-level convenience wrapper that combines ClosingCtaSection + SiteFooter with default Bodhi content (Bodhi wordmark, courses/about/stay-close columns, RYS legal). RECOMMENDATION: render SiteFooterBlock with showCta=false at page bottom AFTER an explicit ClosingCtaSection (to allow per-page CTA customisation), OR render SiteFooter directly and pass props. No code changes."
+    }
+  ],
+  "design_tokens_used": [
+    { "value": "bg-brand-lite (#f0fff8)", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--color-brand-lite" },
+    { "value": "bg-brand-dark (#00282c)", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--color-brand-dark" },
+    { "value": "bg-brand-shade (#8ee0ce mint pill)", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--color-brand-shade" },
+    { "value": "bg-brand-primary (#009877)", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--color-brand-primary" },
+    { "value": "bg-mint-cream / mint-soft / mint-frost", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--color-mint-cream, --color-mint-soft, --color-mint-frost" },
+    { "value": "bg-surface-0/1/2", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--color-surface-0, --color-surface-1, --color-surface-2" },
+    { "value": "border-border-1/2/3", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--color-border-1, --color-border-2, --color-border-3" },
+    { "value": "text-text-primary/secondary/tertiary/brand/brand-deep/inverse", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--color-text-primary, --color-text-secondary, --color-text-tertiary, --color-text-brand, --color-text-brand-deep, --color-text-inverse" },
+    { "value": "text-h1..h5", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--text-h1 through --text-h5" },
+    { "value": "text-subtext-1..3, text-body-sm, text-mini", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "--text-subtext-1, --text-subtext-2, --text-subtext-3, --text-body-sm, --text-mini" },
+    { "value": "shadow-card", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "Tailwind shadow utility configured in @theme" },
+    { "value": "page-px / nav-px utilities", "found_in_design_md": true, "found_in_globals_css": true, "token_name": "custom Tailwind utilities for responsive horizontal padding" }
+  ],
+  "design_tokens_missing": [],
+  "warnings": [
+    "CourseSectionNav's sticky top-[88px] assumes a ~88px-tall SiteHeader. If tone='light' renders the header at a different effective height, the tab bar may overlap content — visual-QA to verify.",
+    "CurriculumSection (horizontal scroller) is NOT a drop-in for the Aerial Yoga syllabus grid. Build a new syllabus-grid-section.tsx — the cleanest path. Alternative: add a `layout` prop to CurriculumSection.",
+    "InstructorsSection needs a `layout='grid'` extension to support the 2x2 grid Figma desktop authors. Default horizontal-scroll behavior is preserved by leaving the existing default as 'scroller'.",
+    "FaqItem's accordion expand is currently a hard show/hide. To match interactions spec, wrap conditional content in framer-motion AnimatePresence + motion.div with height auto<->0. Only motion gap in the existing component library.",
+    "SyllabusCard width is fixed w-[294px] for its scroller use-case. For grid render, change to w-full or pull the width to the caller's grid column.",
+    "Interactions spec asks CourseHero to animate on mount with a staggered children sequence. Existing CourseHeroSection is a server component with no motion — add 'use client' + framer-motion wrappers in a small extension (~30 lines).",
+    "Decomposition's CourseHero takes breadcrumb as a string[] array; existing CourseHeroSection takes breadcrumb as a single string. Adapt the data shape OR extend the component to accept BreadcrumbItem[] using the existing Breadcrumb primitive (apps/web/src/components/ui/breadcrumb.tsx) which already supports tone='light'|'inverse' and slash|chevron separators.",
+    "Several existing sections do not expose an `id` prop on their root <section>. To wire tab anchors (#overview, #highlights, #curriculum, #eligibility, #faq), either (a) add an optional `id` prop pass-through to each section, OR (b) wrap the section in a <div id='...' className='scroll-mt-20 lg:scroll-mt-24'> at the page level."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "nodeId": "1:85",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "kind": "hero-text-group (eyebrow + headline only — no subhead)",
+  "frame": { "x": 308, "y": 292, "width": 1059, "height": 269 },
+  "raw_metadata_xml": "<frame id=\"1:85\" name=\"Group 1171281823\" x=\"308\" y=\"292\" width=\"1059\" height=\"269\">\n  <frame id=\"1:86\" name=\"Group 1171281924\" x=\"308\" y=\"292\" width=\"1059\" height=\"269\">\n    <text id=\"1:87\" name=\"बोधि  ·  The awakening\" x=\"308\" y=\"292\" width=\"248\" height=\"21\" />\n    <frame id=\"1:88\" name=\"Container\" x=\"308\" y=\"330\" width=\"1059\" height=\"231\">\n      <text id=\"1:89\" name=\"A school for teachers and a home for seekers.\" x=\"0\" y=\"0\" width=\"792\" height=\"231\" />\n    </frame>\n  </frame>\n</frame>"
+}

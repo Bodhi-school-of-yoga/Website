@@ -1,0 +1,33 @@
+{
+  "nodeId": "1:85",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "kind": "hero-text-group (eyebrow + headline)",
+  "tokens": {
+    "eyebrow": {
+      "text": "बोधि  ·  The awakening",
+      "font_family": "Manrope (Bold) + Noto Sans Devanagari (Bold)",
+      "font_size_px": 17,
+      "letter_spacing_px": 2.9562,
+      "line_height_px": 20.766,
+      "text_transform": "uppercase",
+      "color": "#039474",
+      "white_space": "nowrap"
+    },
+    "headline": {
+      "text_parts": [
+        { "text": "A school for teachers and a ", "color": "#1d3e59" },
+        { "text": "home for seekers.", "color": "#009877" }
+      ],
+      "font_family": "Host Grotesk (Bold)",
+      "font_size_px": 90,
+      "line_height_px": 77,
+      "width_px": 792,
+      "italic": false
+    },
+    "layout": {
+      "headline_container": { "left_px": 308, "top_px": 330, "right_inset_px": 553 },
+      "eyebrow_anchor": { "left_px": 308, "top_center_px": 302.5 }
+    }
+  },
+  "raw_react_snippet": "export default function Group1171281823() {\n  return (\n    <div className=\"contents relative size-full\" data-node-id=\"1:85\">\n      <div className=\"absolute contents left-[308px] top-[292px]\" data-node-id=\"1:86\">\n        <div className=\"-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Manrope:Bold','Noto_Sans_Devanagari:Bold',sans-serif] font-bold justify-center leading-[0] left-[308px] text-[#039474] text-[17px] top-[302.5px] tracking-[2.9562px] uppercase whitespace-nowrap\" data-node-id=\"1:87\">\n          <p className=\"leading-[20.766px] whitespace-pre\">{`बोधि  ·  The awakening`}</p>\n        </div>\n        <div className=\"absolute content-stretch flex flex-col items-start left-[308px] right-[553px] top-[330px]\" data-node-id=\"1:88\" data-name=\"Container\">\n          <div className=\"[word-break:break-word] flex flex-col font-['Host_Grotesk:Bold',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#009877] text-[90px] w-[792px]\" data-node-id=\"1:89\">\n            <p>\n              <span className=\"leading-[77px] text-[#1d3e59]\">{`A school for teachers and a `}</span>\n              <span className=\"leading-[77px]\">home for seekers.</span>\n            </p>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}"
+}

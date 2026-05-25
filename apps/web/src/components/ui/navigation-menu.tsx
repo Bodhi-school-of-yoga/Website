@@ -1,3 +1,5 @@
+// NavigationMenu — site top-nav with Base UI primitives, dropdown support, and mobile sheet.
+
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu"
 import { cva } from "class-variance-authority"
 
