@@ -17,8 +17,12 @@ export type WorkshopListItem = {
   title: string;
   description: string;
   price: string;
+  originalPrice?: string;
+  taxNote?: string;
   features: CourseCardFeature[];
-  startsCaption: string;
+  startsCaption?: string;
+  countdownTarget?: Date | string | number;
+  countdownEyebrow?: string;
   ctaLabel?: string;
   ctaHref?: string;
   cardHref?: string;
@@ -96,12 +100,16 @@ export function WorkshopsListSection({
               title={workshop.title}
               description={workshop.description}
               price={workshop.price}
+              originalPrice={workshop.originalPrice}
+              taxNote={workshop.taxNote}
               features={workshop.features}
               startsCaption={workshop.startsCaption}
+              countdownTarget={workshop.countdownTarget}
+              countdownEyebrow={workshop.countdownEyebrow}
               ctaLabel={workshop.ctaLabel ?? "Book spot now"}
               ctaHref={workshop.ctaHref}
               cardHref={workshop.cardHref}
-              className="w-full max-w-[1308px] mx-auto h-auto min-h-[362px]"
+              className="w-full max-w-[1308px] mx-auto"
             />
           </motion.div>
         ))}

@@ -1,7 +1,10 @@
 // ClosingCtaSection — bottom-of-page call-to-action band with headline and enroll/contact links.
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -29,6 +32,8 @@ export type ClosingCtaSectionProps = {
   className?: string;
 };
 
+const HOUSE_EASE = [0.22, 1, 0.36, 1] as const;
+
 export function ClosingCtaSection({
   eyebrow = "Bodhi",
   headingLead,
@@ -41,9 +46,39 @@ export function ClosingCtaSection({
 }: ClosingCtaSectionProps) {
   const showCards = Array.isArray(cards) && cards.length > 0;
   const isLight = theme === "light";
+  const reduced = useReducedMotion();
+
+  const duration = reduced ? 0 : 0.5;
+  const softDuration = reduced ? 0 : 0.55;
+  const yLift = reduced ? 0 : 16;
+  const ySoft = reduced ? 0 : 12;
+
+  const rootVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduced ? 0 : 0.08,
+        delayChildren: 0,
+      },
+    },
+  };
+
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: yLift },
+    visible: { opacity: 1, y: 0, transition: { duration, ease: HOUSE_EASE } },
+  };
+
+  const fadeInUpSoft: Variants = {
+    hidden: { opacity: 0, y: ySoft },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: softDuration, ease: HOUSE_EASE },
+    },
+  };
 
   return (
-    <section
+    <motion.section
       className={cn(
         "relative w-full overflow-hidden nav-px",
         "pt-14 sm:pt-20 lg:pt-28",
@@ -51,10 +86,15 @@ export function ClosingCtaSection({
         isLight ? "bg-mint-cream text-text-secondary" : "bg-brand-dark text-text-inverse",
         className,
       )}
+      variants={rootVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px 0px -80px 0px" }}
     >
       <div className="mx-auto max-w-[1240px] text-center">
         {eyebrow && (
-          <p
+          <motion.p
+            variants={fadeInUpSoft}
             className={cn(
               "font-heading italic font-light leading-none",
               "text-[20px] sm:text-[24px] lg:text-[32px]",
@@ -62,10 +102,11 @@ export function ClosingCtaSection({
             )}
           >
             {eyebrow}
-          </p>
+          </motion.p>
         )}
 
-        <h2
+        <motion.h2
+          variants={fadeInUp}
           className={cn(
             "mt-3 sm:mt-[15px] font-heading font-normal leading-[1.1] tracking-tight",
             "text-[40px] sm:text-[64px] md:text-[80px] lg:text-[90px]",
@@ -81,9 +122,10 @@ export function ClosingCtaSection({
           >
             {headingAccent}
           </span>
-        </h2>
+        </motion.h2>
 
-        <p
+        <motion.p
+          variants={fadeInUpSoft}
           className={cn(
             "mx-auto mt-5 sm:mt-6 max-w-3xl text-balance leading-snug",
             "text-[15px] sm:text-[16px] md:text-subtext-2",
@@ -91,9 +133,9 @@ export function ClosingCtaSection({
           )}
         >
           {subhead}
-        </p>
+        </motion.p>
 
-        <div className="mt-7 sm:mt-8">
+        <motion.div variants={fadeInUpSoft} className="mt-7 sm:mt-8">
           <Link
             href={primaryCta.href}
             className={cn(
@@ -101,7 +143,9 @@ export function ClosingCtaSection({
               "font-semibold tracking-[0.28px]",
               "px-[22px] py-[13px] text-[13.5px]",
               "sm:px-[23px] sm:py-[15px] sm:text-[14px]",
-              "transition-all duration-200",
+              // Hover lift + press scale (Tailwind primitives)
+              "transition-all duration-200 ease-out hover:-translate-y-0.5",
+              "active:scale-[0.98]",
               isLight
                 ? "bg-brand-mid text-text-inverse hover:brightness-105 hover:shadow-[0_12px_36px_-12px_rgba(39,175,145,0.45)] focus-visible:ring-brand-mid focus-visible:ring-offset-mint-cream"
                 : "bg-brand-shade text-brand-dark hover:brightness-105 hover:shadow-[0_12px_36px_-12px_rgba(142,224,206,0.55)] focus-visible:ring-brand-shade focus-visible:ring-offset-brand-dark",
@@ -110,7 +154,7 @@ export function ClosingCtaSection({
           >
             {primaryCta.label}
           </Link>
-        </div>
+        </motion.div>
       </div>
 
       {showCards && (
@@ -164,6 +208,6 @@ export function ClosingCtaSection({
           ))}
         </div>
       )}
-    </section>
+    </motion.section>
   );
 }

@@ -1,5 +1,4 @@
 import { AccreditationsSection } from "@/components/sections/accreditations-section";
-import { ExperienceHarmonyStatsBand } from "@/components/sections/experience-harmony-stats-band";
 import { FounderQuoteSection } from "@/components/sections/founder-quote-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ProgramsGridSection } from "@/components/sections/programs-grid-section";
@@ -8,9 +7,13 @@ import {
   TestimonialsSection,
   type TestimonialItem,
 } from "@/components/sections/testimonials-section";
-import { WhatWeDoSection } from "@/components/sections/what-we-do-section";
 import { WhyBodhiSection } from "@/components/sections/why-bodhi-section";
-import { SiteFooterBlock } from "@/components/site-footer-block";
+import {
+  HOME_FOOTER_BRAND,
+  HOME_FOOTER_COLUMNS,
+  HOME_FOOTER_LEGAL,
+  SiteFooterBlock,
+} from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
 
 const TESTIMONIALS: TestimonialItem[] = [
@@ -63,6 +66,7 @@ const ACCREDITATIONS = [
     logoSrc: "/images/accreditations/rys-300.png",
     logoAlt: "Registered Yoga School 300 logo",
     caption: "Registered Yoga School – 300",
+    omitCaption: true,
   },
   {
     logoSrc: "/images/accreditations/ministry-of-ayush.png",
@@ -83,6 +87,7 @@ const ACCREDITATIONS = [
     logoSrc: "/images/accreditations/rys-200.png",
     logoAlt: "Registered Yoga School 200 logo",
     caption: "Registered Yoga School – 200",
+    omitCaption: true,
   },
 ];
 
@@ -94,8 +99,6 @@ export default function HomePage() {
         <HeroSection />
         <SanskritMarqueeStrip />
         <FounderQuoteSection />
-        <ExperienceHarmonyStatsBand />
-        <WhatWeDoSection />
         <WhyBodhiSection />
         <ProgramsGridSection />
         <AccreditationsSection
@@ -110,7 +113,15 @@ export default function HomePage() {
           priorityFirst
         />
       </main>
-      <SiteFooterBlock />
+      <SiteFooterBlock
+        brand={HOME_FOOTER_BRAND}
+        columns={HOME_FOOTER_COLUMNS}
+        legal={HOME_FOOTER_LEGAL}
+        cta={{
+          subhead:
+            "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week",
+        }}
+      />
     </>
   );
 }

@@ -11,6 +11,8 @@ export type FooterLink = {
 
 export type FooterColumn = {
   heading: string;
+  /** Optional address lines rendered above the links (used by the "Visit" column). */
+  lines?: string[];
   links: FooterLink[];
 };
 
@@ -26,7 +28,8 @@ export type SiteFooterProps = {
   brand: {
     wordmark?: string;
     tagline?: string;
-    url?: { label: string; href: string };
+    /** Site URL displayed in the brand column. Accepts an object or a plain string. */
+    url?: { label: string; href: string } | string;
   };
   columns: FooterColumn[];
   address?: FooterAddressColumn;
@@ -111,18 +114,29 @@ export function SiteFooter({
                 {brand.tagline}
               </p>
             )}
-            {brand.url && (
-              <a
-                href={brand.url.href}
-                className={cn(
-                  "text-text-inverse transition-opacity hover:opacity-80",
-                  "text-[13.5px] leading-[21px] tracking-[0.29px]",
-                  "md:text-[14.5px] md:leading-[22.48px]",
-                )}
-              >
-                {brand.url.label}
-              </a>
-            )}
+            {brand.url &&
+              (typeof brand.url === "string" ? (
+                <span
+                  className={cn(
+                    "text-text-inverse",
+                    "text-[13.5px] leading-[21px] tracking-[0.29px]",
+                    "md:text-[14.5px] md:leading-[22.48px]",
+                  )}
+                >
+                  {brand.url}
+                </span>
+              ) : (
+                <a
+                  href={brand.url.href}
+                  className={cn(
+                    "text-text-inverse transition-opacity hover:opacity-80",
+                    "text-[13.5px] leading-[21px] tracking-[0.29px]",
+                    "md:text-[14.5px] md:leading-[22.48px]",
+                  )}
+                >
+                  {brand.url.label}
+                </a>
+              ))}
           </div>
 
           {columns.map((column) => (
@@ -134,6 +148,22 @@ export function SiteFooter({
               <h4 className="text-[11px] font-medium uppercase leading-[17px] tracking-[2.42px] text-text-inverse">
                 {column.heading}
               </h4>
+              {column.lines && column.lines.length > 0 && (
+                <ul className="flex flex-col gap-2 md:gap-[9px]">
+                  {column.lines.map((line) => (
+                    <li
+                      key={`${column.heading}-line-${line}`}
+                      className={cn(
+                        "text-text-inverse/75",
+                        "text-[13.5px] leading-[21px] tracking-[0.08px]",
+                        "md:text-[14.5px] md:leading-[22.48px]",
+                      )}
+                    >
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              )}
               <ul className="flex flex-col gap-2 md:gap-[9px]">
                 {column.links.map((link) => (
                   <li key={`${column.heading}-${link.label}`}>

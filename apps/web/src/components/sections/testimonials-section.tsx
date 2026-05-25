@@ -1,5 +1,8 @@
-// TestimonialsSection — scrollable row of student testimonial cards used on the homepage and course pages.
+"use client";
+
+// TestimonialsSection — 3-column grid of student testimonial cards under an eyebrow + heading.
 import * as React from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import {
   TestimonialCard,
@@ -16,7 +19,7 @@ export type TestimonialItem = Omit<
 
 export type TestimonialsSectionProps = {
   eyebrow?: string;
-  heading: string;
+  heading?: string;
   description?: string;
   testimonials: TestimonialItem[];
   className?: string;
@@ -24,14 +27,68 @@ export type TestimonialsSectionProps = {
   priorityFirst?: boolean;
 };
 
+const HOUSE_EASE = [0.22, 1, 0.36, 1] as const;
+const VIEWPORT = { once: true, margin: "-80px 0px -80px 0px" } as const;
+
 export function TestimonialsSection({
   eyebrow = "A Path to Wellness",
-  heading,
+  heading = "What our clients say",
   description,
   testimonials,
   className,
   priorityFirst = false,
 }: TestimonialsSectionProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  // Reduced-motion: no translate, zero duration.
+  const slide = prefersReducedMotion ? 0 : 16;
+  const slideSoft = prefersReducedMotion ? 0 : 12;
+  const duration = prefersReducedMotion ? 0 : 0.5;
+
+  const headerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const eyebrowVariants: Variants = {
+    hidden: { opacity: 0, y: slideSoft },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration, ease: HOUSE_EASE },
+    },
+  };
+
+  const headingVariants: Variants = {
+    hidden: { opacity: 0, y: slide },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration, ease: HOUSE_EASE },
+    },
+  };
+
+  const rowVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: 0.16,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: slide },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration, ease: HOUSE_EASE },
+    },
+  };
+
   return (
     <section
       className={cn(
@@ -40,36 +97,63 @@ export function TestimonialsSection({
       )}
     >
       <div className="mx-auto max-w-6xl page-px">
-        <header className="mx-auto mb-14 max-w-2xl text-center">
+        <motion.header
+          className="mx-auto mb-14 max-w-2xl text-center"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
           {eyebrow && (
-            <p className="text-mini uppercase text-text-brand">
+            <motion.p
+              variants={eyebrowVariants}
+              className="text-mini uppercase text-text-brand"
+            >
               {eyebrow}
-            </p>
+            </motion.p>
           )}
-          <h2 className="mt-3 font-heading text-h4 sm:text-h3 lg:text-h2 text-text-secondary">
-            {heading}
-          </h2>
+          {heading && (
+            <motion.h2
+              variants={headingVariants}
+              className="mt-3 font-heading text-h4 sm:text-h3 lg:text-h2 text-text-secondary"
+            >
+              {heading}
+            </motion.h2>
+          )}
           {description && (
-            <p className="mt-3 text-subtext-1 text-text-tertiary">
+            <motion.p
+              variants={eyebrowVariants}
+              className="mt-3 text-subtext-1 text-text-secondary"
+            >
               {description}
-            </p>
+            </motion.p>
           )}
-        </header>
+        </motion.header>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          variants={rowVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
           {testimonials.map((item, index) => (
-            <TestimonialCard
+            <motion.div
               key={item.id ?? `${item.authorName}-${index}`}
-              quote={item.quote}
-              authorName={item.authorName}
-              authorMeta={item.authorMeta}
-              avatarSrc={item.avatarSrc}
-              avatarAlt={item.avatarAlt}
-              showDecorativeQuote={index > 0}
-              priority={priorityFirst && index === 0}
-            />
+              variants={cardVariants}
+            >
+              <TestimonialCard
+                quote={item.quote}
+                authorName={item.authorName}
+                authorMeta={item.authorMeta}
+                avatarSrc={item.avatarSrc}
+                avatarAlt={item.avatarAlt}
+                showDecorativeQuote={index > 0}
+                priority={priorityFirst && index === 0}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

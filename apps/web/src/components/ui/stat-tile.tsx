@@ -5,11 +5,14 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 type StatTileTone = "light" | "glass";
+type StatTileSize = "lg" | "sm";
 
 interface StatTileProps {
   value: React.ReactNode;
   label: string;
   tone?: StatTileTone;
+  /** Visual scale — "lg" (default) for hero use, "sm" for inline-card use. */
+  size?: StatTileSize;
   className?: string;
 }
 
@@ -31,8 +34,34 @@ const toneStyles: Record<
   },
 };
 
-function StatTile({ value, label, tone = "light", className }: StatTileProps) {
+function StatTile({
+  value,
+  label,
+  tone = "light",
+  size = "lg",
+  className,
+}: StatTileProps) {
   const styles = toneStyles[tone];
+
+  if (size === "sm") {
+    return (
+      <span
+        className={cn(
+          "inline-flex items-center gap-2 shrink-0",
+          "px-3.5 py-1.5 rounded-full",
+          "bg-surface-2 border border-border-1/40",
+          className,
+        )}
+      >
+        <span className="font-heading font-bold text-body-md leading-none text-text-brand">
+          {value}
+        </span>
+        <span className="font-sans font-medium uppercase text-[0.7rem] tracking-[0.12em] text-text-tertiary">
+          {label}
+        </span>
+      </span>
+    );
+  }
 
   return (
     <div
@@ -41,13 +70,13 @@ function StatTile({ value, label, tone = "light", className }: StatTileProps) {
         "w-[110px] h-[90px]",
         "rounded-[17px] shrink-0",
         styles.container,
-        className
+        className,
       )}
     >
       <span
         className={cn(
           "font-heading font-medium text-h5 leading-none",
-          styles.value
+          styles.value,
         )}
       >
         {value}
@@ -55,7 +84,7 @@ function StatTile({ value, label, tone = "light", className }: StatTileProps) {
       <span
         className={cn(
           "font-sans font-medium text-mini uppercase",
-          styles.label
+          styles.label,
         )}
       >
         {label}

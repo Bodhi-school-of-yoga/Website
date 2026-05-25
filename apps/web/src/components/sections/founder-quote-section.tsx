@@ -1,32 +1,81 @@
-// FounderQuoteSection — full-width pull-quote block featuring a message from Bodhi's founder.
+"use client";
+
+// FounderQuoteSection — two-column band with founder quote + attribution on the left and portrait image on the right.
 import * as React from "react";
+import Image from "next/image";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
 export type FounderQuoteSectionProps = {
   eyebrow?: string;
-  quoteLead?: string;
-  quoteAccent?: string;
-  quoteTrail?: string;
+  quote?: string;
   attribution?: string;
-  paragraphs?: string[];
+  image?: { src: string; alt: string };
   className?: string;
 };
 
-const DEFAULT_PARAGRAPHS = [
-  "Bodhi is built on a simple idea. Yoga is not a workout, a wellness trend, or a credential. It is a steady, repeatable practice that, over time, returns you to yourself.",
-  "We teach in the lineage of classical hatha and ashtanga, with grounding in the Yoga Sūtras of Patañjali and the Haṭha Pradīpikā. Our teachers come from working practice — not just certification — and our students leave with a discipline they can carry into a class, a clinic, or a quiet morning at home.",
-];
+const DEFAULT_IMAGE = {
+  src: "/images/founder/acharya-ashok-portrait.jpg",
+  alt: "Acharya Ashok, founder of Bodhi School of Yoga",
+};
+
+const HOUSE_EASE = [0.22, 1, 0.36, 1] as const;
+const VIEWPORT = { once: true, margin: "-80px 0px -80px 0px" } as const;
 
 export function FounderQuoteSection({
   eyebrow = "Our practice",
-  quoteLead = "The mat is a place to ",
-  quoteAccent = "meet yourself ",
-  quoteTrail = "honestly, daily, and without performance.",
-  attribution = "— Acharya, founder",
-  paragraphs = DEFAULT_PARAGRAPHS,
+  quote = "When a woman is empowered through yoga, her entire family, community, and future generations benefit.",
+  attribution = "Acharya Ashok, Founder",
+  image = DEFAULT_IMAGE,
   className,
 }: FounderQuoteSectionProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  const rootVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: prefersReducedMotion
+        ? {}
+        : { staggerChildren: 0.08, delayChildren: 0 },
+    },
+  };
+
+  const fadeInUpSoft: Variants = {
+    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 0.5,
+        ease: HOUSE_EASE,
+      },
+    },
+  };
+
+  const fadeInUp: Variants = {
+    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 0.5,
+        ease: HOUSE_EASE,
+      },
+    },
+  };
+
+  const fadeIn: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 0.5,
+        ease: HOUSE_EASE,
+      },
+    },
+  };
+
   return (
     <section
       className={cn(
@@ -34,37 +83,71 @@ export function FounderQuoteSection({
         className,
       )}
     >
-      <div
+      <motion.div
+        variants={rootVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={VIEWPORT}
         className={cn(
-          "mx-auto grid max-w-[1340px] gap-12 page-px",
-          "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-24",
+          "mx-auto grid w-full max-w-[1233px] grid-cols-1 items-center gap-12 page-px",
+          "lg:grid-cols-2 lg:gap-16",
         )}
       >
         <div className="flex flex-col gap-6">
-          <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
-          <blockquote className="flex flex-col gap-3">
-            <p className="font-heading text-h4 text-brand-dark">
-              <span>{quoteLead}</span>
-              <span className="text-text-brand">{quoteAccent}</span>
-              <span>{quoteTrail}</span>
-            </p>
-            <cite className="font-heading italic text-subtext-2 text-text-brand">
+          <motion.p
+            variants={fadeInUpSoft}
+            className="text-mini uppercase tracking-wider text-text-brand"
+          >
+            {eyebrow}
+          </motion.p>
+
+          <blockquote className="flex flex-col gap-6">
+            <motion.p
+              variants={fadeInUp}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.5,
+                ease: HOUSE_EASE,
+                delay: prefersReducedMotion ? 0 : 0.08,
+              }}
+              className="font-heading text-h4 text-text-primary lg:text-h3"
+            >
+              {quote}
+            </motion.p>
+
+            <motion.cite
+              variants={fadeInUpSoft}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.5,
+                ease: HOUSE_EASE,
+                delay: prefersReducedMotion ? 0 : 0.16,
+              }}
+              className="text-subtext-1 not-italic text-text-tertiary"
+            >
               {attribution}
-            </cite>
+            </motion.cite>
           </blockquote>
         </div>
 
-        <div className="flex flex-col gap-10 sm:gap-12 lg:max-w-[600px]">
-          {paragraphs.map((paragraph, i) => (
-            <p
-              key={i}
-              className="text-subtext-1 leading-[1.7] text-text-tertiary"
-            >
-              {paragraph}
-            </p>
-          ))}
-        </div>
-      </div>
+        <motion.div
+          variants={fadeIn}
+          transition={{
+            duration: prefersReducedMotion ? 0 : 0.5,
+            ease: HOUSE_EASE,
+            delay: prefersReducedMotion ? 0 : 0.1,
+          }}
+          className="relative mx-auto w-full max-w-[578px] overflow-hidden rounded-2xl"
+        >
+          <div className="relative aspect-[4/5] w-full">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 578px, 90vw"
+              className="object-cover"
+            />
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

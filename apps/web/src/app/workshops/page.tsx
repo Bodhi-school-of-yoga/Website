@@ -16,12 +16,18 @@ export const metadata: Metadata = {
     "Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.",
 };
 
-const CHIP_ICON_CLASS = "h-[26px] w-[26px]";
+const CHIP_ICON_CLASS = "h-[18px] w-[18px]";
 
 // All cards share the same description, pills, price, caption, CTA — per Figma 1:3968.
 // Only the title + photo differ across the 4 cards.
 const SHARED_DESCRIPTION =
   "Pay once. Access 25 expert-led video lessons at your own pace, forever. From beginner inversions to advanced flows.";
+
+// Static demo countdown target — ~02d 18h 38m from build time so the displayed
+// timer roughly matches the reference (02 / 18 / 38 / 19).
+const COUNTDOWN_TARGET_ISO = new Date(
+  Date.now() + (2 * 24 + 18) * 60 * 60 * 1000 + 38 * 60 * 1000 + 19 * 1000,
+).toISOString();
 
 const SHARED_FEATURES = [
   {
@@ -52,8 +58,11 @@ const WORKSHOPS: WorkshopListItem[] = [
     },
     description: SHARED_DESCRIPTION,
     price: "₹249",
+    originalPrice: "₹499",
+    taxNote: "incl. taxes",
     features: SHARED_FEATURES,
-    startsCaption: "Starts in 3 Days",
+    countdownTarget: COUNTDOWN_TARGET_ISO,
+    countdownEyebrow: "Workshop starting in",
     ctaLabel: "Book Spot Now",
     ctaHref: "/workshops/decoding-what-is-prana",
     cardHref: "/workshops/decoding-what-is-prana",
@@ -67,8 +76,11 @@ const WORKSHOPS: WorkshopListItem[] = [
     },
     description: SHARED_DESCRIPTION,
     price: "₹249",
+    originalPrice: "₹499",
+    taxNote: "incl. taxes",
     features: SHARED_FEATURES,
-    startsCaption: "Starts in 3 Days",
+    countdownTarget: COUNTDOWN_TARGET_ISO,
+    countdownEyebrow: "Workshop starting in",
     ctaLabel: "Book Spot Now",
     ctaHref: "/workshops/protein-in-indian-diets",
     cardHref: "/workshops/protein-in-indian-diets",
@@ -82,8 +94,11 @@ const WORKSHOPS: WorkshopListItem[] = [
     },
     description: SHARED_DESCRIPTION,
     price: "₹249",
+    originalPrice: "₹499",
+    taxNote: "incl. taxes",
     features: SHARED_FEATURES,
-    startsCaption: "Starts in 3 Days",
+    countdownTarget: COUNTDOWN_TARGET_ISO,
+    countdownEyebrow: "Workshop starting in",
     ctaLabel: "Book Spot Now",
     ctaHref: "/workshops/know-about-hatha-yoga",
     cardHref: "/workshops/know-about-hatha-yoga",
@@ -97,8 +112,11 @@ const WORKSHOPS: WorkshopListItem[] = [
     },
     description: SHARED_DESCRIPTION,
     price: "₹249",
+    originalPrice: "₹499",
+    taxNote: "incl. taxes",
     features: SHARED_FEATURES,
-    startsCaption: "Starts in 3 Days",
+    countdownTarget: COUNTDOWN_TARGET_ISO,
+    countdownEyebrow: "Workshop starting in",
     ctaLabel: "Book Spot Now",
     ctaHref: "/workshops/yoga-for-sciatica",
     cardHref: "/workshops/yoga-for-sciatica",
@@ -108,11 +126,11 @@ const WORKSHOPS: WorkshopListItem[] = [
 export default function WorkshopsPage() {
   return (
     <>
-      <SiteHeader tone="light" />
+      <SiteHeader tone="dark" />
       <main>
         <ListingHero
-          backgroundImage="/images/workshops/hero-bg.png"
-          backgroundAlt="Bodhi students practising together"
+          background="gradient"
+          tone="light"
           breadcrumb={[
             { label: "Home", href: "/" },
             { label: "Workshops" },

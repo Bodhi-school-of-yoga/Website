@@ -14,8 +14,21 @@ export type BreadcrumbItem = {
 };
 
 export type ListingHeroProps = {
-  backgroundImage: string;
+  /** Photo behind the hero band. Required when `background` is "image" (default). */
+  backgroundImage?: string;
   backgroundAlt?: string;
+  /**
+   * How the hero band is painted.
+   * - "image" (default): photo + dark scrim. Pairs with `tone="dark"`.
+   * - "gradient": homepage brand-lite → white gradient, no photo. Pairs with `tone="light"`.
+   */
+  background?: "image" | "gradient";
+  /**
+   * Color treatment for text inside the band.
+   * - "dark" (default): white text for use over the dark scrim.
+   * - "light": dark text for use over the gradient background.
+   */
+  tone?: "dark" | "light";
   eyebrow?: string;
   breadcrumb: BreadcrumbItem[];
   headline: string;
@@ -30,7 +43,8 @@ export type ListingHeroProps = {
    *   where the final word "Courses" carries the accent color.
    */
   accentPosition?: "start" | "end";
-  subtitle: string;
+  /** Long descriptive copy below the headline. Omit to render headline-only. */
+  subtitle?: string;
   resultCount?: string;
   /**
    * Color treatment for the result-count caption. "accent" (default)
@@ -78,6 +92,8 @@ export type ListingHeroProps = {
 export function ListingHero({
   backgroundImage,
   backgroundAlt = "",
+  background = "image",
+  tone = "dark",
   eyebrow,
   breadcrumb,
   headline,
@@ -93,6 +109,8 @@ export function ListingHero({
   headlineAccentClassName,
   verticalPaddingClassName,
 }: ListingHeroProps) {
+  const isLight = tone === "light";
+  const isGradient = background === "gradient";
   const prefersReducedMotion = useReducedMotion();
 
   const containerVariants: Variants = {
@@ -126,6 +144,8 @@ export function ListingHero({
       className={cn(
         "relative w-full overflow-hidden flex",
         minHeightClassName ?? "min-h-[420px] sm:min-h-[460px] lg:min-h-[500px]",
+        isGradient &&
+          "bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]",
         contentAlign === "top" && "items-start",
         contentAlign === "center" && "items-center",
         contentAlign !== "top" && contentAlign !== "center" && "items-end",
@@ -138,16 +158,19 @@ export function ListingHero({
         className,
       )}
     >
-      <Image
-        src={backgroundImage}
-        alt={backgroundAlt}
-        fill
-        sizes="100vw"
-        className="object-cover object-bottom"
-        priority
-      />
-
-      <div aria-hidden="true" className="absolute inset-0 bg-black/80" />
+      {!isGradient && backgroundImage ? (
+        <>
+          <Image
+            src={backgroundImage}
+            alt={backgroundAlt}
+            fill
+            sizes="100vw"
+            className="object-cover object-bottom"
+            priority
+          />
+          <div aria-hidden="true" className="absolute inset-0 bg-black/80" />
+        </>
+      ) : null}
 
       <motion.div
         className="relative z-10 mx-auto flex w-full max-w-[1340px] flex-col items-start page-px text-left"
@@ -158,7 +181,10 @@ export function ListingHero({
         <motion.nav
           aria-label="Breadcrumb"
           variants={breadcrumbVariants}
-          className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-body-sm text-text-inverse/80"
+          className={cn(
+            "flex flex-wrap items-center gap-x-1.5 gap-y-1 text-body-sm",
+            isLight ? "text-text-secondary" : "text-text-inverse/80",
+          )}
         >
           {breadcrumb.map((item, index) => {
             const isLast = index === breadcrumb.length - 1;
@@ -167,19 +193,29 @@ export function ListingHero({
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className="text-text-inverse/80 transition-colors hover:text-text-inverse"
+                    className={cn(
+                      "transition-colors",
+                      isLight
+                        ? "text-text-secondary hover:text-text-primary"
+                        : "text-text-inverse/80 hover:text-text-inverse",
+                    )}
                   >
                     {item.label}
                   </Link>
                 ) : (
                   <span
                     aria-current={isLast ? "page" : undefined}
-                    className="text-text-inverse"
+                    className={isLight ? "text-text-primary" : "text-text-inverse"}
                   >
                     {item.label}
                   </span>
                 )}
-                <span aria-hidden="true" className="text-text-inverse/50">/</span>
+                <span
+                  aria-hidden="true"
+                  className={isLight ? "text-text-tertiary/70" : "text-text-inverse/50"}
+                >
+                  /
+                </span>
               </React.Fragment>
             );
           })}
@@ -188,7 +224,10 @@ export function ListingHero({
         {eyebrow ? (
           <motion.p
             variants={breadcrumbVariants}
-            className="mt-4 text-mini uppercase tracking-widest text-text-inverse/80"
+            className={cn(
+              "mt-4 text-mini uppercase tracking-widest",
+              isLight ? "text-text-secondary" : "text-text-inverse/80",
+            )}
           >
             {eyebrow}
           </motion.p>
@@ -197,7 +236,8 @@ export function ListingHero({
         <motion.h1
           variants={headlineVariants}
           className={cn(
-            "mt-3 font-heading text-text-inverse max-w-4xl",
+            "mt-6 sm:mt-8 font-heading max-w-4xl",
+            isLight ? "text-text-primary" : "text-text-inverse",
             headlineClassName ?? "text-h2 lg:text-h1",
           )}
         >
@@ -215,12 +255,17 @@ export function ListingHero({
           ) : null}
         </motion.h1>
 
-        <motion.p
-          variants={subtitleVariants}
-          className="mt-4 max-w-[892px] text-body-md text-text-inverse/[0.67]"
-        >
-          {subtitle}
-        </motion.p>
+        {subtitle ? (
+          <motion.p
+            variants={subtitleVariants}
+            className={cn(
+              "mt-4 max-w-[892px] text-body-md",
+              isLight ? "text-text-secondary" : "text-text-inverse/[0.67]",
+            )}
+          >
+            {subtitle}
+          </motion.p>
+        ) : null}
 
         {resultCount ? (
           <motion.p
@@ -228,7 +273,9 @@ export function ListingHero({
             className={cn(
               "mt-4 text-mini uppercase tracking-widest",
               resultCountTone === "inverse"
-                ? "text-text-inverse"
+                ? isLight
+                  ? "text-text-primary"
+                  : "text-text-inverse"
                 : "text-brand-shade",
             )}
           >

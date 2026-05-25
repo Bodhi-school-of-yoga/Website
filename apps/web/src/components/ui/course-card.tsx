@@ -33,6 +33,10 @@ type CommonProps = {
   title: string;
   description: string;
   price: string;
+  /** Optional original price — shown struck-through above the live price to signal a discount. */
+  originalPrice?: string;
+  /** Tiny caption shown below the price (e.g. "incl. taxes"). */
+  taxNote?: string;
   ctaLabel?: string;
   ctaHref?: string;
   /**
@@ -42,19 +46,24 @@ type CommonProps = {
    */
   cardHref?: string;
   className?: string;
+  /**
+   * Bottom-right slot: if provided, shows a live countdown widget. Takes
+   * precedence over `startsCaption`.
+   */
+  countdownTarget?: Date | string | number;
+  countdownEyebrow?: string;
+  /** Bottom-right caption shown when no countdown is provided. */
+  startsCaption?: string;
 };
 
 type CourseVariantProps = CommonProps & {
   variant?: "course";
   features: CourseCardFeature[];
-  startsCaption: string;
 };
 
 type WorkshopVariantProps = CommonProps & {
   variant: "workshop";
   stats: CourseCardStat[];
-  countdownTarget: Date | string | number;
-  countdownEyebrow?: string;
 };
 
 export type CourseCardProps = CourseVariantProps | WorkshopVariantProps;
@@ -84,6 +93,8 @@ function CourseCard(props: CourseCardProps) {
     title,
     description,
     price,
+    originalPrice,
+    taxNote,
     ctaLabel,
     ctaHref = "#",
     cardHref,
@@ -107,12 +118,29 @@ function CourseCard(props: CourseCardProps) {
         viewport: { once: true, amount: 0.3 },
       };
 
+  const hasCountdown = props.countdownTarget !== undefined;
+  const hasBottomMeta = hasCountdown || Boolean(props.startsCaption);
+
+  const bottomMeta = hasCountdown ? (
+    <CountdownWidget
+      target={props.countdownTarget!}
+      eyebrow={props.countdownEyebrow ?? "Workshop starting in"}
+      size="sm"
+      align="start"
+    />
+  ) : props.startsCaption ? (
+    <span className="font-heading font-bold text-subtext-2 text-text-primary">
+      {props.startsCaption}
+    </span>
+  ) : null;
+
   return (
     <motion.article
       variants={prefersReducedMotion ? undefined : containerVariants}
       {...motionProps}
       className={cn(
-        "group/card relative flex w-[1308px] h-[362px] overflow-hidden rounded-[35px]",
+        "group/card relative flex w-full sm:w-[1308px] min-h-[260px] overflow-hidden rounded-[20px] sm:rounded-[24px]",
+        "flex-col sm:flex-row",
         "bg-surface-1 border border-border-3/60",
         "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md",
         cardHref ? "focus-within:shadow-md" : null,
@@ -129,34 +157,67 @@ function CourseCard(props: CourseCardProps) {
         />
       ) : null}
 
-      {/* Left half: hero photo */}
+      {/* Left half: hero photo — self-stretches to match card height */}
       <motion.div
         variants={prefersReducedMotion ? undefined : itemVariants}
-        className="relative w-[447px] h-[362px] shrink-0"
+        className="relative w-full h-[220px] sm:h-auto sm:w-[288px] shrink-0 self-stretch"
       >
         <Image
           src={image.src}
           alt={image.alt}
           fill
-          sizes="447px"
+          sizes="(min-width: 640px) 288px, 100vw"
           className="object-cover"
           priority
         />
       </motion.div>
 
-      {/* Right column: content */}
-      <div className="relative flex-1 px-10 py-7">
-        <motion.h3
-          variants={prefersReducedMotion ? undefined : itemVariants}
-          transition={
-            prefersReducedMotion
-              ? undefined
-              : { duration: 0.4, ease: "easeOut", delay: 0.06 }
-          }
-          className="font-heading font-bold text-h3 text-text-primary max-w-[520px]"
-        >
-          {title}
-        </motion.h3>
+      {/* Right column: flex column so chips, CTA and timer never collide */}
+      <div className="relative z-[1] flex flex-1 flex-col px-5 py-5 sm:px-6 sm:py-5 lg:px-7 lg:py-6">
+        {/* Top row: title + price column */}
+        <div className="flex items-start justify-between gap-6">
+          <motion.h3
+            variants={prefersReducedMotion ? undefined : itemVariants}
+            transition={
+              prefersReducedMotion
+                ? undefined
+                : { duration: 0.4, ease: "easeOut", delay: 0.06 }
+            }
+            style={{ lineHeight: 1 }}
+            className="font-heading font-bold text-h4 text-text-primary max-w-[520px]"
+          >
+            {title}
+          </motion.h3>
+
+          <motion.div
+            variants={prefersReducedMotion ? undefined : itemVariants}
+            transition={
+              prefersReducedMotion
+                ? undefined
+                : { duration: 0.4, ease: "easeOut", delay: 0.18 }
+            }
+            className="flex shrink-0 flex-col items-end leading-none"
+          >
+            {originalPrice ? (
+              <span className="font-sans text-body-md text-text-tertiary line-through">
+                {originalPrice}
+              </span>
+            ) : null}
+            <span
+              className={cn(
+                "font-heading font-extrabold text-h4 text-text-brand tracking-tight",
+                originalPrice ? "mt-0.5" : null,
+              )}
+            >
+              {price}
+            </span>
+            {taxNote ? (
+              <span className="mt-1 font-sans text-mini normal-case tracking-normal text-text-tertiary">
+                {taxNote}
+              </span>
+            ) : null}
+          </motion.div>
+        </div>
 
         <motion.p
           variants={prefersReducedMotion ? undefined : itemVariants}
@@ -165,12 +226,12 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.12 }
           }
-          className="mt-4 max-w-[520px] font-sans font-normal text-subtext-2 text-text-secondary"
+          className="mt-2 max-w-[520px] font-sans font-normal text-subtext-2 leading-snug text-text-secondary"
         >
           {description}
         </motion.p>
 
-        {/* Middle row — variant-specific */}
+        {/* Chips / stats — variant-specific */}
         <motion.div
           variants={prefersReducedMotion ? undefined : itemVariants}
           transition={
@@ -178,7 +239,7 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.18 }
           }
-          className="mt-8 flex gap-[15px]"
+          className="mt-3 sm:mt-4 flex flex-wrap items-center gap-2"
         >
           {isWorkshop
             ? props.stats.map((stat) => (
@@ -186,6 +247,7 @@ function CourseCard(props: CourseCardProps) {
                   key={stat.label}
                   value={stat.value}
                   label={stat.label}
+                  size="sm"
                 />
               ))
             : props.features.map((feature) => (
@@ -197,20 +259,10 @@ function CourseCard(props: CourseCardProps) {
               ))}
         </motion.div>
 
-        {/* Price — top-right */}
-        <motion.div
-          variants={prefersReducedMotion ? undefined : itemVariants}
-          transition={
-            prefersReducedMotion
-              ? undefined
-              : { duration: 0.4, ease: "easeOut", delay: 0.18 }
-          }
-          className="absolute top-7 right-10 font-heading font-bold text-h4 leading-none text-text-primary"
-        >
-          {price}
-        </motion.div>
+        {/* Pushes the bottom row to the card floor */}
+        <div className="flex-1" />
 
-        {/* CTA — bottom-left of right column */}
+        {/* Bottom row: CTA on the left, timer/caption on the right */}
         <motion.div
           variants={prefersReducedMotion ? undefined : itemVariants}
           transition={
@@ -218,37 +270,21 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.24 }
           }
-          className="absolute bottom-7 left-10 z-10"
+          className={cn(
+            "relative z-10 mt-6 sm:mt-8 lg:mt-10 flex flex-wrap items-end gap-x-6 gap-y-4",
+            hasBottomMeta ? "justify-between" : "justify-end",
+          )}
         >
+          {bottomMeta}
+
           <Button
             variant="mint"
             size="pill"
+            className="h-12 px-12 text-base font-semibold"
             render={<Link href={ctaHref} />}
           >
             {resolvedCtaLabel}
           </Button>
-        </motion.div>
-
-        {/* Bottom-right — variant-specific */}
-        <motion.div
-          variants={prefersReducedMotion ? undefined : itemVariants}
-          transition={
-            prefersReducedMotion
-              ? undefined
-              : { duration: 0.4, ease: "easeOut", delay: 0.3 }
-          }
-          className="absolute bottom-7 right-10 z-10 pointer-events-none"
-        >
-          {isWorkshop ? (
-            <CountdownWidget
-              target={props.countdownTarget}
-              eyebrow={props.countdownEyebrow ?? "Workshop starting in"}
-            />
-          ) : (
-            <span className="font-heading font-bold text-subtext-2 text-text-primary">
-              {props.startsCaption}
-            </span>
-          )}
         </motion.div>
       </div>
     </motion.article>

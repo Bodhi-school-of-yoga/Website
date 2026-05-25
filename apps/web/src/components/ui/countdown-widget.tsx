@@ -19,6 +19,8 @@ export type CountdownWidgetProps = {
   tone?: "light" | "dark";
   /** Anchor the eyebrow + numbers row to the start (left) or end (right). */
   align?: "start" | "end";
+  /** Visual scale — "md" (default) for hero use, "sm" for tighter spots like cards. */
+  size?: "sm" | "md";
   className?: string;
 };
 
@@ -47,6 +49,7 @@ function CountdownWidget({
   eyebrow = "Workshop starting in",
   tone = "light",
   align = "end",
+  size = "md",
   className,
 }: CountdownWidgetProps) {
   const targetMs = React.useMemo(() => {
@@ -74,14 +77,16 @@ function CountdownWidget({
   ];
 
   const isDark = tone === "dark";
+  const isSm = size === "sm";
   const itemsAlign = align === "start" ? "items-start" : "items-end";
   const rowAlign = align === "start" ? "justify-start" : "justify-end";
 
   const eyebrowRow = (
-    <div className={cn("flex items-center gap-3", rowAlign)}>
+    <div className={cn("flex items-center gap-2", rowAlign)}>
       <span
         className={cn(
-          "font-heading font-semibold text-mini uppercase",
+          "font-heading font-semibold uppercase tracking-wide",
+          isSm ? "text-[0.65rem]" : "text-mini",
           isDark ? "text-text-inverse/80" : "text-text-primary/80",
         )}
       >
@@ -90,7 +95,8 @@ function CountdownWidget({
       <span
         aria-hidden="true"
         className={cn(
-          "h-px w-12",
+          "h-px",
+          isSm ? "w-6" : "w-12",
           isDark ? "bg-text-inverse/40" : "bg-text-primary/40",
         )}
       />
@@ -98,20 +104,38 @@ function CountdownWidget({
   );
 
   return (
-    <div className={cn("flex flex-col gap-3", itemsAlign, className)}>
+    <div
+      className={cn(
+        "flex flex-col",
+        isSm ? "gap-1.5" : "gap-3",
+        itemsAlign,
+        className,
+      )}
+    >
       {eyebrowRow}
-      <div className={cn("flex items-baseline gap-8 sm:gap-10", rowAlign)}>
+      <div
+        className={cn(
+          "flex items-baseline",
+          isSm ? "gap-4" : "gap-8 sm:gap-10",
+          rowAlign,
+        )}
+      >
         {cells.map((cell, i) => {
           const dim = i === cells.length - 1;
           return (
             <div
               key={cell.label}
-              className="flex items-baseline gap-2"
+              className={cn(
+                "flex items-baseline",
+                isSm ? "gap-1" : "gap-2",
+              )}
             >
               <span
                 className={cn(
                   "font-heading font-semibold leading-none tabular-nums",
-                  "text-[2.5rem] sm:text-[2.75rem] lg:text-[3rem]",
+                  isSm
+                    ? "text-[1.875rem]"
+                    : "text-[2.5rem] sm:text-[2.75rem] lg:text-[3rem]",
                   isDark
                     ? dim
                       ? "text-text-inverse/80"
@@ -128,7 +152,7 @@ function CountdownWidget({
               <span
                 className={cn(
                   "font-sans font-normal normal-case tracking-normal",
-                  "text-body-md",
+                  isSm ? "text-[0.85rem]" : "text-body-md",
                   isDark
                     ? dim
                       ? "text-text-inverse/80"

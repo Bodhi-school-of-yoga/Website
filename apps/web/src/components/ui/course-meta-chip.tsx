@@ -1,4 +1,4 @@
-// CourseMetaChip — inline pill showing a course metadata item (duration, level, language, etc.).
+// CourseMetaChip — compact inline pill showing a course metadata item (duration, level, language, etc.).
 
 import * as React from "react";
 
@@ -12,20 +12,20 @@ interface CourseMetaChipProps {
 
 function CourseMetaChip({ icon, label, className }: CourseMetaChipProps) {
   return (
-    <div
+    <span
       className={cn(
-        "flex flex-col items-center justify-center gap-2",
-        "w-[110px] h-[104px]",
-        "bg-surface-1 border border-border-3 rounded-[17px] opacity-[0.82]",
-        "shrink-0",
-        className
+        "inline-flex items-center gap-2",
+        "px-3.5 py-1.5 rounded-full",
+        "bg-surface-2 border border-border-1/40",
+        "[&_svg]:h-[18px] [&_svg]:w-[18px] [&_svg]:shrink-0",
+        className,
       )}
     >
       <span className="text-text-brand">{icon}</span>
-      <span className="font-sans font-semibold text-body-sm text-text-secondary text-center px-2">
+      <span className="font-sans font-medium text-body-sm text-text-secondary whitespace-nowrap">
         {label}
       </span>
-    </div>
+    </span>
   );
 }
 

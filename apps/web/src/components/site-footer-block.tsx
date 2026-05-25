@@ -87,6 +87,76 @@ const DEFAULT_CTA: ClosingCtaSectionProps = {
   primaryCta: { label: "Try a class, free", href: "/contact" },
 };
 
+// ---------------------------------------------------------------------------
+// Home-page columns spec (T9)
+//
+// The home page uses a different footer shape (Brand + 3 columns:
+// School / Visit / Stay close) per Figma 1:619. External hrefs MUST stay
+// in sync with the defaults above — Instagram, YouTube, Get directions,
+// Newsletter and Email URLs are copied verbatim from DEFAULT_COLUMNS /
+// DEFAULT_ADDRESS so the two surfaces never drift apart.
+// ---------------------------------------------------------------------------
+
+const PRESERVED_INSTAGRAM_HREF = DEFAULT_COLUMNS[2].links[1].href; // https://instagram.com/bodhischoolofyoga
+const PRESERVED_YOUTUBE_HREF = DEFAULT_COLUMNS[2].links[2].href; // https://youtube.com/@bodhischoolofyoga
+const PRESERVED_EMAIL_HREF = DEFAULT_COLUMNS[2].links[3].href; // mailto:hello@bodhischoolofyoga.com
+const PRESERVED_NEWSLETTER_HREF = DEFAULT_COLUMNS[2].links[0].href; // /contact (existing "Contact Us" link doubles as the newsletter target)
+const PRESERVED_DIRECTIONS_HREF = DEFAULT_ADDRESS.action!.href; // https://maps.google.com
+
+export const HOME_FOOTER_BRAND: SiteFooterProps["brand"] = {
+  wordmark: "Bodhi",
+  tagline:
+    "A school for teachers, a home for seekers. Practice, taught honestly.",
+  url: "bodhischoolofyoga.com",
+};
+
+export const HOME_FOOTER_COLUMNS: FooterColumn[] = [
+  {
+    heading: "School",
+    links: [
+      { label: "Teacher Training", href: "/teacher-courses/online" },
+      { label: "Workshops", href: "/workshops" },
+      { label: "Classes", href: "/yoga-courses/online" },
+      { label: "Faculty", href: "/our-trainers" },
+      { label: "Lineage", href: "/about" },
+    ],
+  },
+  {
+    heading: "Visit",
+    lines: ["The Practice Room,", "2nd floor, Quiet Lane", "City  ·  India"],
+    links: [
+      {
+        label: "Get directions",
+        href: PRESERVED_DIRECTIONS_HREF,
+        external: true,
+      },
+    ],
+  },
+  {
+    heading: "Stay close",
+    links: [
+      { label: "Newsletter", href: PRESERVED_NEWSLETTER_HREF },
+      {
+        label: "Instagram",
+        href: PRESERVED_INSTAGRAM_HREF,
+        external: true,
+      },
+      {
+        label: "YouTube",
+        href: PRESERVED_YOUTUBE_HREF,
+        external: true,
+      },
+      { label: "Email us", href: PRESERVED_EMAIL_HREF },
+    ],
+  },
+];
+
+export const HOME_FOOTER_LEGAL = {
+  copyright:
+    "© Bodhi School of Yoga  ·  Yoga Alliance Registered School (RYS-200, RYS-300)",
+  tagline: "Designed quietly. Practised daily.",
+} as const;
+
 export type SiteFooterBlockProps = {
   /** Override the closing-CTA copy/CTA. Omit to use the site default. */
   cta?: Partial<ClosingCtaSectionProps>;
@@ -95,6 +165,8 @@ export type SiteFooterBlockProps = {
   brand?: SiteFooterProps["brand"];
   columns?: FooterColumn[];
   address?: FooterAddressColumn;
+  /** Legal bar overrides — copyright (left) and tagline (right). */
+  legal?: { copyright?: string; tagline?: string };
 };
 
 export function SiteFooterBlock({
@@ -103,12 +175,19 @@ export function SiteFooterBlock({
   brand = DEFAULT_BRAND,
   columns = DEFAULT_COLUMNS,
   address = DEFAULT_ADDRESS,
+  legal,
 }: SiteFooterBlockProps = {}) {
   const ctaProps: ClosingCtaSectionProps = { ...DEFAULT_CTA, ...cta };
   return (
     <>
       {showCta && <ClosingCtaSection {...ctaProps} />}
-      <SiteFooter brand={brand} columns={columns} address={address} />
+      <SiteFooter
+        brand={brand}
+        columns={columns}
+        address={address}
+        legalLeft={legal?.copyright}
+        legalRight={legal?.tagline}
+      />
     </>
   );
 }

@@ -1,8 +1,14 @@
-// ProgramsGridSection — filterable grid of all Bodhi programs with mode, duration, and pricing metadata.
+"use client";
+
+// ProgramsGridSection — dark full-bleed band with 2 stacked program rails
+// (Yoga Teacher Training Courses + Regular yoga Courses). Each rail header is
+// a flex row: eyebrow + title on the left, "More Courses" link on the right.
+// Cards animate in via a parent stagger when the rail scrolls into view.
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock, Globe, Monitor } from "lucide-react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -25,12 +31,28 @@ export type ProgramsBlock = {
   cards: ProgramCard[];
 };
 
+// New rail shape used by the Figma home-page band.
+export type Rail = {
+  eyebrow: string;
+  title: string;
+  moreLabel: string;
+  moreHref: string;
+  cards: ProgramCard[];
+};
+
 export type ProgramsGridSectionProps = {
+  /** Preferred new API: 2 rails (TTC + Regular). When omitted, defaults derive from DEFAULT_TTC / DEFAULT_CERT trimmed to first 3 cards each. */
+  rails?: Rail[];
+  /** Legacy: full TTC block. Kept for backwards compatibility with non-home consumers. */
   ttcBlock?: ProgramsBlock;
+  /** Legacy: certification block. Kept for backwards compatibility with non-home consumers. */
   certificationBlock?: ProgramsBlock;
   className?: string;
 };
 
+// PRESERVED: existing card data with real hrefs. Do not delete entries; only the
+// first 3 are rendered per rail on the home page, but the full arrays may be
+// used by other consumers / future filters.
 const DEFAULT_TTC: ProgramsBlock = {
   eyebrow: "Yoga Teacher Training",
   heading: "Yoga Teacher Training Courses",
@@ -136,74 +158,169 @@ const DEFAULT_CERT: ProgramsBlock = {
   ],
 };
 
+// Default 2-rail set for the Figma home-page band. Card hrefs preserved from
+// DEFAULT_TTC / DEFAULT_CERT (first 3 each). Rail-1 eyebrow is "Teacher Training"
+// verbatim per Figma — flagged as a likely copy bug for product review.
+const DEFAULT_RAILS: Rail[] = [
+  {
+    eyebrow: "Teacher Training",
+    title: "Yoga Teacher Training Courses",
+    moreLabel: "More Courses",
+    moreHref: "/teacher-courses",
+    cards: DEFAULT_TTC.cards.slice(0, 3),
+  },
+  {
+    eyebrow: "Teacher Training",
+    title: "Regular yoga Courses",
+    moreLabel: "More Courses",
+    moreHref: "/yoga-courses",
+    cards: DEFAULT_CERT.cards.slice(0, 3),
+  },
+];
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export function ProgramsGridSection({
-  ttcBlock = DEFAULT_TTC,
-  certificationBlock = DEFAULT_CERT,
+  rails,
+  ttcBlock,
+  certificationBlock,
   className,
 }: ProgramsGridSectionProps) {
+  // Resolve rails: explicit prop > legacy block props (mapped) > defaults.
+  const resolvedRails: Rail[] = React.useMemo(() => {
+    if (rails && rails.length > 0) return rails;
+    if (ttcBlock || certificationBlock) {
+      const out: Rail[] = [];
+      if (ttcBlock) {
+        out.push({
+          eyebrow: ttcBlock.eyebrow,
+          title: ttcBlock.heading,
+          moreLabel: "More Courses",
+          moreHref: "/teacher-courses",
+          cards: ttcBlock.cards.slice(0, 3),
+        });
+      }
+      if (certificationBlock) {
+        out.push({
+          eyebrow: certificationBlock.eyebrow,
+          title: certificationBlock.heading,
+          moreLabel: "More Courses",
+          moreHref: "/yoga-courses",
+          cards: certificationBlock.cards.slice(0, 3),
+        });
+      }
+      return out;
+    }
+    return DEFAULT_RAILS;
+  }, [rails, ttcBlock, certificationBlock]);
+
   return (
     <section
-      className={cn("w-full bg-surface-1 py-20 sm:py-24 lg:py-28", className)}
+      className={cn(
+        "relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-brand-dark py-20 sm:py-24 lg:py-28",
+        className,
+      )}
     >
-      <div className="mx-auto flex max-w-[1340px] flex-col gap-24 page-px lg:gap-28">
-        <ProgramsBlockView block={ttcBlock} variant="ttc" />
-        <ProgramsBlockView block={certificationBlock} variant="cert" />
+      <div className="mx-auto flex max-w-[1340px] flex-col gap-20 page-px lg:gap-24">
+        {resolvedRails.map((rail, idx) => (
+          <RailView key={`${rail.title}-${idx}`} rail={rail} />
+        ))}
       </div>
     </section>
   );
 }
 
-function ProgramsBlockView({
-  block,
-  variant,
-}: {
-  block: ProgramsBlock;
-  variant: "ttc" | "cert";
-}) {
+function RailView({ rail }: { rail: Rail }) {
+  const prefersReducedMotion = useReducedMotion();
+
+  const headerVariants: Variants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: prefersReducedMotion ? 0 : 0.5, ease: EASE },
+    },
+  };
+
+  const rowVariants: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: prefersReducedMotion ? 0 : 0.08,
+        delayChildren: prefersReducedMotion ? 0 : 0.08,
+      },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: prefersReducedMotion ? 0 : 0.5, ease: EASE },
+    },
+  };
+
   return (
     <div className="flex flex-col gap-10 lg:gap-12">
-      <header className="flex flex-col items-center gap-4 text-center">
-        <p className="text-mini uppercase text-text-brand">{block.eyebrow}</p>
-        <h2 className="font-heading text-h4 sm:text-h3 text-text-secondary">
-          {block.heading}
-        </h2>
-        {block.subhead && (
-          <p className="max-w-2xl text-subtext-1 text-text-tertiary">
-            {block.subhead}
-          </p>
-        )}
-      </header>
-
-      <ul
-        className={cn(
-          "grid w-full grid-cols-1 gap-6 sm:grid-cols-2",
-          variant === "ttc" ? "lg:grid-cols-3" : "lg:grid-cols-3",
-        )}
+      <motion.header
+        className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end"
+        variants={headerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px 0px -80px 0px" }}
       >
-        {block.cards.map((card) =>
-          variant === "ttc" ? (
-            <li key={card.slug}>
-              <TtcCard card={card} />
-            </li>
-          ) : (
-            <li key={card.slug}>
-              <CertCard card={card} />
-            </li>
-          ),
-        )}
-      </ul>
+        <div className="flex flex-col gap-3">
+          <p className="text-mini uppercase tracking-wider text-brand-shade">
+            {rail.eyebrow}
+          </p>
+          <h2 className="font-heading text-h4 sm:text-h3 text-text-inverse">
+            {rail.title}
+          </h2>
+        </div>
+
+        <Link
+          href={rail.moreHref}
+          className={cn(
+            "group inline-flex items-center gap-2 text-body-sm text-brand-shade",
+            "relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full",
+          )}
+        >
+          {rail.moreLabel}
+          <ArrowRight
+            className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+            strokeWidth={2.25}
+          />
+        </Link>
+      </motion.header>
+
+      <motion.ul
+        className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3"
+        variants={rowVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px 0px -80px 0px" }}
+      >
+        {rail.cards.slice(0, 3).map((card) => (
+          <motion.li key={card.slug} variants={cardVariants}>
+            <DarkProgramCard card={card} />
+          </motion.li>
+        ))}
+      </motion.ul>
     </div>
   );
 }
 
-function TtcCard({ card }: { card: ProgramCard }) {
+// Inline card kept until T5 ProgramCard primitive lands. Mirrors the previous
+// TtcCard markup but uses bg-surface-cream against the dark band.
+function DarkProgramCard({ card }: { card: ProgramCard }) {
   return (
     <Link
       href={card.href}
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-[20px] bg-surface-1",
-        "border border-border-2 shadow-card transition-all duration-300",
-        "hover:-translate-y-0.5 hover:border-brand-shade hover:shadow-[0_22px_44px_-12px_rgba(0,152,119,0.18)]",
+        "group flex h-full flex-col overflow-hidden rounded-[20px] bg-surface-cream",
+        "border border-border-2 shadow-card transition-all duration-300 ease-out",
+        "hover:-translate-y-0.5 hover:shadow-[0_10px_28px_-12px_rgba(0,0,0,0.5)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
       )}
     >
@@ -213,7 +330,7 @@ function TtcCard({ card }: { card: ProgramCard }) {
           alt=""
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.03]"
         />
         <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-brand-primary/95 px-3 py-1 text-mini uppercase text-text-inverse">
           {card.modality === "online" ? (
@@ -226,7 +343,7 @@ function TtcCard({ card }: { card: ProgramCard }) {
       </span>
 
       <div className="flex flex-1 flex-col gap-3 p-6">
-        <h3 className="text-subtext-3 text-text-secondary">{card.title}</h3>
+        <h3 className="text-subtext-3 text-text-primary">{card.title}</h3>
         <div className="flex flex-wrap items-center gap-3 text-text-tertiary">
           <span className="inline-flex items-center gap-1.5 text-body-sm">
             <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />
@@ -241,72 +358,9 @@ function TtcCard({ card }: { card: ProgramCard }) {
             </>
           )}
         </div>
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-body-sm text-text-brand transition-transform duration-300 group-hover:translate-x-0.5">
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-body-sm text-text-brand transition-transform duration-200 group-hover:translate-x-0.5">
           View Program
           <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
-        </span>
-      </div>
-    </Link>
-  );
-}
-
-function CertCard({ card }: { card: ProgramCard }) {
-  return (
-    <Link
-      href={card.href}
-      className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-[24px] bg-surface-cream",
-        "border border-border-2 transition-all duration-300",
-        "hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-12px_rgba(0,40,44,0.12)]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
-      )}
-    >
-      <span className="relative block aspect-[16/11] w-full overflow-hidden bg-surface-2">
-        <Image
-          src={card.thumbnail}
-          alt=""
-          fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        />
-      </span>
-
-      <div className="flex flex-1 flex-col gap-4 p-6">
-        <h3 className="text-subtext-3 text-text-secondary">{card.title}</h3>
-
-        <div className="flex items-center gap-3 border-y border-sage-divider-soft py-3 text-text-tertiary">
-          <span className="inline-flex items-center gap-1.5 text-body-sm">
-            <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />
-            {card.duration}
-          </span>
-          <span aria-hidden className="text-text-tertiary/50">
-            ·
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-body-sm">
-            <Monitor className="h-3.5 w-3.5" strokeWidth={1.75} />
-            {card.modality}
-          </span>
-        </div>
-
-        {card.authorName && (
-          <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-primary text-mini text-text-inverse">
-              {card.authorInitials}
-            </span>
-            <div className="flex flex-col leading-tight">
-              <span className="text-mini uppercase text-text-tertiary">
-                Instructor
-              </span>
-              <span className="text-body-sm font-medium text-text-secondary">
-                {card.authorName}
-              </span>
-            </div>
-          </div>
-        )}
-
-        <span className="mt-auto inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-brand-primary px-6 font-sans text-body-sm font-semibold text-text-inverse transition-colors duration-200 hover:bg-brand-primary/90">
-          Enrol Now
-          <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
         </span>
       </div>
     </Link>

@@ -20,12 +20,6 @@ const SHARED_STATS: { value: string; label: string }[] = [
   { value: "∞", label: "Access" },
 ];
 
-// Static demo countdown target — ~02d 18h 38m from build time so the displayed
-// timer roughly matches the Figma reference (02 / 18 / 38 / 19).
-const COUNTDOWN_TARGET_ISO = new Date(
-  Date.now() + (2 * 24 + 18) * 60 * 60 * 1000 + 38 * 60 * 1000 + 19 * 1000,
-).toISOString();
-
 const COURSES = PRE_RECORDED_COURSES.map((c) => ({
   title: c.title,
   image: c.image,
@@ -57,11 +51,11 @@ export default function PreRecordedCoursesPage() {
                 description={course.description}
                 stats={SHARED_STATS}
                 price="₹499"
+                originalPrice="₹999"
+                taxNote="incl. taxes"
                 ctaLabel="Purchase Now"
                 ctaHref={course.href}
                 cardHref={course.href}
-                countdownTarget={COUNTDOWN_TARGET_ISO}
-                countdownEyebrow="Workshop starting in"
                 className="w-full max-w-[1308px] mx-auto"
               />
             ))}
