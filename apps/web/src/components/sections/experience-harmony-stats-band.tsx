@@ -97,12 +97,14 @@ export function ExperienceHarmonyStatsBand({
         src={photoTopRight.src}
         alt={photoTopRight.alt}
         position="top-right"
-        width={340}
+        width={290}
         height={420}
+        objectPosition="99%"
+        className="mt-8"
       />
 
       <div className="relative z-10 mx-auto flex max-w-[820px] flex-col items-center gap-12 page-px text-center lg:gap-16">
-        <h2 className="font-heading text-h3 text-text-primary lg:text-h2">
+        <h2 className="font-heading text-h3 text-text-primary lg:text-h4">
           <span>{headlineLead}</span>
           <span className="text-text-brand">{headlineAccent}</span>
           {headlineTrail ? <span>{headlineTrail}</span> : null}
@@ -137,6 +139,8 @@ type TiltedOverflowPhotoProps = {
   position: "top-right" | "bottom-left";
   width: number;
   height: number;
+  objectPosition?: string;
+  className?:string
 };
 
 function TiltedOverflowPhoto({
@@ -145,6 +149,8 @@ function TiltedOverflowPhoto({
   position,
   width,
   height,
+  objectPosition,
+  className
 }: TiltedOverflowPhotoProps) {
   const isTopRight = position === "top-right";
 
@@ -154,7 +160,7 @@ function TiltedOverflowPhoto({
       className={cn(
         "pointer-events-none absolute z-0 hidden overflow-hidden rounded-[18px] shadow-[0_24px_56px_-16px_rgba(0,40,44,0.28)] ring-1 ring-white/60 lg:block",
         isTopRight
-          ? "top-[-64px] right-[2%] xl:right-[4%]"
+          ? "top-[-44px] right-[2%] xl:right-[-1%]"
           : "bottom-[-64px] left-[2%] xl:left-[3%]",
       )}
       style={{ width, height }}
@@ -168,7 +174,8 @@ function TiltedOverflowPhoto({
         alt={alt}
         width={width}
         height={height}
-        className="h-full w-full object-cover"
+        className={cn("h-full w-full object-cover ", className)}
+        style={objectPosition ? { objectPosition } : undefined}
       />
     </motion.div>
   );

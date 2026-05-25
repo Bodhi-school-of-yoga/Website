@@ -36,7 +36,7 @@ export function SanskritMarqueeStrip({
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={cn(
-        "relative w-full overflow-hidden border-y border-border-2 bg-surface-cream",
+        "relative w-full overflow-hidden  bg-white",
         "[&:hover_.track]:[animation-play-state:paused]",
         className,
       )}

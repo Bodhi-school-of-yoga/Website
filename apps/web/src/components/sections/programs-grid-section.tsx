@@ -1,3 +1,5 @@
+"use client";
+
 // ProgramsGridSection — filterable grid of all Bodhi programs with mode, duration, and pricing metadata.
 import * as React from "react";
 import Image from "next/image";
@@ -96,7 +98,7 @@ const DEFAULT_TTC: ProgramsBlock = {
 
 const DEFAULT_CERT: ProgramsBlock = {
   eyebrow: "Top Popular Yoga Course",
-  heading: "Certification Yoga Courses",
+  heading: "Regular yoga Courses",
   subhead:
     "Deepen your wisdom and elevate your yoga career with our specialized yoga certifications.",
   cards: [
@@ -153,6 +155,8 @@ export function ProgramsGridSection({
   );
 }
 
+const INITIAL_VISIBLE = 3;
+
 function ProgramsBlockView({
   block,
   variant,
@@ -160,27 +164,21 @@ function ProgramsBlockView({
   block: ProgramsBlock;
   variant: "ttc" | "cert";
 }) {
+  const [showAll, setShowAll] = React.useState(false);
+  const hasMore = block.cards.length > INITIAL_VISIBLE;
+  const visibleCards = showAll ? block.cards : block.cards.slice(0, INITIAL_VISIBLE);
+
   return (
-    <div className="flex flex-col gap-10 lg:gap-12">
+    <div className="flex flex-col items-center gap-10 lg:gap-12">
       <header className="flex flex-col items-center gap-4 text-center">
         <p className="text-mini uppercase text-text-brand">{block.eyebrow}</p>
-        <h2 className="font-heading text-h4 sm:text-h3 text-text-secondary">
+        <h2 className="font-heading text-h4 sm:text-h2 text-text-secondary">
           {block.heading}
         </h2>
-        {block.subhead && (
-          <p className="max-w-2xl text-subtext-1 text-text-tertiary">
-            {block.subhead}
-          </p>
-        )}
       </header>
 
-      <ul
-        className={cn(
-          "grid w-full grid-cols-1 gap-6 sm:grid-cols-2",
-          variant === "ttc" ? "lg:grid-cols-3" : "lg:grid-cols-3",
-        )}
-      >
-        {block.cards.map((card) =>
+      <ul className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {visibleCards.map((card) =>
           variant === "ttc" ? (
             <li key={card.slug}>
               <TtcCard card={card} />
@@ -192,6 +190,19 @@ function ProgramsBlockView({
           ),
         )}
       </ul>
+
+      {hasMore && (
+        <button
+          onClick={() => setShowAll((prev) => !prev)}
+          className={cn(
+            "inline-flex items-center justify-center rounded-full border border-brand-primary",
+            "px-12 py-3 text-body-sm font-semibold text-brand-primary",
+            "transition-colors duration-200 hover:bg-brand-primary hover:text-text-inverse",
+          )}
+        >
+          {showAll ? "Show Less" : "More Courses"}
+        </button>
+      )}
     </div>
   );
 }
@@ -255,7 +266,7 @@ function CertCard({ card }: { card: ProgramCard }) {
     <Link
       href={card.href}
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-[24px] bg-surface-cream",
+        "group flex h-full flex-col overflow-hidden rounded-[24px] bg-white",
         "border border-border-2 transition-all duration-300",
         "hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-12px_rgba(0,40,44,0.12)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
@@ -271,10 +282,10 @@ function CertCard({ card }: { card: ProgramCard }) {
         />
       </span>
 
-      <div className="flex flex-1 flex-col gap-4 p-6">
+      <div className="flex flex-1 flex-col gap-4 px-4 py-2">
         <h3 className="text-subtext-3 text-text-secondary">{card.title}</h3>
 
-        <div className="flex items-center gap-3 border-y border-sage-divider-soft py-3 text-text-tertiary">
+        <div className="flex items-center gap-3 border-t border-dashed py-3 text-text-tertiary">
           <span className="inline-flex items-center gap-1.5 text-body-sm">
             <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />
             {card.duration}
@@ -288,7 +299,7 @@ function CertCard({ card }: { card: ProgramCard }) {
           </span>
         </div>
 
-        {card.authorName && (
+        {/* {card.authorName && (
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-primary text-mini text-text-inverse">
               {card.authorInitials}
@@ -302,10 +313,10 @@ function CertCard({ card }: { card: ProgramCard }) {
               </span>
             </div>
           </div>
-        )}
+        )} */}
 
-        <span className="mt-auto inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-brand-primary px-6 font-sans text-body-sm font-semibold text-text-inverse transition-colors duration-200 hover:bg-brand-primary/90">
-          Enrol Now
+        <span className="flex items-center justify-start gap-2 -mt-4 text-brand-primary font-sans text-body-sm font-semibold ">
+        View Program 
           <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
         </span>
       </div>

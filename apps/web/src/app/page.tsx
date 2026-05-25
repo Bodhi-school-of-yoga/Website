@@ -95,11 +95,13 @@ export default function HomePage() {
         <SanskritMarqueeStrip />
         <FounderQuoteSection />
         <ExperienceHarmonyStatsBand />
-        <WhatWeDoSection />
+        {/* <WhatWeDoSection /> */}
         <WhyBodhiSection />
+        <ExperienceHarmonyStatsBand />
+        {/* <WhatWeDoSection /> */}
         <ProgramsGridSection />
         <AccreditationsSection
-          heading="Recognizing the Global Impact of Yoga"
+          heading="We are recognised across the world"
           description="Deepen your wisdom and elevate your yoga career with our specialized yoga certifications."
           items={ACCREDITATIONS}
         />

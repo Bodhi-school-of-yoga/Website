@@ -51,14 +51,21 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
     href: "/workshops",
     buttonColor: "#009877",
   },
+  {
+    eyebrow:"Yoga Therapies",
+    label:"Looking for relief from lifestyle diseases",
+    href:"",
+    buttonColor: "#009877",
+
+  }
 ];
 
 const DEFAULTS = {
   eyebrow: "बोधि  ·  The awakening",
-  headlineLead: "A school for teachers and a ",
-  headlineAccent: "home for seekers.",
+  headlineLead: "Yoga for Self. ",
+  headlineAccent: "Yoga for Teaching.",
   subcopy:
-    "Bodhi is a yoga teacher training institute and practice studio. We train future teachers, host workshops in health and wellness, and hold daily classes online and in person.",
+    "Discover a premium yoga and wellness experience offering teacher training, regular practice, and therapy sessions through immersive online and offline programs.",
   photoSrc: "/images/hero/foreground.png",
   photoAlt: "A student in seated meditation pose at Bodhi studio.",
   watermark: "बोधि",
@@ -145,7 +152,7 @@ function HeroDesktop({
       className={cn(
         "hero-1920",
         "relative hidden lg:block pt-[2rem]",
-        "min-h-[var(--hero-min-h)]",
+        "min-h-(--hero-min-h)",
       )}
     >
       <HeroWatermark text={watermark} />
@@ -154,8 +161,8 @@ function HeroDesktop({
       <div
         className={cn(
           "relative z-20",
-          "pl-[12rem] pr-[var(--hero-gutter)]",
-          "pt-[var(--hero-text-pt)] pb-12",
+          "pl-[12rem] pr-(--hero-gutter)",
+          "pt-(--hero-text-pt) pb-12",
         )}
       >
         <HeroEyebrow text={eyebrow} />
@@ -178,11 +185,11 @@ function HeroWatermark({ text }: { text: string }) {
       lang="hi"
       className={cn(
         "pointer-events-none absolute z-0 select-none whitespace-nowrap",
-        "left-[var(--hero-watermark-x)] top-[10rem]",
+        "left-(--hero-watermark-x) top-[10rem]",
         "font-normal not-italic",
         "leading-[0.85] tracking-[-0.04em]",
-        "text-[length:var(--hero-watermark-w)]",
-        "text-[color:var(--color-brand-teal)] opacity-10",
+        "text-(length:--hero-watermark-w)",
+        "text-(--color-brand-teal) opacity-10",
       )}
       style={{
         fontFamily: 'Fraunces, "Noto Sans Devanagari", system-ui, sans-serif',
@@ -220,9 +227,9 @@ function HeroEyebrow({ text }: { text: string }) {
   return (
     <p
       className={cn(
-        "uppercase whitespace-nowrap",
+        "uppercase whitespace-nowrap font-semibold text-xs",
         "text-hero-eyebrow",
-        "text-[color:var(--color-text-brand-emerald)]",
+        "text-(--color-text-brand-emerald)",
       )}
     >
       {text}
@@ -235,11 +242,12 @@ function HeroHeadline({ lead, accent }: { lead: string; accent: string }) {
     <h1
       className={cn(
         "mt-[1.46vw]",                       // 28 / 1920
-        "max-w-[var(--hero-headline-w)]",
+        "max-w-(--hero-headline-w)",
         "font-heading text-hero-headline",
       )}
     >
       <span className="text-text-primary">{lead}</span>
+      <br/>
       <span className="text-text-brand">{accent}</span>
     </h1>
   );
@@ -250,9 +258,9 @@ function HeroSubhead({ text }: { text: string }) {
     <p
       className={cn(
         "mt-[1.30vw]",                       // 25 / 1920
-        "max-w-[var(--hero-sub-w)]",
+        "max-w-(--hero-sub-w)",
         "text-hero-sub",
-        "text-[color:var(--color-text-subdued)]",
+        "text-(--color-text-subdued)",
       )}
     >
       {text}
@@ -272,17 +280,17 @@ function HeroOfferRow({
       <p
         className={cn(
           "mb-4 uppercase",
-          "text-xs",
-          "text-[color:var(--color-text-brand-emerald)]",
+          "text-xs font-semibold",
+          "text-(--color-text-brand-emerald)",
         )}
       >
         {label}
       </p>
       <ul
         className={cn(
-          "grid grid-cols-3",
-          "gap-[var(--hero-chips-gap)]",
-          "max-w-[var(--hero-chips-max-w)]",
+          "grid grid-cols-4",
+          "gap-(--hero-chips-gap)",
+          "max-w-(--hero-chips-max-w)",
         )}
       >
         {offers.map((offer) => (
@@ -423,7 +431,7 @@ function HeroOfferChipCard({
       <div className="flex min-w-0 flex-col gap-[2px]">
         <span
           className={cn(
-            "uppercase whitespace-nowrap",
+            "uppercase whitespace-nowrap font-semibold text-sm",
             isDesktop ? "text-hero-chip-eyebrow" : "text-hero-eyebrow",
             "text-[color:var(--color-text-brand-emerald)]",
           )}
@@ -432,7 +440,7 @@ function HeroOfferChipCard({
         </span>
         <span
           className={cn(
-            "text-text-primary",
+            "text-text-primary text-[16px] font-semibold",
             isDesktop ? "text-hero-chip-title" : "text-subtext-3 leading-tight",
           )}
         >

@@ -44,7 +44,7 @@ export function TrainersHero({
       />
       <div
         aria-hidden="true"
-        className="hidden md:block absolute inset-0 bg-gradient-to-b from-black/55 to-black/25"
+        className="hidden md:block absolute inset-0 bg-linear-to-b from-black/95 to-black/75"
       />
 
       <div className="relative mx-auto flex w-full max-w-[860px] flex-col items-center page-px text-center">

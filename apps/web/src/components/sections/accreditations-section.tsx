@@ -70,11 +70,11 @@ export function AccreditationsSection({
   return (
     <section
       className={cn(
-        "w-full bg-background py-20 sm:py-24 lg:py-28",
+        "w-full bg-white py-20 sm:py-24 lg:py-28",
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl page-px">
+      <div className="mx-auto max-w-7xl page-px">
         <motion.header
           variants={headerStagger}
           initial="hidden"
@@ -92,18 +92,11 @@ export function AccreditationsSection({
           )}
           <motion.h2
             variants={headerItem}
-            className="mt-3 font-heading text-h4 sm:text-h3 lg:text-h2 text-text-secondary"
+            className="mt-3 font-heading text-h4 sm:text-h3 lg:text-h3 text-text-secondary"
           >
             {heading}
           </motion.h2>
-          {description && (
-            <motion.p
-              variants={headerItem}
-              className="mt-3 text-subtext-1 text-text-tertiary"
-            >
-              {description}
-            </motion.p>
-          )}
+         
         </motion.header>
 
         <motion.div
@@ -113,7 +106,7 @@ export function AccreditationsSection({
           viewport={{ once: true, amount: 0.15 }}
           className={cn(
             "overflow-hidden rounded-[2rem] border border-border-2 bg-card",
-            "shadow-[0_1px_2px_0_rgb(0_0_0_/_0.02)]",
+            "shadow-[0_1px_2px_0_rgb(0_0_0/0.02)]",
           )}
         >
           <ul

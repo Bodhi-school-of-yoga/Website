@@ -92,7 +92,7 @@ export function TestimonialsSection({
   return (
     <section
       className={cn(
-        "w-full bg-background py-20 sm:py-24 lg:py-28",
+        "w-full bg-[#FCFCFC] py-20 sm:py-24 lg:py-28",
         className,
       )}
     >

@@ -231,12 +231,10 @@ export function SiteHeader({
             href={ctaHref}
             className={cn(
               "hidden h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[36px] px-8",
-              "bg-brand-shade font-sans text-body-sm font-semibold",
+              "bg-brand-shade hover:bg-[#86d5c4] font-sans text-body-sm font-semibold",
               "text-text-primary transition-[transform,filter,box-shadow] duration-200",
-              "shadow-[0_2px_0_rgba(0,0,0,0.04)]",
-              "hover:-translate-y-0.5 hover:brightness-[1.05] hover:shadow-[0_10px_24px_-12px_rgba(0,0,0,0.25)]",
-              "active:translate-y-0 active:scale-[0.98]",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
+            
+        
               "sm:inline-flex",
             )}
           >

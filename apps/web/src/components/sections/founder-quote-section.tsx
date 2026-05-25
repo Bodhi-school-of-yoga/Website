@@ -1,7 +1,12 @@
-// FounderQuoteSection — full-width pull-quote block featuring a message from Bodhi's founder.
-import * as React from "react";
+"use client";
+
+// FounderQuoteSection — two-column band with founder quote + attribution on the left and portrait image on the right.
+
+
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export type FounderQuoteSectionProps = {
   eyebrow?: string;
@@ -9,35 +14,67 @@ export type FounderQuoteSectionProps = {
   quoteAccent?: string;
   quoteTrail?: string;
   attribution?: string;
-  paragraphs?: string[];
   className?: string;
 };
 
-const DEFAULT_PARAGRAPHS = [
-  "Bodhi is built on a simple idea. Yoga is not a workout, a wellness trend, or a credential. It is a steady, repeatable practice that, over time, returns you to yourself.",
-  "We teach in the lineage of classical hatha and ashtanga, with grounding in the Yoga Sūtras of Patañjali and the Haṭha Pradīpikā. Our teachers come from working practice — not just certification — and our students leave with a discipline they can carry into a class, a clinic, or a quiet morning at home.",
-];
+const HOUSE_EASE = [0.22, 1, 0.36, 1] as const;
+const VIEWPORT = { once: true, margin: "-80px 0px -80px 0px" } as const;
 
 export function FounderQuoteSection({
   eyebrow = "Our practice",
-  quoteLead = "The mat is a place to ",
-  quoteAccent = "meet yourself ",
-  quoteTrail = "honestly, daily, and without performance.",
-  attribution = "— Acharya, founder",
-  paragraphs = DEFAULT_PARAGRAPHS,
+  quoteLead = "When a woman is empowered through yoga, her entire family, community, and ",
+  quoteAccent = "future generations benefit. ",
+  quoteTrail = "",
+  attribution = "—Acharya Ashok, Founder",
   className,
 }: FounderQuoteSectionProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  const rootVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: prefersReducedMotion
+        ? {}
+        : { staggerChildren: 0.08, delayChildren: 0 },
+    },
+  };
+
+  const fadeInUpSoft: Variants = {
+    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 0.5,
+        ease: HOUSE_EASE,
+      },
+    },
+  };
+
+  const fadeInUp: Variants = {
+    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 0.5,
+        ease: HOUSE_EASE,
+      },
+    },
+  };
+
+
   return (
     <section
       className={cn(
-        "w-full bg-background py-20 sm:py-24 lg:py-28",
+        "w-full bg-white py-20 sm:py-24 lg:py-28",
         className,
       )}
     >
       <div
         className={cn(
           "mx-auto grid max-w-[1340px] gap-12 page-px",
-          "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-24",
+          "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:justify-between lg:items-center lg:gap-32",
         )}
       >
         <div className="flex flex-col gap-6">
@@ -55,14 +92,12 @@ export function FounderQuoteSection({
         </div>
 
         <div className="flex flex-col gap-10 sm:gap-12 lg:max-w-[600px]">
-          {paragraphs.map((paragraph, i) => (
-            <p
-              key={i}
-              className="text-subtext-1 leading-[1.7] text-text-tertiary"
-            >
-              {paragraph}
-            </p>
-          ))}
+         <Image
+         src="/images/hero/founder.png"
+         height="500"
+         width="500"
+         alt=""
+         />
         </div>
       </div>
     </section>

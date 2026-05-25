@@ -3,6 +3,7 @@ import * as React from "react";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 export type WhyBodhiSectionProps = {
   heading?: string;
@@ -26,7 +27,7 @@ const DEFAULT_BULLETS = [
 
 export function WhyBodhiSection({
   heading = "Why Bodhi School of Yoga?",
-  subhead = "We Empower Women to Heal, Lead, and Rise—Physically, Emotionally, and Spiritually—through the transformative wisdom of Yoga.",
+  subhead = "Founded in 2014 by Acharya Ashok, Bodhi School of Yoga was created with a simple yet powerful vision: to help people reconnect with themselves through yoga, wellness, and inner awareness. Over the years, Bodhi has evolved into more than a yoga school. It is a space where individuals cultivate balance, clarity, and deeper well-being, whether for personal transformation or as a meaningful path to becoming a yoga teacher. At the heart of the mission is the empowerment of women through yoga. ",
   innerHeading = "What We Stand For",
   bullets = DEFAULT_BULLETS,
   ctaLead = "Whether you're a seeker or a teacher — you belong here.",
@@ -37,7 +38,7 @@ export function WhyBodhiSection({
 }: WhyBodhiSectionProps) {
   return (
     <section
-      className={cn("w-full bg-background py-20 sm:py-24 lg:py-28", className)}
+      className={cn("w-full bg-white py-20 sm:py-24 lg:py-28", className)}
     >
       <div
         className={cn(
@@ -85,12 +86,9 @@ export function WhyBodhiSection({
             </ul>
           </div>
 
-          <div className="mt-2 rounded-lg bg-brand-primary px-6 py-5 text-text-inverse">
-            <p className="text-subtext-2 font-semibold leading-tight">
-              {ctaLead}
-            </p>
-            <p className="mt-1 text-body-sm text-text-inverse/85">{ctaCopy}</p>
-          </div>
+         <p className="flex items-center gap-1 text-text-brand">
+          Learn More <ArrowRight className="h-3 w-3 "/>
+         </p>
         </div>
       </div>
     </section>
