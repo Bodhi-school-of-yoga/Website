@@ -1,0 +1,252 @@
+{
+  "target_node_id": "1:4470",
+  "page_name": "Contact us",
+  "route": "/contact",
+  "viewport": { "width": 1920, "height": 1854 },
+  "tokens_note": "All raw hex/rgba values must map to Bodhi tokens (text-h*, text-mini, text-text-*, bg-surface-*, border-border-*) at build time. See 01_figma_variables.json #note.",
+  "sections": [
+    {
+      "id": "site_header",
+      "order": 0,
+      "figma_node_id": "353:13765",
+      "bbox": { "x": 228, "y": 20, "w": 1464, "h": 56 },
+      "purpose": "Top navigation — instance of existing SiteHeader",
+      "components": [
+        {
+          "proposed_name": "SiteHeader",
+          "file_path": "apps/web/src/components/site-header.tsx",
+          "kind": "reuse-as-is",
+          "classification": "existing-primitive",
+          "props": {},
+          "notes": "Figma shows the canonical header instance with nav items (Teacher Courses, Advanced Certifications, Yoga Courses, Workshops, Our Centers, About Bodhi) and 'Enquire Now' pill. Existing component already matches — no edits."
+        }
+      ]
+    },
+    {
+      "id": "contact_section",
+      "order": 1,
+      "figma_node_id": "1:4599",
+      "bbox": { "x": 261, "y": 168, "w": 1399, "h": 681 },
+      "purpose": "Hero copy block on top + two-column grid (info cards left, enquiry form right) below it",
+      "layout": {
+        "outer": "flex flex-col gap-[41px] items-start, max-w-[1399px], left:261, top:168",
+        "hero_block_width": 892,
+        "row_layout": "flex flex-row gap-[59px] items-start",
+        "left_column_width": 620,
+        "right_column_width": 710,
+        "info_card_gap": 13,
+        "form_field_gap": 21,
+        "form_to_submit_gap": 26
+      },
+      "components": [
+        {
+          "proposed_name": "ContactSection",
+          "file_path": "apps/web/src/components/sections/contact-section.tsx",
+          "kind": "extend",
+          "classification": "existing-section",
+          "extension_needs": [
+            "Header block sits ABOVE the two-column row (not inside the left column) — current implementation nests title/subhead in left column above info cards. Restructure: hero_block (eyebrow + h1 + paragraph, max-w 892px) on its own row, then below it grid[620px | 710px] gap-[59px].",
+            "Hero paragraph max-width should be 892px (full hero block width), not 'max-w-xl' (~576px).",
+            "Title is 'Contact us' (h1, Host Grotesk Bold 60px, leading 58px, tracking -0.56px, color #000) — currently rendered as h2.",
+            "Eyebrow 'NEW SECTION 23 courses' should render uppercase, Manrope SemiBold 12px, tracking 2.42px, color #000 (Figma) — current uses text-text-primary which is fine; verify the token resolves to #000.",
+            "Info card list gap should be 13px (not gap-5 = 20px).",
+            "Row gap between hero block and two-column row should be 41px (not mt-10 = 40px — close, but make explicit).",
+            "Column grid gap should be exactly 59px on lg+ (not 80px / 120px). Update to lg:gap-[59px].",
+            "Right column width is fixed 710px — current `lg:grid-cols-[1fr_710px]` is correct, keep."
+          ],
+          "props": {
+            "eyebrow": "23 courses",
+            "title": "Contact us",
+            "subhead": "Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.",
+            "infoCards": [
+              {
+                "icon": "phone",
+                "label": "MOBILE NUMBER",
+                "value": "+ 91 98703 47348",
+                "href": "tel:+919870347348"
+              },
+              {
+                "icon": "mail",
+                "label": "EMAIL",
+                "value": "info@bodhischoolofyoga.com",
+                "href": "mailto:info@bodhischoolofyoga.com"
+              },
+              {
+                "icon": "map-pin",
+                "label": "OFFICE LOCATION",
+                "value": "6-3-571/1 2, 1st Floor, Rockvista, Rockdale, 6-3-571/1 2, Hyderabad, Telangana-500082",
+                "href": null
+              }
+            ]
+          },
+          "notes": "Keep the (existing) Lucide icon mapping (Phone, Mail, MapPin). Office location is a single string in Figma (no line break) — drop the embedded `\\n` from current defaults."
+        },
+        {
+          "proposed_name": "ContactInfoCard",
+          "file_path": "apps/web/src/components/sections/contact-info-card.tsx",
+          "kind": "extend",
+          "classification": "existing-primitive",
+          "figma_node_id": "1:4611",
+          "extension_needs": [
+            "Card bg #ffffff with backdrop-blur 30.1px, border 1px solid rgba(178,178,178,0.32), radius 23px — map to bg-surface-* / border-border-* tokens. Current card likely uses similar surface but verify radius is rounded-[23px] not rounded-2xl (16px).",
+            "Mobile + Email cards are 84px tall (single-line value); Office card is 117px tall (two-line value). Drive height from content via padding, do not hard-code.",
+            "Icon sits at (22, 30) for 84px cards, (22, 40-ish vertically centered to first line) for office card — icon column 24px wide, gap to text 19px (65 - 22 - 24 = 19).",
+            "Label color #00af88 (NOT #000) — Manrope Regular 12px, tracking 2.42px, uppercase, leading 17px. Make label color prop-driven or hard-code brand mint.",
+            "Value color #000, DM Sans Medium 20px, leading 27px."
+          ],
+          "props": {
+            "icon": "LucideIcon",
+            "label": "string (uppercase)",
+            "value": "string",
+            "href": "string | null"
+          },
+          "count": 3,
+          "notes": "Drives the 3 info cards in the left column. One component, three instances."
+        },
+        {
+          "proposed_name": "ContactForm",
+          "file_path": "apps/web/src/components/sections/contact-form.tsx",
+          "kind": "extend",
+          "classification": "existing-primitive",
+          "figma_node_id": "556:4919",
+          "extension_needs": [
+            "REMOVE lastName field — Figma has only 4 fields: First name, Mobile number, Email, 'What can we help with?'.",
+            "REMOVE message textarea — Figma replaces it with a single-line 'What can we help with?' input (64px height, same as other inputs). Keep the field semantic name `helpWith` (or rename `message` to it).",
+            "Rename phone -> mobile? Keep `phone` key for back-compat but label it 'Mobile number'.",
+            "Add VISIBLE labels above each input (NOT sr-only). Label style: DM Sans Light 16px, color #122e29, 9px gap to input.",
+            "Field gap should be 21px between field groups (current: gap-[21px] — keep).",
+            "Form -> submit gap: 26px (currently the submit is part of the gap-[21px] chain — add explicit margin-top or wrap in flex with gap-[26px] between fields-block and submit).",
+            "Input height 64px (current h-16 = 64px — keep). Radius 18px (current rounded-2xl = 16px — change to rounded-[18px]).",
+            "Input bg rgba(247,247,247,0.82) with backdrop-blur 30.1px (current bg-surface-1 may not match exactly — verify token).",
+            "Input border 1px solid #e4e4e4 (map to border-border-* token).",
+            "Placeholder color #738080, font DM Sans Regular 18px (current uses text-text-tertiary — verify visual).",
+            "Placeholders per Figma: 'Your name' / '+ 91  8123456789' / 'you@example.com' / 'Course details, partnerships, scheduling…'.",
+            "Submit button: full width, h-16, radius 18px, bg #8ee0ce, text color #243a42, font DM Sans SemiBold 16px, label 'Send Message'. Map bg to brand-shade or brand-primary token.",
+            "Validation: drop lastName + message requireds; helpWith is optional in Figma (no asterisk shown) — keep optional."
+          ],
+          "props": {
+            "onSubmit": "(data: ContactFormData) => Promise<void> | void",
+            "fields": ["firstName", "mobile", "email", "helpWith"]
+          },
+          "field_specs": [
+            {
+              "name": "firstName",
+              "label": "First name",
+              "placeholder": "Your name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "mobile",
+              "label": "Mobile number",
+              "placeholder": "+ 91  8123456789",
+              "type": "tel",
+              "required": false
+            },
+            {
+              "name": "email",
+              "label": "Email",
+              "placeholder": "you@example.com",
+              "type": "email",
+              "required": true
+            },
+            {
+              "name": "helpWith",
+              "label": "What can we help with?",
+              "placeholder": "Course details, partnerships, scheduling…",
+              "type": "text",
+              "required": false
+            }
+          ],
+          "submit_button": {
+            "label": "Send Message",
+            "loading_label": "Sending…",
+            "bg_token": "bg-brand-shade",
+            "text_token": "text-brand-dark",
+            "height": 64,
+            "radius": 18
+          },
+          "notes": "Single-line 'What can we help with?' input — Figma's intent is a short subject line, not a long message body. Current ContactForm has a 160px-tall textarea — that must be replaced with a regular input."
+        }
+      ]
+    },
+    {
+      "id": "final_cta",
+      "order": 2,
+      "figma_node_id": "339:9058",
+      "bbox": { "x": 292, "y": 1047, "w": 1337, "h": 306 },
+      "purpose": "Closing CTA on dark teal background — Bodhi wordmark, 'Begin where you are.' headline with italic mint accent, supporting paragraph, 'Try a class, free' pill",
+      "components": [
+        {
+          "proposed_name": "FooterBrandCta",
+          "file_path": "apps/web/src/components/sections/footer-brand-cta.tsx",
+          "kind": "reuse-as-is",
+          "classification": "existing-section",
+          "props": {
+            "wordmark": "Bodhi",
+            "headline_prefix": "Begin where ",
+            "headline_accent": "you are.",
+            "paragraph": "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that.",
+            "cta_label": "Try a class, free",
+            "cta_href": "/classes"
+          },
+          "notes": "Verify the existing component renders these exact strings and the mint italic accent. If props are hard-coded, may need a minor extend to accept overrides — but assume reuse-as-is until builder confirms."
+        }
+      ]
+    },
+    {
+      "id": "footer",
+      "order": 3,
+      "figma_node_id": "339:9003",
+      "bbox": { "x": 0, "y": 948, "w": 1920, "h": 906 },
+      "purpose": "Dark teal site footer — brand column + 3 link columns (School / Visit / Stay close) + copyright row",
+      "components": [
+        {
+          "proposed_name": "SiteFooterBlock",
+          "file_path": "apps/web/src/components/site-footer-block.tsx",
+          "kind": "reuse-as-is",
+          "classification": "existing-section",
+          "props": {},
+          "notes": "Existing component already matches the Figma footer layout. No edits required."
+        }
+      ]
+    }
+  ],
+  "page_assembly": {
+    "file_path": "apps/web/src/app/contact/page.tsx",
+    "structure": [
+      "<SiteHeader />",
+      "<ContactSection eyebrow='23 courses' title='Contact us' subhead={...} infoCards={...} />",
+      "<FooterBrandCta />",
+      "<SiteFooterBlock />"
+    ],
+    "notes": "ContactSection internally renders ContactInfoCard x3 and ContactForm. The page composition only wires the 4 top-level blocks."
+  },
+  "image_assets": {
+    "imgPhoneCallRingingIconlyPro": "https://www.figma.com/api/mcp/asset/3da80acc-9631-4a8f-acb3-69bf5210ffdb",
+    "imgEmailIconlyPro": "https://www.figma.com/api/mcp/asset/82a162df-aace-4c61-9ea9-f99245bcab75",
+    "imgLocation": "https://www.figma.com/api/mcp/asset/7c5a5b61-37c3-4984-abf4-8dff804c74d6",
+    "note": "Figma uses raster icon assets, but the codebase already uses lucide-react (Phone, Mail, MapPin) which is the project-preferred approach. Do NOT download the raster assets — keep Lucide."
+  },
+  "uncertain": [
+    {
+      "figma_node_id": "1:4656",
+      "reason": "'What can we help with?' input is 64px tall in Figma (same as other inputs) but the field's semantic intent suggests a longer message. Confirmed with user-provided context: render as single-line input, NOT a textarea. Resolved.",
+      "resolution": "single-line input"
+    },
+    {
+      "figma_node_id": "339:9058",
+      "reason": "footer-brand-cta.tsx may have hard-coded copy. If the existing copy already matches ('Begin where you are.' + 'Try a class, free'), kind stays reuse-as-is. If not, downgrade to extend."
+    },
+    {
+      "figma_node_id": "1:4604",
+      "reason": "Hero supporting paragraph copy ('Accredited, women-centred teacher training programmes…') reads like a Teacher Training description, not a Contact-page subhead. Possibly placeholder copy reused from another frame. Keep verbatim from Figma — flag for content review post-launch."
+    }
+  ],
+  "section_summary": [
+    { "id": "site_header", "kind": "reuse-as-is", "files_touched": 0 },
+    { "id": "contact_section", "kind": "extend", "files_touched": 3, "files": ["contact-section.tsx", "contact-info-card.tsx", "contact-form.tsx"] },
+    { "id": "final_cta", "kind": "reuse-as-is", "files_touched": 0 },
+    { "id": "footer", "kind": "reuse-as-is", "files_touched": 0 }
+  ]
+}

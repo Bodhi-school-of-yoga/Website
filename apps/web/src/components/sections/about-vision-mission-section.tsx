@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export type VisionMissionCard = {
   eyebrow: string;
-  body: string;
+  body: string | string[];
 };
 
 export type AboutVisionMissionSectionProps = {
@@ -69,9 +69,16 @@ export function AboutVisionMissionSection({
             >
               {vision.eyebrow}
             </h2>
-            <p className="text-body-md leading-relaxed text-text-inverse/85">
-              {vision.body}
-            </p>
+            {(Array.isArray(vision.body) ? vision.body : [vision.body]).map(
+              (paragraph, idx) => (
+                <p
+                  key={idx}
+                  className="text-body-md leading-relaxed text-text-inverse/85"
+                >
+                  {paragraph}
+                </p>
+              ),
+            )}
           </article>
 
           <article
@@ -97,9 +104,16 @@ export function AboutVisionMissionSection({
             >
               {mission.eyebrow}
             </h2>
-            <p className="text-body-md leading-relaxed text-text-tertiary">
-              {mission.body}
-            </p>
+            {(Array.isArray(mission.body) ? mission.body : [mission.body]).map(
+              (paragraph, idx) => (
+                <p
+                  key={idx}
+                  className="text-body-md leading-relaxed text-text-tertiary"
+                >
+                  {paragraph}
+                </p>
+              ),
+            )}
           </article>
         </div>
       </div>

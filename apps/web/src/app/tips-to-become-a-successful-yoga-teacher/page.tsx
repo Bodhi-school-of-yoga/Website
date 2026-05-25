@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { FooterBrandCta } from "@/components/sections/footer-brand-cta";
 import { ListingHero } from "@/components/sections/listing-hero";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
@@ -22,11 +23,10 @@ type Article = {
 const ARTICLES: Article[] = [
   {
     id: "pranayama-nervous-system",
-    title: "Pranayama & the nervous system",
+    title: "Pranayama & the Nervous System",
     imageSrc: "/images/programs/pranayama-nervous-system.jpg",
-    imageAlt: "Pranayama & the nervous system",
+    imageAlt: "Pranayama & the Nervous System",
     href: "/tips/pranayama-nervous-system",
-
   },
   {
     id: "300-hour-ttc-online",
@@ -34,63 +34,55 @@ const ARTICLES: Article[] = [
     imageSrc: "/images/programs/300-hour-yoga-teacher-training-online.jpg",
     imageAlt: "300 Hour Yoga Teacher Training Course — Online",
     href: "/tips/300-hour-ttc-online",
-
   },
   {
     id: "face-yoga-ttc",
-    title: "Face Yoga Teacher Training",
+    title: "Face Yoga Teacher Training Course",
     imageSrc: "/images/programs/face-yoga-teacher-training.jpg",
-    imageAlt: "Face Yoga Teacher Training",
+    imageAlt: "Face Yoga Teacher Training Course",
     href: "/tips/face-yoga-ttc",
   },
   {
     id: "weight-loss-coach",
-    title: "Online Weight Loss Coach Certification",
+    title: "Weight Loss Coach Teacher Training Course",
     imageSrc: "/images/programs/weight-loss-coach-teacher-training.jpg",
-    imageAlt: "Online Weight Loss Coach Certification",
+    imageAlt: "Weight Loss Coach Teacher Training Course",
     href: "/tips/weight-loss-coach",
-
   },
   {
     id: "bala-ttc",
-    title: "Bala Yoga Teacher Training",
+    title: "Bala Yoga Teacher Training Course",
     imageSrc: "/images/programs/bala-yoga-teacher-training.jpg",
-    imageAlt: "Bala Yoga Teacher Training",
+    imageAlt: "Bala Yoga Teacher Training Course",
     href: "/tips/bala-ttc",
   },
   {
     id: "mat-pilates",
-    title: "MAT Pilates Instructor Certification",
+    title: "Mat Pilates Teacher Training Course",
     imageSrc: "/images/programs/mat-pilates-teacher-training.jpg",
-    imageAlt: "MAT Pilates Instructor Certification",
+    imageAlt: "Mat Pilates Teacher Training Course",
     href: "/tips/mat-pilates",
-
   },
-  // TODO: replace with CMS-driven items
+  {
+    id: "mat-pilates-2",
+    title: "Mat Pilates Teacher Training Course",
+    imageSrc: "/images/programs/mat-pilates-teacher-training.jpg",
+    imageAlt: "Mat Pilates Teacher Training Course",
+    href: "/tips/mat-pilates",
+  },
   {
     id: "pranayama-nervous-system-2",
-    title: "Pranayama & the nervous system",
+    title: "Pranayama & the Nervous System",
     imageSrc: "/images/programs/pranayama-nervous-system.jpg",
-    imageAlt: "Pranayama & the nervous system",
+    imageAlt: "Pranayama & the Nervous System",
     href: "/tips/pranayama-nervous-system",
-
   },
-  // TODO: replace with CMS-driven items
   {
     id: "300-hour-ttc-online-2",
     title: "300 Hour Yoga Teacher Training Course — Online",
     imageSrc: "/images/programs/300-hour-yoga-teacher-training-online.jpg",
     imageAlt: "300 Hour Yoga Teacher Training Course — Online",
     href: "/tips/300-hour-ttc-online",
-
-  },
-  // TODO: replace with CMS-driven items
-  {
-    id: "face-yoga-ttc-2",
-    title: "Face Yoga Teacher Training",
-    imageSrc: "/images/programs/face-yoga-teacher-training.jpg",
-    imageAlt: "Face Yoga Teacher Training",
-    href: "/tips/face-yoga-ttc",
   },
 ];
 
@@ -101,9 +93,9 @@ export default function TipsToBecomeASuccessfulYogaTeacherPage() {
       <main>
         <ListingHero
           breadcrumb={[]}
-          eyebrow="23 courses"
-          headline="Tips to become a"
-          headlineAccent="successful yoga teacher"
+          eyebrow="23 Courses"
+          headline="Tips to Become a"
+          headlineAccent="Successful Yoga Teacher"
           accentPosition="end"
           subtitle="Discover essential tips, strategies, and insights to grow as a skilled and confident yoga teacher, whether you're just starting or looking to enhance your teaching career."
           backgroundImage="/images/hero/tips.jpg"
@@ -130,8 +122,15 @@ export default function TipsToBecomeASuccessfulYogaTeacherPage() {
             </ul>
           </div>
         </section>
+        <FooterBrandCta
+          brand="Bodhi"
+          heading="Begin where you are."
+          body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
+          ctaLabel="Try a Class, Free"
+          ctaHref="/try-a-class"
+        />
       </main>
-      <SiteFooterBlock />
+      <SiteFooterBlock showCta={false} />
     </>
   );
 }

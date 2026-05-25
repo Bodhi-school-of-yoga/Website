@@ -1,0 +1,8 @@
+{
+  "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-4470&m=dev",
+  "file_key": "eqaofBeNUhOUISevtRfOpT",
+  "node_id": "1-4470",
+  "target": "Contact Us page (apps/web/src/app/contact/page.tsx + ContactSection + supporting components).",
+  "scope": "Update the Contact Us page to 100% match Figma node 1-4470. Use Bodhi design tokens (text-h*, text-mini, text-text-*, bg-surface-*, border-border-*). Sections expected: Hero (Contact Us + description + '23 Courses' stat), Contact Information (mobile/email/office cards), Contact Form (first name/last name/email/phone/message + Send Message CTA), Final CTA ('Begin where you are.' + 'Try a Class, Free').",
+  "instructions": "Phase 1: fetch Figma node 1-4470. Phase 2-3: decompose + scout — existing files: apps/web/src/app/contact/page.tsx, apps/web/src/components/sections/contact-section.tsx, contact-form.tsx, contact-info-card.tsx, listing-hero.tsx, footer-brand-cta.tsx, site-header.tsx, site-footer-block.tsx. Prefer editing in place rather than creating duplicates. Phase 4-5: implement. Phase 6: visual-QA the /contact route."
+}

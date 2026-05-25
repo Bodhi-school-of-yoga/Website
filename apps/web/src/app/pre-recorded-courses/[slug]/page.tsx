@@ -42,7 +42,7 @@ const freePreviewLessons: VideoLessonCardProps[] = [
   },
   {
     lessonLabel: "Lesson 02",
-    title: "Setting Up Your Practice Safely",
+    title: "Setting Up Your Hammock Safely",
     duration: "18 min",
     level: "Beginner",
     thumbnail: LESSON_THUMB(1),
@@ -54,7 +54,7 @@ const freePreviewLessons: VideoLessonCardProps[] = [
 const module1Lessons: VideoLessonCardProps[] = [
   {
     lessonLabel: "Lesson 03",
-    title: "Understanding Your Body",
+    title: "Understanding Your Body in the Air",
     duration: "22 min",
     level: "Beginner",
     thumbnail: LESSON_THUMB(2),
@@ -63,7 +63,7 @@ const module1Lessons: VideoLessonCardProps[] = [
   },
   {
     lessonLabel: "Lesson 04",
-    title: "First Foundations",
+    title: "First Inversion — Supported Backbend",
     duration: "19 min",
     level: "Beginner",
     thumbnail: LESSON_THUMB(3),
@@ -72,7 +72,7 @@ const module1Lessons: VideoLessonCardProps[] = [
   },
   {
     lessonLabel: "Lesson 05",
-    title: "Recovery & Restoration",
+    title: "Aerial Child's Pose & Recovery",
     duration: "25 min",
     level: "Beginner",
     thumbnail: LESSON_THUMB(4),
@@ -81,7 +81,7 @@ const module1Lessons: VideoLessonCardProps[] = [
   },
   {
     lessonLabel: "Lesson 06",
-    title: "Decompression Flow",
+    title: "Spinal Decompression Flow",
     duration: "28 min",
     level: "Beginner",
     thumbnail: LESSON_THUMB(5),
@@ -93,7 +93,7 @@ const module1Lessons: VideoLessonCardProps[] = [
 const module2Lessons: VideoLessonCardProps[] = [
   {
     lessonLabel: "Lesson 09",
-    title: "Warrior Sequence",
+    title: "Aerial Warrior Sequence",
     duration: "30 min",
     level: "Intermediate",
     thumbnail: LESSON_THUMB(6),
@@ -111,7 +111,7 @@ const module2Lessons: VideoLessonCardProps[] = [
   },
   {
     lessonLabel: "Lesson 11",
-    title: "Core Strength Practice",
+    title: "Core Strength in the Hammock",
     duration: "35 min",
     level: "Intermediate",
     thumbnail: LESSON_THUMB(1),
@@ -120,7 +120,7 @@ const module2Lessons: VideoLessonCardProps[] = [
   },
   {
     lessonLabel: "Lesson 12",
-    title: "Restorative Session",
+    title: "Restorative Aerial Session",
     duration: "27 min",
     level: "Intermediate",
     thumbnail: LESSON_THUMB(2),
@@ -132,7 +132,7 @@ const module2Lessons: VideoLessonCardProps[] = [
 const module3Lessons: VideoLessonCardProps[] = [
   {
     lessonLabel: "Lesson 17",
-    title: "Full Inversion Practice",
+    title: "Full Inversion — Aerial Headstand",
     duration: "38 min",
     level: "Advanced",
     thumbnail: LESSON_THUMB(3),
@@ -141,7 +141,7 @@ const module3Lessons: VideoLessonCardProps[] = [
   },
   {
     lessonLabel: "Lesson 18",
-    title: "Dynamic Flow Sequence",
+    title: "Dynamic Silk Flow Sequence",
     duration: "42 min",
     level: "Advanced",
     thumbnail: LESSON_THUMB(4),
@@ -160,14 +160,14 @@ const module3Lessons: VideoLessonCardProps[] = [
 ];
 
 const includesItems: IncludeItem[] = [
-  { title: "All devices", sub: "Phone, tablet, laptop, TV", iconKey: "devices" },
-  { title: "25 HD video lessons", sub: "8+ hours of expert instruction", iconKey: "video" },
-  { title: "Watch anytime, at your pace", sub: "", iconKey: "clock" },
-  { title: "Downloadable videos", sub: "Learn offline, anywhere", iconKey: "download" },
-  { title: "PDF practice guides", sub: "Notes for every module", iconKey: "pdf" },
-  { title: "Completion certificate", sub: "Shareable on LinkedIn", iconKey: "certificate" },
-  { title: "Community access", sub: "Student WhatsApp group", iconKey: "community" },
-  { title: "Free future updates", sub: "New videos added regularly", iconKey: "sparkles" },
+  { title: "25 HD video lessons", sub: "Lifetime access to all lessons.", iconKey: "video" },
+  { title: "8+ hours of expert instruction", sub: "Watch anytime, at your pace.", iconKey: "clock" },
+  { title: "PDF practice guides", sub: "Notes for every module.", iconKey: "pdf" },
+  { title: "Completion certificate", sub: "Shareable on LinkedIn.", iconKey: "certificate" },
+  { title: "Downloadable videos", sub: "Learn offline, anywhere.", iconKey: "download" },
+  { title: "Community access", sub: "Student WhatsApp group.", iconKey: "community" },
+  { title: "All devices", sub: "Phone, tablet, laptop, TV.", iconKey: "devices" },
+  { title: "Free future updates", sub: "New videos added regularly.", iconKey: "sparkles" },
 ];
 
 export function generateStaticParams() {
@@ -216,7 +216,7 @@ export default async function PreRecordedCourseDetailPage({
           { value: "∞", label: "Access" },
         ]}
         pricing={{
-          eyebrow: "recorded cost",
+          eyebrow: "Recorded Cost",
           priceCurrent: course.price,
           priceOriginal: course.priceStrike,
           discountBadge: course.saveBadge,
@@ -227,7 +227,7 @@ export default async function PreRecordedCourseDetailPage({
             "Certificate on completion",
           ],
           cta: {
-            label: "Buy now and get instant access",
+            label: "Buy Now and Get Instant Access",
             href: "#buy",
           },
           trustNote: "🔒 Secure booking · No hidden charges",
@@ -241,36 +241,36 @@ export default async function PreRecordedCourseDetailPage({
       </div>
 
       <FreePreviewSection
-        title="Free Preview — Watch before you buy"
-        subtitle="2 videos unlocked so you know what to expect"
+        title="Free Preview — Watch Before You Buy"
+        subtitle="2 videos unlocked so you know what to expect."
         lessons={freePreviewLessons}
       />
 
       <UnlockVideosCTA
-        body="The remaining 23 videos unlock with a single one-time payment. Continue your practice anytime."
+        body={`The remaining 23 videos are unlocked after purchase. One-time payment of ${course.price} gives you lifetime access to all lessons.`}
         ctaLabel={`Unlock All 25 Videos — ${course.price}`}
       />
 
       <ModuleSection
         title="Module 1 — Foundations (Lessons 3–8)"
-        subtitle="Core concepts, safe entry and exit, basic inversions"
+        subtitle="Core concepts, safe entry and exit, basic inversions."
         lessons={module1Lessons}
       />
 
       <ModuleSection
         title="Module 2 — Building Confidence (Lessons 9–16)"
-        subtitle="Standing poses, hip openers, strength sequences"
+        subtitle="Standing poses, hip openers, strength sequences."
         lessons={module2Lessons}
       />
 
       <ModuleSection
         title="Module 3 — Advanced Flows (Lessons 17–25)"
-        subtitle="Full inversions, dynamic sequences, teaching techniques"
+        subtitle="Full inversions, dynamic sequences, teaching techniques."
         lessons={module3Lessons}
       />
 
       <CourseIncludesSection
-        title="Everything included in your purchase"
+        title="Everything Included in Your Purchase"
         items={includesItems}
       />
 
@@ -278,7 +278,7 @@ export default async function PreRecordedCourseDetailPage({
         brand="Bodhi"
         heading="Begin where you are."
         body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
-        ctaLabel="Try a class, free"
+        ctaLabel="Try a Class, Free"
         ctaHref="/enquire?intent=try-a-class"
       />
 

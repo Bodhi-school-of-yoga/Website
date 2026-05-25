@@ -19,10 +19,10 @@ export const PRE_RECORDED_COURSES: PreRecordedCourse[] = [
       alt: "Students practising aerial yoga in a sunlit studio",
     },
     description:
-      "Pay once. Access 25 expert-led video lessons at your own pace, forever. From beginner inversions to advanced flows that ease sciatic pain.",
-    price: "₹4,999",
-    priceStrike: "₹9,999",
-    saveBadge: "50% off",
+      "Pay once. Access 25 expert-led video lessons at your own pace, forever. From beginner inversions to advanced flows.",
+    price: "₹499",
+    priceStrike: "₹999",
+    saveBadge: "50% Off",
   },
   {
     slug: "decoding-what-is-prana",
@@ -33,10 +33,10 @@ export const PRE_RECORDED_COURSES: PreRecordedCourse[] = [
       alt: "Yoga teacher guiding a class in pranayama practice",
     },
     description:
-      "A deep dive into prana — what it is, where it lives, and how to direct it. 25 lessons of breath, philosophy and practical pranayama.",
-    price: "₹4,999",
-    priceStrike: "₹9,999",
-    saveBadge: "50% off",
+      "Pay once. Access 25 expert-led video lessons at your own pace, forever. From beginner inversions to advanced flows.",
+    price: "₹499",
+    priceStrike: "₹999",
+    saveBadge: "50% Off",
   },
   {
     slug: "protein-in-indian-diets",
@@ -47,24 +47,24 @@ export const PRE_RECORDED_COURSES: PreRecordedCourse[] = [
       alt: "Yogi in a flowing asana at sunrise",
     },
     description:
-      "Cut through the noise. A grounded, evidence-led 25-lesson course on protein for yogis eating a traditional Indian diet.",
-    price: "₹4,999",
-    priceStrike: "₹9,999",
-    saveBadge: "50% off",
+      "Pay once. Access 25 expert-led video lessons at your own pace, forever. From beginner inversions to advanced flows.",
+    price: "₹499",
+    priceStrike: "₹999",
+    saveBadge: "50% Off",
   },
   {
     slug: "know-about-hatha-yoga",
-    title: "Know about Hatha Yoga",
-    titleLines: ["Know about", "Hatha Yoga"],
+    title: "Know About Hatha Yoga",
+    titleLines: ["Know About", "Hatha Yoga"],
     image: {
       src: "/images/pre-recorded/hatha-yoga.png",
       alt: "Student seated in lotus pose mid-practice",
     },
     description:
-      "Pay once. 25 expert-led lessons in classical Hatha Yoga — pranayama, kriya, asana and the inner anatomy of breath.",
-    price: "₹4,999",
-    priceStrike: "₹9,999",
-    saveBadge: "50% off",
+      "Pay once. Access 25 expert-led video lessons at your own pace, forever. From beginner inversions to advanced flows.",
+    price: "₹499",
+    priceStrike: "₹999",
+    saveBadge: "50% Off",
   },
 ];
 

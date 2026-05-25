@@ -69,17 +69,17 @@ const SHARED_BENEFITS = {
     {
       number: "01",
       title: "The Science of Prana",
-      body: "Understand life force energy and how breath directly controls your mental and physical state.",
+      body: "Understand life force energy and how breath directly controls your mental and physical wellbeing.",
     },
     {
       number: "02",
       title: "Sound as Medicine",
-      body: "Experience how specific frequencies affect brainwave patterns, reduce cortisol, and restore balance.",
+      body: "Experience how specific frequencies affect brainwave patterns, reduce cortisol, and promote relaxation.",
     },
     {
       number: "03",
       title: "Gut-Brain Harmony",
-      body: "Discover the food-mood connection and how the gut microbiome shapes your everyday wellbeing.",
+      body: "Discover the food-mood connection and how nutrition impacts emotional and mental health.",
     },
     {
       number: "04",
@@ -89,12 +89,12 @@ const SHARED_BENEFITS = {
     {
       number: "05",
       title: "Emotional Alchemy",
-      body: "Learn somatic techniques to process and release stored emotions from the body — gently and safely.",
+      body: "Learn somatic techniques to process and release stored emotions from the body.",
     },
     {
       number: "06",
       title: "Integration & Daily Practice",
-      body: "Create your own sustainable 30-day plan using the tools from this workshop, with weekly check-ins.",
+      body: "Create your own sustainable 30-day plan using the tools from this workshop.",
     },
   ],
 };
@@ -148,28 +148,28 @@ const SHARED_FACILITATOR = {
 
 const SHARED_FAQS = [
   {
-    question: "Do I need any prior experience in yoga or meditation?",
+    question: "Do I Need Any Prior Experience in Yoga or Meditation?",
     answer:
       "Absolutely not! This workshop is designed for complete beginners and experienced practitioners alike. Every session is explained from the ground up, and modifications are always offered. The only prerequisite is an open mind and a genuine desire to learn.",
     defaultOpen: true,
   },
   {
-    question: "Will I get a recording if I can't attend live?",
+    question: "Will I Get a Recording if I Can't Attend Live?",
     answer:
       "Yes — every session is recorded and you'll get access to the full replay library for 30 days after the workshop. You can revisit any segment as often as you like during that window.",
   },
   {
-    question: "What do I need to prepare or bring?",
+    question: "What Do I Need to Prepare or Bring?",
     answer:
       "A yoga mat, a cushion or bolster, comfortable clothing, and a notebook. We'll email a short prep guide a week before the workshop so you arrive ready.",
   },
   {
-    question: "Is there a refund policy?",
+    question: "Is There a Refund Policy?",
     answer:
       "We offer a 100% money-back guarantee within 7 days of the workshop date if you feel it wasn't a fit. Just email us and we'll process the refund — no questions asked.",
   },
   {
-    question: "Can I pay in installments or is group pricing available?",
+    question: "Can I Pay in Installments or Is Group Pricing Available?",
     answer:
       "Yes to both. Reach out before booking and we'll set up a two-part payment plan, or share a group discount if you're enrolling 3 or more people together.",
   },
@@ -179,29 +179,29 @@ const WORKSHOPS: Record<string, WorkshopData> = {
   "prana-vidya-level-1-webinar": {
     slug: "prana-vidya-level-1-webinar",
     titleAccent: "Prana Vidya",
-    title: "Level 1 webinar",
+    title: "Level 1 Webinar",
     subtitle:
-      "A transformative journey into traditional healing practices — combining breathwork, sound therapy, and mindful movement",
+      "A transformative journey into traditional healing practices — combining breathwork, sound therapy, and mindful movement.",
     startsAt: "2026-06-07T09:00:00+05:30",
     heroImage: "/images/workshop-detail/hero-bg.png",
     heroImageAlt: "A group of yoga students lying on mats in a sunlit studio",
     attendees: 1,
-    primaryCtaLabel: "Buy a spot",
+    primaryCtaLabel: "Buy a Spot",
     booking: {
-      eyebrow: "Workshop cost",
+      eyebrow: "Workshop Cost",
       price: "200",
       priceStrike: "₹500",
       saveNote: "₹300",
       chips: [
         { emoji: "📅", label: "Saturday, 7 June 2025" },
         { emoji: "⏰", label: "9:00 AM – 5:00 PM IST" },
-        { emoji: "🎥", label: "Live on Zoom + 30-day replay" },
-        { emoji: "📚", label: "Workbook PDF included" },
+        { emoji: "🎥", label: "Live on Zoom + 30-Day Replay" },
+        { emoji: "📚", label: "Workbook PDF Included" },
         { emoji: "🌐", label: "Hindi & English" },
-        { emoji: "👤", label: "Limited to 60 participants" },
+        { emoji: "👤", label: "Limited to 60 Participants" },
       ],
       ctaLabel: "Reserve My Seat Now",
-      guaranteeNote: "🛡️ 100% money-back if you're not satisfied",
+      guaranteeNote: "🛡️ 100% Money-Back if You're Not Satisfied",
     },
   },
   "decoding-what-is-prana": {
@@ -315,9 +315,9 @@ export default async function WorkshopDetailPage({
 
         <FooterBrandCta
           brand="Bodhi"
-          heading="Begin where you are."
-          body="Whether you want to teach, heal a specific thing, or simply move and breathe with"
-          ctaLabel="Try a class, free"
+          heading="Begin Where You Are."
+          body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
+          ctaLabel="Try a Class, Free"
           ctaHref="/try-a-class"
         />
       </main>

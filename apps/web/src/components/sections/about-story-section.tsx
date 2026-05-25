@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export type StoryRow = {
   title: string;
-  body: string;
+  body: string | string[];
   imageSrc: string;
   imageAlt: string;
   direction: "text-left" | "image-left";
@@ -105,9 +105,16 @@ export function AboutStorySection({
                   >
                     {row.title}
                   </h2>
-                  <p className="text-subtext-1 leading-relaxed text-text-tertiary">
-                    {row.body}
-                  </p>
+                  {(Array.isArray(row.body) ? row.body : [row.body]).map(
+                    (paragraph, idx) => (
+                      <p
+                        key={idx}
+                        className="text-subtext-1 leading-relaxed text-text-tertiary"
+                      >
+                        {paragraph}
+                      </p>
+                    ),
+                  )}
                 </div>
               </article>
             );

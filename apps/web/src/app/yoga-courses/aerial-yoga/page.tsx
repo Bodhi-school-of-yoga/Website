@@ -30,7 +30,7 @@ export default function AerialYogaCoursePage() {
         breadcrumb="Home  /  Yoga courses  /  Aerial Yoga Course"
         titleLead="Aerial Yoga"
         titleAccent="Course"
-        subtitle="Master the art of yoga in the air. Build strength, grace, and confidence as you learn aerial yoga sequences using the support of hammocks — a unique and therapeutic practice for all levels."
+        subtitle="Master the art of yoga in the air. Build strength, grace, and confidence while learning to teach this unique style of yoga."
         meta={[
           { icon: "calendar", label: "Sat & Sun" },
           { icon: "location", label: "Studio" },
@@ -46,7 +46,7 @@ export default function AerialYogaCoursePage() {
         items={[
           { label: "Overview", href: "#overview" },
           { label: "Highlights", href: "#highlights" },
-          { label: "Circulum", href: "#curriculum" },
+          { label: "Curriculum", href: "#curriculum" },
           { label: "Eligibility", href: "#pre-requisites" },
           { label: "Overall", href: "#instructors" },
         ]}
@@ -57,8 +57,8 @@ export default function AerialYogaCoursePage() {
           eyebrow="Overview"
           heading="Elevate Your Practice — Literally"
           paragraphs={[
-            "Master the art of yoga in the air with Bodhi's Aerial Yoga Course. Build strength, grace, and confidence while exploring this unique and therapeutic style of practice with the support of aerial hammocks.",
-            "You'll combine traditional yoga postures with graceful aerial movements — learning how inversions decompress the spine, build core stability, and create a deeply healing experience for body and mind.",
+            "Master the art of yoga in the air with our Aerial Yoga Teacher Training Course at Bodhi School of Yoga. Build strength, grace, and confidence while learning how to teach this unique and therapeutic style of yoga using hammock.",
+            "You'll combine traditional yoga postures with graceful aerial movements — learning how inversions decompress the spine, build core stability, and create a deeply healing experience for your future students.",
           ]}
         />
       </RevealOnScroll>
@@ -83,19 +83,19 @@ export default function AerialYogaCoursePage() {
               body: "Inversions decompress the spine and boost flexibility.",
             },
             {
-              icon: "strength",
-              title: "Build Strength",
-              body: "Improve core stability, balance, and control.",
-            },
-            {
               icon: "leaf",
               title: "Therapeutic & Fun",
               body: "Enjoy emotional release through playful, healing practice.",
             },
             {
+              icon: "strength",
+              title: "Build Strength",
+              body: "Improve core stability, balance, and control.",
+            },
+            {
               icon: "technology",
               title: "Teach with an Edge",
-              body: "Gain a unique credential and grow your yoga career with a skill few teachers have.",
+              body: "Gain a unique certification and grow your yoga career with a skill few teachers have.",
             },
             {
               icon: "people",
@@ -135,10 +135,6 @@ export default function AerialYogaCoursePage() {
               title: "Contraindications & Safety",
               body: "Modifications for common conditions.",
             },
-            {
-              title: "Business of Aerial Yoga",
-              body: "Building your brand and classes.",
-            },
           ]}
           nextHref="#pre-requisites"
         />
@@ -152,9 +148,6 @@ export default function AerialYogaCoursePage() {
             "Basic understanding of yoga postures.",
             "Physically fit to perform inversions and aerial movements.",
             "Willingness to explore new boundaries of body and breath.",
-            "Comfortable working with hammocks and at moderate heights.",
-            "Stable health — no recent surgeries or vertigo conditions.",
-            "Open mind and a willingness to play.",
           ]}
           leftImage="/images/courses/aerial-yoga/prereq-left.png"
           rightImage="/images/courses/aerial-yoga/prereq-right.png"
@@ -170,26 +163,26 @@ export default function AerialYogaCoursePage() {
       >
         <InstructorsSection
           eyebrow="Your Guide"
-          heading="Meet Your Instructor's"
+          heading="Meet Your Instructors"
           instructors={[
             {
               name: "Atheesh Kumar",
-              role: "Certified Aerial Yoga Instructor",
+              role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga",
               avatar: "/images/trainers/atheesh-kumar.png",
             },
             {
               name: "Sneha Shankar",
-              role: "Certified Aerial Yoga Instructor",
+              role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga",
               avatar: "/images/trainers/sneha-shankar.png",
             },
             {
               name: "Vijaya Raghavan",
-              role: "Certified Aerial Yoga Instructor",
+              role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga",
               avatar: "/images/trainers/vijayaraghavan.png",
             },
             {
               name: "Prajakta Jadhav",
-              role: "Certified Aerial Yoga Instructor",
+              role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga",
               avatar: "/images/trainers/prajakta-jadhav.png",
             },
           ]}
@@ -209,12 +202,12 @@ export default function AerialYogaCoursePage() {
               defaultOpen: true,
             },
             {
-              question: "Is this course Yoga Alliance recognised?",
+              question: "Is this TTC Yoga Alliance certified?",
               answer:
                 "Bodhi is a Yoga Alliance Registered School (RYS-200, RYS-300). The Aerial Yoga Course counts toward your continuing-education hours.",
             },
             {
-              question: "Will I practice on hammocks during the course?",
+              question: "Will I get to practice on hammocks during training?",
               answer:
                 "Yes — every session is hands-on. You'll practice rigging, transitions, and sequencing on the hammock from day one.",
             },
@@ -231,40 +224,43 @@ export default function AerialYogaCoursePage() {
       <RevealOnScroll as="section" id="more-courses">
         <PopularCoursesSection
           eyebrow="More courses"
-          heading="Lead to more courses from us"
-          subhead="Deepen your practice with another Bodhi programme. Each course is taught by core faculty and grounded in classical lineage."
+          heading="Lead to More Courses From Us"
+          subhead="Deepen your wisdom and elevate your yoga career with our specialized yoga certifications."
           courses={[
             {
               title: "Online Weight Loss Coach Certification",
               image: "/images/programs/weight-loss-coach.png",
               meta: [
-                { icon: "clock", label: "12 weeks" },
+                { icon: "clock", label: "4 weeks" },
                 { icon: "monitor", label: "Online" },
+                { icon: "globe", label: "English" },
               ],
               instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
-              ctaLabel: "Enrol Now",
+              ctaLabel: "View Program",
               ctaHref: "/yoga-courses/aerial-yoga",
             },
             {
               title: "Online Mudra Therapy Yoga Teacher Training",
               image: "/images/programs/mudra-therapy.png",
               meta: [
-                { icon: "clock", label: "8 weeks" },
+                { icon: "clock", label: "2 weeks" },
                 { icon: "monitor", label: "Online" },
+                { icon: "globe", label: "English" },
               ],
               instructor: { initials: "PP", name: "Prarthana Patel" },
-              ctaLabel: "Enrol Now",
+              ctaLabel: "View Program",
               ctaHref: "/yoga-courses/online-300-hour-ytt",
             },
             {
               title: "Online MAT Pilates Instructor Certification",
               image: "/images/programs/mat-pilates.png",
               meta: [
-                { icon: "clock", label: "10 weeks" },
+                { icon: "clock", label: "4 weeks" },
                 { icon: "monitor", label: "Online" },
+                { icon: "globe", label: "English" },
               ],
               instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
-              ctaLabel: "Enrol Now",
+              ctaLabel: "View Program",
               ctaHref: "/yoga-courses/aerial-yoga",
             },
           ]}
@@ -275,9 +271,9 @@ export default function AerialYogaCoursePage() {
         eyebrow="Bodhi"
         headingLead="Begin where"
         headingAccent="you are."
-        subhead="One steady practice, taught with care. Whether you want to teach, heal, or simply breathe with people once a week — there's a door at Bodhi for that."
+        subhead="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
         primaryCta={{
-          label: "Try a class, free",
+          label: "Try a Class, Free",
           href: "/enquire?intent=try-a-class",
         }}
         theme="dark"

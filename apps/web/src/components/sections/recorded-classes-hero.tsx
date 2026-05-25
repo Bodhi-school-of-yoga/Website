@@ -60,7 +60,7 @@ function RecordedClassesHero({
     <section
       className={cn(
         "relative isolate overflow-hidden text-text-inverse",
-        "min-h-[760px] lg:min-h-[900px]",
+        "min-h-[760px] lg:min-h-[993px]",
         className,
       )}
     >
@@ -81,8 +81,8 @@ function RecordedClassesHero({
         <div className="absolute inset-0 bg-black/45" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-[1920px] page-px pt-32 pb-20 lg:pt-32 lg:pb-28">
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_360px] lg:gap-16">
+      <div className="relative mx-auto max-w-[1920px] page-px pt-32 pb-20 lg:pt-[221px] lg:pb-[290px]">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_340px] lg:gap-[122px]">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -95,7 +95,7 @@ function RecordedClassesHero({
 
             <motion.h1
               variants={itemVariants}
-              className="mt-3 text-h1 text-text-inverse"
+              className="mt-[11px] text-h1 text-text-inverse"
             >
               {titleLine1}
               {titleLine2 ? (
@@ -108,14 +108,14 @@ function RecordedClassesHero({
 
             <motion.p
               variants={itemVariants}
-              className="mt-6 max-w-[597px] text-body-md text-text-inverse/80"
+              className="mt-3 max-w-[597px] text-body-md text-text-inverse/80"
             >
               {lede}
             </motion.p>
 
             <motion.div
               variants={itemVariants}
-              className="mt-8 flex flex-wrap gap-3 lg:mt-9"
+              className="mt-8 flex flex-nowrap gap-3 lg:mt-9"
             >
               {stats.map((s, i) => (
                 <StatTile

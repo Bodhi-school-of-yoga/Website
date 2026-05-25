@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
 import { RecordedCoursesHero } from "@/components/sections/recorded-courses-hero";
 import { CourseCard } from "@/components/ui/course-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -40,8 +41,8 @@ export default function PreRecordedCoursesPage() {
         <RecordedCoursesHero
           backgroundImage="/images/pre-recorded/hero-bg.png"
           backgroundAlt="Bodhi students practising in a sunlit studio"
-          eyebrow={`${COURSES.length} courses`}
-          title="Pre recorded courses"
+          eyebrow={`${COURSES.length} Courses`}
+          title="Pre Recorded Courses"
           subtitle="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
         />
 
@@ -56,16 +57,28 @@ export default function PreRecordedCoursesPage() {
                 description={course.description}
                 stats={SHARED_STATS}
                 price="₹499"
-                ctaLabel="Purchase now"
+                ctaLabel="Purchase Now"
                 ctaHref={course.href}
                 cardHref={course.href}
                 countdownTarget={COUNTDOWN_TARGET_ISO}
-                countdownEyebrow="workshop starting in"
+                countdownEyebrow="Workshop starting in"
                 className="w-full max-w-[1308px] mx-auto"
               />
             ))}
           </div>
         </section>
+
+        <ClosingCtaSection
+          eyebrow="Bodhi"
+          headingLead="Begin where"
+          headingAccent="you are."
+          subhead="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
+          primaryCta={{
+            label: "Try a Class, Free",
+            href: "/enquire?intent=try-a-class",
+          }}
+          theme="dark"
+        />
       </main>
       <SiteFooterBlock />
     </>

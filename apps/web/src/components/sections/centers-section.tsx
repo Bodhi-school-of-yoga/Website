@@ -1,11 +1,21 @@
 "use client";
 
-// CentersSection — searchable grid of Bodhi yoga center locations with address and photo cards.
 import * as React from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Search } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+
+import { BODHI_CENTERS, type Center } from "./centers-data";
+
+const CentersMap = dynamic(() => import("./centers-map"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full min-h-[320px] w-full items-center justify-center bg-surface-2 text-text-tertiary">
+      Loading map…
+    </div>
+  ),
+});
 
 export type CentersSectionProps = {
   heading?: string;
@@ -13,24 +23,9 @@ export type CentersSectionProps = {
   pincodePlaceholder?: string;
   pincodeCtaLabel?: string;
   cityLabel?: string;
-  locations?: string[];
-  mapImageSrc?: string;
-  mapImageAlt?: string;
+  centers?: Center[];
   className?: string;
 };
-
-const DEFAULT_LOCATIONS = [
-  "Alwal Hills",
-  "Bachupally",
-  "Bandlaguda",
-  "Beeramguda",
-  "ESI Erragadda",
-  "HSR Layout",
-  "Indiranagar",
-  "Khairatabad Hyderabad",
-  "Raghavendra Nagar Kondapur",
-  "KPHB Hyderabad",
-];
 
 export function CentersSection({
   heading = "Our Centers",
@@ -38,16 +33,29 @@ export function CentersSection({
   pincodePlaceholder = "Enter your pincode to find nearby centers",
   pincodeCtaLabel = "Search",
   cityLabel = "Alwal, Secunderabad, Hyderabad",
-  locations = DEFAULT_LOCATIONS,
-  mapImageSrc = "/images/centers/map-placeholder.jpg",
-  mapImageAlt = "Map of Bodhi centers in Hyderabad",
+  centers = BODHI_CENTERS,
   className,
 }: CentersSectionProps) {
   const [pincode, setPincode] = React.useState("");
+  const [selectedId, setSelectedId] = React.useState<string | null>(
+    centers[0]?.id ?? null,
+  );
+  const [searchError, setSearchError] = React.useState<string | null>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Pincode submitted:", pincode);
+    const query = pincode.trim();
+    if (!query) {
+      setSearchError(null);
+      return;
+    }
+    const match = centers.find((c) => c.pincode === query);
+    if (match) {
+      setSelectedId(match.id);
+      setSearchError(null);
+    } else {
+      setSearchError(`No Bodhi center found for pincode ${query}.`);
+    }
   };
 
   return (
@@ -78,7 +86,7 @@ export function CentersSection({
         <form
           onSubmit={handleSubmit}
           className={cn(
-            "mb-6 lg:mb-8",
+            "mb-2",
             "flex h-[64px] items-center gap-4 rounded-[18px] border border-border-2 bg-surface-1/85 px-6 backdrop-blur-[30px]",
             "lg:h-[72px]",
           )}
@@ -86,11 +94,16 @@ export function CentersSection({
           <Search aria-hidden className="h-5 w-5 text-text-tertiary" />
           <input
             type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             value={pincode}
-            onChange={(event) => setPincode(event.target.value)}
+            onChange={(event) => {
+              setPincode(event.target.value);
+              if (searchError) setSearchError(null);
+            }}
             placeholder={pincodePlaceholder}
             className={cn(
-              "w-full bg-transparent text-subtext-1 text-text-tertiary outline-none",
+              "w-full bg-transparent text-subtext-1 text-text-primary outline-none",
               "placeholder:text-text-tertiary/70",
             )}
           />
@@ -104,6 +117,13 @@ export function CentersSection({
             {pincodeCtaLabel}
           </button>
         </form>
+        <div className="mb-6 min-h-[20px] lg:mb-8">
+          {searchError ? (
+            <p role="alert" className="text-mini text-text-tertiary">
+              {searchError}
+            </p>
+          ) : null}
+        </div>
 
         <div
           className={cn(
@@ -116,33 +136,38 @@ export function CentersSection({
               {cityLabel}
             </p>
             <ul className="mt-4 flex-1 overflow-y-auto">
-              {locations.map((location, index) => (
-                <li key={location}>
-                  <button
-                    type="button"
-                    onClick={() => console.log("Location selected:", location)}
-                    className={cn(
-                      "w-full py-3 text-left text-subtext-2 text-text-secondary",
-                      "transition-colors duration-150 hover:text-text-brand",
-                      index < locations.length - 1
-                        ? "border-b border-sage-divider-soft"
-                        : "",
-                    )}
-                  >
-                    {location}
-                  </button>
-                </li>
-              ))}
+              {centers.map((center, index) => {
+                const isSelected = center.id === selectedId;
+                return (
+                  <li key={center.id}>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedId(center.id)}
+                      aria-pressed={isSelected}
+                      className={cn(
+                        "w-full py-3 text-left text-subtext-2",
+                        "transition-colors duration-150",
+                        isSelected
+                          ? "text-text-brand"
+                          : "text-text-secondary hover:text-text-brand",
+                        index < centers.length - 1
+                          ? "border-b border-sage-divider-soft"
+                          : "",
+                      )}
+                    >
+                      {center.name}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           <div className="relative min-h-[320px] bg-surface-2 lg:min-h-full">
-            <Image
-              src={mapImageSrc}
-              alt={mapImageAlt}
-              fill
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              className="object-cover"
+            <CentersMap
+              centers={centers}
+              selectedId={selectedId}
+              onSelect={setSelectedId}
             />
           </div>
         </div>

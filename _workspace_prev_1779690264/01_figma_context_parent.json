@@ -1,0 +1,17 @@
+{
+  "nodeId": "75:3228",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "kind": "hero-image-asset",
+  "asset_url": "https://www.figma.com/api/mcp/asset/3d62f4d4-4874-498c-b445-9c79ffb439f8",
+  "asset_note": "Photograph of a woman meditating (cross-legged, hands on knees, eyes closed). Used as the right-side hero image on the desktop home page.",
+  "raw_react_snippet": "const imgRectangle161124052 = \"https://www.figma.com/api/mcp/asset/3d62f4d4-4874-498c-b445-9c79ffb439f8\";\n\nexport default function Rectangle161124052() {\n  return (\n    <div className=\"relative size-full\" data-node-id=\"75:3228\">\n      <div className=\"absolute inset-0 overflow-hidden pointer-events-none\">\n        <img alt=\"\" className=\"absolute h-[105%] left-[-93.99%] max-w-none top-[-2.5%] w-[193.99%]\" src={imgRectangle161124052} />\n      </div>\n    </div>\n  );\n}",
+  "intrinsic": {
+    "container_width": 865,
+    "container_height": 952,
+    "image_scale_x_pct": 193.99,
+    "image_scale_y_pct": 105,
+    "image_left_pct": -93.99,
+    "image_top_pct": -2.5,
+    "border_radius": "rounded-rectangle (radius not specified in metadata; visible in screenshot as a soft-corner card)"
+  }
+}

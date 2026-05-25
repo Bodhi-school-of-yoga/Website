@@ -5,8 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ChecklistItem } from "@/components/ui/checklist-item";
 import { cn } from "@/lib/utils";
 
 export type RecordedClassPricingCardProps = {
@@ -21,13 +19,10 @@ export type RecordedClassPricingCardProps = {
 };
 
 /**
- * Page-scoped dark glassmorphic pricing card for the recorded-class hero (Figma 353:10685).
- * Composes Badge (variant='discount'), Button (variant='mint', size='pill'), and
- * ChecklistItem (tone='plain') over a glass surface.
- *
- * Glass surface utilities (rounded-[36px], border-white/20, bg-black/55, backdrop-blur-2xl)
- * are intentionally ad-hoc — flagged in 03_build_plan.json token_decisions_needed
- * (missing `surface-glass-dark` semantic token).
+ * Dark glassmorphic pricing card for the recorded-class hero (Figma 353:10685).
+ * Glass surface (bg rgba(0,0,0,0.54), border white/22%, backdrop-blur 30.1px,
+ * rounded-[36px]) is intentionally ad-hoc — flagged as `surface-glass-dark`
+ * token gap in 03_build_plan.json.
  */
 function RecordedClassPricingCard({
   eyebrow,
@@ -39,53 +34,85 @@ function RecordedClassPricingCard({
   trustNote,
   className,
 }: RecordedClassPricingCardProps) {
+  // Split a price like "₹ 4,99" or "₹4,99" into the currency glyph + amount so the
+  // Figma's "₹ Regular + amount Bold" weight contrast renders correctly.
+  const [currencyChar, ...amountParts] = priceCurrent.trim();
+  const amountStr = amountParts.join("").trim();
+
   return (
     <motion.aside
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.45, ease: "easeOut", delay: 0.2 }}
       className={cn(
-        "w-full max-w-[520px] p-8 sm:p-10",
-        "rounded-[36px] border border-white/20 bg-black/55 backdrop-blur-2xl",
-        "transition-shadow duration-300 ease-out hover:shadow-lg",
+        "w-full lg:w-[340px] lg:h-[482px] overflow-hidden",
+        "rounded-[36px] border border-white/[0.22] bg-black/55 backdrop-blur-[30.1px]",
+        "flex flex-col",
         className,
       )}
     >
-      <p className="text-mini uppercase tracking-widest text-brand-shade">
-        {eyebrow}
-      </p>
+      <div className="px-6 pt-6 pb-[18px]">
+        <p
+          className="text-[12px] font-medium uppercase tracking-[2px] text-brand-shade"
+          style={{ fontFamily: "var(--font-sans, 'SF Pro Display'), system-ui, sans-serif" }}
+        >
+          {eyebrow}
+        </p>
 
-      <div className="mt-2 flex items-baseline gap-3">
-        <span className="text-h3 text-text-inverse">{priceCurrent}</span>
-        {priceOriginal ? (
-          <span className="text-body-sm text-text-inverse/70 line-through">
-            {priceOriginal}
+        <div className="mt-[3px] flex items-baseline gap-[6px] font-heading text-text-inverse">
+          <span className="text-[37.5px] leading-[66px] font-normal">
+            {currencyChar}
           </span>
+          <span className="text-[37.5px] leading-[66px] font-bold">
+            {amountStr}
+          </span>
+        </div>
+
+        {priceOriginal ? (
+          <p className="mt-[2px] text-[14px] leading-none text-text-inverse line-through">
+            {priceOriginal}
+          </p>
         ) : null}
+
         {discountBadge ? (
-          <Badge variant="discount">{discountBadge}</Badge>
+          <Badge
+            variant="discount"
+            className="mt-2 h-[18px] rounded-[4px] px-[5px] text-[12px] font-medium leading-none"
+          >
+            {discountBadge}
+          </Badge>
         ) : null}
       </div>
 
-      <div aria-hidden="true" className="my-7 h-px bg-white/20" />
+      <div aria-hidden="true" className="mx-auto h-px w-[335px] bg-white/[0.15]" />
 
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-[22px] px-6 pt-[22px] pb-[22px] text-text-inverse">
         {benefits.map((label) => (
-          <li key={label}>
-            <ChecklistItem label={label} tone="plain" />
+          <li
+            key={label}
+            className="text-[14px] leading-[23.1px] font-normal"
+          >
+            {label}
           </li>
         ))}
       </ul>
 
-      <div className="mt-6 flex flex-col items-center gap-3">
-        <Button
-          variant="mint"
-          size="pill"
-          className="w-full transition-all duration-200 ease-out hover:brightness-110 hover:shadow-md active:scale-[0.98]"
-          render={<Link href={cta.href}>{cta.label}</Link>}
-        />
+      <div aria-hidden="true" className="mx-auto h-px w-[335px] bg-white/[0.15]" />
+
+      <div className="mt-auto px-6 pt-[18px] pb-[22px]">
+        <Link
+          href={cta.href}
+          className={cn(
+            "flex h-[44px] w-full items-center justify-center rounded-[10px]",
+            "bg-brand-shade px-[15px] text-[15px] font-semibold leading-none",
+            "text-[#243a42] transition-[transform,filter] duration-150",
+            "hover:brightness-110 hover:shadow-md active:scale-[0.98]",
+          )}
+        >
+          {cta.label}
+        </Link>
         {trustNote ? (
-          <p className="text-mini text-text-inverse/60 normal-case tracking-normal text-center">
+          <p className="mt-[14px] text-center text-[12px] leading-[19.8px] text-text-inverse opacity-50">
             {trustNote}
           </p>
         ) : null}

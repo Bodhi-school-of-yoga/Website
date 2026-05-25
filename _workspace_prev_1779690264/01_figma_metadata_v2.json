@@ -1,0 +1,8 @@
+{
+  "nodeId": "1:611",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "kind": "workshop-card (one of 3 sibling cards in a band beneath the hero text). NOT part of the hero headline group — sits in a separate row of CTAs/cards on the homepage.",
+  "frame": { "x": 882, "y": 0, "width": 421, "height": 102 },
+  "siblings": ["1:595 (card 1)", "1:603 (card 2)", "1:611 (card 3 — THIS NODE)"],
+  "raw_metadata_xml": "<frame id=\"1:611\" name=\"Background\" x=\"882\" y=\"0\" width=\"421\" height=\"102\">\n  <frame id=\"1:612\" name=\"Container\" x=\"25\" y=\"0\" width=\"371\" height=\"14\" />\n  <frame id=\"1:613\" name=\"Frame 1171281874\" x=\"25\" y=\"26\" width=\"371\" height=\"55\">\n    <frame id=\"1:614\" name=\"Frame 1171281832\" x=\"0\" y=\"0\" width=\"315\" height=\"55\">\n      <text id=\"1:615\" name=\"wellness workshops\" x=\"0\" y=\"0\" width=\"226\" height=\"17\" />\n      <text id=\"1:616\" name=\"Looking for short Workshops\" x=\"0\" y=\"19\" width=\"313\" height=\"36\" />\n    </frame>\n    <frame id=\"1:617\" name=\"Button\" x=\"327\" y=\"0\" width=\"44\" height=\"44\">\n      <text id=\"1:618\" name=\"→\" x=\"16.5\" y=\"11.5\" width=\"11\height=\"21\" />\n    </frame>\n  </frame>\n</frame>"
+}

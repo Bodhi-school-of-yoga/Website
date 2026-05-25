@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Globe } from "lucide-react";
+import { Clock, Globe, Monitor } from "lucide-react";
 
 import { ListingHero } from "@/components/sections/listing-hero";
 import { ProgramCard } from "@/components/ui/program-card";
@@ -24,9 +24,9 @@ type Course = {
 const UNIQUE_COURSES: Course[] = [
   {
     id: "pranayama-nervous-system",
-    title: "Pranayama & the nervous system",
+    title: "Pranayama & the Nervous System",
     imageSrc: "/images/programs/pranayama-nervous-system.jpg",
-    imageAlt: "Pranayama & the nervous system",
+    imageAlt: "Pranayama & the Nervous System",
     href: "/programs/pranayama-nervous-system",
     instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
   },
@@ -40,45 +40,45 @@ const UNIQUE_COURSES: Course[] = [
   },
   {
     id: "face-yoga-ttc",
-    title: "Face Yoga Teacher Training",
+    title: "Face Yoga Teacher Training Course",
     imageSrc: "/images/programs/face-yoga-teacher-training.jpg",
-    imageAlt: "Face Yoga Teacher Training",
+    imageAlt: "Face Yoga Teacher Training Course",
     href: "/programs/face-yoga-ttc",
     instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
   },
   {
     id: "weight-loss-coach",
-    title: "Online Weight Loss Coach Certification",
+    title: "Weight Loss Coach Teacher Training Course",
     imageSrc: "/images/programs/weight-loss-coach-teacher-training.jpg",
-    imageAlt: "Online Weight Loss Coach Certification",
+    imageAlt: "Weight Loss Coach Teacher Training Course",
     href: "/programs/weight-loss-coach",
     instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
   },
   {
     id: "bala-ttc",
-    title: "Bala Yoga Teacher Training",
+    title: "Bala Yoga Teacher Training Course",
     imageSrc: "/images/programs/bala-yoga-teacher-training.jpg",
-    imageAlt: "Bala Yoga Teacher Training",
+    imageAlt: "Bala Yoga Teacher Training Course",
     href: "/programs/bala-ttc",
     instructor: { initials: "PP", name: "Prarthana Patel" },
   },
   {
     id: "mat-pilates",
-    title: "MAT Pilates Instructor Certification",
+    title: "Mat Pilates Teacher Training Course",
     imageSrc: "/images/programs/mat-pilates-teacher-training.jpg",
-    imageAlt: "MAT Pilates Instructor Certification",
+    imageAlt: "Mat Pilates Teacher Training Course",
     href: "/programs/mat-pilates",
     instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
   },
 ];
 
-// TODO: CMS-driven — duplicate first 3 entries with unique ids until the
+// TODO: CMS-driven — duplicate three entries with unique ids until the
 // Strapi catalogue lands so the listing fills its 3x3 grid per Figma 1:2343.
 const COURSES: Course[] = [
   ...UNIQUE_COURSES,
+  { ...UNIQUE_COURSES[5], id: `${UNIQUE_COURSES[5].id}-dup` },
   { ...UNIQUE_COURSES[0], id: `${UNIQUE_COURSES[0].id}-dup` },
   { ...UNIQUE_COURSES[1], id: `${UNIQUE_COURSES[1].id}-dup` },
-  { ...UNIQUE_COURSES[2], id: `${UNIQUE_COURSES[2].id}-dup` },
 ];
 
 export default function OnlineAdvancedCertificationsPage() {
@@ -113,6 +113,10 @@ export default function OnlineAdvancedCertificationsPage() {
                       {
                         icon: <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />,
                         label: "4 weeks",
+                      },
+                      {
+                        icon: <Monitor className="h-3.5 w-3.5" strokeWidth={1.75} />,
+                        label: "Online",
                       },
                       {
                         icon: <Globe className="h-3.5 w-3.5" strokeWidth={1.75} />,

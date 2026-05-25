@@ -20,7 +20,7 @@ export function TrainersFounderSection({
   name = founder.name,
   pullQuote = founder.pullQuote,
   paragraphs = founder.paragraphs,
-  portrait = "/images/trainers/ashok-vankineni.png",
+  portrait = "/trainers/ashok-vankineni.png",
   portraitAlt = founder.portraitAlt,
   className,
 }: TrainersFounderSectionProps) {

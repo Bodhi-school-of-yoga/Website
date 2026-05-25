@@ -32,7 +32,7 @@ export default function Online300HourYttPage() {
         breadcrumb="Home  /  Yoga courses  /  Online 300 hour yoga teacher training course ryt 300"
         titleLead="Online 300 Hour Yoga Teacher"
         titleAccent="Training — RYT 300"
-        subtitle="Deepen your practice and master the art of teaching with our flagship 300 Hour Yoga Teacher Training Course. Designed for committed yogis, this course refines your skills, expands your knowledge, and prepares you to teach at an advanced level."
+        subtitle="Master the art of yoga in the air. Build strength, grace, and confidence while learning to teach this unique practice."
         meta={[
           { icon: "calendar", label: "Sat & Sun" },
           { icon: "location", label: "Studio" },
@@ -48,7 +48,7 @@ export default function Online300HourYttPage() {
         items={[
           { label: "Overview", href: "#overview" },
           { label: "Highlights", href: "#highlights" },
-          { label: "Circulum", href: "#curriculum" },
+          { label: "Curriculum", href: "#curriculum" },
           { label: "Eligibility", href: "#eligibility" },
           { label: "Overall", href: "#instructors" },
         ]}
@@ -59,8 +59,9 @@ export default function Online300HourYttPage() {
           eyebrow="Overview"
           heading="Deepen Your Practice, Advance Your Teaching"
           paragraphs={[
-            "Our 300 Hour Yoga Teacher Training Course at Bodhi School of Yoga is built for graduates of a 200 Hour YTT who are ready to take their practice and teaching to the next level. Through immersive learning, you'll deepen your understanding of advanced asana, anatomy, philosophy, and teaching methodology.",
-            "You'll gain the confidence to design intelligent classes, work with diverse student populations, and embody yoga as both a science and a way of life. By the end, you'll graduate as a Registered Yoga Teacher (RYT 500) with Yoga Alliance, ready to teach with depth, clarity, and authority.",
+            "The online 300-hour YTT improves a trainer's comprehension of core yoga principles and teachings covered in the RYT200 TTC worldwide yoga certification programme. Our yoga teacher training module equips students with more sophisticated yoga techniques in line with current trends, allowing them to instruct their students with confidence in the future.",
+            "After completing this advanced course, you will be certified as a RYT300 international yoga trainer and will be able to launch a successful career.",
+            "This 300 Hour TTC offered by Bodhi School of Yoga is accredited and recognised by Yoga Alliance. On a journey of self-discovery and profound transformation, our 300-Hour Yoga Teacher Training Course is carefully curated—designed to elevate both your personal practice and teaching skills.",
           ]}
         />
       </RevealOnScroll>
@@ -76,28 +77,28 @@ export default function Online300HourYttPage() {
           items={[
             {
               icon: "yoga",
-              title: "Yoga Meets Insight",
-              body: "Combine traditional yoga with deeper philosophical understanding.",
+              title: "Yoga Meets Flight",
+              body: "Combine traditional poses with graceful aerial movements.",
             },
             {
               icon: "align-center",
-              title: "Refine & Realign",
-              body: "Master alignment, advanced asana, and pranayama techniques.",
+              title: "Relieve & Realign",
+              body: "Inversions decompress the spine and boost flexibility.",
+            },
+            {
+              icon: "leaf",
+              title: "Therapeutic & Fun",
+              body: "Enjoy emotional release through playful, healing practice.",
             },
             {
               icon: "strength",
               title: "Build Strength",
-              body: "Improve core stability, balance, and control in advanced practice.",
-            },
-            {
-              icon: "leaf",
-              title: "Teach with an Edge",
-              body: "Lead intelligent, inclusive classes and gain RYT 500 certification.",
+              body: "Improve core stability, balance, and control.",
             },
             {
               icon: "technology",
-              title: "Therapeutic & Fun",
-              body: "Apply yoga therapy principles and adapt practices to diverse students.",
+              title: "Teach with an Edge",
+              body: "Gain a unique certification and grow your yoga career with a skill few teachers have.",
             },
             {
               icon: "people",
@@ -119,19 +120,23 @@ export default function Online300HourYttPage() {
           items={[
             {
               title: "Rigging Essentials",
-              body: "Advanced sequencing and class design.",
+              body: "How to safely set up and use aerial hammocks.",
             },
             {
               title: "Aerial Sequences",
-              body: "Mastery of advanced asana variations.",
+              body: "Beginner to advanced aerial yoga flows.",
             },
             {
               title: "Teaching Methodology",
-              body: "Adapting yoga for diverse student groups.",
+              body: "Conducting private and group aerial sessions.",
             },
             {
-              title: "Alignment & Anatomy",
-              body: "Functional anatomy applied to teaching.",
+              title: "Alignment & Anatomy in the Air",
+              body: "How aerial postures impact muscles and joints.",
+            },
+            {
+              title: "Contraindications & Safety",
+              body: "Modifications for common conditions.",
             },
           ]}
           nextHref="#eligibility"
@@ -143,14 +148,14 @@ export default function Online300HourYttPage() {
           eyebrow="Eligibility"
           heading="Is This Course Right For You?"
           items={[
-            "200 Hour YTT certificate from a Yoga Alliance accredited school",
-            "Age 18 or older",
-            "Consistent personal practice (6 months post 200 Hr)",
-            "Genuine interest in deepening teaching skills",
-            "Commitment to attend all training hours",
-            "Open mind and readiness to grow personally",
-            "Willingness to engage with anatomy and philosophy",
-            "Stable internet for online sessions",
+            "RYT200 TTC completion from Bodhi or any other institute",
+            "Age group: 18–55 years",
+            "Enthusiastic housewives, fitness trainers, dance instructors, etc.",
+            "Anybody passionate to become a professional yoga instructor",
+            "Anybody who wants to be self employed",
+            "Anybody who wants to become financially independent",
+            "Anybody who is striving to stay in shape",
+            "Anybody who is ardent to serve the society",
           ]}
           leftImage="/images/courses/yoga-300-hour-ytt/eligibility.png"
           rightImage="/images/courses/yoga-300-hour-ytt/eligibility.png"
@@ -165,8 +170,8 @@ export default function Online300HourYttPage() {
           heading="Certification of 300 Hour Yoga Teacher Training"
           panelHeading="Globally Recognised"
           panelParagraphs={[
-            "On successful completion of the programme, you'll receive Bodhi's 300 Hour Yoga Teacher Training certificate — registerable with Yoga Alliance to earn the RYT 500 designation, accepted globally as a mark of advanced teaching credibility.",
-            "Your certificate confirms not just hours of training, but the depth of practice, the breadth of curriculum, and the authority Bodhi-trained teachers carry into every studio they lead.",
+            "Becoming a Yoga Trainer entails dedicating oneself to the Yoga practice. It's all about putting Yoga's philosophy and expertise into practice on a daily basis. The goal is to become a powerful individual who, by their presence, emanates the Yoga philosophy. It is a road of bravery, devotion, and physical and mental self-discipline.",
+            "The goal of the Level 3 Yoga Teacher Training Certification Course is to instil in pupils the spirit of a Yogi. This programme is suitable for active yoga practitioners, and upon completion, participants will get an international yoga teacher certification for RYT300.",
           ]}
         />
       </section>
@@ -176,12 +181,9 @@ export default function Online300HourYttPage() {
           eyebrow="Eligibility"
           heading="Pre-Requisites"
           items={[
-            "Completion of a 200 Hour Yoga Teacher Training from a Yoga Alliance certified school.",
-            "At least 6 months of consistent personal practice after your 200 Hr.",
-            "Commitment to attend all training hours — live and recorded.",
-            "Open mind and willingness to engage with anatomy and philosophy.",
-            "A yoga mat, props, and a quiet practice space.",
-            "Stable internet connection for the online classroom.",
+            "Basic understanding of yoga postures.",
+            "Physically fit to perform inversions and aerial movements.",
+            "Willingness to explore new boundaries of body and breath.",
           ]}
           leftImage="/images/courses/yoga-300-hour-ytt/prereq-left.png"
           rightImage="/images/courses/yoga-300-hour-ytt/prereq-right.png"
@@ -197,26 +199,26 @@ export default function Online300HourYttPage() {
       >
         <InstructorsSection
           eyebrow="Instructors"
-          heading="Meet Your Instructor's"
+          heading="Meet Your Instructors"
           instructors={[
             {
               name: "Atheesh Kumar",
-              role: "Founder & Lead Teacher",
+              role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga",
               avatar: "/images/trainers/atheesh-kumar.png",
             },
             {
-              name: "Sneha Bhandari",
-              role: "Senior Faculty",
+              name: "Sneha Shankar",
+              role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga",
               avatar: "/images/trainers/sneha-shankar.png",
             },
             {
-              name: "Vijay Raghavan",
-              role: "Asana & Philosophy",
+              name: "VijayaRaghavan",
+              role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga",
               avatar: "/images/trainers/vijayaraghavan.png",
             },
             {
-              name: "Prajakta",
-              role: "Anatomy & Alignment",
+              name: "Prajakta Jadhav",
+              role: "Certified Aerial Yoga Instructor · Bodhi School of Yoga",
               avatar: "/images/trainers/prajakta-jadhav.png",
             },
           ]}
@@ -230,25 +232,25 @@ export default function Online300HourYttPage() {
           heading="Frequently Asked Questions"
           items={[
             {
-              question: "Is the 200 Hour YTT a strict requirement?",
+              question: "Do I need prior experience in aerial yoga?",
               answer:
-                "Yes. The 300 Hour course is the second stage of teacher training — without the 200 Hour foundation, advanced material will not land. We can guide you to our 200 Hour course first.",
+                "No prior aerial yoga experience is required. A basic understanding of yoga postures and physical fitness to perform inversions is sufficient to join this course.",
               defaultOpen: true,
             },
             {
-              question: "Can I do this course fully online?",
+              question: "Is this TTC Yoga Alliance certified?",
               answer:
-                "Yes — the programme runs as a hybrid. Live online sessions plus recorded modules. Studio days are optional but recommended.",
+                "Yes — Bodhi School of Yoga is a Yoga Alliance Registered School. Graduates of this 300 Hour TTC can register with Yoga Alliance and earn the RYT 300 / RYT 500 designation.",
             },
             {
-              question: "How is this course assessed?",
+              question: "Will I get to practice on hammocks during training?",
               answer:
-                "Through attendance, a teaching practicum, written reflections on philosophy and anatomy, and a final teach-back assessed by lead faculty.",
+                "Yes — every session is hands-on. You'll practice rigging, transitions, and aerial sequencing on the hammock from day one of the training.",
             },
             {
-              question: "Will I be RYT 500 after this?",
+              question: "Can this course help me start my own aerial yoga classes?",
               answer:
-                "Yes — after submitting your 200 Hr + 300 Hr certificates to Yoga Alliance, you can register as a RYT 500.",
+                "Absolutely. The teaching methodology module covers studio setup, class pricing, marketing, and safety paperwork so you can launch and lead your own aerial classes with confidence.",
             },
           ]}
         />
@@ -258,39 +260,42 @@ export default function Online300HourYttPage() {
         <PopularCoursesSection
           eyebrow="More courses"
           heading="Lead to more courses from us"
-          subhead="Continue your practice with another Bodhi-led training. Each programme is built on the same eight-limbed lineage and taught by our core faculty."
+          subhead="Deepen your wisdom and elevate your yoga career with our specialized yoga certifications."
           courses={[
             {
               title: "Online Weight Loss Coach Certification",
               image: "/images/programs/weight-loss-coach.png",
               meta: [
-                { icon: "clock", label: "12 weeks" },
+                { icon: "clock", label: "4 Weeks" },
                 { icon: "monitor", label: "Online" },
+                { icon: "globe", label: "English" },
               ],
               instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
-              ctaLabel: "Enrol Now",
+              ctaLabel: "View Program",
               ctaHref: "/yoga-courses/online-weight-loss-coach",
             },
             {
               title: "Online Mudra Therapy Yoga Teacher Training",
               image: "/images/programs/mudra-therapy.png",
               meta: [
-                { icon: "clock", label: "8 weeks" },
+                { icon: "clock", label: "2 Weeks" },
                 { icon: "monitor", label: "Online" },
+                { icon: "globe", label: "English" },
               ],
               instructor: { initials: "PP", name: "Prarthana Patel" },
-              ctaLabel: "Enrol Now",
+              ctaLabel: "View Program",
               ctaHref: "/yoga-courses/online-mudra-therapy-ytt",
             },
             {
               title: "Online MAT Pilates Instructor Certification",
               image: "/images/programs/mat-pilates.png",
               meta: [
-                { icon: "clock", label: "10 weeks" },
+                { icon: "clock", label: "4 Weeks" },
                 { icon: "monitor", label: "Online" },
+                { icon: "globe", label: "English" },
               ],
               instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
-              ctaLabel: "Enrol Now",
+              ctaLabel: "View Program",
               ctaHref: "/yoga-courses/online-mat-pilates",
             },
           ]}
@@ -301,10 +306,10 @@ export default function Online300HourYttPage() {
         eyebrow="Bodhi"
         headingLead="Begin where"
         headingAccent="you are."
-        subhead="One steady practice, taught with care. Reserve your seat in the next cohort — your training begins on the mat."
+        subhead="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week—there's a door at Bodhi for that."
         primaryCta={{
-          label: "Reserve Your Spot Now",
-          href: "/enquire?course=online-300-hour-ytt",
+          label: "Try a Class, Free",
+          href: "/enquire?intent=try-a-class",
         }}
         theme="dark"
       />

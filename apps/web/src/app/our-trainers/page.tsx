@@ -2,8 +2,11 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { TrainersHero } from "@/components/sections/trainers-hero";
 import { TrainersPullQuoteBand } from "@/components/sections/trainers-pull-quote-band";
+import { TrainersFounderSection } from "@/components/sections/trainers-founder-section";
+import { TrainersDepartmentHeads } from "@/components/sections/trainers-department-heads";
 import { TrainersMeetAll } from "@/components/sections/trainers-meet-all";
 import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
+import { trainers } from "@/data/trainers";
 
 export const metadata = {
   title: "Our Trainers — Bodhi School of Yoga",
@@ -18,7 +21,13 @@ export default function OurTrainersPage() {
       <main>
         <TrainersHero />
         <TrainersPullQuoteBand />
-        <TrainersMeetAll />
+        <TrainersFounderSection />
+        <TrainersDepartmentHeads />
+        <TrainersMeetAll
+          eyebrow="The Team"
+          title="Meet All Our Trainers"
+          trainers={trainers}
+        />
         <ClosingCtaSection
           theme="light"
           eyebrow="Bodhi"

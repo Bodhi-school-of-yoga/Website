@@ -17,6 +17,6 @@ export const founder: Founder = {
     "He quit the corporate world as a GM in Tata Docomo to dedicate himself fully to yoga, wellness and healing. After studying yoga for many years under various gurus, Ashokji set up Bodhi Yoga to wake others out of their suffering and help them experience the bliss of healing through yoga.",
     "Across more than three decades of practice, Ashokji has trained in the classical Hatha and Raja lineages and apprenticed with masters across India, blending traditional pranayama, asana and meditation with a modern understanding of the body. Through Bodhi School of Yoga, he now mentors a growing community of teachers carrying that lineage forward.",
   ],
-  portrait: "/images/founder/ashok-vankineni.jpg",
+  portrait: "/trainers/ashok-vankineni.png",
   portraitAlt: "Ashok Vankineni, founder of Bodhi School of Yoga",
 };

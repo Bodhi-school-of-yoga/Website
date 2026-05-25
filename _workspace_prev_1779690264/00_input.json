@@ -1,0 +1,15 @@
+{
+  "figma_url_primary": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=75-3228&m=dev",
+  "figma_url_context_nodes": [
+    "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-85&m=dev",
+    "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-611&m=dev",
+    "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-84&m=dev",
+    "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-83&m=dev"
+  ],
+  "file_key": "eqaofBeNUhOUISevtRfOpT",
+  "node_id_primary": "75-3228",
+  "node_ids_context": ["1-85", "1-611", "1-84", "1-83"],
+  "target": "Desktop home page HERO SECTION only",
+  "scope": "Refine the existing apps/web/src/components/sections/hero-section.tsx desktop layout to match Figma. Hero scope only — do not touch other sections. Use Bodhi design tokens (text-h*, text-text-*, bg-surface-*, border-border-*). Group sub-components if Figma layers aren't grouped properly.",
+  "instructions": "Phase 1: fetch hero context from primary node 75-3228 + the four sub-nodes (which represent text/state variants of the hero). Phase 2: decompose hero only. Phase 3: scout existing hero-section.tsx (already implemented) and identify gaps. Phase 4-5: edit hero-section.tsx in place, no new files unless missing sub-component is needed. Phase 6: visual-QA desktop hero only at lg+ widths."
+}

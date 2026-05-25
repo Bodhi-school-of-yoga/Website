@@ -34,7 +34,7 @@ const SHARED_FEATURES = [
   },
   {
     icon: <Clock className={CHIP_ICON_CLASS} strokeWidth={1.75} />,
-    label: "3 days",
+    label: "3 Days",
   },
   {
     icon: <Globe className={CHIP_ICON_CLASS} strokeWidth={1.75} />,
@@ -53,38 +53,38 @@ const WORKSHOPS: WorkshopListItem[] = [
     description: SHARED_DESCRIPTION,
     price: "₹249",
     features: SHARED_FEATURES,
-    startsCaption: "Starts in 3 days",
-    ctaLabel: "Book spot now",
+    startsCaption: "Starts in 3 Days",
+    ctaLabel: "Book Spot Now",
     ctaHref: "/workshops/decoding-what-is-prana",
     cardHref: "/workshops/decoding-what-is-prana",
   },
   {
     id: "protein-in-indian-diets",
-    title: "Protein in indian diets: Myths and Facts",
+    title: "Protein in Indian Diets: Myths and Facts",
     image: {
       src: "/images/workshops/protein-in-indian-diets.png",
-      alt: "Protein in indian diets: Myths and Facts",
+      alt: "Protein in Indian Diets: Myths and Facts",
     },
     description: SHARED_DESCRIPTION,
     price: "₹249",
     features: SHARED_FEATURES,
-    startsCaption: "Starts in 3 days",
-    ctaLabel: "Book spot now",
+    startsCaption: "Starts in 3 Days",
+    ctaLabel: "Book Spot Now",
     ctaHref: "/workshops/protein-in-indian-diets",
     cardHref: "/workshops/protein-in-indian-diets",
   },
   {
     id: "know-about-hatha-yoga",
-    title: "Know about Hatha Yoga",
+    title: "Know About Hatha Yoga",
     image: {
       src: "/images/workshops/know-about-hatha-yoga.png",
-      alt: "Know about Hatha Yoga",
+      alt: "Know About Hatha Yoga",
     },
     description: SHARED_DESCRIPTION,
     price: "₹249",
     features: SHARED_FEATURES,
-    startsCaption: "Starts in 3 days",
-    ctaLabel: "Book spot now",
+    startsCaption: "Starts in 3 Days",
+    ctaLabel: "Book Spot Now",
     ctaHref: "/workshops/know-about-hatha-yoga",
     cardHref: "/workshops/know-about-hatha-yoga",
   },
@@ -98,8 +98,8 @@ const WORKSHOPS: WorkshopListItem[] = [
     description: SHARED_DESCRIPTION,
     price: "₹249",
     features: SHARED_FEATURES,
-    startsCaption: "Starts in 3 days",
-    ctaLabel: "Book spot now",
+    startsCaption: "Starts in 3 Days",
+    ctaLabel: "Book Spot Now",
     ctaHref: "/workshops/yoga-for-sciatica",
     cardHref: "/workshops/yoga-for-sciatica",
   },
@@ -119,7 +119,7 @@ export default function WorkshopsPage() {
           ]}
           headline="Our Workshops"
           subtitle="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
-          resultCount="23 courses"
+          resultCount="23 Courses"
           contentAlign="top"
           minHeightClassName="min-h-[420px] sm:min-h-[480px] lg:min-h-[565px]"
         />
@@ -129,8 +129,8 @@ export default function WorkshopsPage() {
         <FooterBrandCta
           brand="Bodhi"
           heading="Begin where you are."
-          body="Whether you want to teach, heal a specific thing, or simply move and breathe with"
-          ctaLabel="Try a class, free"
+          body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
+          ctaLabel="Try a Class, Free"
           ctaHref="/try-a-class"
         />
       </main>
