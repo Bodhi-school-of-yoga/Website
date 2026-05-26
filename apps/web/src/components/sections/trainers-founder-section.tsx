@@ -20,14 +20,14 @@ export function TrainersFounderSection({
   name = founder.name,
   pullQuote = founder.pullQuote,
   paragraphs = founder.paragraphs,
-  portrait = "/trainers/ashok-vankineni.png",
+  portrait = "/images/trainers/ashok-vankineni2.png",
   portraitAlt = founder.portraitAlt,
   className,
 }: TrainersFounderSectionProps) {
   return (
     <section
       className={cn(
-        "hidden w-full bg-surface-1 page-px py-16 sm:py-20 lg:block lg:py-24",
+        "hidden w-full shadow-2xl bg-surface-1 page-px py-16 sm:py-20 lg:block lg:py-24",
         className,
       )}
     >
@@ -80,7 +80,7 @@ export function TrainersFounderSection({
             src={portrait}
             alt={portraitAlt}
             fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(max-width: 900px) 100vw, 40vw"
             className="object-cover"
           />
         </div>
