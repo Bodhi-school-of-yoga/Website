@@ -3,23 +3,29 @@
   "version": "1.0.0",
   "private": true,
   "description": "Bodhi - Yoga Brand Website (Next.js + Strapi + PostgreSQL)",
-  "workspaces": [
-    "apps/web"
-  ],
   "scripts": {
-    "dev:web": "npm run dev --workspace=apps/web",
-    "dev:cms": "cd apps/cms && npm run develop",
-    "build:web": "npm run build --workspace=apps/web",
-    "build:cms": "cd apps/cms && npm run build",
-    "start:web": "npm run start --workspace=apps/web",
-    "start:cms": "cd apps/cms && npm run start",
-    "lint:web": "npm run lint --workspace=apps/web",
-    "install:cms": "cd apps/cms && npm install"
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=web",
+    "dev:cms": "turbo run dev --filter=cms",
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter=web",
+    "build:cms": "turbo run build --filter=cms",
+    "start": "turbo run start",
+    "start:web": "turbo run start --filter=web",
+    "start:cms": "turbo run start --filter=cms",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "turbo": "^2.0.0"
   },
   "engines": {
     "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "pnpm": ">=9.0.0"
   },
+  "packageManager": "pnpm@9.0.0",
   "dependencies": {
     "@google/design.md": "^0.1.1"
   }

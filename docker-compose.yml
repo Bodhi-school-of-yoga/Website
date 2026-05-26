@@ -23,8 +23,8 @@ services:
   # Strapi CMS
   cms:
     build:
-      context: ./apps/cms
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: docker/cms.Dockerfile
     container_name: bodhi-cms
     restart: unless-stopped
     depends_on:
@@ -52,8 +52,8 @@ services:
   # Next.js Frontend
   web:
     build:
-      context: ./apps/web
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: docker/web.Dockerfile
     container_name: bodhi-web
     restart: unless-stopped
     depends_on:

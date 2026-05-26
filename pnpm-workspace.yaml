@@ -1,0 +1,23 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# Enable strict workspace dependencies
+# This prevents implicit dependencies on workspace packages
+strictPeerDependencies: true
+
+# Configure hoisting behavior
+# Use "public" to hoist dependencies to node_modules/.pnpm
+# This improves performance and reduces duplication
+hoistPattern:
+  - '*'
+
+# Allow specific packages to be built in workspace
+# These packages have native modules that need building
+allowBuilds:
+  '@swc/core': true
+  'core-js-pure': true
+  'esbuild': true
+  'sharp': true
+  'msw': true
+  'unrs-resolver': true
