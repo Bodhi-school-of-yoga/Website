@@ -1,0 +1,208 @@
+[0m[1mrandom_id.bucket_suffix: Refreshing state... [id=2ka8RA][0m
+[0m[1mtls_private_key.deployer: Refreshing state... [id=54e884aaf418f37ecf5bcc665f718824d3d7ae1c][0m
+[0m[1maws_cloudfront_origin_access_control.static_assets: Refreshing state... [id=E2PRH5KTP0UQ0G][0m
+[0m[1mdata.aws_vpc.default: Reading...[0m[0m
+[0m[1mdata.aws_ami.ubuntu: Reading...[0m[0m
+[0m[1maws_key_pair.deployer: Refreshing state... [id=bodhi-cms-deployer-key][0m
+[0m[1maws_s3_bucket.static_assets: Refreshing state... [id=bodhi-cms-static-assets-da46bc44][0m
+[0m[1mdata.aws_ami.ubuntu: Read complete after 0s [id=ami-07b301a23def3266d][0m
+[0m[1mdata.aws_vpc.default: Read complete after 0s [id=vpc-0583506ed29bf2771][0m
+[0m[1maws_security_group.strapi_ec2: Refreshing state... [id=sg-00aaf5f033770aa38][0m
+[0m[1maws_instance.strapi_cms: Refreshing state... [id=i-07fbc8484046d9e11][0m
+[0m[1maws_s3_bucket_public_access_block.static_assets: Refreshing state... [id=bodhi-cms-static-assets-da46bc44][0m
+[0m[1maws_s3_bucket_versioning.static_assets: Refreshing state... [id=bodhi-cms-static-assets-da46bc44][0m
+[0m[1maws_s3_bucket_server_side_encryption_configuration.static_assets: Refreshing state... [id=bodhi-cms-static-assets-da46bc44][0m
+[0m[1maws_cloudfront_distribution.static_assets: Refreshing state... [id=E1HICFWRLV4RBG][0m
+[0m[1maws_s3_bucket_policy.static_assets: Refreshing state... [id=bodhi-cms-static-assets-da46bc44][0m
+[0m[1maws_eip.strapi_cms: Refreshing state... [id=eipalloc-0276203d9e5f85d25][0m
+[0m[1maws_eip_association.strapi_cms: Refreshing state... [id=eipassoc-083a1f37c8f8dc02c][0m
+
+OpenTofu used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [33m~[0m update in-place (current -> planned)[0m
+ [36m<=[0m read (data resources)[0m
+
+OpenTofu will perform the following actions:
+
+[1m  # data.aws_iam_policy_document.s3_public_read[0m will be read during apply
+  # (depends on a resource or a module with changes pending)
+[0m [36m<=[0m[0m data "aws_iam_policy_document" "s3_public_read" {
+      [32m+[0m[0m id            = (known after apply)
+      [32m+[0m[0m json          = (known after apply)
+      [32m+[0m[0m minified_json = (known after apply)
+
+      [32m+[0m[0m statement {
+          [32m+[0m[0m actions   = [
+              [32m+[0m[0m "s3:GetObject",
+            ]
+          [32m+[0m[0m effect    = "Allow"
+          [32m+[0m[0m resources = [
+              [32m+[0m[0m "arn:aws:s3:::bodhi-cms-static-assets-da46bc44/*",
+            ]
+          [32m+[0m[0m sid       = "AllowCloudFrontServicePrincipalRead"
+
+          [32m+[0m[0m condition {
+              [32m+[0m[0m test     = "StringEquals"
+              [32m+[0m[0m values   = [
+                  [32m+[0m[0m "arn:aws:cloudfront::937969735087:distribution/E1HICFWRLV4RBG",
+                ]
+              [32m+[0m[0m variable = "AWS:SourceArn"
+            }
+
+          [32m+[0m[0m principals {
+              [32m+[0m[0m identifiers = [
+                  [32m+[0m[0m "cloudfront.amazonaws.com",
+                ]
+              [32m+[0m[0m type        = "Service"
+            }
+        }
+    }
+
+[1m  # aws_cloudfront_distribution.static_assets[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_cloudfront_distribution" "static_assets" {
+        id                             = "E1HICFWRLV4RBG"
+        tags                           = {
+            "Environment" = "production"
+            "Name"        = "bodhi-cms-cloudfront"
+        }
+        [90m# (21 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m[0m origin {
+          [31m-[0m[0m connection_attempts         = 3 [90m-> null[0m[0m
+          [31m-[0m[0m connection_timeout          = 10 [90m-> null[0m[0m
+          [31m-[0m[0m domain_name                 = "bodhi-cms-static-assets-da46bc44.s3.ap-south-1.amazonaws.com" [90m-> null[0m[0m
+          [31m-[0m[0m origin_access_control_id    = "E2PRH5KTP0UQ0G" [90m-> null[0m[0m
+          [31m-[0m[0m origin_id                   = "bodhi-cms-static-assets-da46bc44" [90m-> null[0m[0m
+          [31m-[0m[0m response_completion_timeout = 0 [90m-> null[0m[0m
+        }
+      [32m+[0m[0m origin {
+          [32m+[0m[0m connection_attempts         = 3
+          [32m+[0m[0m connection_timeout          = 10
+          [32m+[0m[0m domain_name                 = "bodhi-cms-static-assets-da46bc44.s3.ap-south-1.amazonaws.com"
+          [32m+[0m[0m origin_access_control_id    = "E2PRH5KTP0UQ0G"
+          [32m+[0m[0m origin_id                   = "bodhi-cms-static-assets-da46bc44"
+          [32m+[0m[0m response_completion_timeout = (known after apply)
+
+          [32m+[0m[0m s3_origin_config {}
+        }
+
+      [33m~[0m[0m viewer_certificate {
+          [33m~[0m[0m minimum_protocol_version       = "TLSv1" [33m->[0m[0m "TLSv1.2_2021"
+          [32m+[0m[0m ssl_support_method             = "sni-only"
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+
+        [90m# (4 unchanged blocks hidden)[0m[0m
+    }
+
+[1m  # aws_s3_bucket_policy.static_assets[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_s3_bucket_policy" "static_assets" {
+        id     = "bodhi-cms-static-assets-da46bc44"
+      [33m~[0m[0m policy = jsonencode(
+            {
+              [31m-[0m[0m Statement = [
+                  [31m-[0m[0m {
+                      [31m-[0m[0m Action    = "s3:GetObject"
+                      [31m-[0m[0m Condition = {
+                          [31m-[0m[0m StringEquals = {
+                              [31m-[0m[0m "AWS:SourceArn" = "arn:aws:cloudfront::937969735087:distribution/E1HICFWRLV4RBG"
+                            }
+                        }
+                      [31m-[0m[0m Effect    = "Allow"
+                      [31m-[0m[0m Principal = {
+                          [31m-[0m[0m Service = "cloudfront.amazonaws.com"
+                        }
+                      [31m-[0m[0m Resource  = "arn:aws:s3:::bodhi-cms-static-assets-da46bc44/*"
+                      [31m-[0m[0m Sid       = "AllowCloudFrontServicePrincipalRead"
+                    },
+                ]
+              [31m-[0m[0m Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        [90m# (2 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # aws_security_group.strapi_ec2[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_security_group" "strapi_ec2" {
+      [33m~[0m[0m egress                 = [
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_blocks      = [
+                  [31m-[0m[0m "0.0.0.0/0",
+                ]
+              [31m-[0m[0m description      = "Allow all outbound traffic"
+              [31m-[0m[0m from_port        = 0
+              [31m-[0m[0m ipv6_cidr_blocks = []
+              [31m-[0m[0m prefix_list_ids  = []
+              [31m-[0m[0m protocol         = "-1"
+              [31m-[0m[0m security_groups  = []
+              [31m-[0m[0m self             = false
+              [31m-[0m[0m to_port          = 0
+            },
+          [32m+[0m[0m {
+              [32m+[0m[0m cidr_blocks      = [
+                  [32m+[0m[0m "0.0.0.0/0",
+                ]
+              [32m+[0m[0m description      = "Allow HTTP traffic"
+              [32m+[0m[0m from_port        = 80
+              [32m+[0m[0m ipv6_cidr_blocks = []
+              [32m+[0m[0m prefix_list_ids  = []
+              [32m+[0m[0m protocol         = "tcp"
+              [32m+[0m[0m security_groups  = []
+              [32m+[0m[0m self             = false
+              [32m+[0m[0m to_port          = 80
+            },
+          [32m+[0m[0m {
+              [32m+[0m[0m cidr_blocks      = [
+                  [32m+[0m[0m "0.0.0.0/0",
+                ]
+              [32m+[0m[0m description      = "Allow HTTPS traffic"
+              [32m+[0m[0m from_port        = 443
+              [32m+[0m[0m ipv6_cidr_blocks = []
+              [32m+[0m[0m prefix_list_ids  = []
+              [32m+[0m[0m protocol         = "tcp"
+              [32m+[0m[0m security_groups  = []
+              [32m+[0m[0m self             = false
+              [32m+[0m[0m to_port          = 443
+            },
+          [32m+[0m[0m {
+              [32m+[0m[0m cidr_blocks      = [
+                  [32m+[0m[0m "0.0.0.0/0",
+                ]
+              [32m+[0m[0m description      = "Allow PostgreSQL to Supabase"
+              [32m+[0m[0m from_port        = 5432
+              [32m+[0m[0m ipv6_cidr_blocks = []
+              [32m+[0m[0m prefix_list_ids  = []
+              [32m+[0m[0m protocol         = "tcp"
+              [32m+[0m[0m security_groups  = []
+              [32m+[0m[0m self             = false
+              [32m+[0m[0m to_port          = 5432
+            },
+          [32m+[0m[0m {
+              [32m+[0m[0m cidr_blocks      = [
+                  [32m+[0m[0m "0.0.0.0/0",
+                ]
+              [32m+[0m[0m description      = "Allow all other outbound traffic"
+              [32m+[0m[0m from_port        = 0
+              [32m+[0m[0m ipv6_cidr_blocks = []
+              [32m+[0m[0m prefix_list_ids  = []
+              [32m+[0m[0m protocol         = "-1"
+              [32m+[0m[0m security_groups  = []
+              [32m+[0m[0m self             = false
+              [32m+[0m[0m to_port          = 0
+            },
+        ]
+        id                     = "sg-00aaf5f033770aa38"
+        name                   = "bodhi-cms-strapi-ec2"
+        tags                   = {
+            "Environment" = "production"
+            "Name"        = "bodhi-cms-strapi-ec2"
+        }
+        [90m# (8 unchanged attributes hidden)[0m[0m
+    }
+
+[1mPlan:[0m 0 to add, 3 to change, 0 to destroy.
+[0m[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Note: You didn't use the -out option to save this plan, so OpenTofu can't
+guarantee to take exactly these actions if you run "tofu apply" now.
