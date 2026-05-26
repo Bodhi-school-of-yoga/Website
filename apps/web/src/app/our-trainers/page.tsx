@@ -28,7 +28,7 @@ export default function OurTrainersPage() {
           title="Meet All Our Trainers"
           trainers={trainers}
         />
-        <ClosingCtaSection
+        {/* <ClosingCtaSection
           theme="light"
           eyebrow="Bodhi"
           headingLead="Begin where"
@@ -55,9 +55,9 @@ export default function OurTrainersPage() {
               href: "/paths",
             },
           ]}
-        />
+        /> */}
       </main>
-      <SiteFooterBlock showCta={false} />
+      <SiteFooterBlock  />
     </>
   );
 }

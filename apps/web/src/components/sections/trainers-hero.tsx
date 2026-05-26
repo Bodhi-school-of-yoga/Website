@@ -48,22 +48,13 @@ export function TrainersHero({
       />
 
       <div className="relative mx-auto flex w-full max-w-[860px] flex-col items-center page-px text-center">
-        <p
-          className={cn(
-            "text-mini uppercase tracking-[0.16em]",
-            "text-text-tertiary md:text-text-mint-pale",
-          )}
-        >
-          <span lang="hi">{eyebrowDevanagari}</span>
-          <span aria-hidden="true"> · </span>
-          <span>{eyebrowEnglish}</span>
-        </p>
+       
 
         <h1
           className={cn(
-            "mt-3 sm:mt-4 font-heading font-light italic",
+            "mt-3 sm:mt-4 font-heading font-light",
             "text-text-brand-deep md:text-text-inverse",
-            "text-[44px] leading-[1.05] sm:text-[64px] md:text-[80px] lg:text-[96px]",
+            "text-[44px] tracking-tighter sm:text-[64px] md:text-[80px] lg:text-[96px]",
           )}
         >
           {headline}
@@ -71,7 +62,7 @@ export function TrainersHero({
 
         <p
           className={cn(
-            "mt-4 sm:mt-5 max-w-[640px]",
+            "mt-4 sm:mt-3 max-w-[640px]",
             "text-text-primary md:text-text-inverse",
             "text-body-md sm:text-subtext-1 leading-[1.6]",
           )}
@@ -84,8 +75,8 @@ export function TrainersHero({
           className={cn(
             "mt-6 sm:mt-7 inline-flex items-center justify-center rounded-full",
             "bg-brand-primary text-text-inverse",
-            "px-[22px] py-[12px] sm:px-6 sm:py-[14px]",
-            "text-body-sm font-semibold",
+            "px-[22px] py-[12px] sm:px-9 sm:py-[14px]",
+            "text-[15px] font-medium",
             "transition-all duration-200",
             "hover:brightness-105 hover:shadow-[0_12px_36px_-12px_rgba(0,152,119,0.4)]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60 focus-visible:ring-offset-2",

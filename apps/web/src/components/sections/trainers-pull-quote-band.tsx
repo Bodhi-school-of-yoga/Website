@@ -1,6 +1,8 @@
 // TrainersPullQuoteBand — dark-green band with oversized italic Fraunces opening-quote glyph,
 // body quote, and attribution. Single responsive layout that scales from mobile to desktop.
 import { cn } from "@/lib/utils";
+import { Quote } from "lucide-react";
+import Image from "next/image";
 
 export type TrainersPullQuoteBandProps = {
   quote?: string;
@@ -16,32 +18,66 @@ export function TrainersPullQuoteBand({
   return (
     <section
       className={cn(
-        "relative w-full bg-brand-green-deep text-text-inverse",
+        "relative w-full bg-[#003E22] text-text-inverse",
         "py-12 sm:py-16 lg:py-20",
         className,
       )}
     >
-      <div className="relative mx-auto flex w-full max-w-[1100px] flex-col items-start page-px">
-        <span
-          aria-hidden="true"
-          className={cn(
-            "font-heading italic font-normal leading-none select-none pointer-events-none",
-            "text-[80px] sm:text-[120px] lg:text-[160px]",
-            "text-text-mint-pale",
-          )}
-        >
-          &ldquo;
-        </span>
+      <div className="relative mx-auto flex w-full max-w-[1100px] flex-col items-start page-px ">
 
+<div className="ml-32">
         <p
           className={cn(
-            "mt-2 sm:mt-4 max-w-[820px] font-heading italic font-normal",
+            "flex  font-heading  font-normal",
             "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
             "text-text-inverse",
           )}
         >
-          {quote}
+
+          <span className="flex  items-center text-[#B4FFEF]">
+            Yoga is not just a series of poses and techniques.
+            <Image
+              src="/comma1.svg"
+              height="100"
+              width="40"
+              alt=""
+            />
+          </span>
+
+
+
+
         </p>
+        <p
+          className={cn(
+            "flex  font-heading  font-normal",
+            "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
+            "text-text-inverse",
+          )}
+        >
+          It is a lifestyle to be pursued day in and day out.
+
+        </p>
+        <p
+          className={cn(
+            "flex  font-heading  font-normal",
+            "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
+            "text-text-inverse",
+          )}
+        >
+          <Image
+            src="/comma2.svg"
+            height="100"
+            width="40"
+            alt=""
+          />
+          <span className="ml-5">
+            In this, our teachers lead by example
+          </span>
+        </p>
+       
+
+
 
         <p
           className={cn(
@@ -52,6 +88,7 @@ export function TrainersPullQuoteBand({
         >
           {attribution}
         </p>
+        </div>
       </div>
     </section>
   );
