@@ -37,33 +37,38 @@ output "s3_bucket" {
 }
 
 output "deployment_instructions" {
-  description = "Deployment Instructions"
+  description = "Complete Deployment Instructions"
   value       = <<-EOT
-    ## Deploy Strapi CMS to EC2
+    ## 🚀 Deploy Strapi CMS to EC2
 
-    1. Save SSH key:
-       terraform output ssh_private_key > deployer-key.pem
-       chmod 400 deployer-key.pem
+    ### 1. Initial Setup
+    terraform output ssh_private_key > deployer-key.pem
+    chmod 400 deployer-key.pem
+    export EC2_IP=$(terraform output ec2_public_ip | tr -d '"')
 
-    2. Connect to EC2:
-       ${aws_eip.strapi_cms.public_ip}
-       ssh -i deployer-key.pem ubuntu@${aws_eip.strapi_cms.public_ip}
+    ### 2. Deploy App via SCP
+    scp -i deployer-key.pem -r ../../apps/cms ubuntu@$EC2_IP:/home/ubuntu/apps/
+    ssh -i deployer-key.pem ubuntu@$EC2_IP
+    cd /home/ubuntu/apps/cms
+    npm install && npm run build
 
-    3. Deploy Strapi app from ./apps/cms/:
-       scp -i deployer-key.pem -r ./apps/cms ubuntu@${aws_eip.strapi_cms.public_ip}:/home/ubuntu/
-       ssh -i deployer-key.pem ubuntu@${aws_eip.strapi_cms.public_ip}
-       cd /home/ubuntu/cms
-       npm install
-       npm run build
-       pm2 start npm --name "strapi" -- start
-       pm2 save
+    ### 3. Configure Environment
+    nano /home/ubuntu/apps/cms/.env
+    # Add Supabase credentials and Strapi config
 
-    4. Restart from local:
-       ssh -i deployer-key.pem ubuntu@${aws_eip.strapi_cms.public_ip} "pm2 restart strapi"
+    ### 4. Start with PM2
+    pm2 start npm --name "strapi" -- start
+    pm2 save
 
-    5. View logs:
-       ssh -i deployer-key.pem ubuntu@${aws_eip.strapi_cms.public_ip} "pm2 logs strapi"
+    ### 5. Access Strapi
+    http://$EC2_IP:1337/admin
 
-    6. Strapi URL: http://${aws_eip.strapi_cms.public_ip}:1337
+    ## 🔄 Quick Commands (from local)
+    # Restart: ssh -i deployer-key.pem ubuntu@$EC2_IP "pm2 restart strapi"
+    # Logs:    ssh -i deployer-key.pem ubuntu@$EC2_IP "pm2 logs strapi"
+    # Status:  ssh -i deployer-key.pem ubuntu@$EC2_IP "pm2 status"
+
+    ## 📚 Full Guide
+    See: scripts/deployment-instructions.md
     EOT
 }
