@@ -8,7 +8,7 @@ applications:
           commands:
             - nvm use 24
             - npm install -g pnpm@11.1.0
-            - pnpm install --no-frozen-lockfile
+            - pnpm install
         build:
           commands:
             - pnpm run build:web
