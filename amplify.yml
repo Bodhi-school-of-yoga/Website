@@ -15,6 +15,12 @@ applications:
             - export CI=true
             - pnpm install --frozen-lockfile
             - pnpm build:web
+            - cd apps/web
+            - mkdir -p .next/standalone/apps/web/.next/static
+            - cp -r .next/static/* .next/standalone/apps/web/.next/static/ || true
+            - mkdir -p .next/standalone/apps/web/public
+            - cp -r public/* .next/standalone/apps/web/public/ || true
+            - cd ../..
       artifacts:
         baseDirectory: .next/standalone/apps/web
         files:
