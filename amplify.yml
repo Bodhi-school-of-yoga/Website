@@ -12,6 +12,8 @@ applications:
         build:
           commands:
             - pnpm run build:web
+            - cp -r node_modules apps/web/.next/standalone/
+            - cp -r apps/web/node_modules apps/web/.next/standalone/apps/web/
       artifacts:
         baseDirectory: apps/web/.next
         files:
