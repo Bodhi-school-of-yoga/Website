@@ -51,13 +51,7 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
     href: "/workshops",
     buttonColor: "#009877",
   },
-  {
-    eyebrow:"Yoga Therapies",
-    label:"Looking for relief from lifestyle diseases",
-    href:"",
-    buttonColor: "#009877",
-
-  }
+  
 ];
 
 const DEFAULTS = {
@@ -288,8 +282,8 @@ function HeroOfferRow({
       </p>
       <ul
         className={cn(
-          "grid grid-cols-4",
-          "gap-(--hero-chips-gap)",
+          "grid grid-cols-3 ",
+          "gap-4",
           "max-w-(--hero-chips-max-w)",
         )}
       >
@@ -325,7 +319,7 @@ function HeroMobile({
         className={cn(
           "mx-auto w-full max-w-[720px]",
           "px-5 sm:px-8",
-          "pt-16 pb-10 sm:pt-20",
+          "pt-16 pb-10 sm:pt-20 mt-7",
         )}
       >
         <p
@@ -343,7 +337,7 @@ function HeroMobile({
             "mt-4 font-heading",
             "text-h5 leading-[1.15]",
             "sm:text-h4 sm:leading-[1.1]",
-            "md:text-h3",
+            "md:text-h3 ",
           )}
         >
           <span className="text-text-primary">{headlineLead}</span>
@@ -360,16 +354,7 @@ function HeroMobile({
           {subcopy}
         </p>
 
-        <div className="relative mt-8 aspect-[4/5] w-full overflow-hidden rounded-[24px]">
-          <Image
-            src={photoSrc}
-            alt={photoAlt}
-            fill
-            priority 
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-        </div>
+     
 
         <div className="mt-10">
           <p
@@ -413,9 +398,9 @@ function HeroOfferChipCard({
       href={offer.href}
       className={cn(
         // layout
-        "group flex items-center justify-between gap-3",
+        "group flex items-center justify-between gap-6",
         isDesktop
-          ? "h-[var(--hero-chip-h)] min-h-[80px] px-[var(--hero-chip-px)]"
+          ? "h-[var(--hero-chip-h)] min-h-[80px] px-3"
           : "min-h-[88px] px-[22px] py-3",
         // shape + surface
         "rounded-[1.3rem]",

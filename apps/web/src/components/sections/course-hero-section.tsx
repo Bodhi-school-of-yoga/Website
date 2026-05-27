@@ -9,7 +9,7 @@ import { CalendarDays, MapPin, Clock, Globe } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
-import { Breadcrumb, type BreadcrumbItem } from "@/components/ui/breadcrumb";
+import { SimpleBreadcrumb, type BreadcrumbItemData as BreadcrumbItem } from "@/components/ui/breadcrumb";
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   calendar: <CalendarDays className="h-6 w-6" strokeWidth={1.75} />,
@@ -109,7 +109,7 @@ export function CourseHeroSection({
           <div className="flex flex-col lg:flex-1 lg:max-w-[640px]">
             <motion.div initial="hidden" animate="show" variants={fadeInUp}>
               {isBreadcrumbArray ? (
-                <Breadcrumb items={breadcrumb} tone="light" separator="slash" />
+                <SimpleBreadcrumb items={breadcrumb} tone="light" separator="slash" />
               ) : (
                 <p className="text-mini text-text-tertiary">{breadcrumb}</p>
               )}
@@ -168,9 +168,9 @@ export function CourseHeroSection({
               <Link
                 href={ctaHref}
                 className={cn(
-                  "inline-flex items-center justify-center rounded-lg px-8 py-3.5",
+                  "inline-flex items-center justify-center rounded-xl px-8 py-2.5",
                   "bg-brand-primary text-text-inverse",
-                  "text-subtext-3 font-semibold",
+                  "text-sm font-semibold",
                   "transition-opacity duration-200 hover:opacity-90",
                   "active:scale-[0.98] motion-safe:transition-transform",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
@@ -211,7 +211,7 @@ export function CourseHeroSection({
           <motion.div
             className={cn(
               "relative w-full overflow-hidden rounded-2xl bg-surface-2",
-              "aspect-[4/5]",
+           
               "lg:w-[44%] lg:max-w-[520px] lg:shrink-0",
             )}
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
@@ -225,8 +225,10 @@ export function CourseHeroSection({
             <Image
               src={heroImage}
               alt={`${titleLead} ${titleAccent}`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 44vw"
+             height={600}
+             width={520}
+
+              
               className="object-cover"
               priority
             />

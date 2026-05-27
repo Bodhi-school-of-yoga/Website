@@ -95,10 +95,7 @@ export default function HomePage() {
         <SanskritMarqueeStrip />
         <FounderQuoteSection />
         <ExperienceHarmonyStatsBand />
-        {/* <WhatWeDoSection /> */}
         <WhyBodhiSection />
-     
-        {/* <WhatWeDoSection /> */}
         <ProgramsGridSection />
         <AccreditationsSection
           heading="We are recognised across the world"

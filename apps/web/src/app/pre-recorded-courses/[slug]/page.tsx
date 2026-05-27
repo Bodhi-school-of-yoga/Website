@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { RecordedClassesHero } from "@/components/sections/recorded-classes-hero";
-import type { BreadcrumbItem } from "@/components/ui/breadcrumb";
+import type { BreadcrumbItemData as BreadcrumbItem } from "@/components/ui/breadcrumb";
 import { FilterChipBar } from "@/components/ui/filter-chip-bar";
 import { FreePreviewSection } from "@/components/sections/free-preview-section";
 import { UnlockVideosCTA } from "@/components/sections/unlock-videos-cta";

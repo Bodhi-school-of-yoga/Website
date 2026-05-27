@@ -85,7 +85,9 @@ export function SiteFooter({
           className={cn(
             "grid gap-8 sm:gap-10",
             "grid-cols-1 sm:grid-cols-2",
-            "md:grid-cols-[1.5fr_1fr_1fr_1fr]",
+            address
+              ? "md:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]"
+              : "md:grid-cols-[1.3fr_1fr_1fr_1fr]",
           )}
         >
           {/* Brand column */}

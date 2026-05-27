@@ -69,7 +69,13 @@ export function TestimonialCard({
               "font-heading text-[5.5rem] leading-none text-brand-primary/90",
             )}
           >
-            &rdquo;
+           <Image 
+           src="/comma3.svg"
+           alt="Decorative quote"
+           width={88}
+           height={88}
+
+          />
           </motion.span>
         )}
 

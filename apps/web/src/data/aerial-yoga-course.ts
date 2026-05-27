@@ -13,7 +13,7 @@
 //   7. /contact                         (ClosingCtaSection card 2)
 //   8. /assessment                      (ClosingCtaSection card 3)
 
-import type { BreadcrumbItem } from "@/components/ui/breadcrumb";
+import type { BreadcrumbItemData as BreadcrumbItem } from "@/components/ui/breadcrumb";
 import type { CourseSectionNavItem } from "@/components/sections/course-section-nav";
 import type { CourseMetaItem } from "@/components/sections/course-hero-section";
 

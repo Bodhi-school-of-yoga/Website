@@ -32,7 +32,7 @@ const COUNTDOWN_TARGET_ISO = new Date(
 const SHARED_FEATURES = [
   {
     icon: <Calendar className={CHIP_ICON_CLASS} strokeWidth={1.75} />,
-    label: "Sat & Sun",
+    label: "Starts Dec 12",
   },
   {
     icon: <MapPin className={CHIP_ICON_CLASS} strokeWidth={1.75} />,

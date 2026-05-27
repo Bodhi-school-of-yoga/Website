@@ -139,7 +139,7 @@ function CourseCard(props: CourseCardProps) {
       variants={prefersReducedMotion ? undefined : containerVariants}
       {...motionProps}
       className={cn(
-        "group/card relative flex w-full sm:w-[1308px] min-h-[260px] overflow-hidden rounded-[20px] sm:rounded-[24px]",
+        "group/card relative flex w-full  min-h-[260px] overflow-hidden rounded-[20px] sm:rounded-[24px]",
         "flex-col sm:flex-row",
         "bg-surface-1 border border-border-3/60",
         "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md",
@@ -160,7 +160,7 @@ function CourseCard(props: CourseCardProps) {
       {/* Left half: hero photo — self-stretches to match card height */}
       <motion.div
         variants={prefersReducedMotion ? undefined : itemVariants}
-        className="relative w-full h-[220px] sm:h-auto sm:w-[288px] shrink-0 self-stretch"
+        className="relative w-full h-[220px] sm:h-auto sm:w-[340px] shrink-0 self-stretch"
       >
         <Image
           src={image.src}
@@ -173,9 +173,9 @@ function CourseCard(props: CourseCardProps) {
       </motion.div>
 
       {/* Right column: flex column so chips, CTA and timer never collide */}
-      <div className="relative z-[1] flex flex-1 flex-col px-5 py-5 sm:px-6 sm:py-5 lg:px-7 lg:py-6">
+      <div className="relative z-10 flex flex-1 flex-col px-5 py-5 sm:px-6 sm:py-5 lg:px-7 lg:py-6">
         {/* Top row: title + price column */}
-        <div className="flex items-start justify-between gap-6">
+        <div className="flex items-start justify-between gap-4">
           <motion.h3
             variants={prefersReducedMotion ? undefined : itemVariants}
             transition={
@@ -184,39 +184,14 @@ function CourseCard(props: CourseCardProps) {
                 : { duration: 0.4, ease: "easeOut", delay: 0.06 }
             }
             style={{ lineHeight: 1 }}
-            className="font-heading font-bold text-h4 text-text-primary max-w-[520px]"
+            className="font-heading font-bold text-[28px] text-text-primary max-w-[520px]"
           >
             {title}
           </motion.h3>
+          {bottomMeta}
 
-          <motion.div
-            variants={prefersReducedMotion ? undefined : itemVariants}
-            transition={
-              prefersReducedMotion
-                ? undefined
-                : { duration: 0.4, ease: "easeOut", delay: 0.18 }
-            }
-            className="flex shrink-0 flex-col items-end leading-none"
-          >
-            {originalPrice ? (
-              <span className="font-sans text-body-md text-text-tertiary line-through">
-                {originalPrice}
-              </span>
-            ) : null}
-            <span
-              className={cn(
-                "font-heading font-extrabold text-h4 text-text-brand tracking-tight",
-                originalPrice ? "mt-0.5" : null,
-              )}
-            >
-              {price}
-            </span>
-            {taxNote ? (
-              <span className="mt-1 font-sans text-mini normal-case tracking-normal text-text-tertiary">
-                {taxNote}
-              </span>
-            ) : null}
-          </motion.div>
+
+      
         </div>
 
         <motion.p
@@ -226,7 +201,7 @@ function CourseCard(props: CourseCardProps) {
               ? undefined
               : { duration: 0.4, ease: "easeOut", delay: 0.12 }
           }
-          className="mt-2 max-w-[520px] font-sans font-normal text-subtext-2 leading-snug text-text-secondary"
+          className=" max-w-[520px] font-sans font-normal text-[15px]  text-text-secondary  mb-3"
         >
           {description}
         </motion.p>
@@ -258,34 +233,51 @@ function CourseCard(props: CourseCardProps) {
                 />
               ))}
         </motion.div>
+        
 
         {/* Pushes the bottom row to the card floor */}
         <div className="flex-1" />
-
-        {/* Bottom row: CTA on the left, timer/caption on the right */}
-        <motion.div
-          variants={prefersReducedMotion ? undefined : itemVariants}
-          transition={
-            prefersReducedMotion
-              ? undefined
-              : { duration: 0.4, ease: "easeOut", delay: 0.24 }
-          }
-          className={cn(
-            "relative z-10 mt-6 sm:mt-8 lg:mt-10 flex flex-wrap items-end gap-x-6 gap-y-4",
-            hasBottomMeta ? "justify-between" : "justify-end",
-          )}
-        >
-          {bottomMeta}
-
-          <Button
+        <div className="flex items-center justify-between gap-4">
+            <motion.div
+            variants={prefersReducedMotion ? undefined : itemVariants}
+            transition={
+              prefersReducedMotion
+                ? undefined
+                : { duration: 0.4, ease: "easeOut", delay: 0.18 }
+            }
+            className="flex shrink-0 flex-col items-start gap-0 leading-none mt-6"
+          >
+            {originalPrice ? (
+              <span className="font-sans text-body-md text-text-tertiary line-through">
+                {originalPrice}
+              </span>
+            ) : null}
+            <span
+              className={cn(
+                "font-heading font-extrabold text-[26px] text-text-brand tracking-tight",
+                originalPrice ? "mt-0.5" : null,
+              )}
+            >
+              {price}
+            </span>
+            {/* {taxNote ? (
+              <span className="mt-1 font-sans text-mini normal-case tracking-normal text-text-tertiary">
+                {taxNote}
+              </span>
+            ) : null} */}
+          </motion.div>
+           <Button
             variant="mint"
             size="pill"
-            className="h-12 px-12 text-base font-semibold"
+            className="h-12 px-12 mt-8 text-base font-semibold"
             render={<Link href={ctaHref} />}
           >
             {resolvedCtaLabel}
           </Button>
-        </motion.div>
+          </div>
+
+        {/* Bottom row: CTA on the left, timer/caption on the right */}
+        
       </div>
     </motion.article>
   );

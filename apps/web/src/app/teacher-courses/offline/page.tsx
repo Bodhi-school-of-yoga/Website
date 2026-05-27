@@ -114,7 +114,7 @@ export default function OfflineCoursesPage() {
           headline="The Teacher You Were Meant To Be"
           subtitle="World-class yoga teacher training and mindful practice for aspiring instructors and lifelong learners."
           resultCount="23 COURSES"
-          backgroundImage="/images/hero/teacher-training-background.png"
+         backgroundImage="/images/hero/teacher-training-online.jpg"
         />
         <PopularCoursesSection
           eyebrow="Yoga Teacher Training"
