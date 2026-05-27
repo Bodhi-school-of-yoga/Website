@@ -511,7 +511,7 @@
 .about-navbar-back{
   border-radius: 31px;
   border: 0.91px solid rgba(123, 123, 123, 0.20);
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.55);
   box-shadow: 0 19.115px 30.22px 0 rgba(136, 136, 136, 0.20);
   backdrop-filter: blur(120.700000762939453px);
 }

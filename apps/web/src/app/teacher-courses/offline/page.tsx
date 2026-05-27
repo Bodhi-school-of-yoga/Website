@@ -116,6 +116,7 @@ export default function OfflineCoursesPage() {
           resultCount="23 COURSES"
          backgroundImage="/images/hero/teacher-training-online.jpg"
         />
+        
         <PopularCoursesSection
           eyebrow="Yoga Teacher Training"
           heading="Yoga Teacher Training Courses"
