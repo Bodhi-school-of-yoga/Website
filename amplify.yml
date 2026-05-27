@@ -16,7 +16,7 @@ applications:
             - pnpm install --frozen-lockfile
             - pnpm build:web
       artifacts:
-        baseDirectory: .next
+        baseDirectory: apps/web/.next/standalone/apps/web
         files:
           - '**/*'
       cache:
