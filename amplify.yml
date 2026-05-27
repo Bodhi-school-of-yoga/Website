@@ -1,15 +1,4 @@
 version: 1
-backend:
-  phases:
-    preBuild:
-      commands:
-        - nvm use 18
-        - corepack enable
-        - corepack prepare pnpm@9.0.0 --activate
-        - pnpm config set store-dir ~/.pnpm-store
-    build:
-      commands:
-        - pnpm install --frozen-lockfile
 frontend:
   phases:
     preBuild:
@@ -17,7 +6,7 @@ frontend:
         - nvm use 18
         - corepack enable
         - corepack prepare pnpm@9.0.0 --activate
-        - pnpm config set store-dir ~/.pnpm-store
+        - pnpm config set store-dir .pnpm-store
     build:
       commands:
         - pnpm install --frozen-lockfile
