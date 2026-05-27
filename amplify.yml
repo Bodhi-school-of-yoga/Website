@@ -15,9 +15,8 @@ applications:
             - export CI=true
             - pnpm install --frozen-lockfile
             - pnpm build:web
-            - cd apps/web/.next/standalone/apps/web && mv .next/required-server-files.json . && cd /../../../../..
       artifacts:
-        baseDirectory: .next/standalone/apps/web
+        baseDirectory: .next
         files:
           - '**/*'
       cache:
