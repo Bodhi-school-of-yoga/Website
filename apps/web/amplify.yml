@@ -1,0 +1,37 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm install -g pnpm@8
+            - pnpm install
+        build:
+          commands:
+            # Build the Next.js application
+            - pnpm run build --filter=web
+
+            # Copy static assets to standalone output (CRITICAL for Next.js 16)
+            - echo "Copying static assets to standalone output..."
+            - mkdir -p .next/standalone/apps/web/.next/static
+            - cp -r .next/static/* .next/standalone/apps/web/.next/static/ || echo "No static files to copy"
+
+            # Copy public directory to standalone output (CRITICAL for images, fonts, etc.)
+            - echo "Copying public directory to standalone output..."
+            - mkdir -p .next/standalone/apps/web/public
+            - cp -r public/* .next/standalone/apps/web/public/ || echo "No public files to copy"
+
+            # Verify the structure
+            - echo "Verifying deployment structure..."
+            - ls -la .next/standalone/apps/web/
+            - echo "✅ Build complete"
+      artifacts:
+        # CRITICAL: Must point to standalone apps/web directory
+        baseDirectory: .next/standalone/apps/web
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - node_modules/**/*
+      buildPath: /
+    appRoot: apps/web
