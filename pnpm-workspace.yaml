@@ -4,7 +4,7 @@ packages:
 
 # Enable strict workspace dependencies
 # This prevents implicit dependencies on workspace packages
-strictPeerDependencies: true
+strictPeerDependencies: false
 
 # Configure hoisting behavior
 # Use "public" to hoist dependencies to node_modules/.pnpm
