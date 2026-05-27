@@ -367,7 +367,7 @@ function HeroMobile({
             fill
             priority 
             sizes="100vw"
-            className="object-cover object-[center_top]"
+            className="object-cover object-center"
           />
         </div>
 
