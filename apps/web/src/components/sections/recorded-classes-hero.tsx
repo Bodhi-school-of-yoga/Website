@@ -5,7 +5,7 @@ import * as React from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 
-import { Breadcrumb, type BreadcrumbItem } from "@/components/ui/breadcrumb";
+import { SimpleBreadcrumb, type BreadcrumbItemData as BreadcrumbItem } from "@/components/ui/breadcrumb";
 import { StatTile } from "@/components/ui/stat-tile";
 import {
   RecordedClassPricingCard,
@@ -90,7 +90,7 @@ function RecordedClassesHero({
             className="max-w-[636px]"
           >
             <motion.div variants={itemVariants}>
-              <Breadcrumb items={breadcrumb} tone="inverse" />
+              <SimpleBreadcrumb items={breadcrumb} tone="inverse" />
             </motion.div>
 
             <motion.h1

@@ -228,7 +228,7 @@ function TtcCard({ card }: { card: ProgramCard }) {
         />
         <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-brand-primary/95 px-3 py-1 text-mini uppercase text-text-inverse">
           {card.modality === "online" ? (
-            <Monitor className="h-3 w-3" strokeWidth={2.25} />
+            <Monitor className="h-3 w-3 " strokeWidth={2.25}  />
           ) : (
             <Globe className="h-3 w-3" strokeWidth={2.25} />
           )}
@@ -240,7 +240,7 @@ function TtcCard({ card }: { card: ProgramCard }) {
         <h3 className="text-subtext-3 text-text-secondary">{card.title}</h3>
         <div className="flex flex-wrap items-center gap-3 text-text-tertiary">
           <span className="inline-flex items-center gap-1.5 text-body-sm">
-            <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />
+            <Clock className="h-3.5 w-3.5 text-primary" strokeWidth={1.75} />
             {card.duration}
           </span>
           {card.language && (
@@ -287,14 +287,14 @@ function CertCard({ card }: { card: ProgramCard }) {
 
         <div className="flex items-center gap-3 border-t border-dashed py-3 text-text-tertiary">
           <span className="inline-flex items-center gap-1.5 text-body-sm">
-            <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />
+            <Clock className="h-3.5 w-3.5 text-primary" strokeWidth={1.75} />
             {card.duration}
           </span>
           <span aria-hidden className="text-text-tertiary/50">
             ·
           </span>
           <span className="inline-flex items-center gap-1.5 text-body-sm">
-            <Monitor className="h-3.5 w-3.5" strokeWidth={1.75} />
+            <Monitor className="h-3.5 w-3.5 text-primary" strokeWidth={1.75} />
             {card.modality}
           </span>
         </div>

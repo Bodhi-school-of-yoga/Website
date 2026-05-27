@@ -55,41 +55,9 @@ export function PreRequisitesSection({
         className,
       )}
     >
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute left-4 top-[18%] hidden h-[380px] w-[280px] -translate-y-1/2 overflow-hidden rounded-[18px] shadow-[0_24px_60px_-20px_rgba(0,62,34,0.25)] lg:block xl:left-12"
-        initial={{ opacity: 0, x: reduce ? 0 : -40, rotate: -6.81 }}
-        whileInView={{ opacity: 1, x: 0, rotate: -6.81 }}
-        viewport={{ once: true, margin: "-100px 0px" }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        whileHover={reduce ? undefined : { rotate: -3, scale: 1.02 }}
-      >
-        <Image
-          src={leftImage}
-          alt={leftImageAlt}
-          fill
-          sizes="280px"
-          className="object-cover"
-        />
-      </motion.div>
+      
 
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute right-4 bottom-[18%] hidden h-[400px] w-[300px] translate-y-1/2 overflow-hidden rounded-[18px] shadow-[0_24px_60px_-20px_rgba(0,62,34,0.25)] lg:block xl:right-12"
-        initial={{ opacity: 0, x: reduce ? 0 : 40, rotate: 6.5 }}
-        whileInView={{ opacity: 1, x: 0, rotate: 6.5 }}
-        viewport={{ once: true, margin: "-100px 0px" }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        whileHover={reduce ? undefined : { rotate: 3, scale: 1.02 }}
-      >
-        <Image
-          src={rightImage}
-          alt={rightImageAlt}
-          fill
-          sizes="300px"
-          className="object-cover"
-        />
-      </motion.div>
+      
 
       <div className="relative mx-auto max-w-[1340px] page-px">
         <motion.div
@@ -134,26 +102,7 @@ export function PreRequisitesSection({
           </motion.ul>
         </motion.div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 lg:hidden">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-[18px] shadow-[0_24px_60px_-20px_rgba(0,62,34,0.18)]">
-            <Image
-              src={leftImage}
-              alt={leftImageAlt}
-              fill
-              sizes="50vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="relative aspect-[3/4] overflow-hidden rounded-[18px] shadow-[0_24px_60px_-20px_rgba(0,62,34,0.18)]">
-            <Image
-              src={rightImage}
-              alt={rightImageAlt}
-              fill
-              sizes="50vw"
-              className="object-cover"
-            />
-          </div>
-        </div>
+        
       </div>
     </section>
   );

@@ -72,8 +72,8 @@ function CountdownWidget({
   const cells: { value: string; label: string }[] = [
     { value: pad(parts.days), label: "Days" },
     { value: pad(parts.hours), label: "Hours" },
-    { value: pad(parts.minutes), label: "Mins" },
-    { value: pad(parts.seconds), label: "Secs" },
+
+
   ];
 
   const isDark = tone === "dark";
@@ -135,7 +135,7 @@ function CountdownWidget({
                   "font-heading font-semibold leading-none tabular-nums",
                   isSm
                     ? "text-[1.875rem]"
-                    : "text-[2.5rem] sm:text-[2.75rem] lg:text-[3rem]",
+                    : "text-[2.5rem] sm:text-[2.75rem] lg:text-[26px]",
                   isDark
                     ? dim
                       ? "text-text-inverse/80"
