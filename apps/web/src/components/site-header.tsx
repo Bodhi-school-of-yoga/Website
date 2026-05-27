@@ -96,28 +96,33 @@ export function SiteHeader({
     };
   }, [mobileOpen]);
 
+  const headerHeight = scrolled ? "h-[72px] sm:h-[76px]" : "h-[88px] sm:h-[92px]";
+  const drawerTopOffset = scrolled ? "top-[72px] sm:top-[76px]" : "top-[88px] sm:top-[92px]";
+  const drawerPtOffset = scrolled ? "pt-[72px] sm:pt-[76px]" : "pt-[88px] sm:pt-[92px]";
+
   return (
-    <motion.header
-      initial={{ y: -24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{
-        y: { type: "spring", stiffness: 260, damping: 30, mass: 0.6 },
-        opacity: { duration: 0.4, ease: "easeOut" },
-      }}
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled || mobileOpen
-          ? "bg-background/85 backdrop-blur-md shadow-[0_1px_0_0_rgb(0_0_0/0.04)]"
-          : "bg-transparent",
-        className,
-      )}
-    >
-      <div
+    <>
+      <motion.header
+        initial={{ y: -24, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          y: { type: "spring", stiffness: 260, damping: 30, mass: 0.6 },
+          opacity: { duration: 0.4, ease: "easeOut" },
+        }}
         className={cn(
-          "mx-auto flex max-w-[1340px] items-center justify-between gap-6 nav-px transition-[height] duration-300 xl:gap-10",
-          scrolled ? "h-[72px] sm:h-[76px]" : "h-[88px] sm:h-[92px]",
+          "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
+          scrolled || mobileOpen
+            ? "bg-background/85 backdrop-blur-md shadow-[0_1px_0_0_rgb(0_0_0/0.04)]"
+            : "bg-transparent",
+          className,
         )}
       >
+        <div
+          className={cn(
+            "mx-auto flex max-w-[1340px] items-center justify-between gap-6 nav-px transition-[height] duration-300 xl:gap-10",
+            headerHeight,
+          )}
+        >
         <Link
           href="/"
           aria-label={`${wordmark} — home`}
@@ -282,6 +287,7 @@ export function SiteHeader({
           </button>
         </div>
       </div>
+      </motion.header>
 
       <AnimatePresence>
         {mobileOpen && (
@@ -293,7 +299,10 @@ export function SiteHeader({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 top-[88px] z-40 bg-foreground/30 backdrop-blur-sm xl:hidden"
+              className={cn(
+                "fixed inset-0 z-40 bg-foreground/30 backdrop-blur-sm xl:hidden",
+                drawerTopOffset,
+              )}
               aria-hidden
             />
             <motion.div
@@ -307,8 +316,9 @@ export function SiteHeader({
               aria-modal="true"
               aria-label="Mobile navigation"
               className={cn(
-                "fixed inset-y-0 right-0 z-50 flex w-full max-w-[380px] flex-col bg-background shadow-[-24px_0_48px_-24px_rgba(0,0,0,0.18)]",
-                "pt-[88px] xl:hidden",
+                "fixed inset-y-0 right-0 z-[45] flex w-full max-w-[380px] flex-col bg-background shadow-[-24px_0_48px_-24px_rgba(0,0,0,0.18)]",
+                "xl:hidden",
+                drawerPtOffset,
               )}
             >
               <nav
@@ -439,6 +449,6 @@ export function SiteHeader({
           </>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }
