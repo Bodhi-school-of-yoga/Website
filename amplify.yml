@@ -12,6 +12,7 @@ applications:
             - pnpm config set store-dir .pnpm-store
         build:
           commands:
+            - export CI=true
             - pnpm install --frozen-lockfile
             - pnpm build:web
       artifacts:
