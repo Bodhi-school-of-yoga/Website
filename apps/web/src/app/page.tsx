@@ -97,7 +97,7 @@ export default function HomePage() {
         <ExperienceHarmonyStatsBand />
         {/* <WhatWeDoSection /> */}
         <WhyBodhiSection />
-        <ExperienceHarmonyStatsBand />
+     
         {/* <WhatWeDoSection /> */}
         <ProgramsGridSection />
         <AccreditationsSection
