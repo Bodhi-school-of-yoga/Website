@@ -18,5 +18,4 @@ applications:
           - '**/*'
       cache:
         paths:
-          - 'node_modules/**/*'
           - 'apps/web/.next/cache/**/*'
