@@ -3,9 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm use 18
+        - nvm use 24
         - corepack enable
-        - corepack prepare pnpm@9.0.0 --activate
+        - corepack prepare pnpm@11.1.0 --activate
         - pnpm config set store-dir .pnpm-store
     build:
       commands:
