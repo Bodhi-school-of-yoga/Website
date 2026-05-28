@@ -1,0 +1,20 @@
+{
+  "nodeId": "805:10841",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "fetched_at": "2026-05-28",
+  "label": "Originally requested node — confirmed LEAF text node",
+  "source_design_width_px": 1920,
+  "metadata_xml": "<text id=\"805:10841\" name=\"Link → Programs\" x=\"0\" y=\"0\" width=\"198\" height=\"36\" />",
+  "size": { "width": 198, "height": 36 },
+  "is_leaf_text": true,
+  "text_value": "Online Courses",
+  "parent_chain": [
+    { "id": "805:10840", "name": "Frame 1171281863 (title wrapper)", "width": 198, "height": 36 },
+    { "id": "805:10839", "name": "Frame 1171281864 (row text block)", "width": 198, "height": 58 },
+    { "id": "805:10838", "name": "Frame 1171281865 (row container)", "width": 401, "height": 58 },
+    { "id": "805:10837", "name": "Frame 1171281868 (inner content)", "width": 401, "height": 142 },
+    { "id": "805:10836", "name": "Frame 1171281912 (PANEL — the actual nested submenu)", "width": 364, "height": 191, "x": -1078, "y": 345 }
+  ],
+  "resolved_panel_node_id": "805:10836",
+  "note": "10841 is just a title text leaf. The actual level-2 submenu panel is 805:10836 — see 01_figma_metadata_805-10836.json."
+}

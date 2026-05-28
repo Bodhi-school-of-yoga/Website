@@ -76,62 +76,51 @@ export const ABOUT_MEGA_MENU: MegaMenuColumn[] = [
 ];
 
 export const COURSE_DROPDOWNS: Record<
-  "teacher" | "advanced" | "yoga",
+  "teacher" | "yoga",
   DropdownContent
 > = {
   teacher: {
     items: [
       {
         title: "Online Courses",
-        subtitle: "At the comfort of your home",
-        count: 8,
+        subtitle: "At Comfort of your home",
+        count: 9,
         href: "/teacher-courses/online",
         image: "/images/programs/face-yoga.jpg",
         icon: "Laptop",
       },
       {
-        title: "Offline — in studio",
+        title: "Offline - in studio",
         subtitle: "We have 20+ studios",
-        count: 8,
+        count: 9,
         href: "/teacher-courses/offline",
         image: "/images/programs/bala-yoga-teacher-training.jpg",
         icon: "Building2",
       },
       {
-        title: "Pre-recorded classes",
-        subtitle: "Access anytime, anywhere",
-        count: 4,
-        href: "/pre-recorded-courses",
+        title: "Advanced Certifications",
+        subtitle: "We have 20+ studios",
+        href: "/advanced-certifications",
         image: "/images/programs/pranayama.jpg",
-        icon: "PlayCircle",
-      },
-    ],
-  },
-  advanced: {
-    items: [
-      {
-        title: "Online Certifications",
-        subtitle: "Learn from anywhere",
-        count: 6,
-        href: "/advanced-certifications/online",
-        image: "/images/programs/face-yoga.jpg",
-        icon: "Laptop",
-      },
-      {
-        title: "In-studio Certifications",
-        subtitle: "Hands-on training",
-        count: 4,
-        href: "/advanced-certifications/offline",
-        image: "/images/programs/bala-yoga-teacher-training.jpg",
-        icon: "Building2",
-      },
-      {
-        title: "Pre-recorded modules",
-        subtitle: "Self-paced deep dives",
-        count: 4,
-        href: "/pre-recorded-courses",
-        image: "/images/programs/pranayama.jpg",
-        icon: "PlayCircle",
+        icon: "Award",
+        subItems: [
+          {
+            title: "Online Courses",
+            subtitle: "Learn from anywhere",
+            count: 9,
+            href: "/advanced-certifications/online",
+            image: "/images/programs/face-yoga.jpg",
+            icon: "Laptop",
+          },
+          {
+            title: "Offine - in studio",
+            subtitle: "Hands-on training",
+            count: 9,
+            href: "/advanced-certifications/offline",
+            image: "/images/programs/bala-yoga-teacher-training.jpg",
+            icon: "Building2",
+          },
+        ],
       },
     ],
   },
@@ -139,27 +128,19 @@ export const COURSE_DROPDOWNS: Record<
     items: [
       {
         title: "Online Courses",
-        subtitle: "At the comfort of your home",
-        count: 10,
+        subtitle: "At Comfort of your home",
+        count: 9,
         href: "/yoga-courses/online",
         image: "/images/programs/face-yoga.jpg",
         icon: "Laptop",
       },
       {
-        title: "Offline — in studio",
+        title: "Offline - in studio",
         subtitle: "We have 20+ studios",
-        count: 12,
+        count: 9,
         href: "/yoga-courses/offline",
         image: "/images/programs/bala-yoga-teacher-training.jpg",
         icon: "Building2",
-      },
-      {
-        title: "Pre-recorded classes",
-        subtitle: "Access anytime, anywhere",
-        count: 4,
-        href: "/pre-recorded-courses",
-        image: "/images/programs/pranayama.jpg",
-        icon: "PlayCircle",
       },
     ],
   },

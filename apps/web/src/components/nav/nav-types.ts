@@ -10,13 +10,23 @@ export type MegaMenuColumn = {
   items: MegaMenuItem[];
 };
 
-export type DropdownItem = {
+export type DropdownSubItem = {
   title: string;
   subtitle: string;
-  count: number;
+  count?: number;
   href: string;
   image: string;
   icon: string;
+};
+
+export type DropdownItem = {
+  title: string;
+  subtitle: string;
+  count?: number;
+  href: string;
+  image: string;
+  icon: string;
+  subItems?: DropdownSubItem[];
 };
 
 export type DropdownContent = {

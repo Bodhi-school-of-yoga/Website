@@ -1,0 +1,7 @@
+{
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "nodeId": "805:10841",
+  "description": "Text node 'Online Courses' — 22px Instrument Sans SemiBold, color black, tracking -0.51px. This is the title text inside the first dropdown row (parent: 805:10758). NOT a navbar variant.",
+  "code": "export default function LinkPrograms() {\n  return (\n    <div className=\"flex flex-col font-['Instrument_Sans:SemiBold'] font-semibold justify-center text-[22px] text-black tracking-[-0.51px] size-full\" data-node-id=\"805:10841\" style={{ fontVariationSettings: \"'wdth' 100\" }}>\n      <p className=\"leading-[35.7px]\">Online Courses</p>\n    </div>\n  );\n}",
+  "warning": "Node 805:10841 resolved to a small text node (198x36), not a navbar variant. The orchestrator may have an incorrect node-id; expected a navbar 'open/hover' state but received a text leaf."
+}

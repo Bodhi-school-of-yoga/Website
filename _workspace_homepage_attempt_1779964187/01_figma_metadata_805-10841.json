@@ -1,0 +1,6 @@
+{
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "nodeId": "805:10841",
+  "raw_xml": "<text id=\"805:10841\" name=\"Link → Programs\" x=\"0\" y=\"0\" width=\"198\" height=\"36\" />",
+  "note": "This node is a small text element labeled 'Online Courses' (198x36), NOT a full navbar variant. It is a child of the dropdown panel (805:10758). The user's context implied this would be a third navbar state; if a different node was intended, the orchestrator should re-supply the correct node-id."
+}

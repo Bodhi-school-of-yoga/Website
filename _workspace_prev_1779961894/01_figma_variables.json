@@ -1,0 +1,6 @@
+{
+  "note": "get_variable_defs returned empty object {} for both queried nodes (805:10841 and Homepage frame 1:32) in file eqaofBeNUhOUISevtRfOpT. No published variables exposed for these nodes. Saved as null per protocol.",
+  "fileKey": "eqaofBeNUhOUISevtRfOpT",
+  "queried_nodeIds": ["805:10841", "1:32"],
+  "raw_response": null
+}

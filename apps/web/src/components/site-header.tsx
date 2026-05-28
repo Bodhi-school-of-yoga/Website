@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -18,7 +19,7 @@ import { DropdownCard } from "@/components/nav/dropdown-card";
 import { MegaMenuPanel } from "@/components/nav/mega-menu-panel";
 import { ABOUT_MEGA_MENU, COURSE_DROPDOWNS } from "@/components/nav/nav-data";
 
-export type CourseDropdownKey = "teacher" | "advanced" | "yoga";
+export type CourseDropdownKey = "teacher" | "yoga";
 
 export type HeaderNavLink = {
   label: string;
@@ -40,23 +41,18 @@ export type SiteHeaderProps = {
 
 const DEFAULT_NAV_LINKS: HeaderNavLink[] = [
   {
+    label: "Regular Yoga Classes",
+    href: "/yoga-courses",
+    kind: "panel",
+    dropdownKey: "yoga",
+  },
+  {
     label: "Teacher Courses",
     href: "/teacher-courses",
     kind: "panel",
     dropdownKey: "teacher",
   },
-  {
-    label: "Advanced Certifications",
-    href: "/advanced-certifications",
-    kind: "panel",
-    dropdownKey: "advanced",
-  },
-  {
-    label: "Yoga Courses",
-    href: "/yoga-courses",
-    kind: "panel",
-    dropdownKey: "yoga",
-  },
+  { label: "Recorded classes", href: "/pre-recorded-courses" },
   { label: "Workshops", href: "/workshops" },
   { label: "Our Centers", href: "/our-centers" },
   { label: "About Bodhi", href: "/about", kind: "mega" },
@@ -125,31 +121,20 @@ export function SiteHeader({
         >
         <Link
           href="/"
-          aria-label={`${wordmark} — home`}
-          className="group flex shrink-0 flex-col items-start leading-none"
+          aria-label={`${wordmark} ${tagline} — home`}
+          className="group flex shrink-0 items-center leading-none"
         >
-          <span
+          <Image
+            src="/bodhi-logo.png"
+            alt={`${wordmark} ${tagline}`}
+            width={1176}
+            height={414}
+            priority
             className={cn(
-              "font-heading italic font-normal leading-none transition-[transform,color,font-size] duration-300",
-              scrolled ? "text-h5" : "text-h5 sm:text-h4",
-              "group-hover:scale-[1.02]",
-              inverted ? "text-text-inverse" : "text-black",
+              "w-auto origin-left transition-[height,transform] duration-300 group-hover:scale-[1.02]",
+              scrolled ? "h-10 sm:h-11" : "h-12 sm:h-14",
             )}
-            style={{ transformOrigin: "left center" }}
-          >
-            {wordmark}
-          </span>
-          <span
-            className={cn(
-              "mt-1.5 font-sans font-semibold text-mini uppercase transition-[opacity,transform] duration-300",
-              scrolled
-                ? "-translate-y-1 opacity-0"
-                : "translate-y-0 opacity-100",
-              inverted ? "text-text-inverse/70" : "text-black/60",
-            )}
-          >
-            {tagline}
-          </span>
+          />
         </Link>
 
         <NavMenu
@@ -165,7 +150,7 @@ export function SiteHeader({
                   <NavMenuItem key={link.label}>
                     <NavMenuTrigger
                       className={cn(
-                        "font-sans text-body-sm font-medium transition-colors",
+                        "font-sans text-body-sm font-medium leading-none tracking-[-0.18px] transition-colors",
                         inverted ? "text-text-inverse" : "text-black",
                         underlineSweep,
                       )}
@@ -185,7 +170,7 @@ export function SiteHeader({
                   <NavMenuItem key={link.label}>
                     <NavMenuTrigger
                       className={cn(
-                        "font-sans text-body-sm font-medium transition-colors",
+                        "font-sans text-body-sm font-medium leading-none tracking-[-0.18px] transition-colors",
                         inverted ? "text-text-inverse" : "text-black",
                         underlineSweep,
                       )}
@@ -203,7 +188,7 @@ export function SiteHeader({
                   <NavMenuLink
                     render={<Link href={link.href} />}
                     className={cn(
-                      "inline-flex shrink-0 items-center whitespace-nowrap font-sans text-body-sm font-medium transition-colors",
+                      "inline-flex shrink-0 items-center whitespace-nowrap font-sans text-body-sm font-medium leading-none tracking-[-0.18px] transition-colors",
                       inverted ? "text-text-inverse" : "text-black",
                       underlineSweep,
                     )}
@@ -356,13 +341,38 @@ export function SiteHeader({
                           <ul className="ml-3 flex flex-col gap-1 border-l border-border-2 py-1 pl-3">
                             {items.map((item) => (
                               <li key={item.href}>
-                                <Link
-                                  href={item.href}
-                                  onClick={() => setMobileOpen(false)}
-                                  className="block rounded-lg px-3 py-2 text-body-md text-text-secondary transition-colors hover:bg-foreground/5"
-                                >
-                                  {item.title}
-                                </Link>
+                                {item.subItems && item.subItems.length > 0 ? (
+                                  <details className="group/sub">
+                                    <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-body-md text-text-secondary transition-colors hover:bg-foreground/5">
+                                      <span>{item.title}</span>
+                                      <ChevronDown
+                                        className="size-4 text-foreground/60 transition-transform duration-300 group-open/sub:rotate-180"
+                                        strokeWidth={1.75}
+                                      />
+                                    </summary>
+                                    <ul className="ml-3 flex flex-col gap-1 border-l border-border-2 py-1 pl-3">
+                                      {item.subItems.map((sub) => (
+                                        <li key={sub.href}>
+                                          <Link
+                                            href={sub.href}
+                                            onClick={() => setMobileOpen(false)}
+                                            className="block rounded-lg px-3 py-2 text-body-sm text-text-tertiary transition-colors hover:bg-foreground/5"
+                                          >
+                                            {sub.title}
+                                          </Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </details>
+                                ) : (
+                                  <Link
+                                    href={item.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="block rounded-lg px-3 py-2 text-body-md text-text-secondary transition-colors hover:bg-foreground/5"
+                                  >
+                                    {item.title}
+                                  </Link>
+                                )}
                               </li>
                             ))}
                           </ul>

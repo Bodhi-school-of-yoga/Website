@@ -1,0 +1,591 @@
+{
+  "target_node_id": "1:32",
+  "page_name": "Homepage",
+  "route": "/",
+  "library": "framer-motion",
+  "revision": 1,
+  "global_principles": {
+    "easing": "[0.22, 1, 0.36, 1] (Bodhi house curve — gentle ease-out)",
+    "fallback_easing": "easeOut",
+    "default_duration_s": 0.5,
+    "stagger_step_s": 0.08,
+    "slide_distance_px": 16,
+    "reduced_motion": "Honor prefers-reduced-motion via framer-motion useReducedMotion(): drop translate (y=0) and set duration to 0; keep opacity transitions instant. Marquee should also halt on reduce-motion (animation-play-state: paused).",
+    "scroll_viewport": { "once": true, "margin": "-80px 0px -80px 0px" },
+    "tone_note": "Bodhi is a yoga / calm brand — keep motion gentle, slow, and subtle. No bouncing springs, no flashy reveals, no per-element drama."
+  },
+  "motion_primitives": {
+    "fade-in-up": {
+      "initial": { "opacity": 0.001, "y": 16 },
+      "animate": { "opacity": 1, "y": 0 },
+      "transition": { "duration": 0.5, "ease": [0.22, 1, 0.36, 1] },
+      "reduced_motion": { "y": 0, "duration": 0 }
+    },
+    "fade-in-up-soft": {
+      "initial": { "opacity": 0.001, "y": 12 },
+      "animate": { "opacity": 1, "y": 0 },
+      "transition": { "duration": 0.55, "ease": [0.22, 1, 0.36, 1] },
+      "reduced_motion": { "y": 0, "duration": 0 }
+    },
+    "fade-in": {
+      "initial": { "opacity": 0 },
+      "animate": { "opacity": 1 },
+      "transition": { "duration": 0.4, "ease": "easeOut" },
+      "reduced_motion": { "duration": 0 }
+    },
+    "stagger-children": {
+      "transition": { "staggerChildren": 0.08, "delayChildren": 0.05 }
+    },
+    "stagger-children-slow": {
+      "transition": { "staggerChildren": 0.12, "delayChildren": 0.08 }
+    }
+  },
+  "tailwind_primitives": {
+    "hover-lift-card": "transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)]",
+    "hover-lift-card-dark": "transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_10px_28px_-12px_rgba(0,0,0,0.5)]",
+    "hover-lift-button": "transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_16px_-8px_rgba(0,175,136,0.45)]",
+    "press-scale": "active:scale-[0.98] transition-transform duration-150",
+    "link-arrow-shift": "transition-transform duration-200 ease-out group-hover:translate-x-0.5",
+    "hover-underline-link": "relative transition-colors duration-200 hover:text-brand-primary after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full",
+    "image-zoom-soft": "overflow-hidden [&_img]:transition-transform [&_img]:duration-[600ms] [&_img]:ease-out hover:[&_img]:scale-[1.03]",
+    "marquee-loop": "animate-[marquee_45s_linear_infinite] motion-reduce:animate-none"
+  },
+  "css_keyframes": {
+    "marquee": "@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }",
+    "marquee_notes": "Define in globals.css if not already present. Duplicate the items list twice inside the track for a seamless loop; translateX(-50%) lands at the start of the duplicate. 45s gives a calm, readable pace."
+  },
+  "components": [
+    {
+      "component_name": "HeroSection",
+      "section_id": "hero",
+      "file_path": "apps/web/src/components/sections/hero-section.tsx",
+      "motion": [],
+      "actions": [],
+      "scroll_reveal": false,
+      "notes": "SKIP — reuse-as-is per user instruction. Hero already has its own motion. Do not modify."
+    },
+    {
+      "component_name": "SanskritMarqueeStrip",
+      "section_id": "sanskrit-marquee",
+      "file_path": "apps/web/src/components/sections/sanskrit-marquee-strip.tsx",
+      "motion": [
+        {
+          "target": "track",
+          "primitive": "marquee-loop",
+          "trigger": "mount",
+          "via": "tailwind",
+          "notes": "Continuous horizontal loop — preserve existing behavior. Duplicate the 8-limb array inline (or render the list twice) inside a flex track; apply animate-[marquee_45s_linear_infinite]. motion-reduce:animate-none pauses for users with reduced-motion preference."
+        }
+      ],
+      "actions": [],
+      "scroll_reveal": false,
+      "notes": "Decorative motif only. No hover, no click, no entrance animation — the continuous loop IS the motion. Keep it intact."
+    },
+    {
+      "component_name": "FounderQuoteSection",
+      "section_id": "founder-quote",
+      "file_path": "apps/web/src/components/sections/founder-quote-section.tsx",
+      "motion": [
+        {
+          "target": "root",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion",
+          "notes": "Parent variants drive the two columns + inner text blocks. whileInView with once:true."
+        },
+        {
+          "target": "eyebrow",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0,
+          "via": "framer-motion"
+        },
+        {
+          "target": "quote",
+          "primitive": "fade-in-up",
+          "trigger": "scroll-into-view",
+          "delay": 0.08,
+          "via": "framer-motion"
+        },
+        {
+          "target": "attribution",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0.16,
+          "via": "framer-motion"
+        },
+        {
+          "target": "portrait_image",
+          "primitive": "fade-in",
+          "trigger": "scroll-into-view",
+          "delay": 0.1,
+          "via": "framer-motion",
+          "notes": "Image just fades — no translate. Avoids two columns animating in opposing directions."
+        }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_primitive": "fade-in-up",
+      "notes": "Editorial band — calm, no interactive elements. Pure entrance choreography."
+    },
+    {
+      "component_name": "WhyBodhiSection",
+      "section_id": "why-bodhi",
+      "file_path": "apps/web/src/components/sections/why-bodhi-section.tsx",
+      "motion": [
+        {
+          "target": "root",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion"
+        },
+        {
+          "target": "left_image",
+          "primitive": "fade-in",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion",
+          "notes": "Large lifestyle photo — fade only, no slide. Keeps the heavy visual quiet."
+        },
+        {
+          "target": "right_column",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion",
+          "notes": "Inner stagger for heading → intro → pillars title → pillar list → CTA."
+        },
+        {
+          "target": "heading",
+          "primitive": "fade-in-up",
+          "trigger": "scroll-into-view",
+          "delay": 0,
+          "via": "framer-motion"
+        },
+        {
+          "target": "intro",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0.08,
+          "via": "framer-motion"
+        },
+        {
+          "target": "pillars_title",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0.16,
+          "via": "framer-motion"
+        },
+        {
+          "target": "pillars_list",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "delay": 0.24,
+          "via": "framer-motion",
+          "notes": "Each bullet fades up sequentially at 0.08s steps — feels like a list 'settling in'."
+        },
+        {
+          "target": "cta_link",
+          "primitive": "link-arrow-shift",
+          "trigger": "hover",
+          "via": "tailwind",
+          "notes": "Arrow nudges 2px right on hover (apply group/group-hover on the link). Pair with hover-underline-link for the label."
+        },
+        {
+          "target": "cta_link",
+          "primitive": "hover-underline-link",
+          "trigger": "hover",
+          "via": "tailwind"
+        }
+      ],
+      "actions": [
+        {
+          "target": "cta_link",
+          "event": "click",
+          "kind": "navigate",
+          "href": "/about",
+          "rationale": "Decomposition.json props.cta.href='/about' — 'Learn More' CTA → About page."
+        }
+      ],
+      "scroll_reveal": true,
+      "scroll_reveal_primitive": "fade-in-up",
+      "notes": "Two-column band. Left image fades quietly; right column does the storytelling stagger."
+    },
+    {
+      "component_name": "ProgramsGridSection",
+      "section_id": "programs-grid",
+      "file_path": "apps/web/src/components/sections/programs-grid-section.tsx",
+      "motion": [
+        {
+          "target": "rail_header",
+          "primitive": "fade-in-up",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion",
+          "notes": "Eyebrow + title + 'More Courses' link fade up together per rail."
+        },
+        {
+          "target": "rail_card_row",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion",
+          "notes": "3 cards per rail, stagger 0.08s each. Use whileInView so the second rail animates when its own viewport hits, not when the first does."
+        },
+        {
+          "target": "more_courses_link",
+          "primitive": "link-arrow-shift",
+          "trigger": "hover",
+          "via": "tailwind"
+        },
+        {
+          "target": "more_courses_link",
+          "primitive": "hover-underline-link",
+          "trigger": "hover",
+          "via": "tailwind"
+        }
+      ],
+      "actions": [
+        {
+          "target": "rail[0].more_courses_link",
+          "event": "click",
+          "kind": "navigate",
+          "href": "/teacher-courses",
+          "rationale": "Decomposition.json rails[0].moreHref='/teacher-courses'."
+        },
+        {
+          "target": "rail[1].more_courses_link",
+          "event": "click",
+          "kind": "navigate",
+          "href": "/yoga-courses",
+          "rationale": "Decomposition.json rails[1].moreHref='/yoga-courses'."
+        }
+      ],
+      "scroll_reveal": true,
+      "scroll_reveal_primitive": "fade-in-up",
+      "notes": "Dark full-bleed band. Two stacked rails — each rail animates independently when it enters the viewport."
+    },
+    {
+      "component_name": "ProgramCard",
+      "section_id": "programs-grid",
+      "file_path": "apps/web/src/components/sections/program-card.tsx",
+      "motion": [
+        {
+          "target": "root",
+          "primitive": "hover-lift-card-dark",
+          "trigger": "hover",
+          "via": "tailwind",
+          "notes": "Cards sit on the dark band — use the darker shadow variant so the lift reads. Subtle 2px lift, soft shadow."
+        },
+        {
+          "target": "image_wrapper",
+          "primitive": "image-zoom-soft",
+          "trigger": "hover",
+          "via": "tailwind",
+          "notes": "Image scales gently to 1.03 on hover within the card root. overflow-hidden on wrapper. Pairs with card lift for a single felt interaction."
+        },
+        {
+          "target": "view_program_link",
+          "primitive": "link-arrow-shift",
+          "trigger": "hover",
+          "via": "tailwind",
+          "notes": "Use group/group-hover on the card so the inner arrow shifts when hovering anywhere on the card, not just the link."
+        }
+      ],
+      "actions": [
+        {
+          "target": "view_program_link",
+          "event": "click",
+          "kind": "navigate",
+          "href": "FROM_PROP",
+          "rationale": "Each card receives cta.href via props. Decomposition.json currently passes '#' for all 6 cards — see unresolved.",
+          "conditional": "Render as <Link> when href is non-empty/non-'#'; otherwise still wire but flagged as placeholder."
+        }
+      ],
+      "scroll_reveal": false,
+      "scroll_reveal_inherited_from": "ProgramsGridSection.rail_card_row (parent stagger)",
+      "notes": "Reusable card component. Local interaction = hover lift + soft image zoom + arrow nudge. Entrance is parent-driven."
+    },
+    {
+      "component_name": "AccreditationsSection",
+      "section_id": "accreditations",
+      "file_path": "apps/web/src/components/sections/accreditations-section.tsx",
+      "motion": [
+        {
+          "target": "header",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion",
+          "notes": "Eyebrow → heading staggered."
+        },
+        {
+          "target": "eyebrow",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0,
+          "via": "framer-motion"
+        },
+        {
+          "target": "heading",
+          "primitive": "fade-in-up",
+          "trigger": "scroll-into-view",
+          "delay": 0.08,
+          "via": "framer-motion"
+        },
+        {
+          "target": "logo_card",
+          "primitive": "fade-in-up",
+          "trigger": "scroll-into-view",
+          "delay": 0.16,
+          "via": "framer-motion",
+          "notes": "The whole rounded card fades up as one block."
+        },
+        {
+          "target": "logo_grid",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "delay": 0.24,
+          "via": "framer-motion",
+          "notes": "Inner stagger so logos appear sequentially once the card lands. 0.06s step (faster than default — many small items)."
+        },
+        {
+          "target": "logo_item",
+          "primitive": "fade-in",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion",
+          "notes": "Each logo just fades — no translate. Logos in motion feel cheap; fades feel quiet/respectful."
+        }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_primitive": "fade-in-up",
+      "notes": "Trust band. No interactivity (logos are non-clickable per Figma). Entrance is the whole motion budget."
+    },
+    {
+      "component_name": "TestimonialsSection",
+      "section_id": "testimonials",
+      "file_path": "apps/web/src/components/sections/testimonials-section.tsx",
+      "motion": [
+        {
+          "target": "header",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion"
+        },
+        {
+          "target": "eyebrow",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0,
+          "via": "framer-motion"
+        },
+        {
+          "target": "heading",
+          "primitive": "fade-in-up",
+          "trigger": "scroll-into-view",
+          "delay": 0.08,
+          "via": "framer-motion"
+        },
+        {
+          "target": "testimonial_row",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "delay": 0.16,
+          "via": "framer-motion",
+          "notes": "3 cards stagger in at 0.1s steps — slightly slower than default to let each quote land."
+        },
+        {
+          "target": "testimonial_card",
+          "primitive": "fade-in-up",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion",
+          "notes": "Driven by parent stagger."
+        }
+      ],
+      "actions": [],
+      "scroll_reveal": true,
+      "scroll_reveal_primitive": "fade-in-up",
+      "notes": "Cards are non-clickable. No hover state — testimonials should feel still, not interactive."
+    },
+    {
+      "component_name": "TestimonialCard",
+      "section_id": "testimonials",
+      "file_path": "apps/web/src/components/sections/testimonial-card.tsx",
+      "motion": [],
+      "actions": [],
+      "scroll_reveal": false,
+      "scroll_reveal_inherited_from": "TestimonialsSection.testimonial_row (parent stagger)",
+      "notes": "Static once revealed. No hover, no click. Per testimonials convention, do not add hover-lift."
+    },
+    {
+      "component_name": "FinalCtaSection",
+      "section_id": "final-cta-and-footer",
+      "file_path": "apps/web/src/components/sections/final-cta-section.tsx",
+      "motion": [
+        {
+          "target": "root",
+          "primitive": "stagger-children",
+          "trigger": "scroll-into-view",
+          "via": "framer-motion"
+        },
+        {
+          "target": "eyebrow",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0,
+          "via": "framer-motion"
+        },
+        {
+          "target": "heading",
+          "primitive": "fade-in-up",
+          "trigger": "scroll-into-view",
+          "delay": 0.08,
+          "via": "framer-motion"
+        },
+        {
+          "target": "body",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0.16,
+          "via": "framer-motion"
+        },
+        {
+          "target": "cta_button",
+          "primitive": "fade-in-up-soft",
+          "trigger": "scroll-into-view",
+          "delay": 0.24,
+          "via": "framer-motion"
+        },
+        {
+          "target": "cta_button",
+          "primitive": "hover-lift-button",
+          "trigger": "hover",
+          "via": "tailwind"
+        },
+        {
+          "target": "cta_button",
+          "primitive": "press-scale",
+          "trigger": "press",
+          "via": "tailwind"
+        }
+      ],
+      "actions": [
+        {
+          "target": "cta_button",
+          "event": "click",
+          "kind": "navigate",
+          "href": "/contact",
+          "rationale": "Decomposition.json props.cta.href='/contact' — 'Try a class, free' CTA → contact form."
+        }
+      ],
+      "scroll_reveal": true,
+      "scroll_reveal_primitive": "fade-in-up",
+      "notes": "Centered closing band on the dark surface. Stagger feels like one calm exhale."
+    },
+    {
+      "component_name": "SiteFooterBlock",
+      "section_id": "final-cta-and-footer",
+      "file_path": "apps/web/src/components/site-footer-block.tsx",
+      "motion": [
+        {
+          "target": "footer_link",
+          "primitive": "hover-underline-link",
+          "trigger": "hover",
+          "via": "tailwind",
+          "notes": "All footer column links get the subtle hover-underline + color shift. No entrance animation on the footer itself (it's at the bottom of the page and should just be there when reached)."
+        }
+      ],
+      "actions": [
+        {
+          "target": "school_links",
+          "event": "click",
+          "kind": "navigate",
+          "href": "FROM_DATA",
+          "rationale": "Decomposition: Teacher Training → /teacher-courses, Workshops → /workshops, Classes → /yoga-courses, Faculty → /our-trainers, Lineage → /about. All known."
+        },
+        {
+          "target": "visit_get_directions",
+          "event": "click",
+          "kind": "external-link",
+          "href": "UNRESOLVED",
+          "rationale": "Decomposition has 'Get directions' href='#'. Likely should be a Google Maps URL — see unresolved."
+        },
+        {
+          "target": "stay_close_newsletter",
+          "event": "click",
+          "kind": "navigate",
+          "href": "UNRESOLVED",
+          "rationale": "Decomposition has href='#'. Needs a real signup URL or modal trigger — see unresolved."
+        },
+        {
+          "target": "stay_close_instagram",
+          "event": "click",
+          "kind": "external-link",
+          "href": "UNRESOLVED",
+          "rationale": "Decomposition has href='#'. Needs the Bodhi Instagram URL — see unresolved."
+        },
+        {
+          "target": "stay_close_youtube",
+          "event": "click",
+          "kind": "external-link",
+          "href": "UNRESOLVED",
+          "rationale": "Decomposition has href='#'. Needs the Bodhi YouTube URL — see unresolved."
+        },
+        {
+          "target": "stay_close_email",
+          "event": "click",
+          "kind": "external-link",
+          "href": "mailto:hello@bodhischoolofyoga.com",
+          "rationale": "Resolved per decomposition.json."
+        }
+      ],
+      "scroll_reveal": false,
+      "notes": "Footer should not animate on entrance — by the time the user has scrolled here the page should feel settled. Only hover states."
+    }
+  ],
+  "implementation_hints": {
+    "shared_parent_variants": {
+      "container": {
+        "hidden": {},
+        "visible": { "transition": { "staggerChildren": 0.08, "delayChildren": 0.05 } }
+      },
+      "child": {
+        "hidden": { "opacity": 0.001, "y": 16 },
+        "visible": { "opacity": 1, "y": 0, "transition": { "duration": 0.5, "ease": [0.22, 1, 0.36, 1] } }
+      },
+      "reduced_motion_note": "Wrap with useReducedMotion(); if true, set child.hidden.y = 0 and child.visible.transition.duration = 0."
+    },
+    "reuse_RevealOnScroll": "Prefer apps/web/src/components/ui/reveal-on-scroll.tsx where it already exists — it encodes the house easing + reduced-motion fallback. Use it for single-block fades (e.g. FounderQuote portrait, AccreditationsSection.logo_card).",
+    "marquee_css": "Add @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } } to apps/web/src/app/globals.css if missing. Render the items array twice inside the track.",
+    "group_hover_pattern": "For card-wide hover states that move inner elements (e.g. ProgramCard arrow nudge), apply 'group' to the card root and 'group-hover:' on the inner element. Tailwind handles the rest.",
+    "dark_surface_cards": "ProgramCard sits on the dark band — use hover-lift-card-dark (heavier shadow) not the light variant. The shadow must show against dark."
+  },
+  "unresolved": [
+    {
+      "component": "ProgramCard",
+      "target": "view_program_link",
+      "reason": "All 6 ProgramCard cta.href values in decomposition.json are '#'. Each program needs a real route (e.g. /teacher-courses/300-hour-ytt-online, /yoga-courses/pranayama-nervous-system, /yoga-courses/face-yoga-teacher-training). The corresponding slug pages exist under apps/web/src/app/yoga-courses/ and apps/web/src/app/teacher-courses/ — orchestrator should ask user for the 6 hrefs or wire them by best-match slug.",
+      "guess": "Render <Link> but pass through href='#' until resolved — visible visually, navigation TBD."
+    },
+    {
+      "component": "SiteFooterBlock",
+      "target": "visit_get_directions",
+      "reason": "Decomposition has href='#'. Likely a Google Maps URL for the studio. User needs to provide the address pin URL.",
+      "guess": "Leave as href='#'."
+    },
+    {
+      "component": "SiteFooterBlock",
+      "target": "stay_close_newsletter",
+      "reason": "Decomposition has href='#'. Could be a /newsletter page, a mailchimp form, or a modal — needs product decision.",
+      "guess": "Leave as href='#'."
+    },
+    {
+      "component": "SiteFooterBlock",
+      "target": "stay_close_instagram",
+      "reason": "Need real Bodhi Instagram URL.",
+      "guess": "Leave as href='#'."
+    },
+    {
+      "component": "SiteFooterBlock",
+      "target": "stay_close_youtube",
+      "reason": "Need real Bodhi YouTube URL.",
+      "guess": "Leave as href='#'."
+    }
+  ]
+}
