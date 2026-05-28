@@ -19,6 +19,7 @@ export type BookingCardProps = {
   chips: BookingCardChip[];
   ctaLabel: string;
   ctaHref?: string;
+  onCtaClick?: () => void;
   guaranteeNote?: string;
   className?: string;
 };
@@ -36,6 +37,7 @@ function BookingCard({
   chips,
   ctaLabel,
   ctaHref = "#reserve",
+  onCtaClick,
   guaranteeNote,
   className,
 }: BookingCardProps) {
@@ -97,19 +99,36 @@ function BookingCard({
       </ul>
 
       <div className="mt-6 flex flex-col items-center gap-3">
-        <Link
-          href={ctaHref}
-          className={cn(
-            "inline-flex h-12 w-full items-center justify-center rounded-[12px]",
-            "bg-brand-shade px-6",
-            "font-sans font-bold text-text-secondary text-[15px] tracking-[0.5px]",
-            "transition-all duration-150",
-            "hover:bg-brand-shade/85 active:scale-[0.98]",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-shade focus-visible:ring-offset-2 focus-visible:ring-offset-black/55",
-          )}
-        >
-          {ctaLabel}
-        </Link>
+        {onCtaClick ? (
+          <button
+            type="button"
+            onClick={onCtaClick}
+            className={cn(
+              "inline-flex h-12 w-full items-center justify-center rounded-[12px]",
+              "bg-brand-shade px-6",
+              "font-sans font-bold text-text-secondary text-[15px] tracking-[0.5px]",
+              "transition-all duration-150",
+              "hover:bg-brand-shade/85 active:scale-[0.98]",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-shade focus-visible:ring-offset-2 focus-visible:ring-offset-black/55",
+            )}
+          >
+            {ctaLabel}
+          </button>
+        ) : (
+          <Link
+            href={ctaHref}
+            className={cn(
+              "inline-flex h-12 w-full items-center justify-center rounded-[12px]",
+              "bg-brand-shade px-6",
+              "font-sans font-bold text-text-secondary text-[15px] tracking-[0.5px]",
+              "transition-all duration-150",
+              "hover:bg-brand-shade/85 active:scale-[0.98]",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-shade focus-visible:ring-offset-2 focus-visible:ring-offset-black/55",
+            )}
+          >
+            {ctaLabel}
+          </Link>
+        )}
         {guaranteeNote ? (
           <p className="text-center text-[12px] font-sans normal-case tracking-normal text-text-inverse/90">
             {guaranteeNote}

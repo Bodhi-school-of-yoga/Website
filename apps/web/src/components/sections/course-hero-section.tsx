@@ -30,7 +30,8 @@ export type CourseHeroSectionProps = {
   subtitle: string;
   meta: CourseMetaItem[];
   ctaLabel: string;
-  ctaHref: string;
+  ctaHref?: string;
+  onCtaClick?: () => void;
   heroImage: string;
   className?: string;
 };
@@ -43,6 +44,7 @@ export function CourseHeroSection({
   meta,
   ctaLabel,
   ctaHref,
+  onCtaClick,
   heroImage,
   className,
 }: CourseHeroSectionProps) {
@@ -165,19 +167,36 @@ export function CourseHeroSection({
               }
               className="mt-10 w-fit"
             >
-              <Link
-                href={ctaHref}
-                className={cn(
-                  "inline-flex items-center justify-center rounded-xl px-8 py-2.5",
-                  "bg-brand-primary text-text-inverse",
-                  "text-sm font-semibold",
-                  "transition-opacity duration-200 hover:opacity-90",
-                  "active:scale-[0.98] motion-safe:transition-transform",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
-                )}
-              >
-                {ctaLabel}
-              </Link>
+              {onCtaClick ? (
+                <button
+                  type="button"
+                  onClick={onCtaClick}
+                  className={cn(
+                    "inline-flex items-center justify-center rounded-xl px-8 py-2.5",
+                    "bg-brand-primary text-text-inverse",
+                    "text-sm font-semibold",
+                    "transition-opacity duration-200 hover:opacity-90",
+                    "active:scale-[0.98] motion-safe:transition-transform",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
+                  )}
+                >
+                  {ctaLabel}
+                </button>
+              ) : (
+                <Link
+                  href={ctaHref ?? "#"}
+                  className={cn(
+                    "inline-flex items-center justify-center rounded-xl px-8 py-2.5",
+                    "bg-brand-primary text-text-inverse",
+                    "text-sm font-semibold",
+                    "transition-opacity duration-200 hover:opacity-90",
+                    "active:scale-[0.98] motion-safe:transition-transform",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
+                  )}
+                >
+                  {ctaLabel}
+                </Link>
+              )}
             </motion.div>
 
             <motion.ul
