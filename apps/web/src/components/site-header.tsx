@@ -125,10 +125,10 @@ export function SiteHeader({
           className="group flex shrink-0 items-center leading-none"
         >
           <Image
-            src="/bodhi-logo.png"
+            src={inverted ? "/bodhi-logo-light-v2.png" : "/bodhi-logo-v2.png"}
             alt={`${wordmark} ${tagline}`}
-            width={1176}
-            height={414}
+            width={1396}
+            height={636}
             priority
             className={cn(
               "w-auto origin-left transition-[height,transform] duration-300 group-hover:scale-[1.02]",
