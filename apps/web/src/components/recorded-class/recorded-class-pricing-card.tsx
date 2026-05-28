@@ -13,7 +13,7 @@ export type RecordedClassPricingCardProps = {
   priceOriginal?: string;
   discountBadge?: string;
   benefits: string[];
-  cta: { label: string; href: string };
+  cta: { label: string; href?: string; onClick?: () => void };
   trustNote?: string;
   className?: string;
 };
@@ -100,17 +100,32 @@ function RecordedClassPricingCard({
       <div aria-hidden="true" className="mx-auto h-px w-[335px] bg-white/[0.15]" />
 
       <div className="mt-auto px-6 pt-[18px] pb-[22px]">
-        <Link
-          href={cta.href}
-          className={cn(
-            "flex h-[44px] w-full items-center justify-center rounded-[10px]",
-            "bg-brand-shade px-[15px] text-[15px] font-semibold leading-none",
-            "text-[#243a42] transition-[transform,filter] duration-150",
-            "hover:brightness-110 hover:shadow-md active:scale-[0.98]",
-          )}
-        >
-          {cta.label}
-        </Link>
+        {cta.onClick ? (
+          <button
+            type="button"
+            onClick={cta.onClick}
+            className={cn(
+              "flex h-[44px] w-full items-center justify-center rounded-[10px]",
+              "bg-brand-shade px-[15px] text-[15px] font-semibold leading-none",
+              "text-[#243a42] transition-[transform,filter] duration-150",
+              "hover:brightness-110 hover:shadow-md active:scale-[0.98]",
+            )}
+          >
+            {cta.label}
+          </button>
+        ) : (
+          <Link
+            href={cta.href ?? "#buy"}
+            className={cn(
+              "flex h-[44px] w-full items-center justify-center rounded-[10px]",
+              "bg-brand-shade px-[15px] text-[15px] font-semibold leading-none",
+              "text-[#243a42] transition-[transform,filter] duration-150",
+              "hover:brightness-110 hover:shadow-md active:scale-[0.98]",
+            )}
+          >
+            {cta.label}
+          </Link>
+        )}
         {trustNote ? (
           <p className="mt-[14px] text-center text-[12px] leading-[19.8px] text-text-inverse opacity-50">
             {trustNote}

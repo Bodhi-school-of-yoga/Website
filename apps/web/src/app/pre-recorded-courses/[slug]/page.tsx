@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooterBlock } from "@/components/site-footer-block";
-import { RecordedClassesHero } from "@/components/sections/recorded-classes-hero";
+import { RecordedHeroWithBooking } from "@/components/sections/recorded-hero-with-booking";
 import type { BreadcrumbItemData as BreadcrumbItem } from "@/components/ui/breadcrumb";
 import { FilterChipBar } from "@/components/ui/filter-chip-bar";
 import { FreePreviewSection } from "@/components/sections/free-preview-section";
@@ -201,7 +201,7 @@ export default async function PreRecordedCourseDetailPage({
     <main className="flex min-h-screen flex-col bg-surface-1">
       <SiteHeader tone="light" />
 
-      <RecordedClassesHero
+      <RecordedHeroWithBooking
         backgroundImage="/images/recorded-classes/hero-bg.png"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -228,10 +228,20 @@ export default async function PreRecordedCourseDetailPage({
           ],
           cta: {
             label: "Buy Now and Get Instant Access",
-            href: "#buy",
           },
           trustNote: "🔒 Secure booking · No hidden charges",
         }}
+        courseName={course.title}
+        amountInPaise={Number(course.price.replace(/[^0-9]/g, "")) * 100}
+        razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
+        batches={[
+          { label: "8th June – 31st July", value: "jun-8-jul-31" },
+          { label: "1st Aug – 30th Sep", value: "aug-1-sep-30" },
+        ]}
+        timeSlots={[
+          { label: "7:00 AM – 9:00 AM", value: "7am-9am" },
+          { label: "4:00 PM – 6:00 PM", value: "4pm-6pm" },
+        ]}
       />
 
       <div className="mx-auto max-w-[1338px] page-px -mt-10 relative z-20 flex justify-center">

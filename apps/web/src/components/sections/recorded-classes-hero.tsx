@@ -23,6 +23,7 @@ type RecordedClassesHeroProps = {
   lede: string;
   stats: HeroStat[];
   pricing: RecordedClassPricingCardProps;
+  onCtaClick?: () => void;
   className?: string;
 };
 
@@ -53,6 +54,7 @@ function RecordedClassesHero({
   lede,
   stats,
   pricing,
+  onCtaClick,
   className,
 }: RecordedClassesHeroProps) {
   const [titleLine1, titleLine2] = titleLines;
