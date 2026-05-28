@@ -64,8 +64,8 @@ export function AccreditationsSection({
 }: AccreditationsSectionProps) {
   const colsClass =
     columns === 3
-      ? "sm:grid-cols-2 lg:grid-cols-3"
-      : "sm:grid-cols-2 lg:grid-cols-4";
+      ? "grid-cols-2 lg:grid-cols-3"
+      : "grid-cols-2 lg:grid-cols-4";
 
   return (
     <section
@@ -105,13 +105,13 @@ export function AccreditationsSection({
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           className={cn(
-            "overflow-hidden rounded-[2rem] border border-border-2 bg-card",
+            "overflow-hidden rounded-2xl border border-border-2 bg-card sm:rounded-[2rem]",
             "shadow-[0_1px_2px_0_rgb(0_0_0/0.02)]",
           )}
         >
           <ul
             className={cn(
-              "grid grid-cols-1 divide-y divide-border-2",
+              "grid divide-y divide-border-2",
               colsClass,
               "lg:divide-y-0",
               "[&>li]:border-border-2",
@@ -122,15 +122,15 @@ export function AccreditationsSection({
                 key={item.id ?? `${item.caption}-${index}`}
                 variants={cellVariants}
                 className={cn(
-                  "group flex flex-col items-center justify-center gap-4 px-6 py-10",
-                  "sm:px-8 sm:py-12",
+                  "group flex flex-col items-center justify-center gap-2 px-3 py-6",
+                  "sm:gap-4 sm:px-6 sm:py-10",
+                  "lg:px-8 lg:py-12",
                   "transition-colors duration-300 hover:bg-muted/30",
                   cellBorderClass(index, items.length, columns),
                 )}
               >
                 <div
-                  className="relative flex w-full items-center justify-center"
-                  style={{ height: item.logoHeight ?? 96 }}
+                  className="relative flex h-16 w-full items-center justify-center sm:h-20 lg:h-24"
                 >
                   <Image
                     src={item.logoSrc}
@@ -140,7 +140,7 @@ export function AccreditationsSection({
                     className="object-contain transition-transform duration-300 ease-out group-hover:scale-[1.03]"
                   />
                 </div>
-                <p className="text-balance text-center text-body-sm leading-snug text-text-tertiary">
+                <p className="text-balance text-center text-xs leading-snug text-text-tertiary sm:text-body-sm">
                   {item.caption}
                 </p>
               </motion.li>
@@ -158,16 +158,20 @@ export function AccreditationsSection({
  * The wrapper card already provides the outer border.
  */
 function cellBorderClass(index: number, total: number, columns: 3 | 4) {
-  const lastRowStart = Math.floor((total - 1) / columns) * columns;
-  const isLastRow = index >= lastRowStart;
-  const isLastCol = (index + 1) % columns === 0;
+  // Mobile: 2 columns
+  const mobileLastRow = index >= Math.floor((total - 1) / 2) * 2;
+  const mobileLastCol = (index + 1) % 2 === 0;
 
-  const lgClasses = [
-    !isLastCol && "lg:border-r",
-    !isLastRow && "lg:border-b",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  // Desktop: 3 or 4 columns
+  const lgLastRow = index >= Math.floor((total - 1) / columns) * columns;
+  const lgLastCol = (index + 1) % columns === 0;
 
-  return cn(lgClasses);
+  return cn(
+    !mobileLastCol && "border-r",
+    !mobileLastRow && "border-b",
+    lgLastCol && "lg:border-r-0",
+    !lgLastCol && "lg:border-r",
+    lgLastRow && "lg:border-b-0",
+    !lgLastRow && "lg:border-b",
+  );
 }

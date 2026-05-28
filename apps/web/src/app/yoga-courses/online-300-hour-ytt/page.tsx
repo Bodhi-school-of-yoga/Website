@@ -29,7 +29,7 @@ export default function Online300HourYttPage() {
       <SiteHeader />
 
       <CourseHeroSection
-        breadcrumb="Home  /  Yoga courses  /  Online 300 hour yoga teacher training course ryt 300"
+        breadcrumb="Home  /  Yoga courses"
         titleLead="Online 300 Hour Yoga Teacher"
         titleAccent="Training — RYT 300"
         subtitle="Master the art of yoga in the air. Build strength, grace, and confidence while learning to teach this unique practice."
@@ -158,7 +158,7 @@ export default function Online300HourYttPage() {
             "Anybody who is ardent to serve the society",
           ]}
           leftImage="/images/courses/yoga-300-hour-ytt/eligibility.png"
-          rightImage="/images/courses/yoga-300-hour-ytt/eligibility.png"
+          rightImage="/online-300.png"
           leftImageAlt="Yoga student meditating in lotus pose"
           rightImageAlt="Yoga student meditating in lotus pose"
         />
@@ -182,8 +182,11 @@ export default function Online300HourYttPage() {
           heading="Pre-Requisites"
           items={[
             "Basic understanding of yoga postures.",
+            "Completion of a 200 Hour Yoga Teacher Training (RYT-200).",
             "Physically fit to perform inversions and aerial movements.",
+            "Minimum 6 months of consistent personal yoga practice.",
             "Willingness to explore new boundaries of body and breath.",
+            "Commitment to complete the full course duration and assignments.",
           ]}
           leftImage="/images/courses/yoga-300-hour-ytt/prereq-left.png"
           rightImage="/images/courses/yoga-300-hour-ytt/prereq-right.png"

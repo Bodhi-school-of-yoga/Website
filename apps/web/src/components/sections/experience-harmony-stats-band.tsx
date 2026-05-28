@@ -82,11 +82,11 @@ export function ExperienceHarmonyStatsBand({
   return (
     <section
       className={cn(
-        "relative w-full overflow-hidden bg-brand-lite py-24 sm:py-28 lg:py-32 lg:min-h-[560px]",
+        "relative w-full overflow-hidden bg-brand-lite py-0 sm:py-28 lg:py-0 ",
         className,
       )}
     >
-      <TiltedOverflowPhoto
+      {/* <TiltedOverflowPhoto
         src={photoBottomLeft.src}
         alt={photoBottomLeft.alt}
         position="bottom-left"
@@ -100,17 +100,17 @@ export function ExperienceHarmonyStatsBand({
         width={290}
         height={420}
         objectPosition="99%"
-        className="mt-8"
-      />
+        className="md:mt-8"
+      /> */}
 
-      <div className="relative z-10 mx-auto flex max-w-[820px] flex-col items-center gap-12 page-px text-center lg:gap-16">
-        <h2 className="font-heading text-h3 text-text-primary lg:text-h4">
+      <div className="relative z-10 mx-auto flex max-w-[820px] flex-col items-center gap-12 page-px text-center lg:gap-16 mt-28 mb-16">
+        <h2 className="font-heading -mt-12 text-[22px] text-text-primary lg:text-h3">
           <span>{headlineLead}</span>
           <span className="text-text-brand">{headlineAccent}</span>
           {headlineTrail ? <span>{headlineTrail}</span> : null}
         </h2>
 
-        <ul className="flex w-full flex-col items-center justify-center gap-10 sm:flex-row sm:items-start sm:gap-16 lg:gap-24">
+        <ul className="flex w-full  items-center justify-center  sm:items-start gap-4 ml-2 sm:gap-16 lg:gap-24">
           {stats.map((stat) => {
             const { value, suffix } = splitStatValue(stat.value);
             return (
@@ -118,10 +118,10 @@ export function ExperienceHarmonyStatsBand({
                 key={stat.label}
                 className="flex flex-col items-center gap-2 text-center"
               >
-                <span className="font-heading text-h3 leading-none text-text-brand lg:text-h2">
+                <span className="font-normal text-h3 leading-none text-text-brand lg:text-h2">
                   <AnimatedCount value={value} suffix={suffix} />
                 </span>
-                <span className="text-body-sm text-text-tertiary">
+                <span className="text-h6 md:text-body-sm text-text-tertiary">
                   {stat.label}
                 </span>
               </li>

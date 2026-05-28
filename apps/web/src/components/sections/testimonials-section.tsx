@@ -148,7 +148,7 @@ export function TestimonialsSection({
                 authorMeta={item.authorMeta}
                 avatarSrc={item.avatarSrc}
                 avatarAlt={item.avatarAlt}
-                showDecorativeQuote={index > 0}
+                showDecorativeQuote
                 priority={priorityFirst && index === 0}
               />
             </motion.div>

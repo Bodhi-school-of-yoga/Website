@@ -96,7 +96,7 @@ export function ProgramCard({
             )}
           >
             {modeBadge.icon && (
-              <span aria-hidden="true" className="flex items-center">
+              <span aria-hidden="true" className="flex items-center ">
                 {modeBadge.icon}
               </span>
             )}

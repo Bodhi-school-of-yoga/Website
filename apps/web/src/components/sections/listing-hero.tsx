@@ -6,6 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
+import {
+  Breadcrumb as ShadcnBreadcrumb,
+  BreadcrumbItem as ShadcnBreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { cn } from "@/lib/utils";
 
 export type BreadcrumbItem = {
@@ -178,51 +186,56 @@ export function ListingHero({
         initial="hidden"
         animate="show"
       >
-        <motion.nav
-          aria-label="Breadcrumb"
-          variants={breadcrumbVariants}
-          className={cn(
-            "flex flex-wrap items-center gap-x-1.5 gap-y-1 text-body-sm",
-            isLight ? "text-text-secondary" : "text-text-inverse/80",
-          )}
-        >
-          {breadcrumb.map((item, index) => {
-            const isLast = index === breadcrumb.length - 1;
-            return (
-              <React.Fragment key={`${item.label}-${index}`}>
-                {item.href ? (
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "transition-colors",
-                      isLight
-                        ? "text-text-secondary hover:text-text-primary"
-                        : "text-text-inverse/80 hover:text-text-inverse",
+        <motion.div variants={breadcrumbVariants}>
+          <ShadcnBreadcrumb>
+            <BreadcrumbList
+              className={cn(
+                "flex-nowrap text-body-sm",
+                isLight ? "text-text-secondary" : "text-text-inverse/80",
+              )}
+            >
+              {breadcrumb.map((item, index) => {
+                const isLast = index === breadcrumb.length - 1;
+                return (
+                  <React.Fragment key={`${item.label}-${index}`}>
+                    <ShadcnBreadcrumbItem>
+                      {item.href && !isLast ? (
+                        <BreadcrumbLink
+                          render={<Link href={item.href} />}
+                          className={cn(
+                            "transition-colors",
+                            isLight
+                              ? "text-text-secondary hover:text-text-primary"
+                              : "text-text-inverse/80 hover:text-text-inverse",
+                          )}
+                        >
+                          {item.label}
+                        </BreadcrumbLink>
+                      ) : (
+                        <BreadcrumbPage
+                          className={isLight ? "text-text-primary" : "text-text-inverse"}
+                        >
+                          {item.label}
+                        </BreadcrumbPage>
+                      )}
+                    </ShadcnBreadcrumbItem>
+                    {!isLast && (
+                      <BreadcrumbSeparator
+                        className={isLight ? "text-text-tertiary/70" : "text-text-inverse/50"}
+                      >
+                        /
+                      </BreadcrumbSeparator>
                     )}
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <span
-                    aria-current={isLast ? "page" : undefined}
-                    className={isLight ? "text-text-primary" : "text-text-inverse"}
-                  >
-                    {item.label}
-                  </span>
-                )}
-                <span
-                  aria-hidden="true"
-                  className={isLight ? "text-text-tertiary/70" : "text-text-inverse/50"}
-                >
-                  /
-                </span>
-              </React.Fragment>
-            );
-          })}
-        </motion.nav>
+                  </React.Fragment>
+                );
+              })}
+            </BreadcrumbList>
+          </ShadcnBreadcrumb>
+        </motion.div>
 
         {eyebrow ? (
           <motion.p
+          
             variants={breadcrumbVariants}
             className={cn(
               "mt-4 text-mini uppercase tracking-widest",

@@ -67,13 +67,13 @@ export function CourseSectionNav({ items, className }: CourseSectionNavProps) {
   return (
     <nav
       className={cn(
-        "sticky top-[88px] z-30 w-full bg-surface-1/95 backdrop-blur",
+        "sticky top-[88px] z-30 w-full bg-surface-1/95 backdrop-blur shadow-",
         "border-b border-border-1",
-        "sm:top-[92px]",
+        "sm:top-[72px]",
         className,
       )}
     >
-      <ul className="mx-auto flex max-w-[1340px] items-center gap-8 overflow-x-auto page-px py-4 sm:gap-12 lg:gap-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <ul className="mx-auto flex max-w-[1340px] items-center gap-8 overflow-x-auto page-px pt-4 pb-3 sm:gap-12 lg:gap-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((item) => {
           const isActive = activeHref === item.href;
           return (
@@ -81,9 +81,9 @@ export function CourseSectionNav({ items, className }: CourseSectionNavProps) {
               <a
                 href={item.href}
                 className={cn(
-                  "inline-flex items-center justify-center whitespace-nowrap text-subtext-2 font-medium transition-colors",
+                  "inline-flex items-center justify-center whitespace-nowrap text-[16px] font-medium transition-colors",
                   isActive
-                    ? "rounded-[29px] bg-brand-shade px-5 py-2.5 text-brand-teal-deep"
+                    ? "rounded-[29px] bg-brand-shade px-5 h-8 text-brand-teal-deep"
                     : "text-text-secondary hover:text-text-primary",
                 )}
               >
