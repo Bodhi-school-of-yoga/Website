@@ -5,7 +5,7 @@ import { FaqSection } from "@/components/sections/faq-section";
 import { FooterBrandCta } from "@/components/sections/footer-brand-cta";
 import { WorkshopAboutSection } from "@/components/sections/workshop-about-section";
 import { WorkshopBenefitsSection } from "@/components/sections/workshop-benefits-section";
-import { WorkshopDetailHero } from "@/components/sections/workshop-detail-hero";
+import { WorkshopHeroWithBooking } from "@/components/sections/workshop-hero-with-booking";
 import { WorkshopFacilitatorSection } from "@/components/sections/workshop-facilitator-section";
 import { WorkshopScheduleSection } from "@/components/sections/workshop-schedule-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -265,7 +265,7 @@ export default async function WorkshopDetailPage({
     <>
       <SiteHeader tone="light" />
       <main>
-        <WorkshopDetailHero
+        <WorkshopHeroWithBooking
           backgroundImage={workshop.heroImage}
           backgroundAlt={workshop.heroImageAlt}
           breadcrumb={[
@@ -279,7 +279,6 @@ export default async function WorkshopDetailPage({
           startsAt={workshop.startsAt}
           attendees={workshop.attendees}
           primaryCtaLabel={workshop.primaryCtaLabel}
-          primaryCtaHref="#reserve"
           booking={{
             eyebrow: workshop.booking.eyebrow,
             price: workshop.booking.price,
@@ -294,9 +293,19 @@ export default async function WorkshopDetailPage({
               label: chip.label,
             })),
             ctaLabel: workshop.booking.ctaLabel,
-            ctaHref: "#reserve",
             guaranteeNote: workshop.booking.guaranteeNote,
           }}
+          workshopName={`${workshop.titleAccent} ${workshop.title}`}
+          amountInPaise={Number(workshop.booking.price) * 100}
+          razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
+          batches={[
+            { label: "8th June – 31st July", value: "jun-8-jul-31" },
+            { label: "1st Aug – 30th Sep", value: "aug-1-sep-30" },
+          ]}
+          timeSlots={[
+            { label: "7:00 AM – 9:00 AM", value: "7am-9am" },
+            { label: "4:00 PM – 6:00 PM", value: "4pm-6pm" },
+          ]}
         />
 
         <WorkshopAboutSection {...SHARED_ABOUT} />

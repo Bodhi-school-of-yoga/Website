@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooterBlock } from "@/components/site-footer-block";
-import { CourseHeroSection } from "@/components/sections/course-hero-section";
+import { CourseHeroWithBooking } from "@/components/sections/course-hero-with-booking";
 import { CourseSectionNav } from "@/components/sections/course-section-nav";
 import { CourseOverviewSection } from "@/components/sections/course-overview-section";
 import { HighlightsSection } from "@/components/sections/highlights-section";
@@ -28,7 +28,7 @@ export default function Online300HourYttPage() {
     <main className="flex min-h-screen flex-col bg-surface-1">
       <SiteHeader />
 
-      <CourseHeroSection
+      <CourseHeroWithBooking
         breadcrumb="Home  /  Yoga courses"
         titleLead="Online 300 Hour Yoga Teacher"
         titleAccent="Training — RYT 300"
@@ -40,8 +40,18 @@ export default function Online300HourYttPage() {
           { icon: "globe", label: "English" },
         ]}
         ctaLabel="Reserve Your Spot Now"
-        ctaHref="/enquire?course=online-300-hour-ytt"
         heroImage="/images/courses/yoga-300-hour-ytt/hero.png"
+        courseName="Online 300 Hour Yoga Teacher Training — RYT 300"
+        amountInPaise={10000}
+        razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
+        batches={[
+          { label: "8th June – 31st July", value: "jun-8-jul-31" },
+          { label: "1st Aug – 30th Sep", value: "aug-1-sep-30" },
+        ]}
+        timeSlots={[
+          { label: "7:00 AM – 9:00 AM", value: "7am-9am" },
+          { label: "4:00 PM – 6:00 PM", value: "4pm-6pm" },
+        ]}
       />
 
       <CourseSectionNav

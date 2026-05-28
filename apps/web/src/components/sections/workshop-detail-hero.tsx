@@ -28,6 +28,7 @@ export type WorkshopDetailHeroProps = {
   attendees?: number;
   primaryCtaLabel: string;
   primaryCtaHref?: string;
+  onCtaClick?: () => void;
   booking: {
     eyebrow?: string;
     price: string;
@@ -37,6 +38,7 @@ export type WorkshopDetailHeroProps = {
     chips: BookingCardChip[];
     ctaLabel: string;
     ctaHref?: string;
+    onCtaClick?: () => void;
     guaranteeNote?: string;
   };
   className?: string;
@@ -54,6 +56,7 @@ export function WorkshopDetailHero({
   attendees = 1,
   primaryCtaLabel,
   primaryCtaHref = "#reserve",
+  onCtaClick,
   booking,
   className,
 }: WorkshopDetailHeroProps) {
@@ -193,18 +196,34 @@ export function WorkshopDetailHero({
               <Plus className="h-4 w-4" strokeWidth={2.5} />
             </div>
 
-            <Link
-              href={primaryCtaHref}
-              className={cn(
-                "inline-flex h-12 items-center justify-center rounded-full px-8",
-                "bg-brand-shade text-text-secondary",
-                "font-sans font-semibold text-body-sm uppercase tracking-[1px]",
-                "transition-all duration-150",
-                "hover:bg-brand-shade/85 active:scale-[0.98]",
-              )}
-            >
-              {primaryCtaLabel} →
-            </Link>
+            {onCtaClick ? (
+              <button
+                type="button"
+                onClick={onCtaClick}
+                className={cn(
+                  "inline-flex h-12 items-center justify-center rounded-full px-8",
+                  "bg-brand-shade text-text-secondary",
+                  "font-sans font-semibold text-body-sm uppercase tracking-[1px]",
+                  "transition-all duration-150",
+                  "hover:bg-brand-shade/85 active:scale-[0.98]",
+                )}
+              >
+                {primaryCtaLabel} →
+              </button>
+            ) : (
+              <Link
+                href={primaryCtaHref}
+                className={cn(
+                  "inline-flex h-12 items-center justify-center rounded-full px-8",
+                  "bg-brand-shade text-text-secondary",
+                  "font-sans font-semibold text-body-sm uppercase tracking-[1px]",
+                  "transition-all duration-150",
+                  "hover:bg-brand-shade/85 active:scale-[0.98]",
+                )}
+              >
+                {primaryCtaLabel} →
+              </Link>
+            )}
           </motion.div>
         </div>
 
