@@ -1,14 +1,14 @@
 "use client";
 
-// WorkshopsListSection — animated grid of upcoming workshop cards on the Workshops listing page.
+// WorkshopsListSection — list of upcoming workshop cards with per-card scroll reveal.
 import * as React from "react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import {
   CourseCard,
   type CourseCardFeature,
   type CourseCardImage,
 } from "@/components/ui/course-card";
+import { RevealItem } from "@/components/ui/reveal-item";
 import { cn } from "@/lib/utils";
 
 export type WorkshopListItem = {
@@ -40,40 +40,11 @@ export type WorkshopsListSectionProps = {
   overlapHero?: boolean;
 };
 
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
-};
-
 export function WorkshopsListSection({
   workshops,
   className,
   overlapHero = false,
 }: WorkshopsListSectionProps) {
-  const prefersReducedMotion = useReducedMotion();
-
-  const containerMotionProps = prefersReducedMotion
-    ? { initial: "visible" as const, animate: "visible" as const }
-    : {
-        initial: "hidden" as const,
-        whileInView: "visible" as const,
-        viewport: { once: true, amount: 0.15 },
-      };
-
   return (
     <section
       className={cn(
@@ -84,16 +55,9 @@ export function WorkshopsListSection({
         className,
       )}
     >
-      <motion.div
-        variants={prefersReducedMotion ? undefined : containerVariants}
-        {...containerMotionProps}
-        className="mx-auto flex w-full max-w-[1340px] flex-col gap-[30px] page-px"
-      >
+      <div className="mx-auto flex w-full max-w-[1340px] flex-col gap-[30px] page-px">
         {workshops.map((workshop) => (
-          <motion.div
-            key={workshop.id}
-            variants={prefersReducedMotion ? undefined : itemVariants}
-          >
+          <RevealItem key={workshop.id}>
             <CourseCard
               variant="course"
               image={workshop.image}
@@ -111,9 +75,9 @@ export function WorkshopsListSection({
               cardHref={workshop.cardHref}
               className="w-full max-w-[1308px] mx-auto"
             />
-          </motion.div>
+          </RevealItem>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

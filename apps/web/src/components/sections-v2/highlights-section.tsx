@@ -1,13 +1,34 @@
 'use client';
 
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
-import type { LucideIcon } from 'lucide-react';
+import {
+  Activity,
+  AlignCenter,
+  Award,
+  Dumbbell,
+  HandHeart,
+  Leaf,
+  Sparkles,
+  Users,
+  type LucideIcon,
+} from 'lucide-react';
+
+export type HighlightIconName =
+  | 'yoga'
+  | 'align-center'
+  | 'leaf'
+  | 'strength'
+  | 'technology'
+  | 'people'
+  | 'award'
+  | 'hands';
 
 export type HighlightItem = {
-  icon: LucideIcon;
+  /** Either a Lucide icon component (when used from a Client Component) or a
+   *  string name from the icon map below (when used from a Server Component). */
+  icon: LucideIcon | HighlightIconName;
   title: string;
   body: string;
-  emphasis?: boolean;
 };
 
 export type HighlightsSectionProps = {
@@ -16,52 +37,60 @@ export type HighlightsSectionProps = {
   items: HighlightItem[];
 };
 
-type HighlightCardProps = {
-  item: HighlightItem;
-  itemVariants: Variants;
+const ICON_MAP: Record<HighlightIconName, LucideIcon> = {
+  yoga: Activity,
+  'align-center': AlignCenter,
+  leaf: Leaf,
+  strength: Dumbbell,
+  technology: Sparkles,
+  people: Users,
+  award: Award,
+  hands: HandHeart,
 };
 
-function HighlightCard({ item, itemVariants }: HighlightCardProps) {
-  const Icon = item.icon;
+function resolveIcon(icon: HighlightItem['icon']): LucideIcon {
+  if (typeof icon === 'string') return ICON_MAP[icon] ?? Sparkles;
+  return icon;
+}
+
+function HighlightCard({
+  item,
+  variants,
+}: {
+  item: HighlightItem;
+  variants: Variants;
+}) {
+  const Icon = resolveIcon(item.icon);
   return (
     <motion.article
-      variants={itemVariants}
-      className={[
-        'group rounded-2xl bg-surface-1 border border-border-1',
-        'p-6 md:p-8',
-        'transition-transform transition-shadow duration-300 ease-out',
-        'motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-card',
-        item.emphasis ? 'sm:col-span-2' : '',
-      ].join(' ')}
+      variants={variants}
+      className="flex flex-col gap-[14px] rounded-[19px] border border-border-3 bg-surface-1 px-[19px] py-[17px] shadow-[0_7px_17px_rgba(231,231,231,0.25)]"
     >
-      <div className="flex items-start gap-4 md:gap-5">
-        <div
-          className={[
-            'shrink-0 inline-flex items-center justify-center',
-            'rounded-xl bg-mint-frost text-text-brand',
-            'h-11 w-11 md:h-[52px] md:w-[52px]',
-          ].join(' ')}
-          aria-hidden="true"
-        >
-          <Icon className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.75} />
-        </div>
-        <div className="min-w-0">
-          <h3 className="text-h5 text-text-primary">{item.title}</h3>
-          <p className="mt-2 text-body-sm text-text-primary/80">{item.body}</p>
-        </div>
+      <div
+        className="flex h-[52px] w-[52px] items-center justify-center rounded-[17px] bg-mint-cream"
+        aria-hidden="true"
+      >
+        <Icon className="h-[22px] w-[22px] text-text-brand" strokeWidth={1.75} />
+      </div>
+      <div className="flex flex-col gap-[2px]">
+        <h3 className="text-subtext-3 font-bold text-text-secondary">
+          {item.title}
+        </h3>
+        <p className="text-body-sm text-text-tertiary">{item.body}</p>
       </div>
     </motion.article>
   );
 }
 
-export function HighlightsSection({ eyebrow, heading, items }: HighlightsSectionProps) {
+export function HighlightsSection({
+  eyebrow,
+  heading,
+  items,
+}: HighlightsSectionProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const fadeUp: Variants = prefersReducedMotion
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0 } },
-      }
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0 } } }
     : {
         hidden: { opacity: 0, y: 16 },
         visible: {
@@ -71,75 +100,47 @@ export function HighlightsSection({ eyebrow, heading, items }: HighlightsSection
         },
       };
 
-  const gridContainer: Variants = prefersReducedMotion
-    ? {
-        hidden: { opacity: 1 },
-        visible: { opacity: 1, transition: { staggerChildren: 0, delayChildren: 0 } },
-      }
+  const grid: Variants = prefersReducedMotion
+    ? { hidden: { opacity: 1 }, visible: { opacity: 1, transition: { staggerChildren: 0 } } }
     : {
         hidden: { opacity: 1 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: 0.08, delayChildren: 0.2 },
-        },
-      };
-
-  const cardItem: Variants = prefersReducedMotion
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0 } },
-      }
-    : {
-        hidden: { opacity: 0, y: 16 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-        },
+        visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
       };
 
   return (
-    <section className="bg-mint-cream">
-      <div className="page-px py-14 md:py-20 lg:py-24">
-        <div className="max-w-[1340px] mx-auto">
+    <section className="bg-surface-0">
+      <div className="page-px py-16 md:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1340px]">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="max-w-[760px]"
+            viewport={{ once: true, amount: 0.3 }}
+            className="flex flex-col gap-[1px]"
           >
             <motion.p
               variants={fadeUp}
-              className="text-mini text-text-brand uppercase tracking-[0.18em]"
+              className="text-mini font-semibold uppercase tracking-[1.8px] text-text-teal-deep"
             >
               {eyebrow}
             </motion.p>
             <motion.h2
               variants={fadeUp}
-              transition={{ delay: prefersReducedMotion ? 0 : 0.1 }}
-              className="mt-3 text-h4 md:text-h3 lg:text-h2 text-text-primary"
+              transition={{ delay: prefersReducedMotion ? 0 : 0.08 }}
+              className="text-[28px] sm:text-[32px] lg:text-[34px] font-heading font-bold leading-[1.04] text-text-secondary"
             >
               {heading}
             </motion.h2>
           </motion.div>
 
           <motion.div
-            variants={gridContainer}
+            variants={grid}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className={[
-              'mt-10 md:mt-12 lg:mt-14',
-              'grid grid-cols-1 sm:grid-cols-2',
-              'gap-4 md:gap-[18px]',
-            ].join(' ')}
+            className="mt-[22px] grid grid-cols-1 gap-[15px] sm:gap-[18px] md:grid-cols-2"
           >
-            {items.map((item, idx) => (
-              <HighlightCard
-                key={`${item.title}-${idx}`}
-                item={item}
-                itemVariants={cardItem}
-              />
+            {items.map((item) => (
+              <HighlightCard key={item.title} item={item} variants={fadeUp} />
             ))}
           </motion.div>
         </div>

@@ -4,6 +4,7 @@ import { Clock, Globe, Monitor, Tag } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ProgramCard, type ProgramCardModeBadge } from "@/components/ui/program-card";
+import { COURSES } from "@/data/courses-catalog";
 
 export type PopularCourse = {
   title: string;
@@ -13,6 +14,13 @@ export type PopularCourse = {
   ctaLabel: string;
   ctaHref: string;
   modeBadge?: ProgramCardModeBadge;
+  rating?: number;
+  reviewCount?: number;
+  centersLabel?: string;
+  featured?: boolean;
+  price?: string;
+  originalPrice?: string;
+  discountLabel?: string;
 };
 
 export type PopularCoursesSectionProps = {
@@ -36,41 +44,22 @@ function resolveMetaIcon(icon: string): React.ReactNode {
   }
 }
 
-const DEFAULT_COURSES: PopularCourse[] = [
-  {
-    title: "Online Weight Loss Coach Certification",
-    image: "/images/programs/pranayama-nervous-system.jpg",
-    meta: [
-      { icon: "clock", label: "4 weeks" },
-      { icon: "monitor", label: "Online" },
-    ],
-    instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
-    ctaLabel: "Enrol Now",
-    ctaHref: "/programs/certifications/weight-loss-coach",
-  },
-  {
-    title: "Online Mudra Therapy Yoga Teacher Training",
-    image: "/images/programs/face-yoga-teacher-training.jpg",
-    meta: [
-      { icon: "clock", label: "2 weeks" },
-      { icon: "monitor", label: "Online" },
-    ],
-    instructor: { initials: "PP", name: "Prarthana Patel" },
-    ctaLabel: "Enrol Now",
-    ctaHref: "/programs/certifications/mudra-therapy",
-  },
-  {
-    title: "Online MAT Pilates Instructor Certification",
-    image: "/images/programs/weight-loss-coach-teacher-training.jpg",
-    meta: [
-      { icon: "clock", label: "4 weeks" },
-      { icon: "monitor", label: "Online" },
-    ],
-    instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
-    ctaLabel: "Enrol Now",
-    ctaHref: "/programs/certifications/mat-pilates-instructor",
-  },
-];
+const DEFAULT_COURSES: PopularCourse[] = COURSES.filter(
+  (c) =>
+    c.slug === "weight-loss-coach-certification" ||
+    c.slug === "face-yoga-ttc" ||
+    c.slug === "mat-pilates-certification",
+).map((c) => ({
+  title: c.title,
+  image: c.listingImage,
+  meta: [
+    { icon: "clock", label: c.durationLabel },
+    { icon: "monitor", label: c.mode === "online" ? "Online" : "Studio" },
+  ],
+  instructor: c.instructor,
+  ctaLabel: "View Program",
+  ctaHref: `/courses/${c.slug}`,
+}));
 
 export function PopularCoursesSection({
   eyebrow,
@@ -109,6 +98,13 @@ export function PopularCoursesSection({
                 cta={course.ctaLabel}
                 modeBadge={course.modeBadge}
                 priority={i === 0}
+                rating={course.rating}
+                reviewCount={course.reviewCount}
+                centersLabel={course.centersLabel}
+                featured={course.featured}
+                price={course.price}
+                originalPrice={course.originalPrice}
+                discountLabel={course.discountLabel}
               />
             </li>
           ))}

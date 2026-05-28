@@ -5,13 +5,16 @@ import { motion, useReducedMotion, type Variants } from 'framer-motion';
 export interface CertificationSectionProps {
   eyebrow: string;
   heading: string;
+  panelHeading?: string;
   body: string;
-  footerCaption: string;
+  /** Optional secondary caption rendered below the dark panel. */
+  footerCaption?: string;
 }
 
 export function CertificationSection({
   eyebrow,
   heading,
+  panelHeading = 'Globally Recognised',
   body,
   footerCaption,
 }: CertificationSectionProps) {
@@ -19,11 +22,11 @@ export function CertificationSection({
 
   const fadeInUpSlow: Variants = prefersReducedMotion
     ? {
-        hidden: { opacity: 0 },
+        hidden: { opacity: 1 },
         visible: { opacity: 1, transition: { duration: 0 } },
       }
     : {
-        hidden: { opacity: 0, y: 24 },
+        hidden: { opacity: 0, y: 16 },
         visible: {
           opacity: 1,
           y: 0,
@@ -31,67 +34,65 @@ export function CertificationSection({
         },
       };
 
-  const fadeIn: Variants = prefersReducedMotion
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0 } },
-      }
-    : {
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-        },
-      };
-
-  const reveal = (delay: number) =>
-    prefersReducedMotion ? { duration: 0, delay: 0 } : { delay };
+  const container: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: prefersReducedMotion ? 0 : 0.08,
+      },
+    },
+  };
 
   return (
-    <section className="bg-brand-dark">
-      <div className="page-px py-10 md:py-12 lg:py-14">
-        <div className="mx-auto max-w-[908px]">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2 lg:gap-12"
-          >
-            <div className="flex flex-col gap-3 md:gap-4">
-              <motion.p
-                variants={fadeInUpSlow}
-                transition={reveal(0)}
-                className="text-mini uppercase tracking-[0.18em] text-text-mint-shade"
-              >
-                {eyebrow}
-              </motion.p>
-              <motion.h2
-                variants={fadeInUpSlow}
-                transition={reveal(prefersReducedMotion ? 0 : 0.1)}
-                className="text-h4 md:text-h3 text-text-inverse"
-              >
-                {heading}
-              </motion.h2>
-            </div>
+    <section className="bg-surface-1">
+      <div className="page-px py-14 md:py-20 lg:py-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={container}
+          className="mx-auto flex max-w-[1340px] flex-col gap-[26px]"
+        >
+          {/* Eyebrow + heading block — left aligned on desktop, centered on mobile */}
+          <div className="flex flex-col gap-[5px] text-center md:text-left">
+            <motion.p
+              variants={fadeInUpSlow}
+              className="text-mini font-semibold uppercase tracking-[1.8px] text-text-teal-deep"
+            >
+              {eyebrow}
+            </motion.p>
+            <motion.h2
+              variants={fadeInUpSlow}
+              className="text-[28px] md:text-[34px] font-heading font-bold leading-[1.04] text-text-secondary"
+            >
+              {heading}
+            </motion.h2>
+          </div>
 
-            <div className="flex flex-col gap-4 md:gap-5">
-              <motion.p
-                variants={fadeInUpSlow}
-                transition={reveal(prefersReducedMotion ? 0 : 0.2)}
-                className="text-subtext-1 md:text-subtext-2 text-text-inverse/90"
-              >
+          {/* Dark green panel */}
+          <motion.div
+            variants={fadeInUpSlow}
+            className="rounded-[16px] bg-brand-green-darkest px-6 py-8 md:px-[40px] md:pt-[31px] md:pb-[36px]"
+          >
+            <div className="flex flex-col gap-[9px] text-center md:text-left">
+              <h3 className="text-[24px] md:text-[28px] font-heading font-bold leading-[1.26] text-text-inverse">
+                {panelHeading}
+              </h3>
+              <p className="text-body-sm md:text-[14px] leading-[1.7] text-text-inverse/80">
                 {body}
-              </motion.p>
-              <motion.p
-                variants={fadeIn}
-                transition={reveal(prefersReducedMotion ? 0 : 0.35)}
-                className="text-body-sm text-text-mint-shade"
-              >
-                {footerCaption}
-              </motion.p>
+              </p>
             </div>
           </motion.div>
-        </div>
+
+          {footerCaption ? (
+            <motion.p
+              variants={fadeInUpSlow}
+              className="text-body-sm text-text-tertiary text-center md:text-left"
+            >
+              {footerCaption}
+            </motion.p>
+          ) : null}
+        </motion.div>
       </div>
     </section>
   );

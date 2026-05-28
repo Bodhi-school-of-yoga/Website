@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { CheckCircle2 } from 'lucide-react';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 
 export interface CourseEligibilitySectionProps {
@@ -17,17 +16,35 @@ interface ChecklistItemProps {
   variants: Variants;
 }
 
+function CheckBadge() {
+  return (
+    <span
+      aria-hidden="true"
+      className="flex size-[22px] shrink-0 items-center justify-center rounded-[11px] border border-brand-shade bg-brand-primary"
+    >
+      <svg
+        viewBox="0 0 12 12"
+        className="h-[10px] w-[10px] text-surface-1"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <polyline points="2,6.5 5,9 10,3.5" />
+      </svg>
+    </span>
+  );
+}
+
 function ChecklistItem({ label, variants }: ChecklistItemProps) {
   return (
     <motion.li
       variants={variants}
-      className="flex items-start gap-3"
+      className="flex w-full items-center gap-[12px] rounded-[8px] border border-border-3 bg-surface-1 px-[16px] py-[12px] md:h-[48px] md:py-0"
     >
-      <CheckCircle2
-        className="mt-0.5 h-5 w-5 shrink-0 text-text-brand lg:h-6 lg:w-6"
-        aria-hidden="true"
-      />
-      <span className="text-body-md text-text-primary">{label}</span>
+      <CheckBadge />
+      <span className="text-body-sm text-text-secondary">{label}</span>
     </motion.li>
   );
 }
@@ -47,8 +64,12 @@ export function CourseEligibilitySection({
         visible: { opacity: 1, transition: { duration: 0 } },
       }
     : {
-        hidden: { opacity: 0, y: 24 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+        hidden: { opacity: 0, y: 16 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        },
       };
 
   const staggerParent: Variants = prefersReducedMotion
@@ -68,7 +89,11 @@ export function CourseEligibilitySection({
       }
     : {
         hidden: { opacity: 0, y: 16 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+        },
       };
 
   const scaleIn: Variants = prefersReducedMotion
@@ -77,53 +102,38 @@ export function CourseEligibilitySection({
         visible: { opacity: 1, transition: { duration: 0 } },
       }
     : {
-        hidden: { opacity: 0, scale: 0.94 },
+        hidden: { opacity: 0, scale: 0.96 },
         visible: {
           opacity: 1,
           scale: 1,
-          transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 },
+          transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.15 },
         },
       };
 
   return (
-    <section className="page-px py-10 md:py-14 lg:py-20">
-      <div className="mx-auto max-w-[1340px]">
-        {/* Mobile: single image stacked above text */}
-        <div className="flex flex-col gap-8 md:hidden">
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl"
-          >
-            <Image
-              src={sideImage}
-              alt={imageAlt}
-              fill
-              sizes="100vw"
-              className="object-cover"
-            />
-          </motion.div>
-
-          <div className="flex flex-col gap-6">
+    <section className="bg-brand-lite py-[64px] md:py-[80px] lg:py-[85px]">
+      <div className="page-px">
+        <div className="mx-auto flex max-w-[1340px] flex-col items-stretch gap-[40px] md:gap-[56px] lg:flex-row lg:items-center lg:justify-center lg:gap-[71px]">
+          {/* Left: eyebrow + heading + checklist */}
+          <div className="flex flex-col">
             {eyebrow ? (
               <motion.span
                 variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
-                className="text-mini uppercase text-text-brand"
+                className="text-mini font-semibold uppercase tracking-[1.8px] text-text-teal-deep"
               >
                 {eyebrow}
               </motion.span>
             ) : null}
+
             <motion.h2
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="text-h4 text-text-primary"
+              className="mt-[16px] font-heading font-bold leading-[1.04] text-text-secondary text-[28px] md:text-[32px] lg:text-[34px]"
             >
               {heading}
             </motion.h2>
@@ -132,136 +142,28 @@ export function CourseEligibilitySection({
               variants={staggerParent}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="flex flex-col gap-4"
+              viewport={{ once: true, amount: 0.15 }}
+              className="mt-[32px] flex w-full flex-col gap-[12px] lg:mt-[41px] lg:w-[672px]"
             >
               {checklist.map((item, idx) => (
                 <ChecklistItem key={idx} label={item} variants={childFade} />
               ))}
             </motion.ul>
           </div>
-        </div>
 
-        {/* Tablet: single image on top, checklist below */}
-        <div className="hidden md:flex md:flex-col md:gap-10 lg:hidden">
+          {/* Right: single image */}
           <motion.div
             variants={scaleIn}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl"
+            className="relative aspect-[574/543] w-full overflow-hidden rounded-[21px] md:max-w-[640px] md:self-center lg:aspect-auto lg:h-[543px] lg:w-[574px] lg:shrink-0 lg:max-w-none"
           >
             <Image
               src={sideImage}
               alt={imageAlt}
               fill
-              sizes="(min-width: 768px) 90vw, 100vw"
-              className="object-cover"
-            />
-          </motion.div>
-
-          <div className="flex flex-col gap-6">
-            {eyebrow ? (
-              <motion.span
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                className="text-mini uppercase text-text-brand"
-              >
-                {eyebrow}
-              </motion.span>
-            ) : null}
-            <motion.h2
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="text-h3 text-text-primary"
-            >
-              {heading}
-            </motion.h2>
-
-            <motion.ul
-              variants={staggerParent}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="flex flex-col gap-4"
-            >
-              {checklist.map((item, idx) => (
-                <ChecklistItem key={idx} label={item} variants={childFade} />
-              ))}
-            </motion.ul>
-          </div>
-        </div>
-
-        {/* Desktop: dual flanking images per Figma */}
-        <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10">
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl justify-self-start"
-          >
-            <Image
-              src={sideImage}
-              alt={imageAlt}
-              fill
-              sizes="(min-width: 1024px) 33vw, 100vw"
-              className="object-cover"
-            />
-          </motion.div>
-
-          <div className="flex max-w-[540px] flex-col gap-6">
-            {eyebrow ? (
-              <motion.span
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                className="text-mini uppercase text-text-brand"
-              >
-                {eyebrow}
-              </motion.span>
-            ) : null}
-            <motion.h2
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="text-h2 text-text-primary"
-            >
-              {heading}
-            </motion.h2>
-
-            <motion.ul
-              variants={staggerParent}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="flex flex-col gap-4"
-            >
-              {checklist.map((item, idx) => (
-                <ChecklistItem key={idx} label={item} variants={childFade} />
-              ))}
-            </motion.ul>
-          </div>
-
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl justify-self-end"
-            aria-hidden="true"
-          >
-            <Image
-              src={sideImage}
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 33vw, 100vw"
+              sizes="(min-width: 1024px) 574px, (min-width: 768px) 640px, 100vw"
               className="object-cover"
             />
           </motion.div>

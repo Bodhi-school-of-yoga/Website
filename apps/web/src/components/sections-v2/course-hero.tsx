@@ -10,158 +10,326 @@ export type BreadcrumbItem = {
   current?: boolean;
 };
 
+export type CourseMetaPill = {
+  icon?: 'studio' | 'clock' | 'calendar';
+  label: string;
+};
+
 export type CourseHeroProps = {
   backgroundImage?: string;
+  imageAlt?: string;
   breadcrumb: BreadcrumbItem[];
   title: string;
+  subtitle?: string;
+  availabilityNote?: string;
+  availabilityHref?: string;
+  metaPills?: CourseMetaPill[];
   priceLabel: string;
   price: string;
-  cta: { label: string; href: string };
+  originalPrice?: string;
+  /**
+   * Reserve CTA. Provide `href` for a Link, `onClick` for a button-driven
+   * booking flow (e.g. opening the Razorpay batch-booking dialog). When both
+   * are given, `onClick` wins.
+   */
+  cta: { label: string; href?: string; onClick?: () => void };
 };
+
+function PillIcon({ name }: { name: CourseMetaPill['icon'] }) {
+  // Inline SVGs — older lucide-react in this project doesn't ship modern icons.
+  if (name === 'clock') {
+    return (
+      <svg
+        aria-hidden
+        viewBox="0 0 21 21"
+        className="h-[21px] w-[21px] shrink-0 text-text-brand-emerald"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="10.5" cy="10.5" r="8.4" />
+        <path d="M10.5 6v4.7l3 2.1" />
+      </svg>
+    );
+  }
+  if (name === 'calendar') {
+    return (
+      <svg
+        aria-hidden
+        viewBox="0 0 21 22"
+        className="h-[22px] w-[21px] shrink-0 text-text-brand-emerald"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="2.5" y="4" width="16" height="16" rx="2" />
+        <path d="M2.5 9h16M7 2v4M14 2v4" />
+      </svg>
+    );
+  }
+  // studio (default) — a simple building/door glyph
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 19 22"
+      className="h-[22px] w-[19px] shrink-0 text-text-brand-emerald"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2 21V8l7.5-5L17 8v13" />
+      <path d="M7 21v-6h5v6" />
+    </svg>
+  );
+}
+
+function AvailabilityPinIcon() {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 16 18"
+      className="h-[17px] w-[15px] shrink-0 text-text-brand-emerald"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M8 1.25c-3.45 0-6.25 2.7-6.25 6.05 0 4.5 6.25 9.45 6.25 9.45s6.25-4.95 6.25-9.45c0-3.35-2.8-6.05-6.25-6.05Z" />
+      <circle cx="8" cy="7.2" r="2.1" />
+    </svg>
+  );
+}
 
 export function CourseHero({
   backgroundImage = '/images/courses/yoga-300-hour-ytt/hero.png',
+  imageAlt = '',
   breadcrumb,
   title,
+  subtitle,
+  availabilityNote,
+  availabilityHref,
+  metaPills,
   priceLabel,
   price,
+  originalPrice,
   cta,
 }: CourseHeroProps) {
   const prefersReducedMotion = useReducedMotion();
 
-  const fadeIn: Variants = prefersReducedMotion
+  const container: Variants = prefersReducedMotion
     ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0 } },
+        hidden: { opacity: 1 },
+        visible: {
+          opacity: 1,
+          transition: { staggerChildren: 0, duration: 0 },
+        },
       }
     : {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+        hidden: { opacity: 1 },
+        visible: {
+          opacity: 1,
+          transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+        },
       };
 
   const fadeInUp: Variants = prefersReducedMotion
     ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0 } },
+        hidden: { opacity: 1, y: 0 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0 } },
       }
     : {
         hidden: { opacity: 0, y: 16 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+          transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        },
+      };
+
+  const imageReveal: Variants = prefersReducedMotion
+    ? {
+        hidden: { opacity: 1, scale: 1 },
+        visible: { opacity: 1, scale: 1, transition: { duration: 0 } },
+      }
+    : {
+        hidden: { opacity: 0, scale: 1.02 },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
         },
       };
 
   return (
     <section
-      className="relative isolate w-full overflow-hidden min-h-[520px] sm:min-h-[600px] lg:min-h-[892px] flex flex-col text-text-inverse"
+      className="relative w-full bg-surface-0"
       aria-label="Course hero"
     >
-      {/* Background image */}
-      <div className="absolute inset-0 -z-20">
-        <Image
-          src={backgroundImage}
-          alt=""
-          aria-hidden
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      </div>
-
-      {/* Overlay gradient for legibility */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-dark/70 via-brand-dark/40 to-brand-dark/70 sm:from-brand-dark/55 sm:via-brand-dark/25 sm:to-brand-dark/60"
-      />
-
-      {/* Content */}
-      <div className="page-px mx-auto w-full max-w-[1340px] flex-1 flex flex-col pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-24">
-        {/* Breadcrumb */}
-        <motion.nav
-          aria-label="Breadcrumb"
+      <div className="page-px mx-auto w-full max-w-[1340px] pt-[120px] pb-[64px] sm:pt-[128px] sm:pb-20 lg:pt-[140px] lg:pb-[80px]">
+        <motion.div
           initial="hidden"
           animate="visible"
-          variants={fadeIn}
-          transition={{ delay: 0 }}
-          className="mb-8 sm:mb-10 lg:mb-12"
+          variants={container}
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-[92px] lg:items-center"
         >
-          <ol className="flex flex-wrap items-center gap-1.5 text-hero-eyebrow uppercase tracking-wider text-text-inverse/85">
-            {breadcrumb.map((crumb, idx) => {
-              const isLast = idx === breadcrumb.length - 1;
-              return (
-                <li key={`${crumb.label}-${idx}`} className="flex items-center gap-1.5 truncate">
-                  {crumb.href && !crumb.current ? (
-                    <Link
-                      href={crumb.href}
-                      className="motion-safe:transition-colors hover:text-text-inverse focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse/60 rounded-sm"
-                    >
-                      {crumb.label}
-                    </Link>
-                  ) : (
-                    <span aria-current={crumb.current ? 'page' : undefined} className="text-text-inverse">
-                      {crumb.label}
-                    </span>
-                  )}
-                  {!isLast && (
-                    <span aria-hidden className="text-text-inverse/60">
-                      /
-                    </span>
-                  )}
-                </li>
-              );
-            })}
-          </ol>
-        </motion.nav>
-
-        {/* Main content row */}
-        <div className="mt-auto flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-          {/* Title */}
-          <motion.h1
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            transition={prefersReducedMotion ? undefined : { delay: 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="text-h3 sm:text-h2 lg:text-hero-headline font-medium max-w-[20ch] lg:max-w-[18ch] text-text-inverse"
-          >
-            {title}
-          </motion.h1>
-
-          {/* Price + CTA cluster */}
-          <div className="flex flex-col gap-5 lg:items-end lg:max-w-[360px] w-full">
-            <motion.div
-              initial="hidden"
-              animate="visible"
+          {/* Left — content column (Figma: text/CTA on left) */}
+          <motion.div variants={container} className="flex flex-col order-2 md:order-1">
+            {/* Breadcrumb */}
+            <motion.nav
+              aria-label="Breadcrumb"
               variants={fadeInUp}
-              transition={prefersReducedMotion ? undefined : { delay: 0.25, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex flex-col items-start gap-1 rounded-xl bg-surface-1/95 px-5 py-4 backdrop-blur-sm shadow-card"
+              className="mb-3 sm:mb-4"
             >
-              <span className="text-hero-eyebrow uppercase tracking-wider text-text-tertiary">
-                {priceLabel}
-              </span>
-              <span className="text-h4 lg:text-h3 text-text-brand-emerald font-semibold">
+              <ol className="flex flex-wrap items-center gap-1.5 text-subtext-2 text-text-tertiary">
+                {breadcrumb.map((crumb, idx) => {
+                  const isLast = idx === breadcrumb.length - 1;
+                  return (
+                    <li
+                      key={`${crumb.label}-${idx}`}
+                      className="flex items-center gap-1.5"
+                    >
+                      {crumb.href && !crumb.current ? (
+                        <Link
+                          href={crumb.href}
+                          className="rounded-sm motion-safe:transition-colors hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-brand/60"
+                        >
+                          {crumb.label}
+                        </Link>
+                      ) : (
+                        <span
+                          aria-current={crumb.current ? 'page' : undefined}
+                          className="text-text-tertiary"
+                        >
+                          {crumb.label}
+                        </span>
+                      )}
+                      {!isLast && (
+                        <span aria-hidden className="text-text-tertiary">
+                          /
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ol>
+            </motion.nav>
+
+            {/* Title */}
+            <motion.h1
+              variants={fadeInUp}
+              className="text-[34px] leading-[1.08] font-heading font-bold text-text-secondary sm:text-h3 lg:text-h2"
+            >
+              {title}
+            </motion.h1>
+
+            {/* Subtitle */}
+            {subtitle && (
+              <motion.p
+                variants={fadeInUp}
+                className="mt-5 text-subtext-2 text-text-tertiary max-w-[34rem]"
+              >
+                {subtitle}
+              </motion.p>
+            )}
+
+            {/* Availability note */}
+            {availabilityNote && (
+              <motion.div
+                variants={fadeInUp}
+                className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2"
+              >
+                <span className="inline-flex items-center gap-2 text-body-sm text-text-secondary">
+                  <AvailabilityPinIcon />
+                  {availabilityNote}
+                </span>
+                {availabilityHref && (
+                  <Link
+                    href={availabilityHref}
+                    className="text-body-sm font-medium text-text-brand-emerald underline-offset-4 motion-safe:transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-brand/60 rounded-sm"
+                  >
+                    Check availability
+                  </Link>
+                )}
+              </motion.div>
+            )}
+
+            {/* Meta pills row */}
+            {metaPills && metaPills.length > 0 && (
+              <motion.ul
+                variants={fadeInUp}
+                className="mt-4 flex flex-wrap items-center gap-[11px]"
+              >
+                {metaPills.map((pill, idx) => (
+                  <li
+                    key={`${pill.label}-${idx}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-border-3 bg-surface-1 px-[17px] py-[11px] text-body-sm text-text-secondary"
+                  >
+                    <PillIcon name={pill.icon} />
+                    {pill.label}
+                  </li>
+                ))}
+              </motion.ul>
+            )}
+
+            {/* Price block */}
+            <motion.div
+              variants={fadeInUp}
+              className="mt-8 flex items-baseline gap-3"
+            >
+              <span className="sr-only">{priceLabel}</span>
+              <span className="text-h2 font-heading font-bold text-text-secondary">
                 {price}
               </span>
+              {originalPrice && (
+                <span className="text-body-md text-text-tertiary line-through">
+                  {originalPrice}
+                </span>
+              )}
             </motion.div>
 
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeInUp}
-              transition={prefersReducedMotion ? undefined : { delay: 0.35, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full"
-            >
-              <Link
-                href={cta.href}
-                className="inline-flex w-full items-center justify-center rounded-full bg-brand-primary px-8 py-4 text-hero-sub font-medium text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.02] motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
-              >
-                {cta.label}
-              </Link>
+            {/* CTA */}
+            <motion.div variants={fadeInUp} className="mt-5">
+              {cta.onClick ? (
+                <button
+                  type="button"
+                  onClick={cta.onClick}
+                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-brand-primary px-8 py-[14px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+                >
+                  {cta.label}
+                </button>
+              ) : (
+                <Link
+                  href={cta.href ?? '#'}
+                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-brand-primary px-8 py-[14px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+                >
+                  {cta.label}
+                </Link>
+              )}
             </motion.div>
-          </div>
-        </div>
+          </motion.div>
+
+          {/* Right — image (Figma: image on right) */}
+          <motion.div
+            variants={imageReveal}
+            className="relative overflow-hidden rounded-[20px] aspect-[608/546] md:aspect-auto md:min-h-[420px] lg:min-h-[546px] bg-surface-2 order-1 md:order-2"
+          >
+            <Image
+              src={backgroundImage}
+              alt={imageAlt}
+              fill
+              priority
+              sizes="(min-width: 1024px) 608px, (min-width: 768px) 50vw, 100vw"
+              className="object-cover object-center"
+            />
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

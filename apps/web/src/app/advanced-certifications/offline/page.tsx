@@ -1,88 +1,21 @@
 import type { Metadata } from "next";
-import { Clock, Globe } from "lucide-react";
+import { Clock, Globe, Monitor } from "lucide-react";
 
 import { ListingHero } from "@/components/sections/listing-hero";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
+import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
-  title: "Offline Advanced Yoga Certifications | Bodhi School of Yoga",
+  title: "Studio Advanced Yoga Certifications | Bodhi School of Yoga",
   description:
-    "Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.",
+    "In-studio advanced yoga teacher training — immersive, residential-style learning at a Bodhi centre.",
 };
 
-type Course = {
-  id: string;
-  title: string;
-  imageSrc: string;
-  imageAlt: string;
-  href: string;
-  instructor: { initials: string; name: string };
-};
+const COURSES = getCoursesByCategoryAndMode("advanced", "studio");
 
-const UNIQUE_COURSES: Course[] = [
-  {
-    id: "pranayama-nervous-system",
-    title: "Pranayama & the nervous system",
-    imageSrc: "/images/programs/pranayama-nervous-system.jpg",
-    imageAlt: "Pranayama & the nervous system",
-    href: "/yoga-courses/online-300-hour-ytt",
-    instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
-  },
-  {
-    id: "300-hour-ttc-offline",
-    title: "300 Hour Yoga Teacher Training Course — Offline",
-    imageSrc: "/images/programs/300-hour-yoga-teacher-training-online.jpg",
-    imageAlt: "300 Hour Yoga Teacher Training Course — Offline",
-    href: "/yoga-courses/online-300-hour-ytt",
-    instructor: { initials: "PP", name: "Prarthana Patel" },
-  },
-  {
-    id: "face-yoga-ttc",
-    title: "Face Yoga Teacher Training",
-    imageSrc: "/images/programs/face-yoga-teacher-training.jpg",
-    imageAlt: "Face Yoga Teacher Training",
-    href: "/yoga-courses/online-300-hour-ytt",
-    instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
-  },
-  {
-    id: "weight-loss-coach-offline",
-    title: "Offline Weight Loss Coach Certification",
-    imageSrc: "/images/programs/weight-loss-coach-teacher-training.jpg",
-    imageAlt: "Offline Weight Loss Coach Certification",
-    href: "/yoga-courses/online-300-hour-ytt",
-    instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
-  },
-  {
-    id: "bala-ttc",
-    title: "Bala Yoga Teacher Training",
-    imageSrc: "/images/programs/bala-yoga-teacher-training.jpg",
-    imageAlt: "Bala Yoga Teacher Training",
-    href: "/yoga-courses/online-300-hour-ytt",
-    instructor: { initials: "PP", name: "Prarthana Patel" },
-  },
-  {
-    id: "mat-pilates",
-    title: "MAT Pilates Instructor Certification",
-    imageSrc: "/images/programs/mat-pilates-teacher-training.jpg",
-    imageAlt: "MAT Pilates Instructor Certification",
-    href: "/yoga-courses/online-300-hour-ytt",
-    instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
-  },
-];
-
-// TODO: replace with CMS-driven items — duplicate first 3 entries with unique
-// ids until the Strapi catalogue lands so the listing fills its 3x3 grid per
-// Figma 1:5551.
-const COURSES: Course[] = [
-  ...UNIQUE_COURSES,
-  { ...UNIQUE_COURSES[0], id: `${UNIQUE_COURSES[0].id}-dup` },
-  { ...UNIQUE_COURSES[1], id: `${UNIQUE_COURSES[1].id}-dup` },
-  { ...UNIQUE_COURSES[2], id: `${UNIQUE_COURSES[2].id}-dup` },
-];
-
-export default function OfflineAdvancedCertificationsPage() {
+export default function StudioAdvancedCertificationsPage() {
   return (
     <>
       <SiteHeader tone="light" />
@@ -91,29 +24,33 @@ export default function OfflineAdvancedCertificationsPage() {
           breadcrumb={[
             { label: "Home", href: "/" },
             { label: "Advanced Certifications", href: "/advanced-certifications" },
-            { label: "Offline" },
+            { label: "Studio" },
           ]}
-          headlineAccent="Offline"
+          headlineAccent="Studio"
           headline="Advanced Certifications"
-          subtitle="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
-          resultCount="23 courses"
+          subtitle="Immersive in-person advanced training at a Bodhi centre — daily practice, hands-on mentorship."
+          resultCount={`${COURSES.length} course${COURSES.length === 1 ? "" : "s"}`}
           backgroundImage="/images/hero/teacher-training-offline.jpg"
         />
 
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">
           <div className="container mx-auto max-w-7xl px-4">
             <ul className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
-              {COURSES.map((course) => (
-                <li key={course.id}>
+              {COURSES.map((course, idx) => (
+                <li key={course.slug}>
                   <ProgramCard
                     title={course.title}
-                    href={course.href}
-                    imageSrc={course.imageSrc}
-                    imageAlt={course.imageAlt}
+                    href={`/courses/${course.slug}`}
+                    imageSrc={course.listingImage}
+                    imageAlt={course.title}
                     meta={[
                       {
                         icon: <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />,
-                        label: "4 weeks",
+                        label: course.durationLabel,
+                      },
+                      {
+                        icon: <Monitor className="h-3.5 w-3.5" strokeWidth={1.75} />,
+                        label: "Studio",
                       },
                       {
                         icon: <Globe className="h-3.5 w-3.5" strokeWidth={1.75} />,
@@ -122,6 +59,13 @@ export default function OfflineAdvancedCertificationsPage() {
                     ]}
                     instructor={course.instructor}
                     cta="View Program"
+                    rating={5}
+                    reviewCount={30}
+                    centersLabel="4 Centers"
+                    featured={idx === 0}
+                    price="₹14,999"
+                    originalPrice="₹19,999"
+                    discountLabel="25% OFF"
                   />
                 </li>
               ))}

@@ -44,7 +44,6 @@ export default function HighlightsDemoPage() {
             icon: HeartPulse,
             title: 'Heart, Body, Breath',
             body: 'A complete practice for body and mind.',
-            emphasis: true,
           },
         ]}
       />

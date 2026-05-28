@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
 import { RecordedCoursesHero } from "@/components/sections/recorded-courses-hero";
 import { CourseCard } from "@/components/ui/course-card";
+import { RevealItem } from "@/components/ui/reveal-item";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
 
@@ -43,21 +44,22 @@ export default function PreRecordedCoursesPage() {
         <section className="relative z-10 page-px -mt-16 sm:-mt-24 lg:-mt-[130px] pb-12 lg:pb-16">
           <div className="mx-auto flex w-full max-w-[1340px] flex-col gap-[30px]">
             {COURSES.map((course) => (
-              <CourseCard
-                key={course.title}
-                variant="workshop"
-                image={course.image}
-                title={course.title}
-                description={course.description}
-                stats={SHARED_STATS}
-                price="₹499"
-                originalPrice="₹999"
-                taxNote="incl. taxes"
-                ctaLabel="Purchase Now"
-                ctaHref={course.href}
-                cardHref={course.href}
-                className="w-full max-w-[1308px] mx-auto"
-              />
+              <RevealItem key={course.title}>
+                <CourseCard
+                  variant="workshop"
+                  image={course.image}
+                  title={course.title}
+                  description={course.description}
+                  stats={SHARED_STATS}
+                  price="₹499"
+                  originalPrice="₹999"
+                  taxNote="incl. taxes"
+                  ctaLabel="Purchase Now"
+                  ctaHref={course.href}
+                  cardHref={course.href}
+                  className="w-full max-w-[1308px] mx-auto"
+                />
+              </RevealItem>
             ))}
           </div>
         </section>
@@ -74,7 +76,7 @@ export default function PreRecordedCoursesPage() {
           theme="dark"
         />
       </main>
-      <SiteFooterBlock />
+      <SiteFooterBlock showCta={false} />
     </>
   );
 }

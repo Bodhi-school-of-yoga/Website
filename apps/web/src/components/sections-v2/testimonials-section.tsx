@@ -1,12 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
-import { ArrowUpRight, Quote } from 'lucide-react';
 
 export type TestimonialItem = {
-  avatar: string;
+  /**
+   * Avatar source. When provided as an image path, renders as <Image>.
+   * When omitted, falls back to the first letter of the name on a mint tile.
+   */
+  avatar?: string;
   quote: string;
   name: string;
   role: string;
@@ -15,57 +17,104 @@ export type TestimonialItem = {
 export type TestimonialsSectionProps = {
   eyebrow: string;
   heading: string;
+  /**
+   * Items in display order. The FIRST item renders as the featured (green)
+   * card spanning both rows of the left column. The next up-to-5 items fill
+   * a 2×2 (+1) grid of white cards on the right.
+   */
   items: TestimonialItem[];
 };
 
-type TestimonialCardProps = {
+function getInitial(name: string) {
+  return name.trim().charAt(0).toUpperCase() || '·';
+}
+
+type FeaturedCardProps = {
   item: TestimonialItem;
-  itemVariants: Variants;
+  variants: Variants;
 };
 
-function TestimonialCard({ item, itemVariants }: TestimonialCardProps) {
+function FeaturedCard({ item, variants }: FeaturedCardProps) {
   return (
     <motion.article
-      variants={itemVariants}
+      variants={variants}
       className={[
-        'group relative shrink-0',
-        'snap-start',
-        'w-[85%] sm:w-[60%] md:w-[46%] lg:w-[31%] xl:w-[24%]',
-        'rounded-2xl bg-surface-1 border border-border-2',
-        'p-5 md:p-6',
         'flex flex-col',
-        'transition-transform transition-shadow duration-300 ease-out',
-        'motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-card',
+        'rounded-[24px] bg-brand-primary',
+        'p-7 lg:p-8',
+        'row-span-2',
+        'min-h-[320px] lg:min-h-[406px]',
       ].join(' ')}
     >
-      <div className="relative w-full overflow-hidden rounded-xl aspect-[4/3] bg-mint-frost">
-        <Image
-          src={item.avatar}
-          alt={item.name}
-          fill
-          sizes="(min-width: 1280px) 320px, (min-width: 768px) 45vw, 85vw"
-          className={[
-            'object-cover',
-            'transition-transform duration-500 ease-out',
-            'motion-safe:group-hover:scale-[1.04]',
-          ].join(' ')}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute top-3 left-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface-1 text-text-brand shadow-card"
-        >
-          <Quote className="h-4 w-4" strokeWidth={2} />
-        </div>
+      <div className="relative h-[110px] w-[110px] lg:h-[135px] lg:w-[135px] overflow-hidden rounded-full bg-mint-soft shrink-0">
+        {item.avatar ? (
+          <Image
+            src={item.avatar}
+            alt={item.name}
+            fill
+            sizes="135px"
+            className="object-cover"
+          />
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center text-[42px] font-heading font-bold text-brand-primary">
+            {getInitial(item.name)}
+          </span>
+        )}
       </div>
 
-      <p className="mt-5 text-subtext-2 text-text-primary">
+      <h3 className="mt-6 text-h5 text-surface-1 font-heading font-bold">
+        {item.name}
+      </h3>
+      <p className="mt-1 text-body-sm text-mint-soft">{item.role}</p>
+
+      <p className="mt-5 text-body-sm text-surface-1 leading-[1.55]">
         &ldquo;{item.quote}&rdquo;
       </p>
+    </motion.article>
+  );
+}
 
-      <div className="mt-6 pt-4 border-t border-border-2">
-        <h3 className="text-h5 text-text-primary">{item.name}</h3>
-        <p className="mt-1 text-body-sm text-text-tertiary">{item.role}</p>
+type RegularCardProps = {
+  item: TestimonialItem;
+  variants: Variants;
+};
+
+function RegularCard({ item, variants }: RegularCardProps) {
+  return (
+    <motion.article
+      variants={variants}
+      className={[
+        'flex flex-col',
+        'rounded-[24px] bg-surface-1 border border-border-3',
+        'p-5 lg:p-6',
+        'transition-shadow duration-300 ease-out',
+        'motion-safe:hover:shadow-card',
+      ].join(' ')}
+    >
+      <div className="relative h-[80px] w-[80px] lg:h-[98px] lg:w-[98px] overflow-hidden rounded-full bg-mint-soft shrink-0">
+        {item.avatar ? (
+          <Image
+            src={item.avatar}
+            alt={item.name}
+            fill
+            sizes="98px"
+            className="object-cover"
+          />
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center text-[42px] font-heading font-bold text-text-brand">
+            {getInitial(item.name)}
+          </span>
+        )}
       </div>
+
+      <h3 className="mt-4 text-subtext-3 font-bold text-text-secondary">
+        {item.name}
+      </h3>
+      <p className="mt-1 text-body-sm text-text-brand">{item.role}</p>
+
+      <p className="mt-3 text-body-sm text-text-tertiary leading-[1.55]">
+        &ldquo;{item.quote}&rdquo;
+      </p>
     </motion.article>
   );
 }
@@ -76,24 +125,8 @@ export function TestimonialsSection({
   items,
 }: TestimonialsSectionProps) {
   const prefersReducedMotion = useReducedMotion();
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
-  const fadeUp: Variants = prefersReducedMotion
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0 } },
-      }
-    : {
-        hidden: { opacity: 0, y: 16 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-        },
-      };
-
-  const trackContainer: Variants = prefersReducedMotion
+  const containerVariants: Variants = prefersReducedMotion
     ? {
         hidden: { opacity: 1 },
         visible: {
@@ -105,11 +138,11 @@ export function TestimonialsSection({
         hidden: { opacity: 1 },
         visible: {
           opacity: 1,
-          transition: { staggerChildren: 0.08, delayChildren: 0.2 },
+          transition: { staggerChildren: 0.08, delayChildren: 0.1 },
         },
       };
 
-  const cardItem: Variants = prefersReducedMotion
+  const itemVariants: Variants = prefersReducedMotion
     ? {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { duration: 0 } },
@@ -123,156 +156,59 @@ export function TestimonialsSection({
         },
       };
 
-  const scrollNext = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const firstCard = track.querySelector<HTMLElement>('[data-card]');
-    const cardWidth = firstCard?.offsetWidth ?? track.clientWidth * 0.5;
-    const gap = 24;
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    const atEnd = track.scrollLeft >= maxScroll - 4;
-    if (atEnd) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
-    }
-  }, []);
-
-  const scrollToIndex = useCallback((index: number) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const cards = track.querySelectorAll<HTMLElement>('[data-card]');
-    const target = cards[index];
-    if (!target) return;
-    track.scrollTo({ left: target.offsetLeft - track.offsetLeft, behavior: 'smooth' });
-  }, []);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    let frame = 0;
-    const onScroll = () => {
-      if (frame) cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const cards = track.querySelectorAll<HTMLElement>('[data-card]');
-        const trackLeft = track.scrollLeft;
-        let nearest = 0;
-        let nearestDist = Number.POSITIVE_INFINITY;
-        cards.forEach((card, idx) => {
-          const dist = Math.abs(card.offsetLeft - track.offsetLeft - trackLeft);
-          if (dist < nearestDist) {
-            nearestDist = dist;
-            nearest = idx;
-          }
-        });
-        setActiveIndex(nearest);
-      });
-    };
-    track.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-      track.removeEventListener('scroll', onScroll);
-    };
-  }, []);
+  const [featured, ...rest] = items;
+  const others = rest.slice(0, 5);
 
   return (
-    <section className="bg-surface-cream">
-      <div className="page-px py-14 md:py-20 lg:py-24">
+    <section className="bg-surface-1">
+      <div className="page-px py-14 md:py-20 lg:py-[58px]">
         <div className="max-w-[1340px] mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+            variants={containerVariants}
+            className="flex flex-col items-start"
           >
-            <div className="max-w-[760px]">
-              <motion.p
-                variants={fadeUp}
-                className="text-mini text-text-brand uppercase tracking-[0.18em]"
-              >
-                {eyebrow}
-              </motion.p>
-              <motion.h2
-                variants={fadeUp}
-                transition={{
-                  delay: prefersReducedMotion ? 0 : 0.1,
-                  duration: prefersReducedMotion ? 0 : 0.5,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="mt-3 text-h4 md:text-h3 lg:text-h2 text-text-primary"
-              >
-                {heading}
-              </motion.h2>
-            </div>
-
-            <motion.button
-              type="button"
-              onClick={scrollNext}
-              variants={fadeUp}
-              transition={{
-                delay: prefersReducedMotion ? 0 : 0.2,
-                duration: prefersReducedMotion ? 0 : 0.5,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              aria-label="Show next testimonial"
-              className={[
-                'hidden md:inline-flex items-center justify-center',
-                'h-12 w-12 lg:h-14 lg:w-14 shrink-0',
-                'rounded-full bg-surface-1 border border-border-2 text-text-primary',
-                'transition-transform duration-300 ease-out',
-                'motion-safe:hover:rotate-45 motion-safe:hover:bg-mint-frost',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-brand focus-visible:ring-offset-2',
-              ].join(' ')}
+            <motion.p
+              variants={itemVariants}
+              className="text-mini font-semibold uppercase tracking-[1.8px] text-text-secondary"
             >
-              <ArrowUpRight className="h-5 w-5 lg:h-6 lg:w-6" strokeWidth={1.75} />
-            </motion.button>
+              {eyebrow}
+            </motion.p>
+            <motion.h2
+              variants={itemVariants}
+              className="mt-2 text-[28px] md:text-[30px] lg:text-[34px] font-heading font-bold leading-[1.04] text-text-secondary"
+            >
+              {heading}
+            </motion.h2>
           </motion.div>
 
           <motion.div
-            ref={trackRef}
-            variants={trackContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.1 }}
+            variants={containerVariants}
             className={[
-              'mt-10 md:mt-12 lg:mt-14',
-              'flex gap-4 md:gap-5 lg:gap-6',
-              'overflow-x-auto snap-x snap-mandatory',
-              'scroll-smooth',
-              '-mx-4 px-4 md:-mx-6 md:px-6',
-              'pb-4',
-              '[scrollbar-width:none] [-ms-overflow-style:none]',
-              '[&::-webkit-scrollbar]:hidden',
+              'mt-8 lg:mt-[37px]',
+              'grid gap-x-4 gap-y-4 md:gap-x-[18px] md:gap-y-[18px] lg:gap-x-[25px] lg:gap-y-[18px]',
+              'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+              'lg:grid-rows-2',
+              'lg:auto-rows-fr',
             ].join(' ')}
           >
-            {items.map((item, idx) => (
-              <div
-                key={`${item.name}-${idx}`}
-                data-card
-                className="flex shrink-0 snap-start"
-              >
-                <TestimonialCard item={item} itemVariants={cardItem} />
-              </div>
-            ))}
-          </motion.div>
+            {featured ? (
+              <FeaturedCard item={featured} variants={itemVariants} />
+            ) : null}
 
-          <div className="mt-6 flex justify-center gap-2 md:hidden">
-            {items.map((item, idx) => (
-              <button
-                key={`dot-${item.name}-${idx}`}
-                type="button"
-                onClick={() => scrollToIndex(idx)}
-                aria-label={`Show testimonial ${idx + 1}`}
-                aria-current={activeIndex === idx}
-                className={[
-                  'h-2 rounded-full transition-all duration-300',
-                  activeIndex === idx
-                    ? 'w-6 bg-text-brand'
-                    : 'w-2 bg-border-3',
-                ].join(' ')}
+            {others.map((item, idx) => (
+              <RegularCard
+                key={`${item.name}-${idx}`}
+                item={item}
+                variants={itemVariants}
               />
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

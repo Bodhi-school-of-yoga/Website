@@ -14,27 +14,39 @@ export default function MoreCoursesDemoPage() {
         </Link>
       </div>
       <MoreCoursesSection
-        eyebrow="More Courses"
-        heading="Explore More Bodhi Programs"
+        eyebrow="Top Popular Yoga Course"
+        heading="Lead to more courses from us"
         subheading="Deepen your wisdom and elevate your yoga career with our specialized yoga certifications."
         items={[
           {
             image: '/images/courses/yoga-300-hour-ytt/hero.png',
-            title: 'Weight Loss Coach Certification',
-            subtitle: 'Online Weight Loss Coach Certification',
+            title: 'Online Weight Loss Coach Certification',
             href: '/yoga-courses/weight-loss-coach-certification',
+            duration: '4 weeks',
+            format: 'Online',
+            language: 'English',
+            author: 'Janardhan Durga Prasad',
+            initials: 'JD',
           },
           {
             image: '/images/courses/yoga-300-hour-ytt/hero.png',
-            title: 'MAT Pilates Instructor Certification',
-            subtitle: 'Online MAT Pilates Instructor Certification',
+            title: 'Online Mudra Therapy Yoga Teacher Training',
+            href: '/yoga-courses/mudra-therapy-yoga-teacher-training',
+            duration: '2 weeks',
+            format: 'Online',
+            language: 'English',
+            author: 'Prarthana Patel',
+            initials: 'PP',
+          },
+          {
+            image: '/images/courses/yoga-300-hour-ytt/hero.png',
+            title: 'Online MAT Pilates Instructor Certification',
             href: '/yoga-courses/mat-pilates-instructor-certification',
-          },
-          {
-            image: '/images/courses/yoga-300-hour-ytt/hero.png',
-            title: 'Aerial Yoga Teacher Training',
-            subtitle: 'Online Aerial Yoga Teacher Training',
-            href: '/yoga-courses/aerial-yoga-teacher-training',
+            duration: '4 weeks',
+            format: 'Online',
+            language: 'English',
+            author: 'Lakshmi Yalamudi',
+            initials: 'LY',
           },
         ]}
       />

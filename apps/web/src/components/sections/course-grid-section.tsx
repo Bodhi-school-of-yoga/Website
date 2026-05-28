@@ -53,6 +53,13 @@ export default function CourseGridSection({
                   name: course.instructor.name,
                 }}
                 cta={course.ctaLabel}
+                rating={course.rating}
+                reviewCount={course.reviewCount}
+                centersLabel={course.centersLabel}
+                featured={course.featured}
+                price={course.price}
+                originalPrice={course.originalPrice}
+                discountLabel={course.discountLabel}
               />
             );
 

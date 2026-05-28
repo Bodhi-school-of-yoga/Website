@@ -9,42 +9,48 @@ export default function TestimonialsDemoPage() {
       <div className="page-px pt-8">
         <Link
           href="/demo/v2"
-          className="text-mini text-text-tertiary uppercase tracking-[0.18em] hover:text-text-primary transition-colors"
+          className="text-mini text-text-tertiary uppercase tracking-[1.8px] hover:text-text-primary transition-colors"
         >
           ← Back to demos
         </Link>
       </div>
 
       <TestimonialsSection
-        eyebrow="Testimonials"
+        eyebrow="Your Guide"
         heading="What People Are Saying?"
         items={[
           {
             avatar: '/images/trainers/prajakta-jadhav.png',
-            quote: "If you're unsure, just attend — it could change your life!",
-            name: 'Prajakta Jadhav',
-            role: 'Certified Aerial Yoga Instructor · Bodhi',
+            quote:
+              'It could tell my past self that I’d someday quit packaged food, shed laugh - chips were my weakness! I can now distinguish what’s good for my body and treat it like a temple, not a trash can.',
+            name: 'Anjilina Kalita',
+            role: '27, Guwahati',
           },
           {
             avatar: '/images/trainers/sneha-shankar.png',
             quote:
-              'The instructors made every concept land. I left with confidence and clarity.',
-            name: 'Sneha Shankar',
-            role: 'RYT 300 Graduate · Bodhi',
+              'It could tell my past self that I’d someday quit packaged food, shed laugh - chips were my weakness! I can now distinguish what’s good for my body and treat it like a temple, not a trash can.',
+            name: 'Sharada Sampathkumar',
+            role: '49, Bengaluru',
+          },
+          {
+            quote:
+              'It could tell my past self that I’d someday quit packaged food, shed laugh - chips were my weakness! I can now distinguish what’s good for my body and treat it like a temple, not a trash can.',
+            name: 'Anjilina Kalita',
+            role: '27, Guwahati',
           },
           {
             avatar: '/images/trainers/muskan-jain.png',
             quote:
-              'Bodhi blends tradition and practical teaching better than any program I have tried.',
-            name: 'Muskan Jain',
-            role: 'Yoga Therapist · Bodhi',
+              'It could tell my past self that I’d someday quit packaged food, shed laugh - chips were my weakness! I can now distinguish what’s good for my body and treat it like a temple, not a trash can.',
+            name: 'Anjilina Kalita',
+            role: '27, Guwahati',
           },
           {
-            avatar: '/images/trainers/eeena-chawla.png',
             quote:
-              'The aerial modules opened a whole new dimension of my practice.',
-            name: 'Eeena Chawla',
-            role: 'Aerial Yoga Instructor · Bodhi',
+              'It could tell my past self that I’d someday quit packaged food, shed laugh - chips were my weakness! I can now distinguish what’s good for my body and treat it like a temple, not a trash can.',
+            name: 'Sharada Sampathkumar',
+            role: '49, Bengaluru',
           },
         ]}
       />

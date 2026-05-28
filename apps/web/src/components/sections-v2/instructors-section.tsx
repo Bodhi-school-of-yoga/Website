@@ -29,40 +29,44 @@ function InstructorCard({ item, fallbackHref, itemVariants }: InstructorCardProp
   return (
     <motion.div
       variants={itemVariants}
-      className={[
-        'snap-start shrink-0',
-        'w-[260px] sm:w-auto',
-      ].join(' ')}
+      className="snap-start shrink-0 w-[300px] sm:w-auto"
     >
       <Link
         href={href}
         className={[
-          'group flex flex-col items-center text-center',
-          'rounded-2xl bg-surface-1 border border-border-2',
-          'p-5 md:p-6 lg:p-7',
+          'group flex items-center gap-[14px]',
+          'h-[126px]',
+          'rounded-[19px] bg-surface-1 border border-border-3',
+          'pl-[15px] pr-[19px] py-[17px]',
+          'shadow-[0px_22px_35px_rgba(197,197,197,0.25)]',
           'transition-transform transition-shadow duration-300 ease-out',
-          'motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-card',
+          'motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0px_26px_42px_rgba(197,197,197,0.35)]',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-brand focus-visible:ring-offset-2',
-          'h-full',
         ].join(' ')}
       >
         <div
           className={[
-            'relative overflow-hidden rounded-full',
-            'h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24',
-            'bg-mint-frost',
+            'relative shrink-0 overflow-hidden rounded-full',
+            'h-[98px] w-[98px]',
+            'border border-border-3 bg-surface-2',
           ].join(' ')}
         >
           <Image
             src={item.avatar}
             alt={item.name}
             fill
-            sizes="(min-width: 1280px) 96px, (min-width: 768px) 80px, 64px"
+            sizes="98px"
             className="object-cover"
           />
         </div>
-        <h3 className="mt-4 text-h5 text-text-primary">{item.name}</h3>
-        <p className="mt-1 text-body-sm text-text-tertiary">{item.role}</p>
+        <div className="flex flex-col min-w-0">
+          <p className="font-heading font-bold text-[17px] leading-[29.7px] text-text-secondary">
+            {item.name}
+          </p>
+          <p className="text-[13px] leading-[19px] text-text-tertiary">
+            {item.role}
+          </p>
+        </div>
       </Link>
     </motion.div>
   );
@@ -102,7 +106,7 @@ export function InstructorsSection({
         hidden: { opacity: 1 },
         visible: {
           opacity: 1,
-          transition: { staggerChildren: 0.08, delayChildren: 0.2 },
+          transition: { staggerChildren: 0.08, delayChildren: 0.15 },
         },
       };
 
@@ -122,39 +126,39 @@ export function InstructorsSection({
 
   return (
     <section className="bg-surface-1">
-      <div className="page-px py-14 md:py-20 lg:py-24">
+      <div className="page-px py-14 md:py-16 lg:py-[50px]">
         <div className="max-w-[1340px] mx-auto">
+          {/* Header */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="max-w-[760px]"
+            viewport={{ once: true, amount: 0.3 }}
+            className="flex flex-col gap-[2px]"
           >
             <motion.p
               variants={fadeUp}
-              className="text-mini text-text-brand uppercase tracking-[0.18em]"
+              className="text-mini font-semibold uppercase tracking-[1.8px] text-text-secondary leading-[18.15px]"
             >
               {eyebrow}
             </motion.p>
             <motion.h2
               variants={fadeUp}
-              transition={{ delay: prefersReducedMotion ? 0 : 0.1 }}
-              className="mt-3 text-h4 md:text-h3 lg:text-h2 text-text-primary"
+              transition={{ delay: prefersReducedMotion ? 0 : 0.08 }}
+              className="font-heading font-bold text-[28px] md:text-[30px] lg:text-[34px] leading-[1.04] text-text-secondary"
             >
               {heading}
             </motion.h2>
           </motion.div>
 
-          {/* Mobile: horizontal snap strip. sm+: grid */}
+          {/* Mobile: horizontal snap strip */}
           <motion.div
             variants={rowContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             className={[
-              'mt-10 md:mt-12 lg:mt-14',
-              // mobile: snap strip
-              'flex sm:hidden gap-4 overflow-x-auto snap-x snap-mandatory',
+              'mt-[23px]',
+              'flex sm:hidden gap-[16px] overflow-x-auto snap-x snap-mandatory',
               '-mx-4 px-4 pb-2',
             ].join(' ')}
           >
@@ -168,16 +172,17 @@ export function InstructorsSection({
             ))}
           </motion.div>
 
+          {/* Tablet 2-col / Desktop 4-col grid */}
           <motion.div
             variants={rowContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             className={[
-              'mt-10 md:mt-12 lg:mt-14',
+              'mt-[23px]',
               'hidden sm:grid',
               'sm:grid-cols-2 lg:grid-cols-4',
-              'gap-4 md:gap-5 lg:gap-[18px]',
+              'gap-[18px] lg:gap-[23px]',
             ].join(' ')}
           >
             {items.map((item, idx) => (

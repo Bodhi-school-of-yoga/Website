@@ -15,15 +15,25 @@ export default function CourseHeroDemoPage() {
 
       <CourseHero
         backgroundImage="/images/courses/yoga-300-hour-ytt/hero.png"
+        imageAlt="Yoga student practising on a mat"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Yoga Courses', href: '/yoga-courses' },
           { label: 'Online 300 Hour YTT', current: true },
         ]}
         title="Online 300 Hour Yoga Teacher Training — RYT 300"
+        subtitle="Master the art of yoga in the air. Build strength, grace, and confidence while learning to teach this unique style."
+        availabilityNote="Available in 4 Centers"
+        availabilityHref="/yoga-courses/online-300-hour-ytt#centers"
+        metaPills={[
+          { icon: 'studio', label: 'Studio' },
+          { icon: 'clock', label: '4:00 PM – 6:00 PM' },
+          { icon: 'calendar', label: 'Weekdays / Weekends' },
+        ]}
         priceLabel="Course fee"
         price="₹12,999"
-        cta={{ label: 'Enroll Now', href: '/enquire?course=online-300-hour-ytt' }}
+        originalPrice="₹16,999"
+        cta={{ label: 'Reserve Your Spot Now', href: '/enquire?course=online-300-hour-ytt' }}
       />
     </main>
   );

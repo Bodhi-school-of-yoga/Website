@@ -5,80 +5,15 @@ import { ListingHero } from "@/components/sections/listing-hero";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
+import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
-  title: "Offline Yoga Courses | Bodhi School of Yoga",
+  title: "Studio Yoga Courses | Bodhi School of Yoga",
   description:
-    "Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.",
+    "Daily regular yoga classes at Bodhi centres — weekday mornings and evenings for every level.",
 };
 
-type Course = {
-  id: string;
-  title: string;
-  imageSrc: string;
-  imageAlt: string;
-  href: string;
-  instructor: { initials: string; name: string };
-};
-
-const UNIQUE_COURSES: Course[] = [
-  {
-    id: "hatha-studio",
-    title: "Hatha Yoga at the Studio",
-    imageSrc: "/images/programs/pranayama-nervous-system.jpg",
-    imageAlt: "Hatha Yoga at the Studio",
-    href: "/yoga-courses/aerial-yoga",
-    instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
-  },
-  {
-    id: "vinyasa-in-person",
-    title: "Vinyasa Flow In-Person",
-    imageSrc: "/images/programs/300-hour-yoga-teacher-training-online.jpg",
-    imageAlt: "Vinyasa Flow In-Person",
-    href: "/yoga-courses/aerial-yoga",
-    instructor: { initials: "PP", name: "Prarthana Patel" },
-  },
-  {
-    id: "face-yoga-workshop",
-    title: "Face Yoga Workshop",
-    imageSrc: "/images/programs/face-yoga-teacher-training.jpg",
-    imageAlt: "Face Yoga Workshop",
-    href: "/yoga-courses/aerial-yoga",
-    instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
-  },
-  {
-    id: "weight-intensive",
-    title: "Weight Management Intensive",
-    imageSrc: "/images/programs/weight-loss-coach-teacher-training.jpg",
-    imageAlt: "Weight Management Intensive",
-    href: "/yoga-courses/aerial-yoga",
-    instructor: { initials: "JD", name: "Janardhan Durga Prasad" },
-  },
-  {
-    id: "bala-centre",
-    title: "Bala Yoga at the Centre",
-    imageSrc: "/images/programs/bala-yoga-teacher-training.jpg",
-    imageAlt: "Bala Yoga at the Centre",
-    href: "/yoga-courses/aerial-yoga",
-    instructor: { initials: "PP", name: "Prarthana Patel" },
-  },
-  {
-    id: "mat-pilates-studio",
-    title: "MAT Pilates Studio Class",
-    imageSrc: "/images/programs/mat-pilates-teacher-training.jpg",
-    imageAlt: "MAT Pilates Studio Class",
-    href: "/yoga-courses/aerial-yoga",
-    instructor: { initials: "LY", name: "Lakshmi Yalamudi" },
-  },
-];
-
-// TODO: replace with CMS-driven items
-const COURSES: Course[] = [
-  ...UNIQUE_COURSES,
-  { ...UNIQUE_COURSES[0], id: `${UNIQUE_COURSES[0].id}-dup` },
-  { ...UNIQUE_COURSES[1], id: `${UNIQUE_COURSES[1].id}-dup` },
-  { ...UNIQUE_COURSES[2], id: `${UNIQUE_COURSES[2].id}-dup` },
-];
+const COURSES = getCoursesByCategoryAndMode("yoga", "studio");
 
 export default function OfflineYogaCoursesPage() {
   return (
@@ -89,13 +24,13 @@ export default function OfflineYogaCoursesPage() {
           breadcrumb={[
             { label: "Home", href: "/" },
             { label: "Yoga courses", href: "/yoga-courses" },
-            { label: "Offline" },
+            { label: "Studio" },
           ]}
-          headline="Offline Yoga"
+          headline="Studio Yoga"
           headlineAccent="Courses"
           accentPosition="end"
-          subtitle="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
-          resultCount="23 courses"
+          subtitle="In-person yoga classes at a Bodhi centre — weekday mornings and evenings only."
+          resultCount={`${COURSES.length} course${COURSES.length === 1 ? "" : "s"}`}
           resultCountTone="inverse"
           contentAlign="center"
           minHeightClassName="min-h-[421px]"
@@ -106,17 +41,17 @@ export default function OfflineYogaCoursesPage() {
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">
           <div className="container mx-auto max-w-7xl px-4">
             <ul className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
-              {COURSES.map((course) => (
-                <li key={course.id}>
+              {COURSES.map((course, idx) => (
+                <li key={course.slug}>
                   <ProgramCard
                     title={course.title}
-                    href={course.href}
-                    imageSrc={course.imageSrc}
-                    imageAlt={course.imageAlt}
+                    href={`/courses/${course.slug}`}
+                    imageSrc={course.listingImage}
+                    imageAlt={course.title}
                     meta={[
                       {
                         icon: <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />,
-                        label: "4 weeks",
+                        label: course.durationLabel,
                       },
                       {
                         icon: <Globe className="h-3.5 w-3.5" strokeWidth={1.75} />,
@@ -125,6 +60,13 @@ export default function OfflineYogaCoursesPage() {
                     ]}
                     instructor={course.instructor}
                     cta="View Program"
+                    rating={5}
+                    reviewCount={30}
+                    centersLabel="4 Centers"
+                    featured={idx === 0}
+                    price="₹4,999"
+                    originalPrice="₹7,499"
+                    discountLabel="30% OFF"
                   />
                 </li>
               ))}

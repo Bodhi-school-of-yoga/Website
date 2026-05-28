@@ -15,36 +15,42 @@ export default function ClosingCtaAndFooterDemoPage() {
 
       <ClosingCtaAndFooter
         cta={{
-          heading: 'Begin where you are.',
+          wordmark: 'Bodhi',
+          headingLead: 'Begin where',
+          headingAccent: 'you are.',
           subheading:
             "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that.",
-          primary: { label: 'Explore Programs', href: '/yoga-courses' },
-          secondary: { label: 'Talk to us', href: '/enquire?course=online-300-hour-ytt' },
+          primary: { label: 'Try a class, free', href: '/yoga-courses' },
         }}
         footer={{
           logoHref: '/',
+          wordmark: 'Bodhi',
           brandTagline:
-            'A school for teachers, a home for seekers. Practice, taught honestly.',
-          subtagline: 'Designed quietly. Practised daily.',
+            'A school for teachers, a home for seekers.\nPractice, taught honestly.',
+          websiteLabel: 'bodhischoolofyoga.com',
+          websiteHref: 'https://bodhischoolofyoga.com',
           linkColumns: [
             {
-              heading: 'Programs',
+              heading: 'School',
               links: [
                 { label: 'Teacher Training', href: '/teacher-training' },
                 { label: 'Workshops', href: '/workshops' },
                 { label: 'Classes', href: '/classes' },
-              ],
-            },
-            {
-              heading: 'About',
-              links: [
                 { label: 'Faculty', href: '/faculty' },
                 { label: 'Lineage', href: '/lineage' },
-                { label: 'Get directions', href: '/centers' },
               ],
             },
             {
-              heading: 'Stay in touch',
+              heading: 'Visit',
+              links: [
+                { label: 'The Practice Room,', href: '/centers' },
+                { label: '2nd floor, Quiet Lane', href: '/centers' },
+                { label: 'City  · India', href: '/centers' },
+                { label: 'Get directions →', href: '/centers' },
+              ],
+            },
+            {
+              heading: 'Stay close',
               links: [
                 { label: 'Newsletter', href: '/newsletter' },
                 { label: 'Instagram', href: '#' },
@@ -54,12 +60,8 @@ export default function ClosingCtaAndFooterDemoPage() {
             },
           ],
           copyright:
-            '© Bodhi School of Yoga · Yoga Alliance Registered School (RYS-200, RYS-300)',
-          socials: {
-            instagram: '#',
-            youtube: '#',
-            email: 'mailto:hello@bodhi.school',
-          },
+            '© Bodhi School of Yoga  ·  Yoga Alliance Registered School (RYS-200, RYS-300)',
+          signoff: 'Designed quietly. Practised daily.',
         }}
       />
     </main>

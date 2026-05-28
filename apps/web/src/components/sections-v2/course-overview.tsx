@@ -11,16 +11,6 @@ export interface CourseOverviewProps {
 export function CourseOverview({ eyebrow, heading, paragraphs }: CourseOverviewProps) {
   const prefersReducedMotion = useReducedMotion();
 
-  const fadeInUp: Variants = prefersReducedMotion
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0 } },
-      }
-    : {
-        hidden: { opacity: 0, y: 24 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-      };
-
   const staggerParent: Variants = prefersReducedMotion
     ? {
         hidden: {},
@@ -28,7 +18,7 @@ export function CourseOverview({ eyebrow, heading, paragraphs }: CourseOverviewP
       }
     : {
         hidden: {},
-        visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+        visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
       };
 
   const childFade: Variants = prefersReducedMotion
@@ -38,42 +28,49 @@ export function CourseOverview({ eyebrow, heading, paragraphs }: CourseOverviewP
       }
     : {
         hidden: { opacity: 0, y: 16 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        },
       };
 
   return (
-    <section className="page-px py-10 md:py-14 lg:py-20">
-      <div className="mx-auto max-w-[1340px]">
-        <div className="grid grid-cols-1 gap-8 md:gap-10 lg:grid-cols-2 lg:gap-16">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-4"
-          >
-            <span className="text-mini uppercase text-text-brand">{eyebrow}</span>
-            <h2 className="text-h4 lg:text-h2 text-text-primary">{heading}</h2>
+    <section className="bg-surface-1 py-12 md:py-16 lg:py-20">
+      <div className="mx-auto w-full max-w-[1340px] page-px">
+        <motion.div
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="flex flex-col"
+        >
+          {/* Eyebrow + Heading block (Figma: 441px wide block left-aligned) */}
+          <motion.div variants={childFade} className="flex flex-col gap-3 md:gap-4">
+            <span className="text-mini font-semibold uppercase text-text-brand tracking-[1.8px]">
+              {eyebrow}
+            </span>
+            <h2 className="text-[26px] md:text-[28px] lg:text-[30px] font-heading font-bold leading-[1.17] text-text-secondary max-w-[640px]">
+              {heading}
+            </h2>
           </motion.div>
 
+          {/* Paragraphs: full-width below, ~15px body, ~27px line-height */}
           <motion.div
             variants={staggerParent}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-5"
+            className="mt-5 md:mt-6 flex flex-col gap-3"
           >
             {paragraphs.map((paragraph, idx) => (
               <motion.p
                 key={idx}
                 variants={childFade}
-                className="text-subtext-2 text-text-tertiary"
+                className="text-[15px] leading-[27px] text-text-tertiary"
               >
                 {paragraph}
               </motion.p>
             ))}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
