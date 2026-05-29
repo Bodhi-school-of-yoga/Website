@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Globe, Monitor } from "lucide-react";
 
 import { ListingHero } from "@/components/sections/listing-hero";
+import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
@@ -18,7 +19,7 @@ const COURSES = getCoursesByCategoryAndMode("advanced", "online");
 export default function OnlineAdvancedCertificationsPage() {
   return (
     <>
-      <SiteHeader tone="light" />
+      <SiteHeader tone="dark" />
       <main>
         <ListingHero
           breadcrumb={[
@@ -26,11 +27,17 @@ export default function OnlineAdvancedCertificationsPage() {
             { label: "Advanced Certifications", href: "/advanced-certifications" },
             { label: "Online" },
           ]}
-          headlineAccent="Online"
-          headline="Advanced Certifications"
+          headline="Online"
+          headlineAccent="Advanced Certifications"
+          accentPosition="end"
+          headlineAccentClassName="text-brand-primary"
           subtitle="Accredited, women-centred advanced training rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
           resultCount={`${COURSES.length} courses`}
-          backgroundImage="/images/hero/teacher-training-online.jpg"
+          resultCountTone="accent"
+          tone="light"
+          className="bg-[#EFFFFB]"
+          minHeightClassName="min-h-[421px]"
+          decoration={<ListingHeroDecoration />}
         />
 
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">

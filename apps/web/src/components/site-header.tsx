@@ -150,7 +150,7 @@ export function SiteHeader({
                   <NavMenuItem key={link.label}>
                     <NavMenuTrigger
                       className={cn(
-                        "font-sans text-[16px] font-medium leading-none tracking-[-0.18px] transition-colors",
+                        "font-sans text-body-sm font-medium leading-none tracking-[-0.18px] transition-colors",
                         inverted ? "text-text-inverse" : "text-black",
                         underlineSweep,
                       )}

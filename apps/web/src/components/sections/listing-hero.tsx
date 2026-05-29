@@ -95,6 +95,13 @@ export type ListingHeroProps = {
    * padding (driven by `contentAlign`) overshoots a band's intended height.
    */
   verticalPaddingClassName?: string;
+  /**
+   * Optional decorative artwork anchored to the right edge of the band (e.g.
+   * the Figma "Online Advanced Certifications" yoga-pose + star-burst at node
+   * 819:17571). Rendered behind the text content and hidden below `lg`.
+   * Opt-in — omit on pages that don't use it.
+   */
+  decoration?: React.ReactNode;
 };
 
 export function ListingHero({
@@ -116,6 +123,7 @@ export function ListingHero({
   headlineClassName,
   headlineAccentClassName,
   verticalPaddingClassName,
+  decoration,
 }: ListingHeroProps) {
   const isLight = tone === "light";
   const isGradient = background === "gradient";
@@ -182,6 +190,15 @@ export function ListingHero({
           />
           <div aria-hidden="true" className="absolute inset-0 bg-black/80" />
         </>
+      ) : null}
+
+      {decoration ? (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden lg:block"
+        >
+          {decoration}
+        </div>
       ) : null}
 
       <motion.div

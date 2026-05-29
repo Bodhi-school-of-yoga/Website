@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Globe } from "lucide-react";
 
 import { ListingHero } from "@/components/sections/listing-hero";
+import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
 import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -27,14 +28,17 @@ export default function OfflineYogaCoursesPage() {
             { label: "Yoga courses", href: "/yoga-courses" },
             { label: "Studio" },
           ]}
-          headline="Regular yoga classes"
-          headlineAccent=""
+          headline="Regular yoga"
+          headlineAccent="classes"
           accentPosition="end"
+          headlineAccentClassName="text-text-primary"
           subtitle="In-person yoga classes at a Bodhi centre — weekday mornings and evenings only."
           resultCount={`${COURSES.length} course${COURSES.length === 1 ? "" : "s"}`}
           resultCountTone="accent"
           tone="light"
           className="bg-[#EFFFFB]"
+          minHeightClassName="min-h-[421px]"
+          decoration={<ListingHeroDecoration />}
         />
 
         {/* Location filter */}

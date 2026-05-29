@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Globe, Monitor } from "lucide-react";
 
 import { ListingHero } from "@/components/sections/listing-hero";
+import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
 import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -25,15 +26,19 @@ export default function StudioAdvancedCertificationsPage() {
           breadcrumb={[
             { label: "Home", href: "/" },
             { label: "Advanced Certifications", href: "/advanced-certifications" },
-            { label: "Online", href: "/advanced-certifications/online" },
+            { label: "Offline" },
           ]}
-          headlineAccent="Studio"
-          headline="Advanced Certifications"
+          headline="Offline"
+          headlineAccent="Advanced Certifications"
+          accentPosition="end"
+          headlineAccentClassName="text-brand-primary"
           subtitle="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
-          resultCount="23 courses"
+          resultCount={`${COURSES.length} course${COURSES.length === 1 ? "" : "s"}`}
           tone="light"
           resultCountTone="accent"
           className="bg-[#EFFFFB]"
+          minHeightClassName="min-h-[421px]"
+          decoration={<ListingHeroDecoration />}
         />
 
         {/* Location filter */}
@@ -41,7 +46,7 @@ export default function StudioAdvancedCertificationsPage() {
           <div className="mx-auto max-w-[1340px] page-px">
             <LocationFilterBar />
             <p className="mt-6 text-mini uppercase tracking-widest text-text-brand">
-              3 results
+              {COURSES.length} result{COURSES.length === 1 ? "" : "s"}
             </p>
           </div>
         </section>

@@ -1,7 +1,15 @@
 import type { DropdownContent, MegaMenuColumn } from "./nav-types";
+import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
 
 // All hrefs below point to pages that exist in apps/web/src/app/.
 // When adding new menu items, also add the matching page.tsx route.
+
+// Live course counts sourced from the catalog so the nav dropdown always
+// reflects what's actually available. "Offline - in studio" maps to mode "studio".
+const courseCount = (
+  category: "advanced" | "teacher" | "yoga",
+  mode: "online" | "studio",
+) => getCoursesByCategoryAndMode(category, mode).length;
 
 export const ABOUT_MEGA_MENU: MegaMenuColumn[] = [
   {
@@ -84,7 +92,7 @@ export const COURSE_DROPDOWNS: Record<
       {
         title: "Online Courses",
         subtitle: "At Comfort of your home",
-        count: 9,
+        count: courseCount("teacher", "online"),
         href: "/teacher-courses/online",
         image: "/images/programs/face-yoga.jpg",
         icon: "Laptop",
@@ -92,7 +100,7 @@ export const COURSE_DROPDOWNS: Record<
       {
         title: "Offline - in studio",
         subtitle: "We have 20+ studios",
-        count: 9,
+        count: courseCount("teacher", "studio"),
         href: "/teacher-courses/offline",
         image: "/images/programs/bala-yoga-teacher-training.jpg",
         icon: "Building2",
@@ -107,7 +115,7 @@ export const COURSE_DROPDOWNS: Record<
           {
             title: "Online Courses",
             subtitle: "Learn from anywhere",
-            count: 9,
+            count: courseCount("advanced", "online"),
             href: "/advanced-certifications/online",
             image: "/images/programs/face-yoga.jpg",
             icon: "Laptop",
@@ -115,7 +123,7 @@ export const COURSE_DROPDOWNS: Record<
           {
             title: "Offine - in studio",
             subtitle: "Hands-on training",
-            count: 9,
+            count: courseCount("advanced", "studio"),
             href: "/advanced-certifications/offline",
             image: "/images/programs/bala-yoga-teacher-training.jpg",
             icon: "Building2",
@@ -129,7 +137,7 @@ export const COURSE_DROPDOWNS: Record<
       {
         title: "Online Courses",
         subtitle: "At Comfort of your home",
-        count: 9,
+        count: courseCount("yoga", "online"),
         href: "/yoga-courses/online",
         image: "/images/programs/face-yoga.jpg",
         icon: "Laptop",
@@ -137,7 +145,7 @@ export const COURSE_DROPDOWNS: Record<
       {
         title: "Offline - in studio",
         subtitle: "We have 20+ studios",
-        count: 9,
+        count: courseCount("yoga", "studio"),
         href: "/yoga-courses/offline",
         image: "/images/programs/bala-yoga-teacher-training.jpg",
         icon: "Building2",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import CourseGridSection from "@/components/sections/course-grid-section";
 import { ListingHero } from "@/components/sections/listing-hero";
+import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
 import { type PopularCourse } from "@/components/sections/popular-courses-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
@@ -37,7 +38,7 @@ const COURSES: PopularCourse[] = getCoursesByCategoryAndMode("teacher", "online"
 export default function OnlineCoursesPage() {
   return (
     <>
-      <SiteHeader tone="light" />
+      <SiteHeader tone="dark" />
       <main>
         <ListingHero
           breadcrumb={[
@@ -47,9 +48,14 @@ export default function OnlineCoursesPage() {
           ]}
           headlineAccent="Become"
           headline="The Teacher You Were Meant To Be"
+          headlineAccentClassName="text-text-primary"
           subtitle="World-class yoga teacher training and mindful practice for aspiring instructors and lifelong learners."
           resultCount={`${COURSES.length} COURSES`}
-          backgroundImage="/images/hero/teacher-training-online.jpg"
+          resultCountTone="accent"
+          tone="light"
+          className="bg-[#EFFFFB]"
+          minHeightClassName="min-h-[421px]"
+          decoration={<ListingHeroDecoration />}
         />
         <CourseGridSection courses={COURSES} />
       </main>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Globe } from "lucide-react";
 
 import { ListingHero } from "@/components/sections/listing-hero";
+import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
@@ -18,7 +19,7 @@ const COURSES = getCoursesByCategoryAndMode("yoga", "online");
 export default function OnlineYogaCoursesPage() {
   return (
     <>
-      <SiteHeader tone="light" />
+      <SiteHeader tone="dark" />
       <main>
         <ListingHero
           breadcrumb={[
@@ -29,13 +30,14 @@ export default function OnlineYogaCoursesPage() {
           headline="Online Yoga"
           headlineAccent="Courses"
           accentPosition="end"
+          headlineAccentClassName="text-text-primary"
           subtitle="Live weekday yoga classes — for everyday practice, mindful weight-loss, and advanced asana. No weekend classes."
           resultCount={`${COURSES.length} courses`}
-          resultCountTone="inverse"
-          contentAlign="center"
+          resultCountTone="accent"
+          tone="light"
+          className="bg-[#EFFFFB]"
           minHeightClassName="min-h-[421px]"
-          backgroundImage="/images/hero/yoga-courses-listing.png"
-          backgroundAlt="Yoga instructor guiding three students through side-stretch poses in a sunlit studio"
+          decoration={<ListingHeroDecoration />}
         />
 
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">
