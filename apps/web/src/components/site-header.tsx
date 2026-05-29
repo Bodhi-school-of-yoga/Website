@@ -132,7 +132,7 @@ export function SiteHeader({
             priority
             className={cn(
               "w-auto origin-left transition-[height,transform] duration-300 group-hover:scale-[1.02]",
-              scrolled ? "h-10 sm:h-11" : "h-12 sm:h-14",
+              scrolled ? "h-10 sm:h-14" : "h-12 sm:h-20",
             )}
           />
         </Link>
@@ -150,7 +150,7 @@ export function SiteHeader({
                   <NavMenuItem key={link.label}>
                     <NavMenuTrigger
                       className={cn(
-                        "font-sans text-body-sm font-medium leading-none tracking-[-0.18px] transition-colors",
+                        "font-sans text-[16px] font-medium leading-none tracking-[-0.18px] transition-colors",
                         inverted ? "text-text-inverse" : "text-black",
                         underlineSweep,
                       )}

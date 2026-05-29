@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Globe, Monitor } from "lucide-react";
 
 import { ListingHero } from "@/components/sections/listing-hero";
+import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
@@ -18,23 +19,36 @@ const COURSES = getCoursesByCategoryAndMode("advanced", "studio");
 export default function StudioAdvancedCertificationsPage() {
   return (
     <>
-      <SiteHeader tone="light" />
+      <SiteHeader tone="dark" />
       <main>
         <ListingHero
           breadcrumb={[
             { label: "Home", href: "/" },
             { label: "Advanced Certifications", href: "/advanced-certifications" },
-            { label: "Studio" },
+            { label: "Online", href: "/advanced-certifications/online" },
           ]}
           headlineAccent="Studio"
           headline="Advanced Certifications"
-          subtitle="Immersive in-person advanced training at a Bodhi centre — daily practice, hands-on mentorship."
-          resultCount={`${COURSES.length} course${COURSES.length === 1 ? "" : "s"}`}
-          backgroundImage="/images/hero/teacher-training-offline.jpg"
+          subtitle="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
+          resultCount="23 courses"
+          tone="light"
+          resultCountTone="accent"
+          className="bg-[#EFFFFB]"
         />
 
-        <section className="bg-surface-1 py-16 md:py-20 lg:py-24">
-          <div className="container mx-auto max-w-7xl px-4">
+        {/* Location filter */}
+        <section className="border-t border-border-1 bg-surface-1 pt-12 pb-6">
+          <div className="mx-auto max-w-[1340px] page-px">
+            <LocationFilterBar />
+            <p className="mt-6 text-mini uppercase tracking-widest text-text-brand">
+              3 results
+            </p>
+          </div>
+        </section>
+
+        {/* Course grid */}
+        <section className="bg-surface-1 py-10 md:py-14 lg:py-16">
+          <div className="mx-auto max-w-[1340px] page-px">
             <ul className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {COURSES.map((course, idx) => (
                 <li key={course.slug}>

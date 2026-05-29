@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
+import { MapPin } from 'lucide-react';
 
 export type BreadcrumbItem = {
   label: string;
@@ -12,6 +13,8 @@ export type BreadcrumbItem = {
 
 export type CourseMetaPill = {
   icon?: 'studio' | 'clock' | 'calendar';
+  /** Path to an SVG/image icon (e.g. "/icons/course1.svg"). Takes priority over `icon`. */
+  iconSrc?: string;
   label: string;
 };
 
@@ -89,23 +92,6 @@ function PillIcon({ name }: { name: CourseMetaPill['icon'] }) {
   );
 }
 
-function AvailabilityPinIcon() {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 16 18"
-      className="h-[17px] w-[15px] shrink-0 text-text-brand-emerald"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M8 1.25c-3.45 0-6.25 2.7-6.25 6.05 0 4.5 6.25 9.45 6.25 9.45s6.25-4.95 6.25-9.45c0-3.35-2.8-6.05-6.25-6.05Z" />
-      <circle cx="8" cy="7.2" r="2.1" />
-    </svg>
-  );
-}
 
 export function CourseHero({
   backgroundImage = '/images/courses/yoga-300-hour-ytt/hero.png',
@@ -125,47 +111,47 @@ export function CourseHero({
 
   const container: Variants = prefersReducedMotion
     ? {
-        hidden: { opacity: 1 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: 0, duration: 0 },
-        },
-      }
+      hidden: { opacity: 1 },
+      visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0, duration: 0 },
+      },
+    }
     : {
-        hidden: { opacity: 1 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: 0.08, delayChildren: 0.05 },
-        },
-      };
+      hidden: { opacity: 1 },
+      visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+      },
+    };
 
   const fadeInUp: Variants = prefersReducedMotion
     ? {
-        hidden: { opacity: 1, y: 0 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0 } },
-      }
+      hidden: { opacity: 1, y: 0 },
+      visible: { opacity: 1, y: 0, transition: { duration: 0 } },
+    }
     : {
-        hidden: { opacity: 0, y: 16 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-        },
-      };
+      hidden: { opacity: 0, y: 16 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+      },
+    };
 
   const imageReveal: Variants = prefersReducedMotion
     ? {
-        hidden: { opacity: 1, scale: 1 },
-        visible: { opacity: 1, scale: 1, transition: { duration: 0 } },
-      }
+      hidden: { opacity: 1, scale: 1 },
+      visible: { opacity: 1, scale: 1, transition: { duration: 0 } },
+    }
     : {
-        hidden: { opacity: 0, scale: 1.02 },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-        },
-      };
+      hidden: { opacity: 0, scale: 1.02 },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+      },
+    };
 
   return (
     <section
@@ -179,8 +165,24 @@ export function CourseHero({
           variants={container}
           className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-[92px] lg:items-center"
         >
+
           {/* Left — content column (Figma: text/CTA on left) */}
-          <motion.div variants={container} className="flex flex-col order-2 md:order-1">
+          <motion.div
+            variants={imageReveal}
+            className="relative overflow-hidden rounded-[20px] aspect-[608/546] md:aspect-auto md:min-h-[420px] lg:min-h-[546px] bg-surface-2 order-1 md:order-2"
+          >
+            <Image
+              src={backgroundImage}
+              alt={imageAlt}
+              fill
+              priority
+              sizes="(min-width: 1024px) 608px, (min-width: 768px) 50vw, 100vw"
+              className="object-cover object-center"
+            />
+          </motion.div>
+          {/* Right — image (Figma: image on right) */}
+
+          <motion.div variants={container} className="flex flex-col order-2 ">
             {/* Breadcrumb */}
             <motion.nav
               aria-label="Breadcrumb"
@@ -233,20 +235,19 @@ export function CourseHero({
             {subtitle && (
               <motion.p
                 variants={fadeInUp}
-                className="mt-5 text-subtext-2 text-text-tertiary max-w-[34rem]"
+                className=" text-subtext-2 text-text-tertiary max-w-[34rem] mt-2"
               >
                 {subtitle}
               </motion.p>
             )}
-
             {/* Availability note */}
             {availabilityNote && (
               <motion.div
                 variants={fadeInUp}
-                className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2"
+                className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2"
               >
-                <span className="inline-flex items-center gap-2 text-body-sm text-text-secondary">
-                  <AvailabilityPinIcon />
+                <span className="inline-flex items-center gap-2 text-body-sm font-medium text-text-secondary">
+                  <MapPin fill="#009877" className="h-[18px] w-[18px] text-white" />
                   {availabilityNote}
                 </span>
                 {availabilityHref && (
@@ -269,9 +270,13 @@ export function CourseHero({
                 {metaPills.map((pill, idx) => (
                   <li
                     key={`${pill.label}-${idx}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-border-3 bg-surface-1 px-[17px] py-[11px] text-body-sm text-text-secondary"
+                    className="inline-flex items-center gap-2 rounded-full border border-border-3 bg-surface-1 px-[17px] py-[11px] text-body-sm font-semibold text-text-secondary"
                   >
-                    <PillIcon name={pill.icon} />
+                    {pill.iconSrc ? (
+                      <Image src={pill.iconSrc} alt="" width={26} height={26} className="shrink-0" />
+                    ) : (
+                      <PillIcon name={pill.icon} />
+                    )}
                     {pill.label}
                   </li>
                 ))}
@@ -281,17 +286,18 @@ export function CourseHero({
             {/* Price block */}
             <motion.div
               variants={fadeInUp}
-              className="mt-8 flex items-baseline gap-3"
+              className="mt-8 flex items-baseline gap-4"
             >
               <span className="sr-only">{priceLabel}</span>
-              <span className="text-h2 font-heading font-bold text-text-secondary">
-                {price}
-              </span>
-              {originalPrice && (
-                <span className="text-body-md text-text-tertiary line-through">
+               {originalPrice && (
+                <span className="block mt-0.5 text-[19px] text-text-tertiary line-through">
                   {originalPrice}
                 </span>
               )}
+              <span className="block text-h4 font-heading font-bold text-brand-primary">
+                {price}
+              </span>
+             
             </motion.div>
 
             {/* CTA */}
@@ -300,7 +306,7 @@ export function CourseHero({
                 <button
                   type="button"
                   onClick={cta.onClick}
-                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-brand-primary px-8 py-[14px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+                  className="inline-flex w-full sm:w-full items-center justify-center rounded-full bg-brand-primary px-8 py-[10px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
                 >
                   {cta.label}
                 </button>
@@ -315,20 +321,7 @@ export function CourseHero({
             </motion.div>
           </motion.div>
 
-          {/* Right — image (Figma: image on right) */}
-          <motion.div
-            variants={imageReveal}
-            className="relative overflow-hidden rounded-[20px] aspect-[608/546] md:aspect-auto md:min-h-[420px] lg:min-h-[546px] bg-surface-2 order-1 md:order-2"
-          >
-            <Image
-              src={backgroundImage}
-              alt={imageAlt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 608px, (min-width: 768px) 50vw, 100vw"
-              className="object-cover object-center"
-            />
-          </motion.div>
+
         </motion.div>
       </div>
     </section>

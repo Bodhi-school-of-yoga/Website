@@ -74,7 +74,7 @@ function StarRating({ rating, reviewCount }: { rating: number; reviewCount?: num
             aria-hidden="true"
             className={cn(
               "size-[16.7px]",
-              i < rounded ? "fill-[#FFB400] text-[#FFB400]" : "fill-border-2 text-border-2",
+              i < rounded ? "fill-brand-primary text-brand-primary" : "fill-border-2 text-border-2",
             )}
             strokeWidth={0}
           />
@@ -117,7 +117,7 @@ export function ProgramCard({
     return [
       ...meta,
       {
-        icon: <MapPin className="h-3 w-3" strokeWidth={1.75} />,
+        icon: <MapPin className="h-3 w-3 text-brand-primary" strokeWidth={1.75} />,
         label: centersLabel,
       },
     ];
@@ -126,7 +126,7 @@ export function ProgramCard({
   const cardInner = (
     <Card
       className={cn(
-        "rounded-2xl border-border-1 shadow-card hover:bg-card",
+        "rounded-2xl border border-brand-shade/30 shadow-card hover:bg-card",
         "gap-0 py-0 overflow-hidden h-full",
         "group transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-lg",
         "motion-reduce:transition-none motion-reduce:transform-none motion-reduce:hover:transform-none",
@@ -200,11 +200,11 @@ export function ProgramCard({
         )}
 
         {!isArticle && metaItems.length > 0 && (
-          <ul className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+          <ul className="flex items-center gap-x-3 flex-nowrap overflow-x-auto">
             {metaItems.map((item, i) => (
               <React.Fragment key={`${item.label}-${i}`}>
                 <li className="flex items-center gap-1.5 font-sans text-[12px] font-medium tracking-[0.12px] text-text-secondary">
-                  <span className="flex size-3 shrink-0 items-center justify-center text-text-secondary/80">
+                  <span className="flex size-3 shrink-0 items-center justify-center text-brand-primary">
                     {item.icon}
                   </span>
                   <span className="whitespace-nowrap">{item.label}</span>
@@ -243,7 +243,7 @@ export function ProgramCard({
             )}
           </CardContent>
 
-          {/* Mint footer CTA band — full-width, brightens on card hover. */}
+          {/* Footer CTA — text link separated by a thin divider. */}
           <CardFooter
             className={cn(
               "mt-auto px-7 py-0",
@@ -253,10 +253,10 @@ export function ProgramCard({
             <Link
               href={href}
               className={cn(
-                "group/cta -mx-7 flex w-[calc(100%+3.5rem)] items-center justify-center gap-2 py-4",
-                "bg-brand-primary/10 text-brand-primary",
+                "group/cta -mx-7 flex w-[calc(100%+3.5rem)] items-center gap-2 border-t border-border-1 px-7 py-4 bg-[#64cbb52f]",
+                "text-brand-primary",
                 "transition-colors duration-200 ease-in-out",
-                "group-hover:bg-brand-primary/100 group-hover:text-white",
+                "hover:text-brand-primary/80",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
                 "font-heading text-[14.27px] font-semibold tracking-[0.0878px]",
               )}

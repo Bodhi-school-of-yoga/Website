@@ -16,6 +16,7 @@ import { InstructorsSection } from "@/components/sections-v2/instructors-section
 import { FaqSection } from "@/components/sections-v2/faq-section";
 import { MoreCoursesSection } from "@/components/sections-v2/more-courses-section";
 import { ClosingCtaAndFooter } from "@/components/sections-v2/closing-cta-and-footer";
+import { CourseTabBar } from "@/components/sections-v2/course-tab-bar";
 
 import {
   COURSES,
@@ -178,9 +179,9 @@ export default async function CourseDetailPage({
         title={`${course.titleLead} ${course.titleAccent}`}
         subtitle={course.shortDescription}
         metaPills={[
-          { icon: "studio", label: modeLabel },
-          { icon: "clock", label: course.durationLabel },
-          { icon: "calendar", label: course.scheduleLabel },
+          { iconSrc: "/icon/course1.svg", label: modeLabel },
+          { iconSrc: "/icon/course2.svg", label: course.durationLabel },
+          { iconSrc: "/icon/course3.svg", label: course.scheduleLabel },
         ]}
         priceLabel="Starts at"
         price={price}
@@ -204,6 +205,16 @@ export default async function CourseDetailPage({
         ]}
       />
 
+      <CourseTabBar
+        tabs={[
+          { label: "Overview", sectionId: "overview" },
+          { label: "Highlights", sectionId: "highlights" },
+          { label: "Curriculum", sectionId: "curriculum" },
+          { label: "Eligibility", sectionId: "right-for-you" },
+          { label: "Overall", sectionId: "testimonials" },
+        ]}
+      />
+
       <section id="overview" className="scroll-mt-[160px]">
         <CourseOverview
           eyebrow="Overview"
@@ -218,6 +229,7 @@ export default async function CourseDetailPage({
           heading="What You'll Gain"
           items={course.highlights.map((h) => ({
             icon: toHighlightIcon(h.icon),
+            iconSrc: h.iconSrc,
             title: h.title,
             body: h.body,
           }))}
