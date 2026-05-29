@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import {
   Activity,
@@ -24,9 +25,8 @@ export type HighlightIconName =
   | 'hands';
 
 export type HighlightItem = {
-  /** Either a Lucide icon component (when used from a Client Component) or a
-   *  string name from the icon map below (when used from a Server Component). */
   icon: LucideIcon | HighlightIconName;
+  iconSrc?: string;
   title: string;
   body: string;
 };
@@ -70,7 +70,11 @@ function HighlightCard({
         className="flex h-[52px] w-[52px] items-center justify-center rounded-[17px] bg-mint-cream"
         aria-hidden="true"
       >
-        <Icon className="h-[22px] w-[22px] text-text-brand" strokeWidth={1.75} />
+        {item.iconSrc ? (
+          <Image src={item.iconSrc} alt="" width={29} height={22} />
+        ) : (
+          <Icon className="h-[22px] w-[22px] text-text-brand" strokeWidth={1.75} />
+        )}
       </div>
       <div className="flex flex-col gap-[2px]">
         <h3 className="text-subtext-3 font-bold text-text-secondary">
@@ -109,13 +113,13 @@ export function HighlightsSection({
 
   return (
     <section className="bg-surface-0">
-      <div className="page-px py-16 md:py-20 lg:py-24">
-        <div className="mx-auto max-w-[1340px]">
+      <div className="px-6 py-16 md:py-20 lg:py-24">
+        <div className="mx-auto max-w-6xl">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className="flex flex-col gap-[1px]"
+            className="flex flex-col gap-px"
           >
             <motion.p
               variants={fadeUp}

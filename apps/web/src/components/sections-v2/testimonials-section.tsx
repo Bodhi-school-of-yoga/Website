@@ -3,11 +3,14 @@
 import Image from 'next/image';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+} from '@/components/ui/carousel';
+
 export type TestimonialItem = {
-  /**
-   * Avatar source. When provided as an image path, renders as <Image>.
-   * When omitted, falls back to the first letter of the name on a mint tile.
-   */
   avatar?: string;
   quote: string;
   name: string;
@@ -17,11 +20,6 @@ export type TestimonialItem = {
 export type TestimonialsSectionProps = {
   eyebrow: string;
   heading: string;
-  /**
-   * Items in display order. The FIRST item renders as the featured (green)
-   * card spanning both rows of the left column. The next up-to-5 items fill
-   * a 2×2 (+1) grid of white cards on the right.
-   */
   items: TestimonialItem[];
 };
 
@@ -29,30 +27,16 @@ function getInitial(name: string) {
   return name.trim().charAt(0).toUpperCase() || '·';
 }
 
-type FeaturedCardProps = {
-  item: TestimonialItem;
-  variants: Variants;
-};
-
-function FeaturedCard({ item, variants }: FeaturedCardProps) {
+function FeaturedCard({ item }: { item: TestimonialItem }) {
   return (
-    <motion.article
-      variants={variants}
-      className={[
-        'flex flex-col',
-        'rounded-[24px] bg-brand-primary',
-        'p-7 lg:p-8',
-        'row-span-2',
-        'min-h-[320px] lg:min-h-[406px]',
-      ].join(' ')}
-    >
-      <div className="relative h-[110px] w-[110px] lg:h-[135px] lg:w-[135px] overflow-hidden rounded-full bg-mint-soft shrink-0">
+    <article className="flex h-full flex-col rounded-[24px] bg-brand-primary p-6 lg:p-7">
+      <div className="relative h-[110px] w-[110px] lg:h-[130px] lg:w-[130px] shrink-0 overflow-hidden rounded-full bg-mint-soft">
         {item.avatar ? (
           <Image
             src={item.avatar}
             alt={item.name}
             fill
-            sizes="135px"
+            sizes="130px"
             className="object-cover"
           />
         ) : (
@@ -61,61 +45,47 @@ function FeaturedCard({ item, variants }: FeaturedCardProps) {
           </span>
         )}
       </div>
-
-      <h3 className="mt-6 text-h5 text-surface-1 font-heading font-bold">
+      <h3 className="mt-5 text-h5 font-heading font-bold text-surface-1">
         {item.name}
       </h3>
-      <p className="mt-1 text-body-sm text-mint-soft">{item.role}</p>
-
-      <p className="mt-5 text-body-sm text-surface-1 leading-[1.55]">
+      <p className="mt-0.5 text-body-sm text-mint-soft">{item.role}</p>
+      <p className="mt-4 text-body-sm leading-[1.55] text-surface-1">
         &ldquo;{item.quote}&rdquo;
       </p>
-    </motion.article>
+    </article>
   );
 }
 
-type RegularCardProps = {
-  item: TestimonialItem;
-  variants: Variants;
-};
-
-function RegularCard({ item, variants }: RegularCardProps) {
+function RegularCard({ item }: { item: TestimonialItem }) {
   return (
-    <motion.article
-      variants={variants}
-      className={[
-        'flex flex-col',
-        'rounded-[24px] bg-surface-1 border border-border-3',
-        'p-5 lg:p-6',
-        'transition-shadow duration-300 ease-out',
-        'motion-safe:hover:shadow-card',
-      ].join(' ')}
-    >
-      <div className="relative h-[80px] w-[80px] lg:h-[98px] lg:w-[98px] overflow-hidden rounded-full bg-mint-soft shrink-0">
-        {item.avatar ? (
-          <Image
-            src={item.avatar}
-            alt={item.name}
-            fill
-            sizes="98px"
-            className="object-cover"
-          />
-        ) : (
-          <span className="absolute inset-0 flex items-center justify-center text-[42px] font-heading font-bold text-text-brand">
-            {getInitial(item.name)}
-          </span>
-        )}
+    <article className="flex h-full flex-col rounded-[24px] border border-border-3 bg-surface-1 p-5">
+      <div className="flex items-center gap-3">
+        <div className="relative h-[48px] w-[48px] shrink-0 overflow-hidden rounded-full bg-mint-soft">
+          {item.avatar ? (
+            <Image
+              src={item.avatar}
+              alt={item.name}
+              fill
+              sizes="48px"
+              className="object-cover"
+            />
+          ) : (
+            <span className="absolute inset-0 flex items-center justify-center text-[20px] font-heading font-bold text-text-brand">
+              {getInitial(item.name)}
+            </span>
+          )}
+        </div>
+        <div>
+          <h3 className="text-subtext-3 font-bold text-text-secondary">
+            {item.name}
+          </h3>
+          <p className="text-xs text-text-brand">{item.role}</p>
+        </div>
       </div>
-
-      <h3 className="mt-4 text-subtext-3 font-bold text-text-secondary">
-        {item.name}
-      </h3>
-      <p className="mt-1 text-body-sm text-text-brand">{item.role}</p>
-
-      <p className="mt-3 text-body-sm text-text-tertiary leading-[1.55]">
+      <p className="mt-3 text-body-sm leading-[1.55] text-text-tertiary">
         &ldquo;{item.quote}&rdquo;
       </p>
-    </motion.article>
+    </article>
   );
 }
 
@@ -126,27 +96,8 @@ export function TestimonialsSection({
 }: TestimonialsSectionProps) {
   const prefersReducedMotion = useReducedMotion();
 
-  const containerVariants: Variants = prefersReducedMotion
-    ? {
-        hidden: { opacity: 1 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: 0, delayChildren: 0 },
-        },
-      }
-    : {
-        hidden: { opacity: 1 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-        },
-      };
-
-  const itemVariants: Variants = prefersReducedMotion
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0 } },
-      }
+  const fadeInUp: Variants = prefersReducedMotion
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0 } } }
     : {
         hidden: { opacity: 0, y: 16 },
         visible: {
@@ -157,58 +108,71 @@ export function TestimonialsSection({
       };
 
   const [featured, ...rest] = items;
-  const others = rest.slice(0, 5);
+
+  // Group rest into pairs (2 per slide) for the 2-row carousel
+  const slides: TestimonialItem[][] = [];
+  for (let i = 0; i < rest.length; i += 2) {
+    slides.push(rest.slice(i, i + 2));
+  }
 
   return (
-    <section className="bg-surface-1">
-      <div className="page-px py-14 md:py-20 lg:py-[58px]">
-        <div className="max-w-[1340px] mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
-            className="flex flex-col items-start"
+    <section className="bg-surface-1 py-14 md:py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Eyebrow + heading */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col items-start gap-1"
+        >
+          <motion.p
+            variants={fadeInUp}
+            className="text-mini font-semibold uppercase tracking-[1.8px] text-text-secondary"
           >
-            <motion.p
-              variants={itemVariants}
-              className="text-mini font-semibold uppercase tracking-[1.8px] text-text-secondary"
-            >
-              {eyebrow}
-            </motion.p>
-            <motion.h2
-              variants={itemVariants}
-              className="mt-2 text-[28px] md:text-[30px] lg:text-[34px] font-heading font-bold leading-[1.04] text-text-secondary"
-            >
-              {heading}
-            </motion.h2>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={containerVariants}
-            className={[
-              'mt-8 lg:mt-[37px]',
-              'grid gap-x-4 gap-y-4 md:gap-x-[18px] md:gap-y-[18px] lg:gap-x-[25px] lg:gap-y-[18px]',
-              'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-              'lg:grid-rows-2',
-              'lg:auto-rows-fr',
-            ].join(' ')}
+            {eyebrow}
+          </motion.p>
+          <motion.h2
+            variants={fadeInUp}
+            className="text-[28px] md:text-[30px] lg:text-[34px] font-heading font-bold leading-[1.04] text-text-secondary"
           >
-            {featured ? (
-              <FeaturedCard item={featured} variants={itemVariants} />
-            ) : null}
+            {heading}
+          </motion.h2>
+        </motion.div>
 
-            {others.map((item, idx) => (
-              <RegularCard
-                key={`${item.name}-${idx}`}
-                item={item}
-                variants={itemVariants}
-              />
-            ))}
-          </motion.div>
+        {/* Featured card + carousel grid */}
+        <div className="mt-8 lg:mt-10 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-5">
+          {/* Featured (green) card — left */}
+          {featured && <FeaturedCard item={featured} />}
+
+          {/* Right — 2-row carousel */}
+          <Carousel
+            opts={{ align: 'start', loop: false, slidesToScroll: 1 }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {slides.map((pair, slideIdx) => (
+                <CarouselItem
+                  key={slideIdx}
+                  className="pl-4 basis-[85%] sm:basis-[70%] md:basis-[50%] shadow"
+                >
+                  <div className="flex flex-col gap-4 h-full">
+                    {pair.map((item, idx) => (
+                      <RegularCard
+                        key={`${item.name}-${slideIdx}-${idx}`}
+                        item={item}
+                      />
+                    ))}
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 hidden lg:block">
+              <CarouselNext className="static translate-x-0 translate-y-0 h-[46px] w-[46px] rounded-full border border-border-3 bg-surface-1 text-text-secondary shadow-card hover:border-text-brand hover:text-text-brand" />
+            </div>
+            <div className="mt-4 flex justify-end lg:hidden">
+              <CarouselNext className="static translate-x-0 translate-y-0 h-[46px] w-[46px] rounded-full border border-border-3 bg-surface-1 text-text-secondary shadow-card hover:border-text-brand hover:text-text-brand" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>

@@ -151,16 +151,20 @@ export function ListingHero({
     <section
       className={cn(
         "relative w-full overflow-hidden flex",
-        minHeightClassName ?? "min-h-[420px] sm:min-h-[460px] lg:min-h-[500px]",
+        minHeightClassName ?? (isGradient || (!backgroundImage && isLight)
+          ? ""
+          : "min-h-[420px] sm:min-h-[460px] lg:min-h-[200px]"),
         isGradient &&
           "bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]",
         contentAlign === "top" && "items-start",
         contentAlign === "center" && "items-center",
         contentAlign !== "top" && contentAlign !== "center" && "items-end",
-        !verticalPaddingClassName && contentAlign === "top" &&
+        !verticalPaddingClassName && isLight && !backgroundImage &&
+          "pt-28 pb-10 sm:pt-32 sm:pb-12 lg:pt-36 lg:pb-14",
+        !verticalPaddingClassName && !(isLight && !backgroundImage) && contentAlign === "top" &&
           "pt-28 pb-28 sm:pt-32 sm:pb-32 lg:pt-[120px] lg:pb-[150px]",
-        !verticalPaddingClassName && contentAlign === "center" && "pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24",
-        !verticalPaddingClassName && contentAlign !== "top" && contentAlign !== "center" &&
+        !verticalPaddingClassName && !(isLight && !backgroundImage) && contentAlign === "center" && "pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24",
+        !verticalPaddingClassName && !(isLight && !backgroundImage) && contentAlign !== "top" && contentAlign !== "center" &&
           "pt-32 pb-12 sm:pt-36 sm:pb-14 lg:pt-40 lg:pb-16",
         verticalPaddingClassName,
         className,
@@ -289,7 +293,7 @@ export function ListingHero({
                 ? isLight
                   ? "text-text-primary"
                   : "text-text-inverse"
-                : "text-brand-shade",
+                : "text-brand-primary",
             )}
           >
             {resultCount}

@@ -113,7 +113,7 @@ export function CourseEligibilitySection({
   return (
     <section className="bg-brand-lite py-[64px] md:py-[80px] lg:py-[85px]">
       <div className="page-px">
-        <div className="mx-auto flex max-w-[1340px] flex-col items-stretch gap-[40px] md:gap-[56px] lg:flex-row lg:items-center lg:justify-center lg:gap-[71px]">
+        <div className="mx-auto flex max-w-6xl flex-col items-stretch gap-[40px] md:gap-[56px] lg:flex-row lg:items-center lg:justify-center lg:gap-[71px]">
           {/* Left: eyebrow + heading + checklist */}
           <div className="flex flex-col">
             {eyebrow ? (
