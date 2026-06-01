@@ -29,7 +29,7 @@ export function AboutStatsBar({
   return (
     <section
       className={cn(
-        "relative w-full bg-brand-lite py-16 sm:py-20 lg:py-24",
+        "relative w-full bg-white py-16 sm:py-20 lg:py-24",
         className,
       )}
     >
@@ -51,7 +51,7 @@ export function AboutStatsBar({
                 suffix={stat.suffix}
                 className="font-sans font-semibold leading-none text-text-brand text-h5 sm:text-h4 lg:text-h3 2xl:text-h2"
               />
-              <span className="text-mini uppercase tracking-wide text-text-primary/70">
+              <span className="text-mini tracking-wide text-text-primary/70">
                 {stat.label}
               </span>
             </li>

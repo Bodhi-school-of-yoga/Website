@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export type WhyBodhiSectionProps = {
   heading?: string;
@@ -86,9 +87,9 @@ export function WhyBodhiSection({
             </ul>
           </div>
 
-         <p className="flex items-center gap-1 text-text-brand">
+         <Link href="/about" className="flex items-center gap-1 text-text-brand">
           Learn More <ArrowRight className="h-3 w-3 "/>
-         </p>
+         </Link>
         </div>
       </div>
     </section>

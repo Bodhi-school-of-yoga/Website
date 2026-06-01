@@ -37,15 +37,16 @@ export function AboutHero({
 
         <h1
           className={cn(
-            "mt-4 font-heading text-text-primary",
-            "text-h5 sm:text-h4 lg:text-h3 2xl:text-h2",
+            eyebrow ? "mt-4" : "",
+            "font-heading text-text-primary font-black",
+            "text-h5 sm:text-h4 lg:text-h1 max-w-[600px]",
           )}
         >
           {headline}
         </h1>
 
         {subcopy ? (
-          <p className="mt-6 max-w-2xl text-subtext-1 text-text-tertiary">
+          <p className="mt-6 max-w-xl text-subtext-1 text-text-tertiary ">
             {subcopy}
           </p>
         ) : null}

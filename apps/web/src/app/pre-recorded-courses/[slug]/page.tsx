@@ -210,26 +210,26 @@ export default async function PreRecordedCourseDetailPage({
         ] satisfies BreadcrumbItem[]}
         titleLines={course.titleLines}
         lede={course.description}
-        stats={[
-          { value: "25", label: "Videos" },
-          { value: "8h", label: "Content" },
-          { value: "∞", label: "Access" },
-        ]}
+        startsAt="2026-06-15T10:00:00+05:30"
+        countdownEyebrow="Workshop starting in"
+        primaryCtaLabel="Buy a Spot"
         pricing={{
-          eyebrow: "Recorded Cost",
+          eyebrow: "Workshop Cost",
           priceCurrent: course.price,
           priceOriginal: course.priceStrike,
-          discountBadge: course.saveBadge,
+          discountBadge: `Save ${course.saveBadge}`,
           benefits: [
-            "Lifetime access",
-            "Watch on any device",
-            "Download available",
-            "Certificate on completion",
+            { label: "Sat & Sun", icon: "calendar" },
+            { label: "Studio", icon: "location" },
+            { label: "3 days", icon: "clock" },
+            { label: "English", icon: "globe" },
+            { label: "Live + replay", icon: "play" },
+            { label: "Limited to 60 participants", icon: "users" },
           ],
           cta: {
-            label: "Buy Now and Get Instant Access",
+            label: "Book spot now",
           },
-          trustNote: "🔒 Secure booking · No hidden charges",
+          trustNote: "🔒 100% money-back if you're not satisfied",
         }}
         courseName={course.title}
         amountInPaise={Number(course.price.replace(/[^0-9]/g, "")) * 100}
@@ -244,8 +244,8 @@ export default async function PreRecordedCourseDetailPage({
         ]}
       />
 
-      <div className="mx-auto max-w-[1338px] page-px -mt-10 relative z-20 flex justify-center">
-        <div className="bg-white/95 backdrop-blur-md rounded-full p-2 shadow-card inline-flex">
+      <div className=" max-w-full bg-[#000000a2]   -mt-16 mb-2 pt-4 relative z-20 flex justify-start">
+        <div className=" rounded-full -mt-2 p-2  inline-flex ml-12">
           <FilterChipBar tabs={["All Videos", "Free"]} defaultIndex={0} />
         </div>
       </div>

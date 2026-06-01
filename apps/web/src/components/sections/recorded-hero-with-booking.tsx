@@ -36,6 +36,7 @@ export function RecordedHeroWithBooking({
     <>
       <RecordedClassesHero
         {...heroProps}
+        onCtaClick={openDialog}
         pricing={{
           ...pricing,
           cta: { ...pricing.cta, onClick: openDialog },

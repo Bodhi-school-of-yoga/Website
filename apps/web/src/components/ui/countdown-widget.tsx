@@ -72,8 +72,8 @@ function CountdownWidget({
   const cells: { value: string; label: string }[] = [
     { value: pad(parts.days), label: "Days" },
     { value: pad(parts.hours), label: "Hours" },
-
-
+    { value: pad(parts.minutes), label: "Minutes" },
+    { value: pad(parts.seconds), label: "Seconds" },
   ];
 
   const isDark = tone === "dark";

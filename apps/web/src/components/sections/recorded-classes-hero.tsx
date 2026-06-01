@@ -5,8 +5,10 @@ import * as React from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 
+import Link from "next/link";
 import { SimpleBreadcrumb, type BreadcrumbItemData as BreadcrumbItem } from "@/components/ui/breadcrumb";
 import { StatTile } from "@/components/ui/stat-tile";
+import { CountdownWidget } from "@/components/ui/countdown-widget";
 import {
   RecordedClassPricingCard,
   type RecordedClassPricingCardProps,
@@ -21,7 +23,11 @@ type RecordedClassesHeroProps = {
   breadcrumb: BreadcrumbItem[];
   titleLines: [string, string?];
   lede: string;
-  stats: HeroStat[];
+  stats?: HeroStat[];
+  startsAt?: string | Date;
+  countdownEyebrow?: string;
+  primaryCtaLabel?: string;
+  primaryCtaHref?: string;
   pricing: RecordedClassPricingCardProps;
   onCtaClick?: () => void;
   className?: string;
@@ -53,6 +59,10 @@ function RecordedClassesHero({
   titleLines,
   lede,
   stats,
+  startsAt,
+  countdownEyebrow = "Workshop starting in",
+  primaryCtaLabel,
+  primaryCtaHref = "#reserve",
   pricing,
   onCtaClick,
   className,
@@ -83,7 +93,7 @@ function RecordedClassesHero({
         <div className="absolute inset-0 bg-black/45" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-[1920px] page-px pt-32 pb-20 lg:pt-[221px] lg:pb-[290px]">
+      <div className="relative mx-auto max-w-7xl page-px pt-32 pb-20 lg:pt-[221px] lg:pb-[290px]">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_340px] lg:gap-[122px]">
           <motion.div
             initial="hidden"
@@ -115,22 +125,52 @@ function RecordedClassesHero({
               {lede}
             </motion.p>
 
-            <motion.div
-              variants={itemVariants}
-              className="mt-8 flex flex-nowrap gap-3 lg:mt-9"
-            >
-              {stats.map((s, i) => (
-                <StatTile
-                  key={i}
-                  tone="glass"
-                  value={s.value}
-                  label={s.label}
-                />
-              ))}
-            </motion.div>
+            {startsAt ? (
+              <>
+                <motion.div variants={itemVariants} className="mt-8 lg:mt-9">
+                  <CountdownWidget
+                    target={startsAt}
+                    eyebrow={countdownEyebrow}
+                    tone="dark"
+                    align="start"
+                  />
+                </motion.div>
+                {primaryCtaLabel ? (
+                  <motion.div variants={itemVariants} className="mt-6">
+                    <Link
+                      href={primaryCtaHref}
+                      onClick={onCtaClick ? (e) => { e.preventDefault(); onCtaClick(); } : undefined}
+                      className={cn(
+                        "inline-flex h-12 items-center justify-center rounded-full px-8",
+                        "bg-brand-primary text-text-inverse",
+                        "font-sans font-semibold text-body-md",
+                        "transition-all duration-150",
+                        "hover:brightness-110 hover:shadow-md active:scale-[0.98]",
+                      )}
+                    >
+                      {primaryCtaLabel}
+                    </Link>
+                  </motion.div>
+                ) : null}
+              </>
+            ) : stats ? (
+              <motion.div
+                variants={itemVariants}
+                className="mt-8 flex flex-nowrap gap-3 lg:mt-9"
+              >
+                {stats.map((s, i) => (
+                  <StatTile
+                    key={i}
+                    tone="glass"
+                    value={s.value}
+                    label={s.label}
+                  />
+                ))}
+              </motion.div>
+            ) : null}
           </motion.div>
 
-          <div className="w-full lg:w-[340px]">
+          <div className="w-full lg:w-[440px]">
             <RecordedClassPricingCard {...pricing} />
           </div>
         </div>
