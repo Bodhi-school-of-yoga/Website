@@ -4,7 +4,7 @@ import { Clock, Globe, Monitor, Tag } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ProgramCard, type ProgramCardModeBadge } from "@/components/ui/program-card";
-import { COURSES } from "@/data/courses-catalog";
+import { COURSES, getDiscountLabel } from "@/data/courses-catalog";
 
 export type PopularCourse = {
   title: string;
@@ -59,6 +59,9 @@ const DEFAULT_COURSES: PopularCourse[] = COURSES.filter(
   instructor: c.instructor,
   ctaLabel: "View Program",
   ctaHref: `/courses/${c.slug}`,
+  price: c.price,
+  originalPrice: c.originalPrice,
+  discountLabel: getDiscountLabel(c),
 }));
 
 export function PopularCoursesSection({

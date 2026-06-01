@@ -6,7 +6,7 @@ import { ListingHeroDecoration } from "@/components/sections/listing-hero-decora
 import { type PopularCourse } from "@/components/sections/popular-courses-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
+import { getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Online Yoga Teacher Training Courses | Bodhi School of Yoga",
@@ -29,9 +29,9 @@ const COURSES: PopularCourse[] = getCoursesByCategoryAndMode("teacher", "online"
     rating: 5,
     reviewCount: 30,
     featured: idx === 0,
-    price: "₹9,999",
-    originalPrice: "₹14,999",
-    discountLabel: "33% OFF",
+    price: c.price ?? "",
+    originalPrice: c.originalPrice,
+    discountLabel: getDiscountLabel(c),
   }),
 );
 

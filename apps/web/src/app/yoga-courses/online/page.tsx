@@ -6,7 +6,7 @@ import { ListingHeroDecoration } from "@/components/sections/listing-hero-decora
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
+import { getCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Online Yoga Courses | Bodhi School of Yoga",
@@ -65,9 +65,9 @@ export default function OnlineYogaCoursesPage() {
                     rating={5}
                     reviewCount={30}
                     featured={idx === 0}
-                    price="₹2,999"
-                    originalPrice="₹4,999"
-                    discountLabel="40% OFF"
+                    price={getDisplayPrice(course)}
+                    originalPrice={course.originalPrice}
+                    discountLabel={getDiscountLabel(course)}
                   />
                 </li>
               ))}

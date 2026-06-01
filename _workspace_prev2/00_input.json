@@ -1,0 +1,6 @@
+{
+  "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=819-18134&m=dev",
+  "file_key": "eqaofBeNUhOUISevtRfOpT",
+  "node_id": "819:18134",
+  "intent": "Fetch the course images from this Figma node and update the course images used in the site (course cards / catalog)."
+}

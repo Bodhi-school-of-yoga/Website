@@ -200,7 +200,7 @@ export function ProgramCard({
         )}
 
         {!isArticle && metaItems.length > 0 && (
-          <ul className="flex items-center gap-x-3 flex-nowrap overflow-x-auto">
+          <ul className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
             {metaItems.map((item, i) => (
               <React.Fragment key={`${item.label}-${i}`}>
                 <li className="flex items-center gap-1.5 font-sans text-[12px] font-medium tracking-[0.12px] text-text-secondary">
@@ -253,10 +253,12 @@ export function ProgramCard({
             <Link
               href={href}
               className={cn(
-                "group/cta -mx-7 flex w-[calc(100%+3.5rem)] items-center gap-2 border-t border-border-1 px-7 py-4 bg-[#64cbb52f]",
-                "text-brand-primary",
+                "group/cta -mx-7 flex w-[calc(100%+3.5rem)] items-center gap-2 border-t border-border-1 px-7 py-4",
+                "bg-[#64cbb52f] text-brand-primary",
                 "transition-colors duration-200 ease-in-out",
-                "hover:text-brand-primary/80",
+                // Dark fill on card hover (and direct hover) for a crisp CTA reveal.
+                "group-hover:bg-brand-primary group-hover:text-text-inverse",
+                "hover:bg-brand-primary hover:text-text-inverse",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
                 "font-heading text-[14.27px] font-semibold tracking-[0.0878px]",
               )}

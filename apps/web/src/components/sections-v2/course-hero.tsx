@@ -28,8 +28,10 @@ export type CourseHeroProps = {
   availabilityHref?: string;
   metaPills?: CourseMetaPill[];
   priceLabel: string;
-  price: string;
+  price?: string;
   originalPrice?: string;
+  /** Tiered/subscription pricing — rendered as a list when present. */
+  pricingPlans?: { period: string; price: string }[];
   /**
    * Reserve CTA. Provide `href` for a Link, `onClick` for a button-driven
    * booking flow (e.g. opening the Razorpay batch-booking dialog). When both
@@ -105,6 +107,7 @@ export function CourseHero({
   priceLabel,
   price,
   originalPrice,
+  pricingPlans,
   cta,
 }: CourseHeroProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -283,22 +286,38 @@ export function CourseHero({
               </motion.ul>
             )}
 
-            {/* Price block */}
-            <motion.div
-              variants={fadeInUp}
-              className="mt-8 flex items-baseline gap-4"
-            >
-              <span className="sr-only">{priceLabel}</span>
-               {originalPrice && (
-                <span className="block mt-0.5 text-[19px] text-text-tertiary line-through">
-                  {originalPrice}
+            {/* Price block — tiered plans, a single price, or nothing. */}
+            {pricingPlans && pricingPlans.length > 0 ? (
+              <motion.div
+                variants={fadeInUp}
+                className="mt-8 flex flex-wrap items-baseline gap-x-6 gap-y-2"
+              >
+                <span className="sr-only">{priceLabel}</span>
+                {pricingPlans.map((plan) => (
+                  <span key={plan.period} className="flex items-baseline gap-1.5">
+                    <span className="text-h5 font-heading font-bold text-brand-primary">
+                      {plan.price}
+                    </span>
+                    <span className="text-mini text-text-tertiary">/ {plan.period}</span>
+                  </span>
+                ))}
+              </motion.div>
+            ) : price ? (
+              <motion.div
+                variants={fadeInUp}
+                className="mt-8 flex items-baseline gap-4"
+              >
+                <span className="sr-only">{priceLabel}</span>
+                {originalPrice && (
+                  <span className="block mt-0.5 text-[19px] text-text-tertiary line-through">
+                    {originalPrice}
+                  </span>
+                )}
+                <span className="block text-h4 font-heading font-bold text-brand-primary">
+                  {price}
                 </span>
-              )}
-              <span className="block text-h4 font-heading font-bold text-brand-primary">
-                {price}
-              </span>
-             
-            </motion.div>
+              </motion.div>
+            ) : null}
 
             {/* CTA */}
             <motion.div variants={fadeInUp} className="mt-5">

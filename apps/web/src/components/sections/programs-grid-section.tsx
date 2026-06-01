@@ -6,7 +6,7 @@ import { Clock, Globe, Monitor } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ProgramCard as UiProgramCard } from "@/components/ui/program-card";
-import { COURSES, type Course } from "@/data/courses-catalog";
+import { COURSES, getDiscountLabel, getDisplayPrice, type Course } from "@/data/courses-catalog";
 
 export type ProgramCard = {
   slug: string;
@@ -18,6 +18,8 @@ export type ProgramCard = {
   href: string;
   authorName?: string;
   authorInitials?: string;
+  price?: string;
+  originalPrice?: string;
 };
 
 export type ProgramsBlock = {
@@ -44,6 +46,8 @@ function toCard(course: Course): ProgramCard {
     href: `/courses/${course.slug}`,
     authorName: course.instructor.name,
     authorInitials: course.instructor.initials,
+    price: getDisplayPrice(course),
+    originalPrice: course.originalPrice,
   };
 }
 
@@ -161,15 +165,13 @@ function ProgramListingCard({
         label: "Studio",
       };
 
-  // TTC = teacher / advanced — pricier; Cert = regular yoga — affordable.
-  const pricing =
-    variant === "ttc"
-      ? isOnline
-        ? { price: "₹9,999", originalPrice: "₹14,999", discountLabel: "33% OFF" }
-        : { price: "₹14,999", originalPrice: "₹19,999", discountLabel: "25% OFF" }
-      : isOnline
-        ? { price: "₹2,999", originalPrice: "₹4,999", discountLabel: "40% OFF" }
-        : { price: "₹4,999", originalPrice: "₹7,499", discountLabel: "30% OFF" };
+  // Pricing comes straight from the catalog — no invented fallbacks. A card
+  // with no price (or tiered "From …") shows exactly what the catalog says.
+  const pricing = {
+    price: card.price,
+    originalPrice: card.originalPrice,
+    discountLabel: getDiscountLabel(card),
+  };
 
   return (
     <UiProgramCard

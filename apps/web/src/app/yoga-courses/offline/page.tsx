@@ -7,7 +7,7 @@ import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
+import { getCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Regular yoga classes| Bodhi School of Yoga",
@@ -78,9 +78,9 @@ export default function OfflineYogaCoursesPage() {
                     reviewCount={30}
                     centersLabel="4 Centers"
                     featured={idx === 0}
-                    price="₹4,999"
-                    originalPrice="₹7,499"
-                    discountLabel="30% OFF"
+                    price={getDisplayPrice(course)}
+                    originalPrice={course.originalPrice}
+                    discountLabel={getDiscountLabel(course)}
                   />
                 </li>
               ))}

@@ -6,7 +6,7 @@ import { ListingHeroDecoration } from "@/components/sections/listing-hero-decora
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
+import { getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Online Advanced Yoga Certifications | Bodhi School of Yoga",
@@ -69,9 +69,9 @@ export default function OnlineAdvancedCertificationsPage() {
                     rating={5}
                     reviewCount={30}
                     featured={idx === 0}
-                    price="₹9,999"
-                    originalPrice="₹14,999"
-                    discountLabel="33% OFF"
+                    price={course.price ?? ""}
+                    originalPrice={course.originalPrice}
+                    discountLabel={getDiscountLabel(course)}
                   />
                 </li>
               ))}

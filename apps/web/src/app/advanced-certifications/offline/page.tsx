@@ -7,7 +7,7 @@ import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
+import { getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Studio Advanced Yoga Certifications | Bodhi School of Yoga",
@@ -82,9 +82,9 @@ export default function StudioAdvancedCertificationsPage() {
                     reviewCount={30}
                     centersLabel="4 Centers"
                     featured={idx === 0}
-                    price="₹14,999"
-                    originalPrice="₹19,999"
-                    discountLabel="25% OFF"
+                    price={course.price ?? ""}
+                    originalPrice={course.originalPrice}
+                    discountLabel={getDiscountLabel(course)}
                   />
                 </li>
               ))}

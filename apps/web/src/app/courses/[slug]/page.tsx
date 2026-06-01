@@ -76,24 +76,12 @@ export default async function CourseDetailPage({
 
   // Derived dynamic content (per-course, no manual catalog edits required) -----
 
-  // Pricing — derive a stable indicative price + strikethrough from category × mode.
-  // Studio courses cost more; advanced > teacher > yoga.
-  const priceMatrix: Record<
-    `${typeof course.category}-${typeof course.mode}`,
-    { price: string; original: string }
-  > = {
-    "advanced-online": { price: "₹39,999", original: "₹54,999" },
-    "advanced-studio": { price: "₹74,999", original: "₹94,999" },
-    "teacher-online": { price: "₹29,999", original: "₹39,999" },
-    "teacher-studio": { price: "₹54,999", original: "₹69,999" },
-    "yoga-online": { price: "₹9,999", original: "₹14,999" },
-    "yoga-studio": { price: "₹14,999", original: "₹19,999" },
-  };
-  const { price, original } =
-    priceMatrix[`${course.category}-${course.mode}`] ?? {
-      price: "Contact for pricing",
-      original: "",
-    };
+  // Pricing — read straight from the catalog (courses.json), the single source
+  // of truth. No invented fallbacks: a course with no price shows no price.
+  const price = course.price;
+  const original = course.originalPrice;
+  // Booking amount: the flat price, else the cheapest plan, else 0.
+  const bookingPriceStr = price ?? course.pricingPlans?.[0]?.price ?? "0";
 
   // Eligibility checklist — bigger than prerequisites; if catalog has many we
   // show up to 8, otherwise pad with sensible defaults aligned with the
@@ -157,10 +145,11 @@ export default async function CourseDetailPage({
         priceLabel="Starts at"
         price={price}
         originalPrice={original || undefined}
+        pricingPlans={course.pricingPlans}
         ctaLabel="Reserve Your Spot Now"
         courseName={course.title}
         amountInPaise={
-          Number((price || "0").replace(/[^\d]/g, "")) * 100
+          Number(bookingPriceStr.replace(/[^\d]/g, "")) * 100
         }
         razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY ?? ""}
         batches={[

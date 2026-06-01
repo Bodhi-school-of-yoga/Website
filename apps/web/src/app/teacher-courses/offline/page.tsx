@@ -7,7 +7,7 @@ import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
+import { getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Studio Yoga Teacher Training Courses | Bodhi School of Yoga",
@@ -81,6 +81,9 @@ export default function OfflineCoursesPage() {
                     reviewCount={30}
                     centersLabel="4 Centers"
                     featured={idx === 0}
+                    price={course.price ?? ""}
+                    originalPrice={course.originalPrice}
+                    discountLabel={getDiscountLabel(course)}
                   />
                 </li>
               ))}
