@@ -8,9 +8,8 @@ import { cn } from '@/lib/utils';
 
 export type ContactFormData = {
   firstName: string;
-  lastName: string;
-  email: string;
   phone: string;
+  email: string;
   message: string;
 };
 
@@ -21,20 +20,22 @@ export type ContactFormProps = {
 
 const EMAIL_REGEX = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
+const LABEL_CLASSES =
+  'block text-[15px] font-medium text-text-primary mb-2';
+
 const INPUT_CLASSES =
-  'h-16 w-full rounded-2xl bg-surface-1 border border-border-3 px-7 text-subtext-1 text-text-primary placeholder:text-text-tertiary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary';
+  'h-14 w-full rounded-full bg-[#f3f3f3] border-none px-6 text-body-md text-text-primary placeholder:text-text-tertiary/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary';
 
 const TEXTAREA_CLASSES =
-  'min-h-[160px] py-5 w-full rounded-2xl bg-surface-1 border border-border-3 px-7 text-subtext-1 text-text-primary placeholder:text-text-tertiary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary';
+  'min-h-[120px] py-4 w-full rounded-3xl bg-[#f3f3f3] border-none px-6 text-body-md text-text-primary placeholder:text-text-tertiary/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary resize-none';
 
 const SUBMIT_CLASSES =
-  'h-16 w-full rounded-2xl bg-brand-shade text-brand-dark text-subtext-1 font-medium transition-all duration-200 hover:bg-brand-shade/90 hover:shadow-md active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed';
+  'h-14 w-full rounded-full bg-brand-shade text-brand-dark text-body-md font-semibold transition-all duration-200 hover:bg-brand-shade/90 hover:shadow-md active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed';
 
 const INITIAL_FIELDS: ContactFormData = {
   firstName: '',
-  lastName: '',
-  email: '',
   phone: '',
+  email: '',
   message: '',
 };
 
@@ -48,9 +49,8 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const firstNameRef = useRef<HTMLInputElement>(null);
-  const lastNameRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
   const reset = () => {
@@ -78,7 +78,6 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
   const validate = (data: ContactFormData): Errors => {
     const next: Errors = {};
     if (!data.firstName.trim()) next.firstName = 'First name is required.';
-    if (!data.lastName.trim()) next.lastName = 'Last name is required.';
     if (!data.email.trim()) {
       next.email = 'Email is required.';
     } else if (!EMAIL_REGEX.test(data.email.trim())) {
@@ -94,9 +93,8 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
       ref: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
     }> = [
       { key: 'firstName', ref: firstNameRef },
-      { key: 'lastName', ref: lastNameRef },
-      { key: 'email', ref: emailRef },
       { key: 'phone', ref: phoneRef },
+      { key: 'email', ref: emailRef },
       { key: 'message', ref: messageRef },
     ];
     for (const { key, ref } of order) {
@@ -174,7 +172,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
       transition={{ duration: 0.4, ease: 'easeOut', delay: 0.3 }}
     >
       <div>
-        <label htmlFor="contact-firstName" className="sr-only">
+        <label htmlFor="contact-firstName" className={LABEL_CLASSES}>
           First name
         </label>
         <input
@@ -183,7 +181,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
           name="firstName"
           type="text"
           required
-          placeholder="First name"
+          placeholder="Your name"
           value={fields.firstName}
           onChange={handleChange('firstName')}
           disabled={isSubmitting}
@@ -199,32 +197,25 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="contact-lastName" className="sr-only">
-          Last Name
+        <label htmlFor="contact-phone" className={LABEL_CLASSES}>
+          Mobile number
         </label>
         <input
-          ref={lastNameRef}
-          id="contact-lastName"
-          name="lastName"
-          type="text"
-          required
-          placeholder="Last Name"
-          value={fields.lastName}
-          onChange={handleChange('lastName')}
+          ref={phoneRef}
+          id="contact-phone"
+          name="phone"
+          type="tel"
+          placeholder="+ 91  8123456789"
+          value={fields.phone}
+          onChange={handleChange('phone')}
           disabled={isSubmitting}
-          aria-invalid={Boolean(errors.lastName)}
-          aria-describedby={errors.lastName ? 'contact-lastName-error' : undefined}
+          aria-invalid={Boolean(errors.phone)}
           className={INPUT_CLASSES}
         />
-        {errors.lastName ? (
-          <p id="contact-lastName-error" className="mt-2 text-mini text-red-500">
-            {errors.lastName}
-          </p>
-        ) : null}
       </div>
 
       <div>
-        <label htmlFor="contact-email" className="sr-only">
+        <label htmlFor="contact-email" className={LABEL_CLASSES}>
           Email
         </label>
         <input
@@ -233,7 +224,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
           name="email"
           type="email"
           required
-          placeholder="Email"
+          placeholder="you@example.com"
           value={fields.email}
           onChange={handleChange('email')}
           disabled={isSubmitting}
@@ -249,33 +240,15 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="contact-phone" className="sr-only">
-          Phone number
-        </label>
-        <input
-          ref={phoneRef}
-          id="contact-phone"
-          name="phone"
-          type="tel"
-          placeholder="Phone number"
-          value={fields.phone}
-          onChange={handleChange('phone')}
-          disabled={isSubmitting}
-          aria-invalid={Boolean(errors.phone)}
-          className={INPUT_CLASSES}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="contact-message" className="sr-only">
-          Message
+        <label htmlFor="contact-message" className={LABEL_CLASSES}>
+          What can we help with?
         </label>
         <textarea
           ref={messageRef}
           id="contact-message"
           name="message"
           required
-          placeholder="Message"
+          placeholder="Course details, partnerships, scheduling..."
           value={fields.message}
           onChange={handleChange('message')}
           disabled={isSubmitting}

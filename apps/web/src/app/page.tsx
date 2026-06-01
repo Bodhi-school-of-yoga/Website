@@ -1,5 +1,6 @@
 import { AccreditationsSection } from "@/components/sections/accreditations-section";
 import { ExperienceHarmonyStatsBand } from "@/components/sections/experience-harmony-stats-band";
+import { FooterBrandCta } from "@/components/sections/footer-brand-cta";
 import { FounderQuoteSection } from "@/components/sections/founder-quote-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ProgramsGridSection } from "@/components/sections/programs-grid-section";
@@ -108,8 +109,15 @@ export default function HomePage() {
           testimonials={TESTIMONIALS}
           priorityFirst
         />
+         <FooterBrandCta
+                  brand="Bodhi"
+                  heading="Begin where you are."
+                  body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
+                  ctaLabel="Try a Class, Free"
+                  ctaHref="/try-a-class"
+                />
       </main>
-      <SiteFooterBlock />
+   <SiteFooterBlock showCta={false} />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -92,19 +93,15 @@ export function SiteFooter({
         >
           {/* Brand column */}
           <div className="flex flex-col gap-3 sm:col-span-2 md:col-span-1 md:gap-[13.7px]">
-            {brand.wordmark && (
-              <Link
-                href="/"
-                className={cn(
-                  "font-heading italic font-light text-text-inverse",
-                  "text-[28px] leading-[44px] tracking-[-0.28px]",
-                  "md:text-[32px] md:leading-[49.6px] md:tracking-[-0.32px]",
-                )}
-                aria-label="Bodhi — home"
-              >
-                {brand.wordmark}
-              </Link>
-            )}
+            <Link href="/" aria-label="Bodhi — home">
+              <Image
+                src="/bodhi-logo-light-v2.png"
+                alt="Bodhi School of Yoga"
+                width={180}
+                height={40}
+                className="h-16 w-auto"
+              />
+            </Link>
             {brand.tagline && (
               <p
                 className={cn(
@@ -113,7 +110,7 @@ export function SiteFooter({
                   "md:text-[14.5px] md:leading-[22.48px]",
                 )}
               >
-                {brand.tagline}
+                {/* {brand.tagline} */}
               </p>
             )}
             {brand.url &&
