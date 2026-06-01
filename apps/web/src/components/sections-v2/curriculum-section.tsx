@@ -42,7 +42,7 @@ export function CurriculumSection({
 
   return (
     <section className="bg-surface-1 py-14 md:py-16 lg:py-20">
-      <div className="mx-auto max-w-6xl ">
+      <div className="mx-auto max-w-[1340px] page-px">
         {/* Eyebrow + heading */}
         <div className="flex flex-col items-start gap-1">
           <motion.span

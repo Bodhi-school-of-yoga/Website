@@ -11,16 +11,6 @@ import {
   type SiteFooterProps,
 } from "@/components/site-footer";
 
-const DEFAULT_BRAND: SiteFooterProps["brand"] = {
-  wordmark: "Bodhi",
-  tagline:
-    "A school for teachers, a home for seekers.\nPractice, taught honestly.",
-  url: {
-    label: "bodhischoolofyoga.com",
-    href: "https://bodhischoolofyoga.com",
-  },
-};
-
 const DEFAULT_COLUMNS: FooterColumn[] = [
   {
     heading: "Courses",
@@ -126,7 +116,7 @@ export const HOME_FOOTER_COLUMNS: FooterColumn[] = [
     lines: ["The Practice Room,", "2nd floor, Quiet Lane", "City  ·  India"],
     links: [
       {
-        label: "Get directions",
+        label: "Get directions →",
         href: PRESERVED_DIRECTIONS_HREF,
         external: true,
       },
@@ -172,9 +162,9 @@ export type SiteFooterBlockProps = {
 export function SiteFooterBlock({
   cta,
   showCta = true,
-  brand = DEFAULT_BRAND,
-  columns = DEFAULT_COLUMNS,
-  address = DEFAULT_ADDRESS,
+  brand = HOME_FOOTER_BRAND,
+  columns = HOME_FOOTER_COLUMNS,
+  address,
   legal,
 }: SiteFooterBlockProps = {}) {
   const ctaProps: ClosingCtaSectionProps = { ...DEFAULT_CTA, ...cta };

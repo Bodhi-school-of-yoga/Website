@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Host_Grotesk, DM_Sans, Noto_Sans_Devanagari } from "next/font/google";
+import {
+  Host_Grotesk,
+  DM_Sans,
+  Noto_Sans_Devanagari,
+  Fraunces,
+} from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/providers";
 
@@ -24,6 +29,16 @@ const notoDevanagari = Noto_Sans_Devanagari({
   weight: ["400", "700"],
 });
 
+// Serif display face for the "Bodhi" wordmark (footer brand, hero accents).
+// Variable font so any weight resolves via CSS font-weight. Figma spec uses
+// Fraunces Light Italic.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Bodhi Yoga Studio",
@@ -42,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hostGrotesk.variable} ${dmSans.variable} ${notoDevanagari.variable} h-full scroll-smooth antialiased`}
+      className={`${hostGrotesk.variable} ${dmSans.variable} ${notoDevanagari.variable} ${fraunces.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col bg-transparent">
         <Providers>

@@ -47,7 +47,7 @@ export function FreePreviewSection({
 }: FreePreviewSectionProps) {
   return (
     <section className={cn("py-12 lg:py-16", className)}>
-      <div className="mx-auto max-w-[1338px] page-px">
+      <div className="mx-auto max-w-[1340px] page-px">
         <SectionHeader title={title} subtitle={subtitle} />
 
         <motion.div

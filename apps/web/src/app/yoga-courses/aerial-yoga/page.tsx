@@ -289,7 +289,7 @@ export default function AerialYogaCoursePage() {
         theme="dark"
       />
 
-      <SiteFooterBlock showCta={false} />
+      <SiteFooterBlock />
     </main>
   );
 }

@@ -112,10 +112,10 @@ export function CourseEligibilitySection({
 
   return (
     <section className="bg-brand-lite py-[64px] md:py-[80px] lg:py-[85px]">
-      <div className="page-px">
-        <div className="mx-auto flex max-w-6xl flex-col items-stretch gap-[40px] md:gap-[56px] lg:flex-row lg:items-center lg:justify-center lg:gap-[71px]">
+      <div className="mx-auto max-w-[1340px] page-px">
+        <div className="flex w-full flex-col items-stretch gap-[40px] md:gap-[56px] lg:flex-row lg:items-center lg:justify-between lg:gap-[71px]">
           {/* Left: eyebrow + heading + checklist */}
-          <div className="flex flex-col">
+          <div className="flex flex-col lg:min-w-0 lg:flex-1">
             {eyebrow ? (
               <motion.span
                 variants={fadeInUp}
@@ -143,7 +143,7 @@ export function CourseEligibilitySection({
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
-              className="mt-[32px] flex w-full flex-col gap-[12px] lg:mt-[41px] lg:w-[672px]"
+              className="mt-[32px] flex w-full flex-col gap-[12px] lg:mt-[41px]"
             >
               {checklist.map((item, idx) => (
                 <ChecklistItem key={idx} label={item} variants={childFade} />

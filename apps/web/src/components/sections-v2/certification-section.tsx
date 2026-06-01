@@ -45,13 +45,13 @@ export function CertificationSection({
 
   return (
     <section className="bg-surface-1">
-      <div className="page-px py-14 md:py-20 lg:py-24">
+      <div className="py-14 md:py-20 lg:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={container}
-          className="mx-auto flex max-w-[1340px] flex-col gap-[26px]"
+          className="mx-auto flex max-w-[1340px] flex-col gap-[26px] page-px"
         >
           {/* Eyebrow + heading block — left aligned on desktop, centered on mobile */}
           <div className="flex flex-col gap-[5px] text-center md:text-left">

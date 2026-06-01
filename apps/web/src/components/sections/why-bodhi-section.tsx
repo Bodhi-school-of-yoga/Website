@@ -44,10 +44,10 @@ export function WhyBodhiSection({
       <div
         className={cn(
           "mx-auto grid max-w-[1340px] gap-12 page-px",
-          "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-14",
+          "lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-14",
         )}
       >
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] sm:aspect-[5/6] lg:aspect-[4/5]">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] sm:aspect-[5/6] lg:aspect-square lg:max-h-[540px] lg:self-center">
           <Image
             src={photoSrc}
             alt={photoAlt}

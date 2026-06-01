@@ -90,8 +90,8 @@ export function MoreCoursesSection({
       };
 
   return (
-    <section className="page-px bg-surface-1 py-12 md:py-16 lg:py-20">
-      <div className="mx-auto max-w-[1340px]">
+    <section className="bg-surface-1 py-12 md:py-16 lg:py-20">
+      <div className="mx-auto max-w-[1340px] page-px">
         {/* Header */}
         <div className="mx-auto flex max-w-[760px] flex-col items-center gap-3 text-center">
           <motion.p

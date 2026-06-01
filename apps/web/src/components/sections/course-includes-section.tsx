@@ -75,7 +75,7 @@ export function CourseIncludesSection({
 }: CourseIncludesSectionProps) {
   return (
     <section className={cn("py-16 lg:py-20 bg-surface-mint-pale", className)}>
-      <div className="mx-auto max-w-[1338px] page-px">
+      <div className="mx-auto max-w-[1340px] page-px">
         <SectionHeader title={title} />
 
         <motion.div

@@ -48,7 +48,7 @@ export function AboutPillarsSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl page-px">
+      <div className="mx-auto max-w-[1340px] page-px">
         <header className="mb-12 flex flex-col items-center gap-4 text-center lg:mb-16">
           <span className="text-mini uppercase tracking-wide text-text-brand">
             {eyebrow}

@@ -35,13 +35,13 @@ export type HeroSectionProps = {
 const DEFAULT_OFFERS: HeroOfferChip[] = [
   {
     eyebrow: "yoga teacher training",
-    label: "I want to teach Yoga & Pillate",
+    label: "I want to teach Yoga & Pillates",
     href: "/teacher-courses/online",
     buttonColor: "#008498",
   },
   {
     eyebrow: "daily yoga classes",
-    label: "I want to learn Yoga & Pillate",
+    label: "I want to learn Yoga & Pillates",
     href: "/contact",
     buttonColor: "#0d9800",
   },
@@ -56,8 +56,8 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
 
 const DEFAULTS = {
   eyebrow: "बोधि  ·  The awakening",
-  headlineLead: "Yoga for Self. ",
-  headlineAccent: "Yoga for Teaching.",
+  headlineLead: "Yoga for Self",
+  headlineAccent: "Yoga for Teaching",
   subcopy:
     "Discover a premium yoga and wellness experience offering teacher training, regular practice, and therapy sessions through immersive online and offline programs.",
   photoSrc: "/images/hero/foreground.png",

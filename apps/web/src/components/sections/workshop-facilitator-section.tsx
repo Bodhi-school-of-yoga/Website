@@ -46,7 +46,7 @@ export function WorkshopFacilitatorSection({
   return (
     <section className={cn("w-full bg-surface-1 py-16 lg:py-20", className)}>
       <motion.div
-        className="mx-auto w-full max-w-[1520px] px-6 sm:px-10 lg:px-16 xl:px-20 2xl:px-[140px]"
+        className="mx-auto w-full max-w-[1340px] page-px"
         variants={prefersReducedMotion ? undefined : containerVariants}
         {...motionInit}
       >

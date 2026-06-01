@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Calendar, Clock, Globe, MapPin } from "lucide-react";
 
-import { FooterBrandCta } from "@/components/sections/footer-brand-cta";
 import { ListingHero } from "@/components/sections/listing-hero";
 import {
   WorkshopsListSection,
@@ -143,16 +142,8 @@ export default function WorkshopsPage() {
         />
 
         <WorkshopsListSection workshops={WORKSHOPS} overlapHero />
-
-        <FooterBrandCta
-          brand="Bodhi"
-          heading="Begin where you are."
-          body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
-          ctaLabel="Try a Class, Free"
-          ctaHref="/try-a-class"
-        />
       </main>
-      <SiteFooterBlock showCta={false} />
+      <SiteFooterBlock />
     </>
   );
 }

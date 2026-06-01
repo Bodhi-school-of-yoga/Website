@@ -163,7 +163,7 @@ function SubmenuRow({ item }: { item: DropdownSubItem }) {
       </span>
       {item.count !== undefined ? (
         <span className="font-heading text-mini font-medium uppercase text-text-brand">
-          {item.count} Courses
+          {item.count} {item.count === 1 ? "Course" : "Courses"}
         </span>
       ) : null}
     </NavMenuLink>
@@ -197,7 +197,7 @@ function RowText({
       </span>
       {count !== undefined ? (
         <span className="font-heading text-mini font-medium uppercase text-text-brand">
-          {count} Courses
+          {count} {count === 1 ? "Course" : "Courses"}
         </span>
       ) : null}
     </span>

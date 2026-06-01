@@ -26,7 +26,7 @@ export function TrainersMeetAll({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1413px]">
+      <div className="mx-auto max-w-[1340px]">
         <div className="flex flex-col gap-2">
           <p
             className={cn(

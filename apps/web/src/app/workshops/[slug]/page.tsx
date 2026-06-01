@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { FaqSection } from "@/components/sections/faq-section";
-import { FooterBrandCta } from "@/components/sections/footer-brand-cta";
 import { WorkshopAboutSection } from "@/components/sections/workshop-about-section";
 import { WorkshopBenefitsSection } from "@/components/sections/workshop-benefits-section";
 import { WorkshopHeroWithBooking } from "@/components/sections/workshop-hero-with-booking";
@@ -321,16 +320,8 @@ export default async function WorkshopDetailPage({
           heading="Frequently Asked Questions"
           items={SHARED_FAQS}
         />
-
-        <FooterBrandCta
-          brand="Bodhi"
-          heading="Begin Where You Are."
-          body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
-          ctaLabel="Try a Class, Free"
-          ctaHref="/try-a-class"
-        />
       </main>
-      <SiteFooterBlock showCta={false} />
+      <SiteFooterBlock />
     </>
   );
 }

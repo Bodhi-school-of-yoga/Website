@@ -13,7 +13,6 @@ import {
   CourseIncludesSection,
   type IncludeItem,
 } from "@/components/sections/course-includes-section";
-import { FooterBrandCta } from "@/components/sections/footer-brand-cta";
 import type { VideoLessonCardProps } from "@/components/ui/video-lesson-card";
 
 import { PRE_RECORDED_COURSES, findCourse } from "../courses";
@@ -284,15 +283,7 @@ export default async function PreRecordedCourseDetailPage({
         items={includesItems}
       />
 
-      <FooterBrandCta
-        brand="Bodhi"
-        heading="Begin where you are."
-        body="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
-        ctaLabel="Try a Class, Free"
-        ctaHref="/enquire?intent=try-a-class"
-      />
-
-      <SiteFooterBlock showCta={false} />
+      <SiteFooterBlock />
     </main>
   );
 }

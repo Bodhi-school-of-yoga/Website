@@ -96,7 +96,7 @@ export function TestimonialsSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl page-px">
+      <div className="mx-auto max-w-[1340px] page-px">
         <motion.header
           className="mx-auto mb-14 max-w-2xl text-center"
           variants={headerVariants}

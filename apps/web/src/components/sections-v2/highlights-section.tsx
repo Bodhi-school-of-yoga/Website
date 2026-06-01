@@ -113,8 +113,8 @@ export function HighlightsSection({
 
   return (
     <section className="bg-surface-0">
-      <div className="px-6 py-16 md:py-20 lg:py-24">
-        <div className="mx-auto max-w-6xl">
+      <div className="py-16 md:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1340px] page-px">
           <motion.div
             initial="hidden"
             whileInView="visible"

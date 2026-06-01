@@ -155,7 +155,7 @@ export function CourseHero({
 
   return (
     <section
-      className="relative w-full bg-surface-0"
+      className="relative w-full bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]"
       aria-label="Course hero"
     >
       <div className="page-px mx-auto w-full max-w-[1340px] pt-[120px] pb-[64px] sm:pt-[128px] sm:pb-20 lg:pt-[140px] lg:pb-[80px]">

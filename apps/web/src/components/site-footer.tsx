@@ -1,5 +1,4 @@
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -76,15 +75,15 @@ export function SiteFooter({
   return (
     <footer
       className={cn(
-        "w-full bg-brand-dark nav-px pb-10 pt-0 text-text-inverse",
-        "sm:pb-12 md:pb-16",
+        "w-full bg-brand-dark nav-px pb-6 pt-0 text-text-inverse",
+        "sm:pb-8 md:pb-10",
         className,
       )}
     >
-      <div className="mx-auto flex max-w-[1240px] flex-col gap-10 sm:gap-12">
+      <div className="mx-auto flex max-w-[1240px] flex-col gap-6 sm:gap-8">
         <div
           className={cn(
-            "grid gap-8 sm:gap-10",
+            "grid gap-6 sm:gap-8",
             "grid-cols-1 sm:grid-cols-2",
             address
               ? "md:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]"
@@ -93,14 +92,22 @@ export function SiteFooter({
         >
           {/* Brand column */}
           <div className="flex flex-col gap-3 sm:col-span-2 md:col-span-1 md:gap-[13.7px]">
-            <Link href="/" aria-label="Bodhi — home">
-              <Image
-                src="/bodhi-logo-light-v2.png"
-                alt="Bodhi School of Yoga"
-                width={180}
-                height={40}
-                className="h-16 w-auto"
-              />
+            <Link
+              href="/"
+              aria-label="Bodhi — home"
+              className={cn(
+                "w-fit rounded-sm italic leading-[1.2] tracking-[-0.02em] text-text-inverse",
+                "text-[2.5rem] lg:text-[3rem]",
+                "transition-opacity hover:opacity-90",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-shade",
+              )}
+              style={{
+                fontFamily:
+                  'var(--font-fraunces), Georgia, "Times New Roman", serif',
+                fontWeight: 300,
+              }}
+            >
+              {brand.wordmark ?? "Bodhi"}
             </Link>
             {brand.tagline && (
               <p
@@ -110,7 +117,7 @@ export function SiteFooter({
                   "md:text-[14.5px] md:leading-[22.48px]",
                 )}
               >
-                {/* {brand.tagline} */}
+                {brand.tagline}
               </p>
             )}
             {brand.url &&
@@ -208,8 +215,8 @@ export function SiteFooter({
 
         <div
           className={cn(
-            "flex flex-col-reverse items-start justify-between gap-2 border-t border-text-inverse/10 pt-5",
-            "sm:flex-row sm:items-center sm:gap-3 sm:pt-[25px]",
+            "flex flex-col-reverse items-start justify-between gap-2 border-t border-text-inverse/10 pt-4",
+            "sm:flex-row sm:items-center sm:gap-3 sm:pt-5",
           )}
         >
           <p

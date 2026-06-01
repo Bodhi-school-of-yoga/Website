@@ -81,8 +81,8 @@ export function ClosingCtaSection({
     <motion.section
       className={cn(
         "relative w-full overflow-hidden nav-px",
-        "pt-14 sm:pt-20 lg:pt-28",
-        showCards ? "pb-16 sm:pb-20 lg:pb-24" : "pb-12 sm:pb-16 lg:pb-20",
+        "pt-10 sm:pt-12 lg:pt-16",
+        showCards ? "pb-12 sm:pb-14 lg:pb-16" : "pb-8 sm:pb-10 lg:pb-12",
         isLight ? "bg-mint-cream text-text-secondary" : "bg-brand-dark text-text-inverse",
         className,
       )}
@@ -96,10 +96,16 @@ export function ClosingCtaSection({
           <motion.p
             variants={fadeInUpSoft}
             className={cn(
-              "font-heading italic font-light leading-none",
+              "italic font-light leading-none",
               "text-[20px] sm:text-[24px] lg:text-[32px]",
               isLight ? "text-text-secondary" : "text-text-inverse",
             )}
+            style={{
+              fontFamily:
+                'var(--font-fraunces), Georgia, "Times New Roman", serif',
+              fontWeight: 300,
+              letterSpacing: "-0.02rem",
+            }}
           >
             {eyebrow}
           </motion.p>
@@ -108,7 +114,7 @@ export function ClosingCtaSection({
         <motion.h2
           variants={fadeInUp}
           className={cn(
-            "mt-3 sm:mt-[15px] font-heading font-normal leading-[1.1] tracking-tight",
+            "mt-0 font-heading font-normal leading-[1.1] tracking-tight",
             "text-[40px] sm:text-[64px] md:text-[80px] lg:text-[90px]",
             isLight ? "text-text-secondary" : "text-text-inverse",
           )}
@@ -127,7 +133,7 @@ export function ClosingCtaSection({
         <motion.p
           variants={fadeInUpSoft}
           className={cn(
-            "mx-auto mt-5 sm:mt-6 max-w-3xl text-balance leading-snug",
+            "mx-auto mt-4 sm:mt-5 max-w-3xl text-balance leading-snug",
             "text-[15px] sm:text-[16px] md:text-subtext-2",
             isLight ? "text-text-tertiary" : "text-text-inverse/65",
           )}
@@ -135,7 +141,7 @@ export function ClosingCtaSection({
           {subhead}
         </motion.p>
 
-        <motion.div variants={fadeInUpSoft} className="mt-7 sm:mt-8">
+        <motion.div variants={fadeInUpSoft} className="mt-5 sm:mt-6">
           <Link
             href={primaryCta.href}
             className={cn(

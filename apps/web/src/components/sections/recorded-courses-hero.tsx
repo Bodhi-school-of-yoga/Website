@@ -69,7 +69,7 @@ export function RecordedCoursesHero({
       />
 
       <motion.div
-        className="relative z-10 mx-auto flex w-full max-w-[1308px] flex-col items-start"
+        className="relative z-10 mx-auto flex w-full max-w-[1340px] flex-col items-start"
         variants={container}
         initial="hidden"
         animate="show"

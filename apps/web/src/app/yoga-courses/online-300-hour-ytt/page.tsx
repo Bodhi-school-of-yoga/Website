@@ -327,7 +327,7 @@ export default function Online300HourYttPage() {
         theme="dark"
       />
 
-      <SiteFooterBlock showCta={false} />
+      <SiteFooterBlock />
     </main>
   );
 }

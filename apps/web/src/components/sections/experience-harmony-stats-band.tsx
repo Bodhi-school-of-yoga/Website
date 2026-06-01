@@ -71,8 +71,8 @@ function splitStatValue(raw: string): { value: number; suffix: string } {
 }
 
 export function ExperienceHarmonyStatsBand({
-  headlineLead = "experience the ultimate harmony of peace of creativity with our ",
-  headlineAccent = "yoga courses designed for everyone",
+  headlineLead = "We envision a powerful global network of",
+  headlineAccent = " internationally certified women yoga trainers",
   headlineTrail = "",
   stats = DEFAULT_STATS,
   photoTopRight = DEFAULT_PHOTO_TOP_RIGHT,
@@ -103,7 +103,7 @@ export function ExperienceHarmonyStatsBand({
         className="md:mt-8"
       /> */}
 
-      <div className="relative z-10 mx-auto flex max-w-[820px] flex-col items-center gap-12 page-px text-center lg:gap-16 mt-28 mb-16">
+      <div className="relative z-10 mx-auto flex max-w-[920px] flex-col items-center gap-12 page-px text-center lg:gap-16 mt-28 mb-16">
         <h2 className="font-heading -mt-12 text-[22px] text-text-primary lg:text-h3">
           <span>{headlineLead}</span>
           <span className="text-text-brand">{headlineAccent}</span>

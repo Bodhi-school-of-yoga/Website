@@ -67,11 +67,6 @@ const demos: DemoLink[] = [
     label: 'More Courses',
     description: 'Cross-sell strip of related Bodhi programs.',
   },
-  {
-    href: '/demo/v2/closing-cta-and-footer',
-    label: 'Closing CTA + Footer',
-    description: 'Final call-to-action paired with the site footer.',
-  },
 ];
 
 export default function DemoV2IndexPage() {

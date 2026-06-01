@@ -76,7 +76,7 @@ export default function PreRecordedCoursesPage() {
           theme="dark"
         />
       </main>
-      <SiteFooterBlock showCta={false} />
+      <SiteFooterBlock />
     </>
   );
 }

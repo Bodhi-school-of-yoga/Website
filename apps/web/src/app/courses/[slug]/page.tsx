@@ -15,7 +15,7 @@ import { PrerequisitesSection } from "@/components/sections-v2/prerequisites-sec
 import { InstructorsSection } from "@/components/sections-v2/instructors-section";
 import { FaqSection } from "@/components/sections-v2/faq-section";
 import { MoreCoursesSection } from "@/components/sections-v2/more-courses-section";
-import { ClosingCtaAndFooter } from "@/components/sections-v2/closing-cta-and-footer";
+import { SiteFooterBlock } from "@/components/site-footer-block";
 import { CourseTabBar } from "@/components/sections-v2/course-tab-bar";
 
 import {
@@ -43,35 +43,6 @@ function toHighlightIcon(name: string): HighlightIconName {
     ? (name as HighlightIconName)
     : "technology";
 }
-
-const FOOTER_LINK_COLUMNS = [
-  {
-    heading: "School",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Our Trainers", href: "/our-trainers" },
-      { label: "Our Centers", href: "/our-centers" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    heading: "Visit",
-    links: [
-      { label: "Yoga Courses", href: "/yoga-courses" },
-      { label: "Teacher Courses", href: "/teacher-courses" },
-      { label: "Workshops", href: "/workshops" },
-      { label: "Pre-recorded", href: "/pre-recorded-courses" },
-    ],
-  },
-  {
-    heading: "Stay close",
-    links: [
-      { label: "Instagram", href: "#" },
-      { label: "YouTube", href: "#" },
-      { label: "Email", href: "mailto:hello@bodhischoolofyoga.com" },
-    ],
-  },
-];
 
 export function generateStaticParams() {
   return COURSES.map((c) => ({ slug: c.slug }));
@@ -366,26 +337,12 @@ export default async function CourseDetailPage({
         </section>
       ) : null}
 
-      <ClosingCtaAndFooter
+      <SiteFooterBlock
         cta={{
-          headingLead: "Begin where",
-          headingAccent: "you are.",
-          subheading:
-            "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that.",
-          primary: {
+          primaryCta: {
             label: "Try a Class, Free",
             href: "/enquire?intent=try-a-class",
           },
-        }}
-        footer={{
-          logoHref: "/",
-          brandTagline:
-            "Bodhi School of Yoga.\nA quiet place to practise, study and teach.",
-          websiteLabel: "bodhischoolofyoga.com",
-          websiteHref: "https://www.bodhischoolofyoga.com",
-          linkColumns: FOOTER_LINK_COLUMNS,
-          copyright: `© ${new Date().getFullYear()} Bodhi School of Yoga`,
-          signoff: "Designed quietly. Practised daily.",
         }}
       />
     </main>

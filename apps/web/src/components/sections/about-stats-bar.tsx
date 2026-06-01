@@ -33,7 +33,7 @@ export function AboutStatsBar({
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl page-px">
+      <div className="mx-auto max-w-[1340px] page-px">
         <ul
           className={cn(
             "grid grid-cols-1 gap-10 text-center",

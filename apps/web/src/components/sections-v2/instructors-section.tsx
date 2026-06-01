@@ -126,8 +126,8 @@ export function InstructorsSection({
 
   return (
     <section className="bg-surface-1">
-      <div className="page-px py-14 md:py-16 lg:py-[50px]">
-        <div className="max-w-[1340px] mx-auto">
+      <div className="py-14 md:py-16 lg:py-[50px]">
+        <div className="max-w-[1340px] mx-auto page-px">
           {/* Header */}
           <motion.div
             initial="hidden"
