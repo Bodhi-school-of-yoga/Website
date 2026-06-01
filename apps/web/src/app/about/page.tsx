@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 };
 
 const STATS: StatItem[] = [
-  { value: 100, suffix: "K+", label: "Certified Trainers by 2030" },
-  { value: 20, suffix: "+", label: "Centers Across India" },
+  { value: 100, suffix: "K+", label: "Vision: Certified Trainers by 2030" },
+  { value: 20, suffix: "+", label: "Centers across India" },
   { value: 15, suffix: "+", label: "Years of Teaching" },
   { value: 10, suffix: "K+", label: "Students Transformed" },
 ];
@@ -39,15 +39,18 @@ const STATS: StatItem[] = [
 const PILLARS: PillarItem[] = [
   {
     title: "Healing",
-    body: "We are committed to bringing about physical, mental and emotional healing for every person in the world.",
+    body: "We are committed to bringing about physical, mental and emotional healing for everyperson in the world.",
+    imageSrc: "/images/about/abouth1.png",
   },
   {
     title: "Expert",
     body: "We teach pure yoga and ayurveda. No remixes or reinterpretations. Hatha. Vinyasa. Yin. Take your pick.",
+    imageSrc: "/images/about/abouth2.png",
   },
   {
     title: "Community",
     body: "We are a growing community of incredible variety. Age, sex, professions vary. The common thread? Love of healing and yoga.",
+    imageSrc: "/images/about/abouth3.png",
   },
 ];
 
@@ -60,7 +63,7 @@ const STORY_ROWS: StoryRow[] = [
       "At Bodhi School of Yoga, we carry forward this rich tradition with deep respect and a bold vision: to empower women through the timeless power of yoga.",
       "As time evolves, so do we—but the essence of yoga remains our unshakable root.",
     ],
-    imageSrc: "/images/about/legacy.jpg",
+    imageSrc: "/images/about/about1.png",
     imageAlt: "Women practising yoga in the tradition of Bharat",
     direction: "text-left",
   },
@@ -70,7 +73,7 @@ const STORY_ROWS: StoryRow[] = [
       "We live in times of great progress—and profound pain. As the world rushes ahead, many are left overwhelmed by stress, burnout, and emotional disconnect. Women, especially, carry the weight of homes, careers, and expectations—all while seeking space to breathe and be.",
       "In a world that often forgets to pause, we teach women to reconnect—with themselves, with peace, and with purpose.",
     ],
-    imageSrc: "/images/about/present.jpg",
+    imageSrc: "/images/about/about1.png",
     imageAlt: "A modern Bodhi class in session",
     direction: "image-left",
   },
@@ -80,7 +83,7 @@ const STORY_ROWS: StoryRow[] = [
       "At Bodhi School of Yoga, we believe yoga is not just a practice—it is a lifeline. We believe that when a woman is empowered through yoga, her entire family, community, and future generations benefit.",
       "Our mission is to create a global sisterhood of women who are physically vibrant, mentally resilient, emotionally balanced, and spiritually connected.",
     ],
-    imageSrc: "/images/about/future.jpg",
+    imageSrc: "/images/about/about2.png",
     imageAlt: "A global sisterhood of yoga practitioners",
     direction: "text-left",
   },
@@ -90,7 +93,7 @@ const STORY_ROWS: StoryRow[] = [
       "At Bodhi School of Yoga, our trainers are not just instructors—they are dedicated disciples of the yogic lifestyle. Each trainer embodies the wisdom of traditional yoga, passionately guiding students toward physical vitality, mental clarity, and spiritual awakening.",
       "With deep-rooted discipline, compassion, and experience, they empower every learner to integrate yoga into daily life and walk the path of transformation with confidence.",
     ],
-    imageSrc: "/images/about/trainers.jpg",
+    imageSrc: "/images/about/about3.png",
     imageAlt: "Bodhi trainers guiding a class",
     direction: "image-left",
   },
@@ -152,10 +155,9 @@ export default function AboutPage() {
       <SiteHeader />
       <main>
         <AboutHero
-          eyebrow="About Bodhi School of Yoga"
-          headline="Heal. Rise. Lead."
+          headline="About Bodhi School of Yoga"
           subcopy="Every woman holds the power to heal, rise, and lead — and yoga is the path that makes this transformation real."
-          ctaLabel="Join Our Classes"
+          ctaLabel="Join our classes"
           ctaHref="/classes"
         />
         <AboutStatsBar stats={STATS} />

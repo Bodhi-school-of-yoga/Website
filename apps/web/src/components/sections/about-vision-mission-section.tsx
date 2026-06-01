@@ -23,7 +23,7 @@ const DEFAULT_VISION: VisionMissionCard = {
 const DEFAULT_MISSION: VisionMissionCard = {
   eyebrow: "Our Mission",
   body:
-    "To train, support, and gather teachers and students of practice — to keep the lineage alive through honest study, careful teaching, and lasting community.",
+    "To train, support, and gather teachers and students of practice to keep the lineage alive through honest study, careful teaching, and lasting community.",
 };
 
 export function AboutVisionMissionSection({
@@ -48,22 +48,13 @@ export function AboutVisionMissionSection({
         >
           <article
             className={cn(
-              "flex min-h-[400px] flex-col justify-start gap-4 rounded-[28px] bg-brand-teal p-8 text-text-inverse",
-              "lg:min-h-[440px] lg:p-10",
+              "flex flex-col justify-start gap-4 rounded-[28px] bg-brand-teal p-8 text-text-inverse",
+              "lg:p-10",
             )}
           >
-            <span
-              aria-hidden
-              className="font-heading text-subtext-3 italic text-text-inverse/85"
-            >
-              — a quiet practice
-            </span>
-            <span className="text-mini uppercase text-text-inverse/80">
-              {vision.eyebrow}
-            </span>
             <h2
               className={cn(
-                "font-heading text-text-inverse",
+                "font-heading font-bold text-text-inverse",
                 "text-h4 sm:text-h3 lg:text-h2",
               )}
             >
@@ -83,22 +74,13 @@ export function AboutVisionMissionSection({
 
           <article
             className={cn(
-              "flex min-h-[400px] flex-col justify-start gap-4 rounded-[28px] border border-border-2 bg-brand-lite p-8 text-text-primary",
-              "lg:min-h-[440px] lg:p-10",
+              "flex flex-col justify-start gap-4 rounded-[28px] border border-border-2 bg-brand-lite p-8 text-text-primary",
+              "lg:p-10",
             )}
           >
-            <span
-              aria-hidden
-              className="font-heading text-subtext-3 italic text-text-tertiary"
-            >
-              — a steady craft
-            </span>
-            <span className="text-mini uppercase text-text-brand">
-              {mission.eyebrow}
-            </span>
             <h2
               className={cn(
-                "font-heading text-text-primary",
+                "font-heading font-bold text-text-primary",
                 "text-h4 sm:text-h3 lg:text-h2",
               )}
             >

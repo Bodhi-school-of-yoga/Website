@@ -39,7 +39,7 @@ function FilterChipBar({
     <div
       role="tablist"
       className={cn(
-        "inline-flex gap-2 rounded-full bg-surface-1 p-1",
+        "inline-flex gap-2 rounded-full bg-transparent p-1",
         className,
       )}
     >
@@ -56,13 +56,13 @@ function FilterChipBar({
               "relative rounded-full px-4 py-1.5 text-mini uppercase tracking-wide transition-transform transition-colors active:scale-[0.98]",
               isActive
                 ? "text-text-primary"
-                : "text-text-secondary hover:text-text-primary",
+                : "text-white ",
             )}
           >
             {isActive ? (
               <motion.span
                 layoutId="video-filter-active-indicator"
-                className="absolute inset-0 bg-surface-2 rounded-full"
+                className="absolute inset-0 bg-[#8FE0CF] rounded-full"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             ) : null}

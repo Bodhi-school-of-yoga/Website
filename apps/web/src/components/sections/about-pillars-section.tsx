@@ -1,12 +1,13 @@
 // AboutPillarsSection — three-column pillars grid on the About page describing Bodhi's core values.
 import * as React from "react";
-
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export type PillarItem = {
   title: string;
   body: string;
   iconLetter?: string;
+  imageSrc?: string;
 };
 
 export type AboutPillarsSectionProps = {
@@ -55,7 +56,7 @@ export function AboutPillarsSection({
           <h2
             className={cn(
               "font-heading text-text-primary",
-              "text-h4 sm:text-h3 lg:text-h2 2xl:text-h1",
+              "text-h4 sm:text-h3 lg:text-h2",
             )}
           >
             {headlineWords.map((word, index) => (
@@ -74,29 +75,29 @@ export function AboutPillarsSection({
             "lg:grid-cols-3 lg:gap-8",
           )}
         >
-          {pillars.map((pillar) => {
-            const iconLetter = pillar.iconLetter ?? pillar.title.charAt(0);
-            return (
+          {pillars.map((pillar) => (
               <li
                 key={pillar.title}
                 className={cn(
-                  "flex flex-col gap-5 rounded-[28px] border border-border-2 bg-surface-1 p-7 shadow-card",
+                  "flex flex-col items-center gap-5 rounded-[20px] border border-border-2 bg-surface-1 p-7 text-center",
                   "sm:p-8",
                 )}
               >
-                <div
-                  aria-hidden
-                  className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-brand-lite font-heading text-h5 text-text-brand"
-                >
-                  {iconLetter}
-                </div>
-                <h3 className="font-heading text-subtext-3 text-text-primary">
+                {pillar.imageSrc ? (
+                  <Image
+                    src={pillar.imageSrc}
+                    alt={pillar.title}
+                    width={80}
+                    height={80}
+                    className="h-[80px] w-[80px] object-contain"
+                  />
+                ) : null}
+                <h3 className="font-heading text-subtext-3 font-bold text-text-brand">
                   {pillar.title}
                 </h3>
                 <p className="text-body-sm text-text-tertiary">{pillar.body}</p>
               </li>
-            );
-          })}
+            ))}
         </ul>
       </div>
     </section>
