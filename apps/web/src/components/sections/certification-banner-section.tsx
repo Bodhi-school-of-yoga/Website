@@ -30,7 +30,7 @@ export function CertificationBannerSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         <motion.header
           className="flex flex-col gap-3 mb-8 lg:mb-10"
           initial={{ opacity: 0, y: reduce ? 0 : 24 }}

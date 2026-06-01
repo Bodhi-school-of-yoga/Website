@@ -56,6 +56,12 @@ export const ABOUT_MEGA_MENU: MegaMenuColumn[] = [
         subtitle: "Reads from our teachers",
         href: "/blog",
       },
+      {
+        icon: "Flower2",
+        title: "Yoga Poses",
+        subtitle: "Asana library & guides",
+        href: "/yoga-poses",
+      },
     ],
   },
   {

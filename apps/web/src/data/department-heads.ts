@@ -2,9 +2,12 @@ export type DepartmentHead = {
   slug: string;
   name: string;
   role: string;
+  /** Optional. Omit to render the card as a placeholder (no image), matching Figma. */
   image?: string;
 };
 
+// Core Team — order, names and roles sourced from the "Our Trainers" Figma frame.
+// Members without an `image` are shown as placeholder cards (kept in the grid, no photo).
 export const departmentHeads: DepartmentHead[] = [
   {
     slug: "prarthana-patel",
@@ -37,21 +40,51 @@ export const departmentHeads: DepartmentHead[] = [
     image: "/images/trainers/harsh-rungta.png",
   },
   {
-    slug: "vyshnavie-vasasali",
-    name: "Vyshnavie Vasasali",
-    role: "head - support",
-    image: "/images/trainers/vyshnavie-vasasali.png",
+    slug: "khushboo-jain",
+    name: "Khushboo Jain",
+    role: "online yoga classes",
+    image: "/trainers/khushbu-jain.webp",
+  },
+  {
+    slug: "vijaya-raghavan",
+    name: "VijayaRaghavan",
+    role: "advance yoga training",
+    image: "/images/trainers/vijayaraghavan.png",
   },
   {
     slug: "eena-chawla",
-    name: "Eena Chawla",
+    name: "Eeena Chawla",
     role: "head - face yoga",
     image: "/images/trainers/eeena-chawla.png",
   },
   {
-    slug: "archana-kulkarni",
-    name: "Archana Kulkarni",
-    role: "head of therapeutic yoga",
-    image: "/images/trainers/archana-kulkarni.png",
+    slug: "sneha-shankar",
+    name: "Sneha Shankar",
+    role: "children's yoga training",
+    image: "/images/trainers/sneha-shankar.png",
+  },
+  {
+    slug: "sujay-choudhary",
+    name: "Sujay Choudhary",
+    role: "studio training",
+    image: "/trainers/choudhary-sujay-kumar-roy.webp",
+  },
+  {
+    slug: "swetha-varda",
+    name: "Swetha Varda",
+    role: "online training",
+    image: "/trainers/swetha-varda.jpg",
+  },
+  {
+    slug: "swetanga-nandan",
+    name: "Swetanga Nandan",
+    role: "online training",
+    image: "/images/trainers/swetangana-nandan.png",
+  },
+  {
+    slug: "swathi-patle",
+    name: "Swathi Patle",
+    role: "mat pilates training",
+    image: "/trainers/swathi-patle.jpg",
   },
 ];

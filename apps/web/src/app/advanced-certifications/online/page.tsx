@@ -41,7 +41,7 @@ export default function OnlineAdvancedCertificationsPage() {
         />
 
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">
-          <div className="container mx-auto max-w-7xl px-4">
+          <div className="mx-auto max-w-[1200px] page-px">
             <ul className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {COURSES.map((course, idx) => (
                 <li key={course.slug}>

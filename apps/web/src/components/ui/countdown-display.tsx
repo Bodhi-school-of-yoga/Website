@@ -1,9 +1,17 @@
-// CountdownWidget (presentational) — a static 4-unit countdown display.
+"use client";
+
+// CountdownWidget — the hero booking-card countdown.
 //
-// NOTE: This is intentionally NOT the live, target-date-driven widget at
-// ./countdown-widget.tsx (which is a shared component used by course-card,
-// workshop-detail-hero and recorded-classes-hero). This presentational variant
-// renders the EXACT Figma values by default and requires no date wiring.
+// NOTE: This is intentionally NOT the other live widget at ./countdown-widget.tsx
+// (a shared component used by course-card, workshop-detail-hero and
+// recorded-classes-hero). This variant is tuned for the Yoga Day hero: a live
+// countdown to International Yoga Day (June 21) with the Figma "Days/Hours/Mins/
+// Secs" labels and the white-card visual treatment.
+//
+// SSR-safe: the server (and first client paint) renders the static Figma values
+// (02 Days / 18 Hours / 38 Mins / 19 Secs) so there is no hydration mismatch;
+// the live tick starts in useEffect. If `endsAt` is omitted it defaults to the
+// next upcoming June 21 (International Yoga Day).
 
 import * as React from "react";
 
@@ -19,9 +27,15 @@ interface CountdownUnit {
 interface CountdownWidgetProps {
   /** Small uppercase label above the timer. */
   label?: string;
-  /** Four value+unit pairs. Defaults to the exact Figma values. */
+  /**
+   * Target date the timer counts down to. Defaults to the next upcoming
+   * June 21 (International Yoga Day). Pass `null` to render static defaults
+   * (no live tick).
+   */
+  endsAt?: Date | string | null;
+  /** Static fallback / first-paint values. Defaults to the exact Figma values. */
   units?: CountdownUnit[];
-  /** Visual tone — "dark" (default) for use over the dark hero card. */
+  /** Visual tone — "light" (default) inside the white hero card. */
   tone?: CountdownTone;
   className?: string;
 }
@@ -41,49 +55,95 @@ const toneStyles: Record<
     label: "text-text-inverse/70",
     value: "text-text-inverse",
     unit: "text-text-inverse/65",
-    divider: "bg-text-inverse/40",
+    divider: "bg-text-inverse/30",
   },
   light: {
-    label: "text-text-primary/70",
+    label: "text-text-tertiary",
     value: "text-text-primary",
     unit: "text-text-tertiary",
-    divider: "bg-text-primary/40",
+    divider: "bg-border-1",
   },
 };
 
+const pad = (n: number) => String(Math.max(0, n)).padStart(2, "0");
+
+/** Next upcoming June 21 (International Yoga Day) at local midnight. */
+function nextYogaDay(): Date {
+  const now = new Date();
+  const year =
+    now.getMonth() > 5 || (now.getMonth() === 5 && now.getDate() > 21)
+      ? now.getFullYear() + 1
+      : now.getFullYear();
+  return new Date(year, 5, 21, 0, 0, 0, 0);
+}
+
+function unitsUntil(target: Date): CountdownUnit[] {
+  const diff = target.getTime() - Date.now();
+  const clamped = Math.max(0, diff);
+  const days = Math.floor(clamped / 86_400_000);
+  const hours = Math.floor((clamped % 86_400_000) / 3_600_000);
+  const mins = Math.floor((clamped % 3_600_000) / 60_000);
+  const secs = Math.floor((clamped % 60_000) / 1000);
+  return [
+    { value: pad(days), unit: "Days" },
+    { value: pad(hours), unit: "Hours" },
+    { value: pad(mins), unit: "Mins" },
+    { value: pad(secs), unit: "Secs" },
+  ];
+}
+
 function CountdownWidget({
   label = "offer expires in",
+  endsAt,
   units = DEFAULT_UNITS,
-  tone = "dark",
+  tone = "light",
   className,
 }: CountdownWidgetProps) {
   const styles = toneStyles[tone];
 
+  // Resolve the target once on the client. `null` disables the live tick.
+  const target = React.useMemo<Date | null>(() => {
+    if (endsAt === null) return null;
+    if (endsAt instanceof Date) return endsAt;
+    if (typeof endsAt === "string") return new Date(endsAt);
+    return nextYogaDay();
+  }, [endsAt]);
+
+  // Render static Figma values on the server and first client paint.
+  const [display, setDisplay] = React.useState<CountdownUnit[]>(units);
+
+  React.useEffect(() => {
+    if (!target) return;
+    const update = () => setDisplay(unitsUntil(target));
+    update();
+    const id = window.setInterval(update, 1000);
+    return () => window.clearInterval(id);
+  }, [target]);
+
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div className={cn("flex flex-col items-center gap-3", className)}>
       <span
         className={cn(
-          "font-heading font-semibold uppercase text-mini",
+          "font-heading font-semibold uppercase text-mini tracking-[0.18em]",
           styles.label,
         )}
       >
         {label}
       </span>
-      <div className="flex items-baseline gap-4 sm:gap-5">
-        {units.map((u, i) => (
+      <div className="flex items-start justify-center gap-4 sm:gap-6">
+        {display.map((u, i) => (
           <React.Fragment key={u.unit}>
             {i > 0 && (
               <span
                 aria-hidden="true"
-                className={cn("h-6 w-px self-center", styles.divider)}
+                className={cn("mt-1 h-8 w-px self-start", styles.divider)}
               />
             )}
-            <div className="flex flex-col items-center gap-0.5">
+            <div className="flex flex-col items-center gap-1">
               <span
                 className={cn(
-                  "font-heading font-bold leading-none tabular-nums",
-                  "text-h4",
-                  i === 0 ? "text-brand-shade" : styles.value,
+                  "font-heading font-bold leading-none tabular-nums text-h3",
+                  i === 0 ? "text-text-brand" : styles.value,
                 )}
               >
                 {u.value}

@@ -121,7 +121,7 @@ export function YogaDayCurriculumSection({
 
   return (
     <section className={cn("w-full py-20 sm:py-24 lg:py-28", className)}>
-      <div className="mx-auto flex max-w-[1340px] flex-col gap-10 page-px lg:gap-12">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-10 page-px lg:gap-12">
         {/* Header group — eyebrow label + heading + intro + audience pills */}
         <motion.header
           className="flex max-w-3xl flex-col gap-4"

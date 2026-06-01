@@ -74,7 +74,7 @@ export function AccreditationsSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         <motion.header
           variants={headerStagger}
           initial="hidden"

@@ -42,7 +42,7 @@ export default function PreRecordedCoursesPage() {
         />
 
         <section className="relative z-10 page-px -mt-16 sm:-mt-24 lg:-mt-[130px] pb-12 lg:pb-16">
-          <div className="mx-auto flex w-full max-w-[1340px] flex-col gap-[30px]">
+          <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[30px]">
             {COURSES.map((course) => (
               <RevealItem key={course.title}>
                 <CourseCard

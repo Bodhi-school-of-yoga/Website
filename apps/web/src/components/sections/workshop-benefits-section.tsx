@@ -54,7 +54,7 @@ export function WorkshopBenefitsSection({
       )}
     >
       <motion.div
-        className="mx-auto flex w-full max-w-[1340px] flex-col items-center gap-12 page-px"
+        className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 page-px"
         variants={prefersReducedMotion ? undefined : containerVariants}
         {...motionInit}
       >

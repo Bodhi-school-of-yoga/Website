@@ -202,7 +202,7 @@ export function ListingHero({
       ) : null}
 
       <motion.div
-        className="relative z-10 mx-auto flex w-full max-w-[1340px] flex-col items-start page-px text-left"
+        className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-start page-px text-left"
         variants={containerVariants}
         initial="hidden"
         animate="show"

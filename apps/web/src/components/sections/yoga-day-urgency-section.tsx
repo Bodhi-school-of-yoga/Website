@@ -102,7 +102,7 @@ export function YogaDayUrgencySection({
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
           <motion.p

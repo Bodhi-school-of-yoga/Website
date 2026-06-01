@@ -59,7 +59,7 @@ export function PreRequisitesSection({
 
       
 
-      <div className="relative mx-auto max-w-[1340px] page-px">
+      <div className="relative mx-auto max-w-[1200px] page-px">
         <motion.div
           className="mx-auto flex max-w-[640px] flex-col items-center gap-8 text-center"
           initial="hidden"

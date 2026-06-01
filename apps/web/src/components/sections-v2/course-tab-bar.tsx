@@ -59,7 +59,7 @@ export function CourseTabBar({ tabs, className }: CourseTabBarProps) {
         className,
       )}
     >
-      <div className="page-px mx-auto max-w-[1340px] py-3">
+      <div className="page-px mx-auto max-w-[1200px] py-3">
         <div
           role="tablist"
           aria-label="Course sections"

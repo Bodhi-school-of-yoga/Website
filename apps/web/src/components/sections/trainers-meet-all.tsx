@@ -13,6 +13,25 @@ export type TrainersMeetAllProps = {
   className?: string;
 };
 
+function PhotoSlotIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect x="3" y="4.5" width="18" height="15" rx="2.5" />
+      <circle cx="8.5" cy="9.5" r="1.75" />
+      <path d="M3.5 17.5 9 12l4 4 3-2.5 4.5 4" />
+    </svg>
+  );
+}
+
 export function TrainersMeetAll({
   eyebrow = "The Team",
   title = "Meet All Our Trainers",
@@ -22,11 +41,11 @@ export function TrainersMeetAll({
   return (
     <section
       className={cn(
-        "w-full bg-surface-1 page-px py-14 sm:py-20 lg:py-24",
+        "w-full bg-surface-1 py-14 sm:py-20 lg:py-24",
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px]">
+      <div className="mx-auto max-w-[1200px] page-px">
         <div className="flex flex-col gap-2">
           <p
             className={cn(
@@ -50,7 +69,7 @@ export function TrainersMeetAll({
         <div
           className={cn(
             "mt-10 sm:mt-12 grid gap-x-5 gap-y-7",
-            "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7",
+            "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6",
           )}
         >
           {trainers.map((t) => (
@@ -64,14 +83,18 @@ export function TrainersMeetAll({
                 "motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_18px_36px_-22px_rgba(10,79,69,0.25)]",
               )}
             >
-              <div className="relative aspect-square w-full overflow-hidden rounded-full border border-border-2">
-                <Image
-                  src={t.image}
-                  alt={t.name}
-                  fill
-                  sizes="(max-width: 640px) 45vw, (max-width: 1024px) 25vw, 14vw"
-                  className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.04]"
-                />
+              <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-full border border-border-2 bg-surface-2">
+                {t.image ? (
+                  <Image
+                    src={t.image}
+                    alt={t.name}
+                    fill
+                    sizes="(max-width: 640px) 45vw, (max-width: 1024px) 25vw, 14vw"
+                    className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.04]"
+                  />
+                ) : (
+                  <PhotoSlotIcon className="h-9 w-9 text-text-tertiary/40" />
+                )}
               </div>
               <h3 className="text-center text-[15px] font-semibold leading-tight text-text-secondary">
                 {t.name}

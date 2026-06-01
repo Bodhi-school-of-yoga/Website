@@ -75,7 +75,7 @@ export function PopularCoursesSection({
     <section
       className={cn("w-full bg-surface-1 py-20 sm:py-24 lg:py-28", className)}
     >
-      <div className="mx-auto flex max-w-[1340px] flex-col gap-10 page-px lg:gap-12">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-10 page-px lg:gap-12">
         <header className="flex flex-col items-center gap-4 text-center">
           <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
           <h2 className="font-heading text-h2 text-text-secondary">{heading}</h2>

@@ -27,13 +27,14 @@ export function TrainersFounderSection({
   return (
     <section
       className={cn(
-        "hidden w-full shadow-2xl bg-surface-1 page-px py-16 sm:py-20 lg:block lg:py-24",
+        "hidden w-full shadow-2xl bg-surface-1 py-16 sm:py-20 lg:block lg:py-24",
         className,
       )}
     >
+      <div className="mx-auto max-w-[1200px] page-px">
       <div
         className={cn(
-          "relative mx-auto max-w-[1340px] overflow-hidden",
+          "relative overflow-hidden",
           "rounded-[24px] sm:rounded-[28px] lg:rounded-[36px]",
           "border border-border-3/40 bg-surface-1",
           "grid gap-0 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]",
@@ -84,6 +85,7 @@ export function TrainersFounderSection({
             className="object-cover"
           />
         </div>
+      </div>
       </div>
     </section>
   );

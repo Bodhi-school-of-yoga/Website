@@ -54,7 +54,7 @@ export function WorkshopAboutSection({
   return (
     <section className={cn("w-full bg-surface-1 py-20 lg:py-24", className)}>
       <motion.div
-        className="mx-auto flex w-full max-w-[1340px] flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-[88px] page-px"
+        className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-[88px] page-px"
         variants={prefersReducedMotion ? undefined : containerVariants}
         {...motionInit}
       >

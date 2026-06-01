@@ -86,7 +86,7 @@ export function ContactSection({
       animate="visible"
       variants={containerVariants}
     >
-      <div className="max-w-[1340px] mx-auto page-px">
+      <div className="max-w-[1200px] mx-auto page-px">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_710px] gap-12 lg:gap-20 xl:gap-[120px] items-start">
           <div className="flex flex-col">
             <motion.span

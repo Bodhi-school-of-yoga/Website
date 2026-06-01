@@ -55,7 +55,7 @@ export function WorkshopsListSection({
         className,
       )}
     >
-      <div className="mx-auto flex w-full max-w-[1340px] flex-col gap-[30px] page-px">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[30px] page-px">
         {workshops.map((workshop) => (
           <RevealItem key={workshop.id}>
             <CourseCard

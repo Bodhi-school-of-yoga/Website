@@ -1,0 +1,1123 @@
+{
+  "$comment": "Bodhi yoga-poses library — single source of truth. Content + images archived from bodhischoolofyoga.com/yoga-poses (category + detail pages). 24 poses across 3 categories. To add a pose, append an object to \"poses\" with a unique `slug` and a `categorySlug` matching a key in \"categories\". `image` is a filename in /public/images/yoga-poses (set to null to fall back to the typographic Sanskrit card). `related` lists slugs of related poses; the loader fills gaps with same-category poses. Detail route: /yoga-poses/[categorySlug]/[slug].",
+  "categories": [
+    {
+      "slug": "standing-yoga-pose",
+      "label": "Standing Yoga Pose",
+      "description": "Grounding postures practised on the feet that build strength, stability, and stamina in the legs, hips, and spine."
+    },
+    {
+      "slug": "supine-yoga-pose",
+      "label": "Supine Yoga Pose",
+      "description": "Postures practised lying on the back that release the spine, massage the abdominal organs, and calm the nervous system."
+    },
+    {
+      "slug": "balancing-yoga-pose",
+      "label": "Balancing Yoga Pose",
+      "description": "Postures that train focus, coordination, and core strength by holding the body steady on a small base of support."
+    }
+  ],
+  "poses": [
+    {
+      "slug": "yogic-sleep-pose-yoga-nidrasana",
+      "categorySlug": "supine-yoga-pose",
+      "name": "Yogic Sleep Pose",
+      "sanskrit": "Yoga Nidrasana",
+      "difficulty": "Advanced",
+      "chakra": "Svadhisthana (Sacral) Chakra",
+      "image": "yogic-sleep-pose-yoga-nidrasana.webp",
+      "intro": "Yoga Nidrasana (Yogic Sleep Pose) is a deep forward bend at the advanced level. In practice, the stretching in Yoga Nidrasana causes the muscles to contract and relax, and advanced practitioners value the stillness achieved through ujjayi breathing. This asana develops physical strength and flexibility in the hips, lower back, spine, and inner thighs, and stimulates the svadhisthana chakra, which governs creativity.",
+      "steps": [
+        "Come into Anandabalasana (Happy Baby Pose) and breathe in deeply.",
+        "Keep the knees close to the chest while holding the hands to the feet.",
+        "Cross one ankle over the other to create space at the knees.",
+        "Position both ankles toward the head; use the hands to guide the left knee behind the left shoulder and the right knee behind the right shoulder.",
+        "Push the feet from the top of your head toward the floor.",
+        "Position the heels so that your head supports them.",
+        "Bring both hands to the lower back and clasp them together.",
+        "Look upward and hold the position for as long as is comfortable."
+      ],
+      "benefits": [
+        "Improves blood circulation and stimulates the central nervous system.",
+        "Stretches the chest, lungs, shoulders, throat, and upper and lower back.",
+        "Stimulates the abdominal organs and improves digestion.",
+        "Strengthens and stretches the spine and neck ligaments.",
+        "Tones the adrenal glands, pancreas, kidneys, and lungs.",
+        "Provides relief from menopause and menstrual cramping."
+      ],
+      "tips": [
+        "Yoga Nidrasana requires 2–3 months of preparatory flexibility work before attempting.",
+        "Can be practised with pillow or wall support for assistance.",
+        "Initially, practise with one leg only.",
+        "Preparatory poses include Naukasana, Sethu Bandhasana (Bridge Pose), Halasana (Plough Pose), and Sarvangasana."
+      ],
+      "contraindications": [
+        "Avoid if experiencing severe back pain.",
+        "Not recommended for lumbar disc herniation patients.",
+        "Do not practise with high blood pressure or asthma."
+      ],
+      "variations": [
+        "As an advanced asana, specific variations are limited — progress slowly with props.",
+        "Follow up with Chakrasana (Wheel Pose), Halasana (Plough Pose), Yoga Mudrasana, or a spinal twist."
+      ],
+      "related": [
+        "wind-relieving-pose-pawanamuktasana",
+        "wheel-pose-chakrasana",
+        "universal-spinal-twist-udarakarshanasana"
+      ]
+    },
+    {
+      "slug": "wind-relieving-pose-pawanamuktasana",
+      "categorySlug": "supine-yoga-pose",
+      "name": "Wind Relieving Pose",
+      "sanskrit": "Pawanamuktasana",
+      "difficulty": "Intermediate",
+      "chakra": "Manipura (Solar Plexus) Chakra",
+      "image": "wind-relieving-pose-pawanamuktasana.webp",
+      "intro": "Pawanamuktasana (Wind Relieving Pose) is an intermediate-level yoga asana performed in the supine position. The name derives from the Sanskrit 'Pawan' (wind/gas), 'Mukta' (release), and 'asana' (posture). This pose relieves constipation, strengthens the digestive system, and improves digestion. Regular practice strengthens the back and abdominal muscles while stimulating the Manipura chakra (solar plexus).",
+      "steps": [
+        "Lie down on your back.",
+        "Inhale and lift both legs together; exhale, fold the legs, and bring the knees close to the chest.",
+        "Interlock the fingers and hold the legs.",
+        "Bring the thighs closer to the chest.",
+        "Inhale gently and lift the head, bringing the chin or nose between the knees (avoid neck stress).",
+        "Keep breathing while holding the pose.",
+        "Exhale, release both legs, and slowly lower the head to the floor."
+      ],
+      "benefits": [
+        "Strengthens the lower-back muscles and loosens the spinal column.",
+        "Massages the abdomen and digestive organs.",
+        "Removes gas and relieves constipation.",
+        "Useful for relief from sciatica."
+      ],
+      "tips": [
+        "Hold the breath for 3–5 breaths initially.",
+        "Begin sequences with the left leg extended and the knee drawn in.",
+        "Place a bolster beneath the back for support and hip elevation."
+      ],
+      "contraindications": [
+        "Recent abdominal surgery.",
+        "Hernia or piles.",
+        "Heart problems.",
+        "Hyperacidity.",
+        "High blood pressure.",
+        "Slipped disc.",
+        "Neck problems."
+      ],
+      "variations": [
+        "Eka Pada Pawanamuktasana (single-leg variation).",
+        "Gentle swinging motion in the final posture to soothe the back.",
+        "Deeper stretch by bringing the nose closer to the knee.",
+        "Bend the extended leg's knee and place the foot flat if the hips are tight."
+      ],
+      "related": [
+        "yogic-sleep-pose-yoga-nidrasana",
+        "wheel-pose-chakrasana",
+        "universal-spinal-twist-udarakarshanasana"
+      ]
+    },
+    {
+      "slug": "wheel-pose-chakrasana",
+      "categorySlug": "supine-yoga-pose",
+      "name": "Wheel Pose",
+      "sanskrit": "Chakrasana",
+      "difficulty": "Intermediate",
+      "chakra": "Addresses all chakras",
+      "image": "wheel-pose-chakrasana.webp",
+      "intro": "Chakrasana (Wheel Pose) brings the body into a curved shape resembling a wheel. This intermediate-level asana belongs to the back-bend family and provides relaxation while boosting confidence. The pose engages the entire body — arms, shoulders, chest, lower back, legs, feet, and neck — requiring significant strength. Practitioners experience a sense of optimism when holding the full posture, and the asana supports spiritual advancement, though it demands trust in one's instructor and considerable practice.",
+      "steps": [
+        "Lie down on your back.",
+        "Fold the legs, with the heels positioned close to the buttocks.",
+        "Place the palms under the shoulders with the fingers pointing toward the feet.",
+        "Inhale and lift the waist upward.",
+        "Elevate the chest and head using the strength of the hands.",
+        "Continue breathing while maintaining the pose.",
+        "Slowly exhale, bend the elbows, and gradually lower the shoulders, middle back, lower back, and buttocks in sequence."
+      ],
+      "benefits": [
+        "Strengthens the legs, arms, wrists, abdomen, buttocks, spine, shoulder blades, lungs, and chest.",
+        "Beneficial to the nerves and the digestive, respiratory, cardiovascular, and glandular systems.",
+        "Relieves various gynaecological disorders.",
+        "Helps with infertility, asthma, and osteoporosis, and relieves stress."
+      ],
+      "tips": [
+        "Prioritise building body flexibility before attempting this pose.",
+        "Practise foundational back bends: Bhujangasana, Setu Bandhasana (Bridge Pose), Dhanurasana (Bow Pose), and Ustrasana.",
+        "Use props including blocks and wheels before attempting the full pose.",
+        "Use wall support as an assistance tool."
+      ],
+      "contraindications": [
+        "Slipped disc.",
+        "Wrist injuries.",
+        "Vertigo or dizziness.",
+        "High blood pressure.",
+        "Neck injuries.",
+        "Carpal tunnel syndrome.",
+        "Back problems.",
+        "Shoulder injuries.",
+        "Headaches.",
+        "Pregnancy.",
+        "Any active illness."
+      ],
+      "variations": [
+        "Eka Pada Chakrasana (one-legged variation).",
+        "Chakrasana with the legs stretched.",
+        "Chakrasana on a hammock.",
+        "Chakrasana with blocks positioned between the legs."
+      ],
+      "related": [
+        "yogic-sleep-pose-yoga-nidrasana",
+        "wind-relieving-pose-pawanamuktasana",
+        "universal-spinal-twist-udarakarshanasana"
+      ]
+    },
+    {
+      "slug": "universal-spinal-twist-udarakarshanasana",
+      "categorySlug": "supine-yoga-pose",
+      "name": "Universal Spinal Twist",
+      "sanskrit": "Udarakarshanasana",
+      "difficulty": "Intermediate",
+      "chakra": "Manipura (Solar Plexus) Chakra",
+      "image": "universal-spinal-twist-udarakarshanasana.webp",
+      "intro": "Udarakarshanasana derives from the Sanskrit 'Udara' (stomach), 'Aakarshana' (to stretch), and 'asana' (posture). This asana improves the body's flexibility by stretching the knee, ankle, and toe joints. Regular practice helps eliminate constipation and digestive issues, and the pose stimulates the solar plexus (Manipura chakra).",
+      "steps": [
+        "Lie down on your back.",
+        "Stretch the hands out sideways in line with the shoulders.",
+        "Inhale and gently place the right foot on the left knee.",
+        "While exhaling, press the right knee with the left palm toward the floor on the left side.",
+        "Look at the right palm.",
+        "Keep both shoulders on the mat.",
+        "Continue breathing while holding the pose.",
+        "Repeat on the other side."
+      ],
+      "benefits": [
+        "Tones and massages the pelvic and abdominal organs.",
+        "Improves digestion and helps relieve gastritis.",
+        "Enhances posture and addresses back ailments and spinal disorders.",
+        "Relieves lower-back stiffness and body fatigue."
+      ],
+      "tips": [
+        "Strengthen your back before attempting this asana.",
+        "Place a pillow under your hips for easier holds; gradually remove it.",
+        "Use a yoga strap to maintain balance."
+      ],
+      "contraindications": [
+        "Individuals with hip, knee, or spine problems should avoid this pose."
+      ],
+      "variations": [
+        "Ardha Naukasana serves as a variation.",
+        "Can be performed with one leg."
+      ],
+      "related": [
+        "yogic-sleep-pose-yoga-nidrasana",
+        "wind-relieving-pose-pawanamuktasana",
+        "wheel-pose-chakrasana"
+      ]
+    },
+    {
+      "slug": "raised-leg-pose-uttanapadasana",
+      "categorySlug": "supine-yoga-pose",
+      "name": "Raised Leg Pose",
+      "sanskrit": "Uttanapadasana",
+      "difficulty": "Intermediate",
+      "chakra": "Svadhisthana (Sacral) Chakra",
+      "image": "raised-leg-pose-uttanapadasana.webp",
+      "intro": "Uttanapadasana (Raised Leg Pose) is an intermediate-level yoga asana performed in the supine position. The name derives from the Sanskrit 'uttana' (intense stretch), 'pada' (feet or legs), and 'asana' (posture). Regular practice tones and strengthens the pelvis, hips, lower back, abdomen, legs, and perineum. Practitioners may experience relief from back pain and enhanced strength of the abdominal organs, and the pose stimulates the Svadhisthana chakra.",
+      "steps": [
+        "Lie down on your back. Keep the thighs, knees, heels, and toes together.",
+        "Place the hands beside the thighs, palms facing down.",
+        "Inhaling, press the palms to the mat and lift the legs straight up, toes pointing toward you.",
+        "Avoid bending the knees.",
+        "Hold the posture with normal breath.",
+        "Exhaling, bring the legs back to the mat.",
+        "Relax in Shavasana."
+      ],
+      "benefits": [
+        "Strengthens the abdominal muscles, lower back, pelvic and perineal muscles, and digestive system.",
+        "Helps correct disc prolapse."
+      ],
+      "tips": [
+        "Try to hold this position for two to three breaths if you're a beginner; breathe out, then slowly lower your legs to exit.",
+        "Practise by raising one leg at a time initially, then progress to the full posture once comfortable."
+      ],
+      "contraindications": [
+        "High blood pressure sufferers should avoid this pose.",
+        "Not suitable for those with slipped discs.",
+        "Contraindicated for ulcer patients.",
+        "Pregnant women should not practise this asana.",
+        "Avoid after recent abdominal or back surgery.",
+        "Not recommended for lower-back ache.",
+        "Should be avoided during menstruation."
+      ],
+      "variations": [
+        "Raise the legs to 60 degrees, hold for several breaths, then relax.",
+        "Raise the legs to 30 degrees, hold for several breaths, then relax."
+      ],
+      "related": [
+        "yogic-sleep-pose-yoga-nidrasana",
+        "wind-relieving-pose-pawanamuktasana",
+        "wheel-pose-chakrasana"
+      ]
+    },
+    {
+      "slug": "reclining-bound-angle-pose-supta-baddha-konasana",
+      "categorySlug": "supine-yoga-pose",
+      "name": "Reclining Bound Angle Pose",
+      "sanskrit": "Supta Baddha Konasana",
+      "difficulty": "Intermediate",
+      "chakra": "Swadhisthana (Sacral) & Muladhara (Root) Chakra",
+      "image": "reclining-bound-angle-pose-supta-baddha-konasana.webp",
+      "intro": "Supta Baddha Konasana (Reclining Bound Angle Pose) is an intermediate-level yoga asana performed in the supine position. The Sanskrit breaks down as supta (reclining), baddha (bound), kona (angle), and asana (posture). The pose promotes overall circulation and stimulates the abdominal organs such as the ovaries, prostate, bladder, kidneys, and heart. Regular practice enhances flexibility while stretching the inner thighs and groin, and stimulates the Sacral (Swadhisthana) and Root (Muladhara) chakras.",
+      "steps": [
+        "Lie on the mat in the supine position. Keep the feet together and place the palms close to the thighs.",
+        "Bring the soles of the feet together, knees pointing to the sides, making a diamond shape with the legs.",
+        "Position the palms away from the body, facing upward.",
+        "Keep breathing while holding the pose.",
+        "Slowly release the legs and relax in Shavasana."
+      ],
+      "benefits": [
+        "Stimulates the abdominal organs.",
+        "Stretches the inner thighs, groin, and knees.",
+        "Helps relieve the symptoms of stress, mild depression, menstruation, and menopause.",
+        "Provides deep relaxation to the back and relieves pressure on the discs.",
+        "Helps relieve constipation.",
+        "Tones the pelvic muscles and sciatic nerves.",
+        "Beneficial for the reproductive organs in both females and males."
+      ],
+      "tips": [
+        "Preparatory poses include Baddhakonasana, Vrikshasana (Tree Pose), and Supta Padangusthasana.",
+        "Use props to support the knees for easier lateral lowering without overstretching the inner thighs.",
+        "If unable to reach the final posture, use a bolster behind your back."
+      ],
+      "contraindications": [
+        "Avoid with knee, neck, or hip injury.",
+        "Avoid if suffering from lower-back pain."
+      ],
+      "variations": [
+        "Raise the pelvis off the floor to intensify the stretch in the inner thighs and groin.",
+        "Raise both hands overhead and place them beside the head on the floor, or fold the arms at the elbows."
+      ],
+      "related": [
+        "yogic-sleep-pose-yoga-nidrasana",
+        "wind-relieving-pose-pawanamuktasana",
+        "wheel-pose-chakrasana"
+      ]
+    },
+    {
+      "slug": "plough-pose-halasana",
+      "categorySlug": "supine-yoga-pose",
+      "name": "Plough Pose",
+      "sanskrit": "Halasana",
+      "difficulty": "Beginner",
+      "chakra": "Vishuddhi (Throat) Chakra",
+      "image": "plough-pose-halasana.webp",
+      "intro": "Halasana (Plough Pose) is one of the restorative asanas and a beginner-level posture. The sympathetic nervous system is calmed and rejuvenated by Halasana. The pose improves toxin removal from the digestive and urinary tracts while maintaining glandular balance, may provide relief from hypertension, and enhances mental clarity through increased cerebral blood flow. Its name comes from 'Hala' (plough) and 'asana' (pose), and the practice activates the Vishuddhi Chakra, bringing practitioners closer to meditation.",
+      "steps": [
+        "Lie on the mat in the supine position. Keep the feet together and place the palms close to the thighs.",
+        "Inhale and slowly lift the legs up to a 90-degree angle.",
+        "Support the back with your hands and gently raise the hips and lower back off the mat.",
+        "Exhale and extend the legs behind, over the head, and place the toes on the mat.",
+        "Try to keep the back perpendicular to the mat.",
+        "Hold the posture while breathing normally. Exhale, release by bringing the legs to the floor, and relax in Shavasana."
+      ],
+      "benefits": [
+        "Stimulates the abdominal organs and the thyroid gland.",
+        "Improves the digestive system; beneficial for diabetes patients.",
+        "Calms the brain and reduces stress and anxiety.",
+        "Helps relieve menopause symptoms; therapeutic for backache, headache, infertility, insomnia, and sinusitis."
+      ],
+      "tips": [
+        "Halasana can be challenging for beginners even though it is a beginner-level asana.",
+        "Prepare through Pawanamuktasana, Padahasthasana (Hands to Feet Pose), Sethu Bandhasana (Bridge Pose), and core-strengthening asanas."
+      ],
+      "contraindications": [
+        "Slipped disc.",
+        "Severe back pain and neck pain.",
+        "Sciatica.",
+        "Hernia.",
+        "Menstruation.",
+        "Frequent headaches."
+      ],
+      "variations": [
+        "Use props like blankets under the spine or straps to assist leg positioning.",
+        "Supta Konasana (Reclining Angle Yoga Pose) serves as a variation."
+      ],
+      "related": [
+        "reclining-angle-yoga-pose-supta-konasana",
+        "wind-relieving-pose-pawanamuktasana",
+        "wheel-pose-chakrasana"
+      ]
+    },
+    {
+      "slug": "reclining-angle-yoga-pose-supta-konasana",
+      "categorySlug": "supine-yoga-pose",
+      "name": "Reclining Angle Yoga Pose",
+      "sanskrit": "Supta Konasana",
+      "difficulty": "Intermediate",
+      "chakra": null,
+      "image": "reclining-angle-yoga-pose-supta-konasana.webp",
+      "intro": "Supta Konasana is one of the restorative poses and a more challenging version of Halasana (Plough Pose). The name derives from 'supta' (reclining/sleeping), 'kona' (angle), and 'asana' (pose). It has similar effects to Halasana because it strengthens the entire body from head to toe while revitalising the practitioner.",
+      "steps": [
+        "Lie on the mat in the supine position. Keep the feet together and place the hands close to the thighs.",
+        "Inhale slowly and lift the legs up to a 90-degree angle.",
+        "Support the back with your hands and gently raise the hips and lower back off the mat.",
+        "Exhale and extend the legs behind, over the head, and place the toes on the mat. Try to keep the back perpendicular to the mat.",
+        "Hold the toes with your palms and spread your legs wide apart. Maintain the pose while breathing normally.",
+        "Exhale, bring the legs closer, lower them onto the mat with the hands beside the hips, and relax in Shavasana."
+      ],
+      "benefits": [
+        "Tones the legs.",
+        "Improves digestion.",
+        "Stimulates the thyroid gland, helping with metabolic problems.",
+        "Stretches the spine, legs, back, arms, thighs, and calves.",
+        "Improves concentration."
+      ],
+      "tips": [
+        "After placing the legs behind the head, avoid a rounded-back posture.",
+        "When bringing your legs back to the floor to release, avoid bending your knees.",
+        "Place two to three folded blankets under the shoulders, with the head and neck beyond the covers, to prevent neck injury.",
+        "Place a chair on each side of your head and rest the legs on it if you cannot reach the floor."
+      ],
+      "contraindications": [
+        "Diarrhoea.",
+        "Menstruation.",
+        "Slipped disc.",
+        "Severe back pain.",
+        "Neck pain.",
+        "Hernia.",
+        "High blood pressure."
+      ],
+      "variations": [
+        "Hold the ankles instead of the toes; this variation is called Supta Konasana B.",
+        "Supta Konasana is itself a variation of Halasana (Plough Pose)."
+      ],
+      "related": [
+        "plough-pose-halasana",
+        "yogic-sleep-pose-yoga-nidrasana",
+        "wind-relieving-pose-pawanamuktasana"
+      ]
+    },
+    {
+      "slug": "warrior-1-pose-veerabhadrasana-1",
+      "categorySlug": "standing-yoga-pose",
+      "name": "Warrior 1 Pose",
+      "sanskrit": "Veerabhadrasana 1",
+      "difficulty": "Beginner",
+      "chakra": null,
+      "image": "warrior-1-pose-veerabhadrasana-1.webp",
+      "intro": "Veerabhadrasana 1 (Warrior 1 Pose) derives its name from the Sanskrit 'vira' (hero), 'bhadra' (friend), and 'asana' (pose). This foundational posture stretches the hip muscles while strengthening the legs and upper arms. It improves balance, builds core strength, and extends the erector spinae along with the chest, hip, and thigh regions. It is commonly practised in children's yoga.",
+      "steps": [
+        "Stand in Tadasana.",
+        "Position the right leg far back; the left foot at 90 degrees and the right foot turned inward at 45 degrees.",
+        "Inhale and raise both hands overhead, ensuring the torso turns toward the left leg.",
+        "Exhale and bend the left leg, bringing the left thigh parallel to the ground.",
+        "Keep the torso straight without leaning forward.",
+        "Hold the posture with normal breathing.",
+        "Inhale and slowly return to centre.",
+        "Exhale, relax the hands, and bring the feet together.",
+        "Repeat on the opposite side."
+      ],
+      "benefits": [
+        "Reduces stubborn fat from the hips.",
+        "Improves balance and posture.",
+        "Enhances blood circulation.",
+        "Builds stamina and develops a sense of balance and coordination."
+      ],
+      "tips": [
+        "Practise a minimum of 6 sun-salutation rounds to perfect the pose.",
+        "Hold Adho Mukha Svanasana for 10 counts during sun salutations.",
+        "Practise Vrikshasana to prepare for Veerabhadrasana."
+      ],
+      "contraindications": [
+        "Spinal ailments, or neck, shoulder, or knee pain.",
+        "High blood pressure, heart problems, or vertigo."
+      ],
+      "variations": [
+        "Veerabhadrasana 2 (Warrior 2 Pose).",
+        "Veerabhadrasana 3 (Warrior 3 Pose).",
+        "Use props like straps or blocks."
+      ],
+      "related": [
+        "warrior-2-pose-veerabhadrasana-2",
+        "warrior-3-pose-virabhadrasana-3",
+        "wide-legged-forward-bend-a-prasaritta-padottanasana-a"
+      ]
+    },
+    {
+      "slug": "warrior-2-pose-veerabhadrasana-2",
+      "categorySlug": "standing-yoga-pose",
+      "name": "Warrior 2 Pose",
+      "sanskrit": "Veerabhadrasana 2",
+      "difficulty": "Intermediate",
+      "chakra": null,
+      "image": "warrior-2-pose-veerabhadrasana-2.webp",
+      "intro": "Veerabhadrasana 2 (Warrior 2 Pose) is an asana in the Veerabhadrasana series. It improves the strength and endurance of practitioners and builds focus through sustained practice — the discipline and tenacity of a real warrior are at their peak while doing this asana. The name derives from the Sanskrit 'vira' (hero), 'bhadra' (friend), and 'asana' (pose).",
+      "steps": [
+        "Stand in Tadasana.",
+        "Position the right leg far back; the left foot faces away at 90 degrees and the right foot turns inward at 45 degrees.",
+        "Inhale and raise both hands in line with the legs.",
+        "Exhale and bend the left knee, bringing the thigh parallel to the ground; keep the right leg straight and do not lean forward.",
+        "Gaze at the left middle finger.",
+        "Hold the posture comfortably while breathing slowly and steadily.",
+        "To release, inhale and straighten the left leg.",
+        "Exhale and lower the hands; return to Tadasana.",
+        "Repeat on the other side."
+      ],
+      "benefits": [
+        "Strengthens and tones the lower back, arms, and legs.",
+        "Stretches the chest, shoulders, belly, and groin.",
+        "Regular practice stabilises and balances the body.",
+        "Increases stamina."
+      ],
+      "tips": [
+        "Practise a minimum of 6 rounds of sun salutations to perfect the warrior poses.",
+        "Hold Adho Mukha Svanasana for 10 counts during sun salutations.",
+        "Practise Vrikshasana for preparatory benefits.",
+        "Engage the core and bring the tailbone toward the mat to keep the lower back long and prevent rib flaring."
+      ],
+      "contraindications": [
+        "Individuals with high blood pressure should avoid this pose.",
+        "People with heart problems should avoid this pose.",
+        "Those with shoulder problems should keep the hands in a natural position."
+      ],
+      "variations": [
+        "Veerabhadrasana 1 (Warrior 1 Pose).",
+        "Veerabhadrasana 3 (Warrior 3 Pose).",
+        "Practise with props like straps or blocks.",
+        "Dynamic movements within the asana build intensity."
+      ],
+      "related": [
+        "warrior-1-pose-veerabhadrasana-1",
+        "wide-legged-forward-bend-a-prasaritta-padottanasana-a",
+        "wide-legged-forward-bend-b-prasaritta-padottanasana-b"
+      ]
+    },
+    {
+      "slug": "warrior-3-pose-virabhadrasana-3",
+      "categorySlug": "balancing-yoga-pose",
+      "name": "Warrior 3 Pose",
+      "sanskrit": "Virabhadrasana 3",
+      "difficulty": "Intermediate",
+      "chakra": "Sahasrara (Crown) Chakra",
+      "image": "warrior-3-pose-virabhadrasana-3.webp",
+      "intro": "Virabhadrasana 3 (Warrior 3 Pose) derives from the Sanskrit 'Virabhadra' (fierce warrior) and 'asana' (posture). This intermediate balancing position reduces stiffness in the back, shoulders, and neck while building core strength and balance, and stimulates the sahasrara (crown) chakra.",
+      "steps": [
+        "Stand in Tadasana.",
+        "Move the right foot one step back, inhale, and stretch the hands upward with the palms joined.",
+        "Exhale and bend forward, lifting the right leg until the hands, torso, and leg form one straight line.",
+        "Keep the left foot's toes stretched and spread evenly for proper grip.",
+        "Gaze at a point on the mat for better balance.",
+        "Hold the posture with normal breathing.",
+        "Inhale and slowly return to centre; exhale and relax the hands, bringing the feet together.",
+        "Repeat on the other side."
+      ],
+      "benefits": [
+        "Tones and strengthens the knees, thighs, ankles, shoulders, and back muscles.",
+        "Relieves stiffness in the neck, shoulders, and back.",
+        "Reduces stubborn fat from the hips and improves posture.",
+        "Enhances blood circulation throughout the body.",
+        "Builds stamina and develops balance and coordination."
+      ],
+      "tips": [
+        "Practise using a tall chair or wall for hand support to adjust to the body movements and improve balance.",
+        "Maintain a slight bend in the standing knee to aid balance.",
+        "Contract the lower belly to improve stability."
+      ],
+      "contraindications": [
+        "Avoid if suffering from spinal ailments or neck, shoulder, or knee pain.",
+        "Avoid with high blood pressure, heart problems, or vertigo."
+      ],
+      "variations": [
+        "Try different arm positions: palms together at the chest, behind the back, or extended to the sides.",
+        "Squat slightly on one leg in the final posture to intensify the practice."
+      ],
+      "related": [
+        "tree-pose-vriksasana",
+        "half-moon-pose-ardha-chandrasana",
+        "half-bound-lotus-standing-forward-bend-ardha-baddha-padmottanasana"
+      ]
+    },
+    {
+      "slug": "wide-legged-forward-bend-a-prasaritta-padottanasana-a",
+      "categorySlug": "standing-yoga-pose",
+      "name": "Wide Legged Forward Bend A",
+      "sanskrit": "Prasaritta Padottanasana A",
+      "difficulty": "Intermediate",
+      "chakra": "Muladhara, Svadhisthana & Manipura Chakra",
+      "image": "wide-legged-forward-bend-a-prasaritta-padottanasana-a.webp",
+      "intro": "Prasaritta Padottanasana A is an intermediate-level forward bend that stimulates the muladhara, svadhisthana, and manipura chakras. Opening these chakras increases stability, productivity, and self-acceptance. Though demanding initially, it becomes a resting pose with practice. This asana serves as preparation for the Headstand and can substitute for Sirsasana, producing a calming effect while cooling the brain.",
+      "steps": [
+        "Stand on the side of the mat in Tadasana, then stretch the legs wide apart.",
+        "Point the toes forward with the heels back.",
+        "Inhale and stretch the hands overhead; exhale while bending from the lower back, placing the palms on the mat between the feet at three equal distances.",
+        "Bend the elbows to place the crown of the head on the mat.",
+        "Continue breathing while holding; avoid straining the neck.",
+        "Inhale slowly to come upright; exhale and relax the hands, bringing the legs together."
+      ],
+      "benefits": [
+        "Stretches the hamstrings, calves, glutes, and lower back.",
+        "Opens the hips.",
+        "Stretches the shoulders, chest, and spine.",
+        "Relaxes the body and calms the mind.",
+        "Beneficial for the lower abdomen."
+      ],
+      "tips": [
+        "Create foot balance on the mat.",
+        "Distribute weight evenly between the toes and heels for spinal relief.",
+        "Emphasise chest opening and shoulder broadening over depth.",
+        "Practise hamstring work; Sun Salutation is recommended.",
+        "Practise all Prasaritta Padottanasana variations."
+      ],
+      "contraindications": [
+        "Avoid if experiencing leg, neck, arm, or shoulder injuries.",
+        "Those with lower-back problems should modify depth according to comfort.",
+        "High or low blood pressure patients should avoid this pose."
+      ],
+      "variations": [
+        "Prasaritta Padottanasana B, C, and D (different arm positions).",
+        "Wall-supported variations."
+      ],
+      "related": [
+        "wide-legged-forward-bend-b-prasaritta-padottanasana-b",
+        "wide-legged-forward-bend-c-prasaritta-padottanasana-c",
+        "wide-legged-forward-bend-d-prasaritta-padottanasana-d"
+      ]
+    },
+    {
+      "slug": "wide-legged-forward-bend-b-prasaritta-padottanasana-b",
+      "categorySlug": "standing-yoga-pose",
+      "name": "Wide Legged Forward Bend B",
+      "sanskrit": "Prasaritta Padottanasana B",
+      "difficulty": "Intermediate",
+      "chakra": "Muladhara, Svadhisthana & Manipura Chakra",
+      "image": "wide-legged-forward-bend-b-prasaritta-padottanasana-b.webp",
+      "intro": "Prasaritta Padottanasana B is an intermediate-level forward bend that stimulates multiple chakras including muladhara, svadhisthana, and manipura. The pose requires substantial effort and flexibility but develops into a resting posture. It serves as a preparatory asana for the headstand and can substitute for sirsasana, and has a calming effect on the body and mind while also cooling the brain.",
+      "steps": [
+        "Stand on the side of the mat in Tadasana, then stretch the legs to create a wide gap between the feet.",
+        "Point the toes forward with the heels back; inhale and place the palms on the hips.",
+        "Exhale and bend forward from the lower back, keeping the elbows close.",
+        "Bring the crown of the head toward the mat while maintaining the breath.",
+        "Inhale slowly to return to centre; exhale and relax the hands, bringing the legs together."
+      ],
+      "benefits": [
+        "Stretches the backs of the legs (hamstrings, calves, glutes) and lower back.",
+        "Opens the hips.",
+        "Stretches the shoulders, chest, and spine.",
+        "Relaxes the body and calms the mind.",
+        "Beneficial for the lower abdomen."
+      ],
+      "tips": [
+        "Create balance with the feet on the mat.",
+        "Distribute weight evenly between the toes and heels to relieve spinal stiffness.",
+        "Prioritise opening the chest and broadening the shoulders over depth.",
+        "Work on hamstring flexibility using Surya Namaskara and all Prasaritta Padottanasana variations."
+      ],
+      "contraindications": [
+        "Avoid with leg, neck, arm, or shoulder injuries.",
+        "Those with lower-back problems should bend only within their comfort level.",
+        "Unsuitable for high or low blood pressure patients."
+      ],
+      "variations": [
+        "Prasaritta Padottanasana A, C, and D (other letter variations).",
+        "Prasaritta Padottanasana with wall support."
+      ],
+      "related": [
+        "wide-legged-forward-bend-a-prasaritta-padottanasana-a",
+        "wide-legged-forward-bend-c-prasaritta-padottanasana-c",
+        "wide-legged-forward-bend-d-prasaritta-padottanasana-d"
+      ]
+    },
+    {
+      "slug": "wide-legged-forward-bend-c-prasaritta-padottanasana-c",
+      "categorySlug": "standing-yoga-pose",
+      "name": "Wide Legged Forward Bend C",
+      "sanskrit": "Prasaritta Padottanasana C",
+      "difficulty": "Intermediate",
+      "chakra": "Muladhara, Svadhisthana & Manipura Chakra",
+      "image": "wide-legged-forward-bend-c-prasaritta-padottanasana-c.webp",
+      "intro": "Prasaritta Padottanasana C activates the muladhara, svadhisthana, and manipura chakras. It is beneficial to open these chakras in order to increase stability, productivity, and self-acceptance. Though requiring significant flexibility, it eventually becomes restful and serves as a pre-headstand preparation or headstand substitute, providing a calming effect while cooling the brain.",
+      "steps": [
+        "Stand on the side of the mat in Tadasana with a wide gap between the feet.",
+        "Point the toes forward and position the heels back.",
+        "Inhale and clasp the hands behind the back.",
+        "Exhale and bend forward from the lower back, pushing the hands toward the floor.",
+        "Maintain the breath while holding the pose.",
+        "Inhale and slowly return to centre.",
+        "Exhale and relax the hands, bringing the legs together."
+      ],
+      "benefits": [
+        "Stretches the hamstrings, calves, glutes, and lower back.",
+        "Opens the hips.",
+        "Stretches the shoulders, chest, and spine.",
+        "Relaxes the body and calms the mind.",
+        "Beneficial for the lower abdomen."
+      ],
+      "tips": [
+        "Create balance with the feet on the mat.",
+        "Distribute weight evenly between the toes and heels to relieve spinal stiffness.",
+        "Focus on opening the chest and broadening the shoulders rather than depth.",
+        "Develop hamstring flexibility through Sun Salutation and all Prasaritta Padottanasana variations."
+      ],
+      "contraindications": [
+        "Avoid if experiencing leg, neck, arm, or shoulder injuries.",
+        "Those with lower-back problems should limit depth according to comfort level.",
+        "People with high or low blood pressure should avoid this pose."
+      ],
+      "variations": [
+        "Prasaritta Padottanasana A, B, and D variations.",
+        "Wall-supported version available."
+      ],
+      "related": [
+        "wide-legged-forward-bend-a-prasaritta-padottanasana-a",
+        "wide-legged-forward-bend-b-prasaritta-padottanasana-b",
+        "wide-legged-forward-bend-d-prasaritta-padottanasana-d"
+      ]
+    },
+    {
+      "slug": "wide-legged-forward-bend-d-prasaritta-padottanasana-d",
+      "categorySlug": "standing-yoga-pose",
+      "name": "Wide Legged Forward Bend D",
+      "sanskrit": "Prasaritta Padottanasana D",
+      "difficulty": "Intermediate",
+      "chakra": "Muladhara, Svadhisthana & Manipura Chakra",
+      "image": "wide-legged-forward-bend-d-prasaritta-padottanasana-d.webp",
+      "intro": "Prasaritta Padottanasana D is an intermediate forward bend that stimulates the muladhara, svadhisthana, and manipura chakras to enhance stability, productivity, and self-acceptance. Though demanding initially, the pose eventually becomes restful. It serves as preparation for the headstand and can substitute for sirsasana, providing a calming effect on body and mind while cooling the brain.",
+      "steps": [
+        "Stand on the side of the mat in Tadasana with a wide gap between the feet.",
+        "Point the toes forward and the heels back.",
+        "Exhale and bend forward from the lower back.",
+        "Hold the big toes with three fingers — index and middle from the inside, thumb from the outside.",
+        "Pull the upper body toward the floor, attempting to place the crown of the head on the mat.",
+        "Continue breathing while holding the pose.",
+        "Inhale and slowly return to centre.",
+        "Exhale, release the hands, and bring the legs together."
+      ],
+      "benefits": [
+        "Stretches the hamstrings, calves, glutes, and lower back.",
+        "Opens the hips.",
+        "Stretches the shoulders, chest, and spine.",
+        "Relaxes the body and calms the mind.",
+        "Beneficial for the lower abdomen."
+      ],
+      "tips": [
+        "Create balance with your feet on the mat.",
+        "Distribute weight evenly among the toes and heels to relieve spinal stiffness.",
+        "Prioritise opening the chest and broadening the shoulders over depth of bend.",
+        "Work on hamstring flexibility through Surya Namaskara (Sun Salutations).",
+        "Practise all Prasaritta Padottanasana variations."
+      ],
+      "contraindications": [
+        "Avoid if experiencing leg, neck, arm, or shoulder injuries.",
+        "Modify or skip the complete forward bend if experiencing lower-back problems; bend only within your comfort level.",
+        "Avoid if you have high or low blood pressure."
+      ],
+      "variations": [
+        "Prasaritta Padottanasana A, B, and C (other variations).",
+        "Prasaritta Padottanasana using wall support."
+      ],
+      "related": [
+        "wide-legged-forward-bend-a-prasaritta-padottanasana-a",
+        "wide-legged-forward-bend-b-prasaritta-padottanasana-b",
+        "wide-legged-forward-bend-c-prasaritta-padottanasana-c"
+      ]
+    },
+    {
+      "slug": "twisted-triangle-pose-parivritta-trikonasana",
+      "categorySlug": "standing-yoga-pose",
+      "name": "Twisted Triangle Pose",
+      "sanskrit": "Parivritta Trikonasana",
+      "difficulty": "Intermediate",
+      "chakra": null,
+      "image": "twisted-triangle-pose-parivritta-trikonasana.webp",
+      "intro": "Parivritta Trikonasana (Twisted Triangle Pose) is a variation of Trikonasana. The pose activates the core muscles and relieves lower-back tension. The Sanskrit breaks down as 'Parivritta' (twisted), 'Trikona' (triangle), and 'asana' (posture). This posture enhances balance, strengthens the leg and abdominal muscles, improves hamstring and shoulder flexibility, aids digestion through abdominal-organ stimulation, and increases spinal mobility.",
+      "steps": [
+        "Stand in Tadasana with the right foot back.",
+        "Inhale and stretch the hands in line with the legs.",
+        "Position the left foot at a 90-degree angle; turn the right foot 45 degrees inward.",
+        "Exhale, twist the trunk toward the left, and place the right palm beside the left foot.",
+        "Point the left hand upward and gaze at the left palm.",
+        "Keep both shoulders aligned while breathing steadily.",
+        "Inhale to rise up; exhale and return to Tadasana.",
+        "Repeat on the opposite side."
+      ],
+      "benefits": [
+        "Stimulates the abdominal organs.",
+        "Strengthens the legs; stretches and opens the chest, hips, and shoulders.",
+        "Reduces stress and anxiety.",
+        "Improves balance and equilibrium."
+      ],
+      "tips": [
+        "This challenging pose tests balance and hamstring, hip, spine, shoulder, and neck flexibility.",
+        "Divide practice into two segments: first master the back and leg positioning, then add the twist.",
+        "Practise Parsvottanasana beforehand and use blocks for support near your front foot.",
+        "Only add the twist once you can maintain spinal length."
+      ],
+      "contraindications": [
+        "Avoid if experiencing migraine or headache.",
+        "Skip if you have severe back pain.",
+        "Not recommended for those with diarrhoea, high/low blood pressure, insomnia, or neck injuries.",
+        "Contraindicated during pregnancy and the menstrual cycle, and with severe acidity."
+      ],
+      "variations": [
+        "Use blocks to increase intensity.",
+        "Can be incorporated into partner poses.",
+        "Represents a twisted variation of the standard Triangle Pose."
+      ],
+      "related": [
+        "twisted-half-moon-pose-parivritta-ardha-chandrasana-1",
+        "wide-legged-forward-bend-a-prasaritta-padottanasana-a",
+        "wide-legged-forward-bend-b-prasaritta-padottanasana-b"
+      ]
+    },
+    {
+      "slug": "twisted-half-moon-pose-parivritta-ardha-chandrasana-1",
+      "categorySlug": "standing-yoga-pose",
+      "name": "Twisted Half Moon Pose",
+      "sanskrit": "Parivritta Ardha Chandrasana",
+      "difficulty": "Advanced",
+      "chakra": "Swadhisthana & Manipura Chakra",
+      "image": "twisted-half-moon-pose-parivritta-ardha-chandrasana-1.webp",
+      "intro": "Parivritta Ardha Chandrasana (Twisted Half Moon) is an advanced-level asana. The pose enhances balance and coordination, opens the upper back and chest, stretches and opens the hips and legs, and massages the abdominal organs for improved digestion and posture. The Sanskrit breaks down as 'Parivritta' (twisted), 'Ardha' (half), 'Chandra' (moon), and 'asana' (pose).",
+      "steps": [
+        "Stand in Tadasana.",
+        "Step the left foot one step back; inhale and stretch the hands in line with the legs.",
+        "Exhale, twist, and bend forward, placing the left hand on the mat and lifting the left leg.",
+        "Point the right hand to the ceiling; gaze at the right palm.",
+        "Keep breathing while holding the pose.",
+        "Relax, drop the leg, release the hands, and return to Tadasana.",
+        "Repeat on the opposite side."
+      ],
+      "benefits": [
+        "Increases focus and concentration.",
+        "Builds strength in the ankles, calf muscles, thighs, abdomen, buttocks, and lower back.",
+        "Stretches the shoulders, chest, torso, spine, groins, and hamstrings.",
+        "Regular practice boosts stamina."
+      ],
+      "tips": [
+        "Focus on opening the hips and maintaining balance.",
+        "Fix the foot and wrist firmly on the ground.",
+        "Prepare with hip-opening poses: Ashwasanchalanasana, Anjaneyasana, Kapotasana, Eka Pada Adho Mukha Svanasana, Baddha Konasana, Parighasana, and Natarajasana (Dancer's Pose)."
+      ],
+      "contraindications": [
+        "Sciatica and back-injury patients must avoid this pose.",
+        "Avoid with foot or ankle injuries.",
+        "People with high blood pressure should avoid it.",
+        "Do not push your limits; this pose requires practice to master."
+      ],
+      "variations": [
+        "Parivritta Ardha Chandrasana is itself an intense variation of Ardha Chandrasana.",
+        "Practise on a chair or with wall support.",
+        "Bend the knee and touch the toe with the palm."
+      ],
+      "related": [
+        "twisted-triangle-pose-parivritta-trikonasana",
+        "half-moon-pose-ardha-chandrasana",
+        "wide-legged-forward-bend-a-prasaritta-padottanasana-a"
+      ]
+    },
+    {
+      "slug": "half-moon-pose-ardha-chandrasana",
+      "categorySlug": "balancing-yoga-pose",
+      "name": "Half Moon Pose",
+      "sanskrit": "Ardha Chandrasana",
+      "difficulty": "Intermediate",
+      "chakra": "Svadhisthana (Sacral) Chakra",
+      "image": "half-moon-pose-ardha-chandrasana.webp",
+      "intro": "Ardha Chandrasana (Half Moon) is an intermediate-level asana that challenges balance while you draw in energies from both the sun (hot, intense) and the moon (calm, cooling). Practised on both sides, the pose helps correct postural imbalances. The Sanskrit breaks down as 'Ardha' (half), 'Chandra' (moon), and 'asana' (pose).",
+      "steps": [
+        "Stand in Tadasana.",
+        "Step the right foot one step back. Inhale and stretch the hands in line with the legs.",
+        "Exhale, bend to the left side, place the left palm on the mat in front of and away from the left foot, and lift the right leg.",
+        "Point the right-hand fingers to the ceiling.",
+        "Look at the right palm or the ceiling. Keep breathing while holding the pose.",
+        "Relax, drop the leg, release the hands, and come to Tadasana.",
+        "Repeat on the other side."
+      ],
+      "benefits": [
+        "Increases focus and concentration.",
+        "Builds strength in the ankles, calf muscles, thighs, abdomen, buttocks, and lower back.",
+        "Stretches the shoulders, chest, torso, spine, groins, and hamstrings.",
+        "Regular practice boosts stamina."
+      ],
+      "tips": [
+        "Focus on opening your hips.",
+        "Fix your foot firmly on the ground.",
+        "Practise preparatory poses: Ashwasanchalanasana, Kapotasana, Eka Pada Adho Mukha Svanasana, Baddha Konasana, and Parighasana."
+      ],
+      "contraindications": [
+        "Sciatica and back-injury patients must avoid this practice.",
+        "Avoid with a foot or ankle injury.",
+        "People with blood-pressure issues should avoid it.",
+        "Do not push through your limits; mastery requires time."
+      ],
+      "variations": [
+        "Parivritta Ardha Chandrasana (Twisted Half Moon) — an intense variation.",
+        "Practise on a chair or with wall support.",
+        "Bend the knee and touch the toe with the palm.",
+        "Move the leg up and down dynamically."
+      ],
+      "related": [
+        "warrior-3-pose-virabhadrasana-3",
+        "tree-pose-vriksasana",
+        "half-bound-lotus-standing-forward-bend-ardha-baddha-padmottanasana"
+      ]
+    },
+    {
+      "slug": "tree-pose-vriksasana",
+      "categorySlug": "balancing-yoga-pose",
+      "name": "Tree Pose",
+      "sanskrit": "Vriksasana",
+      "difficulty": "Intermediate",
+      "chakra": "Muladhara (Root) Chakra",
+      "image": "tree-pose-vriksasana.webp",
+      "intro": "Vriksasana (Tree Pose) is an intermediate-level yoga asana performed in the standing position. The name derives from the Sanskrit 'Vriks' (tree) and 'asana' (posture). The pose expands the hips and groin muscles, strengthens the legs and core, and stretches the inner thighs. Regular practice enhances posture and balance while supporting the spine.",
+      "steps": [
+        "Stand in Tadasana.",
+        "Bend the left knee and place the left foot on the right inner thigh.",
+        "Avoid placing the foot on the knee; if difficult, position it below the knee.",
+        "While inhaling, stretch the hands from the sides and join the palms over the head.",
+        "Gaze at a point in front and breathe deeply in the final posture.",
+        "Exhale and bring the hands and leg down to Tadasana.",
+        "Repeat on the other side."
+      ],
+      "benefits": [
+        "Improves focus and nervous balance.",
+        "Strengthens the legs and the muscles of the back and shoulders.",
+        "Relieves stiffness of the shoulders."
+      ],
+      "tips": [
+        "Place the foot on the shin below the knee if unable to reach the inner thigh.",
+        "Maintain active core strength and engage the hip, glute, and leg muscles."
+      ],
+      "contraindications": [
+        "Those with vertigo should not perform this pose.",
+        "During pregnancy, practise with wall support."
+      ],
+      "variations": [
+        "Intensify by challenging concentration: shift the gaze toward the ceiling or close the eyes.",
+        "Practise on a folded blanket or mat to challenge balance."
+      ],
+      "related": [
+        "warrior-3-pose-virabhadrasana-3",
+        "half-moon-pose-ardha-chandrasana",
+        "eagle-pose-garudasana"
+      ]
+    },
+    {
+      "slug": "eagle-pose-garudasana",
+      "categorySlug": "balancing-yoga-pose",
+      "name": "Eagle Pose",
+      "sanskrit": "Garudasana",
+      "difficulty": "Intermediate",
+      "chakra": "Swadhisthana & Muladhara Chakra",
+      "image": "eagle-pose-garudasana.webp",
+      "intro": "Garudasana (Eagle Pose) is an intermediate asana that falls under the balancing category. The pose appears more complex than its execution suggests. Balance presents a challenge, yet Eagle Pose offers greater stability than most single-leg standing poses because the limbs compress toward the body's centre, lowering the centre of gravity through bent knees. This asana effectively targets the inner thighs and glutes and provides excellent shoulder stretching.",
+      "steps": [
+        "Stand in Tadasana.",
+        "Exhale and squat slightly; inhale and lift the right leg, wrapping it around the left.",
+        "Position the right hand in front; bring the left hand from below and wrap it around the right, with the palms closer and facing each other.",
+        "Maintain a straight spine while gazing at a fixed point.",
+        "Hold the posture briefly with normal breathing.",
+        "Release the right leg, relax the hands, and return to Tadasana.",
+        "Repeat on the opposite side."
+      ],
+      "benefits": [
+        "Improves concentration.",
+        "Strengthens the muscles and loosens the joints of the shoulders, arms, and legs."
+      ],
+      "tips": [
+        "Good alignment is crucial.",
+        "Ensure the thighs, arms, and hands align properly.",
+        "Maintain a straight back rather than a rounded one.",
+        "Practise preparatory poses: Marjari Asana, Gomukhasana, and Prasarita Padottanasana."
+      ],
+      "contraindications": [
+        "Avoid if experiencing knee, ankle, or shoulder injuries.",
+        "Not recommended for individuals with low blood pressure or vertigo."
+      ],
+      "variations": [
+        "Perform on a chair.",
+        "Use wall support if balance proves difficult.",
+        "Practise the supine variation as a beginner modification."
+      ],
+      "related": [
+        "tree-pose-vriksasana",
+        "warrior-3-pose-virabhadrasana-3",
+        "half-moon-pose-ardha-chandrasana"
+      ]
+    },
+    {
+      "slug": "extended-hand-to-big-toe-pose-uttitha-hasta-padangashtusana",
+      "categorySlug": "balancing-yoga-pose",
+      "name": "Extended Hand-to-Big-Toe Pose",
+      "sanskrit": "Uttitha Hasta Padangashtusana",
+      "difficulty": "Intermediate",
+      "chakra": "Swadhisthana & Muladhara Chakra",
+      "image": "extended-hand-to-big-toe-pose-uttitha-hasta-padangashtusana.webp",
+      "intro": "Uttitha Hasta Padangashtusana is an intermediate asana that falls under the balancing category. This standing asana helps open the hips, shoulders, and arms while strengthening the legs, ankles, and the muscles around the knees. It also deeply stretches the hamstrings. The pose emphasises flexibility of the hip joint, spinal base, and hamstrings. The Sanskrit breaks down as 'utthita' / 'hasta' (stretched), 'pada' (foot), 'angustha' (big toe), and 'asana' (posture).",
+      "steps": [
+        "Stand in Tadasana.",
+        "Hold the right big toe with the right hand, left hand on the waist.",
+        "Stretch the right leg forward, body straight, gaze at one point.",
+        "Stretch the leg to the right side and look over the left shoulder.",
+        "Keep breathing while holding the posture.",
+        "To release, bring the right leg forward, bend the right knee, drop the leg, and relax the hands.",
+        "Repeat on the other side."
+      ],
+      "benefits": [
+        "Improves the sense of balance.",
+        "Strengthens the legs and ankles.",
+        "Opens up the hips and stretches the thighs."
+      ],
+      "tips": [
+        "Good balance while doing this asana is important.",
+        "Use a strap to support your foot initially; practise without it once balance improves.",
+        "Preparatory poses include Titli Asana, Upavishta Konasana, Janu Shirsasana, Utkata Konasana, Ardha Chandrasana, and Natarajasana."
+      ],
+      "contraindications": [
+        "Avoid if experiencing low or high blood pressure, insomnia, or migraine.",
+        "Individuals with knee-joint or ankle-joint pain should not perform it."
+      ],
+      "variations": [
+        "Practise on a chair or with wall support.",
+        "Attempt balancing the leg without touching the toe."
+      ],
+      "related": [
+        "tree-pose-vriksasana",
+        "half-moon-pose-ardha-chandrasana",
+        "warrior-3-pose-virabhadrasana-3"
+      ]
+    },
+    {
+      "slug": "half-bound-lotus-standing-forward-bend-ardha-baddha-padmottanasana",
+      "categorySlug": "balancing-yoga-pose",
+      "name": "Half Bound Lotus Standing Forward Bend",
+      "sanskrit": "Ardha Baddha Padmottanasana",
+      "difficulty": "Intermediate",
+      "chakra": "Muladhara & Swadhisthana Chakra",
+      "image": "half-bound-lotus-standing-forward-bend-ardha-baddha-padmottanasana.webp",
+      "intro": "Ardha Baddha Padmottanasana (Half Bound Lotus Standing Forward Bend) is an intermediate asana that falls under the balancing category. The posture stretches the muscles of the pelvis, legs, and ankles while benefiting the deep hip rotators and gluteal muscles. It may alleviate sciatica symptoms by stretching the piriformis, and consistent practice enhances mental clarity, elevates mood, and strengthens equilibrium on mental and emotional levels.",
+      "steps": [
+        "Stand in Tadasana.",
+        "Gaze at a fixed point. Start balancing on the right leg, bend the left knee, and place the foot as high as possible on the right thigh, in the half-lotus position.",
+        "Raise the arms above the head, palms facing forward, with the elbows straight.",
+        "Hold the left big toe with the left hand from behind.",
+        "Bend forward, placing the right palm beside the right foot. Keep breathing in the pose.",
+        "Slowly rise up. Lower the arms beside the body and release the left leg.",
+        "Repeat on the other side."
+      ],
+      "benefits": [
+        "Stimulates digestion and removes constipation.",
+        "Improves blood circulation and strengthens the legs.",
+        "Enhances focus.",
+        "Provides flexible joints and hips."
+      ],
+      "tips": [
+        "Good alignment is crucial.",
+        "Make sure your thighs, arms, and hands are all in line.",
+        "Maintain a straight back rather than a rounded one.",
+        "Preparatory poses: Marjari Asana, Gomukhasana, and Prasarita Padottanasana."
+      ],
+      "contraindications": [
+        "People suffering from sciatica, slipped disc, or hernia.",
+        "People with weak legs or high blood pressure should not practise this asana.",
+        "The cautions of inverted postures apply."
+      ],
+      "variations": [
+        "Use wall support if experiencing balance difficulties.",
+        "Ardha Baddha Padmottanasana can be done with a strap if you cannot touch your toe."
+      ],
+      "related": [
+        "tree-pose-vriksasana",
+        "half-moon-pose-ardha-chandrasana",
+        "warrior-3-pose-virabhadrasana-3"
+      ]
+    },
+    {
+      "slug": "elevated-lotus-pose-tolasana",
+      "categorySlug": "balancing-yoga-pose",
+      "name": "Elevated Lotus Pose",
+      "sanskrit": "Tolasana",
+      "difficulty": "Advanced",
+      "chakra": "Manipura (Solar Plexus) Chakra",
+      "image": "elevated-lotus-pose-tolasana.webp",
+      "intro": "Tolasana (Elevated Lotus Pose) is an advanced-level asana that falls under the balancing category. The term derives from the Sanskrit 'Tola' (even balance) — the pose resembles a pair of scales, hence its name. This posture involves arm balancing and engages the abdominal muscles through core activation.",
+      "steps": [
+        "Begin in Dandasana, transitioning to Padmasana (Lotus Pose).",
+        "Position both palms on the ground beside your body with the fingers spread evenly.",
+        "Activate the core muscles and use arm strength to raise the hips above the ground.",
+        "Balance the entire body weight on the palms only.",
+        "Maintain the position as long as comfortable.",
+        "Release gradually and repeat with the opposite leg positioned on top."
+      ],
+      "benefits": [
+        "Incorporates all the benefits of Padmasana.",
+        "Tones the body.",
+        "Stimulates the tendons, ligaments, and tissues of the wrists, abdomen, spine, and knees.",
+        "Strengthens the upper body."
+      ],
+      "tips": [
+        "Press the hands firmly into the ground surface.",
+        "Straighten the arms while lifting the torso and legs.",
+        "Ensure the hands remain the only contact point during the balance."
+      ],
+      "contraindications": [
+        "Avoid with carpal tunnel syndrome or hip or spine injuries.",
+        "Skip if experiencing shoulder pain, back pain, or peptic ulcers.",
+        "Women should avoid during pregnancy and the menstrual cycle."
+      ],
+      "variations": [
+        "It is safe to not add variations for this asana — practise it as taught."
+      ],
+      "related": [
+        "tree-pose-vriksasana",
+        "warrior-3-pose-virabhadrasana-3",
+        "flying-pigeon-pose-eka-pada-galavasana"
+      ]
+    },
+    {
+      "slug": "flying-pigeon-pose-eka-pada-galavasana",
+      "categorySlug": "balancing-yoga-pose",
+      "name": "Flying Pigeon Pose",
+      "sanskrit": "Eka Pada Galavasana",
+      "difficulty": "Advanced",
+      "chakra": "Ajna (Third Eye) Chakra",
+      "image": "flying-pigeon-pose-eka-pada-galavasana.webp",
+      "intro": "Eka Pada Galavasana (Flying Pigeon Pose) is an arm-balancing yoga pose that advanced practitioners love to practise. The pose demands considerable flexibility, skill, and both physical and mental fortitude. The Sanskrit derives from 'Eka' (one), 'pada' (leg), and 'Galava' (a sage, son of Vishvamitra), with 'asana' (pose). This pose cultivates courage and emotional resilience; regular practice grounds practitioners and works specifically with the Ajna Chakra.",
+      "steps": [
+        "Stand in Tadasana. Bend the right leg and place the right foot just above the left knee.",
+        "Bend the other knee as in Utkatasana and take the hips a little back.",
+        "Bend forward and place the palms on the ground, shoulder-width apart. Bend the elbows.",
+        "Gaze at a point for balance. Slowly shift the body weight to the arms, keeping the knees bent.",
+        "Engage the core, balance here, and take your left foot off the mat.",
+        "Keep engaging the core and slowly straighten the left leg. Keep breathing while holding the pose.",
+        "To release, slowly drop the right leg, release the legs, and come to Tadasana."
+      ],
+      "benefits": [
+        "Strengthens the entire upper body, glutes, and hips.",
+        "Lengthens the legs and neck.",
+        "Improves balance and concentration.",
+        "Boosts confidence."
+      ],
+      "tips": [
+        "Focus on building strength in the arms and opening your hips.",
+        "Warm up your body well before you attempt this pose.",
+        "Practise hip rotations, intense stretches, and core strengthening, and prepare your glutes to get into the pose.",
+        "To start, take the support of blocks to help support your arms; once confident, go directly on the mat."
+      ],
+      "contraindications": [
+        "People with shoulder or neck injury should avoid this asana.",
+        "Anyone with high blood pressure or other heart conditions should not practise this asana."
+      ],
+      "variations": [
+        "Keep your foot placed on the mat instead of lifting it into the air (an intermediate variation that also gives an intense stretch).",
+        "Work toward stretching the lifted leg straight as strength and balance build."
+      ],
+      "related": [
+        "elevated-lotus-pose-tolasana",
+        "warrior-3-pose-virabhadrasana-3",
+        "tree-pose-vriksasana"
+      ]
+    }
+  ]
+}

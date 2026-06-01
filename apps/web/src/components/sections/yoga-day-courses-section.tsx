@@ -1,67 +1,77 @@
 "use client";
 
-// YogaDayCoursesSection — eyebrow + heading + sub-copy, then a 3-up grid
-// reusing the existing CourseCard primitive with verbatim Figma placeholder
-// content. CourseCard self-animates (whileInView), so the cards are NOT wrapped
-// in a stagger parent here — only the section header animates — to avoid
-// double-animation.
+// YogaDayCoursesSection — eyebrow + heading + sub-copy, then a responsive 3-up
+// grid of YogaDayCourseCard (Figma node 691:1552), with a staggered fade-in-up
+// entrance.
+//
+// SINGLE SOURCE OF TRUTH: the cards are built from the real course catalog
+// (@/data/courses-catalog), which already has the per-category campaign discount
+// applied. There is NO duplicated course/price data here — change a course in
+// courses.json or a discount in yoga-day-offer.json and this section updates
+// automatically. `FEATURED_SLUGS` only chooses WHICH courses to spotlight.
 import * as React from "react";
-import { Clock, Globe, Languages } from "lucide-react";
+import { Clock, Globe } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
-import { CourseCard, type CourseCardProps } from "@/components/ui/course-card";
+import {
+  YogaDayCourseCard,
+  type YogaDayCourseCardProps,
+} from "@/components/ui/yoga-day-course-card";
+import { COURSES, type Course } from "@/data/courses-catalog";
+import { offerPercentFor } from "@/data/yoga-day-offer";
 import { cn } from "@/lib/utils";
 
 const HOUSE_EASE = [0.22, 1, 0.36, 1] as const;
 
-// TODO(assets): Figma course thumbnails are localhost:3845 asset ids
-//   9b960670591093e0ff99418a76fa0695df782525.png,
-//   2d0fbf196eedca7e24151d4d184a5bd3564e1078.png,
-//   f47feada4030c2ceff916bb1a86c79e36d91a8d1.png — replace this placeholder
-//   with the exported assets when available.
-const COURSE_IMAGE = "/images/programs/weight-loss-coach.png";
+// Which catalog courses to spotlight — one per category so the section shows
+// the different per-category discounts. Pricing/content come from the catalog.
+const FEATURED_SLUGS = [
+  "weight-loss-coach-certification", // teacher
+  "300-hour-ytt-online", // advanced
+  "advanced-yoga-mat-pilates", // yoga
+];
 
-function resolveFeatureIcon(label: string): React.ReactNode {
-  if (/week|day|month|hour/i.test(label)) {
-    return <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />;
-  }
-  if (/online|live/i.test(label)) {
-    return <Globe className="h-3.5 w-3.5" strokeWidth={1.75} />;
-  }
-  return <Languages className="h-3.5 w-3.5" strokeWidth={1.75} />;
+// Map a catalog course → YogaDayCourseCard props. The catalog price/originalPrice
+// are already campaign-adjusted; the badge text is derived (lowercase, to match
+// the Figma) from the course's category discount.
+function toCardProps(course: Course): YogaDayCourseCardProps {
+  const pct = offerPercentFor(course.category);
+  return {
+    title: course.title,
+    price: course.price ?? "",
+    originalPrice: course.originalPrice,
+    discountLabel: pct ? `${pct}% off` : undefined,
+    features: [
+      {
+        icon: <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />,
+        label: course.durationLabel,
+      },
+      {
+        icon: <Globe className="h-3.5 w-3.5" strokeWidth={1.75} />,
+        label: course.mode === "online" ? "Online" : "Studio",
+      },
+    ],
+    instructor: course.instructor,
+    imageSrc: course.listingImage,
+    imageAlt: course.title,
+    ctaLabel: "View Program",
+    ctaHref: `/courses/${course.slug}`,
+  };
 }
 
-export type YogaDayCourse = {
-  title: string;
-  description?: string;
-  price: string;
-  originalPrice?: string;
-  features: string[];
-  ctaLabel?: string;
-  ctaHref?: string;
-  cardHref?: string;
-  image?: { src: string; alt: string };
-};
+const DEFAULT_COURSES: YogaDayCourseCardProps[] = FEATURED_SLUGS.map((slug) =>
+  COURSES.find((c) => c.slug === slug),
+)
+  .filter((c): c is Course => Boolean(c))
+  .map(toCardProps);
 
 export type YogaDayCoursesSectionProps = {
   eyebrow?: string;
   title?: string;
   subCopy?: string;
-  courses?: YogaDayCourse[];
+  courses?: YogaDayCourseCardProps[];
   className?: string;
 };
-
-const DEFAULT_COURSES: YogaDayCourse[] = Array.from({ length: 3 }, () => ({
-  title: "Online Weight Loss Coach Certification",
-  description:
-    "Become a certified weight-loss coach with a science-backed, yoga-led program.",
-  price: "₹4,999",
-  originalPrice: "₹9,99",
-  features: ["4 weeks", "Online", "English"],
-  ctaLabel: "View Program",
-  ctaHref: "#",
-  cardHref: "#",
-}));
 
 const headerVariants: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -91,7 +101,7 @@ export function YogaDayCoursesSection({
 
   return (
     <section className={cn("bg-surface-default", className)}>
-      <div className="mx-auto max-w-[1340px] page-px py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-[1200px] page-px py-16 sm:py-20 lg:py-24">
         <motion.div
           {...headerMotion}
           variants={prefersReducedMotion ? undefined : headerVariants}
@@ -106,37 +116,43 @@ export function YogaDayCoursesSection({
           <p className="font-sans text-body text-text-secondary">{subCopy}</p>
         </motion.div>
 
-        <div className="mt-10 flex flex-col gap-6 sm:mt-12 lg:mt-14">
+        {/* Responsive 3-up grid — same gutters as the homepage course grid. */}
+        <ul className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:mt-12 sm:grid-cols-2 lg:mt-14 xl:grid-cols-3">
           {courses.map((course, idx) => {
-            const cardProps: CourseCardProps = {
-              variant: "course",
-              image:
-                course.image ?? {
-                  src: COURSE_IMAGE,
-                  alt: course.title,
-                },
-              title: course.title,
-              description: course.description ?? "",
-              price: course.price,
-              originalPrice: course.originalPrice,
-              features: course.features.map((label) => ({
-                icon: resolveFeatureIcon(label),
-                label,
-              })),
-              ctaLabel: course.ctaLabel ?? "View Program",
-              ctaHref: course.ctaHref ?? "#",
-              cardHref: course.cardHref ?? "#",
-            };
+            const card = (
+              <YogaDayCourseCard {...course} priority={idx === 0} />
+            );
+
+            if (prefersReducedMotion) {
+              return (
+                <li key={course.ctaHref ?? `${course.title}-${idx}`} className="h-full">
+                  {card}
+                </li>
+              );
+            }
 
             return (
-              <CourseCard
-                key={`${course.title}-${idx}`}
-                {...cardProps}
-                className="w-full"
-              />
+              <li
+                key={course.ctaHref ?? `${course.title}-${idx}`}
+                className="h-full"
+              >
+                <motion.div
+                  className="h-full"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{
+                    duration: 0.28,
+                    ease: "easeOut",
+                    delay: idx * 0.07,
+                  }}
+                >
+                  {card}
+                </motion.div>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

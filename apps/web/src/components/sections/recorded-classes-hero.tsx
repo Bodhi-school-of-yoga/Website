@@ -93,7 +93,7 @@ function RecordedClassesHero({
         <div className="absolute inset-0 bg-black/45" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-[1340px] page-px pt-32 pb-20 lg:pt-[221px] lg:pb-[290px]">
+      <div className="relative mx-auto max-w-[1200px] page-px pt-32 pb-20 lg:pt-[221px] lg:pb-[290px]">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_340px] lg:gap-[122px]">
           <motion.div
             initial="hidden"

@@ -115,7 +115,7 @@ export function YogaDayTestimonialsSection({
 
   return (
     <section className={cn("w-full bg-surface-1 py-20 sm:py-24 lg:py-28", className)}>
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         <motion.header
           className="mx-auto mb-14 max-w-2xl text-center"
           variants={headerVariants}

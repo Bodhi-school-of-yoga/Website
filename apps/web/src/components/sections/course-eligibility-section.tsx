@@ -31,7 +31,7 @@ export function CourseEligibilitySection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Left — eyebrow, heading, checklist */}
           <div className="flex flex-col gap-6">

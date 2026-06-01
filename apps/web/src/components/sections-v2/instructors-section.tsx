@@ -34,10 +34,10 @@ function InstructorCard({ item, fallbackHref, itemVariants }: InstructorCardProp
       <Link
         href={href}
         className={[
-          'group flex items-center gap-[14px]',
-          'h-[126px]',
-          'rounded-[19px] bg-surface-1 border border-border-3',
-          'pl-[15px] pr-[19px] py-[17px]',
+          'group flex items-center gap-[13px]',
+          'h-[108px]',
+          'rounded-[18px] bg-surface-1 border border-border-3',
+          'pl-[14px] pr-[16px] py-[14px]',
           'shadow-[0px_22px_35px_rgba(197,197,197,0.25)]',
           'transition-transform transition-shadow duration-300 ease-out',
           'motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0px_26px_42px_rgba(197,197,197,0.35)]',
@@ -47,7 +47,7 @@ function InstructorCard({ item, fallbackHref, itemVariants }: InstructorCardProp
         <div
           className={[
             'relative shrink-0 overflow-hidden rounded-full',
-            'h-[98px] w-[98px]',
+            'h-[78px] w-[78px]',
             'border border-border-3 bg-surface-2',
           ].join(' ')}
         >
@@ -55,15 +55,15 @@ function InstructorCard({ item, fallbackHref, itemVariants }: InstructorCardProp
             src={item.avatar}
             alt={item.name}
             fill
-            sizes="98px"
+            sizes="78px"
             className="object-cover"
           />
         </div>
-        <div className="flex flex-col min-w-0">
-          <p className="font-heading font-bold text-[17px] leading-[29.7px] text-text-secondary">
+        <div className="flex flex-col min-w-0 gap-[3px]">
+          <p className="font-heading font-bold text-[15px] leading-[20px] text-text-secondary">
             {item.name}
           </p>
-          <p className="text-[13px] leading-[19px] text-text-tertiary">
+          <p className="text-[12px] leading-[17px] text-text-tertiary">
             {item.role}
           </p>
         </div>
@@ -127,7 +127,7 @@ export function InstructorsSection({
   return (
     <section className="bg-surface-1">
       <div className="py-14 md:py-16 lg:py-[50px]">
-        <div className="max-w-[1340px] mx-auto page-px">
+        <div className="max-w-[1200px] mx-auto page-px">
           {/* Header */}
           <motion.div
             initial="hidden"

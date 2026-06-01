@@ -61,7 +61,7 @@ export function WhatWeDoSection({
         className,
       )}
     >
-      <div className="mx-auto flex max-w-[1340px] flex-col items-center gap-10 page-px lg:gap-12">
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-10 page-px lg:gap-12">
         <header className="flex flex-col items-center gap-3 text-center">
           <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
           <h2 className="font-heading text-h4 sm:text-h3 text-text-secondary">

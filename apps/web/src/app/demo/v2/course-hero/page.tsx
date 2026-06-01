@@ -4,7 +4,7 @@ import { CourseHero } from '@/components/sections-v2/course-hero';
 export default function CourseHeroDemoPage() {
   return (
     <main className="min-h-screen bg-surface-1">
-      <div className="page-px mx-auto w-full max-w-[1340px] pt-6">
+      <div className="page-px mx-auto w-full max-w-[1200px] pt-6">
         <Link
           href="/demo/v2"
           className="inline-flex items-center gap-2 text-mini uppercase tracking-wider text-text-tertiary hover:text-text-primary motion-safe:transition-colors"

@@ -204,7 +204,7 @@ export function TeacherTipsVideoGallery({
 
   return (
     <section className={cn("bg-surface-1 py-16 md:py-20 lg:py-24", className)}>
-      <div className="container mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-[1200px] page-px">
         {eyebrow && (
           <p className="mb-10 text-center text-mini uppercase tracking-widest text-text-brand">
             {eyebrow}

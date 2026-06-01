@@ -110,7 +110,7 @@ export function InstructorsSection({
     <section
       className={cn("w-full bg-surface-1 py-20 sm:py-24 lg:py-28", className)}
     >
-      <div className="mx-auto flex max-w-[1340px] flex-col gap-10 page-px lg:gap-12">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-10 page-px lg:gap-12">
         <motion.header
           className="flex flex-col gap-3"
           variants={prefersReducedMotion ? undefined : headerVariants}

@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 
+import { PackageSelector } from '@/components/ui/package-selector';
+import { usePromoBanner } from '@/components/ui/use-promo-banner';
+import type { DescribedPlan } from '@/data/courses-catalog';
+
 export type BreadcrumbItem = {
   label: string;
   href?: string;
@@ -30,8 +34,10 @@ export type CourseHeroProps = {
   priceLabel: string;
   price?: string;
   originalPrice?: string;
-  /** Tiered/subscription pricing — rendered as a list when present. */
+  /** Tiered/subscription pricing — rendered as a package selector when present. */
   pricingPlans?: { period: string; price: string }[];
+  /** Fires when the visitor picks a subscription tier (initial + on change). */
+  onPlanChange?: (plan: DescribedPlan, index: number) => void;
   /**
    * Reserve CTA. Provide `href` for a Link, `onClick` for a button-driven
    * booking flow (e.g. opening the Razorpay batch-booking dialog). When both
@@ -108,9 +114,17 @@ export function CourseHero({
   price,
   originalPrice,
   pricingPlans,
+  onPlanChange,
   cta,
 }: CourseHeroProps) {
   const prefersReducedMotion = useReducedMotion();
+  // The hero bleeds up behind the fixed nav (+ promo bar). When the bar is live
+  // it overlays ~48px more below the nav, so add top clearance to keep the
+  // breadcrumb from tucking under it.
+  const { visible: bannerVisible } = usePromoBanner();
+  const topPad = bannerVisible
+    ? 'pt-[172px] sm:pt-[180px] lg:pt-[192px]'
+    : 'pt-[120px] sm:pt-[128px] lg:pt-[140px]';
 
   const container: Variants = prefersReducedMotion
     ? {
@@ -161,7 +175,7 @@ export function CourseHero({
       className="relative w-full bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]"
       aria-label="Course hero"
     >
-      <div className="page-px mx-auto w-full max-w-[1340px] pt-[120px] pb-[64px] sm:pt-[128px] sm:pb-20 lg:pt-[140px] lg:pb-[80px]">
+      <div className={`page-px mx-auto w-full max-w-[1200px] pb-[64px] sm:pb-20 lg:pb-[80px] ${topPad}`}>
         <motion.div
           initial="hidden"
           animate="visible"
@@ -286,21 +300,14 @@ export function CourseHero({
               </motion.ul>
             )}
 
-            {/* Price block — tiered plans, a single price, or nothing. */}
+            {/* Price block — subscription package selector, a single price, or nothing. */}
             {pricingPlans && pricingPlans.length > 0 ? (
-              <motion.div
-                variants={fadeInUp}
-                className="mt-8 flex flex-wrap items-baseline gap-x-6 gap-y-2"
-              >
-                <span className="sr-only">{priceLabel}</span>
-                {pricingPlans.map((plan) => (
-                  <span key={plan.period} className="flex items-baseline gap-1.5">
-                    <span className="text-h5 font-heading font-bold text-brand-primary">
-                      {plan.price}
-                    </span>
-                    <span className="text-mini text-text-tertiary">/ {plan.period}</span>
-                  </span>
-                ))}
+              <motion.div variants={fadeInUp} className="mt-8">
+                <PackageSelector
+                  label="Select your package"
+                  plans={pricingPlans}
+                  onPlanChange={onPlanChange}
+                />
               </motion.div>
             ) : price ? (
               <motion.div

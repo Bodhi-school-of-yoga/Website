@@ -47,7 +47,7 @@ export function TrainersHero({
         className="hidden md:block absolute inset-0 bg-linear-to-b from-black/95 to-black/75"
       />
 
-      <div className="relative mx-auto flex w-full max-w-[860px] flex-col items-center page-px text-center">
+      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center page-px text-center">
        
 
         <h1

@@ -72,7 +72,7 @@ const demos: DemoLink[] = [
 export default function DemoV2IndexPage() {
   return (
     <main className="min-h-screen bg-surface-1">
-      <div className="page-px mx-auto w-full max-w-[1340px] py-section">
+      <div className="page-px mx-auto w-full max-w-[1200px] py-section">
         <header className="mb-10 flex flex-col gap-3">
           <p className="text-mini uppercase tracking-wider text-text-tertiary">
             Bodhi · Components

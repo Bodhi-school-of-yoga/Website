@@ -168,8 +168,8 @@ export function FaqSection({ eyebrow, heading, items }: FaqSectionProps) {
       };
 
   return (
-    <section className="bg-surface-1 page-px py-12 md:py-[38px]">
-      <div className="mx-auto w-full max-w-[910px]">
+    <section className="bg-surface-1 py-12 md:py-[38px]">
+      <div className="mx-auto w-full max-w-[1200px] page-px">
         <motion.div
           variants={staggerParent}
           initial="hidden"
@@ -198,7 +198,7 @@ export function FaqSection({ eyebrow, heading, items }: FaqSectionProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          className="mt-[13px] flex w-full flex-col"
+          className="mt-[13px] flex w-full max-w-[910px] flex-col"
         >
           {items.map((item, idx) => (
             <FaqItem

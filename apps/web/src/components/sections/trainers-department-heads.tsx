@@ -22,7 +22,7 @@ const TONES: DepartmentHeadTone[] = ["mint", "dark", "lime"];
 
 export function TrainersDepartmentHeads({
   eyebrow = "Leadership",
-  title = "Department Heads",
+  title = "Core Team",
   heads = departmentHeads,
   className,
 }: TrainersDepartmentHeadsProps) {
@@ -30,11 +30,11 @@ export function TrainersDepartmentHeads({
     <section
       className={cn(
         "hidden md:block",
-        "w-full bg-surface-1 page-px py-16 sm:py-20 lg:py-24",
+        "w-full bg-surface-1 py-16 sm:py-20 lg:py-24",
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px]">
+      <div className="mx-auto max-w-[1200px] page-px">
         <div className="flex flex-col gap-3">
           <p
             className={cn(
@@ -66,7 +66,8 @@ export function TrainersDepartmentHeads({
               key={h.slug}
               name={h.name}
               role={h.role}
-              portrait={h.image ?? `/images/trainers/${h.slug}.png`}
+              portrait={h.image}
+              portraitAlt={h.name}
               tone={TONES[i % TONES.length]}
             />
           ))}

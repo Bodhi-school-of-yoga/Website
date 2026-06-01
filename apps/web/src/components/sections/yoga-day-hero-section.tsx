@@ -88,13 +88,12 @@ export function YogaDayHeroSection({
   return (
     <section
       className={cn(
-        "relative w-full overflow-hidden",
-        // Token-based soft-green gradient fallback for the Figma bg image.
-        "bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,var(--color-surface-1)_100%)]",
+        // Figma node 691:1198: bg-gradient-to-b from #f0fff8 (brand-lite) to white.
+        "relative w-full overflow-hidden bg-gradient-to-b from-brand-lite to-white",
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] page-px py-16 sm:py-20 lg:py-28">
+      <div className="relative mx-auto max-w-[1200px] page-px py-16 sm:py-20 lg:py-28">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left column — copy + stat */}
           <motion.div
@@ -112,27 +111,31 @@ export function YogaDayHeroSection({
 
             <motion.h1
               variants={itemVariants}
-              className="max-w-xl font-heading font-bold text-h1 text-text-primary"
+              className="max-w-xl font-heading font-bold text-h2 text-text-primary"
             >
               {title}
             </motion.h1>
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-end gap-x-4 gap-y-2"
+              className="flex flex-wrap items-end gap-x-5 gap-y-2"
             >
-              <span className="flex items-start font-heading font-bold text-h1 leading-none text-text-brand">
-                {statNumber}
-                <span className="text-h3">{statUnit}</span>
+              {/* Big stat + "Max Discount" pill overlapping the number bottom */}
+              <span className="relative inline-flex items-start pb-3 font-heading font-bold leading-none text-text-brand">
+                <span className="text-h1 leading-[0.85]">{statNumber}</span>
+                <span className="mt-2 text-h2">{statUnit}</span>
+                {/* Figma "Max Discount" pill is mint-green (brand-shade) with
+                    dark text — override the shared Badge for this instance
+                    only, leaving the shared discount variant untouched. */}
+                <Badge className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap bg-brand-shade font-semibold text-brand-dark">
+                  {maxDiscountBadge}
+                </Badge>
               </span>
-              <span className="font-heading font-semibold text-subtext-2 text-text-primary">
+              <span className="pb-3 font-heading font-semibold text-h4 leading-tight text-text-primary">
                 {statLine1}
                 <br />
                 {statLine2}
               </span>
-              <Badge variant="discount" className="ml-1 self-center">
-                {maxDiscountBadge}
-              </Badge>
             </motion.div>
 
             <motion.p

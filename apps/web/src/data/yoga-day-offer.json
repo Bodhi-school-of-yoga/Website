@@ -1,0 +1,9 @@
+{
+  "active": true,
+  "default": 50,
+  "byCategory": {
+    "advanced": 40,
+    "teacher": 50,
+    "yoga": 60
+  }
+}

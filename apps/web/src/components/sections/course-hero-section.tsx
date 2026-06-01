@@ -106,7 +106,7 @@ export function CourseHeroSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
           <div className="flex flex-col lg:flex-1 lg:max-w-[640px]">
             <motion.div initial="hidden" animate="show" variants={fadeInUp}>

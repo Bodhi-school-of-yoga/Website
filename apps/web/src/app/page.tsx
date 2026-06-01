@@ -103,7 +103,7 @@ export default function HomePage() {
           items={ACCREDITATIONS}
         />
         <TestimonialsSection
-          eyebrow="A Path to Wellness"
+          eyebrow="TESTIMONIALS"
           heading="What our students say"
           testimonials={TESTIMONIALS}
           priorityFirst

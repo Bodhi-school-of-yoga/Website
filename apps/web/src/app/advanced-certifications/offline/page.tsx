@@ -43,7 +43,7 @@ export default function StudioAdvancedCertificationsPage() {
 
         {/* Location filter */}
         <section className="border-t border-border-1 bg-surface-1 pt-12 pb-6">
-          <div className="mx-auto max-w-[1340px] page-px">
+          <div className="mx-auto max-w-[1200px] page-px">
             <LocationFilterBar />
             <p className="mt-6 text-mini uppercase tracking-widest text-text-brand">
               {COURSES.length} result{COURSES.length === 1 ? "" : "s"}
@@ -53,7 +53,7 @@ export default function StudioAdvancedCertificationsPage() {
 
         {/* Course grid */}
         <section className="bg-surface-1 py-10 md:py-14 lg:py-16">
-          <div className="mx-auto max-w-[1340px] page-px">
+          <div className="mx-auto max-w-[1200px] page-px">
             <ul className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {COURSES.map((course, idx) => (
                 <li key={course.slug}>

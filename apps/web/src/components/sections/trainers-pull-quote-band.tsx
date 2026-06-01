@@ -23,12 +23,12 @@ export function TrainersPullQuoteBand({
         className,
       )}
     >
-      <div className="relative mx-auto flex w-full max-w-[1100px] flex-col items-start page-px ">
+      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center page-px text-center">
 
-<div className="ml-32">
+<div className="max-w-[760px]">
         <p
           className={cn(
-            "flex  font-heading  font-normal",
+            "flex justify-center font-heading font-normal",
             "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
             "text-text-inverse",
           )}
@@ -50,7 +50,7 @@ export function TrainersPullQuoteBand({
         </p>
         <p
           className={cn(
-            "flex  font-heading  font-normal",
+            "flex justify-center font-heading font-normal",
             "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
             "text-text-inverse",
           )}
@@ -60,7 +60,7 @@ export function TrainersPullQuoteBand({
         </p>
         <p
           className={cn(
-            "flex  font-heading  font-normal",
+            "flex justify-center font-heading font-normal",
             "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
             "text-text-inverse",
           )}

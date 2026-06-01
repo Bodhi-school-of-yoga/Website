@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/providers";
+import { PromoBannerBar } from "@/components/ui/promo-banner-bar";
 
 const hostGrotesk = Host_Grotesk({
   variable: "--font-heading",
@@ -61,6 +62,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-transparent">
         <Providers>
+          <PromoBannerBar />
           <main className="flex-1">{children}</main>
         </Providers>
       </body>

@@ -111,7 +111,7 @@ export function WorkshopDetailHero({
       <div aria-hidden="true" className="absolute inset-0 bg-black/60" />
 
       <motion.div
-        className="relative z-10 mx-auto flex w-full max-w-[1340px] flex-col items-stretch gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-12 page-px"
+        className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-stretch gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-12 page-px"
         variants={containerVariants}
         initial="hidden"
         animate="show"

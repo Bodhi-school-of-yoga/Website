@@ -31,7 +31,7 @@ const HOUSE_EASE = [0.22, 1, 0.36, 1] as const;
 const VIEWPORT = { once: true, margin: "-80px 0px -80px 0px" } as const;
 
 export function TestimonialsSection({
-  eyebrow = "A Path to Wellness",
+  eyebrow = "Testimonies",
   heading = "What our clients say",
   description,
   testimonials,
@@ -96,7 +96,7 @@ export function TestimonialsSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         <motion.header
           className="mx-auto mb-14 max-w-2xl text-center"
           variants={headerVariants}

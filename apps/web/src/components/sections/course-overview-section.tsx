@@ -23,7 +23,7 @@ export function CourseOverviewSection({
         className,
       )}
     >
-      <div className="mx-auto flex max-w-[1340px] flex-col gap-8 page-px">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-8 page-px">
         <header className="flex flex-col gap-4">
           <p className="text-mini font-heading uppercase tracking-widest text-text-brand">
             {eyebrow}

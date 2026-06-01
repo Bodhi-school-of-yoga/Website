@@ -91,7 +91,7 @@ export function MoreCoursesSection({
 
   return (
     <section className="bg-surface-1 py-12 md:py-16 lg:py-20">
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         {/* Header */}
         <div className="mx-auto flex max-w-[760px] flex-col items-center gap-3 text-center">
           <motion.p
@@ -189,7 +189,7 @@ function CourseCard({ item }: { item: MoreCoursesItem }) {
 
       {/* Body */}
       <div className="flex flex-1 flex-col gap-[14px] px-6 pb-5 pt-6">
-        <h3 className="font-heading text-[20px] font-semibold leading-[1.15] tracking-[-0.2px] text-text-secondary md:text-[22px] lg:text-[23px]">
+        <h3 className="line-clamp-2 min-h-[46px] font-heading text-[20px] font-semibold leading-[1.15] tracking-[-0.2px] text-text-secondary md:min-h-[51px] md:text-[22px] lg:min-h-[53px] lg:text-[23px]">
           {item.title}
         </h3>
 
@@ -205,11 +205,13 @@ function CourseCard({ item }: { item: MoreCoursesItem }) {
           <MetaChip icon={<Languages className="h-[13px] w-[13px]" aria-hidden="true" />} label={language} />
         </div>
 
-        {/* divider */}
-        <div className="h-px w-full bg-border-2" />
+        {/* bottom group — pinned to base so dividers + CTAs align across cards */}
+        <div className="mt-auto flex flex-col gap-[14px]">
+          {/* divider */}
+          <div className="h-px w-full bg-border-2" />
 
-        {/* author + CTA */}
-        <div className="mt-1 flex flex-col gap-5">
+          {/* author + CTA */}
+          <div className="flex flex-col gap-5">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-2">
               <span className="font-heading text-[13px] font-bold text-text-brand">
@@ -233,6 +235,7 @@ function CourseCard({ item }: { item: MoreCoursesItem }) {
             <span>{ctaLabel}</span>
             <ArrowRight className="h-[15px] w-[15px] transition-transform duration-300 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
           </Link>
+          </div>
         </div>
       </div>
     </article>

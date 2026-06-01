@@ -18,7 +18,7 @@ const HOUSE_EASE = [0.22, 1, 0.36, 1] as const;
 const VIEWPORT = { once: true, margin: "-80px 0px -80px 0px" } as const;
 
 export function FounderQuoteSection({
-  eyebrow = "Our practice",
+  eyebrow = "Our Philosophy",
   quoteLead = "When a woman is empowered through yoga, her entire family, community, and ",
   quoteAccent = "future generations benefit. ",
   quoteTrail = "",
@@ -61,7 +61,7 @@ export function FounderQuoteSection({
         whileInView="visible"
         viewport={VIEWPORT}
         className={cn(
-          "mx-auto grid max-w-[1340px] gap-12 page-px",
+          "mx-auto grid max-w-[1200px] gap-12 page-px",
           "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-32",
         )}
       >

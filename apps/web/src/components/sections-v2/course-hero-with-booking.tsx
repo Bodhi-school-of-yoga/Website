@@ -28,18 +28,28 @@ export function CourseHeroWithBooking({
   ...heroProps
 }: CourseHeroWithBookingProps) {
   const [open, setOpen] = React.useState(false);
+  // For subscription courses the charged amount follows the selected tier;
+  // flat-price courses never fire onPlanChange and keep `amountInPaise`.
+  const [planAmountInPaise, setPlanAmountInPaise] = React.useState<number | null>(
+    null,
+  );
 
   return (
     <>
       <CourseHero
         {...heroProps}
+        onPlanChange={(plan) =>
+          setPlanAmountInPaise(
+            Number(plan.price.replace(/[^\d]/g, "")) * 100 || null,
+          )
+        }
         cta={{ label: ctaLabel, onClick: () => setOpen(true) }}
       />
       <BatchBookingDialog
         open={open}
         onOpenChange={setOpen}
         courseName={courseName}
-        amountInPaise={amountInPaise}
+        amountInPaise={planAmountInPaise ?? amountInPaise}
         razorpayKey={razorpayKey}
         batches={batches}
         timeSlots={timeSlots}

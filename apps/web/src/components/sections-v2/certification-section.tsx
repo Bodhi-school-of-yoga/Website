@@ -51,7 +51,7 @@ export function CertificationSection({
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={container}
-          className="mx-auto flex max-w-[1340px] flex-col gap-[26px] page-px"
+          className="mx-auto flex max-w-[1200px] flex-col gap-[26px] page-px"
         >
           {/* Eyebrow + heading block — left aligned on desktop, centered on mobile */}
           <div className="flex flex-col gap-[5px] text-center md:text-left">

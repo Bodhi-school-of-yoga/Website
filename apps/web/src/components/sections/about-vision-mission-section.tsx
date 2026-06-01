@@ -39,7 +39,7 @@ export function AboutVisionMissionSection({
         className,
       )}
     >
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         <div
           className={cn(
             "grid grid-cols-1 gap-6",

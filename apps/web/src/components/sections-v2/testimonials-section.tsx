@@ -117,7 +117,7 @@ export function TestimonialsSection({
 
   return (
     <section className="bg-surface-1 py-14 md:py-16 lg:py-20">
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         {/* Eyebrow + heading */}
         <motion.div
           initial="hidden"

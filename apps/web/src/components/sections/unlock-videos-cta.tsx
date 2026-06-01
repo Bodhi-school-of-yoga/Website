@@ -33,7 +33,7 @@ function UnlockVideosCTA({
 }: UnlockVideosCTAProps) {
   return (
     <section className={cn("py-8 lg:py-12", className)}>
-      <div className="mx-auto max-w-[1340px] page-px">
+      <div className="mx-auto max-w-[1200px] page-px">
         <motion.div
           variants={bannerVariants}
           initial="hidden"
