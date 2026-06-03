@@ -15,7 +15,7 @@ import {
 } from "@/components/sections/course-includes-section";
 import type { VideoLessonCardProps } from "@/components/ui/video-lesson-card";
 
-import { PRE_RECORDED_COURSES, findCourse } from "../courses";
+import { PRE_RECORDED_COURSES, findCourse, type CourseLesson } from "../courses";
 
 const RECORDED_BASE = "/images/recorded-classes";
 const THUMB_POOL = [
@@ -29,134 +29,22 @@ const THUMB_POOL = [
 ];
 const LESSON_THUMB = (i: number) => THUMB_POOL[i % THUMB_POOL.length];
 
-const freePreviewLessons: VideoLessonCardProps[] = [
-  {
-    lessonLabel: "Lesson 01",
-    title: "Welcome & What to Expect",
-    duration: "12 min",
-    level: "Beginner",
-    thumbnail: LESSON_THUMB(0),
-    state: "free",
-    durationBadge: "12:30",
-  },
-  {
-    lessonLabel: "Lesson 02",
-    title: "Setting Up Your Hammock Safely",
-    duration: "18 min",
-    level: "Beginner",
-    thumbnail: LESSON_THUMB(1),
-    state: "free",
-    durationBadge: "18:45",
-  },
-];
-
-const module1Lessons: VideoLessonCardProps[] = [
-  {
-    lessonLabel: "Lesson 03",
-    title: "Understanding Your Body in the Air",
-    duration: "22 min",
-    level: "Beginner",
-    thumbnail: LESSON_THUMB(2),
-    state: "locked",
-    durationBadge: "22:10",
-  },
-  {
-    lessonLabel: "Lesson 04",
-    title: "First Inversion — Supported Backbend",
-    duration: "19 min",
-    level: "Beginner",
-    thumbnail: LESSON_THUMB(3),
-    state: "locked",
-    durationBadge: "19:00",
-  },
-  {
-    lessonLabel: "Lesson 05",
-    title: "Aerial Child's Pose & Recovery",
-    duration: "25 min",
-    level: "Beginner",
-    thumbnail: LESSON_THUMB(4),
-    state: "locked",
-    durationBadge: "25:20",
-  },
-  {
-    lessonLabel: "Lesson 06",
-    title: "Spinal Decompression Flow",
-    duration: "28 min",
-    level: "Beginner",
-    thumbnail: LESSON_THUMB(5),
-    state: "locked",
-    durationBadge: "28:00",
-  },
-];
-
-const module2Lessons: VideoLessonCardProps[] = [
-  {
-    lessonLabel: "Lesson 09",
-    title: "Aerial Warrior Sequence",
-    duration: "30 min",
-    level: "Intermediate",
-    thumbnail: LESSON_THUMB(6),
-    state: "locked",
-    durationBadge: "30:15",
-  },
-  {
-    lessonLabel: "Lesson 10",
-    title: "Hip Opening & Flexibility Flow",
-    duration: "22 min",
-    level: "Intermediate",
-    thumbnail: LESSON_THUMB(0),
-    state: "locked",
-    durationBadge: "22:40",
-  },
-  {
-    lessonLabel: "Lesson 11",
-    title: "Core Strength in the Hammock",
-    duration: "35 min",
-    level: "Intermediate",
-    thumbnail: LESSON_THUMB(1),
-    state: "locked",
-    durationBadge: "35:00",
-  },
-  {
-    lessonLabel: "Lesson 12",
-    title: "Restorative Aerial Session",
-    duration: "27 min",
-    level: "Intermediate",
-    thumbnail: LESSON_THUMB(2),
-    state: "locked",
-    durationBadge: "27:50",
-  },
-];
-
-const module3Lessons: VideoLessonCardProps[] = [
-  {
-    lessonLabel: "Lesson 17",
-    title: "Full Inversion — Aerial Headstand",
-    duration: "38 min",
-    level: "Advanced",
-    thumbnail: LESSON_THUMB(3),
-    state: "locked",
-    durationBadge: "38:00",
-  },
-  {
-    lessonLabel: "Lesson 18",
-    title: "Dynamic Silk Flow Sequence",
-    duration: "42 min",
-    level: "Advanced",
-    thumbnail: LESSON_THUMB(4),
-    state: "locked",
-    durationBadge: "42:00",
-  },
-  {
-    lessonLabel: "Lesson 25",
-    title: "Final Class & What's Next",
-    duration: "29 min",
-    level: "Advanced",
-    thumbnail: LESSON_THUMB(5),
-    state: "locked",
-    durationBadge: "29:30",
-  },
-];
+/** Turns a catalog lesson into a render-ready card, assigning a thumbnail + lock state. */
+function toLessonCard(
+  lesson: CourseLesson,
+  index: number,
+  state: "free" | "locked",
+): VideoLessonCardProps {
+  return {
+    lessonLabel: lesson.lessonLabel,
+    title: lesson.title,
+    duration: lesson.duration,
+    level: lesson.level,
+    thumbnail: LESSON_THUMB(index),
+    state,
+    durationBadge: lesson.durationBadge,
+  };
+}
 
 const includesItems: IncludeItem[] = [
   { title: "25 HD video lessons", sub: "Lifetime access to all lessons.", iconKey: "video" },
@@ -196,12 +84,26 @@ export default async function PreRecordedCourseDetailPage({
   const course = findCourse(slug);
   if (!course) notFound();
 
+  const freePreviewLessons = course.freePreview.map((l, i) =>
+    toLessonCard(l, i, "free"),
+  );
+  // Continue thumbnail rotation past the free-preview lessons so locked cards
+  // don't repeat the same images.
+  let lessonCursor = course.freePreview.length;
+  const moduleSections = course.modules.map((mod) => {
+    const lessons = mod.lessons.map((l) =>
+      toLessonCard(l, lessonCursor++, "locked"),
+    );
+    return { title: mod.title, subtitle: mod.subtitle, lessons };
+  });
+
   return (
     <main className="flex min-h-screen flex-col bg-surface-1">
       <SiteHeader tone="light" />
 
       <RecordedHeroWithBooking
-        backgroundImage="/images/recorded-classes/hero-bg.png"
+        backgroundImage={course.image.src}
+        backgroundAlt={course.image.alt}
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Pre-recorded courses", href: "/pre-recorded-courses" },
@@ -260,23 +162,14 @@ export default async function PreRecordedCourseDetailPage({
         ctaLabel={`Unlock All 25 Videos — ${course.price}`}
       />
 
-      <ModuleSection
-        title="Module 1 — Foundations (Lessons 3–8)"
-        subtitle="Core concepts, safe entry and exit, basic inversions."
-        lessons={module1Lessons}
-      />
-
-      <ModuleSection
-        title="Module 2 — Building Confidence (Lessons 9–16)"
-        subtitle="Standing poses, hip openers, strength sequences."
-        lessons={module2Lessons}
-      />
-
-      <ModuleSection
-        title="Module 3 — Advanced Flows (Lessons 17–25)"
-        subtitle="Full inversions, dynamic sequences, teaching techniques."
-        lessons={module3Lessons}
-      />
+      {moduleSections.map((mod) => (
+        <ModuleSection
+          key={mod.title}
+          title={mod.title}
+          subtitle={mod.subtitle}
+          lessons={mod.lessons}
+        />
+      ))}
 
       <CourseIncludesSection
         title="Everything Included in Your Purchase"

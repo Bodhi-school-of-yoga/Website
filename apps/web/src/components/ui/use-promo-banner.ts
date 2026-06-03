@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 
 import {
-  getActivePromoBanner,
+  getPromoBannerForPath,
   type CoursePromoBanner,
 } from '@/data/course-promo-banner';
 
@@ -22,7 +22,7 @@ export function usePromoBanner(): {
   visible: boolean;
 } {
   const pathname = usePathname() ?? '';
-  const banner = getActivePromoBanner();
+  const banner = getPromoBannerForPath(pathname);
 
   const excluded = HIDDEN_PREFIXES.some(
     (p) => pathname === p || pathname.startsWith(`${p}/`),

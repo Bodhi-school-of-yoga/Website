@@ -43,7 +43,7 @@ export const departmentHeads: DepartmentHead[] = [
     slug: "khushboo-jain",
     name: "Khushboo Jain",
     role: "online yoga classes",
-    image: "/trainers/khushbu-jain.webp",
+    image: "/images/trainers/khushboo-jain.png",
   },
   {
     slug: "vijaya-raghavan",
@@ -67,24 +67,24 @@ export const departmentHeads: DepartmentHead[] = [
     slug: "sujay-choudhary",
     name: "Sujay Choudhary",
     role: "studio training",
-    image: "/trainers/choudhary-sujay-kumar-roy.webp",
+    image: "/images/trainers/sujay-choudhary.png",
   },
   {
     slug: "swetha-varda",
     name: "Swetha Varda",
     role: "online training",
-    image: "/trainers/swetha-varda.jpg",
+    image: "/images/trainers/swetha-varda.png",
   },
   {
     slug: "swetanga-nandan",
     name: "Swetanga Nandan",
     role: "online training",
-    image: "/images/trainers/swetangana-nandan.png",
+    image: "/images/trainers/swetanga-nandan.png",
   },
   {
     slug: "swathi-patle",
     name: "Swathi Patle",
     role: "mat pilates training",
-    image: "/trainers/swathi-patle.jpg",
+    image: "/images/trainers/swathi-patle.png",
   },
 ];

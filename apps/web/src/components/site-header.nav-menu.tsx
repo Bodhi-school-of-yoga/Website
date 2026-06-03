@@ -34,7 +34,7 @@ function NavMenuList({
     <NavigationMenuPrimitive.List
       data-slot="nav-menu-list"
       className={cn(
-        "group flex flex-1 list-none items-center justify-center gap-8 xl:gap-[39px]",
+        "group flex flex-1 list-none items-center justify-center gap-8 xl:gap-[23px]",
         className,
       )}
       {...props}

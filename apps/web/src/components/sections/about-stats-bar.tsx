@@ -16,10 +16,10 @@ export type AboutStatsBarProps = {
 };
 
 const DEFAULT_STATS: StatItem[] = [
-  { value: 100, suffix: "K+", label: "Students Trained" },
+  { value: 12000, suffix: "", label: "Students Trained" },
   { value: 20, suffix: "+", label: "Master Trainers" },
   { value: 15, suffix: "+", label: "Years of Excellence" },
-  { value: 10, suffix: "K+", label: "Active Practitioners" },
+  { value: 100, suffix: "K+", label: "Active Practitioners" },
 ];
 
 export function AboutStatsBar({
@@ -49,9 +49,9 @@ export function AboutStatsBar({
               <AnimatedCount
                 value={stat.value}
                 suffix={stat.suffix}
-                className="font-sans font-semibold leading-none text-text-brand text-h5 sm:text-h4 lg:text-h3 2xl:text-h2"
+                className="font-sans font-semibold leading-none text-text-brand text-h3 sm:text-h4 lg:text-h3 2xl:text-h2"
               />
-              <span className="text-mini tracking-wide text-text-primary/70">
+              <span className="text-sm tracking-wide text-text-primary/70">
                 {stat.label}
               </span>
             </li>

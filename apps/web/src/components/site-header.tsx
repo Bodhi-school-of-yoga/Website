@@ -207,7 +207,7 @@ export function SiteHeader({
           </NavMenuList>
         </NavMenu>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <button
             type="button"
             aria-label="Search"
@@ -223,10 +223,25 @@ export function SiteHeader({
             <Search className="h-[18px] w-[18px]" strokeWidth={1.75} />
           </button>
 
+
           <Link
             href={ctaHref}
             className={cn(
-              "hidden h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[36px] px-8",
+            
+              inverted ? "text-text-inverse" : "text-text-primary text-sm transition-[transform,filter,box-shadow] duration-200",
+            
+        
+              "sm:inline-flex",
+            )}
+          >
+             +919870347349
+          </Link>
+        
+
+          <Link
+            href={ctaHref}
+            className={cn(
+              "hidden h-10 ml-4 shrink-0 items-center justify-center whitespace-nowrap rounded-[36px] px-8",
               "bg-brand-shade hover:bg-[#86d5c4] font-sans text-body-sm font-semibold",
               "text-text-primary transition-[transform,filter,box-shadow] duration-200",
             

@@ -30,10 +30,10 @@ export const metadata: Metadata = {
 };
 
 const STATS: StatItem[] = [
-  { value: 100, suffix: "K+", label: "Vision: Certified Trainers by 2030" },
-  { value: 20, suffix: "+", label: "Centers across India" },
-  { value: 15, suffix: "+", label: "Years of Teaching" },
-  { value: 10, suffix: "K+", label: "Students Transformed" },
+  { value: 15000, suffix: "+", label: "Vision: Certified Trainers by 2030" },
+  { value: 20, suffix: "", label: "Centers across India" },
+  { value: 20, suffix: " yrs", label: "Years of Teaching" },
+  { value: 1, suffix: "Lakh+", label: "Students Transformed" },
 ];
 
 const PILLARS: PillarItem[] = [

@@ -52,9 +52,7 @@ export default function PreRecordedCoursesPage() {
                   description={course.description}
                   stats={SHARED_STATS}
                   price="₹499"
-                  originalPrice="₹999"
-                  taxNote="incl. taxes"
-                  ctaLabel="Purchase Now"
+                  ctaLabel="Purchase now"
                   ctaHref={course.href}
                   cardHref={course.href}
                   className="w-full max-w-[1308px] mx-auto"
