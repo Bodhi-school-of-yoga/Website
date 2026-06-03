@@ -115,8 +115,8 @@ function WeekPriceCard({
 
       <div className={cn("-mx-6 flex items-baseline gap-2 border-b  px-6 pb-5",highlighted ? "border-text-inverse/20" : "border-[#E2E2E2]")}
       >
-        <span className="font-heading text-h5 font-normal leading-none ">{price}</span>
-        {originalPrice ? (
+        {/* <span className="font-heading text-h5 font-normal leading-none ">{price}</span> */}
+        {/* {originalPrice ? (
           <span
             className={cn(
               "font-sans text-[14px] line-through",
@@ -125,7 +125,7 @@ function WeekPriceCard({
           >
             {originalPrice}
           </span>
-        ) : null}
+        ) : null} */}
       </div>
 
       <span

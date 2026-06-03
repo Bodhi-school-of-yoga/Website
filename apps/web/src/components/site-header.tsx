@@ -53,7 +53,7 @@ const DEFAULT_NAV_LINKS: HeaderNavLink[] = [
     kind: "panel",
     dropdownKey: "teacher",
   },
-  { label: "Recorded classes", href: "/pre-recorded-courses" },
+  // { label: "Recorded classes", href: "/pre-recorded-courses" },
   { label: "Workshops", href: "/workshops" },
   { label: "Our Centers", href: "/our-centers" },
   { label: "About Bodhi", href: "/about", kind: "mega" },
@@ -98,7 +98,7 @@ export function SiteHeader({
     };
   }, [mobileOpen]);
 
-  const headerHeight = scrolled ? "h-[72px] sm:h-[76px]" : "h-[88px] sm:h-[92px]";
+  const headerHeight = scrolled ? "h-[72px] sm:h-[76px]" : "h-[88px] sm:h-[75px]";
   const drawerTopOffset = scrolled ? "top-[72px] sm:top-[76px]" : "top-[88px] sm:top-[92px]";
   const drawerPtOffset = scrolled ? "pt-[72px] sm:pt-[76px]" : "pt-[88px] sm:pt-[92px]";
 
@@ -140,7 +140,7 @@ export function SiteHeader({
             priority
             className={cn(
               "w-auto origin-left transition-[height,transform] duration-300 group-hover:scale-[1.02]",
-              scrolled ? "h-10 sm:h-20" : "h-12 sm:h-24",
+              scrolled ? "h-10 sm:h-16" : "h-12 sm:h-20",
             )}
           />
         </Link>
