@@ -118,8 +118,24 @@ export function WorkshopsComingSoonSection({
                 ) : null}
 
                 <div className="mt-4 flex flex-wrap items-center gap-[9px]">
-                  <Chip icon={<Globe className="h-[18px] w-[18px]" strokeWidth={1.75} />} label={w.mode} />
-                  <Chip icon={<Languages className="h-[18px] w-[18px]" strokeWidth={1.75} />} label={w.language} />
+                  <Chip icon={
+                    <Image
+                      src="/icon/web.svg"
+                      alt="Globe icon"
+                      height={18}
+                      width={18}
+                      className="h-[18px] w-[18px]"
+                    />
+                  } label={w.mode} />
+                  <Chip icon={
+                    <Image
+                      src="/icon/eng.svg"
+                      alt="Language icon"
+                      height={18}
+                      width={18}
+                      className="h-[18px] w-[18px]"
+                    />
+                  } label={w.language} />
                 </div>
 
                 <div className="flex-1" />

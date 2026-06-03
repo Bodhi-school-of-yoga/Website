@@ -111,9 +111,10 @@ export function SiteFooter({
               <Image
                 src="/bodhi-logo-light-v2.png"
               alt="Bodhi Yoga Studio"
-              width={140}
+              width={200}
               height={636}
               priority
+              className="-ml-5"
                      
                     />
             </Link>

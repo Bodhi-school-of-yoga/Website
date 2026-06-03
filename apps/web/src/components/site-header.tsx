@@ -140,7 +140,7 @@ export function SiteHeader({
             priority
             className={cn(
               "w-auto origin-left transition-[height,transform] duration-300 group-hover:scale-[1.02]",
-              scrolled ? "h-10 sm:h-14" : "h-12 sm:h-20",
+              scrolled ? "h-10 sm:h-20" : "h-12 sm:h-24",
             )}
           />
         </Link>
