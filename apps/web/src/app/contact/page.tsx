@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="mt-8">
         <ContactSection />
       </main>
       <SiteFooterBlock />

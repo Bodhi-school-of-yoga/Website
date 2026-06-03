@@ -41,14 +41,65 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+const SITE_URL = "https://bodhischoolofyoga.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Bodhi Yoga Studio",
-    template: "%s | Bodhi Yoga",
+    default: "Bodhi School of Yoga | Yoga Classes, Teacher Training & Wellness",
+    template: "%s | Bodhi School of Yoga",
   },
   description:
-    "Find your inner balance at Bodhi Yoga Studio. Offering Hatha, Vinyasa, Yin yoga and meditation classes for all levels.",
-  keywords: ["yoga", "meditation", "wellness", "yoga studio", "mindfulness"],
+    "Bodhi School of Yoga offers Hatha, Vinyasa & Yin yoga classes, meditation sessions, and certified teacher training programs for all levels. Begin your wellness journey today.",
+  keywords: [
+    "yoga classes",
+    "yoga studio",
+    "meditation",
+    "wellness",
+    "hatha yoga",
+    "vinyasa yoga",
+    "yin yoga",
+    "yoga teacher training",
+    "mindfulness",
+    "bodhi yoga",
+  ],
+  authors: [{ name: "Bodhi School of Yoga" }],
+  creator: "Bodhi School of Yoga",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: SITE_URL,
+    siteName: "Bodhi School of Yoga",
+    title: "Bodhi School of Yoga | Yoga Classes, Teacher Training & Wellness",
+    description:
+      "Offering Hatha, Vinyasa & Yin yoga classes, meditation sessions, and certified teacher training programs for all levels.",
+    images: [
+      {
+        url: "/OG.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Bodhi School of Yoga",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bodhi School of Yoga | Yoga Classes, Teacher Training & Wellness",
+    description:
+      "Offering Hatha, Vinyasa & Yin yoga classes, meditation sessions, and certified teacher training programs for all levels.",
+    images: ["/OG.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
