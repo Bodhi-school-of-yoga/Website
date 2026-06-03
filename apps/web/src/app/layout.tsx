@@ -62,7 +62,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-transparent">
         <Providers>
+          <div className="mb-4">
+
           <PromoBannerBar />
+          </div>
           <main className="flex-1">{children}</main>
         </Providers>
       </body>

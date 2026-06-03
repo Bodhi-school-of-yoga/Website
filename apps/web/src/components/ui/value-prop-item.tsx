@@ -37,12 +37,10 @@ function ValuePropItem({ icon, title, desc, className }: ValuePropItemProps) {
   return (
     <motion.div
       variants={prefersReducedMotion ? undefined : itemVariants}
-      className={cn("flex flex-col items-start gap-3", className)}
+      className={cn("flex flex-col items-start gap-3 bg-surface-0 border border-neutral-200 px-5 py-3 rounded-lg", className)}
     >
-      <span className="text-text-brand [&_svg]:h-6 [&_svg]:w-6">
-        {icon ?? <Leaf aria-hidden className="h-6 w-6" />}
-      </span>
-      <h3 className="font-heading text-h5 text-text-primary">{title}</h3>
+      
+      <h3 className="font-heading text-[18px] font-semibold text-black">{title}</h3>
       <p className="font-sans text-body-md text-text-secondary">{desc}</p>
     </motion.div>
   );

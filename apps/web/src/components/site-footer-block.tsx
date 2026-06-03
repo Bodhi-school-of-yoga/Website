@@ -94,7 +94,7 @@ const PRESERVED_NEWSLETTER_HREF = DEFAULT_COLUMNS[2].links[0].href; // /contact 
 const PRESERVED_DIRECTIONS_HREF = DEFAULT_ADDRESS.action!.href; // https://maps.google.com
 
 export const HOME_FOOTER_BRAND: SiteFooterProps["brand"] = {
-  wordmark: "Bodhi",
+  wordmark: "Arihanrt",
   tagline:
     "A school for teachers, a home for seekers. Practice, taught honestly.",
   url: "bodhischoolofyoga.com",

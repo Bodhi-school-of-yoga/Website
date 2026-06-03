@@ -28,12 +28,12 @@ export function PromoBannerBar() {
   // while scrolled.
   const top = scrolled
     ? 'top-[72px] sm:top-[76px]'
-    : 'top-[88px] sm:top-[92px]';
+    : 'top-[88px] sm:top-[72px] ';
 
   return (
     <PromoBanner
       banner={banner}
-      className={`fixed inset-x-0 z-40 ${top} motion-safe:transition-[top] motion-safe:duration-300`}
+      className={`fixed inset-x-0  z-40 ${top} motion-safe:transition-[top] motion-safe:duration-300`}
     />
   );
 }

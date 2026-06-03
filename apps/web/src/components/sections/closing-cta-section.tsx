@@ -92,24 +92,7 @@ export function ClosingCtaSection({
       viewport={{ once: true, margin: "-80px 0px -80px 0px" }}
     >
       <div className="mx-auto max-w-[1240px] text-center">
-        {eyebrow && (
-          <motion.p
-            variants={fadeInUpSoft}
-            className={cn(
-              "italic font-light leading-none",
-              "text-[20px] sm:text-[24px] lg:text-[32px]",
-              isLight ? "text-text-secondary" : "text-text-inverse",
-            )}
-            style={{
-              fontFamily:
-                'var(--font-fraunces), Georgia, "Times New Roman", serif',
-              fontWeight: 300,
-              letterSpacing: "-0.02rem",
-            }}
-          >
-            {eyebrow}
-          </motion.p>
-        )}
+       
 
         <motion.h2
           variants={fadeInUp}

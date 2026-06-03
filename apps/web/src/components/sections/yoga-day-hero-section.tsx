@@ -127,7 +127,7 @@ export function YogaDayHeroSection({
                 {/* Figma "Max Discount" pill is mint-green (brand-shade) with
                     dark text — override the shared Badge for this instance
                     only, leaving the shared discount variant untouched. */}
-                <Badge className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap bg-brand-shade font-semibold text-brand-dark">
+                <Badge className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap bg-[#D5FF91] font-semibold text-brand-dark">
                   {maxDiscountBadge}
                 </Badge>
               </span>
