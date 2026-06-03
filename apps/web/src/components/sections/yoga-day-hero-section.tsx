@@ -39,6 +39,8 @@ export type YogaDayHeroSectionProps = {
   statLine2?: string;
   body?: string;
   maxDiscountBadge?: string;
+  /** Fires when the booking card CTA is clicked (e.g. to open payment dialog). */
+  onCtaClick?: () => void;
   className?: string;
 };
 
@@ -51,6 +53,7 @@ export function YogaDayHeroSection({
   statLine2 = "to all courses",
   body = "First 100 spots get up to 70% off every Bodhi course. Once they're gone, the price rises — no exceptions, no extensions.",
   maxDiscountBadge = "Max Discount",
+  onCtaClick,
   className,
 }: YogaDayHeroSectionProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -154,7 +157,7 @@ export function YogaDayHeroSection({
             animate="visible"
           >
             <div className="w-full max-w-md">
-              <HeroBookingCard />
+              <HeroBookingCard onCtaClick={onCtaClick} />
             </div>
           </motion.div>
         </div>

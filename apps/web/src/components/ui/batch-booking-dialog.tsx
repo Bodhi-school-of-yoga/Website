@@ -160,7 +160,7 @@ export function BatchBookingDialog({
           className={cn(
             "fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[540px]",
             "-translate-x-1/2 -translate-y-1/2",
-            "rounded-2xl bg-white p-2 sm:px-5 sm:py-6 shadow-xl",
+            "rounded-2xl bg-white px-5 py-5 sm:px-6 sm:py-6 shadow-xl",
             "transition-all duration-200",
             "data-starting-style:opacity-0 data-starting-style:scale-95",
             "data-ending-style:opacity-0 data-ending-style:scale-95",
@@ -172,7 +172,14 @@ export function BatchBookingDialog({
                 {courseName}
               </Dialog.Title>
               <Dialog.Description className="mt-1 text-sm text-text-tertiary">
-                before going forward with the payment
+                Fill in your details to proceed with payment of{" "}
+                <span className="font-semibold text-text-primary">
+                  {new Intl.NumberFormat("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                    minimumFractionDigits: 0,
+                  }).format(amountInPaise / 100)}
+                </span>
               </Dialog.Description>
             </div>
             <Dialog.Close
@@ -313,7 +320,13 @@ export function BatchBookingDialog({
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
               )}
             >
-              {loading ? "Loading..." : "Proceed to Payment"}
+              {loading
+                ? "Loading..."
+                : `Pay ${new Intl.NumberFormat("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                    minimumFractionDigits: 0,
+                  }).format(amountInPaise / 100)} — Proceed to Payment`}
             </button>
           </form>
         </Dialog.Popup>

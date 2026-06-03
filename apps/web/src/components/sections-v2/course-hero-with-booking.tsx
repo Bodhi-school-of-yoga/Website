@@ -33,22 +33,29 @@ export function CourseHeroWithBooking({
   const [planAmountInPaise, setPlanAmountInPaise] = React.useState<number | null>(
     null,
   );
+  const [selectedPlanPeriod, setSelectedPlanPeriod] = React.useState<string | null>(null);
+
+  // Show plan period in dialog for subscription courses (e.g. "Daily Regular Yoga Classes — Monthly")
+  const dialogCourseName = selectedPlanPeriod
+    ? `${courseName} — ${selectedPlanPeriod}`
+    : courseName;
 
   return (
     <>
       <CourseHero
         {...heroProps}
-        onPlanChange={(plan) =>
+        onPlanChange={(plan) => {
           setPlanAmountInPaise(
             Number(plan.price.replace(/[^\d]/g, "")) * 100 || null,
-          )
-        }
+          );
+          setSelectedPlanPeriod(plan.period);
+        }}
         cta={{ label: ctaLabel, onClick: () => setOpen(true) }}
       />
       <BatchBookingDialog
         open={open}
         onOpenChange={setOpen}
-        courseName={courseName}
+        courseName={dialogCourseName}
         amountInPaise={planAmountInPaise ?? amountInPaise}
         razorpayKey={razorpayKey}
         batches={batches}

@@ -13,6 +13,7 @@ export type UnlockVideosCTAProps = {
   body: string;
   ctaLabel: string;
   ctaHref?: string;
+  onCtaClick?: () => void;
   className?: string;
 };
 
@@ -29,6 +30,7 @@ function UnlockVideosCTA({
   body,
   ctaLabel,
   ctaHref = "#unlock",
+  onCtaClick,
   className,
 }: UnlockVideosCTAProps) {
   return (
@@ -47,14 +49,25 @@ function UnlockVideosCTA({
             )}
           >
             <p className="text-body-sm text-text-primary flex-1">{body}</p>
-            <Button
-              variant="default"
-              size="lg"
-              className="active:scale-[0.98] transition-transform duration-150"
-              render={<Link href={ctaHref} />}
-            >
-              {ctaLabel}
-            </Button>
+            {onCtaClick ? (
+              <Button
+                variant="default"
+                size="lg"
+                className="active:scale-[0.98] transition-transform duration-150"
+                onClick={onCtaClick}
+              >
+                {ctaLabel}
+              </Button>
+            ) : (
+              <Button
+                variant="default"
+                size="lg"
+                className="active:scale-[0.98] transition-transform duration-150"
+                render={<Link href={ctaHref} />}
+              >
+                {ctaLabel}
+              </Button>
+            )}
           </Card>
         </motion.div>
       </div>

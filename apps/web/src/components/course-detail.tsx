@@ -122,7 +122,7 @@ export function CourseDetail({ course }: { course: Course }) {
         ctaLabel="Reserve Your Spot Now"
         courseName={course.title}
         amountInPaise={Number(bookingPriceStr.replace(/[^\d]/g, "")) * 100}
-        razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY ?? ""}
+        razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
         batches={[
           {
             label: `Next batch — ${course.scheduleLabel}`,

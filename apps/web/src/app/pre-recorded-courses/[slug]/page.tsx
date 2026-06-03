@@ -14,6 +14,7 @@ import {
   type IncludeItem,
 } from "@/components/sections/course-includes-section";
 import type { VideoLessonCardProps } from "@/components/ui/video-lesson-card";
+import { UnlockVideosCTAWithPayment } from "@/components/sections/unlock-videos-cta-with-payment";
 
 import { PRE_RECORDED_COURSES, findCourse, type CourseLesson } from "../courses";
 
@@ -157,9 +158,20 @@ export default async function PreRecordedCourseDetailPage({
         lessons={freePreviewLessons}
       />
 
-      <UnlockVideosCTA
+      <UnlockVideosCTAWithPayment
         body={`The remaining 23 videos are unlocked after purchase. One-time payment of ${course.price} gives you lifetime access to all lessons.`}
         ctaLabel={`Unlock All 25 Videos — ${course.price}`}
+        courseName={course.title}
+        amountInPaise={Number(course.price.replace(/[^0-9]/g, "")) * 100}
+        razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
+        batches={[
+          { label: "8th June – 31st July", value: "jun-8-jul-31" },
+          { label: "1st Aug – 30th Sep", value: "aug-1-sep-30" },
+        ]}
+        timeSlots={[
+          { label: "7:00 AM – 9:00 AM", value: "7am-9am" },
+          { label: "4:00 PM – 6:00 PM", value: "4pm-6pm" },
+        ]}
       />
 
       {moduleSections.map((mod) => (

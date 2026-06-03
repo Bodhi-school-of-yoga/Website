@@ -105,14 +105,16 @@ export function SiteHeader({
   return (
     <>
       <motion.header
-        initial={{ y: -24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: -12 }}
+        animate={{ y: 0 }}
         transition={{
-          y: { type: "spring", stiffness: 260, damping: 30, mass: 0.6 },
-          opacity: { duration: 0.4, ease: "easeOut" },
+          type: "spring",
+          stiffness: 260,
+          damping: 30,
+          mass: 0.6,
         }}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
+          "fixed inset-x-0 top-0  z-50 transition-[background-color,box-shadow] duration-300",
           scrolled || mobileOpen
             ? "bg-background/85 backdrop-blur-md shadow-[0_1px_0_0_rgb(0_0_0/0.04)]"
             : "bg-transparent",
@@ -224,18 +226,15 @@ export function SiteHeader({
           </button>
 
 
-          <Link
-            href={ctaHref}
+          <a
+            href="tel:+919870347349"
             className={cn(
-            
-              inverted ? "text-text-inverse" : "text-text-primary text-sm transition-[transform,filter,box-shadow] duration-200",
-            
-        
-              "sm:inline-flex",
+              "inline-flex items-center font-sans text-[13px] font-semibold sm:text-body-sm",
+              inverted ? "text-text-inverse" : "text-text-primary",
             )}
           >
-             +919870347349
-          </Link>
+            +919870347349
+          </a>
         
 
           <Link

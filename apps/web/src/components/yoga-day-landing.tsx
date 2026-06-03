@@ -2,8 +2,12 @@
 //
 // Single source for the page body so the released route (/yoga-day) and the
 // demo route (/demo/yoga-day) render the EXACT same thing — no duplication.
+"use client";
+
+import * as React from "react";
 import { SiteHeader } from "@/components/site-header";
 import { YogaDayHeroSection } from "@/components/sections/yoga-day-hero-section";
+import { BatchBookingDialog } from "@/components/ui/batch-booking-dialog";
 import { YogaDayCurriculumSection } from "@/components/sections/yoga-day-curriculum-section";
 import { YogaDayWeeklyDiscountSection } from "@/components/sections/yoga-day-weekly-discount-section";
 import { YogaDayWhyBodhiSection } from "@/components/sections/yoga-day-why-bodhi-section";
@@ -14,11 +18,28 @@ import { YogaDayCoursesSection } from "@/components/sections/yoga-day-courses-se
 import { SiteFooterBlock } from "@/components/site-footer-block";
 
 export function YogaDayLanding() {
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
   return (
     <div className="min-h-screen bg-surface-1">
       <SiteHeader />
       <main>
-        <YogaDayHeroSection />
+        <YogaDayHeroSection onCtaClick={() => setDialogOpen(true)} />
+        <BatchBookingDialog
+          open={dialogOpen}
+          onOpenChange={setDialogOpen}
+          courseName="International Yoga Day — 70% Scholarship"
+          amountInPaise={10000}
+          razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
+          batches={[
+            { label: "Next batch — Mon – Fri", value: "next" },
+            { label: "Following batch", value: "following" },
+          ]}
+          timeSlots={[
+            { label: "Morning · 6:00 AM – 8:00 AM IST", value: "morning" },
+            { label: "Evening · 6:00 PM – 8:00 PM IST", value: "evening" },
+          ]}
+        />
         <YogaDayCurriculumSection />
         <YogaDayWeeklyDiscountSection />
         <YogaDayWhyBodhiSection />

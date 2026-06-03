@@ -30,16 +30,18 @@ export type HeroBookingCardProps = {
   countdownEndsAt?: Date | string | null;
   /** First-paint / fallback countdown values. */
   countdownUnits?: CountdownUnit[];
-  /** Seats headline — verbatim Figma copy. */
-  seatsText?: string;
+  /** Number of seats remaining. Drives the headline + progress bar fill. */
+  seatsLeft?: number;
+  /** Total seats available. Drives the headline + progress bar fill. */
+  seatsTotal?: number;
   /** Seats sub-caption under the headline. */
   seatsCaption?: string;
-  /** 0–100 fill for the seats bar. 17/50 = 34. */
-  progressPct?: number;
   /** Primary CTA label. Verbatim Figma copy. */
   ctaLabel?: string;
   /** CTA destination. "#" until a real route is supplied (no query params). */
   ctaHref?: string;
+  /** When provided, renders a button instead of a Link and fires on click (e.g. to open payment dialog). */
+  onCtaClick?: () => void;
   /** When true, the progress fill scales 0 -> value on scroll into view. */
   animateProgressOnView?: boolean;
   className?: string;
@@ -49,14 +51,16 @@ function HeroBookingCard({
   countdownLabel = "offer expires in",
   countdownEndsAt,
   countdownUnits,
-  seatsText = "17 of 50 seats",
-  seatsCaption = "left for this week's enrollment window.",
-  progressPct = 34,
+  seatsLeft = 17,
+  seatsTotal = 50,
+  seatsCaption = "left  for this week\u2019s enrollment window.",
   ctaLabel = "Reserve My Seat Now",
   ctaHref = "#",
+  onCtaClick,
   animateProgressOnView = true,
   className,
 }: HeroBookingCardProps) {
+  const progressPct = seatsTotal > 0 ? Math.round((seatsLeft / seatsTotal) * 100) : 0;
   return (
     <div className={cn("flex w-full flex-col gap-4", className)}>
       {/* Card 1 — countdown */}
@@ -74,30 +78,46 @@ function HeroBookingCard({
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-0.5">
             <p className="font-heading font-bold text-h5 text-text-brand">
-              {seatsText}
+              {seatsLeft} of {seatsTotal} seats
             </p>
-            <p className="text-mini text-text-tertiary">{seatsCaption}</p>
+            <p className="text-text-tertiary">{seatsCaption}</p>
           </div>
           <ProgressBar
             value={progressPct}
             tone="light"
             animateOnView={animateProgressOnView}
+            className="bg-brand-primary/15"
           />
         </div>
 
-        <Link
-          href={ctaHref}
-          className={cn(
-            "inline-flex w-full items-center justify-center rounded-xl bg-brand-primary px-6 py-4",
-            " font-semibold  text-text-inverse font-sans",
-            // cta-press-lift (house primitive) — motion-safe is the reduced-motion guard
-            "motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out",
-            "motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.98] hover:brightness-105",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2",
-          )}
-        >
-          {ctaLabel}
-        </Link>
+        {onCtaClick ? (
+          <button
+            type="button"
+            onClick={onCtaClick}
+            className={cn(
+              "inline-flex w-full items-center justify-center rounded-xl bg-brand-primary px-6 py-4",
+              "font-semibold text-text-inverse font-sans",
+              "motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out",
+              "motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.98] hover:brightness-105",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2",
+            )}
+          >
+            {ctaLabel}
+          </button>
+        ) : (
+          <Link
+            href={ctaHref}
+            className={cn(
+              "inline-flex w-full items-center justify-center rounded-xl bg-brand-primary px-6 py-4",
+              "font-semibold text-text-inverse font-sans",
+              "motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out",
+              "motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.98] hover:brightness-105",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2",
+            )}
+          >
+            {ctaLabel}
+          </Link>
+        )}
       </div>
     </div>
   );
