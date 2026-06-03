@@ -8,6 +8,7 @@ import { YogaDayCurriculumSection } from "@/components/sections/yoga-day-curricu
 import { YogaDayWeeklyDiscountSection } from "@/components/sections/yoga-day-weekly-discount-section";
 import { YogaDayWhyBodhiSection } from "@/components/sections/yoga-day-why-bodhi-section";
 import { VideoTestimonialsSection } from "@/components/sections/video-testimonials-section";
+import { TESTIMONIAL_VIDEOS } from "@/data/testimonial-videos";
 import { YogaDayUrgencySection } from "@/components/sections/yoga-day-urgency-section";
 import { YogaDayCoursesSection } from "@/components/sections/yoga-day-courses-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -24,11 +25,7 @@ export function YogaDayLanding() {
         <VideoTestimonialsSection
           eyebrow="TESTIMONIALS"
           heading="What our students say"
-          testimonials={[
-            { id: "v1", videoId: "AW3aFUzQcxI" },
-            { id: "v2", videoId: "d7STLMg7Qb0" },
-            { id: "v3", videoId: "PA44LkdEFSg" },
-          ]}
+          testimonials={TESTIMONIAL_VIDEOS}
         />
         <YogaDayUrgencySection />
         <YogaDayCoursesSection />

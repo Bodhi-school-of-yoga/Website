@@ -1,8 +1,0 @@
-{
-  "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-32&m=dev",
-  "file_key": "eqaofBeNUhOUISevtRfOpT",
-  "node_id": "1-32",
-  "target": "Home page (apps/web/src/app/page.tsx) — all sections except the Hero (which must NOT be modified).",
-  "scope": "Update the home page sections according to Figma node 1-32. Preserve the existing HeroSection (apps/web/src/components/sections/hero-section.tsx) — it was carefully crafted and must remain untouched. Update/refresh: SanskritMarqueeStrip, FounderQuoteSection, ExperienceHarmonyStatsBand, WhatWeDoSection, WhyBodhiSection, ProgramsGridSection, AccreditationsSection, TestimonialsSection (and the section order if Figma differs). Use Bodhi design tokens: text-h1..h5, text-mini, text-text-primary/brand/tertiary, bg-surface-*, border-border-*. No inline hex, no clamp().",
-  "instructions": "HARD CONSTRAINT: do not edit apps/web/src/components/sections/hero-section.tsx or its data. Phase 1: fetch Figma node 1-32 (entire home page frame). Phase 2: decompose into sections — explicitly mark the hero section as 'reuse-as-is' so downstream phases skip it. Phase 3: scout — prefer editing in-place existing section files over creating duplicates. Phase 4-5: build only the non-hero updates. Phase 6: visual-QA the / route."
-}

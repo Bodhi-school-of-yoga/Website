@@ -4,20 +4,12 @@ import { FounderQuoteSection } from "@/components/sections/founder-quote-section
 import { HeroSection } from "@/components/sections/hero-section";
 import { ProgramsGridSection } from "@/components/sections/programs-grid-section";
 import { SanskritMarqueeStrip } from "@/components/sections/sanskrit-marquee-strip";
-import {
-  VideoTestimonialsSection,
-  type VideoTestimonial,
-} from "@/components/sections/video-testimonials-section";
+import { VideoTestimonialsSection } from "@/components/sections/video-testimonials-section";
+import { TESTIMONIAL_VIDEOS } from "@/data/testimonial-videos";
 import { WhatWeDoSection } from "@/components/sections/what-we-do-section";
 import { WhyBodhiSection } from "@/components/sections/why-bodhi-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-
-const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
-  { id: "v1", videoId: "AW3aFUzQcxI" },
-  { id: "v2", videoId: "d7STLMg7Qb0" },
-  { id: "v3", videoId: "PA44LkdEFSg" },
-];
 
 const ACCREDITATIONS = [
   {
@@ -81,7 +73,7 @@ export default function HomePage() {
         <VideoTestimonialsSection
           eyebrow="TESTIMONIALS"
           heading="What our students say"
-          testimonials={VIDEO_TESTIMONIALS}
+          testimonials={TESTIMONIAL_VIDEOS}
         />
       </main>
    <SiteFooterBlock />

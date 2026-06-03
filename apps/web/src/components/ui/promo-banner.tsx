@@ -52,7 +52,7 @@ export function PromoBanner({ banner, className }: PromoBannerProps) {
   );
 
   const base = [
-    'flex min-h-[48px] w-full items-center bg-brand-primary text-text-inverse sm:min-h-[40px]',
+    'flex min-h-[48px] w-full items-center bg-brand-green-deep text-text-inverse sm:min-h-[40px]',
     className ?? '',
   ].join(' ');
 
@@ -63,7 +63,7 @@ export function PromoBanner({ banner, className }: PromoBannerProps) {
         aria-label={`${data.text.replace(/\*\*/g, '')}${
           data.linkLabel ? ` — ${data.linkLabel}` : ''
         }`}
-        className={`${base} page-px py-2.5 transition-colors hover:bg-brand-green-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-shade`}
+        className={`${base} page-px py-2.5 transition-colors hover:bg-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-shade`}
       >
         {content}
       </Link>

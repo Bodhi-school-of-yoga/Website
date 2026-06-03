@@ -9,11 +9,11 @@ export type Trainer = {
   tier?: "faculty" | "extended";
 };
 
-// "Meet All Our Trainers" roster — names, order and portraits sourced directly
-// from the "Our Trainers" Figma frame. Core Team / leadership members live in
-// data/department-heads.ts and are intentionally excluded here to avoid
-// duplication.
+// "Meet All Our Trainers" roster — both the Figma frame roster and the existing
+// trainer roster are kept here so every portrait shows. Core Team / leadership
+// members live in data/department-heads.ts and are excluded to avoid duplication.
 export const trainers: Trainer[] = [
+  // --- From the "Our Trainers" Figma frame ---
   { slug: "aman-sahani", name: "Aman Sahani", image: "/trainers/aman-sahani.jpg" },
   { slug: "bhargavi", name: "Bhargavi", image: "/trainers/bhargavi.jpg" },
   { slug: "bhavyasri", name: "Bhavyasri", image: "/trainers/bhavyasri.jpg" },
@@ -33,6 +33,28 @@ export const trainers: Trainer[] = [
   { slug: "susatyavathidasari", name: "Susatyavathidasari", image: "/trainers/susatyavathidasari.jpg" },
   { slug: "susmita-roy", name: "Susmita Roy", image: "/trainers/susmita-roy.jpg" },
   { slug: "venkat", name: "Venkat", image: "/trainers/venkat.png" },
+
+  // --- Existing trainer roster (kept alongside the Figma roster) ---
+  { slug: "anupama-singh", name: "Anupama Singh", image: "/trainers/anupama-singh.webp" },
+  { slug: "archana-kulkarni", name: "Archana Kulkarni", image: "/trainers/archana-kulkarni.webp" },
+  { slug: "atheesh-kumar", name: "Atheesh Kumar", image: "/trainers/atheesh-kumar.jpg" },
+  { slug: "avinash-adapa", name: "Avinash Adapa", image: "/trainers/avinash-adapa.webp" },
+  { slug: "bindu-priya", name: "Bindu Priya", image: "/trainers/bindu-priya.jpg" },
+  { slug: "dharani", name: "Dharani", image: "/trainers/dharani.jpg" },
+  { slug: "leelamber-sastry", name: "Leelamber Sastry", image: "/trainers/leelamber-sastry.webp" },
+  { slug: "moumita-mandal", name: "Moumita Mandal", image: "/trainers/moumita-mandal.webp" },
+  { slug: "muskan-jain", name: "Muskan Jain", image: "/trainers/muskan-jain.jpg" },
+  { slug: "nagalakshmi-shankar", name: "Nagalakshmi Shankar", image: "/trainers/nagalakshmi-shankar.webp" },
+  { slug: "naiya-mukati", name: "Naiya Mukati", image: "/trainers/naiya-mukati.webp" },
+  { slug: "namratha", name: "Namratha", image: "/trainers/namratha.jpg" },
+  { slug: "prajakta-jadhav", name: "Prajakta Jadhav", image: "/trainers/prajakta-jadhav.jpg" },
+  { slug: "pratyusha", name: "Pratyusha", image: "/trainers/pratyusha.jpg" },
+  { slug: "priyanka-singh", name: "Priyanka Singh", image: "/trainers/priyanka-singh.jpeg" },
+  { slug: "rithika-patteti", name: "Rithika Patteti", image: "/trainers/rithika-patteti.webp" },
+  { slug: "saloni", name: "Saloni", image: "/trainers/saloni.webp" },
+  { slug: "sandhya-ramesh", name: "Sandhya Ramesh", image: "/trainers/sandhya-ramesh.jpg" },
+  { slug: "suhasini", name: "Suhasini", image: "/trainers/suhasini.webp" },
+  { slug: "vyshnavie-vasasali", name: "Vyshnavie Vasasali", image: "/trainers/vyshnavie-vasasali.jpg" },
 ];
 
 export const facultyTrainers: Trainer[] = trainers.filter(

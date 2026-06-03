@@ -19,7 +19,7 @@ const WORKSHOPS: ComingSoonWorkshop[] = workshops.map((w) => ({
   id: w.slug,
   title: w.title,
   description: w.description,
-  price: w.price,
+  // Pricing hidden for now — re-add `price: w.price` to show it again.
   image: { src: `/images/workshops/${w.image}`, alt: w.title },
   mode: w.mode,
   language: w.language,
