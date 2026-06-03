@@ -17,9 +17,9 @@ import {
   type VisionMissionCard,
 } from "@/components/sections/about-vision-mission-section";
 import {
-  TestimonialsSection,
-  type TestimonialItem,
-} from "@/components/sections/testimonials-section";
+  VideoTestimonialsSection,
+  type VideoTestimonial,
+} from "@/components/sections/video-testimonials-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
 
@@ -119,34 +119,10 @@ const MISSION: VisionMissionCard = {
   ],
 };
 
-const TESTIMONIALS: TestimonialItem[] = [
-  {
-    id: "aanya",
-    quote:
-      "I came in to lose weight. I left able to teach a class — and a calmer person at home. The training is honest, and that's rare.",
-    authorName: "Aanya",
-    authorMeta: "TTC Cohort 11. Now Teaching in Goa",
-    avatarSrc: "/images/testimonials/aanya.jpg",
-    avatarAlt: "Aanya, TTC Cohort 11 graduate",
-  },
-  {
-    id: "ravi",
-    quote:
-      "The back pain workshop did more in two days than two years of physiotherapy. I've recommended Bodhi to everyone I know.",
-    authorName: "Ravi",
-    authorMeta: "Workshop Participant",
-    avatarSrc: "/images/testimonials/ravi.jpg",
-    avatarAlt: "Ravi, back pain workshop participant",
-  },
-  {
-    id: "lena",
-    quote:
-      "I practice with Bodhi online from Berlin. Six in the morning, India time. It's the most consistent thing in my week.",
-    authorName: "Lena",
-    authorMeta: "Online Student, 2 Years",
-    avatarSrc: "/images/testimonials/lena.jpg",
-    avatarAlt: "Lena, long-term online student",
-  },
+const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
+  { id: "v1", videoId: "AW3aFUzQcxI" },
+  { id: "v2", videoId: "d7STLMg7Qb0" },
+  { id: "v3", videoId: "PA44LkdEFSg" },
 ];
 
 export default function AboutPage() {
@@ -168,11 +144,10 @@ export default function AboutPage() {
         />
         <AboutStorySection rows={STORY_ROWS} />
         <AboutVisionMissionSection vision={VISION} mission={MISSION} />
-        <TestimonialsSection
-          eyebrow="Testimonials"
-          heading="What Our Clients Say"
-          testimonials={TESTIMONIALS}
-          priorityFirst
+        <VideoTestimonialsSection
+          eyebrow="TESTIMONIALS"
+          heading="What Our Students Say"
+          testimonials={VIDEO_TESTIMONIALS}
         />
       </main>
       <SiteFooterBlock

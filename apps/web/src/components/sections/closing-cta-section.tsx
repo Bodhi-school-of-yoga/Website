@@ -129,9 +129,9 @@ export function ClosingCtaSection({
             href={primaryCta.href}
             className={cn(
               "inline-flex items-center justify-center gap-2 rounded-full",
-              "font-semibold tracking-[0.28px]",
+              "font-semibold  ",
               "px-[22px] py-[13px] text-[13.5px]",
-              "sm:px-[23px] sm:py-[15px] sm:text-[14px]",
+              "sm:px-[23px] sm:py-[15px] sm:text-[16px]",
               // Hover lift + press scale (Tailwind primitives)
               "transition-all duration-200 ease-out hover:-translate-y-0.5",
               "active:scale-[0.98]",

@@ -5,42 +5,18 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { ProgramsGridSection } from "@/components/sections/programs-grid-section";
 import { SanskritMarqueeStrip } from "@/components/sections/sanskrit-marquee-strip";
 import {
-  TestimonialsSection,
-  type TestimonialItem,
-} from "@/components/sections/testimonials-section";
+  VideoTestimonialsSection,
+  type VideoTestimonial,
+} from "@/components/sections/video-testimonials-section";
 import { WhatWeDoSection } from "@/components/sections/what-we-do-section";
 import { WhyBodhiSection } from "@/components/sections/why-bodhi-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
 
-const TESTIMONIALS: TestimonialItem[] = [
-  {
-    id: "aanya",
-    quote:
-      "I came in to lose weight. I left able to teach a class — and a calmer person at home. The training is honest, and that's rare.",
-    authorName: "Aanya",
-    authorMeta: "TTC Cohort 11. Now teaching in Goa.",
-    avatarSrc: "/images/testimonials/aanya.jpg",
-    avatarAlt: "Aanya, TTC Cohort 11 graduate",
-  },
-  {
-    id: "ravi",
-    quote:
-      "The back pain workshop did more in two days than two years of physiotherapy. I've recommended Bodhi to everyone I know.",
-    authorName: "Ravi",
-    authorMeta: "Workshop participant",
-    avatarSrc: "/images/testimonials/ravi.jpg",
-    avatarAlt: "Ravi, back pain workshop participant",
-  },
-  {
-    id: "lena",
-    quote:
-      "I practice with Bodhi online from Berlin. Six in the morning, India time. It's the most consistent thing in my week.",
-    authorName: "Lena",
-    authorMeta: "Online student, 2 years",
-    avatarSrc: "/images/testimonials/lena.jpg",
-    avatarAlt: "Lena, long-term online student",
-  },
+const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
+  { id: "v1", videoId: "AW3aFUzQcxI" },
+  { id: "v2", videoId: "d7STLMg7Qb0" },
+  { id: "v3", videoId: "PA44LkdEFSg" },
 ];
 
 const ACCREDITATIONS = [
@@ -102,11 +78,10 @@ export default function HomePage() {
           description="Deepen your wisdom and elevate your yoga career with our specialized yoga certifications."
           items={ACCREDITATIONS}
         />
-        <TestimonialsSection
+        <VideoTestimonialsSection
           eyebrow="TESTIMONIALS"
           heading="What our students say"
-          testimonials={TESTIMONIALS}
-          priorityFirst
+          testimonials={VIDEO_TESTIMONIALS}
         />
       </main>
    <SiteFooterBlock />

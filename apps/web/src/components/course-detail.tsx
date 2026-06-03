@@ -8,7 +8,7 @@ import {
 import { CurriculumSection } from "@/components/sections-v2/curriculum-section";
 import { CourseEligibilitySection } from "@/components/sections-v2/course-eligibility-section";
 import { CertificationSection } from "@/components/sections-v2/certification-section";
-import { TestimonialsSection } from "@/components/sections-v2/testimonials-section";
+import { VideoTestimonialsSection } from "@/components/sections/video-testimonials-section";
 import { PrerequisitesSection } from "@/components/sections-v2/prerequisites-section";
 import { InstructorsSection } from "@/components/sections-v2/instructors-section";
 import { FaqSection } from "@/components/sections-v2/faq-section";
@@ -199,49 +199,13 @@ export function CourseDetail({ course }: { course: Course }) {
       </section>
 
       <section id="testimonials" className="scroll-mt-[160px]">
-        <TestimonialsSection
+        <VideoTestimonialsSection
           eyebrow="Testimonials"
           heading="What People Are Saying?"
-          items={[
-            {
-              avatar: "/images/testimonials/aanya.jpg",
-              name: "Aanya Mehra",
-              role: "RYT 200 Graduate",
-              quote:
-                "The training rewired how I approach my own practice. The faculty cared, the cohort showed up, and I came out a teacher.",
-            },
-            {
-              avatar: "/images/testimonials/lena.jpg",
-              name: "Lena Rodriguez",
-              role: "Studio owner, Berlin",
-              quote:
-                "Practical, grounded, and human. Best continuing-ed I've done in a decade.",
-            },
-            {
-              name: "Anjilina Kalita",
-              role: "Guwahati",
-              quote:
-                "I could tell my past self that 12 someday got packaged loud, alright — chips were my weakness! I can low distinguish what's good for my body and treat it like a temple, not a trash can.",
-            },
-            {
-              avatar: "/images/testimonials/ravi.jpg",
-              name: "Ravi Iyer",
-              role: "Software Engineer",
-              quote:
-                "Brought yoga back into my life as a discipline, not just a workout.",
-            },
-            {
-              name: "Sharada Sampathkumar",
-              role: "Bengaluru",
-              quote:
-                "If you're around, just shrink — it could change your life! You low distinguish what's good for my body and treat it like a temple, not a trash can.",
-            },
-            {
-              name: "Priya Sharma",
-              role: "Lifelong student",
-              quote:
-                "Bodhi treats yoga as a craft. That changed how I show up — on and off the mat.",
-            },
+          testimonials={[
+            { id: "v1", videoId: "AW3aFUzQcxI" },
+            { id: "v2", videoId: "d7STLMg7Qb0" },
+            { id: "v3", videoId: "PA44LkdEFSg" },
           ]}
         />
       </section>
