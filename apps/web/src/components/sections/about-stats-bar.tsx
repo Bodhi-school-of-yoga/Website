@@ -36,9 +36,9 @@ export function AboutStatsBar({
       <div className="mx-auto max-w-[1200px] page-px">
         <ul
           className={cn(
-            "grid grid-cols-1 gap-10 text-center",
-            "sm:grid-cols-2 sm:gap-12",
-            "lg:grid-cols-4 lg:gap-8",
+            "grid grid-cols-2 gap-10 text-center",
+            "sm:grid-cols-3 sm:gap-12",
+            "lg:grid-cols-5 lg:gap-8",
           )}
         >
           {stats.map((stat) => (

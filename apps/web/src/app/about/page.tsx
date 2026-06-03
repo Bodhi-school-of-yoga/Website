@@ -32,6 +32,7 @@ const STATS: StatItem[] = [
   { value: 20, suffix: "", label: "Centers across India" },
   { value: 20, suffix: " yrs", label: "Years of Teaching" },
   { value: 1, suffix: "Lakh+", label: "Students Transformed" },
+  { value: 80, suffix: "+", label: "Countries" },
 ];
 
 const PILLARS: PillarItem[] = [

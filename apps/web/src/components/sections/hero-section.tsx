@@ -83,7 +83,7 @@ export function HeroSection({
   return (
     <section
       className={cn(
-        "relative w-full overflow-hidden",
+        "relative w-full overflow-hidden md:pt-0 pt-8",
         "bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]",
         className,
       )}
@@ -341,10 +341,9 @@ function HeroMobile({
 
         <h1
           className={cn(
-            "mt-4 font-heading",
-            "text-h5 leading-[1.15]",
-            "sm:text-h4 sm:leading-[1.1]",
-            "md:text-h3 ",
+            "mt-4 font-heading font-bold flex flex-col gap-2",
+            // Figma mobile hero spec: 2.21888rem / 700 / 2.08831rem (94.118%)
+            "text-[2.21888rem] leading-[2.08831rem]",
           )}
         >
           <span className="text-text-primary">{headlineLead}</span>

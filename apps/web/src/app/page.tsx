@@ -58,7 +58,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main className="mt-8 md:mt-0">
+      <main className=" md:mt-0">
         <HeroSection />
         <SanskritMarqueeStrip />
         <FounderQuoteSection />

@@ -29,9 +29,10 @@ export type ExperienceHarmonyStatsBandProps = {
 };
 
 const DEFAULT_STATS: HarmonyStat[] = [
-  { value: "5000+", label: "Students Trained" },
-  { value: "15+", label: "Years of Excellence" },
-  { value: "40+", label: "Countries Reached" },
+  { value: "15000+", label: "Vision: Certified Trainers by 2030" },
+  { value: "20", label: "Centers across India" },
+  { value: "20 yrs", label: "Years of Teaching" },
+  { value: "1Lakh+", label: "Students Transformed" },
 ];
 
 const DEFAULT_PHOTO_TOP_RIGHT: HarmonyPhoto = {
@@ -103,14 +104,14 @@ export function ExperienceHarmonyStatsBand({
         className="md:mt-8"
       /> */}
 
-      <div className="relative z-10 mx-auto flex max-w-[920px] flex-col items-center gap-12 page-px text-center lg:gap-16 mt-28 mb-16">
+      <div className="relative z-10 mx-auto flex max-w-[1140px] flex-col items-center gap-12 page-px text-center lg:gap-16 mt-28 mb-16">
         <h2 className="font-heading -mt-12 text-[22px] text-text-primary lg:text-h3">
           <span>{headlineLead}</span>
           <span className="text-text-brand">{headlineAccent}</span>
           {headlineTrail ? <span>{headlineTrail}</span> : null}
         </h2>
 
-        <ul className="flex w-full  items-center justify-center  sm:items-start gap-4 ml-2 sm:gap-16 lg:gap-24">
+        <ul className="grid w-full grid-cols-2 gap-x-6 gap-y-10 text-center sm:grid-cols-4 sm:gap-x-8 lg:gap-x-10">
           {stats.map((stat) => {
             const { value, suffix } = splitStatValue(stat.value);
             return (
