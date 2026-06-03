@@ -46,16 +46,16 @@ function CurriculumModuleItem({
     <motion.div
       variants={prefersReducedMotion ? undefined : itemVariants}
       className={cn(
-        "flex flex-col items-start gap-3 rounded-2xl border border-border-1 p-6",
-        "motion-safe:transition motion-safe:duration-300 motion-safe:hover:-translate-y-0.5 hover:shadow-md",
+        "flex flex-col items-start gap-3 rounded-lg border border-[#E2E2E2] px-6 py-3",
+        
         className,
       )}
     >
-      <span className="font-heading text-h3 leading-none text-text-brand">
+      <span className="font-heading text-h5 leading-none text-text-brand">
         {number}
       </span>
-      <h3 className="font-heading text-h5 text-text-primary">{title}</h3>
-      <p className="font-sans text-subtext-1 text-text-tertiary">{desc}</p>
+      <h3 className="font-heading text-h6 text-text-primary">{title}</h3>
+      <p className="font-sans text-subtext-0 text-text-tertiary">{desc}</p>
     </motion.div>
   );
 }

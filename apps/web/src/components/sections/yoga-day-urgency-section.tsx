@@ -93,7 +93,7 @@ export function YogaDayUrgencySection({
   return (
     <motion.section
       className={cn(
-        "relative w-full overflow-hidden bg-brand-dark text-text-inverse",
+        "relative w-full overflow-hidden bg-[#004D3B] text-text-inverse",
         "py-14 sm:py-16 lg:py-20",
         className,
       )}
@@ -130,25 +130,39 @@ export function YogaDayUrgencySection({
         {/* Price-compare row */}
         <motion.ul
           variants={rowVariants}
-          className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3"
+          className="mx-auto mt-10 grid max-w-3xl grid-cols-1 overflow-hidden rounded-2xl border border-text-inverse/[0.12] bg-text-inverse/[0.06] backdrop-blur-sm sm:grid-cols-3"
         >
-          {priceCompare.map((item) => (
-            <motion.li
-              key={item.label}
-              variants={fadeInUp}
-              className={cn(
-                "flex flex-col items-center justify-center gap-2 rounded-2xl px-6 py-6 text-center",
-                "border border-text-inverse/[0.12] bg-text-inverse/[0.06] backdrop-blur-sm",
-              )}
-            >
-              <span className="text-mini font-medium uppercase tracking-[0.12em] text-text-inverse/65">
-                {item.label}
-              </span>
-              <span className="font-heading text-h4 font-normal text-brand-shade">
-                {item.price}
-              </span>
-            </motion.li>
-          ))}
+          {priceCompare.map((item, i) => {
+            const isLose = item.label.toLowerCase().includes("lose");
+            return (
+              <motion.li
+                key={item.label}
+                variants={fadeInUp}
+                className={cn(
+                  "flex flex-col items-center justify-center gap-2 px-6 py-6 text-center",
+                  i < priceCompare.length - 1 &&
+                    "border-b sm:border-b-0 sm:border-r border-text-inverse/[0.12]",
+                )}
+              >
+                <span
+                  className={cn(
+                    "text-sm font-medium uppercase tracking-[0.12em]",
+                    isLose ? "text-[#FF8A80]" : "text-text-inverse/65",
+                  )}
+                >
+                  {item.label}
+                </span>
+                <span
+                  className={cn(
+                    "font-heading text-h4 font-normal",
+                    isLose ? "text-[#FF8A80]" : "text-brand-shade",
+                  )}
+                >
+                  {item.price}
+                </span>
+              </motion.li>
+            );
+          })}
         </motion.ul>
 
         {/* Seats progress bar */}

@@ -120,7 +120,7 @@ export function YogaDayCurriculumSection({
       };
 
   return (
-    <section className={cn("w-full py-20 sm:py-24 lg:py-28", className)}>
+    <section className={cn("w-full py-20 sm:py-24 lg:py-28 bg-[#FCFCFC]", className)}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-10 page-px lg:gap-12">
         {/* Header group — eyebrow label + heading + intro + audience pills */}
         <motion.header
@@ -160,7 +160,7 @@ export function YogaDayCurriculumSection({
             {audienceTags.map((tag) => (
               <li
                 key={tag}
-                className="rounded-full border border-border-1 px-4 py-1.5 text-mini text-text-secondary"
+                className="rounded-full border border-border-1 px-4 py-1.5 text-text-secondary"
               >
                 {tag}
               </li>

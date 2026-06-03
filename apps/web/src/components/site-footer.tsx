@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export type FooterLink = {
   label: string;
@@ -107,7 +108,14 @@ export function SiteFooter({
                 fontWeight: 300,
               }}
             >
-              {brand.wordmark ?? "Bodhi"}
+              <Image
+                src="/bodhi-logo-light-v2.png"
+              alt="Bodhi Yoga Studio"
+              width={140}
+              height={636}
+              priority
+                     
+                    />
             </Link>
             {brand.tagline && (
               <p

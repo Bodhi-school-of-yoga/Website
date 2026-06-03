@@ -117,11 +117,11 @@ export function YogaDayWeeklyDiscountSection({
     <section className={cn("w-full bg-surface-0 py-20 sm:py-24 lg:py-28", className)}>
       <div className="mx-auto flex max-w-[1200px] flex-col gap-12 page-px">
         <motion.header
-          className="flex max-w-3xl flex-col gap-4"
+          className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center"
           variants={prefersReducedMotion ? undefined : headerVariants}
           {...motionInit}
         >
-          <span className="inline-flex items-center gap-2 text-mini uppercase text-text-brand">
+          <span className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-text-brand">
             <span
               aria-hidden
               className="inline-block h-1.5 w-1.5 rounded-full bg-brand-primary"
@@ -129,8 +129,10 @@ export function YogaDayWeeklyDiscountSection({
             {label}
           </span>
           <h2 className="font-heading text-h2 text-text-primary">{title}</h2>
+          <p className="text-body text-text-secondary">{subCopy}</p>
           <p className="text-body text-text-secondary">
-            {seatsNote} {subCopy}
+            {seatsNote?.replace("50 seats", "") ?? "Each week we open "}
+            <span className="font-semibold text-text-primary">50 seats</span>
           </p>
         </motion.header>
 
@@ -145,12 +147,14 @@ export function YogaDayWeeklyDiscountSection({
         </motion.div>
 
         <motion.div
-          className="flex flex-col gap-2"
+          className="flex flex-col items-center gap-4 text-center"
           variants={prefersReducedMotion ? undefined : calloutVariants}
           {...motionInit}
         >
-          <p className="font-heading text-h5 text-text-primary">{savingsCallout}</p>
-          <p className="text-body text-text-tertiary">{footnote}</p>
+          <span className="inline-block rounded-full bg-[#EEF8F3] border border-[#D4F0E6] px-6 py-2.5 text-sm font-medium text-brand-dark">
+            {savingsCallout}
+          </span>
+          <p className="font-heading text-h5 text-text-primary font-normal">{footnote}</p>
         </motion.div>
       </div>
     </section>

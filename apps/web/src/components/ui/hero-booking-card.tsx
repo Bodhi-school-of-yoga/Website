@@ -89,7 +89,7 @@ function HeroBookingCard({
           href={ctaHref}
           className={cn(
             "inline-flex w-full items-center justify-center rounded-xl bg-brand-primary px-6 py-4",
-            "font-heading font-semibold text-mini text-text-inverse",
+            " font-semibold  text-text-inverse font-sans",
             // cta-press-lift (house primitive) — motion-safe is the reduced-motion guard
             "motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out",
             "motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.98] hover:brightness-105",

@@ -190,7 +190,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
           className={INPUT_CLASSES}
         />
         {errors.firstName ? (
-          <p id="contact-firstName-error" className="mt-2 text-mini text-red-500">
+          <p id="contact-firstName-error" className="mt-2 text-sm text-red-500">
             {errors.firstName}
           </p>
         ) : null}
@@ -233,7 +233,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
           className={INPUT_CLASSES}
         />
         {errors.email ? (
-          <p id="contact-email-error" className="mt-2 text-mini text-red-500">
+          <p id="contact-email-error" className="mt-2 text-sm text-red-500">
             {errors.email}
           </p>
         ) : null}
@@ -257,14 +257,14 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
           className={TEXTAREA_CLASSES}
         />
         {errors.message ? (
-          <p id="contact-message-error" className="mt-2 text-mini text-red-500">
+          <p id="contact-message-error" className="mt-2 text-sm text-red-500">
             {errors.message}
           </p>
         ) : null}
       </div>
 
       {submitError ? (
-        <p role="alert" className="text-mini text-red-500">
+        <p role="alert" className="text-sm text-red-500">
           {submitError}
         </p>
       ) : null}

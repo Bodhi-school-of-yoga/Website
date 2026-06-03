@@ -6,7 +6,7 @@ import { Mail, MapPin, Phone, type LucideIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
-import { ContactForm } from './contact-form';
+import { ContactForm, type ContactFormData } from './contact-form';
 import { ContactInfoCard } from './contact-info-card';
 
 type ContactIconName = 'phone' | 'mail' | 'map-pin';
@@ -128,7 +128,16 @@ export function ContactSection({
           </div>
 
           <motion.div variants={childVariants}>
-            <ContactForm />
+            <ContactForm onSubmit={async (data: ContactFormData) => {
+              const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+              });
+              if (!res.ok) {
+                throw new Error('Failed to submit. Please try again.');
+              }
+            }} />
           </motion.div>
         </div>
       </div>

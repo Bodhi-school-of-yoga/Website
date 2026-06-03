@@ -14,7 +14,6 @@
 // useReducedMotion drops the translate so the card appears statically. Tailwind
 // hover-lift gives a gentle lift + shadow on all four cards.
 
-import * as React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
@@ -72,18 +71,17 @@ function WeekPriceCard({
     <motion.div
       variants={prefersReducedMotion ? undefined : cardVariants}
       className={cn(
-        "flex flex-col gap-5 rounded-2xl border p-6",
-        "motion-safe:transition motion-safe:duration-300 motion-safe:hover:-translate-y-0.5 hover:shadow-md",
+        "flex flex-col justify-between gap-5 rounded-3xl border p-6",
         highlighted
-          ? "border-transparent bg-brand-dark text-text-inverse"
-          : "border-border-1 bg-surface-1 text-text-primary",
+          ? "border-transparent bg-[#005340] text-text-inverse"
+          : "border-[#F0F0F0] bg-[#FBFBFB] text-text-primary",
         className,
       )}
     >
       <div className="flex items-center justify-between gap-3">
         <span
           className={cn(
-            "font-sans text-mini",
+            "font-sans text-sm uppercase tracking-wider",
             highlighted ? "text-text-inverse/80" : "text-text-tertiary",
           )}
         >
@@ -99,15 +97,15 @@ function WeekPriceCard({
       <div className="flex items-baseline gap-1">
         <span
           className={cn(
-            "font-heading text-h2 leading-none",
-            highlighted ? "text-text-inverse" : "text-text-brand",
+            "font-heading text-h2 leading-none font-normal",
+            highlighted ? "text-text-mint-shade" : "text-black",
           )}
         >
           {discount}
         </span>
         <span
           className={cn(
-            "font-sans text-mini",
+            "font-sans text-sm",
             highlighted ? "text-text-inverse/80" : "text-text-tertiary",
           )}
         >
@@ -115,13 +113,14 @@ function WeekPriceCard({
         </span>
       </div>
 
-      <div className="flex items-baseline gap-2">
-        <span className="font-heading text-h4 leading-none">{price}</span>
+      <div className={cn("-mx-6 flex items-baseline gap-2 border-b  px-6 pb-5",highlighted ? "border-text-inverse/20" : "border-[#E2E2E2]")}
+      >
+        <span className="font-heading text-h5 font-normal leading-none ">{price}</span>
         {originalPrice ? (
           <span
             className={cn(
-              "font-sans text-subtext-1 line-through",
-              highlighted ? "text-text-inverse/60" : "text-text-tertiary",
+              "font-sans text-[14px] line-through",
+              highlighted ? "text-text-inverse/60" : "text-[#4A574F]",
             )}
           >
             {originalPrice}
@@ -129,22 +128,20 @@ function WeekPriceCard({
         ) : null}
       </div>
 
-      {typeof progressPct === "number" ? (
-        <ProgressBar
-          value={progressPct}
-          tone={highlighted ? "dark" : "light"}
-          animateOnView
-        />
-      ) : null}
-
       <span
         className={cn(
-          "font-sans text-mini",
+          "font-sans text-sm",
           highlighted ? "text-text-inverse/80" : "text-text-tertiary",
         )}
       >
         {status}
       </span>
+
+      <ProgressBar
+        value={progressPct ?? 0}
+        tone={highlighted ? "dark" : "light"}
+        animateOnView
+      />
     </motion.div>
   );
 }

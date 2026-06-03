@@ -105,7 +105,7 @@ export function YogaDayCoursesSection({
         <motion.div
           {...headerMotion}
           variants={prefersReducedMotion ? undefined : headerVariants}
-          className="flex max-w-[720px] flex-col gap-3"
+          className="mx-auto flex max-w-[720px] flex-col items-center gap-3 text-center"
         >
           <span className="font-heading text-mini uppercase tracking-[0.18em] text-text-brand">
             {eyebrow}
@@ -117,7 +117,7 @@ export function YogaDayCoursesSection({
         </motion.div>
 
         {/* Responsive 3-up grid — same gutters as the homepage course grid. */}
-        <ul className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:mt-12 sm:grid-cols-2 lg:mt-14 xl:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
           {courses.map((course, idx) => {
             const card = (
               <YogaDayCourseCard {...course} priority={idx === 0} />
