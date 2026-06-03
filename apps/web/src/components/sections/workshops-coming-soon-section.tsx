@@ -16,7 +16,8 @@ export type ComingSoonWorkshop = {
   id: string;
   title: string;
   description?: string;
-  price: string;
+  /** Optional price label. When omitted, no price is shown (pricing hidden for now). */
+  price?: string;
   image: { src: string; alt: string };
   mode: string;
   language: string;
@@ -103,9 +104,11 @@ export function WorkshopsComingSoonSection({
                   <h3 className="font-heading font-bold leading-tight text-text-primary text-[20px] sm:text-[24px] lg:text-[28px] tracking-[-0.4px] max-w-[640px]">
                     {w.title}
                   </h3>
-                  <span className="shrink-0 font-heading font-bold text-text-primary text-[18px] lg:text-[22px] tracking-[-0.4px]">
-                    {w.price}
-                  </span>
+                  {w.price ? (
+                    <span className="shrink-0 font-heading font-bold text-text-primary text-[18px] lg:text-[22px] tracking-[-0.4px]">
+                      {w.price}
+                    </span>
+                  ) : null}
                 </div>
 
                 {w.description ? (

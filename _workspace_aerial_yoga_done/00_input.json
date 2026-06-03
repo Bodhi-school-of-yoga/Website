@@ -1,8 +1,0 @@
-{
-  "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=226-31293&m=dev",
-  "file_key": "eqaofBeNUhOUISevtRfOpT",
-  "node_id": "226-31293",
-  "target_page": "trainer-our-page",
-  "scope": "Trainer / Our trainers page — responsive implementation (mobile + tablet + desktop)",
-  "instructions": "Implement the trainer page from Figma. Build component-by-component. Make it responsive across breakpoints. Use Bodhi design tokens (text-h1..h5, text-mini, text-text-primary/brand/tertiary, bg-surface-*, border-border-*) from apps/web/src/app/globals.css — not inline hex or clamp(). Reuse existing components (site-header, footer, etc.) where they exist. Run autonomously through fetch → decompose → interactions → scout → plan → build → QA. Visual-QA compares built page to Figma at desktop and mobile."
-}

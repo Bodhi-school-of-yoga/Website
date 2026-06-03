@@ -1,6 +1,0 @@
-{
-  "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=805-10570&m=dev",
-  "file_key": "eqaofBeNUhOUISevtRfOpT",
-  "node_id": "805:10570",
-  "intent": "Update the Schedule section on the yoga course details page (e.g. apps/web/src/app/courses/aerial-yoga/page.tsx). Build a Schedule section component matching the Figma node, reuse Bodhi design tokens (text-h*, text-mini, text-text-*, bg-surface-*, border-border-*), and wire it onto the existing aerial-yoga course detail page."
-}

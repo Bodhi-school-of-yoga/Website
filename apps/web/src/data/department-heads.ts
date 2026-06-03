@@ -61,7 +61,7 @@ export const departmentHeads: DepartmentHead[] = [
     slug: "sneha-shankar",
     name: "Sneha Shankar",
     role: "children's yoga training",
-    image: "/images/trainers/sneha-shankar.png",
+    image: "/images/trainers/sneha-shankar-cutout.png",
   },
   {
     slug: "sujay-choudhary",

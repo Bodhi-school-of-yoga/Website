@@ -6,7 +6,7 @@
       "title": "Stress Workshop",
       "description": "A practical yoga-based workshop designed to help you slow down, release stress, and feel more emotionally balanced. You'll learn simple breathing techniques, calming yoga practices, and relaxation tools that can be used anytime you feel overwhelmed, anxious, mentally tired, or unable to switch off.",
       "price": "₹249",
-      "image": "stress-workshop.png",
+      "image": "stress-workshop-figma.png",
       "mode": "Online",
       "language": "English"
     },
@@ -15,7 +15,7 @@
       "title": "Women's Hormonal Health Workshop",
       "description": "A women-focused workshop created to support hormonal health through yoga, breathwork, and simple lifestyle practices. This session helps women understand how stress, sleep, movement, and daily habits affect hormones, cycle health, PCOS/PCOD, mood swings, and energy levels.",
       "price": "₹249",
-      "image": "womens-hormonal-health-workshop.png",
+      "image": "womens-hormonal-health-workshop-figma.png",
       "mode": "Online",
       "language": "English"
     },
@@ -24,7 +24,7 @@
       "title": "Back Pain & Posture Workshop",
       "description": "A guided workshop to help you improve posture, reduce back stiffness, and build better awareness of how you sit, stand, and move every day. You'll learn gentle yoga stretches, strengthening practices, and posture correction techniques that support a healthier spine and help reduce everyday back discomfort.",
       "price": "₹249",
-      "image": "back-pain-posture-workshop.png",
+      "image": "back-pain-posture-workshop-figma.png",
       "mode": "Online",
       "language": "English"
     },
@@ -33,7 +33,7 @@
       "title": "Weight Loss Workshop",
       "description": "A sustainable weight-loss focused workshop that combines yoga, breathwork, movement, and simple lifestyle guidance to support better metabolism, digestion, and energy. Instead of extreme workouts or crash diets, this workshop helps you build a healthier routine that feels practical and consistent.",
       "price": "₹249",
-      "image": "weight-loss-workshop.png",
+      "image": "weight-loss-workshop-figma.jpg",
       "mode": "Online",
       "language": "English"
     }

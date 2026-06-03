@@ -1,8 +1,0 @@
-{
-  "figma_url": "https://www.figma.com/design/eqaofBeNUhOUISevtRfOpT/Bodhi-landing-page-web-handoff?node-id=1-9141&m=dev",
-  "file_key": "eqaofBeNUhOUISevtRfOpT",
-  "node_id": "1-9141",
-  "target": "Pre-recorded courses page HERO SECTION (apps/web/src/components/sections/recorded-courses-hero.tsx)",
-  "scope": "Update existing RecordedCoursesHero component to 100% match Figma node 1-9141. Use Bodhi design tokens. Hero scope only — don't touch other sections.",
-  "instructions": "Phase 1: fetch Figma node 1-9141 (design context, screenshot, variables, metadata). Phase 2-3: decompose + scout (existing component is at apps/web/src/components/sections/recorded-courses-hero.tsx). Phase 4-5: edit in place. Phase 6: visual-QA the /pre-recorded-courses route."
-}

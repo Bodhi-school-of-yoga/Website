@@ -1,5 +1,0 @@
-{
-  "node_id": "218:30509",
-  "note": "get_variable_defs returned empty object {} for node 218:30509 (and also when retried). No Figma variables/tokens are attached to this node; colors and typography are inlined as raw hex values inside the Figma context payload. Downstream stages should map hex values to existing Bodhi design tokens (text-text-primary/brand, bg-surface-*, border-border-*) using apps/web/src/app/globals.css as the source of truth.",
-  "variables": {}
-}

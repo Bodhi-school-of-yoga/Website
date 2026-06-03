@@ -8,6 +8,7 @@ import {
   useReducedMotion,
   type Variants,
 } from "framer-motion";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -34,6 +35,8 @@ export interface VideoTestimonialsSectionProps {
   testimonials: VideoTestimonial[];
   /** How many cards to show before the "Show More" overlay */
   initialVisible?: number;
+  /** Auto-advance the carousel; pauses on hover, stops once a video plays */
+  autoScroll?: boolean;
   className?: string;
 }
 
@@ -83,12 +86,17 @@ function SoundIcon() {
 function VideoCard({
   testimonial,
   className,
+  onPlay,
 }: {
   testimonial: VideoTestimonial;
   className?: string;
+  onPlay?: () => void;
 }) {
   const [playing, setPlaying] = useState(false);
-  const handlePlay = useCallback(() => setPlaying(true), []);
+  const handlePlay = useCallback(() => {
+    setPlaying(true);
+    onPlay?.();
+  }, [onPlay]);
 
   const thumbnailUrl = `https://img.youtube.com/vi/${testimonial.videoId}/0.jpg`;
 
@@ -96,8 +104,9 @@ function VideoCard({
     <div
       className={cn(
         "group relative w-full overflow-hidden rounded-[1.25rem] bg-neutral-100",
-        "shadow-[0_2px_20px_-4px_rgba(0,0,0,0.08)]",
-        "transition-shadow duration-300 hover:shadow-[0_8px_40px_-8px_rgba(0,0,0,0.15)]",
+        "shadow-[0_2px_20px_-4px_rgba(0,0,0,0.08)] will-change-transform",
+        "transition-[transform,box-shadow] duration-300 ease-out",
+        "hover:-translate-y-2 hover:shadow-[0_18px_48px_-12px_rgba(0,0,0,0.22)]",
         className,
       )}
     >
@@ -155,37 +164,50 @@ function VideoCard({
 /*  Carousel row (visible row of cards)                                */
 /* ------------------------------------------------------------------ */
 
-function VideoCarouselRow({ items }: { items: VideoTestimonial[] }) {
+function VideoCarouselRow({
+  items,
+  autoScroll = false,
+}: {
+  items: VideoTestimonial[];
+  autoScroll?: boolean;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+  // Only loop/auto-advance when there are enough cards to actually overflow.
+  const enabled = autoScroll && !prefersReducedMotion && items.length > 3;
+
+  // Stable plugin instance — pauses on hover, keeps playing after arrow clicks.
+  const [autoplay] = useState(() =>
+    Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true }),
+  );
+
+  // Once a visitor plays a video, stop auto-advancing so it never scrolls away.
+  const handlePlay = useCallback(() => autoplay.stop(), [autoplay]);
+
   return (
     <Carousel
       opts={{
         align: "start",
-        loop: items.length > 3,
+        loop: enabled || items.length > 3,
         slidesToScroll: 1,
       }}
+      plugins={enabled ? [autoplay] : []}
       className="w-full"
     >
-      <CarouselContent className="-ml-4 lg:-ml-6">
-        {items.map((item, idx) => {
-          const col = idx % 3;
-          const isMiddle = col === 1;
-
-          return (
-            <CarouselItem
-              key={item.id}
-              className="basis-[85%] pl-4 sm:basis-[48%] lg:basis-1/3 lg:pl-6"
-            >
-              <div className={cn(isMiddle && "lg:pt-12")}>
-                <VideoCard testimonial={item} />
-              </div>
-            </CarouselItem>
-          );
-        })}
+      <CarouselContent className="-ml-4 py-2 lg:-ml-6">
+        {items.map((item) => (
+          <CarouselItem
+            key={item.id}
+            className="basis-[85%] pl-4 sm:basis-[48%] lg:basis-1/3 lg:pl-6"
+          >
+            <VideoCard testimonial={item} onPlay={handlePlay} />
+          </CarouselItem>
+        ))}
       </CarouselContent>
 
-      {/* Nav arrows — pushed outside on desktop, overlaid on mobile */}
-      <CarouselPrevious className="-left-4 lg:-left-14" />
-      <CarouselNext className="-right-4 lg:-right-14" />
+      {/* Nav arrows — larger, high-contrast, overlaid just inside the edges so
+          they're always visible (never clipped off-screen). */}
+      <CarouselPrevious className="left-2 z-20 h-11 w-11 border-neutral-200 bg-white text-neutral-900 shadow-[0_6px_22px_-4px_rgba(0,0,0,0.28)] hover:bg-white hover:text-neutral-900 disabled:opacity-0 [&_svg]:!size-5 lg:left-3 lg:h-12 lg:w-12" />
+      <CarouselNext className="right-2 z-20 h-11 w-11 border-neutral-200 bg-white text-neutral-900 shadow-[0_6px_22px_-4px_rgba(0,0,0,0.28)] hover:bg-white hover:text-neutral-900 disabled:opacity-0 [&_svg]:!size-5 lg:right-3 lg:h-12 lg:w-12" />
     </Carousel>
   );
 }
@@ -200,6 +222,7 @@ export function VideoTestimonialsSection({
   description,
   testimonials,
   initialVisible = 3,
+  autoScroll = true,
   className,
 }: VideoTestimonialsSectionProps) {
   const [expanded, setExpanded] = useState(false);
@@ -209,10 +232,14 @@ export function VideoTestimonialsSection({
   const slideSoft = prefersReducedMotion ? 0 : 12;
   const dur = prefersReducedMotion ? 0 : 0.55;
 
-  const hasMore = testimonials.length > initialVisible;
-  const visibleItems = expanded
-    ? testimonials
-    : testimonials.slice(0, initialVisible);
+  // With auto-scroll, everything lives in one continuous scroller — the
+  // "Show More" overlay (and its second stacked row) only applies to the
+  // static layout.
+  const hasMore = !autoScroll && testimonials.length > initialVisible;
+  const visibleItems =
+    autoScroll || expanded
+      ? testimonials
+      : testimonials.slice(0, initialVisible);
 
   const headerWrap: Variants = {
     hidden: {},
@@ -260,11 +287,11 @@ export function VideoTestimonialsSection({
 
         {/* Carousel + show-more wrapper */}
         <div className="relative">
-          <VideoCarouselRow items={visibleItems} />
+          <VideoCarouselRow items={visibleItems} autoScroll={autoScroll} />
 
           {/* Reveal extra cards */}
           <AnimatePresence>
-            {expanded && testimonials.length > initialVisible && (
+            {!autoScroll && expanded && testimonials.length > initialVisible && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}

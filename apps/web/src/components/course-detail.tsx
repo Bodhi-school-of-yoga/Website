@@ -9,6 +9,7 @@ import { CurriculumSection } from "@/components/sections-v2/curriculum-section";
 import { CourseEligibilitySection } from "@/components/sections-v2/course-eligibility-section";
 import { CertificationSection } from "@/components/sections-v2/certification-section";
 import { VideoTestimonialsSection } from "@/components/sections/video-testimonials-section";
+import { TESTIMONIAL_VIDEOS } from "@/data/testimonial-videos";
 import { PrerequisitesSection } from "@/components/sections-v2/prerequisites-section";
 import { InstructorsSection } from "@/components/sections-v2/instructors-section";
 import { FaqSection } from "@/components/sections-v2/faq-section";
@@ -202,11 +203,7 @@ export function CourseDetail({ course }: { course: Course }) {
         <VideoTestimonialsSection
           eyebrow="Testimonials"
           heading="What People Are Saying?"
-          testimonials={[
-            { id: "v1", videoId: "AW3aFUzQcxI" },
-            { id: "v2", videoId: "d7STLMg7Qb0" },
-            { id: "v3", videoId: "PA44LkdEFSg" },
-          ]}
+          testimonials={TESTIMONIAL_VIDEOS}
         />
       </section>
 

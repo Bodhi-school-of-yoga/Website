@@ -16,10 +16,8 @@ import {
   AboutVisionMissionSection,
   type VisionMissionCard,
 } from "@/components/sections/about-vision-mission-section";
-import {
-  VideoTestimonialsSection,
-  type VideoTestimonial,
-} from "@/components/sections/video-testimonials-section";
+import { VideoTestimonialsSection } from "@/components/sections/video-testimonials-section";
+import { TESTIMONIAL_VIDEOS } from "@/data/testimonial-videos";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
 
@@ -119,12 +117,6 @@ const MISSION: VisionMissionCard = {
   ],
 };
 
-const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
-  { id: "v1", videoId: "AW3aFUzQcxI" },
-  { id: "v2", videoId: "d7STLMg7Qb0" },
-  { id: "v3", videoId: "PA44LkdEFSg" },
-];
-
 export default function AboutPage() {
   return (
     <>
@@ -147,7 +139,7 @@ export default function AboutPage() {
         <VideoTestimonialsSection
           eyebrow="TESTIMONIALS"
           heading="What Our Students Say"
-          testimonials={VIDEO_TESTIMONIALS}
+          testimonials={TESTIMONIAL_VIDEOS}
         />
       </main>
       <SiteFooterBlock
