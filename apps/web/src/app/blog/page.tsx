@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import BlogContent from "@/components/blog/blog-content";
+import { SiteFooterBlock } from "@/components/site-footer-block";
+import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -8,5 +10,13 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  return <BlogContent />;
+  return (
+    <>
+      <SiteHeader />
+      <main>
+        <BlogContent />
+      </main>
+      <SiteFooterBlock />
+    </>
+  );
 }

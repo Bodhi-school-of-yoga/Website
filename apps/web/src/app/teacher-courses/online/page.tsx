@@ -6,7 +6,7 @@ import { ListingHeroDecoration } from "@/components/sections/listing-hero-decora
 import { type PopularCourse } from "@/components/sections/popular-courses-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
+import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Online Yoga Teacher Training Courses | Bodhi School of Yoga",
@@ -25,7 +25,7 @@ const COURSES: PopularCourse[] = getCoursesByCategoryAndMode("teacher", "online"
     ],
     instructor: c.instructor,
     ctaLabel: "View Program",
-    ctaHref: `/courses/${c.slug}`,
+    ctaHref: courseHref(c),
     rating: 5,
     reviewCount: 30,
     featured: idx === 0,
@@ -55,7 +55,7 @@ export default function OnlineCoursesPage() {
           tone="light"
           className="bg-[#EFFFFB]"
           minHeightClassName="min-h-[421px]"
-          decoration={<ListingHeroDecoration />}
+          decoration={<ListingHeroDecoration variant="teacher" />}
         />
         <CourseGridSection courses={COURSES} />
       </main>

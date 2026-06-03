@@ -3,8 +3,8 @@
 // CountdownWidget — the hero booking-card countdown.
 //
 // NOTE: This is intentionally NOT the other live widget at ./countdown-widget.tsx
-// (a shared component used by course-card, workshop-detail-hero and
-// recorded-classes-hero). This variant is tuned for the Yoga Day hero: a live
+// (a shared component used by course-card and recorded-classes-hero). This
+// variant is tuned for the Yoga Day hero: a live
 // countdown to International Yoga Day (June 21) with the Figma "Days/Hours/Mins/
 // Secs" labels and the white-card visual treatment.
 //

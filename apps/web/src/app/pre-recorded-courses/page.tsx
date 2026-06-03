@@ -63,18 +63,6 @@ export default function PreRecordedCoursesPage() {
             ))}
           </div>
         </section>
-
-        <ClosingCtaSection
-          eyebrow="Bodhi"
-          headingLead="Begin where"
-          headingAccent="you are."
-          subhead="Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that."
-          primaryCta={{
-            label: "Try a Class, Free",
-            href: "/enquire?intent=try-a-class",
-          }}
-          theme="dark"
-        />
       </main>
       <SiteFooterBlock />
     </>

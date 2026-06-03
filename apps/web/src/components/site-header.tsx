@@ -18,6 +18,7 @@ import {
 import { DropdownCard } from "@/components/nav/dropdown-card";
 import { MegaMenuPanel } from "@/components/nav/mega-menu-panel";
 import { ABOUT_MEGA_MENU, COURSE_DROPDOWNS } from "@/components/nav/nav-data";
+import { CourseSearchDialog } from "@/components/course-search-dialog";
 
 export type CourseDropdownKey = "teacher" | "yoga";
 
@@ -73,6 +74,11 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [searchOpen, setSearchOpen] = React.useState(false);
+
+  // The search button opens the built-in course search by default; a caller can
+  // still override the behaviour by passing `onSearchClick`.
+  const handleSearchClick = onSearchClick ?? (() => setSearchOpen(true));
 
   const inverted = tone === "light" && !scrolled && !mobileOpen;
 
@@ -205,7 +211,7 @@ export function SiteHeader({
           <button
             type="button"
             aria-label="Search"
-            onClick={onSearchClick}
+            onClick={handleSearchClick}
             className={cn(
               "flex h-11 w-11 items-center justify-center rounded-full transition-all duration-200 hover:scale-105 active:scale-95",
               inverted
@@ -273,6 +279,11 @@ export function SiteHeader({
         </div>
       </div>
       </motion.header>
+
+      <CourseSearchDialog
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
 
       <AnimatePresence>
         {mobileOpen && (

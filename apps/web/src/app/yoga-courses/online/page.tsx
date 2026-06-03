@@ -6,7 +6,7 @@ import { ListingHeroDecoration } from "@/components/sections/listing-hero-decora
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
+import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Online Yoga Courses | Bodhi School of Yoga",
@@ -37,7 +37,7 @@ export default function OnlineYogaCoursesPage() {
           tone="light"
           className="bg-[#EFFFFB]"
           minHeightClassName="min-h-[421px]"
-          decoration={<ListingHeroDecoration />}
+          decoration={<ListingHeroDecoration variant="regular" />}
         />
 
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">
@@ -47,9 +47,12 @@ export default function OnlineYogaCoursesPage() {
                 <li key={course.slug}>
                   <ProgramCard
                     title={course.title}
-                    href={`/courses/${course.slug}`}
+                    href={courseHref(course)}
                     imageSrc={course.listingImage}
                     imageAlt={course.title}
+                    imageClassName={
+                      course.slug === "daily-regular-yoga-online" ? "object-top" : undefined
+                    }
                     meta={[
                       {
                         icon: <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />,

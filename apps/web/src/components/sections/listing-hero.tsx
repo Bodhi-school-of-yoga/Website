@@ -15,6 +15,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { cn } from "@/lib/utils";
+import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
 export type BreadcrumbItem = {
   label: string;
@@ -128,6 +129,7 @@ export function ListingHero({
   const isLight = tone === "light";
   const isGradient = background === "gradient";
   const prefersReducedMotion = useReducedMotion();
+  const { visible: bannerVisible } = usePromoBanner();
 
   const containerVariants: Variants = {
     hidden: {},
@@ -168,12 +170,12 @@ export function ListingHero({
         contentAlign === "center" && "items-center",
         contentAlign !== "top" && contentAlign !== "center" && "items-end",
         !verticalPaddingClassName && isLight && !backgroundImage &&
-          "pt-28 pb-10 sm:pt-32 sm:pb-12 lg:pt-36 lg:pb-14",
+          (bannerVisible ? "pt-40 pb-10 sm:pt-44 sm:pb-12 lg:pt-48 lg:pb-14" : "pt-28 pb-10 sm:pt-32 sm:pb-12 lg:pt-36 lg:pb-14"),
         !verticalPaddingClassName && !(isLight && !backgroundImage) && contentAlign === "top" &&
-          "pt-28 pb-28 sm:pt-32 sm:pb-32 lg:pt-[120px] lg:pb-[150px]",
-        !verticalPaddingClassName && !(isLight && !backgroundImage) && contentAlign === "center" && "pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24",
+          (bannerVisible ? "pt-40 pb-28 sm:pt-44 sm:pb-32 lg:pt-[168px] lg:pb-[150px]" : "pt-28 pb-28 sm:pt-32 sm:pb-32 lg:pt-[120px] lg:pb-[150px]"),
+        !verticalPaddingClassName && !(isLight && !backgroundImage) && contentAlign === "center" && (bannerVisible ? "pt-36 pb-16 sm:pt-40 sm:pb-20 lg:pt-44 lg:pb-24" : "pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24"),
         !verticalPaddingClassName && !(isLight && !backgroundImage) && contentAlign !== "top" && contentAlign !== "center" &&
-          "pt-32 pb-12 sm:pt-36 sm:pb-14 lg:pt-40 lg:pb-16",
+          (bannerVisible ? "pt-44 pb-12 sm:pt-48 sm:pb-14 lg:pt-56 lg:pb-16" : "pt-32 pb-12 sm:pt-36 sm:pb-14 lg:pt-40 lg:pb-16"),
         verticalPaddingClassName,
         className,
       )}
@@ -202,7 +204,14 @@ export function ListingHero({
       ) : null}
 
       <motion.div
-        className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-start page-px text-left"
+        className={cn(
+          "relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-start page-px text-left",
+          // When a page overrides the band padding via `verticalPaddingClassName`,
+          // the banner-aware section padding below is bypassed — so nudge the
+          // content down here instead to clear the promo bar. Margin (not the
+          // absolute background image) keeps the hero photo flush to the top.
+          verticalPaddingClassName && bannerVisible && "mt-12",
+        )}
         variants={containerVariants}
         initial="hidden"
         animate="show"

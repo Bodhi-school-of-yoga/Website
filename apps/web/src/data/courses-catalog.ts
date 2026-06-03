@@ -246,6 +246,21 @@ export const CATEGORY_BASE_PATH: Record<CourseCategory, string> = {
   yoga: "/yoga-courses",
 };
 
+// Canonical URL for a course's detail page: nested under its category + mode
+// listing route, e.g. /teacher-courses/online/200-hour-ytt-online. The catalog
+// stores the studio mode as "studio" but its route segment is "offline".
+export function courseModeSegment(mode: CourseMode): "online" | "offline" {
+  return mode === "studio" ? "offline" : "online";
+}
+
+export function courseHref(
+  course: Pick<Course, "category" | "mode" | "slug">,
+): string {
+  return `${CATEGORY_BASE_PATH[course.category]}/${courseModeSegment(
+    course.mode,
+  )}/${course.slug}`;
+}
+
 export const MODE_LABELS: Record<CourseMode, string> = {
   online: "Online",
   studio: "Studio",

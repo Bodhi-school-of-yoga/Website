@@ -5,15 +5,17 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/shared/container";
+import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
 export default function BlogPostContent({ slug }: { slug: string }) {
+  const { visible: bannerVisible } = usePromoBanner();
   const title = slug
     .split("-")
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 
   return (
-    <section className="py-20">
+    <section className={bannerVisible ? "pt-44 pb-20" : "pt-32 pb-20"}>
       <Container className="max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

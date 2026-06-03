@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import BlogPostContent from "@/components/blog/blog-post-content";
+import { SiteFooterBlock } from "@/components/site-footer-block";
+import { SiteHeader } from "@/components/site-header";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -22,5 +24,13 @@ export async function generateMetadata(
 
 export default async function BlogPostPage(props: BlogPostPageProps) {
   const { slug } = await props.params;
-  return <BlogPostContent slug={slug} />;
+  return (
+    <>
+      <SiteHeader />
+      <main>
+        <BlogPostContent slug={slug} />
+      </main>
+      <SiteFooterBlock />
+    </>
+  );
 }

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/shared/container";
 import SectionHeading from "@/components/shared/section-heading";
+import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
 const posts = [
   {
@@ -61,8 +62,9 @@ const posts = [
 ];
 
 export default function BlogContent() {
+  const { visible: bannerVisible } = usePromoBanner();
   return (
-    <section className="py-20 bg-gradient-to-b from-primary/5 to-background">
+    <section className={`${bannerVisible ? "pt-44" : "pt-32"} pb-20 bg-gradient-to-b from-primary/5 to-background`}>
       <Container>
         <SectionHeading
           title="From the Mat"

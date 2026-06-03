@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { Search, Navigation, MapPin, LocateFixed, X, Map } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
 import { BODHI_CENTERS, type Center } from "./centers-data";
 
@@ -59,6 +60,7 @@ export function CentersSection({
   centers = BODHI_CENTERS,
   className,
 }: CentersSectionProps) {
+  const { visible: bannerVisible } = usePromoBanner();
   const [pincode, setPincode] = React.useState("");
   const [selectedId, setSelectedId] = React.useState<string | null>(
     centers[0]?.id ?? null,
@@ -220,7 +222,7 @@ export function CentersSection({
     <section
       className={cn(
         "w-full bg-[linear-gradient(180deg,var(--color-surface-0),var(--color-surface-1))]",
-        "pt-32 pb-20",
+        bannerVisible ? "pt-44 pb-20" : "pt-32 pb-20",
         className,
       )}
     >

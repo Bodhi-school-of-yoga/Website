@@ -11,6 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
 export type HeroOfferChip = {
   eyebrow: string;
@@ -78,6 +79,7 @@ export function HeroSection({
   offers = DEFAULT_OFFERS,
   className,
 }: HeroSectionProps) {
+  const { visible: bannerVisible } = usePromoBanner();
   return (
     <section
       className={cn(
@@ -96,6 +98,7 @@ export function HeroSection({
         watermark={watermark}
         offerLabel={offerLabel}
         offers={offers}
+        bannerVisible={bannerVisible}
       />
       <HeroMobile
         eyebrow={eyebrow}
@@ -106,6 +109,7 @@ export function HeroSection({
         photoAlt={photoAlt}
         offerLabel={offerLabel}
         offers={offers}
+        bannerVisible={bannerVisible}
       />
     </section>
   );
@@ -128,7 +132,7 @@ type DesktopProps = Required<
     | "offerLabel"
     | "offers"
   >
->;
+> & { bannerVisible: boolean };
 
 function HeroDesktop({
   eyebrow,
@@ -140,12 +144,14 @@ function HeroDesktop({
   watermark,
   offerLabel,
   offers,
+  bannerVisible,
 }: DesktopProps) {
   return (
     <div
       className={cn(
         "hero-1920",
-        "relative hidden lg:block pt-[2rem]",
+        "relative hidden lg:block",
+        bannerVisible ? "pt-[80px]" : "pt-[2rem]",
         "min-h-(--hero-min-h)",
       )}
     >
@@ -312,6 +318,7 @@ function HeroMobile({
   photoAlt,
   offerLabel,
   offers,
+  bannerVisible,
 }: MobileProps) {
   return (
     <div className="relative lg:hidden">
@@ -319,7 +326,7 @@ function HeroMobile({
         className={cn(
           "mx-auto w-full max-w-[720px]",
           "px-5 sm:px-8",
-          "pt-16 pb-10 sm:pt-20 mt-7",
+          bannerVisible ? "pt-[112px] pb-10 sm:pt-[128px] mt-7" : "pt-16 pb-10 sm:pt-20 mt-7",
         )}
       >
         <p

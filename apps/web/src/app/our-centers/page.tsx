@@ -16,7 +16,7 @@ export default function OurCentersPage() {
       <main>
         <CentersSection />
       </main>
-      <SiteFooterBlock cta={{ primaryCta: { label: "Try a Class, Free", href: "/classes" } }} />
+      <SiteFooterBlock />
     </>
   );
 }

@@ -38,6 +38,12 @@ export type ProgramCardProps = {
   href: string;
   imageSrc: string;
   imageAlt?: string;
+  /**
+   * Extra classes for the card image — additive, opt-in. Use to override the
+   * default `object-center` crop (e.g. `object-top`) when a photo's subject
+   * sits off-centre. Leave unset to keep the standard centred cover.
+   */
+  imageClassName?: string;
   meta?: ProgramCardMetaItem[];
   cta?: string;
   className?: string;
@@ -100,6 +106,7 @@ export function ProgramCard({
   className,
   priority = false,
   variant = "course",
+  imageClassName,
   modeBadge,
   rating,
   reviewCount,
@@ -142,7 +149,10 @@ export function ProgramCard({
           alt={imageAlt}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-[400ms] ease-in-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:transform-none motion-reduce:hover:transform-none"
+          className={cn(
+            "object-cover object-center transition-transform duration-[400ms] ease-in-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:transform-none motion-reduce:hover:transform-none",
+            imageClassName,
+          )}
           priority={priority}
         />
 

@@ -177,7 +177,12 @@ export function CourseHero({
     >
       <div className={`page-px mx-auto w-full max-w-[1200px] pb-[64px] sm:pb-20 lg:pb-[80px] ${topPad}`}>
         <motion.div
-          initial="hidden"
+          // Render directly in the resolved "visible" state (no hidden→visible
+          // enter gate). Framer otherwise drives the entrance via rAF, which the
+          // browser pauses while the tab is backgrounded — stranding the whole
+          // hero at opacity 0 until a scroll wakes it. initial={false} guarantees
+          // the content paints immediately regardless of tab focus.
+          initial={false}
           animate="visible"
           variants={container}
           className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-[92px] lg:items-center"

@@ -7,7 +7,7 @@ import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { getCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
+import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Regular yoga classes| Bodhi School of Yoga",
@@ -38,7 +38,7 @@ export default function OfflineYogaCoursesPage() {
           tone="light"
           className="bg-[#EFFFFB]"
           minHeightClassName="min-h-[421px]"
-          decoration={<ListingHeroDecoration />}
+          decoration={<ListingHeroDecoration variant="regular" />}
         />
 
         {/* Location filter */}
@@ -59,7 +59,7 @@ export default function OfflineYogaCoursesPage() {
                 <li key={course.slug}>
                   <ProgramCard
                     title={course.title}
-                    href={`/courses/${course.slug}`}
+                    href={courseHref(course)}
                     imageSrc={course.listingImage}
                     imageAlt={course.title}
                     meta={[

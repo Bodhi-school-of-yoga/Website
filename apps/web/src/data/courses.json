@@ -1740,118 +1740,6 @@
     ]
   },
   {
-    "slug": "happy-weight-loss",
-    "title": "Happy Weight Loss Classes",
-    "titleLead": "Happy",
-    "titleAccent": "Weight Loss",
-    "category": "yoga",
-    "mode": "online",
-    "shortDescription": "Bodhi's 21-day Weight Loss Transformation — yoga, breath, mindful nutrition, and weekly coaching for sustainable change.",
-    "durationLabel": "21 days",
-    "scheduleLabel": "Mon – Fri",
-    "listingImage": "/images/programs/yoga-online-happy-weight-loss.jpg",
-    "heroImage": "/images/programs/yoga-online-happy-weight-loss.jpg",
-    "instructor": {
-      "initials": "JD",
-      "name": "Janardhan Durga Prasad"
-    },
-    "overview": [
-      "A 21-day guided transformation combining live online yoga, breath-work, and mindful nutrition for sustainable weight loss.",
-      "Weekday sessions only — designed for people with full-time work who want a realistic, repeatable rhythm.",
-      "Includes weekly check-ins, simple recipes, and a private community for accountability."
-    ],
-    "highlights": [
-      {
-        "icon": "yoga",
-        "iconSrc": "/icon/course1.svg",
-        "title": "Targeted Yoga",
-        "body": "Dynamic flows, twists, and inversions that move stuck energy."
-      },
-      {
-        "icon": "leaf",
-        "iconSrc": "/icon/course4.svg",
-        "title": "Mindful Eating",
-        "body": "Sustainable food habits — no crash dieting."
-      },
-      {
-        "icon": "strength",
-        "iconSrc": "/icon/course5.svg",
-        "title": "Daily Movement",
-        "body": "Weekday yoga sessions with progressive intensity."
-      },
-      {
-        "icon": "smile",
-        "iconSrc": "/icon/course6.svg",
-        "title": "Happy, Not Harsh",
-        "body": "Joy-led programme — celebrate progress, not punish."
-      },
-      {
-        "icon": "people",
-        "iconSrc": "/icon/course7.svg",
-        "title": "Daily Check-ins",
-        "body": "Accountability messaging and coach support throughout the 21 days."
-      },
-      {
-        "icon": "rocket",
-        "iconSrc": "/icon/course8.svg",
-        "title": "Lasting Results",
-        "body": "Habits and tools that stay long after the programme ends."
-      }
-    ],
-    "curriculum": [
-      {
-        "title": "Week 1 — Foundations",
-        "body": "Baseline measurements, breath-work, mindful eating intro."
-      },
-      {
-        "title": "Week 1 — Cleansing",
-        "body": "Yogic detox practices and hydration reset."
-      },
-      {
-        "title": "Week 2 — Build Strength",
-        "body": "Surya Namaskara, Shakthi Bandhana, dynamic flows."
-      },
-      {
-        "title": "Week 2 — Nutrition Reset",
-        "body": "Yogic diet, simple meal plans, plate guide."
-      },
-      {
-        "title": "Week 3 — Deepen Practice",
-        "body": "Twists, inversions, and longer holds."
-      },
-      {
-        "title": "Week 3 — Integrate",
-        "body": "Build a sustainable practice and meal plan beyond day 21."
-      }
-    ],
-    "prerequisites": [
-      "Medical clearance if you have a chronic condition.",
-      "Open mind — willingness to try mindful eating practices.",
-      "Stable internet for live sessions and check-ins."
-    ],
-    "instructors": [
-      {
-        "name": "Janardhan Durga Prasad",
-        "role": "Lead Faculty · Weight Loss Coach",
-        "avatar": "/images/trainers/janardhan-durga-prasad.png"
-      }
-    ],
-    "faqs": [
-      {
-        "question": "Is this course Yoga Alliance accredited?",
-        "answer": "Bodhi School of Yoga is a Yoga Alliance Registered School (RYS-200, RYS-300, RPYT, RCYT). Hours from this course count toward your Yoga Alliance continuing education credits."
-      },
-      {
-        "question": "What if I miss a live session?",
-        "answer": "Every live session is recorded and uploaded to your student dashboard within 24 hours. You can revisit lessons as many times as you want during the course window."
-      },
-      {
-        "question": "Do I get a certificate after completion?",
-        "answer": "Yes — on successful completion of attendance and final assessments you receive a Bodhi School of Yoga certificate that you can share on LinkedIn and use professionally."
-      }
-    ]
-  },
-  {
     "slug": "advanced-yoga-mat-pilates",
     "title": "Advanced Yoga & Mat-Pilates Classes",
     "titleLead": "Advanced Yoga",
@@ -1979,8 +1867,8 @@
     "shortDescription": "Drop-in daily yoga at Bodhi centres — weekday mornings and evenings, 50-minute classes for every level.",
     "durationLabel": "4 weeks",
     "scheduleLabel": "Mon – Fri",
-    "listingImage": "/images/programs/yoga-online-daily-regular.jpg",
-    "heroImage": "/images/programs/yoga-online-daily-regular.jpg",
+    "listingImage": "/images/programs/daily-regular-yoga-offline.jpg",
+    "heroImage": "/images/programs/daily-regular-yoga-offline.jpg",
     "instructor": {
       "initials": "SG",
       "name": "Swetangana Nandan Gogoi"

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
 export type RecordedCoursesHeroProps = {
   backgroundImage: string;
@@ -25,6 +26,7 @@ export function RecordedCoursesHero({
   className,
 }: RecordedCoursesHeroProps) {
   const prefersReducedMotion = useReducedMotion();
+  const { visible: bannerVisible } = usePromoBanner();
 
   const container: Variants = {
     hidden: {},
@@ -50,7 +52,7 @@ export function RecordedCoursesHero({
         "relative w-full overflow-hidden text-text-inverse",
         "min-h-[460px] sm:min-h-[500px] lg:min-h-[565px]",
         "flex items-start page-px",
-        "pt-28 pb-32 sm:pt-32 sm:pb-36 lg:pt-[178px] lg:pb-40",
+        bannerVisible ? "pt-40 pb-32 sm:pt-44 sm:pb-36 lg:pt-[226px] lg:pb-40" : "pt-28 pb-32 sm:pt-32 sm:pb-36 lg:pt-[178px] lg:pb-40",
         className,
       )}
     >
