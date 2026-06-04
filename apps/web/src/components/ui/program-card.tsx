@@ -195,7 +195,7 @@ export function ProgramCard({
         )}
       </div>
 
-      <CardHeader className={cn("gap-3 px-7 pt-6", isArticle && "px-8")}>
+      <CardHeader className={cn("gap-3 px-5 sm:px-7 pt-5 sm:pt-6", isArticle && "px-6 sm:px-8")}>
         <CardTitle
           className={cn(
             "text-h5 leading-tight",
@@ -233,7 +233,7 @@ export function ProgramCard({
 
       {!isArticle && (
         <>
-          <CardContent className="px-7 pt-0 pb-6">
+          <CardContent className="px-5 sm:px-7 pt-0 pb-4 sm:pb-6">
             {price && (
               <div className="mt-4 flex items-baseline gap-2.5">
                 <span className="font-heading text-[22px] font-extrabold leading-none text-text-brand tracking-tight">
@@ -256,14 +256,14 @@ export function ProgramCard({
           {/* Footer CTA — text link separated by a thin divider. */}
           <CardFooter
             className={cn(
-              "mt-auto px-7 py-0",
+              "mt-auto px-5 sm:px-7 py-0",
               "rounded-none border-0 bg-transparent",
             )}
           >
             <Link
               href={href}
               className={cn(
-                "group/cta -mx-7 flex w-[calc(100%+3.5rem)] items-center gap-2 border-t border-border-1 px-7 py-4",
+                "group/cta -mx-5 sm:-mx-7 flex w-[calc(100%+2.5rem)] sm:w-[calc(100%+3.5rem)] items-center gap-2 border-t border-border-1 px-5 sm:px-7 py-3 sm:py-4",
                 "bg-[#64cbb52f] text-brand-primary",
                 "transition-colors duration-200 ease-in-out",
                 // Dark fill on card hover (and direct hover) for a crisp CTA reveal.

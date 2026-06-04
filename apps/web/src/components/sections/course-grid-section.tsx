@@ -36,7 +36,7 @@ export default function CourseGridSection({
   return (
     <section className={cn("bg-surface-default", className)}>
       <div className="mx-auto max-w-[1200px] page-px py-16 sm:py-20 lg:py-24">
-        <ul className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-x-5 gap-y-6 sm:gap-x-6 sm:gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
           {courses.map((course, idx) => {
             const card = (
               <ProgramCard

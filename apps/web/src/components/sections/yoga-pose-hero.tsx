@@ -55,7 +55,7 @@ export function YogaPoseHero({
     <section
       className={cn(
         "w-full bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]",
-        "pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20",
+        "pt-24 pb-10 sm:pt-28 sm:pb-14 lg:pt-36 lg:pb-20",
         className,
       )}
     >
@@ -91,13 +91,13 @@ export function YogaPoseHero({
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="mt-8 grid items-center gap-10 lg:mt-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+        <div className="mt-6 sm:mt-8 grid items-center gap-8 sm:gap-10 lg:mt-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           {/* Content */}
           <div className="flex flex-col items-start">
             <p className="text-mini uppercase tracking-widest text-text-brand">
               {categoryLabel}
             </p>
-            <h1 className="mt-3 font-heading text-h2 text-text-primary lg:text-h1">
+            <h1 className="mt-3 font-heading text-[clamp(1.75rem,4vw+0.5rem,5.625rem)] leading-[1.15] text-text-primary">
               {name}
             </h1>
             <p className="mt-2 font-heading text-h5 italic text-text-tertiary">
@@ -117,7 +117,7 @@ export function YogaPoseHero({
 
           {/* Pose photo */}
           <div className="relative w-full">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] border border-black/[0.06] bg-surface-2 shadow-[0_24px_60px_-24px_rgba(0,40,44,0.35)]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] sm:rounded-[28px] border border-black/[0.06] bg-surface-2 shadow-[0_24px_60px_-24px_rgba(0,40,44,0.35)]">
               {image ? (
                 <Image
                   src={`/images/yoga-poses/${image}`}

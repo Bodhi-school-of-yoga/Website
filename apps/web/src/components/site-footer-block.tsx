@@ -74,7 +74,7 @@ const DEFAULT_CTA: ClosingCtaSectionProps = {
   headingAccent: "you are.",
   subhead:
     "Whether you want to teach, heal a specific thing, or simply move and breathe with people once a week — there's a door at Bodhi for that.",
-  primaryCta: { label: "Try a class, free", href: "/contact" },
+  primaryCta: { label: "Enquire Now", href: "/contact" },
 };
 
 // ---------------------------------------------------------------------------

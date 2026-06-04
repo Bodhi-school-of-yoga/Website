@@ -83,7 +83,7 @@ export function ExperienceHarmonyStatsBand({
   return (
     <section
       className={cn(
-        "relative w-full overflow-hidden bg-brand-lite py-0 sm:py-28 lg:py-0 ",
+        "relative w-full overflow-hidden bg-brand-lite py-0",
         className,
       )}
     >
@@ -104,14 +104,14 @@ export function ExperienceHarmonyStatsBand({
         className="md:mt-8"
       /> */}
 
-      <div className="relative z-10 mx-auto flex max-w-[1140px] flex-col items-center gap-12 page-px text-center lg:gap-16 mt-28 mb-16">
-        <h2 className="font-heading -mt-12 text-[22px] text-text-primary lg:text-h3">
+      <div className="relative z-10 mx-auto flex max-w-[1140px] flex-col items-center gap-8 sm:gap-10 lg:gap-16 page-px text-center mt-12 sm:mt-16 md:mt-20 lg:mt-28 mb-10 sm:mb-12 lg:mb-16">
+        <h2 className="font-heading text-[clamp(1.25rem,3vw+0.25rem,2.625rem)] leading-[1.3] text-text-primary">
           <span>{headlineLead}</span>
           <span className="text-text-brand">{headlineAccent}</span>
           {headlineTrail ? <span>{headlineTrail}</span> : null}
         </h2>
 
-        <ul className="grid w-full grid-cols-2 gap-x-6 gap-y-10 text-center sm:grid-cols-4 sm:gap-x-8 lg:gap-x-10">
+        <ul className="grid w-full grid-cols-2 gap-x-4 gap-y-8 text-center sm:grid-cols-4 sm:gap-x-6 lg:gap-x-10">
           {stats.map((stat) => {
             const { value, suffix } = splitStatValue(stat.value);
             return (
@@ -119,10 +119,10 @@ export function ExperienceHarmonyStatsBand({
                 key={stat.label}
                 className="flex flex-col items-center gap-2 text-center"
               >
-                <span className="font-normal text-h3 leading-none text-text-brand lg:text-h2">
+                <span className="font-normal text-[clamp(1.75rem,4vw+0.5rem,3.25rem)] leading-none text-text-brand">
                   <AnimatedCount value={value} suffix={suffix} />
                 </span>
-                <span className="text-h6 md:text-body-sm text-text-tertiary">
+                <span className="text-[13px] sm:text-body-sm text-text-tertiary leading-snug">
                   {stat.label}
                 </span>
               </li>

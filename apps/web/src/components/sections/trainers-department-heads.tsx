@@ -29,8 +29,7 @@ export function TrainersDepartmentHeads({
   return (
     <section
       className={cn(
-        "hidden md:block",
-        "w-full bg-surface-1 py-16 sm:py-20 lg:py-24",
+        "w-full bg-surface-1 py-10 sm:py-14 md:py-16 lg:py-24",
         className,
       )}
     >
@@ -48,7 +47,7 @@ export function TrainersDepartmentHeads({
           <h2
             className={cn(
               "font-heading font-bold text-text-secondary",
-              "text-h4 sm:text-h3 lg:text-[44px] lg:leading-[1.2]",
+              "text-[clamp(1.375rem,3vw+0.25rem,2.75rem)] leading-[1.2]",
             )}
           >
             {title}
@@ -57,7 +56,7 @@ export function TrainersDepartmentHeads({
 
         <div
           className={cn(
-            "mt-10 grid gap-x-6 gap-y-12",
+            "mt-8 sm:mt-10 grid gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-12",
             "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5",
           )}
         >

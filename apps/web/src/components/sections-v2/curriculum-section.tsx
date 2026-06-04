@@ -41,7 +41,7 @@ export function CurriculumSection({
       };
 
   return (
-    <section className="bg-surface-1 py-14 md:py-16 lg:py-20">
+    <section className="bg-surface-1 py-12 sm:py-14 md:py-16 lg:py-20">
       <div className="mx-auto max-w-[1200px] page-px">
         {/* Eyebrow + heading */}
         <div className="flex flex-col items-start gap-1">
@@ -60,7 +60,7 @@ export function CurriculumSection({
             whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
             transition={{ delay: prefersReducedMotion ? 0 : 0.08 }}
-            className="font-heading text-[28px] md:text-[30px] lg:text-[34px] font-bold leading-[1.04] text-text-secondary"
+            className="font-heading text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] font-bold leading-[1.2] text-text-secondary"
           >
             {heading}
           </motion.h2>

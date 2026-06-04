@@ -197,7 +197,7 @@ function VideoCarouselRow({
         {items.map((item) => (
           <CarouselItem
             key={item.id}
-            className="basis-[85%] pl-4 sm:basis-[48%] lg:basis-1/3 lg:pl-6"
+            className="basis-[78%] pl-4 sm:basis-[48%] md:basis-[38%] lg:basis-1/3 lg:pl-6"
           >
             <VideoCard testimonial={item} onPlay={handlePlay} />
           </CarouselItem>
@@ -255,11 +255,11 @@ export function VideoTestimonialsSection({
   };
 
   return (
-    <section className={cn("w-full bg-[#FCFCFC] py-20 sm:py-24 lg:py-28", className)}>
+    <section className={cn("w-full bg-[#FCFCFC] py-12 sm:py-16 md:py-20 lg:py-28", className)}>
       <div className="mx-auto max-w-[1200px] page-px">
         {/* Header */}
         <motion.header
-          className="mx-auto mb-16 max-w-2xl text-center"
+          className="mx-auto mb-8 sm:mb-12 lg:mb-16 max-w-2xl text-center"
           variants={headerWrap}
           initial="hidden"
           whileInView="visible"
@@ -273,7 +273,7 @@ export function VideoTestimonialsSection({
           {heading && (
             <motion.h2
               variants={headingV}
-              className="mt-3 font-heading text-h4 sm:text-h3 lg:text-h2 text-text-secondary"
+              className="mt-3 font-heading text-[clamp(1.375rem,3.5vw+0.25rem,3.25rem)] leading-[1.2] text-text-secondary"
             >
               {heading}
             </motion.h2>

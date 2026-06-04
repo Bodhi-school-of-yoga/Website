@@ -98,7 +98,7 @@ export function ClosingCtaSection({
           variants={fadeInUp}
           className={cn(
             "mt-0 font-heading font-normal leading-[1.1] tracking-tight",
-            "text-[40px] sm:text-[64px] md:text-[80px] lg:text-[90px]",
+            "text-[clamp(2rem,6vw+0.5rem,5.625rem)]",
             isLight ? "text-text-secondary" : "text-text-inverse",
           )}
         >
@@ -131,7 +131,7 @@ export function ClosingCtaSection({
               "inline-flex items-center justify-center gap-2 rounded-full",
               "font-semibold  ",
               "px-[22px] py-[13px] text-[13.5px]",
-              "sm:px-[23px] sm:py-[15px] sm:text-[16px]",
+              "sm:px-[43px] sm:py-[12px] sm:text-[16px]",
               // Hover lift + press scale (Tailwind primitives)
               "transition-all duration-200 ease-out hover:-translate-y-0.5",
               "active:scale-[0.98]",

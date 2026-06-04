@@ -41,7 +41,7 @@ export function TrainersMeetAll({
   return (
     <section
       className={cn(
-        "w-full bg-surface-1 py-14 sm:py-20 lg:py-24",
+        "w-full bg-surface-1 py-10 sm:py-14 md:py-20 lg:py-24",
         className,
       )}
     >
@@ -59,7 +59,7 @@ export function TrainersMeetAll({
           <h2
             className={cn(
               "font-heading font-bold text-text-secondary",
-              "text-h4 sm:text-h3 lg:text-[43px] lg:leading-[1.2]",
+              "text-[clamp(1.375rem,3vw+0.25rem,2.75rem)] leading-[1.2]",
             )}
           >
             {title}
@@ -68,8 +68,8 @@ export function TrainersMeetAll({
 
         <div
           className={cn(
-            "mt-10 sm:mt-12 grid gap-x-5 gap-y-7",
-            "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6",
+            "mt-8 sm:mt-10 lg:mt-12 grid gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-7",
+            "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6",
           )}
         >
           {trainers.map((t) => (

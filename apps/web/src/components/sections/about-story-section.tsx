@@ -56,12 +56,12 @@ export function AboutStorySection({
     <section
       id="story"
       className={cn(
-        "w-full bg-surface-1 py-20 sm:py-24 lg:py-28",
+        "w-full bg-surface-1 py-12 sm:py-16 md:py-20 lg:py-28",
         className,
       )}
     >
       <div className="mx-auto max-w-[1200px] page-px">
-        <div className="flex flex-col gap-y-16 lg:gap-y-24">
+        <div className="flex flex-col gap-y-10 sm:gap-y-14 lg:gap-y-24">
           {rows.map((row) => {
             const imageOrder =
               row.direction === "image-left" ? "lg:order-1" : "lg:order-2";
@@ -77,7 +77,7 @@ export function AboutStorySection({
               >
                 <div
                   className={cn(
-                    "relative aspect-[4/3] overflow-hidden rounded-[28px] bg-surface-2",
+                    "relative aspect-[16/10] sm:aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[28px] bg-surface-2",
                     "lg:col-span-5",
                     imageOrder,
                   )}
@@ -100,7 +100,7 @@ export function AboutStorySection({
                   <h2
                     className={cn(
                       "font-heading text-text-primary",
-                      "text-h4 sm:text-h3 lg:text-h2",
+                      "text-[clamp(1.375rem,3vw+0.25rem,3.25rem)] leading-[1.2]",
                     )}
                   >
                     {row.title}

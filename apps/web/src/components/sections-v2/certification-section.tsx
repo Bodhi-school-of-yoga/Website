@@ -45,7 +45,7 @@ export function CertificationSection({
 
   return (
     <section className="bg-surface-1">
-      <div className="py-14 md:py-20 lg:py-24">
+      <div className="py-12 sm:py-16 md:py-20 lg:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -63,7 +63,7 @@ export function CertificationSection({
             </motion.p>
             <motion.h2
               variants={fadeInUpSlow}
-              className="text-[28px] md:text-[34px] font-heading font-bold leading-[1.04] text-text-secondary"
+              className="text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] font-heading font-bold leading-[1.2] text-text-secondary"
             >
               {heading}
             </motion.h2>
@@ -72,7 +72,7 @@ export function CertificationSection({
           {/* Dark green panel */}
           <motion.div
             variants={fadeInUpSlow}
-            className="rounded-[16px] bg-brand-green-darkest px-6 py-8 md:px-[40px] md:pt-[31px] md:pb-[36px]"
+            className="rounded-[16px] sm:rounded-[20px] bg-brand-green-darkest px-5 py-6 sm:px-6 sm:py-8 md:px-[40px] md:pt-[31px] md:pb-[36px]"
           >
             <div className="flex flex-col gap-[9px] text-center md:text-left">
               <h3 className="text-[24px] md:text-[28px] font-heading font-bold leading-[1.26] text-text-inverse">

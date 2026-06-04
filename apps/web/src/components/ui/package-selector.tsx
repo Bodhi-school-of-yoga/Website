@@ -97,7 +97,7 @@ export function PackageSelector({
         role="radiogroup"
         aria-label={label}
         onKeyDown={handleKeyDown}
-        className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-3"
+        className="mt-3 grid grid-cols-3 gap-2 sm:gap-2.5"
       >
         {described.map((plan, idx) => {
           const isSelected = idx === selected;
@@ -110,7 +110,7 @@ export function PackageSelector({
               tabIndex={isSelected ? 0 : -1}
               onClick={() => setSelected(idx)}
               className={[
-                'relative flex min-h-[96px] flex-col items-center justify-center gap-1 rounded-[14px] border px-3 py-3.5 text-center',
+                'relative flex min-h-[80px] sm:min-h-[96px] flex-col items-center justify-center gap-0.5 sm:gap-1 rounded-[12px] sm:rounded-[14px] border px-2 py-2.5 sm:px-3 sm:py-3.5 text-center',
                 'motion-safe:transition-colors motion-safe:duration-200',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1',
                 isSelected

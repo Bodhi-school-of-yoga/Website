@@ -88,7 +88,7 @@ export function WorkshopsComingSoonSection({
               )}
             >
               {/* Left: workshop photo */}
-              <div className="relative h-[220px] w-full shrink-0 sm:h-auto sm:w-[340px] lg:w-[420px] sm:self-stretch">
+              <div className="relative h-[200px] sm:h-auto w-full shrink-0 sm:w-[280px] md:w-[340px] lg:w-[420px] sm:self-stretch">
                 <Image
                   src={w.image.src}
                   alt={w.image.alt}
@@ -99,9 +99,9 @@ export function WorkshopsComingSoonSection({
               </div>
 
               {/* Right: content */}
-              <div className="flex flex-1 flex-col p-6 sm:p-8 lg:p-10">
+              <div className="flex flex-1 flex-col p-5 sm:p-6 md:p-8 lg:p-10">
                 <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-heading font-bold leading-tight text-text-primary text-[20px] sm:text-[24px] lg:text-[28px] tracking-[-0.4px] max-w-[640px]">
+                  <h3 className="font-heading font-bold leading-tight text-text-primary text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] tracking-[-0.4px] max-w-[640px]">
                     {w.title}
                   </h3>
                   {w.price ? (
@@ -147,7 +147,7 @@ export function WorkshopsComingSoonSection({
                   </span>
                   <span
                     aria-disabled="true"
-                    className="inline-flex h-11 w-full items-center justify-center rounded-[23px] border border-black/10 bg-surface-2 px-6 text-[15px] font-semibold text-text-teal-dark sm:w-[241px]"
+                    className="inline-flex h-11 w-full items-center justify-center rounded-[23px] border border-black/10 bg-surface-2 px-6 text-[14px] sm:text-[15px] font-semibold text-text-teal-dark sm:w-auto sm:min-w-[200px] lg:min-w-[241px]"
                   >
                     {ctaLabel}
                   </span>

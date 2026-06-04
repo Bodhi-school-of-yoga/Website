@@ -80,15 +80,15 @@ export function YogaPoseDetailBody({
   className,
 }: YogaPoseDetailBodyProps) {
   return (
-    <section className={cn("w-full bg-surface-0 py-16 lg:py-24", className)}>
-      <div className="mx-auto flex w-full max-w-[1040px] flex-col gap-16 page-px">
+    <section className={cn("w-full bg-surface-0 py-10 sm:py-14 lg:py-24", className)}>
+      <div className="mx-auto flex w-full max-w-[1040px] flex-col gap-10 sm:gap-14 lg:gap-16 page-px">
         {/* Steps */}
         <Block eyebrow="How to do it" title={`Steps to Perform ${name}`}>
           <ol className="flex flex-col gap-5">
             {steps.map((step, i) => (
               <li
                 key={i}
-                className="flex items-start gap-4 rounded-2xl border border-border-2 bg-surface-1 px-5 py-4"
+                className="flex items-start gap-3 sm:gap-4 rounded-xl sm:rounded-2xl border border-border-2 bg-surface-1 px-4 py-3 sm:px-5 sm:py-4"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-primary font-heading text-body-sm font-bold text-text-inverse">
                   {i + 1}

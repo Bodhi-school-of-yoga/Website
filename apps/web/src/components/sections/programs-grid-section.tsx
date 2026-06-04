@@ -88,9 +88,9 @@ export function ProgramsGridSection({
 }: ProgramsGridSectionProps) {
   return (
     <section
-      className={cn("w-full bg-surface-1 py-20 sm:py-24 lg:py-28", className)}
+      className={cn("w-full bg-surface-1 py-12 sm:py-16 md:py-20 lg:py-28", className)}
     >
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-24 page-px lg:gap-28">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-14 sm:gap-18 md:gap-24 page-px lg:gap-28">
         <ProgramsBlockView block={ttcBlock} variant="ttc" />
         <ProgramsBlockView block={certificationBlock} variant="cert" />
       </div>
@@ -113,14 +113,14 @@ function ProgramsBlockView({
 
   return (
     <div className="flex flex-col items-center gap-10 lg:gap-12">
-      <header className="flex flex-col items-center gap-4 text-center">
+      <header className="flex flex-col items-center gap-3 sm:gap-4 text-center">
         <p className="text-mini uppercase text-text-brand">{block.eyebrow}</p>
-        <h2 className="font-heading text-h4 sm:text-h2 text-text-secondary">
+        <h2 className="font-heading text-[clamp(1.375rem,3vw+0.25rem,3.25rem)] leading-[1.2] text-text-secondary">
           {block.heading}
         </h2>
       </header>
 
-      <ul className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid w-full grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visibleCards.map((card, idx) => (
           <li key={card.slug}>
             <ProgramListingCard card={card} variant={variant} featured={idx === 0} />

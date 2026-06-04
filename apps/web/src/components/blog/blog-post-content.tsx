@@ -81,7 +81,7 @@ export default function BlogPostContent({
             </span>
           </div>
 
-          <h1 className="mt-4 font-heading text-h3 text-text-primary">
+          <h1 className="mt-4 font-heading text-[clamp(1.375rem,3vw+0.25rem,2.625rem)] leading-[1.2] text-text-primary">
             {post.title}
           </h1>
           <p className="mt-5 text-subtext-2 leading-relaxed text-text-tertiary">
@@ -125,7 +125,7 @@ export default function BlogPostContent({
         </div>
 
         {/* Inline CTA */}
-        <div className="mb-16 rounded-3xl border border-border-2 bg-surface-mint-pale px-6 py-8 text-center sm:px-10">
+        <div className="mb-12 sm:mb-16 rounded-2xl sm:rounded-3xl border border-border-2 bg-surface-mint-pale px-5 py-6 text-center sm:px-8 sm:py-8 lg:px-10">
           <h2 className="font-heading text-h5 text-text-primary">
             Ready to begin your journey?
           </h2>
@@ -145,19 +145,19 @@ export default function BlogPostContent({
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="border-t border-border-2 bg-surface-2/40 py-16">
+        <section className="border-t border-border-2 bg-surface-2/40 py-10 sm:py-14 lg:py-16">
           <Container>
             <h2 className="mb-8 font-heading text-h4 text-text-primary">
               Continue reading
             </h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((item) => (
                 <Link
                   key={item.slug}
                   href={`/blog/${item.slug}`}
                   className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border-2 bg-surface-1 shadow-card transition-shadow hover:shadow-chip"
                 >
-                  <div className="relative aspect-square overflow-hidden">
+                  <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}

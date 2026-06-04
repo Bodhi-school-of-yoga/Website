@@ -222,7 +222,7 @@ export function CentersSection({
     <section
       className={cn(
         "w-full bg-[linear-gradient(180deg,var(--color-surface-0),var(--color-surface-1))]",
-        bannerVisible ? "pt-44 pb-20" : "pt-32 pb-20",
+        bannerVisible ? "pt-32 sm:pt-36 lg:pt-44 pb-12 sm:pb-16 lg:pb-20" : "pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20",
         className,
       )}
     >
@@ -231,7 +231,7 @@ export function CentersSection({
           <h1
             className={cn(
               "font-heading text-text-primary",
-              "text-h4 sm:text-h3 lg:text-h2 2xl:text-h1",
+              "text-[clamp(1.375rem,3.5vw+0.25rem,5.625rem)] leading-[1.15]",
             )}
           >
             {heading}
@@ -248,7 +248,7 @@ export function CentersSection({
           <form
             onSubmit={handleSubmit}
             className={cn(
-              "flex flex-1 h-[64px] items-center gap-4 rounded-[18px] border border-border-2 bg-surface-1/85 px-6 backdrop-blur-[30px]",
+              "flex flex-1 h-[52px] sm:h-[60px] items-center gap-3 sm:gap-4 rounded-[14px] sm:rounded-[18px] border border-border-2 bg-surface-1/85 px-4 sm:px-6 backdrop-blur-[30px]",
               "lg:h-[72px]",
             )}
           >
@@ -282,8 +282,8 @@ export function CentersSection({
             onClick={handleLocate}
             disabled={locating}
             className={cn(
-              "flex h-[64px] items-center gap-2 rounded-[18px] border border-border-2 bg-surface-1/85 px-6 backdrop-blur-[30px]",
-              "text-body-sm font-medium text-text-secondary transition-all duration-200 hover:text-text-brand",
+              "flex h-[52px] sm:h-[60px] items-center gap-2 rounded-[14px] sm:rounded-[18px] border border-border-2 bg-surface-1/85 px-4 sm:px-6 backdrop-blur-[30px]",
+              "text-[13px] sm:text-body-sm font-medium text-text-secondary transition-all duration-200 hover:text-text-brand",
               "lg:h-[72px]",
               locating && "opacity-60 cursor-not-allowed",
             )}
@@ -339,7 +339,7 @@ export function CentersSection({
 
         <div
           className={cn(
-            "grid min-h-[560px] grid-cols-1 overflow-hidden rounded-[36px] border border-border-2 bg-surface-1/85 backdrop-blur-[30px]",
+            "grid min-h-[480px] grid-cols-1 overflow-hidden rounded-[20px] sm:rounded-[28px] lg:rounded-[36px] border border-border-2 bg-surface-1/85 backdrop-blur-[30px]",
             "lg:min-h-[640px] lg:grid-cols-[2fr_3fr]",
           )}
         >

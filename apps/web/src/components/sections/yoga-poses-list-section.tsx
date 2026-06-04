@@ -86,7 +86,7 @@ export function YogaPosesListSection({
           // `key` re-mounts the grid on filter change so every visible card
           // replays its entrance animation.
           key={active}
-          className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-5 sm:gap-[26px] sm:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((pose, i) => (
             <div

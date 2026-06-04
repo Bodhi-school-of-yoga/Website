@@ -22,16 +22,16 @@ export function FaqSection({ eyebrow, heading, items, className }: FaqSectionPro
     <section
       className={cn(
         "w-full bg-surface-0",
-        "py-16 lg:py-24",
+        "py-12 sm:py-16 lg:py-24",
         className,
       )}
     >
       <div className="mx-auto max-w-4xl page-px">
-        <div className="flex flex-col gap-3 mb-10">
+        <div className="flex flex-col gap-2 sm:gap-3 mb-8 sm:mb-10">
           <p className="text-mini uppercase tracking-widest text-text-secondary">
             {eyebrow}
           </p>
-          <h2 className="font-heading text-h2 text-text-primary">
+          <h2 className="font-heading text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] leading-[1.2] text-text-primary">
             {heading}
           </h2>
         </div>

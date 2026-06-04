@@ -27,7 +27,7 @@ export function TrainersFounderSection({
   return (
     <section
       className={cn(
-        "hidden w-full shadow-2xl bg-surface-1 py-16 sm:py-20 lg:block lg:py-24",
+        "w-full bg-surface-1 py-10 sm:py-14 md:py-16 lg:py-24",
         className,
       )}
     >
@@ -37,10 +37,10 @@ export function TrainersFounderSection({
           "relative overflow-hidden",
           "rounded-[24px] sm:rounded-[28px] lg:rounded-[36px]",
           "border border-border-3/40 bg-surface-1",
-          "grid gap-0 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]",
+          "grid gap-0 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]",
         )}
       >
-        <div className="flex flex-col gap-5 px-8 py-10 sm:px-10 sm:py-12 lg:px-12 lg:py-14">
+        <div className="flex flex-col gap-4 sm:gap-5 px-5 py-7 sm:px-8 sm:py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
           <p
             className={cn(
               "text-mini font-semibold uppercase",
@@ -54,7 +54,7 @@ export function TrainersFounderSection({
           <h2
             className={cn(
               "font-heading font-bold text-text-secondary",
-              "text-h4 sm:text-h3 lg:text-[42px] lg:leading-[1.2]",
+              "text-[clamp(1.375rem,3vw+0.25rem,2.625rem)] leading-[1.2]",
             )}
           >
             {name}
@@ -76,7 +76,7 @@ export function TrainersFounderSection({
           </div>
         </div>
 
-        <div className="relative min-h-[320px] bg-brand-lite sm:min-h-[420px] lg:min-h-full">
+        <div className="relative min-h-[240px] bg-brand-lite sm:min-h-[320px] md:min-h-full">
           <Image
             src={portrait}
             alt={portraitAlt}

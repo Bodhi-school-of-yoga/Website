@@ -49,7 +49,7 @@ export default function BlogContent() {
             <p className="text-mini font-semibold uppercase tracking-[0.22em] text-text-brand">
               Bodhi Journal
             </p>
-            <h1 className="mt-4 font-heading text-h1 leading-[0.95]">
+            <h1 className="mt-4 font-heading text-[clamp(2rem,5vw+0.5rem,5.625rem)] leading-[0.95]">
               <span className="text-text-primary">Stories to wake up</span>
               <br className="hidden sm:block" />{" "}
               <span className="text-text-brand">the world</span>
@@ -88,7 +88,7 @@ export default function BlogContent() {
                   Featured
                 </span>
               </div>
-              <div className="flex flex-col justify-center gap-4 p-7 sm:p-10">
+              <div className="flex flex-col justify-center gap-3 sm:gap-4 p-5 sm:p-7 lg:p-10">
                 <MetaRow category={featured.category} content={featured.content} />
                 <h2 className="font-heading text-h4 text-text-primary transition-colors group-hover:text-text-brand">
                   {featured.title}
@@ -194,8 +194,8 @@ function PostCard({ post }: { post: BlogPost }) {
       href={`/blog/${post.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border-2 bg-surface-1 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-chip"
     >
-      {/* Square keeps the (mostly 1:1) source covers uncropped */}
-      <div className="relative aspect-square overflow-hidden">
+      {/* Wide on mobile, square on larger screens */}
+      <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
         <Image
           src={post.image}
           alt={post.title}

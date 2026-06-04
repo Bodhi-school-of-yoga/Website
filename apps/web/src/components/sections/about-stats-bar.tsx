@@ -29,7 +29,7 @@ export function AboutStatsBar({
   return (
     <section
       className={cn(
-        "relative w-full bg-white py-16 sm:py-20 lg:py-24",
+        "relative w-full bg-white py-10 sm:py-14 md:py-16 lg:py-24",
         className,
       )}
     >
@@ -49,7 +49,7 @@ export function AboutStatsBar({
               <AnimatedCount
                 value={stat.value}
                 suffix={stat.suffix}
-                className="font-sans font-semibold leading-none text-text-brand text-h3 sm:text-h4 lg:text-h3 2xl:text-h2"
+                className="font-sans font-semibold leading-none text-text-brand text-[clamp(1.5rem,3vw+0.5rem,3.25rem)]"
               />
               <span className="text-sm tracking-wide text-text-primary/70">
                 {stat.label}

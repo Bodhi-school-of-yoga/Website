@@ -27,8 +27,8 @@ export function PromoBannerBar() {
   // Mirror SiteHeader's height so the bar sits flush under the nav at rest and
   // while scrolled.
   const top = scrolled
-    ? 'top-[72px] sm:top-[76px]'
-    : 'top-[88px] sm:top-[72px] ';
+    ? 'top-[68px] sm:top-[72px] lg:top-[76px]'
+    : 'top-[76px] sm:top-[80px] lg:top-[88px]';
 
   return (
     <PromoBanner

@@ -168,7 +168,7 @@ export function FaqSection({ eyebrow, heading, items }: FaqSectionProps) {
       };
 
   return (
-    <section className="bg-surface-1 py-12 md:py-[38px]">
+    <section className="bg-surface-1 py-12 sm:py-16 md:py-20 lg:py-28">
       <div className="mx-auto w-full max-w-[1200px] page-px">
         <motion.div
           variants={staggerParent}
@@ -187,7 +187,7 @@ export function FaqSection({ eyebrow, heading, items }: FaqSectionProps) {
           ) : null}
           <motion.h2
             variants={fadeInUp}
-            className="text-[28px] font-heading font-bold leading-[1.04] text-text-secondary md:text-[34px]"
+            className="text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] font-heading font-bold leading-[1.2] text-text-secondary"
           >
             {heading}
           </motion.h2>

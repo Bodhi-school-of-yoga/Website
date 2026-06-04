@@ -98,9 +98,9 @@ export function SiteHeader({
     };
   }, [mobileOpen]);
 
-  const headerHeight = scrolled ? "h-[72px] sm:h-[76px]" : "h-[88px] sm:h-[75px]";
-  const drawerTopOffset = scrolled ? "top-[72px] sm:top-[76px]" : "top-[88px] sm:top-[92px]";
-  const drawerPtOffset = scrolled ? "pt-[72px] sm:pt-[76px]" : "pt-[88px] sm:pt-[92px]";
+  const headerHeight = scrolled ? "h-[68px] sm:h-[72px] lg:h-[76px]" : "h-[76px] sm:h-[80px] lg:h-[88px]";
+  const drawerTopOffset = scrolled ? "top-[68px] sm:top-[72px]" : "top-[76px] sm:top-[80px]";
+  const drawerPtOffset = scrolled ? "pt-[68px] sm:pt-[72px]" : "pt-[76px] sm:pt-[80px]";
 
   return (
     <>
@@ -140,7 +140,7 @@ export function SiteHeader({
             priority
             className={cn(
               "w-auto origin-left transition-[height,transform] duration-300 group-hover:scale-[1.02]",
-              scrolled ? "h-10 sm:h-16" : "h-12 sm:h-20",
+              scrolled ? "h-10 sm:h-12 lg:h-14" : "h-12 sm:h-14 lg:h-16",
             )}
           />
         </Link>
@@ -229,7 +229,7 @@ export function SiteHeader({
           <a
             href="tel:+919870347349"
             className={cn(
-              "inline-flex items-center font-sans text-[13px] font-semibold sm:text-body-sm",
+              "hidden sm:inline-flex items-center font-sans text-[13px] font-semibold lg:text-body-sm",
               inverted ? "text-text-inverse" : "text-text-primary",
             )}
           >
@@ -240,12 +240,10 @@ export function SiteHeader({
           <Link
             href={ctaHref}
             className={cn(
-              "hidden h-10 ml-4 shrink-0 items-center justify-center whitespace-nowrap rounded-[36px] px-8",
-              "bg-brand-shade hover:bg-[#86d5c4] font-sans text-body-sm font-semibold",
+              "hidden h-10 ml-2 lg:ml-4 shrink-0 items-center justify-center whitespace-nowrap rounded-[36px] px-6 lg:px-8",
+              "bg-brand-shade hover:bg-[#86d5c4] font-sans text-[13px] lg:text-body-sm font-semibold",
               "text-text-primary transition-[transform,filter,box-shadow] duration-200",
-            
-        
-              "sm:inline-flex",
+              "md:inline-flex",
             )}
           >
             {ctaLabel}

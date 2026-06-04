@@ -59,11 +59,11 @@ export function CourseTabBar({ tabs, className }: CourseTabBarProps) {
         className,
       )}
     >
-      <div className="page-px mx-auto max-w-[1200px] py-3">
+      <div className="page-px mx-auto max-w-[1200px] py-3 overflow-x-auto scrollbar-none [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div
           role="tablist"
           aria-label="Course sections"
-          className="inline-flex gap-2 rounded-full bg-surface-1 p-1"
+          className="inline-flex gap-1 sm:gap-2 rounded-full bg-surface-1 p-1 w-max"
         >
           {tabs.map((tab, index) => {
             const isActive = index === activeIndex;
@@ -75,7 +75,7 @@ export function CourseTabBar({ tabs, className }: CourseTabBarProps) {
                 aria-selected={isActive}
                 onClick={() => handleClick(index)}
                 className={cn(
-                  "relative rounded-full px-5 py-2 text-[15px] font-medium transition-colors active:scale-[0.98]",
+                  "relative rounded-full px-3 py-1.5 text-[13px] sm:px-5 sm:py-2 sm:text-[15px] font-medium transition-colors active:scale-[0.98] whitespace-nowrap",
                   isActive
                     ? "text-text-primary font-semibold"
                     : "text-text-secondary hover:text-text-primary",

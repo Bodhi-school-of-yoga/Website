@@ -70,7 +70,7 @@ export function AccreditationsSection({
   return (
     <section
       className={cn(
-        "w-full bg-white py-20 sm:py-24 lg:py-28",
+        "w-full bg-white py-12 sm:py-16 md:py-20 lg:py-28",
         className,
       )}
     >
@@ -92,7 +92,7 @@ export function AccreditationsSection({
           )}
           <motion.h2
             variants={headerItem}
-            className="mt-3 font-heading text-h4 sm:text-h3 lg:text-h3 text-text-secondary"
+            className="mt-3 font-heading text-[clamp(1.375rem,3vw+0.25rem,2.625rem)] leading-[1.2] text-text-secondary"
           >
             {heading}
           </motion.h2>
@@ -122,8 +122,8 @@ export function AccreditationsSection({
                 key={item.id ?? `${item.caption}-${index}`}
                 variants={cellVariants}
                 className={cn(
-                  "group flex flex-col items-center justify-center gap-2 px-3 py-6",
-                  "sm:gap-4 sm:px-6 sm:py-10",
+                  "group flex flex-col items-center justify-center gap-2 px-3 py-5",
+                  "sm:gap-3 sm:px-5 sm:py-8",
                   "lg:px-8 lg:py-12",
                   "transition-colors duration-300 hover:bg-muted/30",
                   cellBorderClass(index, items.length, columns),

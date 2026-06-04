@@ -87,12 +87,12 @@ export function SiteFooter({
             "grid gap-6 sm:gap-8",
             "grid-cols-1 sm:grid-cols-2",
             address
-              ? "md:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]"
-              : "md:grid-cols-[1.3fr_1fr_1fr_1fr]",
+              ? "lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]"
+              : "lg:grid-cols-[1.3fr_1fr_1fr_1fr]",
           )}
         >
           {/* Brand column */}
-          <div className="flex flex-col gap-3 sm:col-span-2 md:col-span-1 md:gap-[13.7px]">
+          <div className="flex flex-col gap-3 sm:col-span-2 lg:col-span-1 lg:gap-[13.7px]">
             <Link
               href="/"
               aria-label="Bodhi — home"
@@ -114,7 +114,7 @@ export function SiteFooter({
               width={200}
               height={636}
               priority
-              className="-ml-5"
+              className="-ml-3 sm:-ml-4"
                      
                     />
             </Link>

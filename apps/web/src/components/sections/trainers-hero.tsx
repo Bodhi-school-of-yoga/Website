@@ -1,10 +1,13 @@
 // TrainersHero — responsive hero for the Our Trainers page.
 // Mobile (≤md): mint band matching the Figma reference (no image, dark text, brand-green pill).
 // Desktop (md+): full-bleed background image with dark overlay and light text.
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
+import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
 export type TrainersHeroProps = {
   eyebrowDevanagari?: string;
@@ -27,12 +30,16 @@ export function TrainersHero({
   backgroundImage = "/images/trainers/hero-bg.png",
   className,
 }: TrainersHeroProps) {
+  const { visible: bannerVisible } = usePromoBanner();
   return (
     <section
       className={cn(
         "relative w-full overflow-hidden",
         "bg-brand-lite md:bg-transparent",
-        "pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-32",
+        bannerVisible
+          ? "pt-[140px] sm:pt-[148px] md:pt-[180px] lg:pt-[200px]"
+          : "pt-[96px] sm:pt-[112px] md:pt-[144px] lg:pt-[176px]",
+        "pb-10 sm:pb-14 md:pb-20 lg:pb-28",
         className,
       )}
     >
@@ -54,7 +61,7 @@ export function TrainersHero({
           className={cn(
             "mt-3 sm:mt-4 font-heading font-light",
             "text-text-brand-deep md:text-text-inverse",
-            "text-[44px] tracking-tighter sm:text-[64px] md:text-[80px] lg:text-[96px]",
+            "text-[clamp(2.25rem,6vw+0.5rem,6rem)] tracking-tighter",
           )}
         >
           {headline}

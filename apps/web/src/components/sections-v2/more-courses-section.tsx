@@ -109,7 +109,7 @@ export function MoreCoursesSection({
             whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
             transition={{ delay: prefersReducedMotion ? 0 : 0.08 }}
-            className="font-heading text-[28px] font-bold leading-[1.05] text-text-secondary md:text-[32px] lg:text-[34px]"
+            className="font-heading text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] font-bold leading-[1.2] text-text-secondary"
           >
             {heading}
           </motion.h2>
@@ -150,7 +150,7 @@ export function MoreCoursesSection({
           </ul>
 
           {/* Tablet+ : grid */}
-          <ul className="hidden grid-cols-2 gap-6 md:grid lg:grid-cols-3 lg:gap-7">
+          <ul className="hidden grid-cols-2 gap-5 md:grid sm:gap-6 lg:grid-cols-3 lg:gap-7">
             {items.map((item, idx) => (
               <motion.li
                 key={`g-${item.title}-${idx}`}
@@ -175,7 +175,7 @@ function CourseCard({ item }: { item: MoreCoursesItem }) {
   const ctaLabel = item.ctaLabel ?? 'View Program';
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border-2 bg-surface-1 shadow-card transition-all duration-300 motion-safe:hover:-translate-y-1">
+    <article className="group flex h-full flex-col overflow-hidden rounded-[20px] sm:rounded-3xl border border-border-2 bg-surface-1 shadow-card transition-all duration-300 motion-safe:hover:-translate-y-1">
       {/* Hero image */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-cream">
         <Image
@@ -188,7 +188,7 @@ function CourseCard({ item }: { item: MoreCoursesItem }) {
       </div>
 
       {/* Body */}
-      <div className="flex flex-1 flex-col gap-[14px] px-6 pb-5 pt-6">
+      <div className="flex flex-1 flex-col gap-[14px] px-4 pb-4 pt-4 sm:px-6 sm:pb-5 sm:pt-6">
         <h3 className="line-clamp-2 min-h-[46px] font-heading text-[20px] font-semibold leading-[1.15] tracking-[-0.2px] text-text-secondary md:min-h-[51px] md:text-[22px] lg:min-h-[53px] lg:text-[23px]">
           {item.title}
         </h3>

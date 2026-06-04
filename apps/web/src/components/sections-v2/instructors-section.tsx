@@ -126,7 +126,7 @@ export function InstructorsSection({
 
   return (
     <section className="bg-surface-1">
-      <div className="py-14 md:py-16 lg:py-[50px]">
+      <div className="py-12 sm:py-14 md:py-16 lg:py-[50px]">
         <div className="max-w-[1200px] mx-auto page-px">
           {/* Header */}
           <motion.div
@@ -144,7 +144,7 @@ export function InstructorsSection({
             <motion.h2
               variants={fadeUp}
               transition={{ delay: prefersReducedMotion ? 0 : 0.08 }}
-              className="font-heading font-bold text-[28px] md:text-[30px] lg:text-[34px] leading-[1.04] text-text-secondary"
+              className="font-heading font-bold text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] leading-[1.2] text-text-secondary"
             >
               {heading}
             </motion.h2>

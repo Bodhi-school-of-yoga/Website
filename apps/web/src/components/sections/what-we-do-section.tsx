@@ -57,14 +57,14 @@ export function WhatWeDoSection({
   return (
     <section
       className={cn(
-        "w-full border-y border-sage-divider bg-surface-0 py-20 sm:py-24 lg:py-28",
+        "w-full border-y border-sage-divider bg-surface-0 py-12 sm:py-16 md:py-20 lg:py-28",
         className,
       )}
     >
       <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-10 page-px lg:gap-12">
         <header className="flex flex-col items-center gap-3 text-center">
           <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
-          <h2 className="font-heading text-h4 sm:text-h3 text-text-secondary">
+          <h2 className="font-heading text-[clamp(1.375rem,3vw+0.25rem,2.625rem)] leading-[1.2] text-text-secondary">
             {heading}
           </h2>
         </header>
@@ -86,7 +86,7 @@ function WhatWeDoCard({ card }: { card: WhatWeDoCard }) {
     <Link
       href={card.href}
       className={cn(
-        "group flex h-full flex-col gap-4 rounded-[35px] border border-border-2 bg-surface-1 p-8 sm:p-10",
+        "group flex h-full flex-col gap-4 rounded-[24px] sm:rounded-[35px] border border-border-2 bg-surface-1 p-6 sm:p-8 lg:p-10",
         "shadow-card transition-all duration-300",
         "hover:-translate-y-0.5 hover:border-brand-shade hover:shadow-[0_22px_44px_-12px_rgba(0,152,119,0.18)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",

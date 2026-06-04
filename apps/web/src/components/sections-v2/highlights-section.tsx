@@ -64,7 +64,7 @@ function HighlightCard({
   return (
     <motion.article
       variants={variants}
-      className="flex flex-col gap-[14px] rounded-[19px] border border-border-3 bg-surface-1 px-[19px] py-[17px] shadow-[0_7px_17px_rgba(231,231,231,0.25)]"
+      className="flex flex-col gap-[14px] rounded-[16px] sm:rounded-[19px] border border-border-3 bg-surface-1 p-4 sm:px-[19px] sm:py-[17px] shadow-[0_7px_17px_rgba(231,231,231,0.25)]"
     >
       <div
         className="flex h-[52px] w-[52px] items-center justify-center rounded-[17px] bg-mint-cream"
@@ -113,7 +113,7 @@ export function HighlightsSection({
 
   return (
     <section className="bg-surface-0">
-      <div className="py-16 md:py-20 lg:py-24">
+      <div className="py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="mx-auto max-w-[1200px] page-px">
           <motion.div
             initial="hidden"
@@ -130,7 +130,7 @@ export function HighlightsSection({
             <motion.h2
               variants={fadeUp}
               transition={{ delay: prefersReducedMotion ? 0 : 0.08 }}
-              className="text-[28px] sm:text-[32px] lg:text-[34px] font-heading font-bold leading-[1.04] text-text-secondary"
+              className="text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] font-heading font-bold leading-[1.2] text-text-secondary"
             >
               {heading}
             </motion.h2>
@@ -141,7 +141,7 @@ export function HighlightsSection({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="mt-[22px] grid grid-cols-1 gap-[15px] sm:gap-[18px] md:grid-cols-2"
+            className="mt-6 sm:mt-8 lg:mt-[22px] grid grid-cols-1 gap-3 sm:gap-[15px] md:gap-[18px] md:grid-cols-2"
           >
             {items.map((item) => (
               <HighlightCard key={item.title} item={item} variants={fadeUp} />

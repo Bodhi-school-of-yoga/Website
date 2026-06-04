@@ -14,6 +14,8 @@ type CourseHeroWithBookingProps = Omit<CourseHeroProps, "cta"> & {
   courseName: string;
   amountInPaise: number;
   razorpayKey: string;
+  /** Razorpay currency code — auto-detected from the price string when omitted. */
+  currency?: "INR" | "USD";
   batches: BatchOption[];
   timeSlots: TimeSlotOption[];
 };
@@ -23,6 +25,7 @@ export function CourseHeroWithBooking({
   courseName,
   amountInPaise,
   razorpayKey,
+  currency,
   batches,
   timeSlots,
   ...heroProps
@@ -58,6 +61,7 @@ export function CourseHeroWithBooking({
         courseName={dialogCourseName}
         amountInPaise={planAmountInPaise ?? amountInPaise}
         razorpayKey={razorpayKey}
+        currency={currency}
         batches={batches}
         timeSlots={timeSlots}
       />

@@ -111,9 +111,9 @@ export function CourseEligibilitySection({
       };
 
   return (
-    <section className="bg-brand-lite py-[64px] md:py-[80px] lg:py-[85px]">
+    <section className="bg-brand-lite py-12 sm:py-16 md:py-20 lg:py-[85px]">
       <div className="mx-auto max-w-[1200px] page-px">
-        <div className="flex w-full flex-col items-stretch gap-[40px] md:gap-[56px] lg:flex-row lg:items-center lg:justify-between lg:gap-[71px]">
+        <div className="flex w-full flex-col items-stretch gap-8 sm:gap-10 md:gap-[56px] lg:flex-row lg:items-center lg:justify-between lg:gap-[71px]">
           {/* Left: eyebrow + heading + checklist */}
           <div className="flex flex-col lg:min-w-0 lg:flex-1">
             {eyebrow ? (
@@ -133,7 +133,7 @@ export function CourseEligibilitySection({
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="mt-[16px] font-heading font-bold leading-[1.04] text-text-secondary text-[28px] md:text-[32px] lg:text-[34px]"
+              className="mt-[16px] font-heading font-bold leading-[1.2] text-text-secondary text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)]"
             >
               {heading}
             </motion.h2>
@@ -157,7 +157,7 @@ export function CourseEligibilitySection({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="relative aspect-[574/543] w-full overflow-hidden rounded-[21px] md:max-w-[640px] md:self-center lg:aspect-auto lg:h-[543px] lg:w-[574px] lg:shrink-0 lg:max-w-none"
+            className="relative aspect-[574/543] w-full overflow-hidden rounded-[20px] sm:rounded-[21px] md:max-w-[640px] md:self-center lg:aspect-auto lg:h-[543px] lg:w-[574px] lg:shrink-0 lg:max-w-none"
           >
             <Image
               src={sideImage}

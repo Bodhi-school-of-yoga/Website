@@ -37,8 +37,11 @@ export type BatchBookingDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   courseName: string;
+  /** Amount in smallest currency unit (paise for INR, cents for USD). */
   amountInPaise: number;
   razorpayKey: string;
+  /** Razorpay currency code. Defaults to "INR". */
+  currency?: "INR" | "USD";
   batches: BatchOption[];
   timeSlots: TimeSlotOption[];
   onPaymentSuccess?: (paymentId: string, formData: BookingFormData) => void;
@@ -72,10 +75,12 @@ export function BatchBookingDialog({
   courseName,
   amountInPaise,
   razorpayKey,
+  currency = "INR",
   batches,
   timeSlots,
   onPaymentSuccess,
 }: BatchBookingDialogProps) {
+  const locale = currency === "USD" ? "en-US" : "en-IN";
   const [name, setName] = React.useState("");
   const [mobile, setMobile] = React.useState("");
   const [batch, setBatch] = React.useState(batches[0]?.value ?? "");
@@ -119,7 +124,7 @@ export function BatchBookingDialog({
     const options: RazorpayOptions = {
       key: razorpayKey,
       amount: amountInPaise,
-      currency: "INR",
+      currency,
       name: "Bodhi School of Yoga",
       description: courseName,
       prefill: { name: name.trim(), contact: `+91${mobile.trim()}` },
@@ -174,9 +179,9 @@ export function BatchBookingDialog({
               <Dialog.Description className="mt-1 text-sm text-text-tertiary">
                 Fill in your details to proceed with payment of{" "}
                 <span className="font-semibold text-text-primary">
-                  {new Intl.NumberFormat("en-IN", {
+                  {new Intl.NumberFormat(locale, {
                     style: "currency",
-                    currency: "INR",
+                    currency,
                     minimumFractionDigits: 0,
                   }).format(amountInPaise / 100)}
                 </span>
@@ -322,9 +327,9 @@ export function BatchBookingDialog({
             >
               {loading
                 ? "Loading..."
-                : `Pay ${new Intl.NumberFormat("en-IN", {
+                : `Pay ${new Intl.NumberFormat(locale, {
                     style: "currency",
-                    currency: "INR",
+                    currency,
                     minimumFractionDigits: 0,
                   }).format(amountInPaise / 100)} — Proceed to Payment`}
             </button>

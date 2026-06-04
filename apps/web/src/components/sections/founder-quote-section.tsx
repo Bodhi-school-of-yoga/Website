@@ -51,7 +51,7 @@ export function FounderQuoteSection({
   return (
     <section
       className={cn(
-        "w-full bg-white py-20 sm:py-24 lg:py-28",
+        "w-full bg-white py-12 sm:py-16 md:py-20 lg:py-28",
         className,
       )}
     >
@@ -61,15 +61,15 @@ export function FounderQuoteSection({
         whileInView="visible"
         viewport={VIEWPORT}
         className={cn(
-          "mx-auto grid max-w-[1200px] gap-12 page-px",
-          "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-32",
+          "mx-auto grid max-w-[1200px] gap-8 sm:gap-10 page-px",
+          "md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-center md:gap-12 lg:gap-20",
         )}
       >
         {/* Text column */}
-        <motion.div variants={fadeInUp} className="order-2 flex flex-col gap-6 lg:order-1">
+        <motion.div variants={fadeInUp} className="order-2 flex flex-col gap-4 sm:gap-6 md:order-1">
           <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
           <blockquote className="flex flex-col gap-3">
-            <p className="font-heading text-h4 text-brand-dark">
+            <p className="font-heading text-[clamp(1.25rem,2.5vw+0.5rem,2.25rem)] leading-[1.3] text-brand-dark">
               <span>{quoteLead}</span>
               <span className="text-text-brand">{quoteAccent}</span>
               <span>{quoteTrail}</span>
@@ -83,7 +83,7 @@ export function FounderQuoteSection({
         {/* Image column — BGring rotates behind Founder */}
         <motion.div
           variants={fadeInUp}
-          className=" hidden md:block relative order-1 flex items-center justify-center aspect-square max-w-[500px] mx-auto lg:order-2"
+          className="relative order-1 flex items-center justify-center aspect-square max-w-[280px] sm:max-w-[360px] md:max-w-[500px] mx-auto md:order-2"
         >
           <motion.div
             animate={prefersReducedMotion ? {} : { rotate: 360 }}
@@ -106,7 +106,7 @@ export function FounderQuoteSection({
             height={500}
             width={260}
             alt="Acharya Ashok, Founder"
-            className="relative z-10 rounded-lg object-cover max-h-[210px] md:max-h-[400px] w-auto"
+            className="relative z-10 rounded-lg object-cover max-h-[200px] sm:max-h-[280px] md:max-h-[400px] w-auto"
           />
         </motion.div>
       </motion.div>

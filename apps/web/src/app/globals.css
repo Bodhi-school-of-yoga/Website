@@ -27,6 +27,19 @@
   --u-text:    calc(0.90 + 0.10 * var(--t)); /* subtext / body-md: 90% → 100% */
   --u-mini:    calc(0.96 + 0.04 * var(--t)); /* body-sm / mini: 96% → 100% */
   --u-space:   calc(0.92 + 0.08 * var(--t)); /* spacing base: 92% → 100% */
+
+  /* -----------------------------------------------------------------------
+     Mobile & Tablet typography overrides
+     -----------------------------------------------------------------------
+     Below 1280px the fluid scale collapses to its floor. These explicit
+     overrides ensure readable, well-proportioned type on small screens.
+     Mobile-first: base values are for 320-767px. Media queries step up.
+  ----------------------------------------------------------------------- */
+  --text-h1-mobile: clamp(2rem, 5vw + 1rem, 3rem);
+  --text-h2-mobile: clamp(1.625rem, 3.5vw + 0.75rem, 2.25rem);
+  --text-h3-mobile: clamp(1.375rem, 3vw + 0.5rem, 1.875rem);
+  --text-h4-mobile: clamp(1.25rem, 2.5vw + 0.5rem, 1.625rem);
+  --text-h5-mobile: clamp(1.125rem, 1.5vw + 0.5rem, 1.375rem);
 }
 
 @theme inline {
@@ -329,6 +342,20 @@
   }
   html {
     @apply font-sans scroll-smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Comfortable reading widths for paragraphs */
+  p {
+    max-width: 75ch;
+  }
+
+  /* Prevent long words from breaking layouts on mobile */
+  h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
   }
 }
 
@@ -365,6 +392,15 @@
   @media (min-width: 768px)  { .nav-px { padding-inline: 2rem; } }   /* 32px */
   @media (min-width: 1280px) { .nav-px { padding-inline: 2.5rem; } } /* 40px */
   @media (min-width: 1536px) { .nav-px { padding-inline: 3rem; } }   /* 48px */
+
+  /* Standardised section vertical spacing */
+  .section-py {
+    padding-block: 3rem;    /* 48px — mobile */
+  }
+  @media (min-width: 640px)  { .section-py { padding-block: 4rem; } }   /* 64px */
+  @media (min-width: 768px)  { .section-py { padding-block: 5rem; } }   /* 80px */
+  @media (min-width: 1024px) { .section-py { padding-block: 6rem; } }   /* 96px */
+  @media (min-width: 1280px) { .section-py { padding-block: 7rem; } }   /* 112px */
 }
 
 /* ---------------------------------------------------------------------------
@@ -453,11 +489,14 @@
   touch-action: manipulation;
 }
 
-/* Ensure minimum touch target size on mobile devices */
+/* Ensure minimum touch target size on mobile devices.
+   Only apply to standalone interactive elements — skip inline text links,
+   navigation items with their own sizing, and icon-only buttons that
+   already have explicit dimensions. */
 @media (hover: none) and (pointer: coarse) {
-  button, a, [role="button"] {
+  button:not([class*="inline"]):not([class*="size-"]),
+  [role="button"]:not([class*="inline"]):not([class*="size-"]) {
     min-height: 44px;
-    min-width: 44px;
   }
 }
 

@@ -1,8 +1,11 @@
 // AboutHero — full-width hero band for the About page with headline and CTA links.
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
+import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
 export type AboutHeroProps = {
   eyebrow?: string;
@@ -21,12 +24,15 @@ export function AboutHero({
   ctaHref = "/classes",
   className,
 }: AboutHeroProps) {
+  const { visible: bannerVisible } = usePromoBanner();
   return (
     <section
       className={cn(
         "w-full bg-brand-lite",
-        "mt-[88px]",
-        "py-20 sm:py-24 lg:py-28 2xl:py-32",
+        bannerVisible
+          ? "pt-[140px] sm:pt-[148px] lg:pt-[160px]"
+          : "pt-[96px] sm:pt-[104px] lg:pt-[116px]",
+        "pb-12 sm:pb-16 md:pb-20 lg:pb-28 2xl:pb-32",
         className,
       )}
     >
@@ -37,9 +43,9 @@ export function AboutHero({
 
         <h1
           className={cn(
-            eyebrow ? "mt-4" : "",
+            eyebrow ? "mt-3 sm:mt-4" : "",
             "font-heading text-text-primary font-black",
-            "text-h5 sm:text-h4 lg:text-h1 max-w-[600px]",
+            "text-[clamp(1.5rem,4vw+0.5rem,5.625rem)] leading-[1.15] max-w-[600px]",
           )}
         >
           {headline}

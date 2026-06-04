@@ -39,15 +39,15 @@ export function WhyBodhiSection({
 }: WhyBodhiSectionProps) {
   return (
     <section
-      className={cn("w-full bg-white py-20 sm:py-24 lg:py-28", className)}
+      className={cn("w-full bg-white py-12 sm:py-16 md:py-20 lg:py-28", className)}
     >
       <div
         className={cn(
-          "mx-auto grid max-w-[1200px] gap-12 page-px",
-          "lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-14",
+          "mx-auto grid max-w-[1200px] gap-8 sm:gap-10 page-px",
+          "md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center md:gap-10 lg:gap-14",
         )}
       >
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] sm:aspect-[5/6] lg:aspect-square lg:max-h-[540px] lg:self-center">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] sm:aspect-[4/5] md:aspect-square md:max-h-[540px] md:self-center">
           <Image
             src={photoSrc}
             alt={photoAlt}
@@ -58,11 +58,11 @@ export function WhyBodhiSection({
         </div>
 
         <div className="flex flex-col gap-7 lg:gap-8">
-          <header className="flex flex-col gap-4">
-            <h2 className="font-heading text-h4 sm:text-h3 text-text-secondary">
+          <header className="flex flex-col gap-3 sm:gap-4">
+            <h2 className="font-heading text-[clamp(1.375rem,3vw+0.25rem,2.625rem)] leading-[1.2] text-text-secondary">
               {heading}
             </h2>
-            <p className="text-subtext-2 text-text-tertiary">{subhead}</p>
+            <p className="text-[15px] sm:text-subtext-2 leading-relaxed text-text-tertiary">{subhead}</p>
           </header>
 
           <div className="flex flex-col gap-4">

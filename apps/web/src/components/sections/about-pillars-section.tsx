@@ -44,19 +44,19 @@ export function AboutPillarsSection({
     <section
       id="pillars"
       className={cn(
-        "w-full bg-surface-1 py-20 sm:py-24 lg:py-28",
+        "w-full bg-surface-1 py-12 sm:py-16 md:py-20 lg:py-28",
         className,
       )}
     >
       <div className="mx-auto max-w-[1200px] page-px">
-        <header className="mb-12 flex flex-col items-center gap-4 text-center lg:mb-16">
+        <header className="mb-8 sm:mb-10 lg:mb-16 flex flex-col items-center gap-3 sm:gap-4 text-center">
           <span className="text-mini uppercase tracking-wide text-text-brand">
             {eyebrow}
           </span>
           <h2
             className={cn(
               "font-heading text-text-primary",
-              "text-h4 sm:text-h3 lg:text-h2",
+              "text-[clamp(1.375rem,3.5vw+0.25rem,3.25rem)] leading-[1.2]",
             )}
           >
             {headlineWords.map((word, index) => (
@@ -71,8 +71,8 @@ export function AboutPillarsSection({
 
         <ul
           className={cn(
-            "grid grid-cols-1 gap-6",
-            "lg:grid-cols-3 lg:gap-8",
+            "grid grid-cols-1 gap-5 sm:gap-6",
+            "sm:grid-cols-2 lg:grid-cols-3 lg:gap-8",
           )}
         >
           {pillars.map((pillar) => (

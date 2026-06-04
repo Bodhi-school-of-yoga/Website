@@ -92,13 +92,13 @@ export function TestimonialsSection({
   return (
     <section
       className={cn(
-        "w-full bg-[#FCFCFC] py-20 sm:py-24 lg:py-28",
+        "w-full bg-[#FCFCFC] py-12 sm:py-16 md:py-20 lg:py-28",
         className,
       )}
     >
       <div className="mx-auto max-w-[1200px] page-px">
         <motion.header
-          className="mx-auto mb-14 max-w-2xl text-center"
+          className="mx-auto mb-8 sm:mb-10 lg:mb-14 max-w-2xl text-center"
           variants={headerVariants}
           initial="hidden"
           whileInView="visible"
@@ -115,7 +115,7 @@ export function TestimonialsSection({
           {heading && (
             <motion.h2
               variants={headingVariants}
-              className="mt-3 font-heading text-h4 sm:text-h3 lg:text-h2 text-text-secondary"
+              className="mt-3 font-heading text-[clamp(1.375rem,3.5vw+0.25rem,3.25rem)] leading-[1.2] text-text-secondary"
             >
               {heading}
             </motion.h2>
@@ -131,7 +131,7 @@ export function TestimonialsSection({
         </motion.header>
 
         <motion.div
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
           variants={rowVariants}
           initial="hidden"
           whileInView="visible"

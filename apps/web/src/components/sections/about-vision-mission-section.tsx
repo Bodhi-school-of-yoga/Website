@@ -35,7 +35,7 @@ export function AboutVisionMissionSection({
     <section
       id="vision"
       className={cn(
-        "w-full bg-surface-1 py-20 sm:py-24 lg:py-28",
+        "w-full bg-surface-1 py-12 sm:py-16 md:py-20 lg:py-28",
         className,
       )}
     >
@@ -48,14 +48,14 @@ export function AboutVisionMissionSection({
         >
           <article
             className={cn(
-              "flex flex-col justify-start gap-4 rounded-[28px] bg-brand-teal p-8 text-text-inverse",
+              "flex flex-col justify-start gap-3 sm:gap-4 rounded-[20px] sm:rounded-[28px] bg-brand-teal p-6 sm:p-8 text-text-inverse",
               "lg:p-10",
             )}
           >
             <h2
               className={cn(
                 "font-heading font-bold text-text-inverse",
-                "text-h4 sm:text-h3 lg:text-h2",
+                "text-[clamp(1.375rem,3vw+0.25rem,3.25rem)] leading-[1.2]",
               )}
             >
               {vision.eyebrow}
@@ -74,14 +74,14 @@ export function AboutVisionMissionSection({
 
           <article
             className={cn(
-              "flex flex-col justify-start gap-4 rounded-[28px] border border-border-2 bg-brand-lite p-8 text-text-primary",
+              "flex flex-col justify-start gap-3 sm:gap-4 rounded-[20px] sm:rounded-[28px] border border-border-2 bg-brand-lite p-6 sm:p-8 text-text-primary",
               "lg:p-10",
             )}
           >
             <h2
               className={cn(
                 "font-heading font-bold text-text-primary",
-                "text-h4 sm:text-h3 lg:text-h2",
+                "text-[clamp(1.375rem,3vw+0.25rem,3.25rem)] leading-[1.2]",
               )}
             >
               {mission.eyebrow}

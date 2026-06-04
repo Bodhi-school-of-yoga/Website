@@ -29,7 +29,7 @@ function getInitial(name: string) {
 
 function FeaturedCard({ item }: { item: TestimonialItem }) {
   return (
-    <article className="flex h-full flex-col rounded-[24px] bg-brand-primary p-6 lg:p-7">
+    <article className="flex h-full flex-col rounded-[20px] sm:rounded-[24px] bg-brand-primary p-5 sm:p-6 lg:p-7">
       <div className="relative h-[110px] w-[110px] lg:h-[130px] lg:w-[130px] shrink-0 overflow-hidden rounded-full bg-mint-soft">
         {item.avatar ? (
           <Image
@@ -58,7 +58,7 @@ function FeaturedCard({ item }: { item: TestimonialItem }) {
 
 function RegularCard({ item }: { item: TestimonialItem }) {
   return (
-    <article className="flex h-full flex-col rounded-[24px] border border-border-3 bg-surface-1 p-5">
+    <article className="flex h-full flex-col rounded-[20px] sm:rounded-[24px] border border-border-3 bg-surface-1 p-4 sm:p-5">
       <div className="flex items-center gap-3">
         <div className="relative h-[48px] w-[48px] shrink-0 overflow-hidden rounded-full bg-mint-soft">
           {item.avatar ? (
@@ -116,7 +116,7 @@ export function TestimonialsSection({
   }
 
   return (
-    <section className="bg-surface-1 py-14 md:py-16 lg:py-20">
+    <section className="bg-surface-1 py-12 sm:py-14 md:py-16 lg:py-20">
       <div className="mx-auto max-w-[1200px] page-px">
         {/* Eyebrow + heading */}
         <motion.div
@@ -133,14 +133,14 @@ export function TestimonialsSection({
           </motion.p>
           <motion.h2
             variants={fadeInUp}
-            className="text-[28px] md:text-[30px] lg:text-[34px] font-heading font-bold leading-[1.04] text-text-secondary"
+            className="text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] font-heading font-bold leading-[1.2] text-text-secondary"
           >
             {heading}
           </motion.h2>
         </motion.div>
 
         {/* Featured card + carousel grid */}
-        <div className="mt-8 lg:mt-10 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-5">
+        <div className="mt-6 sm:mt-8 lg:mt-10 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 sm:gap-5">
           {/* Featured (green) card — left */}
           {featured && <FeaturedCard item={featured} />}
 

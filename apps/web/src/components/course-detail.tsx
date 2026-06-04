@@ -23,6 +23,8 @@ import {
   CATEGORY_BASE_PATH,
   courseHref,
   getRelatedCourses,
+  detectCurrency,
+  toSmallestUnit,
   type Course,
 } from "@/data/courses-catalog";
 
@@ -55,6 +57,8 @@ export function CourseDetail({ course }: { course: Course }) {
   const original = course.originalPrice;
   // Booking amount: the flat price, else the cheapest plan, else 0.
   const bookingPriceStr = price ?? course.pricingPlans?.[0]?.price ?? "0";
+  // Detect currency from the price string — "$1,997" → USD, "₹36,750" → INR.
+  const currency = detectCurrency(bookingPriceStr);
 
   // Eligibility checklist — bigger than prerequisites; if catalog has many we
   // show up to 8, otherwise pad with sensible defaults aligned with the
@@ -94,7 +98,7 @@ export function CourseDetail({ course }: { course: Course }) {
     `mark a meaningful milestone in your practice.`;
 
   return (
-    <main className="flex min-h-screen flex-col bg-surface-1">
+    <main className="flex min-h-screen flex-col bg-surface-1 overflow-x-clip">
       <SiteHeader />
 
       <CourseHeroWithBooking
@@ -121,8 +125,9 @@ export function CourseDetail({ course }: { course: Course }) {
         pricingPlans={course.pricingPlans}
         ctaLabel="Reserve Your Spot Now"
         courseName={course.title}
-        amountInPaise={Number(bookingPriceStr.replace(/[^\d]/g, "")) * 100}
+        amountInPaise={toSmallestUnit(bookingPriceStr)}
         razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
+        currency={currency}
         batches={[
           {
             label: `Next batch — ${course.scheduleLabel}`,

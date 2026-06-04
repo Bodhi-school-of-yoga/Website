@@ -24,13 +24,13 @@ const LABEL_CLASSES =
   'block text-[15px] font-medium text-text-primary mb-2';
 
 const INPUT_CLASSES =
-  'h-14 w-full rounded-full bg-[#f3f3f3] border-none px-6 text-body-md text-text-primary placeholder:text-text-tertiary/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary';
+  'h-12 sm:h-14 w-full rounded-full bg-[#f3f3f3] border-none px-5 sm:px-6 text-[15px] sm:text-body-md text-text-primary placeholder:text-text-tertiary/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary';
 
 const TEXTAREA_CLASSES =
-  'min-h-[120px] py-4 w-full rounded-3xl bg-[#f3f3f3] border-none px-6 text-body-md text-text-primary placeholder:text-text-tertiary/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary resize-none';
+  'min-h-[100px] sm:min-h-[120px] py-3 sm:py-4 w-full rounded-2xl sm:rounded-3xl bg-[#f3f3f3] border-none px-5 sm:px-6 text-[15px] sm:text-body-md text-text-primary placeholder:text-text-tertiary/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary resize-none';
 
 const SUBMIT_CLASSES =
-  'h-14 w-full rounded-full bg-brand-shade text-brand-dark text-body-md font-semibold transition-all duration-200 hover:bg-brand-shade/90 hover:shadow-md active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed';
+  'h-12 sm:h-14 w-full rounded-full bg-brand-shade text-brand-dark text-[15px] sm:text-body-md font-semibold transition-all duration-200 hover:bg-brand-shade/90 hover:shadow-md active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed';
 
 const INITIAL_FIELDS: ContactFormData = {
   firstName: '',

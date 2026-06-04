@@ -96,8 +96,8 @@ export function PrerequisitesSection({
       };
 
   return (
-    <section className="bg-brand-lite page-px py-12 md:py-16 lg:py-[52px]">
-      <div className="mx-auto flex w-full max-w-[674px] flex-col items-center gap-[33px]">
+    <section className="bg-brand-lite page-px py-12 sm:py-14 md:py-16 lg:py-[52px]">
+      <div className="mx-auto flex w-full max-w-[674px] flex-col items-center gap-6 sm:gap-8 lg:gap-[33px]">
         <div className="flex flex-col items-center gap-[19px]">
           <motion.span
             variants={fadeInUp}
@@ -113,7 +113,7 @@ export function PrerequisitesSection({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
-            className="text-center font-heading text-[28px] font-bold leading-[1.17] text-text-secondary md:text-[30px]"
+            className="text-center font-heading text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] font-bold leading-[1.2] text-text-secondary"
           >
             {heading}
           </motion.h2>

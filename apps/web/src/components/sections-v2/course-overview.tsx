@@ -50,7 +50,7 @@ export function CourseOverview({ eyebrow, heading, paragraphs }: CourseOverviewP
             <span className="text-mini font-semibold uppercase text-text-brand tracking-[1.8px]">
               {eyebrow}
             </span>
-            <h2 className="text-[26px] md:text-[28px] lg:text-[30px] font-heading font-bold leading-[1.17] text-text-secondary max-w-[640px]">
+            <h2 className="text-[clamp(1.375rem,3vw+0.25rem,2.625rem)] font-heading font-bold leading-[1.2] text-text-secondary max-w-[640px]">
               {heading}
             </h2>
           </motion.div>

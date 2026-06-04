@@ -172,7 +172,7 @@ export function CourseHero({
 
   return (
     <section
-      className="relative w-full bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]"
+      className="relative w-full overflow-x-clip bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]"
       aria-label="Course hero"
     >
       <div className={`page-px mx-auto w-full max-w-[1200px] pb-[64px] sm:pb-20 lg:pb-[80px] ${topPad}`}>
@@ -185,13 +185,13 @@ export function CourseHero({
           initial={false}
           animate="visible"
           variants={container}
-          className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-[92px] lg:items-center"
+          className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 md:gap-10 lg:gap-[92px] lg:items-center"
         >
 
           {/* Left — content column (Figma: text/CTA on left) */}
           <motion.div
             variants={imageReveal}
-            className="relative overflow-hidden rounded-[20px] aspect-[608/546] md:aspect-auto md:min-h-[420px] lg:min-h-[546px] bg-surface-2 order-1 md:order-2"
+            className="relative overflow-hidden rounded-[20px] sm:rounded-[28px] aspect-[608/546] md:aspect-auto md:min-h-[420px] lg:min-h-[546px] bg-surface-2 order-1 md:order-2"
           >
             <Image
               src={backgroundImage}
@@ -248,7 +248,7 @@ export function CourseHero({
             {/* Title */}
             <motion.h1
               variants={fadeInUp}
-              className="text-[34px] leading-[1.08] font-heading font-bold text-text-secondary sm:text-h3 lg:text-h2"
+              className="text-[clamp(1.75rem,4vw+0.25rem,3.25rem)] leading-[1.15] font-heading font-bold text-text-secondary"
             >
               {title}
             </motion.h1>
@@ -287,12 +287,12 @@ export function CourseHero({
             {metaPills && metaPills.length > 0 && (
               <motion.ul
                 variants={fadeInUp}
-                className="mt-4 flex flex-wrap items-center gap-[11px]"
+                className="mt-4 flex flex-wrap items-center gap-2 sm:gap-[11px]"
               >
                 {metaPills.map((pill, idx) => (
                   <li
                     key={`${pill.label}-${idx}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-border-3 bg-surface-1 px-[17px] py-[11px] text-body-sm font-semibold text-text-secondary"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-border-3 bg-surface-1 px-3 py-2 sm:px-[17px] sm:py-[11px] text-[13px] sm:text-body-sm font-semibold text-text-secondary"
                   >
                     {pill.iconSrc ? (
                       <Image src={pill.iconSrc} alt="" width={26} height={26} className="shrink-0" />
@@ -325,7 +325,7 @@ export function CourseHero({
                     {originalPrice}
                   </span>
                 )}
-                <span className="block text-h4 font-heading font-bold text-brand-primary">
+                <span className="block text-[clamp(1.5rem,2.5vw+0.5rem,2.25rem)] font-heading font-bold text-brand-primary">
                   {price}
                 </span>
               </motion.div>

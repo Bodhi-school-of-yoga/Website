@@ -102,7 +102,7 @@ export function CourseHeroSection({
     <section
       className={cn(
         "relative w-full overflow-hidden bg-brand-lite",
-        "pt-32 pb-20 lg:pt-36 lg:pb-24",
+        "pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-24",
         className,
       )}
     >
@@ -117,7 +117,7 @@ export function CourseHeroSection({
               )}
             </motion.div>
 
-            <h1 className="mt-6 font-heading font-bold leading-[1.06] text-[44px] sm:text-[56px] lg:text-[68px]">
+            <h1 className="mt-4 sm:mt-6 font-heading font-bold leading-[1.06] text-[clamp(2rem,5vw+0.5rem,4.25rem)]">
               <motion.span
                 className="block text-text-brand"
                 initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
@@ -165,7 +165,7 @@ export function CourseHeroSection({
                   ? { duration: 0 }
                   : { duration: 0.4, ease: "easeOut", delay: 0.55 }
               }
-              className="mt-10 w-fit"
+              className="mt-7 sm:mt-10 w-fit"
             >
               {onCtaClick ? (
                 <button
@@ -200,7 +200,7 @@ export function CourseHeroSection({
             </motion.div>
 
             <motion.ul
-              className="mt-12 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4"
+              className="mt-8 sm:mt-12 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4"
               initial="hidden"
               animate="show"
               variants={metaParent}

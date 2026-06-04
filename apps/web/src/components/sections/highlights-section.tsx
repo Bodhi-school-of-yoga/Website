@@ -107,7 +107,7 @@ export function HighlightsSection({
       id={id}
       className={cn(
         "w-full border-y border-border-2 bg-surface-0",
-        "py-16 lg:py-20",
+        "py-12 sm:py-16 lg:py-20",
         id && "scroll-mt-20 lg:scroll-mt-24",
         className,
       )}
@@ -123,13 +123,13 @@ export function HighlightsSection({
           <p className="text-mini uppercase tracking-widest text-text-brand-deep">
             {eyebrow}
           </p>
-          <h2 className="font-heading text-[34px] font-bold leading-tight text-text-secondary">
+          <h2 className="font-heading text-[clamp(1.375rem,3vw+0.25rem,2.125rem)] font-bold leading-tight text-text-secondary">
             {heading}
           </h2>
         </motion.div>
 
         <motion.ul
-          className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-[18px] list-none p-0 m-0"
+          className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:gap-[18px] list-none p-0 m-0"
           variants={gridVariants}
           initial="hidden"
           whileInView="visible"

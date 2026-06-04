@@ -23,16 +23,16 @@ export function CurriculumSection({
   return (
     <section
       className={cn(
-        "w-full overflow-hidden bg-background py-20 sm:py-24 lg:py-28",
+        "w-full overflow-hidden bg-background py-12 sm:py-16 md:py-20 lg:py-28",
         className,
       )}
     >
       <div className="mx-auto max-w-[1200px] page-px">
-        <header className="mb-10 flex flex-col gap-4">
+        <header className="mb-8 sm:mb-10 flex flex-col gap-3 sm:gap-4">
           <p className="font-heading text-mini uppercase tracking-widest text-text-brand">
             {eyebrow}
           </p>
-          <h2 className="font-heading text-h2 font-semibold text-text-secondary">
+          <h2 className="font-heading text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] leading-[1.2] font-semibold text-text-secondary">
             {heading}
           </h2>
         </header>

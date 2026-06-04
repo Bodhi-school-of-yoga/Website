@@ -73,16 +73,16 @@ export function PopularCoursesSection({
 }: PopularCoursesSectionProps) {
   return (
     <section
-      className={cn("w-full bg-surface-1 py-20 sm:py-24 lg:py-28", className)}
+      className={cn("w-full bg-surface-1 py-12 sm:py-16 md:py-20 lg:py-28", className)}
     >
       <div className="mx-auto flex max-w-[1200px] flex-col gap-10 page-px lg:gap-12">
         <header className="flex flex-col items-center gap-4 text-center">
           <p className="text-mini uppercase text-text-brand">{eyebrow}</p>
-          <h2 className="font-heading text-h2 text-text-secondary">{heading}</h2>
+          <h2 className="font-heading text-[clamp(1.5rem,3.5vw+0.25rem,3.25rem)] leading-[1.2] text-text-secondary">{heading}</h2>
           <p className="max-w-2xl text-subtext-2 text-text-secondary">{subhead}</p>
         </header>
 
-        <ul className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid w-full grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((course, i) => (
             <li key={course.ctaHref}>
               <ProgramCard

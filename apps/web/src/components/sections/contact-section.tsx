@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, type LucideIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
+import { usePromoBanner } from '@/components/ui/use-promo-banner';
 
 import { ContactForm, type ContactFormData } from './contact-form';
 import { ContactInfoCard } from './contact-info-card';
@@ -79,15 +80,22 @@ export function ContactSection({
   infoCards = DEFAULT_CONTACT_CARDS,
   className,
 }: ContactSectionProps) {
+  const { visible: bannerVisible } = usePromoBanner();
   return (
     <motion.section
-      className={cn('relative py-20 lg:py-28', className)}
+      className={cn(
+        'relative',
+        bannerVisible
+          ? 'pt-[140px] sm:pt-[148px] lg:pt-[160px] pb-12 sm:pb-16 md:pb-20 lg:pb-28'
+          : 'pt-[96px] sm:pt-[104px] lg:pt-[116px] pb-12 sm:pb-16 md:pb-20 lg:pb-28',
+        className,
+      )}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       <div className="max-w-[1200px] mx-auto page-px">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_710px] gap-12 lg:gap-20 xl:gap-[120px] items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 sm:gap-10 lg:gap-14 xl:gap-20 items-start">
           <div className="flex flex-col">
             <motion.span
               variants={childVariants}
@@ -97,7 +105,7 @@ export function ContactSection({
             </motion.span>
             <motion.h2
               variants={childVariants}
-              className="text-h2 font-heading font-bold text-text-primary mt-6"
+              className="text-[clamp(1.75rem,4vw+0.5rem,3.25rem)] leading-[1.15] font-heading font-bold text-text-primary mt-4 sm:mt-6"
             >
               {title}
             </motion.h2>

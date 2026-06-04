@@ -29,18 +29,19 @@ export function TrainersPullQuoteBand({
         <p
           className={cn(
             "flex justify-center font-heading font-normal",
-            "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
+            "text-[18px] leading-[1.4] sm:text-[22px] sm:leading-[1.3] md:text-[28px] lg:text-[34px] lg:leading-[1.35]",
             "text-text-inverse",
           )}
         >
 
-          <span className="flex  items-center text-[#B4FFEF]">
+          <span className="flex items-center text-[#B4FFEF]">
             Yoga is not just a series of poses and techniques.
             <Image
               src="/comma1.svg"
               height="100"
               width="40"
               alt=""
+              className="h-8 w-auto sm:h-12 lg:h-auto"
             />
           </span>
 
@@ -51,7 +52,7 @@ export function TrainersPullQuoteBand({
         <p
           className={cn(
             "flex justify-center font-heading font-normal",
-            "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
+            "text-[18px] leading-[1.4] sm:text-[22px] sm:leading-[1.3] md:text-[28px] lg:text-[34px] lg:leading-[1.35]",
             "text-text-inverse",
           )}
         >
@@ -61,7 +62,7 @@ export function TrainersPullQuoteBand({
         <p
           className={cn(
             "flex justify-center font-heading font-normal",
-            "text-[22px] leading-[1.3] sm:text-[28px] lg:text-[34px] lg:leading-[1.35]",
+            "text-[18px] leading-[1.4] sm:text-[22px] sm:leading-[1.3] md:text-[28px] lg:text-[34px] lg:leading-[1.35]",
             "text-text-inverse",
           )}
         >
@@ -70,8 +71,9 @@ export function TrainersPullQuoteBand({
             height="100"
             width="40"
             alt=""
+            className="h-8 w-auto sm:h-12 lg:h-auto"
           />
-          <span className="ml-5">
+          <span className="ml-3 sm:ml-5">
             In this, our teachers lead by example
           </span>
         </p>

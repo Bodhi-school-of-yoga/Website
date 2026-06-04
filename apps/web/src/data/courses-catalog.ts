@@ -161,6 +161,25 @@ export type DescribedPlan = {
 
 const planAmount = (s: string) => Number(s.replace(/[^\d.]/g, ""));
 const planSymbol = (s: string) => s.match(/^\D+/)?.[0]?.trim() ?? "₹";
+
+/**
+ * Detect the Razorpay currency code from a pre-formatted price string.
+ * "$1,997" → "USD", "₹36,750" → "INR". Defaults to INR.
+ */
+export function detectCurrency(priceStr: string): "INR" | "USD" {
+  const trimmed = priceStr.trim();
+  if (trimmed.startsWith("$") || /USD/i.test(trimmed)) return "USD";
+  return "INR";
+}
+
+/**
+ * Razorpay expects the amount in the smallest currency unit:
+ * INR → paise (× 100), USD → cents (× 100).
+ */
+export function toSmallestUnit(priceStr: string): number {
+  const num = Number(priceStr.replace(/[^\d.]/g, ""));
+  return Math.round(num * 100);
+}
 const planFormat = (symbol: string, n: number) =>
   `${symbol}${Math.round(n).toLocaleString("en-IN")}`;
 
