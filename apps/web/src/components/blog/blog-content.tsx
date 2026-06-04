@@ -1,118 +1,222 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, Clock } from "lucide-react";
 import Container from "@/components/shared/container";
-import SectionHeading from "@/components/shared/section-heading";
 import { usePromoBanner } from "@/components/ui/use-promo-banner";
+import { cn } from "@/lib/utils";
+import {
+  getAllPosts,
+  BLOG_CATEGORIES,
+  readingTime,
+  type BlogPost,
+} from "@/data/blog-posts";
 
-const posts = [
-  {
-    title: "5 Morning Yoga Poses to Start Your Day Right",
-    slug: "morning-yoga-poses",
-    excerpt:
-      "Begin each day with energy and intention. These five simple poses take only 10 minutes and set a positive tone for your entire day.",
-    category: "Practice",
-    date: "2025-05-10",
-  },
-  {
-    title: "The Science Behind Pranayama: Why Breathwork Matters",
-    slug: "science-behind-pranayama",
-    excerpt:
-      "Research is catching up with what yogis have known for centuries. Discover how controlled breathing transforms your nervous system.",
-    category: "Wellness",
-    date: "2025-05-03",
-  },
-  {
-    title: "Yoga for Desk Workers: Undo the Damage",
-    slug: "yoga-for-desk-workers",
-    excerpt:
-      "Sitting all day takes a toll on your body. These targeted stretches and poses can help counteract the effects of prolonged sitting.",
-    category: "Practice",
-    date: "2025-04-25",
-  },
-  {
-    title: "Understanding the Eight Limbs of Yoga",
-    slug: "eight-limbs-of-yoga",
-    excerpt:
-      "Asana is just one of eight limbs described by Patanjali. Explore the complete framework that makes yoga a path, not just a workout.",
-    category: "Philosophy",
-    date: "2025-04-18",
-  },
-  {
-    title: "Nutrition Tips for a Balanced Yoga Lifestyle",
-    slug: "nutrition-yoga-lifestyle",
-    excerpt:
-      "What you eat profoundly impacts your practice. Learn about Sattvic eating principles and how to fuel your body for yoga.",
-    category: "Wellness",
-    date: "2025-04-10",
-  },
-  {
-    title: "How to Build a Home Practice That Sticks",
-    slug: "build-home-practice",
-    excerpt:
-      "Consistency beats intensity. Practical strategies for establishing and maintaining a daily yoga routine at home.",
-    category: "Practice",
-    date: "2025-04-02",
-  },
-];
+const posts = getAllPosts();
+const tabs = ["All", ...BLOG_CATEGORIES];
 
 export default function BlogContent() {
   const { visible: bannerVisible } = usePromoBanner();
-  return (
-    <section className={`${bannerVisible ? "pt-44" : "pt-32"} pb-20 bg-gradient-to-b from-primary/5 to-background`}>
-      <Container>
-        <SectionHeading
-          title="From the Mat"
-          subtitle="Insights, tips, and stories to deepen your practice and enrich your life."
-        />
+  const [activeCategory, setActiveCategory] = useState("All");
+  const showFeatured = activeCategory === "All";
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, i) => (
-            <motion.div
-              key={post.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
+  const featured = posts[0];
+  const visiblePosts = useMemo(() => {
+    if (showFeatured) return posts.slice(1);
+    return posts.filter((post) => post.category === activeCategory);
+  }, [activeCategory, showFeatured]);
+
+  return (
+    <>
+      {/* Hero — same brand-lite → white gradient as the home page */}
+      <section
+        className={cn(
+          "relative overflow-hidden bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]",
+          showFeatured ? "pb-10 sm:pb-12" : "pb-12",
+          bannerVisible ? "pt-40 sm:pt-44" : "pt-32 sm:pt-36",
+        )}
+      >
+        <Container className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <p className="text-mini font-semibold uppercase tracking-[0.22em] text-text-brand">
+              Bodhi Journal
+            </p>
+            <h1 className="mt-4 font-heading text-h1 leading-[0.95]">
+              <span className="text-text-primary">Stories to wake up</span>
+              <br className="hidden sm:block" />{" "}
+              <span className="text-text-brand">the world</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-subtext-2 text-text-tertiary">
+              Yoga, wellness, and mindful living — insights, science, and real
+              stories from the Bodhi community.
+            </p>
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* Featured */}
+      {showFeatured && (
+        <Container className="relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mx-auto"
+          >
+            <Link
+              href={`/blog/${featured.slug}`}
+              className="group grid items-stretch overflow-hidden rounded-[28px] border border-border-2 bg-surface-1 shadow-chip transition-all duration-300 hover:-translate-y-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]"
             >
-              <Card className="h-full hover:shadow-md transition-shadow">
-                <CardContent className="p-6 flex flex-col h-full">
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge variant="secondary">{post.category}</Badge>
-                    <span className="flex items-center text-xs text-muted-foreground">
-                      <Calendar className="mr-1 h-3 w-3" />
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold leading-snug">
-                    {post.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground flex-1">
-                    {post.excerpt}
-                  </p>
-                  <Button
-                    render={<Link href={`/blog/${post.slug}`} />}
-                    variant="ghost"
-                    size="sm"
-                    className="mt-4 w-fit p-0 h-auto text-primary hover:text-primary/80"
-                  >
-                    Read More <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </Container>
-    </section>
+              <div className="relative aspect-[4/3] overflow-hidden lg:aspect-[16/11]">
+                <Image
+                  src={featured.image}
+                  alt={featured.title}
+                  fill
+                  sizes="(min-width: 1024px) 620px, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  priority
+                />
+                <span className="absolute left-5 top-5 rounded-full bg-surface-1/90 px-3 py-1 text-mini font-semibold text-text-brand-deep shadow-sm backdrop-blur">
+                  Featured
+                </span>
+              </div>
+              <div className="flex flex-col justify-center gap-4 p-7 sm:p-10">
+                <MetaRow category={featured.category} content={featured.content} />
+                <h2 className="font-heading text-h4 text-text-primary transition-colors group-hover:text-text-brand">
+                  {featured.title}
+                </h2>
+                <p className="text-body-md leading-relaxed text-text-tertiary">
+                  {featured.excerpt}
+                </p>
+                <span className="mt-1 inline-flex items-center gap-1.5 text-subtext-3 font-semibold text-text-brand">
+                  Read article
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
+          </motion.div>
+        </Container>
+      )}
+
+      {/* Filter + grid */}
+      <section className={cn(showFeatured ? "pt-14 pb-16" : "py-14")}>
+        <Container>
+          {/* Category pills — wrap + center, scales to any number of categories */}
+          <div className="mb-10 flex flex-wrap justify-center gap-2.5">
+            {tabs.map((tab) => {
+              const active = tab === activeCategory;
+              return (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => setActiveCategory(tab)}
+                  aria-pressed={active}
+                  className={cn(
+                    "rounded-full border px-3.5 py-1.5 text-body-sm font-medium transition-colors",
+                    active
+                      ? "border-brand-primary bg-brand-primary text-text-inverse"
+                      : "border-border-3 bg-surface-1 text-text-tertiary hover:border-brand-primary hover:text-text-brand",
+                  )}
+                >
+                  {tab}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mb-8 flex items-baseline justify-between border-b border-border-2 pb-4">
+            <h2 className="font-heading text-h5 text-text-primary">
+              {showFeatured ? "Latest articles" : activeCategory}
+            </h2>
+            <span className="text-subtext-3 text-text-tertiary">
+              {visiblePosts.length}{" "}
+              {visiblePosts.length === 1 ? "article" : "articles"}
+            </span>
+          </div>
+
+          <div
+            key={activeCategory}
+            className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {visiblePosts.map((post, i) => (
+              <article
+                key={post.slug}
+                className="animate-in fade-in slide-in-from-bottom-3 fill-mode-both"
+                style={{ animationDelay: `${Math.min(i, 8) * 55}ms` }}
+              >
+                <PostCard post={post} />
+              </article>
+            ))}
+          </div>
+
+          {visiblePosts.length === 0 && (
+            <p className="py-16 text-center text-body-md text-text-tertiary">
+              No articles in this category yet.
+            </p>
+          )}
+        </Container>
+      </section>
+    </>
+  );
+}
+
+function MetaRow({
+  category,
+  content,
+}: {
+  category: string;
+  content: string;
+}) {
+  return (
+    <div className="flex items-center gap-3 text-mini font-semibold uppercase tracking-[0.14em]">
+      <span className="rounded-full bg-brand-lite px-2.5 py-1 text-text-brand-deep">
+        {category}
+      </span>
+      <span className="inline-flex items-center gap-1 text-text-tertiary">
+        <Clock className="h-3.5 w-3.5" />
+        {readingTime(content)} min read
+      </span>
+    </div>
+  );
+}
+
+function PostCard({ post }: { post: BlogPost }) {
+  return (
+    <Link
+      href={`/blog/${post.slug}`}
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border-2 bg-surface-1 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-chip"
+    >
+      {/* Square keeps the (mostly 1:1) source covers uncropped */}
+      <div className="relative aspect-square overflow-hidden">
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      </div>
+      <div className="flex flex-1 flex-col gap-3 p-6">
+        <MetaRow category={post.category} content={post.content} />
+        <h3 className="font-heading text-subtext-1 leading-snug text-text-primary transition-colors group-hover:text-text-brand">
+          {post.title}
+        </h3>
+        <p className="line-clamp-3 text-body-sm leading-relaxed text-text-tertiary">
+          {post.excerpt}
+        </p>
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-1 text-subtext-3 font-semibold text-text-brand">
+          Read more
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
   );
 }
