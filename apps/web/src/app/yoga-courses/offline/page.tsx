@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Clock, Globe } from "lucide-react";
 
-import { ListingHero } from "@/components/sections/listing-hero";
-import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
+import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -14,31 +13,31 @@ export const metadata: Metadata = {
   description:
     "Daily regular yoga classes at Bodhi centres weekday mornings and evenings for every level.",
 };
-                                
+
 const COURSES = getCoursesByCategoryAndMode("yoga", "studio");
 
 export default function OfflineYogaCoursesPage() {
   return (
     <>
-      <SiteHeader tone="dark" />
+      <SiteHeader tone="dark" solidBg />
       <main>
-        <ListingHero
+        <OnlineOfflineHero
           breadcrumb={[
             { label: "Home", href: "/" },
-            { label: "Yoga courses", href: "/yoga-courses" },
+            { label: "Yoga Courses", href: "/yoga-courses" },
             { label: "Studio" },
           ]}
-          headline="Regular yoga"
-          headlineAccent="classes"
-          accentPosition="end"
-          headlineAccentClassName="text-text-primary"
+          headline="Regular Yoga Classes"
           subtitle="In-person yoga classes at a Bodhi centre — weekday mornings and evenings only."
           resultCount={`${COURSES.length} course${COURSES.length === 1 ? "" : "s"}`}
-          resultCountTone="accent"
-          tone="light"
-          className="bg-[#EFFFFB]"
-          minHeightClassName="min-h-[421px]"
-          decoration={<ListingHeroDecoration variant="regular" />}
+          backgroundImage="/Offline.png"
+          backgroundAlt="Group yoga class at Bodhi studio"
+          features={[
+            { icon: "/icon/off1.svg", label: "Expert-Led Sessions", description: "Learn from certified instructors" },
+            { icon: "/icon/off2.svg", label: "Small Class Sizes", description: "Personalized attention in every session" },
+            { icon: "/icon/off3.svg", label: "Flexible Schedules", description: "Morning, evening & weekend batches" },
+            { icon: "/icon/off4.svg", label: "Community Vibes", description: "Connect, grow & stay inspired" },
+          ]}
         />
 
         {/* Location filter */}

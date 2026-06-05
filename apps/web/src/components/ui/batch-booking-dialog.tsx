@@ -17,7 +17,7 @@ type RazorpayOptions = {
   currency: string;
   name: string;
   description: string;
-  prefill: { name: string; contact: string };
+  prefill: { name: string; email: string; contact: string };
   notes: Record<string, string>;
   handler: (response: { razorpay_payment_id: string }) => void;
   theme: { color: string };
@@ -49,6 +49,7 @@ export type BatchBookingDialogProps = {
 
 export type BookingFormData = {
   name: string;
+  email: string;
   mobile: string;
   batch: string;
   timeSlot: string;
@@ -82,6 +83,7 @@ export function BatchBookingDialog({
 }: BatchBookingDialogProps) {
   const locale = currency === "USD" ? "en-US" : "en-IN";
   const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [mobile, setMobile] = React.useState("");
   const [batch, setBatch] = React.useState(batches[0]?.value ?? "");
   const [timeSlot, setTimeSlot] = React.useState(timeSlots[0]?.value ?? "");
@@ -90,19 +92,21 @@ export function BatchBookingDialog({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !mobile.trim()) return;
+    if (!name.trim() || !email.trim() || !mobile.trim()) return;
 
     setLoading(true);
 
     const batchLabel = batches.find((b) => b.value === batch)?.label ?? batch;
     const timeSlotLabel = timeSlots.find((t) => t.value === timeSlot)?.label ?? timeSlot;
 
+    // Save to Kylas CRM (best-effort)
     try {
       await fetch("/api/kylas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           firstName: name.trim(),
+          email: email.trim(),
           phoneNumber: mobile.trim(),
           courseName,
           batch: batchLabel,
@@ -111,7 +115,31 @@ export function BatchBookingDialog({
         }),
       });
     } catch {
-      // Kylas save is best-effort — don't block payment
+      // Kylas save is best-effort
+    }
+
+    // Save booking to Supabase with pending status via API route
+    let bookingId: string | null = null;
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          mobile: mobile.trim(),
+          courseName,
+          batch: batchLabel,
+          timeSlot: timeSlotLabel,
+          specialRequests: specialRequests.trim(),
+          amount: amountInPaise,
+          currency,
+        }),
+      });
+      const result = await res.json();
+      bookingId = result.bookingId ?? null;
+    } catch {
+      // DB save is best-effort — don't block payment
     }
 
     const loaded = await loadRazorpayScript();
@@ -127,15 +155,32 @@ export function BatchBookingDialog({
       currency,
       name: "Bodhi School of Yoga",
       description: courseName,
-      prefill: { name: name.trim(), contact: `+91${mobile.trim()}` },
+      prefill: { name: name.trim(), email: email.trim(), contact: `+91${mobile.trim()}` },
       notes: {
         batch,
         timeSlot,
         specialRequests: specialRequests.trim(),
       },
-      handler: (response) => {
+      handler: async (response) => {
+        // Update payment status to paid
+        if (bookingId) {
+          try {
+            await fetch("/api/bookings", {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                bookingId,
+                paymentStatus: "paid",
+                paymentId: response.razorpay_payment_id,
+              }),
+            });
+          } catch {
+            // Best-effort update
+          }
+        }
         onPaymentSuccess?.(response.razorpay_payment_id, {
           name: name.trim(),
+          email: email.trim(),
           mobile: mobile.trim(),
           batch,
           timeSlot,
@@ -243,6 +288,25 @@ export function BatchBookingDialog({
                   />
                 </div>
               </div>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-medium text-text-primary">
+                Email
+              </label>
+              <input
+                type="email"
+                required
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={cn(
+                  "h-12 rounded-xl border border-border-1 bg-white px-4",
+                  "text-sm text-text-primary placeholder:text-text-tertiary",
+                  "outline-none transition-colors",
+                  "focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30",
+                )}
+              />
             </div>
 
             <div className="flex flex-col gap-1.5">

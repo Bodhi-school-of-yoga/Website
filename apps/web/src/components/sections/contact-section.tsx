@@ -2,7 +2,6 @@
 
 // ContactSection — Contact page layout combining ContactForm and ContactInfoCard columns.
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, type LucideIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { usePromoBanner } from '@/components/ui/use-promo-banner';
@@ -27,10 +26,10 @@ export type ContactSectionProps = {
   className?: string;
 };
 
-const ICON_MAP: Record<ContactIconName, LucideIcon> = {
-  phone: Phone,
-  mail: Mail,
-  'map-pin': MapPin,
+const ICON_MAP: Record<ContactIconName, string> = {
+  phone: '/icon/Phone.svg',
+  mail: '/icon/Email.svg',
+  'map-pin': '/icon/location.svg',
 };
 
 const DEFAULT_CONTACT_CARDS: ContactInfoCardData[] = [
@@ -84,7 +83,7 @@ export function ContactSection({
   return (
     <motion.section
       className={cn(
-        'relative',
+        'relative bg-[linear-gradient(to_bottom,var(--color-brand-lite)_0%,#ffffff_100%)]',
         bannerVisible
           ? 'pt-[140px] sm:pt-[148px] lg:pt-[160px] pb-12 sm:pb-16 md:pb-20 lg:pb-28'
           : 'pt-[96px] sm:pt-[104px] lg:pt-[116px] pb-12 sm:pb-16 md:pb-20 lg:pb-28',
@@ -120,18 +119,15 @@ export function ContactSection({
               variants={childVariants}
               className="mt-10 flex flex-col gap-5"
             >
-              {infoCards.map((card, index) => {
-                const Icon = ICON_MAP[card.icon];
-                return (
+              {infoCards.map((card, index) => (
                   <ContactInfoCard
                     key={`${card.label}-${index}`}
-                    icon={Icon}
+                    iconSrc={ICON_MAP[card.icon]}
                     label={card.label}
                     value={card.value}
                     href={card.href ?? null}
                   />
-                );
-              })}
+              ))}
             </motion.div>
           </div>
 

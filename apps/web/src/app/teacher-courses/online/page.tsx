@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 import CourseGridSection from "@/components/sections/course-grid-section";
-import { ListingHero } from "@/components/sections/listing-hero";
-import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
+import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { type PopularCourse } from "@/components/sections/popular-courses-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
@@ -38,24 +37,25 @@ const COURSES: PopularCourse[] = getCoursesByCategoryAndMode("teacher", "online"
 export default function OnlineCoursesPage() {
   return (
     <>
-      <SiteHeader tone="dark" />
+      <SiteHeader tone="dark" solidBg />
       <main>
-        <ListingHero
+        <OnlineOfflineHero
           breadcrumb={[
             { label: "Home", href: "/" },
-            { label: "Teacher training courses", href: "/teacher-courses" },
+            { label: "Teacher Training Courses", href: "/teacher-courses" },
             { label: "Online" },
           ]}
-          headlineAccent="Become"
-          headline="The Teacher You Were Meant To Be"
-          headlineAccentClassName="text-text-primary"
+          headline="Become The Teacher You Were Meant To Be"
           subtitle="World-class yoga teacher training and mindful practice for aspiring instructors and lifelong learners."
-          resultCount={`${COURSES.length} COURSES`}
-          resultCountTone="accent"
-          tone="light"
-          className="bg-[#EFFFFB]"
-          minHeightClassName="min-h-[421px]"
-          decoration={<ListingHeroDecoration variant="teacher" />}
+          resultCount={`${COURSES.length} courses`}
+          backgroundImage="/Online.png"
+          backgroundAlt="Woman practising yoga online at home"
+          features={[
+            { icon: "/icon/Live.svg", label: "Live Interactive Classes", description: "Practice in real-time with expert teachers" },
+            { icon: "/icon/On2.svg", label: "All Levels Welcome", description: "From beginners to advanced practitioners" },
+            { icon: "/icon/On3.svg", label: "Flexible Schedule", description: "Choose classes that fit your life" },
+            { icon: "/icon/On4.svg", label: "Holistic Wellness", description: "Focus on body, mind, and spirit" },
+          ]}
         />
         <CourseGridSection courses={COURSES} />
       </main>

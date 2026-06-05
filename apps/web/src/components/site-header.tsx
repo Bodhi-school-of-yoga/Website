@@ -37,6 +37,8 @@ export type SiteHeaderProps = {
   ctaHref?: string;
   onSearchClick?: () => void;
   tone?: "dark" | "light";
+  /** Always render a solid white header background (no transparency). */
+  solidBg?: boolean;
   className?: string;
 };
 
@@ -70,6 +72,7 @@ export function SiteHeader({
   ctaHref = "/contact",
   onSearchClick,
   tone = "dark",
+  solidBg = false,
   className,
 }: SiteHeaderProps) {
   const [scrolled, setScrolled] = React.useState(false);
@@ -115,7 +118,7 @@ export function SiteHeader({
         }}
         className={cn(
           "fixed inset-x-0 top-0  z-50 transition-[background-color,box-shadow] duration-300",
-          scrolled || mobileOpen
+          scrolled || mobileOpen || solidBg
             ? "bg-background/85 backdrop-blur-md shadow-[0_1px_0_0_rgb(0_0_0/0.04)]"
             : "bg-transparent",
           className,
@@ -140,7 +143,7 @@ export function SiteHeader({
             priority
             className={cn(
               "w-auto origin-left transition-[height,transform] duration-300 group-hover:scale-[1.02]",
-              scrolled ? "h-10 sm:h-12 lg:h-14" : "h-12 sm:h-14 lg:h-16",
+              scrolled ? "h-14 sm:h-12 lg:h-14" : "h-16 sm:h-14 lg:h-16",
             )}
           />
         </Link>

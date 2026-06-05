@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Clock, Globe, Monitor } from "lucide-react";
 
-import { ListingHero } from "@/components/sections/listing-hero";
-import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
+import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
@@ -19,25 +18,25 @@ const COURSES = getCoursesByCategoryAndMode("advanced", "online");
 export default function OnlineAdvancedCertificationsPage() {
   return (
     <>
-      <SiteHeader tone="dark" />
+      <SiteHeader tone="dark" solidBg />
       <main>
-        <ListingHero
+        <OnlineOfflineHero
           breadcrumb={[
             { label: "Home", href: "/" },
             { label: "Advanced Certifications", href: "/advanced-certifications" },
             { label: "Online" },
           ]}
-          headline="Online"
-          headlineAccent="Advanced Certifications"
-          accentPosition="end"
-          headlineAccentClassName="text-brand-primary"
+          headline="Online Advanced Certifications"
           subtitle="Accredited, women-centred advanced training rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
           resultCount={`${COURSES.length} courses`}
-          resultCountTone="accent"
-          tone="light"
-          className="bg-[#EFFFFB]"
-          minHeightClassName="min-h-[421px]"
-          decoration={<ListingHeroDecoration />}
+          backgroundImage="/Online.png"
+          backgroundAlt="Woman practising yoga online at home"
+          features={[
+            { icon: "/icon/Live.svg", label: "Live Interactive Classes", description: "Practice in real-time with expert teachers" },
+            { icon: "/icon/On2.svg", label: "All Levels Welcome", description: "From beginners to advanced practitioners" },
+            { icon: "/icon/On3.svg", label: "Flexible Schedule", description: "Choose classes that fit your life" },
+            { icon: "/icon/On4.svg", label: "Holistic Wellness", description: "Focus on body, mind, and spirit" },
+          ]}
         />
 
         <section className="bg-surface-1 py-16 md:py-20 lg:py-24">

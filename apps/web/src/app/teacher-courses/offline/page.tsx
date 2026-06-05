@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Clock, Globe, Monitor } from "lucide-react";
 
-import { ListingHero } from "@/components/sections/listing-hero";
-import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
+import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -20,24 +19,25 @@ const COURSES = getCoursesByCategoryAndMode("teacher", "studio");
 export default function OfflineCoursesPage() {
   return (
     <>
-      <SiteHeader tone="dark" />
+      <SiteHeader tone="dark" solidBg />
       <main>
-        <ListingHero
+        <OnlineOfflineHero
           breadcrumb={[
             { label: "Home", href: "/" },
-            { label: "Teacher training courses", href: "/teacher-courses" },
+            { label: "Teacher Training Courses", href: "/teacher-courses" },
             { label: "Offline" },
           ]}
-          headlineAccent="Become"
-          headline="The Teacher You Were Meant To Be"
-          headlineAccentClassName="text-text-primary"
+          headline="Become The Teacher You Were Meant To Be"
           subtitle="World-class yoga teacher training and mindful practice for aspiring instructors and lifelong learners."
           resultCount={`${COURSES.length} course${COURSES.length === 1 ? "" : "s"}`}
-          resultCountTone="accent"
-          tone="light"
-          className="bg-[#EFFFFB]"
-          minHeightClassName="min-h-[421px]"
-          decoration={<ListingHeroDecoration variant="teacher" />}
+          backgroundImage="/Offline.png"
+          backgroundAlt="Group yoga class at Bodhi studio"
+          features={[
+            { icon: "/icon/off1.svg", label: "Expert-Led Sessions", description: "Learn from certified instructors" },
+            { icon: "/icon/off2.svg", label: "Small Class Sizes", description: "Personalized attention in every session" },
+            { icon: "/icon/off3.svg", label: "Flexible Schedules", description: "Morning, evening & weekend batches" },
+            { icon: "/icon/off4.svg", label: "Community Vibes", description: "Connect, grow & stay inspired" },
+          ]}
         />
 
         {/* Location filter */}

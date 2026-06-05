@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Clock, Globe, Monitor } from "lucide-react";
 
-import { ListingHero } from "@/components/sections/listing-hero";
-import { ListingHeroDecoration } from "@/components/sections/listing-hero-decoration";
+import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -20,29 +19,29 @@ const COURSES = getCoursesByCategoryAndMode("advanced", "studio");
 export default function StudioAdvancedCertificationsPage() {
   return (
     <>
-      <SiteHeader tone="dark" />
+      <SiteHeader tone="dark" solidBg />
       <main>
-        <ListingHero
+        <OnlineOfflineHero
           breadcrumb={[
             { label: "Home", href: "/" },
             { label: "Advanced Certifications", href: "/advanced-certifications" },
             { label: "Offline" },
           ]}
-          headline="Offline"
-          headlineAccent="Advanced Certifications"
-          accentPosition="end"
-          headlineAccentClassName="text-brand-primary"
+          headline="Offline Advanced Certifications"
           subtitle="Accredited, women-centred teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga."
           resultCount={`${COURSES.length} course${COURSES.length === 1 ? "" : "s"}`}
-          tone="light"
-          resultCountTone="accent"
-          className="bg-[#EFFFFB]"
-          minHeightClassName="min-h-[421px]"
-          decoration={<ListingHeroDecoration />}
+          backgroundImage="/Offline.png"
+          backgroundAlt="Group yoga class at Bodhi studio"
+          features={[
+            { icon: "/icon/off1.svg", label: "Expert-Led Sessions", description: "Learn from certified instructors" },
+            { icon: "/icon/off2.svg", label: "Small Class Sizes", description: "Personalized attention in every session" },
+            { icon: "/icon/off3.svg", label: "Flexible Schedules", description: "Morning, evening & weekend batches" },
+            { icon: "/icon/off4.svg", label: "Community Vibes", description: "Connect, grow & stay inspired" },
+          ]}
         />
 
         {/* Location filter */}
-        <section className="border-t border-border-1 bg-surface-1 pt-12 pb-6">
+        <section className=" bg-surface-1 pt-12 pb-6">
           <div className="mx-auto max-w-[1200px] page-px">
             <LocationFilterBar />
             <p className="mt-6 text-mini uppercase tracking-widest text-text-brand">

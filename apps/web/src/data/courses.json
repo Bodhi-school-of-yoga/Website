@@ -125,7 +125,8 @@
   },
   {
     "slug": "prenatal-ytt",
-    "price": "₹42,000",
+    "price": "₹36,750",
+    "originalPrice": "₹42,000",
     "title": "Pre-Natal Yoga Teacher Training Course",
     "titleLead": "Pre-Natal Yoga",
     "titleAccent": "Teacher Training",
@@ -249,6 +250,7 @@
   {
     "slug": "bala-ytt",
     "price": "₹36,750",
+    "originalPrice": "₹42,000",
     "title": "Children's (Bala) Yoga Teacher Training Course",
     "titleLead": "Bala Yoga",
     "titleAccent": "Teacher Training",
@@ -746,7 +748,8 @@
   },
   {
     "slug": "200-hour-ytt-online",
-    "price": "₹60,000",
+    "price": "₹9,000",
+    "originalPrice": "₹30,000",
     "title": "200-Hour Yoga Teacher Training Course",
     "titleLead": "200-Hour Yoga",
     "titleAccent": "Teacher Training",
@@ -889,7 +892,8 @@
   },
   {
     "slug": "face-yoga-ttc",
-    "price": "₹30,450",
+    "price": "₹26,250",
+    "originalPrice": "₹30,450",
     "title": "Face Yoga Teacher Training Course",
     "titleLead": "Face Yoga",
     "titleAccent": "Teacher Training",
@@ -1007,7 +1011,8 @@
   },
   {
     "slug": "mat-pilates-certification",
-    "price": "₹42,000",
+    "price": "₹36,750",
+    "originalPrice": "₹42,000",
     "title": "MAT Pilates Certification Course",
     "titleLead": "MAT Pilates",
     "titleAccent": "Certification",
@@ -1249,7 +1254,8 @@
   },
   {
     "slug": "200-hour-ytt-studio",
-    "price": "₹90,000",
+    "price": "₹14,700",
+    "originalPrice": "₹49,000",
     "title": "200-Hour Yoga Teacher Training Course",
     "titleLead": "200-Hour Yoga",
     "titleAccent": "Teacher Training",
@@ -1735,7 +1741,7 @@
       },
       {
         "period": "Yearly",
-        "price": "₹9,999"
+        "price": "₹8,999"
       }
     ]
   },
@@ -1979,7 +1985,7 @@
       },
       {
         "period": "Yearly",
-        "price": "₹11,999"
+        "price": "₹10,799"
       }
     ]
   }

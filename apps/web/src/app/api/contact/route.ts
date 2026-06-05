@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { insertRow } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,6 +12,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Save to Supabase (best-effort — don't block Kylas)
+    const { error: dbError } = await insertRow("contact_submissions", {
+      first_name: firstName,
+      phone: phone || null,
+      email,
+      message,
+    });
+    if (dbError) {
+      console.error("[Contact] Supabase insert failed:", dbError);
+    }
+
+    // Save to Kylas CRM
     const kylasData: Record<string, unknown> = {
       firstName,
       lastName: "Contact Enquiry",
@@ -32,20 +45,23 @@ export async function POST(req: NextRequest) {
       requirementName: `Contact Form Message: ${message}`,
     };
 
-    const response = await fetch("https://api.kylas.io/v1/leads/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "api-key": process.env.KYLAS_API_KEY!,
-      },
-      body: JSON.stringify(kylasData),
-    });
+    try {
+      const response = await fetch("https://api.kylas.io/v1/leads/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "api-key": process.env.KYLAS_API_KEY!,
+        },
+        body: JSON.stringify(kylasData),
+      });
 
-    const result = await response.json();
-
-    if (!response.ok) {
-      return NextResponse.json(result, { status: response.status });
+      if (!response.ok) {
+        const result = await response.json();
+        console.error("[Contact] Kylas CRM save failed:", result);
+      }
+    } catch (kylasErr) {
+      console.error("[Contact] Kylas CRM request failed:", kylasErr);
     }
 
     return NextResponse.json({ success: true });

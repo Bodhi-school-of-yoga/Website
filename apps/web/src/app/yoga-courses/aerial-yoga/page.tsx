@@ -13,6 +13,7 @@ import { FaqSection } from "@/components/sections/faq-section";
 import { PopularCoursesSection } from "@/components/sections/popular-courses-section";
 import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
 import { RevealOnScroll } from "@/components/ui/reveal-on-scroll";
+import { findCourseBySlug, toSmallestUnit } from "@/data/courses-catalog";
 
 
 export const metadata: Metadata = {
@@ -22,6 +23,10 @@ export const metadata: Metadata = {
 };
 
 export default function AerialYogaCoursePage() {
+  // Checkout amount is sourced from the catalog price (single source of truth)
+  // so it can never drift from the displayed price.
+  const amountInPaise = toSmallestUnit(findCourseBySlug("aerial-yoga-ttc")?.price ?? "0");
+
   return (
     <main className="flex min-h-screen flex-col bg-surface-1">
       <SiteHeader />
@@ -40,7 +45,7 @@ export default function AerialYogaCoursePage() {
         ctaLabel="Reserve Your Spot Now"
         heroImage="/images/courses/aerial-yoga/hero.png"
         courseName="Aerial Yoga Course"
-        amountInPaise={10000}
+        amountInPaise={amountInPaise}
         razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
         batches={[
           { label: "8th June – 31st July", value: "jun-8-jul-31" },

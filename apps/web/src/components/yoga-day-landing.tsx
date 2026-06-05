@@ -17,6 +17,12 @@ import { YogaDayUrgencySection } from "@/components/sections/yoga-day-urgency-se
 import { YogaDayCoursesSection } from "@/components/sections/yoga-day-courses-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 
+// International Yoga Day scholarship: 70% off the original price. The original
+// (₹41,900) and the resulting ₹12,570 are the same figures shown in
+// YogaDayWeeklyDiscountSection — the checkout must match the on-page price.
+const YOGA_DAY_ORIGINAL_RUPEES = 41_900;
+const YOGA_DAY_AMOUNT_IN_PAISE = Math.round(YOGA_DAY_ORIGINAL_RUPEES * 0.3 * 100);
+
 export function YogaDayLanding() {
   const [dialogOpen, setDialogOpen] = React.useState(false);
 
@@ -29,7 +35,7 @@ export function YogaDayLanding() {
           open={dialogOpen}
           onOpenChange={setDialogOpen}
           courseName="International Yoga Day — 70% Scholarship"
-          amountInPaise={10000}
+          amountInPaise={YOGA_DAY_AMOUNT_IN_PAISE}
           razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
           batches={[
             { label: "Next batch — Mon – Fri", value: "next" },
