@@ -1,16 +1,47 @@
 {
   "active": true,
   "startsAt": null,
-  "endsAt": null,
-  "text": "This International Yoga Day 2026, get up to **70%** off on all our courses*",
+  "endsAt": "2026-06-30T23:59:59+05:30",
+  "text": "EARLY YOGA International Day Offer! Get flat **70%** off on all courses — register by 8th June",
   "href": "/yoga-day",
   "linkLabel": null,
+  "tiers": [
+    {
+      "before": "2026-06-09T00:00:00+05:30",
+      "text": "EARLY YOGA International Day Offer! Get flat **70%** off on all courses — register by 8th June",
+      "discount": "70%"
+    },
+    {
+      "before": "2026-06-16T00:00:00+05:30",
+      "text": "YOGA International Day Offer! Get flat **60%** off on all courses — limited time only",
+      "discount": "60%"
+    },
+    {
+      "before": null,
+      "text": "YOGA International Day Offer! Get flat **50%** off on all courses — enroll now",
+      "discount": "50%"
+    }
+  ],
   "overrides": [
     {
       "routes": ["/yoga-courses/offline", "/yoga-courses/online"],
-      "text": "This international yoga day get **70%** off on 12 months plan + get a wiselife mat free worth rupees **₹2000**",
+      "text": "EARLY YOGA International Day Offer! Get flat **70%** off on 12 months plan + get a wiselife mat free worth **₹2000**",
       "href": "/yoga-day",
-      "linkLabel": null
+      "linkLabel": null,
+      "tiers": [
+        {
+          "before": "2026-06-09T00:00:00+05:30",
+          "text": "EARLY YOGA International Day Offer! Get flat **70%** off on 12 months plan + get a wiselife mat free worth **₹2000**"
+        },
+        {
+          "before": "2026-06-16T00:00:00+05:30",
+          "text": "YOGA International Day Offer! Get flat **60%** off on 12 months plan + get a wiselife mat free worth **₹2000**"
+        },
+        {
+          "before": null,
+          "text": "YOGA International Day Offer! Get flat **50%** off on 12 months plan + get a wiselife mat free worth **₹2000**"
+        }
+      ]
     }
   ]
 }

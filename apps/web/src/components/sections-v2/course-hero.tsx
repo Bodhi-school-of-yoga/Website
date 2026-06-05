@@ -44,6 +44,8 @@ export type CourseHeroProps = {
    * are given, `onClick` wins.
    */
   cta: { label: string; href?: string; onClick?: () => void };
+  /** Show a "Coming Soon" badge instead of price/booking. */
+  comingSoon?: boolean;
 };
 
 function PillIcon({ name }: { name: CourseMetaPill['icon'] }) {
@@ -116,6 +118,7 @@ export function CourseHero({
   pricingPlans,
   onPlanChange,
   cta,
+  comingSoon,
 }: CourseHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   // The hero bleeds up behind the fixed nav (+ promo bar). When the bar is live
@@ -305,51 +308,72 @@ export function CourseHero({
               </motion.ul>
             )}
 
-            {/* Price block — subscription package selector, a single price, or nothing. */}
-            {pricingPlans && pricingPlans.length > 0 ? (
-              <motion.div variants={fadeInUp} className="mt-8">
-                <PackageSelector
-                  label="Select your package"
-                  plans={pricingPlans}
-                  onPlanChange={onPlanChange}
-                />
-              </motion.div>
-            ) : price ? (
-              <motion.div
-                variants={fadeInUp}
-                className="mt-8 flex items-baseline gap-4"
-              >
-                <span className="sr-only">{priceLabel}</span>
-                {originalPrice && (
-                  <span className="block mt-0.5 text-[19px] text-text-tertiary line-through">
-                    {originalPrice}
+            {/* Coming Soon badge — replaces price + booking CTA */}
+            {comingSoon ? (
+              <>
+                <motion.div variants={fadeInUp} className="mt-8 flex items-center gap-3">
+                  <span className="inline-flex items-center rounded-full bg-amber-100 px-4 py-1.5 text-body-sm font-semibold text-amber-800">
+                    Coming Soon
                   </span>
-                )}
-                <span className="block text-[clamp(1.5rem,2.5vw+0.5rem,2.25rem)] font-heading font-bold text-brand-primary">
-                  {price}
-                </span>
-              </motion.div>
-            ) : null}
+                </motion.div>
+                <motion.div variants={fadeInUp} className="mt-5">
+                  <Link
+                    href={cta.href ?? '/contact'}
+                    className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-brand-primary px-8 py-[14px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+                  >
+                    {cta.label}
+                  </Link>
+                </motion.div>
+              </>
+            ) : (
+              <>
+                {/* Price block — subscription package selector, a single price, or nothing. */}
+                {pricingPlans && pricingPlans.length > 0 ? (
+                  <motion.div variants={fadeInUp} className="mt-8">
+                    <PackageSelector
+                      label="Select your package"
+                      plans={pricingPlans}
+                      onPlanChange={onPlanChange}
+                    />
+                  </motion.div>
+                ) : price ? (
+                  <motion.div
+                    variants={fadeInUp}
+                    className="mt-8 flex items-baseline gap-4"
+                  >
+                    <span className="sr-only">{priceLabel}</span>
+                    {originalPrice && (
+                      <span className="block mt-0.5 text-[19px] text-text-tertiary line-through">
+                        {originalPrice}
+                      </span>
+                    )}
+                    <span className="block text-[clamp(1.5rem,2.5vw+0.5rem,2.25rem)] font-heading font-bold text-brand-primary">
+                      {price}
+                    </span>
+                  </motion.div>
+                ) : null}
 
-            {/* CTA */}
-            <motion.div variants={fadeInUp} className="mt-5">
-              {cta.onClick ? (
-                <button
-                  type="button"
-                  onClick={cta.onClick}
-                  className="inline-flex w-full sm:w-full items-center justify-center rounded-full bg-brand-primary px-8 py-[10px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
-                >
-                  {cta.label}
-                </button>
-              ) : (
-                <Link
-                  href={cta.href ?? '#'}
-                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-brand-primary px-8 py-[14px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
-                >
-                  {cta.label}
-                </Link>
-              )}
-            </motion.div>
+                {/* CTA */}
+                <motion.div variants={fadeInUp} className="mt-5">
+                  {cta.onClick ? (
+                    <button
+                      type="button"
+                      onClick={cta.onClick}
+                      className="inline-flex w-full sm:w-full items-center justify-center rounded-full bg-brand-primary px-8 py-[10px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+                    >
+                      {cta.label}
+                    </button>
+                  ) : (
+                    <Link
+                      href={cta.href ?? '#'}
+                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-brand-primary px-8 py-[14px] text-subtext-2 font-semibold text-text-inverse motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+                    >
+                      {cta.label}
+                    </Link>
+                  )}
+                </motion.div>
+              </>
+            )}
           </motion.div>
 
 

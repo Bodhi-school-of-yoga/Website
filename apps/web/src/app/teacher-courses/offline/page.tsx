@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Globe, Monitor } from "lucide-react";
+import { Calendar, Clock, Globe, MapPin, Monitor } from "lucide-react";
 
 import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { LocationFilterBar } from "@/components/sections/location-filter-bar";
@@ -66,24 +66,37 @@ export default function OfflineCoursesPage() {
                         icon: <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />,
                         label: course.durationLabel,
                       },
-                      {
-                        icon: <Monitor className="h-3.5 w-3.5" strokeWidth={1.75} />,
-                        label: "Studio",
-                      },
-                      {
-                        icon: <Globe className="h-3.5 w-3.5" strokeWidth={1.75} />,
-                        label: "English",
-                      },
+                      // {
+                      //   icon: <Monitor className="h-3.5 w-3.5" strokeWidth={1.75} />,
+                      //   label: "Studio",
+                      // },
+                      // {
+                      //   icon: <Globe className="h-3.5 w-3.5" strokeWidth={1.75} />,
+                      //   label: "English",
+                      // },
+                      ...(course.scheduleLabel
+                        ? [{
+                            icon: <Calendar className="h-3.5 w-3.5" strokeWidth={1.75} />,
+                            label: course.scheduleLabel,
+                          }]
+                        : []),
+                      ...(course.timingLabel
+                        ? [{
+                            icon: <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />,
+                            label: course.timingLabel,
+                          }]
+                        : []),
                     ]}
                     instructor={course.instructor}
                     cta="View Program"
                     rating={5}
                     reviewCount={30}
-                    centersLabel="4 Centers"
+                    centersLabel={course.availabilityNote ?? "4 Centers"}
                     featured={idx === 0}
                     price={course.price ?? ""}
                     originalPrice={course.originalPrice}
                     discountLabel={getDiscountLabel(course)}
+                    comingSoon={course.comingSoon}
                   />
                 </li>
               ))}

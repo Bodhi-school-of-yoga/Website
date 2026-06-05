@@ -9,15 +9,20 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, X } from "lucide-react";
+import { Dialog } from "@base-ui/react/dialog";
 import { cn } from "@/lib/utils";
 import { usePromoBanner } from "@/components/ui/use-promo-banner";
+import { Separator } from "../ui/separator";
 
 export type HeroOfferChip = {
   eyebrow: string;
   label: string;
   href: string;
   buttonColor: string;
+  /** When true, clicking opens an online/offline choice dialog instead of navigating directly. */
+  showModeDialog?: boolean;
 };
 
 export type HeroSectionProps = {
@@ -39,12 +44,14 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
     label: "I want to teach Yoga & Pillates",
     href: "/teacher-courses/online",
     buttonColor: "#008498",
+    showModeDialog: true,
   },
   {
     eyebrow: "daily yoga classes",
     label: "I want to learn Yoga & Pillates",
-    href: "/contact",
+    href: "/teacher-courses/online",
     buttonColor: "#0d9800",
+    showModeDialog: true,
   },
   {
     eyebrow: "wellness workshops",
@@ -52,7 +59,6 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
     href: "/workshops",
     buttonColor: "#009877",
   },
-  
 ];
 
 const DEFAULTS = {
@@ -80,6 +86,8 @@ export function HeroSection({
   className,
 }: HeroSectionProps) {
   const { visible: bannerVisible } = usePromoBanner();
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
   return (
     <section
       className={cn(
@@ -99,6 +107,7 @@ export function HeroSection({
         offerLabel={offerLabel}
         offers={offers}
         bannerVisible={bannerVisible}
+        onOfferDialogOpen={() => setDialogOpen(true)}
       />
       <HeroMobile
         eyebrow={eyebrow}
@@ -110,7 +119,9 @@ export function HeroSection({
         offerLabel={offerLabel}
         offers={offers}
         bannerVisible={bannerVisible}
+        onOfferDialogOpen={() => setDialogOpen(true)}
       />
+      <CourseModeDialog open={dialogOpen} onOpenChange={setDialogOpen} />
     </section>
   );
 }
@@ -132,7 +143,7 @@ type DesktopProps = Required<
     | "offerLabel"
     | "offers"
   >
-> & { bannerVisible: boolean };
+> & { bannerVisible: boolean; onOfferDialogOpen: () => void };
 
 function HeroDesktop({
   eyebrow,
@@ -145,6 +156,7 @@ function HeroDesktop({
   offerLabel,
   offers,
   bannerVisible,
+  onOfferDialogOpen,
 }: DesktopProps) {
   return (
     <div
@@ -168,7 +180,7 @@ function HeroDesktop({
         <HeroEyebrow text={eyebrow} />
         <HeroHeadline lead={headlineLead} accent={headlineAccent} />
         <HeroSubhead text={subcopy} />
-        <HeroOfferRow label={offerLabel} offers={offers} />
+        <HeroOfferRow label={offerLabel} offers={offers} onOfferDialogOpen={onOfferDialogOpen} />
       </div>
     </div>
   );
@@ -271,9 +283,11 @@ function HeroSubhead({ text }: { text: string }) {
 function HeroOfferRow({
   label,
   offers,
+  onOfferDialogOpen,
 }: {
   label: string;
   offers: HeroOfferChip[];
+  onOfferDialogOpen: () => void;
 }) {
   return (
     <div className="relative z-30 mt-24">
@@ -295,7 +309,7 @@ function HeroOfferRow({
       >
         {offers.map((offer) => (
           <li key={offer.label}>
-            <HeroOfferChipCard offer={offer} variant="desktop" />
+            <HeroOfferChipCard offer={offer} variant="desktop" onDialogOpen={onOfferDialogOpen} />
           </li>
         ))}
       </ul>
@@ -319,6 +333,7 @@ function HeroMobile({
   offerLabel,
   offers,
   bannerVisible,
+  onOfferDialogOpen,
 }: MobileProps) {
   return (
     <div className="relative lg:hidden">
@@ -375,7 +390,7 @@ function HeroMobile({
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {offers.map((offer) => (
               <li key={offer.label}>
-                <HeroOfferChipCard offer={offer} variant="mobile" />
+                <HeroOfferChipCard offer={offer} variant="mobile" onDialogOpen={onOfferDialogOpen} />
               </li>
             ))}
           </ul>
@@ -393,32 +408,33 @@ function HeroMobile({
 function HeroOfferChipCard({
   offer,
   variant,
+  onDialogOpen,
 }: {
   offer: HeroOfferChip;
   variant: "desktop" | "mobile";
+  onDialogOpen: () => void;
 }) {
   const isDesktop = variant === "desktop";
 
-  return (
-    <Link
-      href={offer.href}
-      className={cn(
-        // layout
-        "group flex items-center justify-between gap-6",
-        isDesktop
-          ? "h-[var(--hero-chip-h)] min-h-[80px] px-3"
-          : "min-h-[88px] px-[22px] py-3",
-        // shape + surface
-        "rounded-[1.3rem]",
-        "bg-surface-1 border border-[color:rgba(123,123,123,0.20)]",
-        "shadow-[var(--shadow-chip)]",
-        // motion
-        "transition-all duration-300",
-        "hover:-translate-y-0.5 hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.18)]",
-        // focus
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
-      )}
-    >
+  const sharedClassName = cn(
+    // layout
+    "group flex items-center justify-between gap-6 w-full text-left",
+    isDesktop
+      ? "h-[var(--hero-chip-h)] min-h-[80px] px-3"
+      : "min-h-[88px] px-[22px] py-3",
+    // shape + surface
+    "rounded-[1.3rem]",
+    "bg-surface-1 border border-[color:rgba(123,123,123,0.20)]",
+    "shadow-[var(--shadow-chip)]",
+    // motion
+    "transition-all duration-300",
+    "hover:-translate-y-0.5 hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.18)]",
+    // focus
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40",
+  );
+
+  const inner = (
+    <>
       <div className="flex min-w-0 flex-col gap-[2px]">
         <span
           className={cn(
@@ -453,6 +469,134 @@ function HeroOfferChipCard({
       >
         <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
       </span>
+    </>
+  );
+
+  if (offer.showModeDialog) {
+    return (
+      <button type="button" onClick={onDialogOpen} className={sharedClassName}>
+        {inner}
+      </button>
+    );
+  }
+
+  return (
+    <Link href={offer.href} className={sharedClassName}>
+      {inner}
     </Link>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Online / Offline course-mode choice dialog
+// ---------------------------------------------------------------------------
+
+const COURSE_MODE_OPTIONS = [
+  {
+    title: "Online Courses",
+    subtitle: "At Comfort of your home",
+    count: "9 Courses",
+    href: "/teacher-courses/online",
+    image: "/images/programs/teacher-online-200-hour-ytt.jpg",
+  },
+  {
+    title: "Offline - in studio",
+    subtitle: "We have 20+ studios",
+    count: "9 Courses",
+    href: "/teacher-courses/offline",
+    image: "/images/programs/daily-regular-yoga-offline.jpg",
+  },
+];
+
+function CourseModeDialog({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  const router = useRouter();
+
+  return (
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Backdrop
+          className={cn(
+            "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm",
+            "transition-opacity duration-200",
+            "data-starting-style:opacity-0 data-ending-style:opacity-0",
+          )}
+        />
+        <Dialog.Popup
+          className={cn(
+            "fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[480px]",
+            "-translate-x-1/2 -translate-y-1/2",
+            "rounded-2xl bg-white px-5 py-4 sm:px-4 shadow-md",
+            "transition-all duration-200",
+            "data-starting-style:opacity-0 data-starting-style:scale-95",
+            "data-ending-style:opacity-0 data-ending-style:scale-95",
+          )}
+        >
+          <div className="flex items-start justify-between mb-5">
+            <div>
+              <Dialog.Title className="font-heading text-[18px] font-bold text-text-primary">
+                Which yoga course you would like to enroll
+              </Dialog.Title>
+              <Dialog.Description className="mt-0 text-[15px] text-text-tertiary">
+                At Comfort of your home
+              </Dialog.Description>
+
+            </div>
+            <Dialog.Close
+              className={cn(
+                "flex h-8 w-8 items-center justify-center rounded-lg",
+                "text-text-tertiary hover:bg-surface-2 hover:text-text-primary",
+                "transition-colors duration-150",
+              )}
+            >
+              <X className="h-4 w-4" />
+            </Dialog.Close>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {COURSE_MODE_OPTIONS.map((option) => (
+              <button
+                key={option.href}
+                type="button"
+                onClick={() => {
+                  onOpenChange(false);
+                  router.push(option.href);
+                }}
+                className={cn(
+                  "group flex flex-col overflow-hidden rounded-xl",
+                  "border border-neutral-200 bg-[#F7F7F7]",
+                  
+                )}
+              >
+                <div className="relative h-28 w-full overflow-hidden">
+                  <Image
+                    src={option.image}
+                    alt={option.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="px-3 py-3 text-left">
+                  <p className="text-[16px] font-bold text-text-primary">
+                    {option.title}
+                  </p>
+                  <p className="mt-0.5 text-[14px] text-text-tertiary">
+                    {option.subtitle}
+                  </p>
+                  <p className="mt-1 text-xs font-medium text-[color:var(--color-text-brand-emerald)]">
+                    {option.count}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }

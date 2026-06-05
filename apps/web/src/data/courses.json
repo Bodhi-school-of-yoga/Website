@@ -748,8 +748,8 @@
   },
   {
     "slug": "200-hour-ytt-online",
-    "price": "₹9,000",
-    "originalPrice": "₹30,000",
+    "price": "₹18,000",
+    "originalPrice": "₹60,000",
     "title": "200-Hour Yoga Teacher Training Course",
     "titleLead": "200-Hour Yoga",
     "titleAccent": "Teacher Training",
@@ -1254,8 +1254,8 @@
   },
   {
     "slug": "200-hour-ytt-studio",
-    "price": "₹14,700",
-    "originalPrice": "₹49,000",
+    "price": "26,999",
+    "originalPrice": "₹90,000",
     "title": "200-Hour Yoga Teacher Training Course",
     "titleLead": "200-Hour Yoga",
     "titleAccent": "Teacher Training",
@@ -1374,15 +1374,17 @@
   {
     "slug": "aerial-yoga-ttc",
     "price": "₹9,999",
-    "originalPrice": "₹20,000",
+    "originalPrice": "₹29,999",
     "title": "Aerial Yoga Teacher Training Course",
     "titleLead": "Aerial Yoga",
     "titleAccent": "Teacher Training",
     "category": "teacher",
     "mode": "studio",
     "shortDescription": "Master the art of yoga in the air — gravity-assisted inversions, decompressive sequences, and hammock teaching.",
-    "durationLabel": "4 weeks",
-    "scheduleLabel": "Mon – Fri",
+    "durationLabel": "4 days",
+    "scheduleLabel": "25th – 28th June",
+    "timingLabel": "10:00 AM – 2:00 PM",
+    "availabilityNote": "Pragathi Nagar, Hyderabad",
     "listingImage": "/images/programs/teacher-studio-aerial-yoga.jpg",
     "heroImage": "/images/programs/teacher-studio-aerial-yoga.jpg",
     "instructor": {
@@ -1492,6 +1494,7 @@
   },
   {
     "slug": "mudgar-ttc",
+    "comingSoon": true,
     "price": "₹9,999",
     "originalPrice": "₹20,000",
     "title": "Mudgar Teacher Training Course",
@@ -1755,8 +1758,8 @@
     "shortDescription": "Take your practice to the next level — 3 months of live advanced yoga and mat-Pilates classes with expert guidance.",
     "durationLabel": "3 months",
     "scheduleLabel": "Mon – Fri",
-    "listingImage": "/images/programs/yoga-online-advanced-mat-pilates.jpg",
-    "heroImage": "/images/programs/yoga-online-advanced-mat-pilates.jpg",
+    "listingImage": "/images/programs/teacher-online-mat-pilates.jpg",
+    "heroImage": "/images/programs/teacher-online-mat-pilates.jpg",
     "instructor": {
       "initials": "LY",
       "name": "Lakshmi Yalamudi"

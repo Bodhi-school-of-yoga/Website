@@ -60,7 +60,7 @@ const DEFAULT_COLUMNS: FooterColumn[] = [
 
 const DEFAULT_ADDRESS: FooterAddressColumn = {
   heading: "Visit",
-  lines: ["The Practice Room,", "2nd floor, Quiet Lane", "City  ·  India"],
+  lines: [" 6-3-571/1 2, 1st Floor, Rockvista, Rockdale, 6-3-571/1 2, Hyderabad, Telangana-500082"],
   action: {
     label: "Get directions →",
     href: "https://maps.google.com",
@@ -113,7 +113,7 @@ export const HOME_FOOTER_COLUMNS: FooterColumn[] = [
   },
   {
     heading: "Visit",
-    lines: ["The Practice Room,", "2nd floor, Quiet Lane", "City  ·  India"],
+    lines: [" 6-3-571/1 2, 1st Floor, Rockvista, Rockdale, 6-3-571/1 2, Hyderabad, Telangana-500082"],
     links: [
       {
         label: "Get directions →",

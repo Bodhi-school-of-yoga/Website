@@ -37,11 +37,21 @@ export type CoursePromoBanner = {
   linkLabel?: string | null;
 };
 
-type PromoBannerOverride = CoursePromoBanner & {
+// A time-based tier — the first tier whose `before` is in the future (or null
+// for the final catch-all) wins. This lets the discount step down over time
+// without redeploying: 70% → 60% → 50%.
+type PromoBannerTier = {
+  before: string | null;
+  text: string;
+};
+
+type Tiered = { tiers?: PromoBannerTier[] };
+
+type PromoBannerOverride = CoursePromoBanner & Tiered & {
   routes: string[];
 };
 
-type PromoBannerConfig = CoursePromoBanner & {
+type PromoBannerConfig = CoursePromoBanner & Tiered & {
   active: boolean;
   startsAt?: string | null;
   endsAt?: string | null;
@@ -62,16 +72,33 @@ function isLive(now: Date): boolean {
   return true;
 }
 
+// Resolve the text from time-based tiers. Falls back to `fallbackText` when
+// no tiers are defined.
+function resolveText(tiers: PromoBannerTier[] | undefined, fallbackText: string, now: Date): string {
+  if (!tiers || tiers.length === 0) return fallbackText;
+  const t = now.getTime();
+  for (const tier of tiers) {
+    if (tier.before === null || t < new Date(tier.before).getTime()) {
+      return tier.text;
+    }
+  }
+  return fallbackText;
+}
+
 // Strip config-only fields down to the display content.
-function toBanner(b: CoursePromoBanner): CoursePromoBanner {
-  return { text: b.text, href: b.href ?? null, linkLabel: b.linkLabel ?? null };
+function toBanner(b: CoursePromoBanner & Tiered, now: Date): CoursePromoBanner {
+  return {
+    text: resolveText(b.tiers, b.text, now),
+    href: b.href ?? null,
+    linkLabel: b.linkLabel ?? null,
+  };
 }
 
 // Resolve the default (site-wide) banner when live, else null.
 export function getActivePromoBanner(
   now: Date = new Date(),
 ): CoursePromoBanner | null {
-  return isLive(now) ? toBanner(raw) : null;
+  return isLive(now) ? toBanner(raw, now) : null;
 }
 
 // Resolve the banner for a specific route: a matching override's content when
@@ -86,5 +113,5 @@ export function getPromoBannerForPath(
     o.routes.some((r) => pathname === r || pathname.startsWith(`${r}/`)),
   );
 
-  return toBanner(override ?? raw);
+  return toBanner(override ?? raw, now);
 }

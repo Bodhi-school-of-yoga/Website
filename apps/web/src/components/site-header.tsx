@@ -116,6 +116,7 @@ export function SiteHeader({
           damping: 30,
           mass: 0.6,
         }}
+
         className={cn(
           "fixed inset-x-0 top-0  z-50 transition-[background-color,box-shadow] duration-300",
           scrolled || mobileOpen || solidBg
@@ -126,7 +127,7 @@ export function SiteHeader({
       >
         <div
           className={cn(
-            "mx-auto flex max-w-[1340px] items-center justify-between gap-6 nav-px transition-[height] duration-300 xl:gap-10",
+            "mx-auto flex max-w-[1390px] items-center justify-between gap-6 nav-px transition-[height] duration-300 xl:gap-10",
             headerHeight,
           )}
         >
@@ -143,7 +144,7 @@ export function SiteHeader({
             priority
             className={cn(
               "w-auto origin-left transition-[height,transform] duration-300 group-hover:scale-[1.02]",
-              scrolled ? "h-14 sm:h-12 lg:h-14" : "h-16 sm:h-14 lg:h-16",
+              scrolled ? "h-14 sm:h-12 lg:h-16" : "h-16 sm:h-14 lg:h-20",
             )}
           />
         </Link>
@@ -161,7 +162,7 @@ export function SiteHeader({
                   <NavMenuItem key={link.label}>
                     <NavMenuTrigger
                       className={cn(
-                        "font-sans text-body-sm font-medium leading-none tracking-[-0.18px] transition-colors",
+                        "font-sans text-[16px] font-medium leading-none tracking-[-0.18px] transition-colors",
                         inverted ? "text-text-inverse" : "text-black",
                         underlineSweep,
                       )}
@@ -181,7 +182,7 @@ export function SiteHeader({
                   <NavMenuItem key={link.label}>
                     <NavMenuTrigger
                       className={cn(
-                        "font-sans text-body-sm font-medium leading-none tracking-[-0.18px] transition-colors",
+                        "font-sans text-[16px] font-medium leading-none tracking-[-0.18px] transition-colors",
                         inverted ? "text-text-inverse" : "text-black",
                         underlineSweep,
                       )}
@@ -199,7 +200,7 @@ export function SiteHeader({
                   <NavMenuLink
                     render={<Link href={link.href} />}
                     className={cn(
-                      "inline-flex shrink-0 items-center whitespace-nowrap font-sans text-body-sm font-medium leading-none tracking-[-0.18px] transition-colors",
+                      "inline-flex shrink-0 items-center whitespace-nowrap font-sans text-[16px] font-medium leading-none tracking-[-0.18px] transition-colors",
                       inverted ? "text-text-inverse" : "text-black",
                       underlineSweep,
                     )}
@@ -236,7 +237,7 @@ export function SiteHeader({
               inverted ? "text-text-inverse" : "text-text-primary",
             )}
           >
-            +919870347349
+            +91-9870347349
           </a>
         
 

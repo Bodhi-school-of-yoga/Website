@@ -62,6 +62,9 @@ export type Course = {
   prerequisites: string[];
   instructors: CourseInstructor[];
   faqs: CourseFaq[];
+  comingSoon?: boolean;
+  availabilityNote?: string;
+  timingLabel?: string;
 };
 
 // ---------------------------------------------------------------------------

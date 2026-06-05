@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/site-header";
 import { CourseHeroWithBooking } from "@/components/sections-v2/course-hero-with-booking";
+import { CourseHero } from "@/components/sections-v2/course-hero";
 import { CourseOverview } from "@/components/sections-v2/course-overview";
 import {
   HighlightsSection,
@@ -101,45 +102,74 @@ export function CourseDetail({ course }: { course: Course }) {
     <main className="flex min-h-screen flex-col bg-surface-1 overflow-x-clip">
       <SiteHeader />
 
-      <CourseHeroWithBooking
-        backgroundImage={course.heroImage}
-        imageAlt={`${course.title} — promo`}
-        breadcrumb={[
-          { label: "Home", href: "/" },
-          {
-            label: CATEGORY_LABELS[course.category],
-            href: CATEGORY_BASE_PATH[course.category],
-          },
-          { label: course.title, current: true },
-        ]}
-        title={`${course.titleLead} ${course.titleAccent}`}
-        subtitle={course.shortDescription}
-        metaPills={[
-          { iconSrc: "/icon/course1.svg", label: modeLabel },
-          { iconSrc: "/icon/course2.svg", label: course.durationLabel },
-          { iconSrc: "/icon/course3.svg", label: course.scheduleLabel },
-        ]}
-        priceLabel="Starts at"
-        price={price}
-        originalPrice={original || undefined}
-        pricingPlans={course.pricingPlans}
-        ctaLabel="Reserve Your Spot Now"
-        courseName={course.title}
-        amountInPaise={toSmallestUnit(bookingPriceStr)}
-        razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
-        currency={currency}
-        batches={[
-          {
-            label: `Next batch — ${course.scheduleLabel}`,
-            value: "next",
-          },
-          { label: "Following batch", value: "following" },
-        ]}
-        timeSlots={[
-          { label: "Morning · 6:00 AM – 8:00 AM IST", value: "morning" },
-          { label: "Evening · 6:00 PM – 8:00 PM IST", value: "evening" },
-        ]}
-      />
+      {course.comingSoon ? (
+        <CourseHero
+          backgroundImage={course.heroImage}
+          imageAlt={`${course.title} — promo`}
+          breadcrumb={[
+            { label: "Home", href: "/" },
+            {
+              label: CATEGORY_LABELS[course.category],
+              href: CATEGORY_BASE_PATH[course.category],
+            },
+            { label: course.title, current: true },
+          ]}
+          title={`${course.titleLead} ${course.titleAccent}`}
+          subtitle={course.shortDescription}
+          comingSoon
+          metaPills={[
+            { iconSrc: "/icon/course1.svg", label: modeLabel },
+            { iconSrc: "/icon/course2.svg", label: course.durationLabel },
+            { iconSrc: "/icon/course3.svg", label: course.scheduleLabel },
+          ]}
+          priceLabel=""
+          cta={{ label: "Enquire Now", href: "/contact" }}
+        />
+      ) : (
+        <CourseHeroWithBooking
+          backgroundImage={course.heroImage}
+          imageAlt={`${course.title} — promo`}
+          breadcrumb={[
+            { label: "Home", href: "/" },
+            {
+              label: CATEGORY_LABELS[course.category],
+              href: CATEGORY_BASE_PATH[course.category],
+            },
+            { label: course.title, current: true },
+          ]}
+          title={`${course.titleLead} ${course.titleAccent}`}
+          subtitle={course.shortDescription}
+          availabilityNote={course.availabilityNote}
+          metaPills={[
+            { iconSrc: "/icon/course1.svg", label: modeLabel },
+            { iconSrc: "/icon/course2.svg", label: course.durationLabel },
+            { iconSrc: "/icon/course3.svg", label: course.scheduleLabel },
+            ...(course.timingLabel
+              ? [{ iconSrc: "/icon/course2.svg", label: course.timingLabel }]
+              : []),
+          ]}
+          priceLabel="Starts at"
+          price={price}
+          originalPrice={original || undefined}
+          pricingPlans={course.pricingPlans}
+          ctaLabel="Reserve Your Spot Now"
+          courseName={course.title}
+          amountInPaise={toSmallestUnit(bookingPriceStr)}
+          razorpayKey={process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? ""}
+          currency={currency}
+          batches={[
+            {
+              label: `Next batch — ${course.scheduleLabel}`,
+              value: "next",
+            },
+            { label: "Following batch", value: "following" },
+          ]}
+          timeSlots={[
+            { label: "Morning · 6:00 AM – 8:00 AM IST", value: "morning" },
+            { label: "Evening · 6:00 PM – 8:00 PM IST", value: "evening" },
+          ]}
+        />
+      )}
 
       <CourseTabBar
         tabs={[

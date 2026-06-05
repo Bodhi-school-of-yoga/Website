@@ -4,7 +4,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MapPin, Star } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, Star } from "lucide-react";
 
 import {
   Card,
@@ -67,6 +67,8 @@ export type ProgramCardProps = {
   originalPrice?: string;
   /** Discount badge label (e.g. "25% OFF"). */
   discountLabel?: string;
+  /** Show a "Coming Soon" badge on the image + replace price with label. */
+  comingSoon?: boolean;
 };
 
 function StarRating({ rating, reviewCount }: { rating: number; reviewCount?: number }) {
@@ -115,6 +117,7 @@ export function ProgramCard({
   price,
   originalPrice,
   discountLabel,
+  comingSoon = false,
 }: ProgramCardProps) {
   const isArticle = variant === "article";
 
@@ -155,6 +158,19 @@ export function ProgramCard({
           )}
           priority={priority}
         />
+
+        {!isArticle && comingSoon && (
+          <span
+            className={cn(
+              "absolute left-3.5 top-3.5 z-10",
+              "inline-flex items-center",
+              "rounded-full bg-amber-100 px-3 py-1.5",
+              "font-sans text-[12px] font-semibold tracking-[0.12px] text-amber-800",
+            )}
+          >
+            Coming Soon
+          </span>
+        )}
 
         {!isArticle && featured && (
           <span
@@ -231,10 +247,40 @@ export function ProgramCard({
         )}
       </CardHeader>
 
-      {!isArticle && (
+      {!isArticle && comingSoon && (
         <>
           <CardContent className="px-5 sm:px-7 pt-0 pb-4 sm:pb-6">
-            {price && (
+            <div className="mt-4 flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-text-tertiary" strokeWidth={1.75} aria-hidden="true" />
+              <span className="font-sans text-[13px] font-medium text-text-secondary">
+                Date will be announced soon
+              </span>
+            </div>
+          </CardContent>
+          <CardFooter
+            className={cn(
+              "mt-auto px-0 py-0",
+              "rounded-none border-0 bg-transparent",
+            )}
+          >
+            <span
+              aria-disabled="true"
+              className={cn(
+                "flex w-full items-center justify-center border-t border-border-1 px-5 sm:px-7 py-3 sm:py-4",
+                "bg-surface-2 text-text-teal-dark",
+                "font-heading text-[14.27px] font-semibold tracking-[0.0878px]",
+              )}
+            >
+              Coming Soon
+            </span>
+          </CardFooter>
+        </>
+      )}
+
+      {!isArticle && !comingSoon && (
+        <>
+          <CardContent className="px-5 sm:px-7 pt-0 pb-4 sm:pb-6">
+            {price ? (
               <div className="mt-4 flex items-baseline gap-2.5">
                 <span className="font-heading text-[22px] font-extrabold leading-none text-text-brand tracking-tight">
                   {price}
@@ -250,7 +296,7 @@ export function ProgramCard({
                   </span>
                 )}
               </div>
-            )}
+            ) : null}
           </CardContent>
 
           {/* Footer CTA — text link separated by a thin divider. */}
