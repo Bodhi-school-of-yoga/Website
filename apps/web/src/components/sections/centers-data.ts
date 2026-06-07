@@ -1,3 +1,5 @@
+export type City = "hyderabad" | "bengaluru";
+
 export type Center = {
   id: string;
   name: string;
@@ -5,7 +7,13 @@ export type Center = {
   pincode: string;
   lat: number;
   lng: number;
+  city: City;
 };
+
+export const CITY_TABS: { id: City; label: string }[] = [
+  { id: "hyderabad", label: "Hyderabad" },
+  { id: "bengaluru", label: "Bengaluru" },
+];
 
 export const BODHI_CENTERS: Center[] = [
   {
@@ -15,6 +23,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500010",
     lat: 17.5100,
     lng: 78.5092,
+    city: "hyderabad",
   },
   {
     id: "alwal-hills",
@@ -23,6 +32,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500010",
     lat: 17.5034,
     lng: 78.5114,
+    city: "hyderabad",
   },
   {
     id: "bachupally",
@@ -31,6 +41,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500090",
     lat: 17.541,
     lng: 78.3691,
+    city: "hyderabad",
   },
   {
     id: "bandlaguda",
@@ -39,6 +50,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500005",
     lat: 17.3486,
     lng: 78.4953,
+    city: "hyderabad",
   },
   {
     id: "beeramguda",
@@ -47,6 +59,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "502032",
     lat: 17.4924,
     lng: 78.3142,
+    city: "hyderabad",
   },
   {
     id: "chandanagar",
@@ -55,6 +68,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500050",
     lat: 17.4948,
     lng: 78.3214,
+    city: "hyderabad",
   },
   {
     id: "esi-erragadda",
@@ -63,6 +77,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500038",
     lat: 17.4574,
     lng: 78.4365,
+    city: "hyderabad",
   },
   {
     id: "hsr-layout",
@@ -71,6 +86,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "560102",
     lat: 12.9116,
     lng: 77.6473,
+    city: "bengaluru",
   },
   {
     id: "indiranagar",
@@ -79,6 +95,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "560038",
     lat: 12.9784,
     lng: 77.6408,
+    city: "bengaluru",
   },
   {
     id: "khairatabad",
@@ -87,6 +104,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500004",
     lat: 17.4144,
     lng: 78.4622,
+    city: "hyderabad",
   },
   {
     id: "kphb",
@@ -95,6 +113,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500072",
     lat: 17.4849,
     lng: 78.3914,
+    city: "hyderabad",
   },
   {
     id: "manikonda",
@@ -103,6 +122,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500089",
     lat: 17.4004,
     lng: 78.3689,
+    city: "hyderabad",
   },
   {
     id: "matrusri-nagar",
@@ -111,6 +131,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500049",
     lat: 17.4924,
     lng: 78.3678,
+    city: "hyderabad",
   },
   {
     id: "nallagandla",
@@ -119,6 +140,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500046",
     lat: 17.4656,
     lng: 78.3094,
+    city: "hyderabad",
   },
   {
     id: "nizampet",
@@ -127,6 +149,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500085",
     lat: 17.5028,
     lng: 78.3851,
+    city: "hyderabad",
   },
   {
     id: "pragathi-nagar",
@@ -135,6 +158,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500090",
     lat: 17.5221,
     lng: 78.3962,
+    city: "hyderabad",
   },
   {
     id: "raghavendra-nagar-kondapur",
@@ -143,6 +167,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500084",
     lat: 17.4654,
     lng: 78.3543,
+    city: "hyderabad",
   },
   {
     id: "sanikpuri",
@@ -151,6 +176,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500094",
     lat: 17.4945,
     lng: 78.5455,
+    city: "hyderabad",
   },
   {
     id: "suchitra",
@@ -159,6 +185,7 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500067",
     lat: 17.5127,
     lng: 78.4745,
+    city: "hyderabad",
   },
   {
     id: "vasanth-nagar",
@@ -167,5 +194,6 @@ export const BODHI_CENTERS: Center[] = [
     pincode: "500085",
     lat: 17.4901,
     lng: 78.3827,
+    city: "hyderabad",
   },
 ];

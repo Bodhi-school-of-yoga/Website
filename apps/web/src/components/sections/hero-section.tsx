@@ -23,6 +23,8 @@ export type HeroOfferChip = {
   buttonColor: string;
   /** When true, clicking opens an online/offline choice dialog instead of navigating directly. */
   showModeDialog?: boolean;
+  /** Identifies which dialog variant to show (e.g. "teacher" or "yoga"). */
+  dialogVariant?: "teacher" | "yoga";
 };
 
 export type HeroSectionProps = {
@@ -45,13 +47,15 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
     href: "/teacher-courses/online",
     buttonColor: "#008498",
     showModeDialog: true,
+    dialogVariant: "teacher",
   },
   {
     eyebrow: "daily yoga classes",
     label: "I want to learn Yoga & Pillates",
-    href: "/teacher-courses/online",
+    href: "/yoga-courses/online",
     buttonColor: "#0d9800",
     showModeDialog: true,
+    dialogVariant: "yoga",
   },
   {
     eyebrow: "wellness workshops",
@@ -87,6 +91,7 @@ export function HeroSection({
 }: HeroSectionProps) {
   const { visible: bannerVisible } = usePromoBanner();
   const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogVariant, setDialogVariant] = React.useState<"teacher" | "yoga">("teacher");
 
   return (
     <section
@@ -107,7 +112,7 @@ export function HeroSection({
         offerLabel={offerLabel}
         offers={offers}
         bannerVisible={bannerVisible}
-        onOfferDialogOpen={() => setDialogOpen(true)}
+        onOfferDialogOpen={(variant) => { setDialogVariant(variant); setDialogOpen(true); }}
       />
       <HeroMobile
         eyebrow={eyebrow}
@@ -119,9 +124,9 @@ export function HeroSection({
         offerLabel={offerLabel}
         offers={offers}
         bannerVisible={bannerVisible}
-        onOfferDialogOpen={() => setDialogOpen(true)}
+        onOfferDialogOpen={(variant) => { setDialogVariant(variant); setDialogOpen(true); }}
       />
-      <CourseModeDialog open={dialogOpen} onOpenChange={setDialogOpen} />
+      <CourseModeDialog open={dialogOpen} onOpenChange={setDialogOpen} variant={dialogVariant} />
     </section>
   );
 }
@@ -143,7 +148,7 @@ type DesktopProps = Required<
     | "offerLabel"
     | "offers"
   >
-> & { bannerVisible: boolean; onOfferDialogOpen: () => void };
+> & { bannerVisible: boolean; onOfferDialogOpen: (variant: "teacher" | "yoga") => void };
 
 function HeroDesktop({
   eyebrow,
@@ -287,7 +292,7 @@ function HeroOfferRow({
 }: {
   label: string;
   offers: HeroOfferChip[];
-  onOfferDialogOpen: () => void;
+  onOfferDialogOpen: (variant: "teacher" | "yoga") => void;
 }) {
   return (
     <div className="relative z-30 mt-24">
@@ -412,7 +417,7 @@ function HeroOfferChipCard({
 }: {
   offer: HeroOfferChip;
   variant: "desktop" | "mobile";
-  onDialogOpen: () => void;
+  onDialogOpen: (variant: "teacher" | "yoga") => void;
 }) {
   const isDesktop = variant === "desktop";
 
@@ -474,7 +479,7 @@ function HeroOfferChipCard({
 
   if (offer.showModeDialog) {
     return (
-      <button type="button" onClick={onDialogOpen} className={sharedClassName}>
+      <button type="button" onClick={() => onDialogOpen(offer.dialogVariant ?? "teacher")} className={sharedClassName}>
         {inner}
       </button>
     );
@@ -491,7 +496,7 @@ function HeroOfferChipCard({
 // Online / Offline course-mode choice dialog
 // ---------------------------------------------------------------------------
 
-const COURSE_MODE_OPTIONS = [
+const TEACHER_MODE_OPTIONS = [
   {
     title: "Online Courses",
     subtitle: "At Comfort of your home",
@@ -508,14 +513,37 @@ const COURSE_MODE_OPTIONS = [
   },
 ];
 
+const YOGA_MODE_OPTIONS = [
+  {
+    title: "Online Classes",
+    subtitle: "At Comfort of your home",
+    count: "9 Courses",
+    href: "/yoga-courses/online",
+    image: "/images/programs/teacher-online-200-hour-ytt.jpg",
+  },
+  {
+    title: "Offline - in studio",
+    subtitle: "We have 20+ studios",
+    count: "9 Courses",
+    href: "/yoga-courses/offline",
+    image: "/images/programs/daily-regular-yoga-offline.jpg",
+  },
+];
+
 function CourseModeDialog({
   open,
   onOpenChange,
+  variant,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  variant: "teacher" | "yoga";
 }) {
   const router = useRouter();
+  const options = variant === "yoga" ? YOGA_MODE_OPTIONS : TEACHER_MODE_OPTIONS;
+  const title = variant === "yoga"
+    ? "How would you like to join our Yoga Classes?"
+    : "How would you like to join our Teacher Training?";
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -540,7 +568,7 @@ function CourseModeDialog({
           <div className="flex items-start justify-between mb-5">
             <div>
               <Dialog.Title className="font-heading text-[18px] font-bold text-text-primary">
-                Which yoga course you would like to enroll
+                {title}
               </Dialog.Title>
               <Dialog.Description className="mt-0 text-[15px] text-text-tertiary">
                 At Comfort of your home
@@ -559,7 +587,7 @@ function CourseModeDialog({
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            {COURSE_MODE_OPTIONS.map((option) => (
+            {options.map((option) => (
               <button
                 key={option.href}
                 type="button"

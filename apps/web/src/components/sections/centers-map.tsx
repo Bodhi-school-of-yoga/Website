@@ -25,7 +25,12 @@ type CentersMapProps = {
   userLocation: { lat: number; lng: number } | null;
 };
 
-const HYDERABAD_CENTER = { latitude: 17.45, longitude: 78.45 };
+function getCenterOfPoints(centers: Center[]) {
+  if (centers.length === 0) return { latitude: 17.45, longitude: 78.45 };
+  const lat = centers.reduce((s, c) => s + c.lat, 0) / centers.length;
+  const lng = centers.reduce((s, c) => s + c.lng, 0) / centers.length;
+  return { latitude: lat, longitude: lng };
+}
 
 // Free tile styles — no API key required
 const STANDARD_STYLE = "https://tiles.openfreemap.org/styles/liberty";
@@ -63,6 +68,7 @@ export default function CentersMap({
   const mapRef = React.useRef<MapRef>(null);
   const [popupId, setPopupId] = React.useState<string | null>(null);
   const [styleMode, setStyleMode] = React.useState<MapStyleMode>("standard");
+  const initialCenter = React.useMemo(() => getCenterOfPoints(centers), [centers]);
 
   // Fly to selected center with 3D tilt
   React.useEffect(() => {
@@ -147,7 +153,7 @@ export default function CentersMap({
         ref={mapRef}
         mapLib={maplibregl}
         initialViewState={{
-          ...HYDERABAD_CENTER,
+          ...initialCenter,
           zoom: 10,
           pitch: 40,
           bearing: 0,

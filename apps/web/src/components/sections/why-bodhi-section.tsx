@@ -47,13 +47,13 @@ export function WhyBodhiSection({
           "md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center md:gap-10 lg:gap-14",
         )}
       >
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] sm:aspect-[4/5] md:aspect-square md:max-h-[540px] md:self-center">
+        <div className="relative aspect-[3/4] overflow-hidden rounded-[20px] sm:aspect-[4/5] md:aspect-square md:max-h-[540px] md:self-center">
           <Image
             src={photoSrc}
             alt={photoAlt}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
 

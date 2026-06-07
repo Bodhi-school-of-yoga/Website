@@ -17,7 +17,7 @@ export const metadata = {
 export default function OurTrainersPage() {
   return (
     <>
-      <SiteHeader tone="light" />
+      <SiteHeader tone="light" mobileTone="dark" />
       <main>
         <TrainersHero />
         <TrainersPullQuoteBand />

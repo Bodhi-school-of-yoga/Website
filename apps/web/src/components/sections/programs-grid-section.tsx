@@ -68,9 +68,10 @@ const DEFAULT_TTC: ProgramsBlock = {
   heading: "Yoga Teacher Training Courses",
   subhead:
     "Accredited teacher training programmes rooted in the authentic eight-limbed path of Hatha-Raja Yoga.",
-  cards: dedupeByTitle(
-    COURSES.filter((c) => c.category === "teacher" || c.category === "advanced"),
-  ).map(toCard),
+  cards: dedupeByTitle([
+    ...COURSES.filter((c) => c.category === "teacher"),
+    ...COURSES.filter((c) => c.category === "advanced"),
+  ]).map(toCard),
 };
 
 const DEFAULT_CERT: ProgramsBlock = {

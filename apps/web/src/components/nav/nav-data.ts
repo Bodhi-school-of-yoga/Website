@@ -96,7 +96,7 @@ export const COURSE_DROPDOWNS: Record<
   teacher: {
     items: [
       {
-        title: "Online Courses",
+        title: "Online Classes",
         subtitle: "At Comfort of your home",
         count: courseCount("teacher", "online"),
         href: "/teacher-courses/online",
@@ -119,7 +119,7 @@ export const COURSE_DROPDOWNS: Record<
         icon: "Award",
         subItems: [
           {
-            title: "Online Courses",
+            title: "Online Classes",
             subtitle: "Learn from anywhere",
             count: courseCount("advanced", "online"),
             href: "/advanced-certifications/online",
@@ -141,7 +141,7 @@ export const COURSE_DROPDOWNS: Record<
   yoga: {
     items: [
       {
-        title: "Online Courses",
+        title: "Online Classes",
         subtitle: "At Comfort of your home",
         count: courseCount("yoga", "online"),
         href: "/yoga-courses/online",

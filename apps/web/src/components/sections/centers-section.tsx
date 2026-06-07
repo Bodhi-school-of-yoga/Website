@@ -7,7 +7,7 @@ import { Search, Navigation, MapPin, LocateFixed, X, Map } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePromoBanner } from "@/components/ui/use-promo-banner";
 
-import { BODHI_CENTERS, type Center } from "./centers-data";
+import { BODHI_CENTERS, CITY_TABS, type Center, type City } from "./centers-data";
 
 const CentersMap = dynamic(() => import("./centers-map"), {
   ssr: false,
@@ -46,7 +46,6 @@ export type CentersSectionProps = {
   subtitle?: string;
   pincodePlaceholder?: string;
   pincodeCtaLabel?: string;
-  cityLabel?: string;
   centers?: Center[];
   className?: string;
 };
@@ -56,12 +55,18 @@ export function CentersSection({
   subtitle = "Every woman holds the power to heal, rise, and lead — and yoga is the path that makes this transformation real.",
   pincodePlaceholder = "Search by location name or pincode",
   pincodeCtaLabel = "Search",
-  cityLabel = "Alwal, Secunderabad, Hyderabad",
   centers = BODHI_CENTERS,
   className,
 }: CentersSectionProps) {
   const { visible: bannerVisible } = usePromoBanner();
+  const [activeCity, setActiveCity] = React.useState<City>("hyderabad");
   const [pincode, setPincode] = React.useState("");
+
+  const cityCenters = React.useMemo(
+    () => centers.filter((c) => c.city === activeCity),
+    [centers, activeCity],
+  );
+
   const [selectedId, setSelectedId] = React.useState<string | null>(
     centers[0]?.id ?? null,
   );
@@ -98,11 +103,11 @@ export function CentersSection({
 
   // Sort centers by distance when user location is available
   const sortedCenters = React.useMemo(() => {
-    if (!distances) return centers;
-    return [...centers].sort(
+    if (!distances) return cityCenters;
+    return [...cityCenters].sort(
       (a, b) => (distances[a.id] ?? 0) - (distances[b.id] ?? 0),
     );
-  }, [centers, distances]);
+  }, [cityCenters, distances]);
 
   // Reverse geocode user location to get address
   const reverseGeocode = React.useCallback(
@@ -313,7 +318,7 @@ export function CentersSection({
         <div className="mb-6 min-h-[20px] lg:mb-8">
           {searchMessage ? (
             <div role="alert">
-              <p className="text-mini text-text-tertiary">
+              <p className=" text-text-tertiary">
                 {searchMessage.text}
               </p>
               {searchMessage.nearestId && (
@@ -323,7 +328,7 @@ export function CentersSection({
                     setSelectedId(searchMessage.nearestId!);
                     setSearchMessage(null);
                   }}
-                  className="mt-1 text-mini font-medium text-text-brand underline underline-offset-2 hover:text-text-brand/80"
+                  className="mt-1  font-medium text-text-brand underline underline-offset-2 hover:text-text-brand/80"
                 >
                   View this center
                 </button>
@@ -331,7 +336,7 @@ export function CentersSection({
             </div>
           ) : null}
           {locationError ? (
-            <p role="alert" className="text-mini text-text-tertiary">
+            <p role="alert" className=" text-text-tertiary">
               {locationError}
             </p>
           ) : null}
@@ -345,8 +350,34 @@ export function CentersSection({
         >
           {/* Side panel – center list */}
           <div className="flex flex-col p-6 sm:p-8 lg:border-r lg:border-border-2">
+            {/* City tabs */}
+            <div className="flex gap-2 mb-4">
+              {CITY_TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveCity(tab.id);
+                    const firstInCity = centers.find((c) => c.city === tab.id);
+                    if (firstInCity) setSelectedId(firstInCity.id);
+                    setShowDirections(false);
+                  }}
+                  className={cn(
+                    "rounded-full px-5 py-2 text-body-sm font-semibold transition-all duration-200",
+                    activeCity === tab.id
+                      ? "bg-brand-primary text-text-inverse"
+                      : "bg-surface-2 text-text-secondary hover:text-text-brand",
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
             <p className="text-body-sm text-text-tertiary">
-              {cityLabel}
+              {activeCity === "hyderabad"
+                ? "Secunderabad & Hyderabad"
+                : "HSR Layout & Indiranagar"}
             </p>
             <ul className="mt-4 flex-1 overflow-y-auto">
               {sortedCenters.map((center, index) => {
@@ -470,7 +501,8 @@ export function CentersSection({
               </div>
             ) : (
               <CentersMap
-                centers={centers}
+                key={activeCity}
+                centers={cityCenters}
                 selectedId={selectedId}
                 onSelect={(id) => {
                   setSelectedId(id);

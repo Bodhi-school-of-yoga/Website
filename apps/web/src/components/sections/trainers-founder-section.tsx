@@ -76,13 +76,13 @@ export function TrainersFounderSection({
           </div>
         </div>
 
-        <div className="relative min-h-[240px] bg-brand-lite sm:min-h-[320px] md:min-h-full">
+        <div className="relative min-h-[340px] bg-brand-lite sm:min-h-[400px] md:min-h-full">
           <Image
             src={portrait}
             alt={portraitAlt}
             fill
             sizes="(max-width: 900px) 100vw, 40vw"
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
       </div>

@@ -13,7 +13,7 @@ export default function OurCentersPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="mt-6 md:mt-0">
         <CentersSection />
       </main>
       <SiteFooterBlock />

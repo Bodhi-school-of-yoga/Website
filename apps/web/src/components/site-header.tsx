@@ -37,6 +37,9 @@ export type SiteHeaderProps = {
   ctaHref?: string;
   onSearchClick?: () => void;
   tone?: "dark" | "light";
+  /** Override tone on mobile (below md breakpoint). Useful when a hero has a
+   *  dark background on desktop but a light background on mobile. */
+  mobileTone?: "dark" | "light";
   /** Always render a solid white header background (no transparency). */
   solidBg?: boolean;
   className?: string;
@@ -72,18 +75,29 @@ export function SiteHeader({
   ctaHref = "/contact",
   onSearchClick,
   tone = "dark",
+  mobileTone,
   solidBg = false,
   className,
 }: SiteHeaderProps) {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [searchOpen, setSearchOpen] = React.useState(false);
+  const [belowMd, setBelowMd] = React.useState(false);
 
   // The search button opens the built-in course search by default; a caller can
   // still override the behaviour by passing `onSearchClick`.
   const handleSearchClick = onSearchClick ?? (() => setSearchOpen(true));
 
-  const inverted = tone === "light" && !scrolled && !mobileOpen;
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setBelowMd(mq.matches);
+    const h = (e: MediaQueryListEvent) => setBelowMd(e.matches);
+    mq.addEventListener("change", h);
+    return () => mq.removeEventListener("change", h);
+  }, []);
+
+  const effectiveTone = belowMd && mobileTone ? mobileTone : tone;
+  const inverted = effectiveTone === "light" && !scrolled && !mobileOpen;
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
