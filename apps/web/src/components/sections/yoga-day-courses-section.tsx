@@ -17,7 +17,7 @@ import {
   YogaDayCourseCard,
   type YogaDayCourseCardProps,
 } from "@/components/ui/yoga-day-course-card";
-import { COURSES, type Course } from "@/data/courses-catalog";
+import { COURSES, type Course, getDiscountLabel } from "@/data/courses-catalog";
 import { offerPercentFor } from "@/data/yoga-day-offer";
 import { cn } from "@/lib/utils";
 
@@ -36,11 +36,30 @@ const FEATURED_SLUGS = [
 // the Figma) from the course's category discount.
 function toCardProps(course: Course): YogaDayCourseCardProps {
   const pct = offerPercentFor(course.category);
+
+  // For subscription courses (Daily Regular Yoga), show yearly price with
+  // monthly×12 as the strikethrough so the saving is visible.
+  let displayPrice = course.price ?? "";
+  let displayOriginal = course.originalPrice;
+  if (!course.price && course.pricingPlans) {
+    const yearly = course.pricingPlans.find((p: { period: string }) => /year/i.test(p.period));
+    const monthly = course.pricingPlans.find((p: { period: string; price: string }) => /month/i.test(p.period));
+    if (yearly) {
+      displayPrice = yearly.price;
+      if (monthly) {
+        const monthlyAmt = Number(monthly.price.replace(/[^\d.]/g, ""));
+        const symbol = monthly.price.match(/^\D+/)?.[0]?.trim() ?? "₹";
+        displayOriginal = `${symbol}${Math.round(monthlyAmt * 12).toLocaleString("en-IN")}`;
+      }
+    }
+  }
+
+  const staticLabel = getDiscountLabel({ price: displayPrice, originalPrice: displayOriginal });
   return {
-    title: course.title,
-    price: course.price ?? "",
-    originalPrice: course.originalPrice,
-    discountLabel: pct ? `${pct}% off` : undefined,
+    title: `${course.title} (${course.mode === "online" ? "Online" : "Offline"})`,
+    price: displayPrice,
+    originalPrice: displayOriginal,
+    discountLabel: pct ? `${pct}% off` : staticLabel ? staticLabel.toLowerCase() : undefined,
     features: [
       {
         icon: <Clock className="h-3.5 w-3.5" strokeWidth={1.75} />,
@@ -70,6 +89,8 @@ export type YogaDayCoursesSectionProps = {
   title?: string;
   subCopy?: string;
   courses?: YogaDayCourseCardProps[];
+  /** Override which catalog slugs to spotlight. When provided, builds cards from these slugs instead of DEFAULT_COURSES. */
+  featuredSlugs?: string[];
   className?: string;
 };
 
@@ -82,13 +103,22 @@ const headerVariants: Variants = {
   },
 };
 
+function buildFromSlugs(slugs: string[]): YogaDayCourseCardProps[] {
+  return slugs
+    .map((slug) => COURSES.find((c) => c.slug === slug))
+    .filter((c): c is Course => Boolean(c))
+    .map(toCardProps);
+}
+
 export function YogaDayCoursesSection({
   eyebrow = "yoga day offer",
   title = "Courses with Yoga Day Discounts",
   subCopy = "Join the waitlist to unlock these prices on June 21 — exclusive to registered members.",
-  courses = DEFAULT_COURSES,
+  courses,
+  featuredSlugs,
   className,
 }: YogaDayCoursesSectionProps) {
+  const resolvedCourses = courses ?? (featuredSlugs ? buildFromSlugs(featuredSlugs) : DEFAULT_COURSES);
   const prefersReducedMotion = useReducedMotion();
 
   const headerMotion = prefersReducedMotion
@@ -118,7 +148,7 @@ export function YogaDayCoursesSection({
 
         {/* Responsive 3-up grid — same gutters as the homepage course grid. */}
         <ul className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
-          {courses.map((course, idx) => {
+          {resolvedCourses.map((course, idx) => {
             const card = (
               <YogaDayCourseCard {...course} priority={idx === 0} />
             );

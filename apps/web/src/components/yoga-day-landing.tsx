@@ -31,6 +31,12 @@ export function YogaDayLanding() {
       <SiteHeader />
       <main>
         <YogaDayHeroSection onCtaClick={() => setDialogOpen(true)} />
+        <YogaDayCoursesSection
+          eyebrow="limited time offer"
+          title="Courses at 70% Off"
+          subCopy="Celebrate International Yoga Day with our biggest discounts — up to 70% off on select courses. Enrol before June 21."
+          featuredSlugs={["200-hour-ytt-online", "200-hour-ytt-studio", "daily-regular-yoga-online", "daily-regular-yoga-studio"]}
+        />
         <BatchBookingDialog
           open={dialogOpen}
           onOpenChange={setDialogOpen}

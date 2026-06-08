@@ -70,9 +70,9 @@ function PriceAmount({ value }: { value: string }) {
   const symbol = value.match(/^\D+/)?.[0] ?? "";
   const amount = value.slice(symbol.length);
   return (
-    <span className="flex items-baseline font-heading leading-none text-text-secondary">
-      <span className="text-[26px] font-normal opacity-50">{symbol}</span>
-      <span className="text-[28px] font-extrabold tracking-tight">{amount}</span>
+    <span className="flex items-baseline font-heading leading-none text-text-secondary mt-2">
+      <span className="text-[20px] font-normal opacity-50">{symbol}</span>
+      <span className="text-[22px] font-extrabold tracking-tight">{amount}</span>
     </span>
   );
 }
@@ -127,7 +127,7 @@ export function YogaDayCourseCard({
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <PriceAmount value={price} />
             {originalPrice && (
-              <span className="font-sans text-[14px] text-text-secondary/50 line-through">
+              <span className="font-sans text-[14px] text-text-secondary/50 line-through mt-2">
                 {originalPrice}
               </span>
             )}
@@ -140,7 +140,7 @@ export function YogaDayCourseCard({
         </div>
 
         {/* Meta — dot-separated */}
-        {features.length > 0 && (
+        {/* {features.length > 0 && (
           <ul className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
             {features.map((f, i) => (
               <React.Fragment key={`${f.label}-${i}`}>
@@ -159,14 +159,14 @@ export function YogaDayCourseCard({
               </React.Fragment>
             ))}
           </ul>
-        )}
+        )} */}
 
         {/* Divider */}
         <div aria-hidden="true" className="h-px w-full bg-brand-primary/10" />
 
         {/* Instructor + CTA */}
         <div className="mt-auto flex flex-col gap-5 pt-1">
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <span className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-surface-2">
               {instructor.avatar ? (
                 <Image
@@ -190,7 +190,7 @@ export function YogaDayCourseCard({
                 {instructor.name}
               </span>
             </span>
-          </div>
+          </div> */}
 
           <Link
             href={ctaHref}
