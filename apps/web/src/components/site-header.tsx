@@ -141,7 +141,7 @@ export function SiteHeader({
       >
         <div
           className={cn(
-            "mx-auto flex max-w-[1390px] items-center justify-between gap-6 nav-px transition-[height] duration-300 xl:gap-10",
+            "mx-auto flex max-w-[1450px] items-center justify-between gap-6 nav-px transition-[height] duration-300 xl:gap-10",
             headerHeight,
           )}
         >

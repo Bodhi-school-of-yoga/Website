@@ -214,7 +214,7 @@ export function CourseHero({
               variants={fadeInUp}
               className="mb-3 sm:mb-4"
             >
-              <ol className="flex flex-wrap items-center gap-1.5 text-subtext-2 text-text-tertiary">
+              <ol className="flex flex-wrap items-center gap-1.5 text-[12px] text-text-tertiary">
                 {breadcrumb.map((crumb, idx) => {
                   const isLast = idx === breadcrumb.length - 1;
                   return (

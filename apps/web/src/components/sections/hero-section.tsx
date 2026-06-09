@@ -43,7 +43,7 @@ export type HeroSectionProps = {
 const DEFAULT_OFFERS: HeroOfferChip[] = [
   {
     eyebrow: "yoga teacher training",
-    label: "I want to teach Yoga & Pillates",
+    label: "I want to teach Yoga & Pilates",
     href: "/teacher-courses/online",
     buttonColor: "#008498",
     showModeDialog: true,
@@ -51,7 +51,7 @@ const DEFAULT_OFFERS: HeroOfferChip[] = [
   },
   {
     eyebrow: "daily yoga classes",
-    label: "I want to learn Yoga & Pillates",
+    label: "I want to learn Yoga & Pilates",
     href: "/yoga-courses/online",
     buttonColor: "#0d9800",
     showModeDialog: true,

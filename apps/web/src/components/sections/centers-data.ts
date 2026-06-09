@@ -5,6 +5,7 @@ export type Center = {
   name: string;
   address: string;
   pincode: string;
+  phone: string;
   lat: number;
   lng: number;
   city: City;
@@ -19,8 +20,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "alwal",
     name: "Alwal",
-    address: "Saraswathi Colony, Alwal, Secunderabad, Hyderabad",
+    address: "Bodhi School of Yoga, Saraswathi Colony, Alwal, Secunderabad, Hyderabad, Telangana",
     pincode: "500010",
+    phone: "+91-9870347349",
     lat: 17.5100,
     lng: 78.5092,
     city: "hyderabad",
@@ -28,8 +30,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "alwal-hills",
     name: "Alwal Hills",
-    address: "Old Alwal, Secunderabad, Hyderabad",
+    address: "Bodhi School of Yoga, Old Alwal, Near Alwal Cross Roads, Secunderabad, Hyderabad, Telangana",
     pincode: "500010",
+    phone: "+91-9870347349",
     lat: 17.5034,
     lng: 78.5114,
     city: "hyderabad",
@@ -37,8 +40,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "bachupally",
     name: "Bachupally",
-    address: "Bachupally, Hyderabad",
+    address: "Bodhi School of Yoga, Bachupally, Near Bachupally X Roads, Hyderabad, Telangana",
     pincode: "500090",
+    phone: "+91-9870347349",
     lat: 17.541,
     lng: 78.3691,
     city: "hyderabad",
@@ -46,8 +50,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "bandlaguda",
     name: "Bandlaguda",
-    address: "Bandlaguda, Hyderabad",
+    address: "Bodhi School of Yoga, Bandlaguda Jagir, Near Nagole Road, Hyderabad, Telangana",
     pincode: "500005",
+    phone: "+91-9870347349",
     lat: 17.3486,
     lng: 78.4953,
     city: "hyderabad",
@@ -55,8 +60,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "beeramguda",
     name: "Beeramguda",
-    address: "Beeramguda, Hyderabad",
+    address: "Bodhi School of Yoga, Beeramguda, Near BHEL X Roads, Hyderabad, Telangana",
     pincode: "502032",
+    phone: "+91-9870347349",
     lat: 17.4924,
     lng: 78.3142,
     city: "hyderabad",
@@ -64,8 +70,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "chandanagar",
     name: "Chandanagar",
-    address: "Chanda Nagar, Hyderabad",
+    address: "Bodhi School of Yoga, Chanda Nagar, Near Chanda Nagar Bus Stop, Hyderabad, Telangana",
     pincode: "500050",
+    phone: "+91-9870347349",
     lat: 17.4948,
     lng: 78.3214,
     city: "hyderabad",
@@ -73,8 +80,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "esi-erragadda",
     name: "ESI, Erragadda",
-    address: "ESI, Erragadda, Hyderabad",
+    address: "Bodhi School of Yoga, Near ESI Hospital, Erragadda, Hyderabad, Telangana",
     pincode: "500038",
+    phone: "+91-9870347349",
     lat: 17.4574,
     lng: 78.4365,
     city: "hyderabad",
@@ -82,8 +90,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "hsr-layout",
     name: "HSR Layout",
-    address: "HSR Layout, Bengaluru",
+    address: "Bodhi School of Yoga, HSR Layout, Sector 2, Bengaluru, Karnataka",
     pincode: "560102",
+    phone: "+91-9870347349",
     lat: 12.9116,
     lng: 77.6473,
     city: "bengaluru",
@@ -91,8 +100,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "indiranagar",
     name: "Indiranagar",
-    address: "Indiranagar, Bengaluru",
+    address: "Bodhi School of Yoga, Indiranagar, 100 Feet Road, Bengaluru, Karnataka",
     pincode: "560038",
+    phone: "+91-9870347349",
     lat: 12.9784,
     lng: 77.6408,
     city: "bengaluru",
@@ -100,8 +110,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "khairatabad",
     name: "Khairatabad, Hyderabad",
-    address: "Khairatabad, Hyderabad",
+    address: "Bodhi School of Yoga, Khairatabad, Near Khairatabad Metro Station, Hyderabad, Telangana",
     pincode: "500004",
+    phone: "+91-9870347349",
     lat: 17.4144,
     lng: 78.4622,
     city: "hyderabad",
@@ -109,8 +120,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "kphb",
     name: "KPHB, Hyderabad",
-    address: "KPHB, Hyderabad",
+    address: "Bodhi School of Yoga, KPHB Colony, Phase 1, Kukatpally, Hyderabad, Telangana",
     pincode: "500072",
+    phone: "+91-9870347349",
     lat: 17.4849,
     lng: 78.3914,
     city: "hyderabad",
@@ -118,8 +130,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "manikonda",
     name: "Manikonda",
-    address: "Manikonda, Hyderabad",
+    address: "Bodhi School of Yoga, Manikonda, Near Laxmi Nagar Colony, Hyderabad, Telangana",
     pincode: "500089",
+    phone: "+91-9870347349",
     lat: 17.4004,
     lng: 78.3689,
     city: "hyderabad",
@@ -127,8 +140,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "matrusri-nagar",
     name: "Matrusri Nagar",
-    address: "Matrusri Nagar, Hafeezpet, Hyderabad",
+    address: "Bodhi School of Yoga, Matrusri Nagar, Hafeezpet, Miyapur Road, Hyderabad, Telangana",
     pincode: "500049",
+    phone: "+91-9870347349",
     lat: 17.4924,
     lng: 78.3678,
     city: "hyderabad",
@@ -136,8 +150,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "nallagandla",
     name: "Nallagandla",
-    address: "Nallagandla, Hyderabad",
+    address: "Bodhi School of Yoga, Nallagandla, Near Aparna Sarovar, Hyderabad, Telangana",
     pincode: "500046",
+    phone: "+91-9870347349",
     lat: 17.4656,
     lng: 78.3094,
     city: "hyderabad",
@@ -145,8 +160,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "nizampet",
     name: "Nizampet",
-    address: "Nizampet, Hyderabad",
+    address: "Bodhi School of Yoga, Nizampet, Near Nizampet X Roads, Hyderabad, Telangana",
     pincode: "500085",
+    phone: "+91-9870347349",
     lat: 17.5028,
     lng: 78.3851,
     city: "hyderabad",
@@ -154,17 +170,19 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "pragathi-nagar",
     name: "Pragathi Nagar",
-    address: "Pragathi Nagar, Hyderabad",
+    address: "Bodhi School of Yoga, Pragathi Nagar, Near Pragathi Nagar Colony, Kukatpally, Hyderabad, Telangana",
     pincode: "500090",
+    phone: "+91-9870347349",
     lat: 17.5221,
     lng: 78.3962,
     city: "hyderabad",
   },
   {
     id: "raghavendra-nagar-kondapur",
-    name: "Raghavendra Nagar, Kondapur",
-    address: "Raghavendra Nagar, Kondapur, Hyderabad",
+    name: "Kondapur",
+    address: "Bodhi School of Yoga, Raghavendra Nagar, Kondapur, Near Kondapur Bus Stop, Hyderabad, Telangana",
     pincode: "500084",
+    phone: "+91-9870347349",
     lat: 17.4654,
     lng: 78.3543,
     city: "hyderabad",
@@ -172,8 +190,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "sanikpuri",
     name: "Sanikpuri",
-    address: "Sainikpuri, Secunderabad, Hyderabad",
+    address: "Bodhi School of Yoga, Sainikpuri, Near Sainikpuri X Roads, Secunderabad, Hyderabad, Telangana",
     pincode: "500094",
+    phone: "+91-9870347349",
     lat: 17.4945,
     lng: 78.5455,
     city: "hyderabad",
@@ -181,8 +200,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "suchitra",
     name: "Suchitra",
-    address: "Suchitra, Hyderabad",
+    address: "Bodhi School of Yoga, Suchitra Junction, Near Suchitra X Roads, Hyderabad, Telangana",
     pincode: "500067",
+    phone: "+91-9870347349",
     lat: 17.5127,
     lng: 78.4745,
     city: "hyderabad",
@@ -190,8 +210,9 @@ export const BODHI_CENTERS: Center[] = [
   {
     id: "vasanth-nagar",
     name: "Vasanth Nagar",
-    address: "Vasanth Nagar, Kukatpally, Hyderabad",
+    address: "Bodhi School of Yoga, Vasanth Nagar, Kukatpally, Near JNTU, Hyderabad, Telangana",
     pincode: "500085",
+    phone: "+91-9870347349",
     lat: 17.4901,
     lng: 78.3827,
     city: "hyderabad",

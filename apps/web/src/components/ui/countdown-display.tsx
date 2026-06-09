@@ -8,10 +8,9 @@
 // countdown to International Yoga Day (June 21) with the Figma "Days/Hours/Mins/
 // Secs" labels and the white-card visual treatment.
 //
-// SSR-safe: the server (and first client paint) renders the static Figma values
-// (02 Days / 18 Hours / 38 Mins / 19 Secs) so there is no hydration mismatch;
-// the live tick starts in useEffect. If `endsAt` is omitted it defaults to the
-// next upcoming June 21 (International Yoga Day).
+// SSR-safe: the server (and first client paint) renders the static fallback
+// values so there is no hydration mismatch; the live tick starts in useEffect.
+// If `endsAt` is omitted it defaults to 48 hours from page load.
 
 import * as React from "react";
 
@@ -42,9 +41,9 @@ interface CountdownWidgetProps {
 
 const DEFAULT_UNITS: CountdownUnit[] = [
   { value: "02", unit: "Days" },
-  { value: "18", unit: "Hours" },
-  { value: "38", unit: "Mins" },
-  { value: "19", unit: "Secs" },
+  { value: "00", unit: "Hours" },
+  { value: "00", unit: "Mins" },
+  { value: "00", unit: "Secs" },
 ];
 
 const toneStyles: Record<
@@ -67,14 +66,20 @@ const toneStyles: Record<
 
 const pad = (n: number) => String(Math.max(0, n)).padStart(2, "0");
 
-/** Next upcoming June 21 (International Yoga Day) at local midnight. */
-function nextYogaDay(): Date {
-  const now = new Date();
-  const year =
-    now.getMonth() > 5 || (now.getMonth() === 5 && now.getDate() > 21)
-      ? now.getFullYear() + 1
-      : now.getFullYear();
-  return new Date(year, 5, 21, 0, 0, 0, 0);
+const STORAGE_KEY = "bodhi_countdown_target";
+
+/** 48-hour countdown persisted in localStorage so it survives refreshes. */
+function defaultTarget(): Date {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const ts = Number(stored);
+      if (ts > Date.now()) return new Date(ts);
+    }
+  } catch {}
+  const target = new Date(Date.now() + 48 * 60 * 60 * 1000);
+  try { localStorage.setItem(STORAGE_KEY, String(target.getTime())); } catch {}
+  return target;
 }
 
 function unitsUntil(target: Date): CountdownUnit[] {
@@ -106,7 +111,7 @@ function CountdownWidget({
     if (endsAt === null) return null;
     if (endsAt instanceof Date) return endsAt;
     if (typeof endsAt === "string") return new Date(endsAt);
-    return nextYogaDay();
+    return defaultTarget();
   }, [endsAt]);
 
   // Render static Figma values on the server and first client paint.

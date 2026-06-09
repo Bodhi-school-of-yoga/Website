@@ -221,9 +221,9 @@ export function ProgramCard({
           {title}
         </CardTitle>
 
-        {!isArticle && typeof rating === "number" && (
+        {/* {!isArticle && typeof rating === "number" && (
           <StarRating rating={rating} reviewCount={reviewCount} />
-        )}
+        )} */}
 
         {!isArticle && metaItems.length > 0 && (
           <ul className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
@@ -233,7 +233,7 @@ export function ProgramCard({
                   <span className="flex size-3 shrink-0 items-center justify-center text-brand-primary">
                     {item.icon}
                   </span>
-                  <span className="whitespace-nowrap">{item.label}</span>
+                  <span className="whitespace-nowrap max-w-[150px] truncate">{item.label}</span>
                 </li>
                 {i < metaItems.length - 1 && (
                   <li

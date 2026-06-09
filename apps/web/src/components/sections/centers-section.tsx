@@ -344,8 +344,8 @@ export function CentersSection({
 
         <div
           className={cn(
-            "grid min-h-[480px] grid-cols-1 overflow-hidden rounded-[20px] sm:rounded-[28px] lg:rounded-[36px] border border-border-2 bg-surface-1/85 backdrop-blur-[30px]",
-            "lg:min-h-[640px] lg:grid-cols-[2fr_3fr]",
+            "grid min-h-[360px] grid-cols-1 overflow-hidden rounded-[20px] sm:rounded-[28px] lg:rounded-[36px] border border-border-2 bg-surface-1/85 backdrop-blur-[30px]",
+            "lg:min-h-[480px] lg:grid-cols-[2fr_3fr]",
           )}
         >
           {/* Side panel – center list */}
@@ -429,6 +429,12 @@ export function CentersSection({
                 <p className="mt-1 text-xs text-text-tertiary">
                   {selectedCenter.address} — {selectedCenter.pincode}
                 </p>
+                <a
+                  href={`tel:${selectedCenter.phone}`}
+                  className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-medium text-text-brand hover:underline"
+                >
+                  {selectedCenter.phone}
+                </a>
                 {distances?.[selectedCenter.id] != null && (
                   <p className="mt-1 text-xs font-medium text-text-brand">
                     {formatDistance(distances[selectedCenter.id])} away

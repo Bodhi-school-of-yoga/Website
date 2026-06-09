@@ -88,7 +88,6 @@
     ],
     "prerequisites": [
       "Completed a Yoga Alliance certified RYT 200.",
-      "Age 18 – 55.",
       "A device with reliable internet, yoga mat, and a quiet space to practise."
     ],
     "instructors": [
@@ -257,8 +256,8 @@
     "category": "advanced",
     "mode": "online",
     "shortDescription": "Yoga Alliance RCYT certification — engage children with 36 age-appropriate poses, brain games, and storytelling.",
-    "durationLabel": "8 weeks · 2.5 hrs/session",
-    "scheduleLabel": "Mon – Fri",
+    "durationLabel": "6 weeks · 2 hrs/session",
+    "scheduleLabel": "Mon – Thu",
     "listingImage": "/images/programs/childrens-bala-yoga-teacher-training.jpg",
     "heroImage": "/images/programs/childrens-bala-yoga-teacher-training.jpg",
     "instructor": {
@@ -1264,6 +1263,7 @@
     "shortDescription": "Immersive in-studio RYT 200 — 8 weeks of daily practice (9:30 am – 1:30 pm) combining Hatha, Ashtanga, anatomy, methodology, and Aerial & Acro yoga.",
     "durationLabel": "8 weeks · 9:30 am – 1:30 pm daily",
     "scheduleLabel": "Mon – Fri",
+    "availabilityNote": "Khairatabad · ESI Erragadda · Matrusri Nagar · Kondapur",
     "listingImage": "/images/programs/teacher-studio-200-hour-ytt.jpg",
     "heroImage": "/images/programs/teacher-studio-200-hour-ytt.jpg",
     "instructor": {
@@ -1631,7 +1631,7 @@
     "mode": "online",
     "shortDescription": "Rediscover, rejuvenate, relax — daily 50-minute online yoga classes with flexible morning and evening slots for every level.",
     "durationLabel": "4 weeks",
-    "scheduleLabel": "Mon – Fri",
+    "scheduleLabel": "Everyday",
     "listingImage": "/images/programs/yoga-studio-daily-regular.jpg",
     "heroImage": "/images/programs/yoga-studio-daily-regular.jpg",
     "instructor": {
@@ -1654,7 +1654,7 @@
         "icon": "leaf",
         "iconSrc": "/icon/course4.svg",
         "title": "Flexible Slots",
-        "body": "Morning (4 am – 11 am) and evening (5 pm – 8 pm) time slots."
+        "body": "Morning (5 am – 10 am) and evening (5 pm – 7 pm) time slots."
       },
       {
         "icon": "smile",

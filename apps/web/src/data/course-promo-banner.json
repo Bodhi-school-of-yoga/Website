@@ -2,44 +2,33 @@
   "active": true,
   "startsAt": null,
   "endsAt": "2026-06-30T23:59:59+05:30",
-  "text": "EARLY YOGA International Day Offer! Get flat **70%** off on all courses — register by 8th June",
+  "text": "Celebrate International Yoga Day with **70% OFF** on selected yoga courses. Limited seats available.",
   "href": "/yoga-day",
-  "linkLabel": null,
+  "linkLabel": "Click here to join!",
   "tiers": [
     {
-      "before": "2026-06-09T00:00:00+05:30",
-      "text": "EARLY YOGA International Day Offer! Get flat **70%** off on all courses — register by 8th June",
-      "discount": "70%"
-    },
-    {
-      "before": "2026-06-16T00:00:00+05:30",
-      "text": "YOGA International Day Offer! Get flat **60%** off on all courses — limited time only",
-      "discount": "60%"
+      "before": "2026-06-11T00:00:00+05:30",
+      "text": "Celebrate International Yoga Day with **70% OFF** on selected yoga courses. Limited seats available."
     },
     {
       "before": null,
-      "text": "YOGA International Day Offer! Get flat **50%** off on all courses — enroll now",
-      "discount": "50%"
+      "text": "Celebrate International Yoga Day with **60% OFF** on selected yoga courses. Limited seats available."
     }
   ],
   "overrides": [
     {
       "routes": ["/yoga-courses/offline", "/yoga-courses/online"],
-      "text": "EARLY YOGA International Day Offer! Get flat **70%** off on 12 months plan + get a wiselife mat free worth **₹2000**",
+      "text": "Celebrate International Yoga Day with **70% OFF** on selected yoga courses. Limited seats available.",
       "href": "/yoga-day",
-      "linkLabel": null,
+      "linkLabel": "Click here to join!",
       "tiers": [
         {
-          "before": "2026-06-09T00:00:00+05:30",
-          "text": "EARLY YOGA International Day Offer! Get flat **70%** off on 12 months plan + get a wiselife mat free worth **₹2000**"
-        },
-        {
-          "before": "2026-06-16T00:00:00+05:30",
-          "text": "YOGA International Day Offer! Get flat **60%** off on 12 months plan + get a wiselife mat free worth **₹2000**"
+          "before": "2026-06-11T00:00:00+05:30",
+          "text": "Celebrate International Yoga Day with **70% OFF** on selected yoga courses. Limited seats available."
         },
         {
           "before": null,
-          "text": "YOGA International Day Offer! Get flat **50%** off on 12 months plan + get a wiselife mat free worth **₹2000**"
+          "text": "Celebrate International Yoga Day with **60% OFF** on selected yoga courses. Limited seats available."
         }
       ]
     }

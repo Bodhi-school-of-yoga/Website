@@ -32,7 +32,7 @@ const DEFAULT_STATS: HarmonyStat[] = [
   { value: "15000+", label: "Vision: Certified Trainers by 2030" },
   { value: "20", label: "Centers across India" },
   { value: "20 yrs", label: "Years of Teaching" },
-  { value: "1Lakh+", label: "Students Transformed" },
+  { value: "1 Lakh +", label: "Students Transformed" },
 ];
 
 const DEFAULT_PHOTO_TOP_RIGHT: HarmonyPhoto = {

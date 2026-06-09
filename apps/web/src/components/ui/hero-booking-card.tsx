@@ -51,7 +51,7 @@ function HeroBookingCard({
   countdownLabel = "offer expires in",
   countdownEndsAt,
   countdownUnits,
-  seatsLeft = 17,
+  seatsLeft = 41,
   seatsTotal = 50,
   seatsCaption = "left  for this week\u2019s enrollment window.",
   ctaLabel = "Reserve My Seat Now",
