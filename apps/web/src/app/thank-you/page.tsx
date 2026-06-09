@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooterBlock } from "@/components/site-footer-block";
@@ -15,7 +16,9 @@ export default function ThankYouPage() {
     <>
       <SiteHeader tone="dark" solidBg />
       <main className="flex flex-1 flex-col items-center justify-center px-6 py-32 sm:py-40 text-center">
-        <ThankYouContent />
+        <Suspense>
+          <ThankYouContent />
+        </Suspense>
       </main>
       <SiteFooterBlock />
     </>
