@@ -174,6 +174,10 @@ export function BatchBookingDialog({
                 bookingId,
                 paymentStatus: "paid",
                 paymentId: response.razorpay_payment_id,
+                email: email.trim(),
+                courseName,
+                amount: amountInPaise,
+                currency,
               }),
             });
           } catch {

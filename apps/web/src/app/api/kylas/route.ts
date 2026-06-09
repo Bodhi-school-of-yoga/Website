@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getPostHogClient } from "@/lib/posthog";
 
 export async function POST(req: NextRequest) {
   try {
@@ -57,9 +58,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(result, { status: response.status });
     }
 
+    await getPostHogClient().captureImmediate({
+      distinctId: email || phoneNumber,
+      event: "lead created",
+      properties: {
+        course_name: courseName || null,
+        batch: batch || null,
+        time_slot: timeSlot || null,
+        crm: "kylas",
+        $set: { name: firstName, email: email || null, phone: phoneNumber || null },
+      },
+    });
+
     return NextResponse.json(result);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
+    getPostHogClient().captureException(error instanceof Error ? error : new Error(message));
     return NextResponse.json(
       { success: false, message },
       { status: 500 },

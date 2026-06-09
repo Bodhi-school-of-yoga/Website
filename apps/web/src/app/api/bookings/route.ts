@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { insertRow, updateRow } from "@/lib/supabase";
+import { getPostHogClient } from "@/lib/posthog";
 
 // POST — create a new booking with pending payment status
 export async function POST(req: NextRequest) {
@@ -35,10 +36,26 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const posthog = getPostHogClient();
+    await posthog.captureImmediate({
+      distinctId: email || mobile,
+      event: "booking created",
+      properties: {
+        booking_id: data?.id ?? null,
+        course_name: courseName,
+        batch: batch || null,
+        time_slot: timeSlot || null,
+        amount: amount || 0,
+        currency: currency || "INR",
+        $set: { name, email: email || null, phone: mobile },
+      },
+    });
+
     return NextResponse.json({ success: true, bookingId: data?.id ?? null });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     console.error("[Bookings] POST exception:", message);
+    getPostHogClient().captureException(error instanceof Error ? error : new Error(message));
     return NextResponse.json(
       { success: false, message, bookingId: null },
       { status: 500 },
@@ -49,7 +66,7 @@ export async function POST(req: NextRequest) {
 // PATCH — update payment status after Razorpay callback
 export async function PATCH(req: NextRequest) {
   try {
-    const { bookingId, paymentStatus, paymentId } = await req.json();
+    const { bookingId, paymentStatus, paymentId, email, courseName, amount, currency } = await req.json();
 
     if (!bookingId || !paymentStatus) {
       return NextResponse.json(
@@ -73,10 +90,26 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ success: false, message: error }, { status: 500 });
     }
 
+    if (paymentStatus === "paid") {
+      const posthog = getPostHogClient();
+      await posthog.captureImmediate({
+        distinctId: email || bookingId,
+        event: "payment completed",
+        properties: {
+          booking_id: bookingId,
+          payment_id: paymentId || null,
+          course_name: courseName || null,
+          amount: amount || null,
+          currency: currency || "INR",
+        },
+      });
+    }
+
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     console.error("[Bookings] PATCH exception:", message);
+    getPostHogClient().captureException(error instanceof Error ? error : new Error(message));
     return NextResponse.json({ success: false, message }, { status: 500 });
   }
 }

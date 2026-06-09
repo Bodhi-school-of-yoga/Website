@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { insertRow } from "@/lib/supabase";
+import { getPostHogClient } from "@/lib/posthog";
 
 export async function POST(req: NextRequest) {
   try {
@@ -64,9 +65,20 @@ export async function POST(req: NextRequest) {
       console.error("[Contact] Kylas CRM request failed:", kylasErr);
     }
 
+    await getPostHogClient().captureImmediate({
+      distinctId: email,
+      event: "contact submitted",
+      properties: {
+        first_name: firstName,
+        has_phone: !!phone,
+        $set: { name: firstName, email, phone: phone || null },
+      },
+    });
+
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
+    getPostHogClient().captureException(error instanceof Error ? error : new Error(message));
     return NextResponse.json(
       { success: false, message },
       { status: 500 },
