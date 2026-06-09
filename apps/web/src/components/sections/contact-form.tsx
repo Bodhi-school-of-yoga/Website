@@ -2,9 +2,9 @@
 
 // ContactForm — controlled enquiry form on the Contact page with name, email, phone, and message fields.
 import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 
@@ -41,10 +41,10 @@ const INITIAL_FIELDS: ContactFormData = {
 type Errors = Partial<Record<keyof ContactFormData, string>>;
 
 export function ContactForm({ onSubmit, className }: ContactFormProps) {
+  const router = useRouter();
   const [fields, setFields] = useState<ContactFormData>(INITIAL_FIELDS);
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -56,7 +56,6 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
     setFields(INITIAL_FIELDS);
     setErrors({});
     setIsSubmitting(false);
-    setIsSubmitted(false);
     setSubmitError(null);
   };
 
@@ -124,7 +123,8 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
       } else {
         await new Promise((resolve) => setTimeout(resolve, 800));
       }
-      setIsSubmitted(true);
+      reset();
+      router.push('/thank-you?type=contact');
     } catch (err) {
       setSubmitError(
         err instanceof Error
@@ -137,113 +137,6 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
   };
 
   return (
-    <>
-      {/* Thank You Dialog Overlay */}
-      <AnimatePresence>
-        {isSubmitted && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Backdrop */}
-            <motion.div
-              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={reset}
-            />
-
-            {/* Dialog */}
-            <motion.div
-              className="relative z-10 w-full max-w-md rounded-3xl bg-white px-8 py-10 shadow-2xl text-center overflow-hidden"
-              initial={{ opacity: 0, scale: 0.85, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {/* Close button */}
-              <button
-                type="button"
-                onClick={reset}
-                className="absolute top-4 right-4 h-8 w-8 flex items-center justify-center rounded-full text-text-tertiary hover:bg-surface-2 hover:text-text-primary transition-colors"
-              >
-                <X className="h-4 w-4" />
-              </button>
-
-              {/* Animated checkmark circle */}
-              <motion.div
-                className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-primary/10"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <motion.div
-                  initial={{ scale: 0, rotate: -45 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.4, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <CheckCircle className="h-10 w-10 text-brand-primary" strokeWidth={1.5} />
-                </motion.div>
-              </motion.div>
-
-              {/* Animated ring pulse */}
-              <motion.div
-                className="absolute left-1/2 top-10 -translate-x-1/2 h-20 w-20 rounded-full border-2 border-brand-primary/20"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1.6, opacity: [0, 0.5, 0] }}
-                transition={{ delay: 0.3, duration: 1, ease: 'easeOut' }}
-              />
-
-              {/* Title */}
-              <motion.h3
-                className="text-2xl font-heading font-bold text-text-primary"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.4 }}
-              >
-                Thank You!
-              </motion.h3>
-
-              {/* Message */}
-              <motion.p
-                className="mt-3 text-base text-text-tertiary leading-relaxed"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.4 }}
-              >
-                We&apos;ve received your message and will get back to you as soon as possible.
-              </motion.p>
-
-              {/* Divider */}
-              <motion.div
-                className="mt-6 mb-6 h-px bg-border-2"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.55, duration: 0.4 }}
-              />
-
-              {/* CTA */}
-              <motion.button
-                type="button"
-                onClick={reset}
-                className="h-12 w-full rounded-full bg-brand-primary text-white font-semibold text-sm transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.4 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Send Another Message
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
     <motion.form
       noValidate
       onSubmit={handleSubmit}
@@ -368,6 +261,5 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
         {isSubmitting ? 'Sending…' : 'Send Message'}
       </button>
     </motion.form>
-    </>
   );
 }

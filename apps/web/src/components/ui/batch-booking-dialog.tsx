@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { Dialog } from "@base-ui/react/dialog";
 import { X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -81,6 +82,7 @@ export function BatchBookingDialog({
   timeSlots,
   onPaymentSuccess,
 }: BatchBookingDialogProps) {
+  const router = useRouter();
   const locale = currency === "USD" ? "en-US" : "en-IN";
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -187,6 +189,12 @@ export function BatchBookingDialog({
           specialRequests: specialRequests.trim(),
         });
         onOpenChange(false);
+
+        // Redirect to thank-you with purchase tracking params
+        const amountInRupees = Math.round(amountInPaise / 100);
+        const courseSlug = encodeURIComponent(courseName);
+        const txnId = encodeURIComponent(response.razorpay_payment_id);
+        router.push(`/thank-you?type=purchase&course=${courseSlug}&amount=${amountInRupees}&txn_id=${txnId}`);
       },
       theme: { color: "#2A5B4C" },
     };

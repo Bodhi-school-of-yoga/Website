@@ -96,7 +96,7 @@ export const COURSE_DROPDOWNS: Record<
   teacher: {
     items: [
       {
-        title: "Online Classes",
+        title: "Online courses",
         subtitle: "At Comfort of your home",
         count: courseCount("teacher", "online"),
         href: "/teacher-courses/online",
@@ -104,7 +104,7 @@ export const COURSE_DROPDOWNS: Record<
         icon: "Laptop",
       },
       {
-        title: "Offline - in studio",
+        title: "Offline courses- in studio",
         subtitle: "We have 20+ studios",
         count: courseCount("teacher", "studio"),
         href: "/teacher-courses/offline",
@@ -119,7 +119,7 @@ export const COURSE_DROPDOWNS: Record<
         icon: "Award",
         subItems: [
           {
-            title: "Online Classes",
+            title: "Online certification",
             subtitle: "Learn from anywhere",
             count: courseCount("advanced", "online"),
             href: "/advanced-certifications/online",
@@ -127,7 +127,7 @@ export const COURSE_DROPDOWNS: Record<
             icon: "Laptop",
           },
           {
-            title: "Offine - in studio",
+            title: "Offline certification- in studio",
             subtitle: "Hands-on training",
             count: courseCount("advanced", "studio"),
             href: "/advanced-certifications/offline",
