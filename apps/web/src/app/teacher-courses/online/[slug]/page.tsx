@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { CourseDetail } from "@/components/course-detail";
 import {
   COURSES,
-  findCourseBySlug,
+  fetchCourseBySlug,
   type CourseCategory,
   type CourseMode,
 } from "@/data/courses-catalog";
@@ -26,7 +26,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const course = findCourseBySlug(slug);
+  const course = await fetchCourseBySlug(slug);
   if (!course) return { title: "Course | Bodhi School of Yoga" };
   return {
     title: `${course.title} | Bodhi School of Yoga`,
@@ -40,7 +40,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const course = findCourseBySlug(slug);
+  const course = await fetchCourseBySlug(slug);
   if (!course || course.category !== CATEGORY || course.mode !== MODE) {
     notFound();
   }

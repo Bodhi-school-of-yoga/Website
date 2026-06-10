@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import BlogContent from "@/components/blog/blog-content";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { BLOG_AUTHOR, getAllPosts } from "@/data/blog-posts";
+import { BLOG_AUTHOR, fetchAllPosts, fetchCategories } from "@/data/blog-posts";
 
 const SITE_URL = "https://bodhischoolofyoga.com";
 
@@ -20,8 +20,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export default async function BlogPage() {
+  const [posts, categories] = await Promise.all([
+    fetchAllPosts(),
+    fetchCategories(),
+  ]);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -34,7 +37,9 @@ export default function BlogPage() {
       "@type": "BlogPosting",
       headline: post.title,
       description: post.excerpt,
-      image: `${SITE_URL}${post.image}`,
+      image: post.image.startsWith("http")
+        ? post.image
+        : `${SITE_URL}${post.image}`,
       articleSection: post.category,
       url: `${SITE_URL}/blog/${post.slug}`,
     })),
@@ -48,7 +53,7 @@ export default function BlogPage() {
       />
       <SiteHeader />
       <main>
-        <BlogContent />
+        <BlogContent posts={posts} categories={categories} />
       </main>
       <SiteFooterBlock />
     </>

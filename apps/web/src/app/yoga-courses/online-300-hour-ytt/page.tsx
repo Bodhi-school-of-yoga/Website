@@ -15,7 +15,7 @@ import { FaqSection } from "@/components/sections/faq-section";
 import { PopularCoursesSection } from "@/components/sections/popular-courses-section";
 import { ClosingCtaSection } from "@/components/sections/closing-cta-section";
 import { RevealOnScroll } from "@/components/ui/reveal-on-scroll";
-import { findCourseBySlug, toSmallestUnit } from "@/data/courses-catalog";
+import { fetchCourseBySlug, toSmallestUnit } from "@/data/courses-catalog";
 
 
 export const metadata: Metadata = {
@@ -24,10 +24,11 @@ export const metadata: Metadata = {
     "Deepen your practice and master the art of teaching with Bodhi's flagship 300 Hour Yoga Teacher Training Course. Built for graduates of a 200 Hour YTT — refines your skills, expands your knowledge, prepares you to teach at an advanced level.",
 };
 
-export default function Online300HourYttPage() {
+export default async function Online300HourYttPage() {
   // Checkout amount is sourced from the catalog price (single source of truth)
   // so it can never drift from the displayed price.
-  const amountInPaise = toSmallestUnit(findCourseBySlug("300-hour-ytt-online")?.price ?? "0");
+  const course = await fetchCourseBySlug("300-hour-ytt-online");
+  const amountInPaise = toSmallestUnit(course?.price ?? "0");
 
   return (
     <main className="flex min-h-screen flex-col bg-surface-1">

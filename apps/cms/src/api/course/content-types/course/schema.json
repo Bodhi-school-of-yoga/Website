@@ -1,0 +1,110 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course",
+    "description": "Yoga courses — certifications, teacher training, and regular classes"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "titleLead": {
+      "type": "string"
+    },
+    "titleAccent": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["advanced", "teacher", "yoga"],
+      "required": true
+    },
+    "mode": {
+      "type": "enumeration",
+      "enum": ["online", "studio"],
+      "required": true
+    },
+    "price": {
+      "type": "string"
+    },
+    "originalPrice": {
+      "type": "string"
+    },
+    "pricingPlans": {
+      "type": "component",
+      "repeatable": true,
+      "component": "course.pricing-plan"
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true
+    },
+    "durationLabel": {
+      "type": "string"
+    },
+    "scheduleLabel": {
+      "type": "string"
+    },
+    "timingLabel": {
+      "type": "string"
+    },
+    "listingImage": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "string"
+    },
+    "instructorInitials": {
+      "type": "string"
+    },
+    "instructorName": {
+      "type": "string"
+    },
+    "overview": {
+      "type": "json"
+    },
+    "prerequisites": {
+      "type": "json"
+    },
+    "highlights": {
+      "type": "component",
+      "repeatable": true,
+      "component": "course.highlight"
+    },
+    "curriculum": {
+      "type": "component",
+      "repeatable": true,
+      "component": "course.curriculum-item"
+    },
+    "instructors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "course.instructor"
+    },
+    "faqs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "course.faq"
+    },
+    "comingSoon": {
+      "type": "boolean",
+      "default": false
+    },
+    "availabilityNote": {
+      "type": "string"
+    }
+  }
+}

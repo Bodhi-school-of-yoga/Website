@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_course_instructors",
+  "info": {
+    "displayName": "Instructor",
+    "icon": "user",
+    "description": "Course instructor with name, role, and avatar"
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "string"
+    }
+  }
+}

@@ -5,9 +5,9 @@ import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
 import {
   BLOG_AUTHOR,
-  getAllPosts,
-  getPostBySlug,
-  getRelatedPosts,
+  fetchAllPosts,
+  fetchPostBySlug,
+  fetchRelatedPosts,
 } from "@/data/blog-posts";
 
 const SITE_URL = "https://bodhischoolofyoga.com";
@@ -16,21 +16,25 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const posts = await fetchAllPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata(
   props: BlogPostPageProps,
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const post = getPostBySlug(slug);
+  const post = await fetchPostBySlug(slug);
 
   if (!post) {
     return { title: "Article not found" };
   }
 
   const url = `/blog/${post.slug}`;
+  const imageUrl = post.image.startsWith("http")
+    ? post.image
+    : `${SITE_URL}${post.image}`;
   return {
     title: post.title,
     description: post.excerpt,
@@ -40,33 +44,35 @@ export async function generateMetadata(
       url,
       title: post.title,
       description: post.excerpt,
-      images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      images: [imageUrl],
     },
   };
 }
 
 export default async function BlogPostPage(props: BlogPostPageProps) {
   const { slug } = await props.params;
-  const post = getPostBySlug(slug);
+  const post = await fetchPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const related = getRelatedPosts(slug, 3);
+  const related = await fetchRelatedPosts(slug, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: `${SITE_URL}${post.image}`,
+    image: post.image.startsWith("http")
+      ? post.image
+      : `${SITE_URL}${post.image}`,
     articleSection: post.category,
     inLanguage: "en-IN",
     mainEntityOfPage: {

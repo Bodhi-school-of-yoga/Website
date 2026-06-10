@@ -6,7 +6,7 @@ import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
+import { courseHref, fetchCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Studio Yoga Teacher Training Courses | Bodhi School of Yoga",
@@ -14,9 +14,8 @@ export const metadata: Metadata = {
     "200-Hour YTT, Aerial Yoga, and Mudgar teacher training — immersive in-studio learning at a Bodhi centre.",
 };
 
-const COURSES = getCoursesByCategoryAndMode("teacher", "studio");
-
-export default function OfflineCoursesPage() {
+export default async function OfflineCoursesPage() {
+  const COURSES = await fetchCoursesByCategoryAndMode("teacher", "studio");
   return (
     <>
       <SiteHeader tone="dark" solidBg />

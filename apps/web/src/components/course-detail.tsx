@@ -23,7 +23,7 @@ import {
   MODE_LABELS,
   CATEGORY_BASE_PATH,
   courseHref,
-  getRelatedCourses,
+  fetchRelatedCourses,
   detectCurrency,
   toSmallestUnit,
   type Course,
@@ -46,8 +46,8 @@ function toHighlightIcon(name: string): HighlightIconName {
     : "technology";
 }
 
-export function CourseDetail({ course }: { course: Course }) {
-  const related = getRelatedCourses(course, 3);
+export async function CourseDetail({ course }: { course: Course }) {
+  const related = await fetchRelatedCourses(course, 3);
   const modeLabel = MODE_LABELS[course.mode];
 
   // Derived dynamic content (per-course, no manual catalog edits required) -----

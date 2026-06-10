@@ -5,7 +5,7 @@ import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { type PopularCourse } from "@/components/sections/popular-courses-section";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
+import { courseHref, fetchCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Online Yoga Teacher Training Courses | Bodhi School of Yoga",
@@ -13,8 +13,9 @@ export const metadata: Metadata = {
     "200-Hour YTT, Face Yoga, MAT Pilates and Weight-Loss Coach certifications — live online with senior Bodhi faculty.",
 };
 
-const COURSES: PopularCourse[] = getCoursesByCategoryAndMode("teacher", "online").map(
-  (c, idx) => ({
+export default async function OnlineCoursesPage() {
+  const rawCourses = await fetchCoursesByCategoryAndMode("teacher", "online");
+  const COURSES: PopularCourse[] = rawCourses.map((c, idx) => ({
     title: c.title,
     image: c.listingImage,
     meta: [
@@ -31,10 +32,7 @@ const COURSES: PopularCourse[] = getCoursesByCategoryAndMode("teacher", "online"
     price: c.price ?? "",
     originalPrice: c.originalPrice,
     discountLabel: getDiscountLabel(c),
-  }),
-);
-
-export default function OnlineCoursesPage() {
+  }));
   return (
     <>
       <SiteHeader tone="dark" solidBg />

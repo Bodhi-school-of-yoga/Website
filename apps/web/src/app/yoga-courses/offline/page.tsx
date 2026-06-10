@@ -6,7 +6,7 @@ import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
+import { courseHref, fetchCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Regular yoga classes| Bodhi School of Yoga",
@@ -14,9 +14,8 @@ export const metadata: Metadata = {
     "Daily regular yoga classes at Bodhi centres weekday mornings and evenings for every level.",
 };
 
-const COURSES = getCoursesByCategoryAndMode("yoga", "studio");
-
-export default function OfflineYogaCoursesPage() {
+export default async function OfflineYogaCoursesPage() {
+  const COURSES = await fetchCoursesByCategoryAndMode("yoga", "studio");
   return (
     <>
       <SiteHeader tone="dark" solidBg />

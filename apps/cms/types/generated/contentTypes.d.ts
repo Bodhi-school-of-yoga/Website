@@ -1142,6 +1142,61 @@ export interface PluginUsersPermissionsUser
   };
 }
 
+export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
+  collectionName: 'courses';
+  info: {
+    description: 'Yoga courses — certifications, teacher training, and regular classes';
+    displayName: 'Course';
+    pluralName: 'courses';
+    singularName: 'course';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    availabilityNote: Schema.Attribute.String;
+    category: Schema.Attribute.Enumeration<['advanced', 'teacher', 'yoga']> &
+      Schema.Attribute.Required;
+    comingSoon: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    curriculum: Schema.Attribute.Component<'course.curriculum-item', true>;
+    durationLabel: Schema.Attribute.String;
+    faqs: Schema.Attribute.Component<'course.faq', true>;
+    heroImage: Schema.Attribute.String;
+    highlights: Schema.Attribute.Component<'course.highlight', true>;
+    instructorInitials: Schema.Attribute.String;
+    instructorName: Schema.Attribute.String;
+    instructors: Schema.Attribute.Component<'course.instructor', true>;
+    listingImage: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::course.course'
+    > &
+      Schema.Attribute.Private;
+    mode: Schema.Attribute.Enumeration<['online', 'studio']> &
+      Schema.Attribute.Required;
+    originalPrice: Schema.Attribute.String;
+    overview: Schema.Attribute.JSON;
+    prerequisites: Schema.Attribute.JSON;
+    price: Schema.Attribute.String;
+    pricingPlans: Schema.Attribute.Component<'course.pricing-plan', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    scheduleLabel: Schema.Attribute.String;
+    shortDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    timingLabel: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    titleAccent: Schema.Attribute.String;
+    titleLead: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
@@ -1158,6 +1213,7 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::course.course': ApiCourseCourse;
       'api::global.global': ApiGlobalGlobal;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

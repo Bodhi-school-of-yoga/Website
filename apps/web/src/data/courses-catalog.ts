@@ -1,23 +1,24 @@
-// Typed loader over the single source of truth for all Bodhi courses:
-// `courses.json` (same directory). Course content is surfaced under
-// /advanced-certifications/{online,offline}, /teacher-courses/{online,offline},
-// and /yoga-courses/{online,offline}. Each entry powers both the listing card
-// and the dynamic detail page at /courses/[slug].
+// Typed loader for all Bodhi courses. Primary source: Strapi CMS.
+// Fallback: `courses.json` (same directory) when CMS is unavailable.
+//
+// Course content is surfaced under /advanced-certifications/{online,offline},
+// /teacher-courses/{online,offline}, /yoga-courses/{online,offline}, and
+// the detail page at /courses/[slug].
 //
 // ─────────────────────────────────────────────────────────────────────────
 //  HOW TO ADD / EDIT A COURSE
-//  1. Open ./courses.json and copy an existing course object.
-//  2. Change `slug` (must be unique — it becomes /courses/<slug>), `title`,
-//     `category` ("advanced" | "teacher" | "yoga"), `mode` ("online" | "studio").
-//  3. Set pricing: `price` is the live/offer price, `originalPrice` the
-//     strikethrough. Both are pre-formatted strings ("₹36,750", "$1,997").
-//     Omit both to fall back to the tier price matrix (regular yoga classes).
-//  4. Fill the content arrays (overview, highlights, curriculum, faqs, …).
-//  Nothing else to wire — listing pages and the detail page read from here.
+//  Use the Strapi CMS admin panel to create, edit, or delete courses.
+//  Changes appear on the site automatically (within 60 s revalidation).
+//  The local courses.json serves as a fallback when CMS is unreachable.
 // ─────────────────────────────────────────────────────────────────────────
 
 import coursesData from "./courses.json";
 import { applyYogaDayOffer } from "./yoga-day-offer";
+import {
+  getCourses,
+  getCourseBySlug as fetchStrapiCourseBySlug,
+  type StrapiCourse,
+} from "@/lib/strapi";
 
 export type CourseCategory = "advanced" | "teacher" | "yoga";
 export type CourseMode = "online" | "studio";
@@ -98,7 +99,105 @@ export const COURSES: Course[] = (coursesData as unknown as Course[]).map(
 );
 
 // ---------------------------------------------------------------------------
-// Lookups
+// Strapi → Course adapter
+// ---------------------------------------------------------------------------
+
+function strapiToCourse(s: StrapiCourse): Course {
+  return {
+    slug: s.slug,
+    title: s.title,
+    titleLead: s.titleLead ?? "",
+    titleAccent: s.titleAccent ?? "",
+    category: s.category,
+    mode: s.mode,
+    price: s.price ?? undefined,
+    originalPrice: s.originalPrice ?? undefined,
+    pricingPlans: (s.pricingPlans ?? []).map((p) => ({
+      period: p.period,
+      price: p.price,
+    })),
+    shortDescription: s.shortDescription,
+    durationLabel: s.durationLabel ?? "",
+    scheduleLabel: s.scheduleLabel ?? "",
+    timingLabel: s.timingLabel ?? undefined,
+    listingImage: s.listingImage ?? "",
+    heroImage: s.heroImage ?? "",
+    instructor: {
+      initials: s.instructorInitials ?? "",
+      name: s.instructorName ?? "",
+    },
+    overview: s.overview ?? [],
+    prerequisites: s.prerequisites ?? [],
+    highlights: (s.highlights ?? []).map((h) => ({
+      icon: h.icon ?? "",
+      iconSrc: h.iconSrc ?? undefined,
+      title: h.title,
+      body: h.body,
+    })),
+    curriculum: (s.curriculum ?? []).map((c) => ({
+      title: c.title,
+      body: c.body,
+    })),
+    instructors: (s.instructors ?? []).map((i) => ({
+      name: i.name,
+      role: i.role ?? "",
+      avatar: i.avatar ?? "",
+    })),
+    faqs: (s.faqs ?? []).map((f) => ({
+      question: f.question,
+      answer: f.answer,
+      defaultOpen: f.defaultOpen ?? undefined,
+    })),
+    comingSoon: s.comingSoon ?? undefined,
+    availabilityNote: s.availabilityNote ?? undefined,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Async API — CMS-first with local JSON fallback (used by server components)
+// ---------------------------------------------------------------------------
+
+export async function fetchAllCourses(): Promise<Course[]> {
+  try {
+    const res = await getCourses({ pageSize: 100 });
+    if (res.data && res.data.length > 0) {
+      return res.data.map(strapiToCourse).map(withCampaignPricing);
+    }
+  } catch {
+    // Strapi unavailable — fall through to local data
+  }
+  return COURSES;
+}
+
+export async function fetchCoursesByCategoryAndMode(
+  category: CourseCategory,
+  mode: CourseMode,
+): Promise<Course[]> {
+  try {
+    const res = await getCourses({ category, mode, pageSize: 100 });
+    if (res.data && res.data.length > 0) {
+      return res.data.map(strapiToCourse).map(withCampaignPricing);
+    }
+  } catch {
+    // fall through
+  }
+  return COURSES.filter((c) => c.category === category && c.mode === mode);
+}
+
+export async function fetchCourseBySlug(
+  slug: string,
+): Promise<Course | undefined> {
+  try {
+    const raw = await fetchStrapiCourseBySlug(slug);
+    if (raw) return withCampaignPricing(strapiToCourse(raw));
+  } catch {
+    // fall through
+  }
+  return COURSES.find((c) => c.slug === slug);
+}
+
+// ---------------------------------------------------------------------------
+// Sync lookups (used by client components — reads from local JSON fallback)
 // ---------------------------------------------------------------------------
 
 export function getCoursesByCategoryAndMode(
@@ -239,14 +338,22 @@ export function describePlans(plans: PricingPlan[]): DescribedPlan[] {
 }
 
 export function getRelatedCourses(course: Course, limit = 3): Course[] {
-  // Prefer same category and opposite mode, then same category same mode, then anything.
-  const sameCatOtherMode = COURSES.filter(
+  return relatedFrom(COURSES, course, limit);
+}
+
+export async function fetchRelatedCourses(course: Course, limit = 3): Promise<Course[]> {
+  const all = await fetchAllCourses();
+  return relatedFrom(all, course, limit);
+}
+
+function relatedFrom(all: Course[], course: Course, limit: number): Course[] {
+  const sameCatOtherMode = all.filter(
     (c) => c.slug !== course.slug && c.category === course.category && c.mode !== course.mode,
   );
-  const sameCatSameMode = COURSES.filter(
+  const sameCatSameMode = all.filter(
     (c) => c.slug !== course.slug && c.category === course.category && c.mode === course.mode,
   );
-  const others = COURSES.filter(
+  const others = all.filter(
     (c) => c.slug !== course.slug && c.category !== course.category,
   );
   return [...sameCatOtherMode, ...sameCatSameMode, ...others].slice(0, limit);

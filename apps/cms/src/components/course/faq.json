@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_course_faqs",
+  "info": {
+    "displayName": "FAQ",
+    "icon": "question",
+    "description": "Frequently asked question with optional default-open state"
+  },
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true
+    },
+    "answer": {
+      "type": "text",
+      "required": true
+    },
+    "defaultOpen": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -8,26 +8,25 @@ import { ArrowRight, Clock } from "lucide-react";
 import Container from "@/components/shared/container";
 import { usePromoBanner } from "@/components/ui/use-promo-banner";
 import { cn } from "@/lib/utils";
-import {
-  getAllPosts,
-  BLOG_CATEGORIES,
-  readingTime,
-  type BlogPost,
-} from "@/data/blog-posts";
+import { readingTime, type BlogPost } from "@/data/blog-posts";
 
-const posts = getAllPosts();
-const tabs = ["All", ...BLOG_CATEGORIES];
+interface BlogContentProps {
+  posts: BlogPost[];
+  categories: string[];
+}
 
-export default function BlogContent() {
+export default function BlogContent({ posts, categories }: BlogContentProps) {
   const { visible: bannerVisible } = usePromoBanner();
   const [activeCategory, setActiveCategory] = useState("All");
   const showFeatured = activeCategory === "All";
+
+  const tabs = useMemo(() => ["All", ...categories], [categories]);
 
   const featured = posts[0];
   const visiblePosts = useMemo(() => {
     if (showFeatured) return posts.slice(1);
     return posts.filter((post) => post.category === activeCategory);
-  }, [activeCategory, showFeatured]);
+  }, [activeCategory, showFeatured, posts]);
 
   return (
     <>

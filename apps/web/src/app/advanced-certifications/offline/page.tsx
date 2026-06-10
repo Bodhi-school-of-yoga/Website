@@ -6,7 +6,7 @@ import { LocationFilterBar } from "@/components/sections/location-filter-bar";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
+import { courseHref, fetchCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Studio Advanced Yoga Certifications | Bodhi School of Yoga",
@@ -14,9 +14,8 @@ export const metadata: Metadata = {
     "In-studio advanced yoga teacher training — immersive, residential-style learning at a Bodhi centre.",
 };
 
-const COURSES = getCoursesByCategoryAndMode("advanced", "studio");
-
-export default function StudioAdvancedCertificationsPage() {
+export default async function StudioAdvancedCertificationsPage() {
+  const COURSES = await fetchCoursesByCategoryAndMode("advanced", "studio");
   return (
     <>
       <SiteHeader tone="dark" solidBg />

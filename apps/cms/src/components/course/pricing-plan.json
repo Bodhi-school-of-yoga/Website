@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_course_pricing_plans",
+  "info": {
+    "displayName": "Pricing Plan",
+    "icon": "shoppingCart",
+    "description": "Subscription pricing tier (e.g. Monthly, Quarterly, Yearly)"
+  },
+  "attributes": {
+    "period": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

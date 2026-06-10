@@ -5,7 +5,7 @@ import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
+import { courseHref, fetchCoursesByCategoryAndMode, getDiscountLabel, getDisplayPrice } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Online Yoga Courses | Bodhi School of Yoga",
@@ -13,9 +13,8 @@ export const metadata: Metadata = {
     "Live online yoga classes — daily practice, happy weight-loss, and advanced yoga + mat-pilates classes for every level.",
 };
 
-const COURSES = getCoursesByCategoryAndMode("yoga", "online");
-
-export default function OnlineYogaCoursesPage() {
+export default async function OnlineYogaCoursesPage() {
+  const COURSES = await fetchCoursesByCategoryAndMode("yoga", "online");
   return (
     <>
       <SiteHeader tone="dark" solidBg />

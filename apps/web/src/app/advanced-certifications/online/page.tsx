@@ -5,7 +5,7 @@ import { OnlineOfflineHero } from "@/components/sections/online-offline-hero";
 import { ProgramCard } from "@/components/ui/program-card";
 import { SiteFooterBlock } from "@/components/site-footer-block";
 import { SiteHeader } from "@/components/site-header";
-import { courseHref, getCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
+import { courseHref, fetchCoursesByCategoryAndMode, getDiscountLabel } from "@/data/courses-catalog";
 
 export const metadata: Metadata = {
   title: "Online Advanced Yoga Certifications | Bodhi School of Yoga",
@@ -13,9 +13,8 @@ export const metadata: Metadata = {
     "Advanced yoga teacher training, pre-natal, children's yoga, and postgraduate Yoga Science programmes — live online.",
 };
 
-const COURSES = getCoursesByCategoryAndMode("advanced", "online");
-
-export default function OnlineAdvancedCertificationsPage() {
+export default async function OnlineAdvancedCertificationsPage() {
+  const COURSES = await fetchCoursesByCategoryAndMode("advanced", "online");
   return (
     <>
       <SiteHeader tone="dark" solidBg />
