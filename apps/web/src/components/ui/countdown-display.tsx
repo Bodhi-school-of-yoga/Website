@@ -40,7 +40,7 @@ interface CountdownWidgetProps {
 }
 
 const DEFAULT_UNITS: CountdownUnit[] = [
-  { value: "02", unit: "Days" },
+  { value: "11", unit: "Days" },
   { value: "00", unit: "Hours" },
   { value: "00", unit: "Mins" },
   { value: "00", unit: "Secs" },
@@ -66,20 +66,9 @@ const toneStyles: Record<
 
 const pad = (n: number) => String(Math.max(0, n)).padStart(2, "0");
 
-const STORAGE_KEY = "bodhi_countdown_target";
-
-/** 48-hour countdown persisted in localStorage so it survives refreshes. */
+/** Fixed target: June 21, 2026 11:59:59 PM IST (end of International Yoga Day). */
 function defaultTarget(): Date {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const ts = Number(stored);
-      if (ts > Date.now()) return new Date(ts);
-    }
-  } catch {}
-  const target = new Date(Date.now() + 48 * 60 * 60 * 1000);
-  try { localStorage.setItem(STORAGE_KEY, String(target.getTime())); } catch {}
-  return target;
+  return new Date("2026-06-21T23:59:59+05:30");
 }
 
 function unitsUntil(target: Date): CountdownUnit[] {

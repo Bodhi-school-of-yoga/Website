@@ -224,15 +224,17 @@ export function CourseDetail({ course }: { course: Course }) {
         />
       </section>
 
-      <section id="certification" className="scroll-mt-[160px]">
-        <CertificationSection
-          eyebrow="Certification"
-          heading={certificationHeading}
-          panelHeading="Globally Recognised"
-          body={certificationBody}
-          footerCaption={`Issued by Bodhi School of Yoga · Yoga Alliance RYS · ${course.title}`}
-        />
-      </section>
+      {!course.slug.startsWith("daily-regular-yoga") && (
+        <section id="certification" className="scroll-mt-[160px]">
+          <CertificationSection
+            eyebrow="Certification"
+            heading={certificationHeading}
+            panelHeading="Globally Recognised"
+            body={certificationBody}
+            footerCaption={`Issued by Bodhi School of Yoga · Yoga Alliance RYS · ${course.title}`}
+          />
+        </section>
+      )}
 
       <section id="testimonials" className="scroll-mt-[160px]">
         <VideoTestimonialsSection
