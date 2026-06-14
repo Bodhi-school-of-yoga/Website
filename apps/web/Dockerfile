@@ -26,6 +26,9 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Ensure media upload directory exists and is writable
+RUN mkdir -p ./public/media && chown -R nextjs:nodejs ./public/media
+
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000

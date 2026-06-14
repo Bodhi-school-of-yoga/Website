@@ -37,7 +37,7 @@ const DEFAULT_CONTACT_CARDS: ContactInfoCardData[] = [
     icon: 'phone',
     label: 'MOBILE NUMBER',
     value: '+ 91 98703 47348',
-    href: 'tel:+919870347348',
+    href: 'tel:+919870347349',
   },
   {
     icon: 'mail',

@@ -8,17 +8,15 @@ import { ArrowRight, Clock } from "lucide-react";
 import Container from "@/components/shared/container";
 import { usePromoBanner } from "@/components/ui/use-promo-banner";
 import { cn } from "@/lib/utils";
-import {
-  getAllPosts,
-  BLOG_CATEGORIES,
-  readingTime,
-  type BlogPost,
-} from "@/data/blog-posts";
+import { readingTime, type BlogPost } from "@/lib/blog-utils";
 
-const posts = getAllPosts();
-const tabs = ["All", ...BLOG_CATEGORIES];
+interface BlogContentProps {
+  posts: BlogPost[];
+  categories: string[];
+}
 
-export default function BlogContent() {
+export default function BlogContent({ posts, categories }: BlogContentProps) {
+  const tabs = ["All", ...categories];
   const { visible: bannerVisible } = usePromoBanner();
   const [activeCategory, setActiveCategory] = useState("All");
   const showFeatured = activeCategory === "All";
@@ -89,7 +87,7 @@ export default function BlogContent() {
                 </span>
               </div>
               <div className="flex flex-col justify-center gap-3 sm:gap-4 p-5 sm:p-7 lg:p-10">
-                <MetaRow category={featured.category} content={featured.content} />
+                <MetaRow post={featured} />
                 <h2 className="font-heading text-h4 text-text-primary transition-colors group-hover:text-text-brand">
                   {featured.title}
                 </h2>
@@ -168,21 +166,15 @@ export default function BlogContent() {
   );
 }
 
-function MetaRow({
-  category,
-  content,
-}: {
-  category: string;
-  content: string;
-}) {
+function MetaRow({ post }: { post: BlogPost }) {
   return (
     <div className="flex items-center gap-3 text-mini font-semibold uppercase tracking-[0.14em]">
       <span className="rounded-full bg-brand-lite px-2.5 py-1 text-text-brand-deep">
-        {category}
+        {post.category}
       </span>
       <span className="inline-flex items-center gap-1 text-text-tertiary">
         <Clock className="h-3.5 w-3.5" />
-        {readingTime(content)} min read
+        {readingTime(post)} min read
       </span>
     </div>
   );
@@ -205,7 +197,7 @@ function PostCard({ post }: { post: BlogPost }) {
         />
       </div>
       <div className="flex flex-1 flex-col gap-3 p-6">
-        <MetaRow category={post.category} content={post.content} />
+        <MetaRow post={post} />
         <h3 className="font-heading text-subtext-1 leading-snug text-text-primary transition-colors group-hover:text-text-brand">
           {post.title}
         </h3>

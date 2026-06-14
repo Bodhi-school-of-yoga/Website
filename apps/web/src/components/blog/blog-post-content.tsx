@@ -9,7 +9,7 @@ import Container from "@/components/shared/container";
 import { Markdown } from "@/components/blog/markdown";
 import { usePromoBanner } from "@/components/ui/use-promo-banner";
 import { cn } from "@/lib/utils";
-import { BLOG_AUTHOR, readingTime, type BlogPost } from "@/data/blog-posts";
+import { BLOG_AUTHOR, readingTime, type BlogPost } from "@/lib/blog-utils";
 
 export default function BlogPostContent({
   post,
@@ -77,7 +77,7 @@ export default function BlogPostContent({
             </span>
             <span className="inline-flex items-center gap-1 text-text-tertiary">
               <Clock className="h-3.5 w-3.5" />
-              {readingTime(post.content)} min read
+              {readingTime(post)} min read
             </span>
           </div>
 
@@ -121,7 +121,9 @@ export default function BlogPostContent({
       {/* Body */}
       <Container className="max-w-[760px]">
         <div className="py-12">
-          <Markdown content={post.content} />
+          {post.markdownContent && (
+            <Markdown content={post.markdownContent} />
+          )}
         </div>
 
         {/* Inline CTA */}
