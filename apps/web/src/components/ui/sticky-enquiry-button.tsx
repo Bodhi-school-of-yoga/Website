@@ -20,11 +20,18 @@ type FormData = {
   phone: string;
   email: string;
   interestedIn: string;
+  message: string;
 };
 
 type Errors = Partial<Record<keyof FormData, string>>;
 
-const INITIAL: FormData = { name: "", phone: "", email: "", interestedIn: "" };
+const INITIAL: FormData = {
+  name: "",
+  phone: "",
+  email: "",
+  interestedIn: "",
+  message: "",
+};
 
 export function StickyEnquiryButton() {
   const router = useRouter();
@@ -228,6 +235,21 @@ export function StickyEnquiryButton() {
                     {errors.interestedIn}
                   </p>
                 )}
+              </div>
+
+              {/* Your Query (optional) */}
+              <div>
+                <textarea
+                  placeholder="Your Query (optional)"
+                  value={fields.message}
+                  onChange={(e) => setField("message", e.target.value)}
+                  rows={3}
+                  maxLength={500}
+                  className={cn(
+                    inputClass,
+                    "h-auto min-h-[80px] resize-none py-3 leading-relaxed",
+                  )}
+                />
               </div>
 
               {submitError && (

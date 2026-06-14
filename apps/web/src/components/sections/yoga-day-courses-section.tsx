@@ -28,7 +28,7 @@ const HOUSE_EASE = [0.22, 1, 0.36, 1] as const;
 const FEATURED_SLUGS = [
   "weight-loss-coach-certification", // teacher
   "300-hour-ytt-online", // advanced
-  "advanced-yoga-mat-pilates", // yoga
+  // "advanced-yoga-mat-pilates", // yoga — temporarily hidden
 ];
 
 // Map a catalog course → YogaDayCourseCard props. The catalog price/originalPrice

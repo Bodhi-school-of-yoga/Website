@@ -14,7 +14,14 @@ import { ArrowRight, X } from "lucide-react";
 import { Dialog } from "@base-ui/react/dialog";
 import { cn } from "@/lib/utils";
 import { usePromoBanner } from "@/components/ui/use-promo-banner";
+import { getCoursesByCategoryAndMode } from "@/data/courses-catalog";
 import { Separator } from "../ui/separator";
+
+const pluralCourses = (n: number) => `${n} ${n === 1 ? "Course" : "Courses"}`;
+const TEACHER_ONLINE_COUNT = pluralCourses(getCoursesByCategoryAndMode("teacher", "online").length);
+const TEACHER_OFFLINE_COUNT = pluralCourses(getCoursesByCategoryAndMode("teacher", "studio").length);
+const YOGA_ONLINE_COUNT = pluralCourses(getCoursesByCategoryAndMode("yoga", "online").length);
+const YOGA_OFFLINE_COUNT = pluralCourses(getCoursesByCategoryAndMode("yoga", "studio").length);
 
 export type HeroOfferChip = {
   eyebrow: string;
@@ -500,14 +507,14 @@ const TEACHER_MODE_OPTIONS = [
   {
     title: "Online Courses",
     subtitle: "At Comfort of your home",
-    count: "9 Courses",
+    count: TEACHER_ONLINE_COUNT,
     href: "/teacher-courses/online",
     image: "/images/programs/teacher-online-200-hour-ytt.jpg",
   },
   {
     title: "Offline - in studio",
     subtitle: "We have 20+ studios",
-    count: "9 Courses",
+    count: TEACHER_OFFLINE_COUNT,
     href: "/teacher-courses/offline",
     image: "/images/programs/daily-regular-yoga-offline.jpg",
   },
@@ -517,14 +524,14 @@ const YOGA_MODE_OPTIONS = [
   {
     title: "Online Classes",
     subtitle: "At Comfort of your home",
-    count: "9 Courses",
+    count: YOGA_ONLINE_COUNT,
     href: "/yoga-courses/online",
     image: "/images/programs/teacher-online-200-hour-ytt.jpg",
   },
   {
     title: "Offline - in studio",
     subtitle: "We have 20+ studios",
-    count: "9 Courses",
+    count: YOGA_OFFLINE_COUNT,
     href: "/yoga-courses/offline",
     image: "/images/programs/daily-regular-yoga-offline.jpg",
   },

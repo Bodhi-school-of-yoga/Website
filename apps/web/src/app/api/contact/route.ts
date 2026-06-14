@@ -3,9 +3,9 @@ import { insertRow } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
-    const { firstName, phone, email, message } = await req.json();
+    const { firstName, phone, email, interestedIn, message } = await req.json();
 
-    if (!firstName || !email || !message) {
+    if (!firstName || !email || !interestedIn || !message) {
       return NextResponse.json(
         { success: false, message: "Missing required fields" },
         { status: 400 },
@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
       first_name: firstName,
       phone: phone || null,
       email,
+      interested_in: interestedIn,
       message,
     });
     if (dbError) {
@@ -42,7 +43,8 @@ export async function POST(req: NextRequest) {
           ]
         : [],
       emails: [{ type: "OFFICE", value: email, primary: true }],
-      requirementName: `Contact Form Message: ${message}`,
+      requirementName: `Contact: ${interestedIn}`,
+      description: message,
     };
 
     try {

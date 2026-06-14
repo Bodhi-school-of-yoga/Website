@@ -65,6 +65,8 @@ export type Course = {
   comingSoon?: boolean;
   availabilityNote?: string;
   timingLabel?: string;
+  /** When true, the course is excluded from category listings (still reachable by direct slug). */
+  hidden?: boolean;
 };
 
 // ---------------------------------------------------------------------------
@@ -105,7 +107,9 @@ export function getCoursesByCategoryAndMode(
   category: CourseCategory,
   mode: CourseMode,
 ): Course[] {
-  return COURSES.filter((c) => c.category === category && c.mode === mode);
+  return COURSES.filter(
+    (c) => c.category === category && c.mode === mode && !c.hidden,
+  );
 }
 
 export function findCourseBySlug(slug: string): Course | undefined {

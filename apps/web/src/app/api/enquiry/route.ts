@@ -3,7 +3,7 @@ import { insertRow } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, phone, email, interestedIn } = await req.json();
+    const { name, phone, email, interestedIn, message } = await req.json();
 
     if (!name || !phone || !email || !interestedIn) {
       return NextResponse.json(
@@ -12,12 +12,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const trimmedMessage =
+      typeof message === "string" ? message.trim().slice(0, 500) : "";
+
     // Save to Supabase
     const { error: dbError } = await insertRow("enquiry_submissions", {
       name,
       phone,
       email,
       interested_in: interestedIn,
+      ...(trimmedMessage && { message: trimmedMessage }),
     });
     if (dbError) {
       console.error("[Enquiry] Supabase insert failed:", dbError);
@@ -41,6 +45,7 @@ export async function POST(req: NextRequest) {
       ],
       emails: [{ type: "OFFICE", value: email, primary: true }],
       requirementName: `Enquiry: ${interestedIn}`,
+      ...(trimmedMessage && { description: trimmedMessage }),
     };
 
     try {

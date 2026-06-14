@@ -1750,6 +1750,7 @@
   },
   {
     "slug": "advanced-yoga-mat-pilates",
+    "hidden": true,
     "title": "Advanced Yoga & Mat-Pilates Classes",
     "titleLead": "Advanced Yoga",
     "titleAccent": "& Mat-Pilates",

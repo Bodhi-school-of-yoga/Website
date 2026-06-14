@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
@@ -12,8 +13,15 @@ export type ContactFormData = {
   firstName: string;
   phone: string;
   email: string;
+  interestedIn: string;
   message: string;
 };
+
+const INTEREST_OPTIONS = [
+  'Yoga Classes (Online + Offline)',
+  'Teacher Training (Online + Offline)',
+  'Workshops',
+];
 
 export type ContactFormProps = {
   onSubmit?: (data: ContactFormData) => Promise<void> | void;
@@ -35,6 +43,7 @@ const INITIAL_FIELDS: ContactFormData = {
   firstName: '',
   phone: '',
   email: '',
+  interestedIn: '',
   message: '',
 };
 
@@ -50,6 +59,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
   const firstNameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+  const interestedInRef = useRef<HTMLSelectElement>(null);
   const messageRef = useRef<HTMLInputElement>(null);
 
   const reset = () => {
@@ -61,7 +71,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
 
   const handleChange =
     (name: keyof ContactFormData) =>
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       const value = event.target.value;
       setFields((prev) => ({ ...prev, [name]: value }));
       if (errors[name]) {
@@ -81,6 +91,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
     } else if (!EMAIL_REGEX.test(data.email.trim())) {
       next.email = 'Please enter a valid email address.';
     }
+    if (!data.interestedIn) next.interestedIn = 'Please select an option.';
     if (!data.message.trim()) next.message = 'Message is required.';
     return next;
   };
@@ -88,11 +99,12 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
   const focusFirstInvalid = (next: Errors) => {
     const order: Array<{
       key: keyof ContactFormData;
-      ref: React.RefObject<HTMLInputElement | null>;
+      ref: React.RefObject<HTMLInputElement | HTMLSelectElement | null>;
     }> = [
       { key: 'firstName', ref: firstNameRef },
       { key: 'phone', ref: phoneRef },
       { key: 'email', ref: emailRef },
+      { key: 'interestedIn', ref: interestedInRef },
       { key: 'message', ref: messageRef },
     ];
     for (const { key, ref } of order) {
@@ -218,6 +230,46 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
         {errors.email ? (
           <p id="contact-email-error" className="mt-2 text-sm text-red-500">
             {errors.email}
+          </p>
+        ) : null}
+      </div>
+
+      <div>
+        <label htmlFor="contact-interestedIn" className={LABEL_CLASSES}>
+          Interested in
+        </label>
+        <div className="relative">
+          <Image src="/icon/users.svg" alt="" width={20} height={20} className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <select
+            ref={interestedInRef}
+            id="contact-interestedIn"
+            name="interestedIn"
+            required
+            value={fields.interestedIn}
+            onChange={handleChange('interestedIn')}
+            disabled={isSubmitting}
+            aria-invalid={Boolean(errors.interestedIn)}
+            aria-describedby={errors.interestedIn ? 'contact-interestedIn-error' : undefined}
+            className={cn(
+              INPUT_CLASSES,
+              'appearance-none pr-12',
+              !fields.interestedIn && 'text-text-tertiary/60',
+            )}
+          >
+            <option value="" disabled>
+              Select an option
+            </option>
+            {INTEREST_OPTIONS.map((opt) => (
+              <option key={opt} value={opt} className="text-text-primary">
+                {opt}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-4 sm:right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-tertiary" />
+        </div>
+        {errors.interestedIn ? (
+          <p id="contact-interestedIn-error" className="mt-2 text-sm text-red-500">
+            {errors.interestedIn}
           </p>
         ) : null}
       </div>
